@@ -3,15 +3,26 @@
 // Carpeta UI guardara todos los componentes que sean genericos, los que estaran por todos lados de la pagina
 
 import PropTypes from 'prop-types';
-import './uiStyles'
+//import './uiStyles' tira error
 
 const Button = ({ text, customStyles, onClick }) => {
+  const hasStyles = customStyles ? customStyles : null;
   return (
     <div className="button-container">
-      <button className="button">{ text }</button>
+      <button className="button" style={hasStyles}>{ text }</button>
     </div>
   )
 }
+
+//ANTES
+//<div className="button-container">
+//  <button className="button" style={hasStyles}>{ text }</button>
+//</div>
+
+//<div className='form-group'>
+//    <input className='form-input-submit' type="submit" value='Ingresar'/>
+//</div>
+
 
 Button.propTypes = {
   text: PropTypes.string.isRequired,

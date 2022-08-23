@@ -13,7 +13,7 @@ const LoginSection = () => {
             <LoginForm />
 
             <div className='login-section-footer'>
-                <div>Problemas al ingresar al sitio? <a href="#'">Click aquí</a></div>
+                <div className='login-section-footer-info'>loren loren loren loren loren loren loren loren</div>
             </div>
         </div>
     )

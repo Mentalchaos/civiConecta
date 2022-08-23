@@ -12,14 +12,16 @@
 
 .form-label {
     padding: 10px 10px;
+    color: rgb(116 104 226);
 }
 
 .form-input {
     font: inherit;
-    padding: 25px 15px;
-    background-color: #D9D9D9;
+    padding: 15px 15px;
+    border-radius: 10px;
+    background-color: white;
     border: none;
-    outline: none;
+    outline: rgb(116 104 226) solid 1px;
 }
 
 .form-input:active {
@@ -28,13 +30,18 @@
 
 .form-input-submit {
     font-size: 15px;
+    border-radius: 10px;
     font: inherit;
-    margin-top: 80px;
+    margin-top: 12px;
     color: white;
     font-weight: 600;
-    padding: 20px 20px;
-    background-color: #A5A5A5;
+    padding: 15px 15px;
+    background-color: rgb(116 104 226);
     cursor: pointer;
     outline: none;
     border: none;
+}
+
+.help-section {
+    display: flex;
 }
