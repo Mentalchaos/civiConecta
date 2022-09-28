@@ -1,5 +1,5 @@
-import "./loginSection.css";
-import LoginForm from "../LoginForm/LoginForm";
+import './loginSection.css';
+import LoginForm from '../LoginForm/LoginForm';
 
 const LoginSection = () => {
   return (
@@ -10,9 +10,7 @@ const LoginSection = () => {
           Bienvenido a la intranet <strong>CIVI Conecta</strong>
         </p>
       </div>
-
       <LoginForm />
-
       <div className="login-section-footer">
         <div>
           Problemas al ingresar al sitio? <a href="#'">Click aquí</a>
