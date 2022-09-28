@@ -1,16 +1,14 @@
-/* Cada component que se llama index es el padre principal */
-
-import LoginPage from "./Login";
+import "./login.css";
+import ImageSection from "./ImageSection/ImageSection";
+import LoginSection from "./LoginSection/LoginSection";
 
 const Login = () => {
   return (
-    <div>
-      {/* Contenedor de todo lo que tenga que ver con login,
-      aqui deberiamos llamar a las demas secciones o componentes hijos */}
-      {/* Login */}
-      <LoginPage/>
+    <div className="login">
+      <ImageSection />
+      <LoginSection />
     </div>
-  )
-}
+  );
+};
 
 export default Login;

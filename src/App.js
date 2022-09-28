@@ -1,5 +1,5 @@
-import Login from './Components/Login/index';
-import CiviConectaAdminPanel from './Components/CiviConectaAdminPanel/index';
+import Login from './components/Login/index';
+import CiviConectaAdminPanel from './components/CiviConectaAdminPanel/index';
 import './index.css';
 
 function App() {
