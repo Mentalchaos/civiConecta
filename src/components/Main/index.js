@@ -1,7 +1,12 @@
-import Login from '../Login';
+import React from 'react';
+import Sidebar from '../Sidebar/Sidebar';
 
 const Main = () => {
-  return <Login />;
+  return (
+    <>
+      <Sidebar />
+    </>
+  );
 };
 
 export default Main;
