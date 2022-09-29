@@ -1,0 +1,17 @@
+.sidebar {
+  position: absolute;
+  margin: 20px 20px;
+  width: 91px;
+  height: 681px;
+  overflow: hidden;
+  background-color: #7268DB;
+  border-radius: 16px;
+}
+
+.sidebar__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+  gap: 40px;
+}
