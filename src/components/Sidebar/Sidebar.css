@@ -15,3 +15,11 @@
   margin-top: 3rem;
   gap: 40px;
 }
+.nav-button {
+  cursor:pointer;
+  border: none;
+  outline:none;
+  background-color: transparent;
+}
+
+
