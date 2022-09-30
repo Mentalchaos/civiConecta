@@ -1,11 +1,11 @@
-import Main from './components/Main';
+import AppRouter from './router/AppRouter';
 import './index.css';
 
 function App() {
   return (
-    <div>
-      <Main />
-    </div>
+    <>
+      <AppRouter />
+    </>
   );
 }
 

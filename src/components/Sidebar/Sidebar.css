@@ -1,0 +1,25 @@
+.sidebar {
+  position: absolute;
+  margin: 20px 20px;
+  width: 91px;
+  height: 681px;
+  overflow: hidden;
+  background-color: #7268DB;
+  border-radius: 10px;
+}
+
+.sidebar__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+  gap: 40px;
+}
+.nav-button {
+  cursor:pointer;
+  border: none;
+  outline:none;
+  background-color: transparent;
+}
+
+

@@ -1,0 +1,18 @@
+.notification {
+  display: flex;
+  align-items: center;
+}
+
+.notification__text {
+  background-color: #EAEAEA;
+  border-radius: 5px;
+  padding: 10px;
+  max-width: 419px;
+  margin-right: 30px;
+}
+
+.notification__text>p {
+  text-align: justify;
+  font-size: 12px;
+  margin: 0;
+}
