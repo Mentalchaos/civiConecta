@@ -7,7 +7,7 @@ import linkTo from 'src/components/UI/Icons/link-to.svg';
 
 import './SurveyBox.css';
 
-const BoxContent = ({ icon, title, subtitle, image }) => {
+const BoxContent = ({ icon, title, subtitle, image, notification }) => {
   return (
     <main className="box">
       <header className="box__header">
@@ -24,9 +24,11 @@ const BoxContent = ({ icon, title, subtitle, image }) => {
           height="25"
         />
         <div className="header__text">
-          <span>{title}</span>
+          <p>{title} </p>
+
           <small>{subtitle}</small>
         </div>
+        {notification && <span className="header__notification-circle"></span>}
       </header>
       <img className="box__image" src={image} width="239px" alt="teacher" />
       <button type="button" className="box__link-to">
@@ -41,12 +43,14 @@ const SurveyBox = () => {
   return (
     <section className="content">
       <BoxContent
+        notification={true}
         icon={teacherIcon}
         title="Encuesta al docente"
         subtitle="Incompleto"
         image={teacherImage}
       />
       <BoxContent
+        notification={true}
         icon={studentIcon}
         title="Encuesta al estudiante"
         subtitle="Incompleto"
