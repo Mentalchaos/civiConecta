@@ -45,14 +45,23 @@
   background-color: var(--color-primary);
 }
 
+.header__notification-circle {
+  background-color: var(--bg-notification-circle);
+  border-radius: 25px;
+  padding: 4px;
+  margin-bottom: 23px;
+  margin-left: 4px;
+}
+
 .header__text {
   display: flex;
   flex-direction: column;
-  margin-left: 10px;
+  margin-left: 8px;
 }
 
 .header__text :nth-child(1) {
   font-size: 14px;
+  margin: 0;
 }
 
 .header__text :nth-child(2) {
