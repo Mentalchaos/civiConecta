@@ -4,7 +4,7 @@
   width: 91px;
   height: 681px;
   overflow: hidden;
-  background-color: #7268DB;
+  background-color: var(--color-primary);
   border-radius: 10px;
 }
 
