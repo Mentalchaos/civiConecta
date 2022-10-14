@@ -6,7 +6,6 @@ import './Main.css';
 const Main = () => {
   return (
     <main>
-      <Sidebar />
       <Content />
     </main>
   );
