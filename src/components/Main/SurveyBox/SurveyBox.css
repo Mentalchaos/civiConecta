@@ -4,6 +4,7 @@
   gap: 20px;
 }
 .box {
+  cursor:pointer;
   display: flex;
   flex-direction: column;
   width: auto;
@@ -11,6 +12,8 @@
   padding-bottom: 4px;
   box-shadow: 0px 2px 10px rgba(0,0,0,0.25);
   border-radius: 10px;
+  border: 1.7px solid transparent;
+  transition: all 0.3s ease-in-out;
 }
 
 .box__header {
@@ -19,10 +22,12 @@
 }
 
 .box__image {
+  transition:all 0.3s ease-in-out;
   margin-top: 15px;
 }
 
 .box__link-to {
+  color: #4d4d4d;
   cursor: pointer;
   font-family: 'Poppins';
   border:none;
@@ -30,6 +35,16 @@
   background-color: transparent;
   margin-top: 15px;
   text-align: right;
+  transition: all 0.3s ease-in-out;
+}
+
+.box__link-to > img {
+  transition: all 0.3s ease-in-out;
+}
+
+.box-link__icon {
+  transition: all 0.3s ease-in-out;
+  padding-left: 12px;
 }
 
 .link-to__open-survey {
@@ -37,6 +52,22 @@
   margin: 0;
   margin-right: 12px;
   font-size: 14px;
+  color: #4d4d4d;
+  transition: all 0.3s ease-in-out;
+}
+
+.link-start {
+  display: inline-block;
+  margin: 0;
+  margin-right: 12px;
+  font-size: 14px;
+  color: #4d4d4d;
+}
+
+.start-icon {
+  padding: 14px 12px;
+  border-radius: 10px;
+  background-color: var(--color-green);
 }
 
 .header__icon {
@@ -57,6 +88,9 @@
   display: flex;
   flex-direction: column;
   margin-left: 8px;
+}
+.header__text> small {
+  transition: all 0.3s ease-in-out;
 }
 
 .header__text :nth-child(1) {
