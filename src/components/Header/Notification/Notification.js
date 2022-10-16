@@ -1,6 +1,5 @@
 import React from 'react';
 import './Notification.css';
-import alertDefault from 'src/assets/images/alert-default.svg';
 import alertNotification from 'src/assets/images/alert-notification.svg';
 
 const Notification = () => {
