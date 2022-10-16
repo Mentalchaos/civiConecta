@@ -1,11 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import home from 'src/components/UI/Icons/home.svg';
 import teacher from 'src/components/UI/Icons/teacher.svg';
 import student from 'src/components/UI/Icons/student.svg';
 import blackboard from 'src/components/UI/Icons/blackboard.svg';
 
 import './Sidebar.css';
-import { Link } from 'react-router-dom';
 
 const NavButton = ({ icon, ariaLabel, path }) => {
   return (

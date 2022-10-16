@@ -1,0 +1,39 @@
+.units-container {
+  position: relative;
+  padding: 15px;
+  max-height: 557px;
+  width: 537px;
+  background-color: #fff;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+.units__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.header__left-content {
+  display: flex;
+  justify-content: center;
+}
+
+.header__info-tooltip {
+  position: absolute;
+  right: -12rem;
+  top: -3rem;
+  background-color: #fff;
+  padding: 3px 8px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
+  font-size: 12px;
+  transition: all 0.3s ease-in-out;
+  /*opacity: 0;*/
+}
+
+.units-header__icon {
+  padding: 14px 12px;
+  border-radius: 10px;
+  background-color: var(--color-green);
+}
