@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from 'src/components/Header/Header';
+import AsideBoxs from '../AsideBoxs/AsideBoxs';
 import SurveyBox from '../SurveyBox/SureyBox';
 import Units from '../Units/Units';
 
@@ -12,6 +13,7 @@ const Content = () => {
       <section className="main__section">
         <SurveyBox />
         <Units />
+        <AsideBoxs />
       </section>
     </main>
   );
