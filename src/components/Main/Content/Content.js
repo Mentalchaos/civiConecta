@@ -1,4 +1,3 @@
-import React from 'react';
 import Header from 'src/components/Header/Header';
 import AsideBoxs from '../AsideBoxs/AsideBoxs';
 import SurveyBox from '../SurveyBox/SureyBox';

@@ -1,0 +1,28 @@
+.container {
+  position: relative;
+}
+
+.manager-content {
+  padding: 1rem 0.5rem 0 9rem;
+}
+
+.manager__header-title {
+  color: #fff;
+  margin: 0;
+  font-size: 60px;
+}
+
+.manager__header-title > span {
+  font-size: 40px;
+}
+
+.manager__background {
+  position: absolute;
+  width: 100%;
+  z-index: -999;
+}
+
+.manager__header-subtitle {
+  font-size: 40px;
+  color: #fff;
+}
