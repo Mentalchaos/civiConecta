@@ -1,25 +1,38 @@
+import { useState } from 'react';
+import StageManager from './StageManager/StageManager';
+import StageAssignment from './StageAssignment/StageAssignment';
+import StageDetail from './StageDetail/StageDetail';
+
 import background from 'src/assets/images/manager-header.png';
 import './Manager.css';
 
 const Manager = () => {
+  const [stage, setStage] = useState('assignment');
   return (
-    <div className="container">
-      <img
-        className="manager__background"
-        src={background}
-        alt="background banner"
-      />
-      <main className="manager-content">
-        <header className="manager__header">
-          <h1 className="manager__header-title">
+    <>
+      <header className="manager-header">
+        <img src={background} alt="background" />
+        <div className="header__manager-text">
+          <h1>
             CIVI <span>admin</span>
           </h1>
-          <span className="manager__header-subtitle">
-            Manager de establecimientos
-          </span>
-        </header>
+          <p>Manager de establecimientos</p>
+        </div>
+      </header>
+
+      <main className="manager-content">
+        <div className="current-path">
+          <p className="path__text">manager</p>
+        </div>
+        {stage === 'manager' && (
+          <StageManager title="A&ntilde;adir Instituci&oacute;n" />
+        )}
+        {stage === 'assignment' && (
+          <StageAssignment title="Asignaci&oacute;n de m&oacute;dulos" />
+        )}
+        {stage === 'detail' && <StageDetail title="Detalle de m&oacute;dulo" />}
       </main>
-    </div>
+    </>
   );
 };
 
