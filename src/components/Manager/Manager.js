@@ -7,7 +7,7 @@ import background from 'src/assets/images/manager-header.png';
 import './Manager.css';
 
 const Manager = () => {
-  const [stage, setStage] = useState('assignment');
+  const [stage, setStage] = useState('manager');
   return (
     <>
       <header className="manager-header">
