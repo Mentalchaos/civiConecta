@@ -7,6 +7,7 @@
 }
 
 .button {
+  font-family: 'Poppins';
   border: none;
   outline:none;
   cursor:pointer;
@@ -15,4 +16,40 @@
 
 .button:hover {
   opacity: 0.9;
+}
+
+.table {
+  overflow-y: scroll;
+	overflow-x: hidden;
+	-webkit-overflow-scrolling: touch;
+  max-height: 264px;
+  width: 100%;
+  text-align: center;
+  background-color: #fff;
+  border-spacing: 0;
+  border-radius: 10px;
+}
+
+.table > thead {
+  }
+
+.table > thead > tr {
+  background-color: var(--color-secondary) !important;
+  font-size: 14px;
+  color: #fff;
+}
+
+.table > thead > tr > th {
+  padding: 15px;
+}
+
+.table > tbody > tr > td{
+  cursor:pointer;
+  padding: 10px;
+  border-bottom: 1px solid rgb(0,0,0,0.2);
+  border-radius: none;
+}
+
+.table > tbody > tr:hover {
+  background-color: #FBF0F2;;
 }

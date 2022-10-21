@@ -63,9 +63,10 @@
 .dropdown-container div*/
 
 select {
+  font-family: 'Poppins';
   cursor:pointer;
   width: 165px;
-  padding: 7px;
+  padding: 9px;
   text-overflow: ellipsis;
   white-space: nowrap;
   font-size: 14px;

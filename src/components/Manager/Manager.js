@@ -22,7 +22,8 @@ const Manager = () => {
 
       <main className="manager-content">
         <div className="current-path">
-          <p className="path__text">manager</p>
+          {/*Aqui debe ir el path para controlar ruta actual*/}
+          <p className="path__text">Manager</p>
         </div>
         {stage === 'manager' && (
           <StageManager title="A&ntilde;adir Instituci&oacute;n" />
