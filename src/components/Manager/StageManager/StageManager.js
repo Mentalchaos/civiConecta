@@ -1,4 +1,5 @@
 import Button from 'src/components/UI/Button';
+import Table from 'src/components/UI/Table';
 import './StageManager.css';
 
 const StageManager = ({ title }) => {
@@ -11,19 +12,11 @@ const StageManager = ({ title }) => {
     { name: 'Región Metropolitana', id: 6 },
     { name: 'Región Metropolitana', id: 7 },
   ];
-  const communes = [
-    { name: 'Región Metropolitana', id: 8 },
-    { name: 'Región Metropolitana', id: 9 },
-    { name: 'Región Metropolitana', id: 10 },
-    { name: 'Región Metropolitana', id: 11 },
-    { name: 'Región Metropolitana', id: 12 },
-    { name: 'Región Metropolitana', id: 13 },
-  ];
 
   const buttonStyles = {
     background: 'var(--color-secondary)',
     color: '#fff',
-    padding: '7px 40px',
+    padding: '5px 40px',
     borderRadius: '20px',
     fontSize: '14px',
     marginTop: '20px',
@@ -52,21 +45,18 @@ const StageManager = ({ title }) => {
                 );
               })}
             </select>
-            <select className="type-commune" defaultValue="Comuna">
-              <option disabled={true}>Comuna</option>
-              {communes.map(commune => {
-                return (
-                  <option key={commune.id} value={commune.name}>
-                    {commune.name}
-                  </option>
-                );
-              })}
-            </select>
+            <input
+              className="search__commune"
+              name="commune"
+              placeholder="Comuna"
+            />
           </div>
         </div>
         <Button text="A&ntilde;adir" customStyles={buttonStyles} />
       </article>
-      <article className="section__content table"></article>
+      <article className="section__content table-container">
+        <Table />
+      </article>
     </section>
   );
 };

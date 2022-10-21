@@ -1,0 +1,81 @@
+const Table = () => {
+  return (
+    <table className="table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Tipo</th>
+          <th>Regi&oacute;n</th>
+          <th>Comuna</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            {' '}
+            <input style={{ float: 'left' }} type="checkbox" /> saco
+          </td>
+          <td>saco</td>
+          <td>saco</td>
+          <td>saco</td>
+        </tr>
+        <tr>
+          <td>saco</td>
+          <td>saco</td>
+          <td>saco</td>
+          <td>saco</td>
+        </tr>
+        <tr>
+          <td>saco</td>
+          <td>saco</td>
+          <td>saco</td>
+          <td>saco</td>
+        </tr>
+        <tr>
+          <td>saco</td>
+          <td>saco</td>
+          <td>saco</td>
+          <td>saco</td>
+        </tr>
+        <tr>
+          <td>saco</td>
+          <td>saco</td>
+          <td>saco</td>
+          <td>saco</td>
+        </tr>
+        <tr>
+          <td>saco</td>
+          <td>saco</td>
+          <td>saco</td>
+          <td>saco</td>
+        </tr>
+        <tr>
+          <td>saco</td>
+          <td>saco</td>
+          <td>saco</td>
+          <td>saco</td>
+        </tr>
+        <tr>
+          <td>saco</td>
+          <td>saco</td>
+          <td>saco</td>
+          <td>saco</td>
+        </tr>
+        <tr>
+          <td>saco</td>
+          <td>saco</td>
+          <td>saco</td>
+          <td>saco</td>
+        </tr>
+        <tr>
+          <td>saco</td>
+          <td>saco</td>
+          <td>saco</td>
+          <td>saco</td>
+        </tr>
+      </tbody>
+    </table>
+  );
+};
+
+export default Table;
