@@ -1,7 +1,7 @@
 import React from 'react';
 import BoxIcon from 'src/components/UI/BoxIcon/BoxIcon';
-import blackboard from 'src/components/UI/Icons/blackboard.svg';
-import infoIcon from 'src/components/UI/Icons/info.svg';
+import blackboard from 'src/assets/Icons/blackboard.svg';
+import infoIcon from 'src/assets/Icons/info.svg';
 
 import './Units.css';
 

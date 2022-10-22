@@ -1,0 +1,110 @@
+.manager-content {
+  padding: 1rem 0.5rem 0 9rem;
+}
+
+.manager-header {
+  position:relative;
+  height: 260px;
+}
+
+.header__manager-text {
+  color: #fff;
+  padding: 1rem 0.5rem 0 9rem;
+}
+
+.header__manager-text> p {
+  margin: 0;
+  margin-top: 80px;
+  font-size: 40px;
+}
+
+.header__manager-text> h1 {
+  margin: 0;
+  font-size: 60px;
+}
+
+.header__manager-text> h1 span{
+  font-size: 40px;
+}
+
+.manager-section {
+  padding-left: 30px;
+}
+
+.manager-header > img {
+  width: 100%;
+  max-height: 260px;
+  z-index: -999;
+  position: absolute;
+}
+
+.current-path {
+  padding-left: 30px;
+}
+
+.path__text{
+  display: initial;
+  cursor: pointer;
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.section__title {
+  margin: 0;
+  color: var(--color-secondary);
+}
+
+.section__content {
+  margin-top: 10px;
+}
+
+/* apply CSS to the select tag of
+.dropdown-container div*/
+
+select {
+  font-family: 'Poppins';
+  cursor:pointer;
+  width: 165px;
+  padding: 9px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  color: var(--gray-dark);
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  text-align: center;
+  /* for Firefox */
+  -moz-appearance: none;
+  /* for Safari, Chrome, Opera */
+  -webkit-appearance: none;
+  background-repeat: no-repeat;
+  background-position-x: 15%;
+  background-position-y: 50%;
+}
+
+select.type-school {
+  background-image: url("../../assets/Icons/kind_icon.svg");
+}
+
+select.type-region {
+  background-image: url("../../assets/Icons/region_icon.svg");
+  overflow-y: scroll;
+  padding-left: 8%;
+  padding-right: 3%;
+  max-height: 363px;
+}
+
+select.type-commune {
+  background-image: url("../../assets/Icons/comune_icon.svg");
+  overflow-y: scroll;
+  padding-left: 8%;
+  padding-right: 3%;
+  max-height: 363px;
+}
+
+/* for IE10 */
+select::-ms-expand {
+  display: none;
+}

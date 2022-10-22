@@ -4,6 +4,7 @@
   width: 91px;
   height: 681px;
   overflow: hidden;
+  z-index: 999;
   background-color: var(--color-primary);
   border-radius: 10px;
 }
