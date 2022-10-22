@@ -1,0 +1,29 @@
+.container-boxs {
+  height: auto;
+}
+
+.boxs {
+  background-color: #fff;
+  width: 258px;
+  height: 290px;
+  padding: 5px 20px;
+  border-radius: 10px;
+}
+
+.boxs-ephemeris {
+  margin-top: 20px;
+}
+
+.boxs__header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.boxs-header__title {
+  font-size: 14px;
+}
+
+.boxs-header__events {
+  font-size: 10px;
+}

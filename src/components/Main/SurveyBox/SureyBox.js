@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import BoxIcon from 'src/components/UI/BoxIcon/BoxIcon';
 import teacherImage from 'src/assets/images/teacher-survey.png';
 import studentImage from 'src/assets/images/student-survey.png';
-import teacherIcon from 'src/components/UI/Icons/teacher.svg';
-import studentIcon from 'src/components/UI/Icons/student.svg';
-import schoolIcon from 'src/components/UI/Icons/school.svg';
-import linkTo from 'src/components/UI/Icons/link-to.svg';
+import teacherIcon from 'src/assets/Icons/teacher.svg';
+import studentIcon from 'src/assets/Icons/student.svg';
+import schoolIcon from 'src/assets/Icons/school.svg';
+import linkTo from 'src/assets/Icons/link-to.svg';
 
 import './SurveyBox.css';
 
@@ -79,6 +80,7 @@ const BoxContent = ({ icon, title, subtitle, image, notification }) => {
 
 const SurveyBox = () => {
   const [isHover, setIsHover] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <section className="content">
@@ -89,6 +91,7 @@ const SurveyBox = () => {
         }}
         onMouseOver={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}
+        onClick={() => navigate('/admin/manager')}
         className="box create-school"
       >
         <header className="box__header">
