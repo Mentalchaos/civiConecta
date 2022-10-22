@@ -1,0 +1,45 @@
+.manager__search-container {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #E0E0E0;
+}
+
+.manager__search-text {
+  color: var(--gray-dark);
+  margin-left: 20px;
+}
+
+.search-container__selects {
+  display: flex;
+  gap: 10px;
+  padding-right: 25px;
+}
+
+.button-container {
+  display: inline-block;
+  width: 85%;
+}
+
+.search__commune {
+  background-image: url('src/assets/Icons/comune_icon.svg');
+  background-repeat: no-repeat;
+  background-position: 15% 50%;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.table-container {
+  width: 95%;
+  overflow: hidden;
+  max-height: 268px;
+  padding: 10px;
+  background-color: #fff;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
