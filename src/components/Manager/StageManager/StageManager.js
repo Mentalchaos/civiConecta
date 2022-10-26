@@ -1,8 +1,76 @@
+import { useEffect, useRef, useState } from 'react';
 import Button from 'src/components/UI/Button';
 import Table from 'src/components/UI/Table';
 import './StageManager.css';
 
 const StageManager = ({ title }) => {
+  const [showButtonDelete, setShowButtonDelete] = useState(false);
+
+  const headerTable = [
+    {
+      Header: 'Nombre',
+      accessor: 'name',
+    },
+    { Header: 'Tipo', accessor: 'type', disableSortBy: true },
+    { Header: 'Región', accessor: 'region', disableSortBy: true },
+    { Header: 'Comuna', accessor: 'commune', disableSortBy: true },
+  ];
+
+  const dataTable = [
+    { id: 1, name: 'American', type: 'caca', region: 'vaca', commune: 'casca' },
+    {
+      id: 2,
+      name: 'Creativos',
+      type: 'caca1',
+      region: 'vaca1',
+      commune: 'casca1',
+    },
+    {
+      id: 3,
+      name: 'Euroamerican School',
+      type: 'caca2',
+      region: 'vaca2',
+      commune: 'casca2',
+    },
+    {
+      id: 4,
+      name: 'Larrea',
+      type: 'caca3',
+      region: 'vaca3',
+      commune: 'casca3',
+    },
+    {
+      id: 5,
+      name: 'Latin America School',
+      type: 'caca4',
+      region: 'vaca4',
+      commune: 'casca4',
+    },
+    {
+      id: 6,
+      name: 'Montealban',
+      type: 'caca',
+      region: 'vaca',
+      commune: 'casca',
+    },
+    { id: 7, name: 'Tarreo', type: 'caca', region: 'vaca', commune: 'casca' },
+    { id: 8, name: 'Zosa', type: 'caca', region: 'vaca', commune: 'casca' },
+    {
+      id: 9,
+      name: 'Sagrados Corazones',
+      type: 'caca',
+      region: 'vaca',
+      commune: 'casca',
+    },
+    {
+      id: 10,
+      name: 'Santiago College',
+      type: 'caca',
+      region: 'vaca',
+      commune: 'casca',
+    },
+  ];
+
   const regiones = [
     { name: 'Región Metropolitana', id: 1 },
     { name: 'Región Metropolitana', id: 2 },
@@ -21,6 +89,15 @@ const StageManager = ({ title }) => {
     fontSize: '14px',
     marginTop: '20px',
     float: 'right',
+  };
+
+  const buttonDeleteStyles = {
+    background: 'var(--color-secondary)',
+    color: '#fff',
+    padding: '5px 40px',
+    borderRadius: '20px',
+    fontSize: '14px',
+    zIndex: 999,
   };
 
   return (
@@ -55,7 +132,12 @@ const StageManager = ({ title }) => {
         <Button text="A&ntilde;adir" customStyles={buttonStyles} />
       </article>
       <article className="section__content table-container">
-        <Table />
+        {showButtonDelete && (
+          <div className="content__difused">
+            <Button text="Eliminar" customStyles={buttonDeleteStyles} />
+          </div>
+        )}
+        <Table dataHeader={headerTable} data={dataTable} />
       </article>
     </section>
   );

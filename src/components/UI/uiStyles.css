@@ -1,16 +1,16 @@
 :root {
-  --color-primary: #7268DB;
-  --color-secondary: #D9687C;
-  --bg-notification-circle: #9747FF;
+  --color-primary: #7268db;
+  --color-secondary: #d9687c;
+  --bg-notification-circle: #9747ff;
   --color-green: #95ca76;
-  --gray-dark: #4D4D4D;
+  --gray-dark: #4d4d4d;
 }
 
 .button {
   font-family: 'Poppins';
   border: none;
-  outline:none;
-  cursor:pointer;
+  outline: none;
+  cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
 
@@ -19,37 +19,100 @@
 }
 
 .table {
-  overflow-y: scroll;
-	overflow-x: hidden;
-	-webkit-overflow-scrolling: touch;
-  max-height: 264px;
+  border-collapse: collapse;
   width: 100%;
   text-align: center;
   background-color: #fff;
-  border-spacing: 0;
   border-radius: 10px;
 }
 
-.table > thead {
-  }
-
-.table > thead > tr {
+.table thead {
   background-color: var(--color-secondary) !important;
   font-size: 14px;
   color: #fff;
+}
+
+.table thead tr {
+  display: block;
+}
+
+.table th,
+.table td {
+  width: 1000px;
+}
+
+.table tbody {
+  display: block;
+  overflow-y: scroll;
+  width: 100%;
+  height: 300px;
 }
 
 .table > thead > tr > th {
   padding: 15px;
 }
 
-.table > tbody > tr > td{
-  cursor:pointer;
-  padding: 10px;
-  border-bottom: 1px solid rgb(0,0,0,0.2);
+.table > tbody > tr > td {
+  cursor: pointer;
+  padding: 10px 0px;
+  border-bottom: 1px solid rgb(0, 0, 0, 0.2);
   border-radius: none;
 }
 
 .table > tbody > tr:hover {
-  background-color: #FBF0F2;;
+  background-color: #fbf0f2;
+}
+
+/*// Estilos para scroll*/
+.table tbody::-webkit-scrollbar {
+  -webkit-appearance: none;
+  background-color: #fbf0f2;
+}
+
+.table tbody::-webkit-scrollbar:vertical {
+  width: 10px;
+}
+
+.table tbody::-webkit-scrollbar-button:increment,
+.contenedor::-webkit-scrollbar-button {
+  display: none;
+}
+
+.table tbody::-webkit-scrollbar:horizontal {
+  height: 10px;
+}
+
+.table tbody::-webkit-scrollbar-thumb {
+  background-color: var(--color-secondary);
+  border-radius: 20px;
+  border: 2px solid #f1f2f3;
+}
+
+.table tbody::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+input[type='checkbox'] {
+  display: none;
+}
+
+input[type='checkbox'] + label:before {
+  content: '';
+  padding: 7px;
+  float: left;
+  border: 2px solid #000;
+  background: #fff;
+}
+
+input[type='checkbox']:checked + label:after {
+  content: '';
+  width: 13px;
+  height: 5px;
+  border: 1px solid red;
+  float: left;
+  margin-left: -1em;
+  border-right: 0;
+  border-top: 0;
+  margin-top: 0.3em;
+  transform: rotate(-55deg);
 }
