@@ -80,7 +80,7 @@ select {
   /* for Safari, Chrome, Opera */
   -webkit-appearance: none;
   background-repeat: no-repeat;
-  background-position-x: 15%;
+  background-position-x: 10%;
   background-position-y: 50%;
 }
 
