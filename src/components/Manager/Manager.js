@@ -7,7 +7,7 @@ import background from 'src/assets/images/manager-header.png';
 import './Manager.css';
 
 const Manager = () => {
-  const [stage, setStage] = useState('manager');
+  const [stage, setStage] = useState('assignment');
   return (
     <>
       <header className="manager-header">
@@ -29,7 +29,7 @@ const Manager = () => {
           <StageManager title="A&ntilde;adir Instituci&oacute;n" />
         )}
         {stage === 'assignment' && (
-          <StageAssignment title="Asignaci&oacute;n de m&oacute;dulos" />
+          <StageAssignment title="Creaci&oacute;n de cursos" />
         )}
         {stage === 'detail' && <StageDetail title="Detalle de m&oacute;dulo" />}
       </main>

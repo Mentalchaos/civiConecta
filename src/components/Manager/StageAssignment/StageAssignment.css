@@ -1,0 +1,39 @@
+.section__content-assignment {
+  display: flex;
+}
+.content__level-table {
+}
+
+.content__data-table {
+
+}
+
+.content__search-teacher {
+  border: none;
+  background-color: #E0E0E0;
+  font-family: "Poppins";
+  outline: none;
+  padding: 13px;
+  padding-left: 40px;
+  border-radius: 10px;
+  width: 95%;
+  margin-bottom: 5px;
+}
+
+.container-input {
+  position: relative;
+}
+
+.container-input img{
+  position: absolute;
+  right: 0.6rem;
+  top:1rem;
+  display: block;
+  width: 16px;
+}
+
+.content__table-container {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+}
