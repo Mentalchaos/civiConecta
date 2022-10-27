@@ -1,0 +1,9 @@
+.custom-subtitle {
+  font-size: 14px;
+}
+
+.select-section,
+.actions {
+  display: flex;
+  align-items: center;
+}
