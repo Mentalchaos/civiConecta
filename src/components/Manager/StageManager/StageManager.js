@@ -129,10 +129,14 @@ const StageManager = ({ title }) => {
             />
           </div>
         </div>
-        <Button text="A&ntilde;adir" customStyles={buttonStyles} />
+        <Button
+          style={{ width: '85%', display: 'inline-block' }}
+          text="A&ntilde;adir"
+          customStyles={buttonStyles}
+        />
       </article>
       <article className="section__content table-container">
-        {showButtonDelete && (
+        {!showButtonDelete && (
           <div className="content__difused">
             <Button text="Eliminar" customStyles={buttonDeleteStyles} />
           </div>
