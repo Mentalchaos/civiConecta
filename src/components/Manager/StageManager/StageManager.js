@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import Button from 'src/components/UI/Button';
 import Table from 'src/components/UI/Table';
 import './StageManager.css';
