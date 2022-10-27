@@ -18,6 +18,13 @@
   opacity: 0.9;
 }
 
+.header-table__arrow {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .table {
   border-collapse: collapse;
   width: 100%;
@@ -63,7 +70,12 @@
   background-color: #fbf0f2;
 }
 
-/*// Estilos para scroll*/
+/* Scroll bar para Firefox */
+body {
+  scrollbar-width: auto; /* "auto" or "thin" */
+  scrollbar-color: var(--color-secondary) #fbf0f2; /* scroll thumb and track */
+}
+
 .table tbody::-webkit-scrollbar {
   -webkit-appearance: none;
   background-color: #fbf0f2;
@@ -115,4 +127,28 @@ input[type='checkbox']:checked + label:after {
   border-top: 0;
   margin-top: 0.3em;
   transform: rotate(-55deg);
+}
+
+.modal-container {
+  z-index: 999;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgb(0, 0, 0, 0.3);
+}
+
+.modal-content {
+  margin: auto;
+  padding: 30px 120px;
+  background-color: #fff;
+  border-radius: 10px;
+  width: 50%;
+}
+
+.modal__title {
+  font-size: 20px;
+  font-weight: 600 !important;
+  margin-bottom: 0;
 }

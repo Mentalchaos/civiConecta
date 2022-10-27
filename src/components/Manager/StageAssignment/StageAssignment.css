@@ -1,39 +1,114 @@
 .section__content-assignment {
+  margin-top: 20px;
   display: flex;
-}
-.content__level-table {
+  justify-content: space-between;
 }
 
 .content__data-table {
-
+  width: 65%;
+  padding-right: 45px;
 }
 
 .content__search-teacher {
   border: none;
-  background-color: #E0E0E0;
-  font-family: "Poppins";
+  background-color: #e0e0e0;
+  font-family: 'Poppins';
   outline: none;
   padding: 13px;
   padding-left: 40px;
   border-radius: 10px;
-  width: 95%;
+  width: 100%;
   margin-bottom: 5px;
 }
 
 .container-input {
   position: relative;
+  display: flex;
 }
 
-.container-input img{
+.container-input img {
   position: absolute;
-  right: 0.6rem;
-  top:1rem;
+  right: 1rem;
+  top: 1rem;
   display: block;
-  width: 16px;
+  width: 18px;
 }
 
 .content__table-container {
   background-color: #fff;
   padding: 10px;
   border-radius: 10px;
+}
+
+.content__level-selection-title {
+  font-size: 14px;
+  color: #4d4d4d;
+}
+
+.content__level-add-word {
+  width: 125px;
+  height: 108px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 45px;
+  border-radius: 10px;
+  background-color: #fff;
+  padding-bottom: 3px;
+}
+
+.content__level-add-word:hover {
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+.content__level-selected:hover {
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+.add-word__plus-sign {
+  font-size: 40px;
+}
+
+.add-word__text {
+  font-size: 14px;
+}
+
+.selection__boxs-container {
+  display: flex;
+  gap: 15px;
+}
+
+.content__level-selected {
+  width: 125px;
+  height: 108px;
+  background-color: var(--color-primary);
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: left;
+  margin-top: 45px;
+  border-radius: 10px;
+  padding-bottom: 3px;
+}
+
+.level-selected__degree {
+  font-size: 40px;
+  padding-left: 10px;
+}
+
+.add-word__go-to {
+  padding: 0px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.go-to__text {
+  font-size: 14px;
 }

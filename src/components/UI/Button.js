@@ -5,9 +5,9 @@
 import PropTypes from 'prop-types';
 import './uiStyles.css';
 
-const Button = ({ text, customStyles, onClick }) => {
+const Button = ({ text, customStyles, onClick, ...props }) => {
   return (
-    <div className="button-container">
+    <div className="button-container" {...props}>
       <button style={customStyles} className="button">
         {text}
       </button>
@@ -30,4 +30,3 @@ Button.defaultProps = {
 Button.displayName = 'Button';
 
 export default Button;
-

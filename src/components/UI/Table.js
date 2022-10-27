@@ -1,6 +1,6 @@
-import React, { useMemo, useState } from 'react';
-import { useRowSelect, useSortBy, useTable } from 'react-table';
 import PropTypes from 'prop-types';
+import { useMemo, useState } from 'react';
+import { useRowSelect, useSortBy, useTable } from 'react-table';
 import arrow from 'src/assets/Icons/arrow.svg';
 
 const Table = ({ data, dataHeader }) => {
@@ -53,16 +53,14 @@ const Table = ({ data, dataHeader }) => {
                       setSortBy([{ id: column.id, desc }]);
                     }}
                   >
-                    <div style={{ position: 'relative' }}>
-                      {column.render('Header')}
+                    <div className="header-table__arrow">
+                      <span>{column.render('Header')}</span>
                       {column.isSorted ? (
                         column.isSortedDesc ? (
                           <img
                             style={{
-                              position: 'absolute',
-                              bottom: '20%',
-                              right: '33%',
                               transition: 'all 0.3s ease-in-out',
+                              marginLeft: '15px',
                               rotate: '180deg',
                             }}
                             src={arrow}
@@ -71,9 +69,7 @@ const Table = ({ data, dataHeader }) => {
                         ) : (
                           <img
                             style={{
-                              position: 'absolute',
-                              bottom: '20%',
-                              right: '33%',
+                              marginLeft: '15px',
                               transition: 'all 0.3s ease-in-out',
                             }}
                             src={arrow}
