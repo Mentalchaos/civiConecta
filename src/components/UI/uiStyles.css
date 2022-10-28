@@ -130,25 +130,27 @@ input[type='checkbox']:checked + label:after {
 }
 
 .modal-container {
-  z-index: 999;
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
+  height: 100vh;
   background-color: rgb(0, 0, 0, 0.3);
+  z-index: 999;
 }
 
 .modal-content {
   margin: auto;
-  padding: 30px 120px;
+  padding: 50px 120px 70px 120px;
   background-color: #fff;
   border-radius: 10px;
-  width: 50%;
+  width: 40%;
+  margin-top: 150px;
 }
 
 .modal__title {
   font-size: 20px;
   font-weight: 600 !important;
-  margin-bottom: 0;
+  margin: 0;
 }
