@@ -7,11 +7,17 @@
 }
 
 .button {
+  position: relative;
   font-family: 'Poppins';
   border: none;
   outline: none;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+}
+
+.button > img {
+  position: absolute;
+  left: 20px;
 }
 
 .button:hover {
@@ -104,9 +110,9 @@ body {
   border-radius: 10px;
 }
 
-input[type='checkbox'] {
-  display: none;
-}
+/* input[type='checkbox'] { */
+/*   display: none; */
+/* } */
 
 input[type='checkbox'] + label:before {
   content: '';
@@ -146,7 +152,6 @@ input[type='checkbox']:checked + label:after {
   background-color: #fff;
   border-radius: 10px;
   width: 40%;
-  margin-top: 150px;
 }
 
 .modal__title {

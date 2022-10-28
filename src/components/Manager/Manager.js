@@ -16,7 +16,9 @@ const Manager = () => {
           <h1>
             CIVI <span>admin</span>
           </h1>
-          <p>Manager de establecimientos</p>
+          {stage === 'manager' && <p>Manager de establecimientos</p>}
+          {stage === 'assignment' && <p>Nombre del establecimiento</p>}
+          {stage === 'detail' && <p>Nombre del establecimiento</p>}
         </div>
       </header>
 
