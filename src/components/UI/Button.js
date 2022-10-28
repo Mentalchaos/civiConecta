@@ -5,10 +5,11 @@
 import PropTypes from 'prop-types';
 import './uiStyles.css';
 
-const Button = ({ text, customStyles, onClick, ...props }) => {
+const Button = ({ text, icon, customStyles, onClick, ...props }) => {
   return (
     <div className="button-container" {...props}>
-      <button style={customStyles} className="button">
+      <button onClick={onClick} style={customStyles} className="button">
+        {icon && <img src={icon} alt="icon" />}
         {text}
       </button>
     </div>
@@ -18,7 +19,7 @@ const Button = ({ text, customStyles, onClick, ...props }) => {
 Button.propTypes = {
   text: PropTypes.string.isRequired,
   customStyles: PropTypes.object,
-  onClick: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 Button.defaultProps = {
