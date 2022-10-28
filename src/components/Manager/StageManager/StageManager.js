@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Button from 'src/components/UI/Button';
 import Table from 'src/components/UI/Table';
+import deleteIcon from 'src/assets/Icons/delete_icon.svg';
 import './StageManager.css';
 
 const StageManager = ({ title }) => {
@@ -94,7 +95,7 @@ const StageManager = ({ title }) => {
   const buttonDeleteStyles = {
     background: 'var(--color-secondary)',
     color: '#fff',
-    padding: '5px 40px',
+    padding: '6px 55px',
     borderRadius: '20px',
     fontSize: '14px',
     zIndex: 999,
@@ -138,7 +139,11 @@ const StageManager = ({ title }) => {
       <article className="section__content table-container">
         {!showButtonDelete && (
           <div className="content__difused">
-            <Button text="Eliminar" customStyles={buttonDeleteStyles} />
+            <Button
+              text="Eliminar"
+              icon={deleteIcon}
+              customStyles={buttonDeleteStyles}
+            />
           </div>
         )}
         <Table dataHeader={headerTable} data={dataTable} />

@@ -5,8 +5,12 @@
 }
 
 .content__data-table {
-  width: 65%;
-  padding-right: 45px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 55%;
+  margin-top: 20px;
+  padding-right: 40px;
 }
 
 .content__search-teacher {
@@ -29,12 +33,14 @@
 .container-input img {
   position: absolute;
   right: 1rem;
-  top: 1rem;
+  top: 0.8rem;
   display: block;
   width: 18px;
 }
 
 .content__table-container {
+  overflow: hidden;
+  position: relative;
   background-color: #fff;
   padding: 10px;
   border-radius: 10px;
@@ -46,6 +52,8 @@
 }
 
 .content__level-add-word {
+  border: none;
+  font-family: 'Poppins';
   width: 125px;
   height: 108px;
   transition: all 0.3s ease-in-out;
@@ -111,4 +119,16 @@
 
 .go-to__text {
   font-size: 14px;
+}
+
+.difused-assignment {
+  width: -webkit-fill-available;
+}
+
+.difused-assignment {
+  width: -moz-available;
+  display: flex;
+  gap: 90px;
+  justify-content: center;
+  padding: 20px;
 }
