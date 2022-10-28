@@ -20,6 +20,7 @@ const CreateLetter = () => {
     fontSize: '14px',
     marginTop: '20px',
   };
+
   return (
     <Modal title="Crear letra">
       <span className="custom-subtitle">
