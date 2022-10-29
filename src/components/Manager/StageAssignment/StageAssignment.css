@@ -95,7 +95,6 @@
   background-color: var(--color-primary);
   color: #fff;
   transition: all 0.3s ease-in-out;
-  cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -131,4 +130,14 @@
   gap: 90px;
   justify-content: center;
   padding: 20px;
+}
+
+input[type='checkbox']#checkLetter + label:before {
+  float: right;
+  margin-right: 10px;
+}
+
+input[type='checkbox']#checkLetter:checked + label:after {
+  float: right !important;
+  margin-right: -1rem;
 }

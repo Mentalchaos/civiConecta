@@ -66,8 +66,8 @@ const StageAssignment = ({ title }) => {
             </button>
             {wordAdded && (
               <section className="content__level-selected">
-                <label htmlFor="checkLetter"></label>
                 <input id="checkLetter" type="checkbox" />
+                <label htmlFor="checkLetter"></label>
                 <span className="level-selected__degree">{'5° B'}</span>
                 <span className="add-word__go-to">
                   <span className="go-to__text">B&aacute;sico</span>

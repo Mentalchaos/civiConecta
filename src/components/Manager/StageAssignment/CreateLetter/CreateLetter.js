@@ -3,23 +3,24 @@ import Modal from 'src/components/UI/Modal';
 import './CreateLetter.css';
 
 const CreateLetter = ({ setShowAddLetter }) => {
+  const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
   const buttonStyles = {
     background: 'var(--color-secondary)',
     color: '#fff',
-    padding: '5px 40px',
+    padding: '5px 30px',
     borderRadius: '20px',
     fontSize: '14px',
-    marginTop: '20px',
+    marginTop: '50px',
   };
 
   const buttonStylesCancel = {
     backgroundColor: '#fff',
     color: 'var(--color-secondary)',
     border: '1px solid var(--color-secondary)',
-    padding: '5px 40px',
+    padding: '5px 30px',
     borderRadius: '20px',
     fontSize: '14px',
-    marginTop: '20px',
+    marginTop: '50px',
   };
 
   return (
@@ -28,17 +29,31 @@ const CreateLetter = ({ setShowAddLetter }) => {
         Seleccione una Letra para{' '}
         <strong>5° básico y cantidad de alumnos</strong>.
       </span>
-      <div className="select-section">
-        <p>Letra</p>
-        <p>Numero de estudiantes</p>
-      </div>
-      <div className="actions">
-        <Button
-          onClick={() => setShowAddLetter(false)}
-          customStyles={buttonStylesCancel}
-          text="Cancelar"
-        />
-        <Button customStyles={buttonStyles} text="Continuar" />
+      <div className="section__select-actions">
+        <div className="select-section">
+          <div className="section__select-letter">
+            <p>Letra</p>
+            <select className="section__letter-selection">
+              {letters.map(letter => {
+                return <option value={letter}>{letter}</option>;
+              })}
+            </select>
+            <Button
+              onClick={() => setShowAddLetter(false)}
+              customStyles={buttonStylesCancel}
+              text="Cancelar"
+            />
+          </div>
+          <div className="section__select-students">
+            <p>Numero de estudiantes</p>
+            <select className="section__letter-selection">
+              {letters.map(letter => {
+                return <option value={letter}>{letter}</option>;
+              })}
+            </select>
+            <Button customStyles={buttonStyles} text="Continuar" />
+          </div>
+        </div>
       </div>
     </Modal>
   );
