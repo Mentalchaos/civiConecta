@@ -1,9 +1,10 @@
 .manager-content {
+  position: relative;
   padding: 1rem 0.5rem 0 9rem;
 }
 
 .manager-header {
-  position:relative;
+  position: relative;
   height: 260px;
 }
 
@@ -12,18 +13,18 @@
   padding: 1rem 0.5rem 0 9rem;
 }
 
-.header__manager-text> p {
+.header__manager-text > p {
   margin: 0;
   margin-top: 80px;
   font-size: 40px;
 }
 
-.header__manager-text> h1 {
+.header__manager-text > h1 {
   margin: 0;
   font-size: 60px;
 }
 
-.header__manager-text> h1 span{
+.header__manager-text > h1 span {
   font-size: 40px;
 }
 
@@ -42,7 +43,7 @@
   padding-left: 30px;
 }
 
-.path__text{
+.path__text {
   display: initial;
   cursor: pointer;
   color: var(--color-primary);
@@ -51,6 +52,7 @@
 }
 
 .section__title {
+  font-size: 20px;
   margin: 0;
   color: var(--color-secondary);
 }
@@ -64,7 +66,7 @@
 
 select {
   font-family: 'Poppins';
-  cursor:pointer;
+  cursor: pointer;
   width: 165px;
   padding: 9px;
   text-overflow: ellipsis;
@@ -80,16 +82,16 @@ select {
   /* for Safari, Chrome, Opera */
   -webkit-appearance: none;
   background-repeat: no-repeat;
-  background-position-x: 15%;
+  background-position-x: 10%;
   background-position-y: 50%;
 }
 
 select.type-school {
-  background-image: url("../../assets/Icons/kind_icon.svg");
+  background-image: url('../../assets/Icons/kind_icon.svg');
 }
 
 select.type-region {
-  background-image: url("../../assets/Icons/region_icon.svg");
+  background-image: url('../../assets/Icons/region_icon.svg');
   overflow-y: scroll;
   padding-left: 8%;
   padding-right: 3%;
@@ -97,7 +99,7 @@ select.type-region {
 }
 
 select.type-commune {
-  background-image: url("../../assets/Icons/comune_icon.svg");
+  background-image: url('../../assets/Icons/comune_icon.svg');
   overflow-y: scroll;
   padding-left: 8%;
   padding-right: 3%;
