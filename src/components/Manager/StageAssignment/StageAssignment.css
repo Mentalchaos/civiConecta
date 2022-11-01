@@ -1,0 +1,143 @@
+.section__content-assignment {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.content__data-table {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 55%;
+  margin-top: 20px;
+  padding-right: 40px;
+}
+
+.content__search-teacher {
+  border: none;
+  background-color: #e0e0e0;
+  font-family: 'Poppins';
+  outline: none;
+  padding: 13px;
+  padding-left: 40px;
+  border-radius: 10px;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.container-input {
+  position: relative;
+  display: flex;
+}
+
+.container-input img {
+  position: absolute;
+  right: 1rem;
+  top: 0.8rem;
+  display: block;
+  width: 18px;
+}
+
+.content__table-container {
+  overflow: hidden;
+  position: relative;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.content__level-selection-title {
+  font-size: 14px;
+  color: #4d4d4d;
+}
+
+.content__level-add-word {
+  border: none;
+  font-family: 'Poppins';
+  width: 125px;
+  height: 108px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 45px;
+  border-radius: 10px;
+  background-color: #fff;
+  padding-bottom: 3px;
+}
+
+.content__level-add-word:hover {
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+.content__level-selected:hover {
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+.add-word__plus-sign {
+  font-size: 40px;
+}
+
+.add-word__text {
+  font-size: 14px;
+}
+
+.selection__boxs-container {
+  display: flex;
+  gap: 15px;
+}
+
+.content__level-selected {
+  width: 125px;
+  height: 108px;
+  background-color: var(--color-primary);
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: left;
+  margin-top: 45px;
+  border-radius: 10px;
+  padding-bottom: 3px;
+}
+
+.level-selected__degree {
+  font-size: 40px;
+  padding-left: 10px;
+}
+
+.add-word__go-to {
+  padding: 0px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.go-to__text {
+  font-size: 14px;
+}
+
+.difused-assignment {
+  width: -webkit-fill-available;
+}
+
+.difused-assignment {
+  width: -moz-available;
+  display: flex;
+  gap: 90px;
+  justify-content: center;
+  padding: 20px;
+}
+
+input[type='checkbox']#checkLetter + label:before {
+  float: right;
+  margin-right: 10px;
+}
+
+input[type='checkbox']#checkLetter:checked + label:after {
+  float: right !important;
+  margin-right: -1rem;
+}
