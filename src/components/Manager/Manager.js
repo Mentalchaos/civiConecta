@@ -7,7 +7,7 @@ import background from 'src/assets/images/manager-header.png';
 import './Manager.css';
 
 const Manager = () => {
-  const [stage, setStage] = useState('manager');
+  const [stage, setStage] = useState('assignment');
   return (
     <>
       <header className="manager-header">
@@ -16,10 +16,11 @@ const Manager = () => {
           <h1>
             CIVI <span>admin</span>
           </h1>
-          <p>Manager de establecimientos</p>
+          {stage === 'manager' && <p>Manager de establecimientos</p>}
+          {stage === 'assignment' && <p>Nombre del establecimiento</p>}
+          {stage === 'detail' && <p>Nombre del establecimiento</p>}
         </div>
       </header>
-
       <main className="manager-content">
         <div className="current-path">
           {/*Aqui debe ir el path para controlar ruta actual*/}
@@ -29,7 +30,7 @@ const Manager = () => {
           <StageManager title="A&ntilde;adir Instituci&oacute;n" />
         )}
         {stage === 'assignment' && (
-          <StageAssignment title="Asignaci&oacute;n de m&oacute;dulos" />
+          <StageAssignment title="Creaci&oacute;n de cursos" />
         )}
         {stage === 'detail' && <StageDetail title="Detalle de m&oacute;dulo" />}
       </main>
