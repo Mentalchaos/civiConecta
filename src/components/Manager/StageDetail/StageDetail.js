@@ -1,14 +1,22 @@
 import Button from 'src/components/UI/Button';
 import Table from 'src/components/UI/Table';
+import studentIcon from 'src/assets/Icons/student_icon.svg';
 import './StageDetail.css';
 
 const StageDetail = ({ title }) => {
+  const buttonStyle = {
+    color: '#fff',
+    backgroundColor: 'var(--color-secondary)',
+    borderRadius: 20,
+    padding: '5px 40px',
+  };
+
   const buttonDeleteStyle = {
     backgroundColor: '#fff',
     color: 'var(--color-secondary)',
     borderRadius: 20,
     border: '1px solid var(--color-secondary)',
-    padding: '3px 55px',
+    padding: '5px 60px',
   };
 
   const tableDataHeader = [
@@ -22,6 +30,11 @@ const StageDetail = ({ title }) => {
       <h1 className="section__title">{title}</h1>
       <article className="section__content detail-content">
         <header className="detail-content__header">
+          <Button
+            icon={studentIcon}
+            text={'Alumnos'}
+            customStyles={buttonStyle}
+          />
           <Button text={'Eliminar curso'} customStyles={buttonDeleteStyle} />
         </header>
         <main className="detail-content__main">
@@ -40,7 +53,9 @@ const StageDetail = ({ title }) => {
             </p>
           </div>
           <div className="main__table">
-            <p>Docentes asignados a letra</p>
+            <p>
+              <strong>Docentes</strong> asignados a letra
+            </p>
             <Table dataHeader={tableDataHeader} />
           </div>
         </main>
