@@ -7,11 +7,13 @@ import searchIcon from 'src/assets/Icons/search_icon.svg';
 import './StageAssignment.css';
 import Button from 'src/components/UI/Button';
 import Modal from 'src/components/UI/Modal';
+import CreateTeacher from './CreateTeacher/CreateTeacher';
 
 const StageAssignment = ({ title }) => {
   const [showActionButtons, setShowActionButtons] = useState(true);
   const [wordAdded, setWordAdded] = useState(true);
   const [showAddLetter, setShowAddLetter] = useState(false);
+  const [addTeacher, setAddTeacher] = useState(false);
   const [confirmAction, setConfirmAction] = useState(false);
 
   const buttonStyles = {
@@ -61,6 +63,7 @@ const StageAssignment = ({ title }) => {
   ];
   return (
     <section className="manager-section">
+      {addTeacher && <CreateTeacher setAddTeacher={setAddTeacher} />}
       {confirmAction && (
         <Modal
           title="Eliminar Instituci&oacute;n"
@@ -142,7 +145,11 @@ const StageAssignment = ({ title }) => {
             <Table dataHeader={headerTable} data={data} />
           </div>
           <div style={{ float: 'right', paddingRight: '45px' }}>
-            <Button text="A&ntilde;adir" customStyles={buttonStyles} />
+            <Button
+              onClick={() => setAddTeacher(true)}
+              text="A&ntilde;adir"
+              customStyles={buttonStyles}
+            />
           </div>
         </div>
       </article>

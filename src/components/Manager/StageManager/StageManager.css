@@ -32,8 +32,8 @@
 
 .table-container {
   margin-top: 40px;
+  margin-right: 40px;
   position: relative;
-  width: 95%;
   overflow: hidden;
   padding: 10px;
   background-color: #fff;
@@ -42,12 +42,13 @@
 }
 
 .content__difused {
-  position: absolute;
-  width: 100%;
+  position: fixed;
+  width: 85%;
   bottom: 0;
   background-color: rgb(255, 255, 255, 0.7);
   text-align: center;
-  padding: 40px;
+  padding-top: 20px;
+  padding-bottom: 40px;
 }
 
 .container-actions {
