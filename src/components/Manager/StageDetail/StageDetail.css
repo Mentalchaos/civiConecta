@@ -6,8 +6,10 @@
 }
 
 .detail-content__header {
+  display: flex;
   margin-top: 15px;
-  text-align: right;
+  justify-content: flex-end;
+  gap: 20px;
 }
 
 .main__info {
