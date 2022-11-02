@@ -130,6 +130,7 @@
   gap: 90px;
   justify-content: center;
   padding: 20px;
+  position: absolute;
 }
 
 input[type='checkbox']#checkLetter + label:before {

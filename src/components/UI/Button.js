@@ -7,8 +7,13 @@ import './uiStyles.css';
 
 const Button = ({ text, icon, customStyles, onClick, ...props }) => {
   return (
-    <div className="button-container" {...props}>
-      <button onClick={onClick} style={customStyles} className="button">
+    <div className="button-container">
+      <button
+        onClick={onClick}
+        style={customStyles}
+        className="button"
+        {...props}
+      >
         {icon && <img src={icon} alt="icon" />}
         {text}
       </button>

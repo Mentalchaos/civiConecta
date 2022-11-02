@@ -9,7 +9,6 @@ const CreateLetter = ({ setShowAddLetter }) => {
     color: '#fff',
     padding: '5px 30px',
     borderRadius: '20px',
-    fontSize: '14px',
     marginTop: '50px',
   };
 
@@ -19,12 +18,14 @@ const CreateLetter = ({ setShowAddLetter }) => {
     border: '1px solid var(--color-secondary)',
     padding: '5px 30px',
     borderRadius: '20px',
-    fontSize: '14px',
     marginTop: '50px',
   };
 
   return (
-    <Modal title="Crear letra" style={{ marginTop: '15rem' }}>
+    <Modal
+      title="Crear letra"
+      style={{ marginTop: '15rem', padding: '40px 120px 40px 120px' }}
+    >
       <span className="custom-subtitle">
         Seleccione una Letra para{' '}
         <strong>5° básico y cantidad de alumnos</strong>.
