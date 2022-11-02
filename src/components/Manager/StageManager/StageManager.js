@@ -3,9 +3,11 @@ import Button from 'src/components/UI/Button';
 import Table from 'src/components/UI/Table';
 import deleteIcon from 'src/assets/Icons/delete_icon.svg';
 import './StageManager.css';
+import Modal from 'src/components/UI/Modal';
 
 const StageManager = ({ title }) => {
   const [showButtonDelete, setShowButtonDelete] = useState(false);
+  const [confirmAction, setConfirmAction] = useState(false);
 
   const headerTable = [
     {
@@ -83,26 +85,46 @@ const StageManager = ({ title }) => {
   ];
 
   const buttonStyles = {
-    background: 'var(--color-secondary)',
+    backgroundColor: 'var(--color-secondary)',
     color: '#fff',
     padding: '5px 40px',
     borderRadius: '20px',
-    fontSize: '14px',
-    marginTop: '20px',
-    float: 'right',
   };
 
   const buttonDeleteStyles = {
-    background: 'var(--color-secondary)',
+    backgroundColor: 'var(--color-secondary)',
     color: '#fff',
     padding: '6px 55px',
     borderRadius: '20px',
-    fontSize: '14px',
     zIndex: 999,
+  };
+
+  const cancelButtonStyle = {
+    backgroundColor: '#fff',
+    color: 'var(--color-secondary)',
+    padding: '5px 40px',
+    borderRadius: '20px',
+    border: '1px solid var(--color-secondary)',
   };
 
   return (
     <section className="manager-section">
+      {confirmAction && (
+        <Modal
+          title="Eliminar Instituci&oacute;n"
+          subtitle="Deseas eliminar el elemento seleccionado?"
+          style={{ padding: '50px 30px' }}
+        >
+          <div className="container-actions">
+            <Button
+              text="Cancelar"
+              onClick={() => setConfirmAction(false)}
+              customStyles={cancelButtonStyle}
+            />
+            <Button text="Continuar" customStyles={buttonStyles} />
+          </div>
+        </Modal>
+      )}
       <h1 className="section__title">{title}</h1>
       <article className="section__content">
         <div className="manager__search-container">
@@ -130,16 +152,17 @@ const StageManager = ({ title }) => {
             />
           </div>
         </div>
-        <Button
-          style={{ width: '85%', display: 'inline-block' }}
-          text="A&ntilde;adir"
-          customStyles={buttonStyles}
-        />
+        <div
+          style={{ marginTop: 20, paddingRight: '10rem', textAlign: 'right' }}
+        >
+          <Button text="A&ntilde;adir" customStyles={buttonStyles} />
+        </div>
       </article>
       <article className="section__content table-container">
         {!showButtonDelete && (
           <div className="content__difused">
             <Button
+              onClick={() => setConfirmAction(true)}
               text="Eliminar"
               icon={deleteIcon}
               customStyles={buttonDeleteStyles}

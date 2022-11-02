@@ -6,27 +6,29 @@ import searchIcon from 'src/assets/Icons/search_icon.svg';
 
 import './StageAssignment.css';
 import Button from 'src/components/UI/Button';
+import Modal from 'src/components/UI/Modal';
+import CreateTeacher from './CreateTeacher/CreateTeacher';
 
 const StageAssignment = ({ title }) => {
-  const [showActionButtons, setShowActionButtons] = useState(false);
+  const [showActionButtons, setShowActionButtons] = useState(true);
   const [wordAdded, setWordAdded] = useState(true);
   const [showAddLetter, setShowAddLetter] = useState(false);
+  const [addTeacher, setAddTeacher] = useState(false);
+  const [confirmAction, setConfirmAction] = useState(false);
 
   const buttonStyles = {
     background: 'var(--color-secondary)',
     color: '#fff',
     padding: '5px 40px',
     borderRadius: '20px',
-    fontSize: '14px',
     marginTop: '20px',
   };
-  const buttonStylesCancel = {
+  const buttonCancelStyle = {
     backgroundColor: '#fff',
     color: 'var(--color-secondary)',
     border: '1px solid var(--color-secondary)',
     padding: '5px 40px',
     borderRadius: '20px',
-    fontSize: '14px',
     marginTop: '20px',
   };
 
@@ -34,6 +36,7 @@ const StageAssignment = ({ title }) => {
     { Header: 'Nombre', accessor: 'name' },
     { Header: 'Fecha de registro', accessor: 'date' },
   ];
+
   const data = [
     { id: 1, name: 'Tadeo Cespedes Vilaita', date: '10/10/2022' },
     { id: 2, name: 'Juliano Soza', date: '10/10/2022' },
@@ -41,14 +44,42 @@ const StageAssignment = ({ title }) => {
     { id: 4, name: 'Felipe Antonio Herrera Lopez', date: '10/10/2022' },
     { id: 5, name: 'Guiomar Calvo Lobos', date: '10/10/2022' },
     { id: 6, name: 'María Teresa Vigil Agudo', date: '10/10/2022' },
-    { id: 7, name: 'María Teresa Vigil Agudo', date: '10/10/2022' },
-    { id: 8, name: 'María Teresa Vigil Agudo', date: '10/10/2022' },
-    { id: 9, name: 'María Teresa Vigil Agudo', date: '10/10/2022' },
-    { id: 10, name: 'María Teresa Vigil Agudo', date: '10/10/2022' },
+    { id: 7, name: 'Emilio Rubio Madariaga', date: '10/10/2022' },
+    { id: 8, name: 'Stephanie Alejandra Pezoa Jara', date: '10/10/2022' },
+    { id: 9, name: 'Matias Nicolas Schurmann Neitlan', date: '10/10/2022' },
+    { id: 10, name: 'Ignacio Andrés Vergara Entlean', date: '10/10/2022' },
     { id: 11, name: 'María Teresa Vigil Agudo', date: '10/10/2022' },
+  ];
+
+  const degrees = [
+    '1º Básico',
+    '2º Básico',
+    '3º Básico',
+    '4º Básico',
+    '5º Básico',
+    '6º Básico',
+    '7º Básico',
+    '8º Básico',
   ];
   return (
     <section className="manager-section">
+      {addTeacher && <CreateTeacher setAddTeacher={setAddTeacher} />}
+      {confirmAction && (
+        <Modal
+          title="Eliminar Instituci&oacute;n"
+          subtitle="Deseas eliminar el elemento seleccionado?"
+          style={{ padding: '50px 30px' }}
+        >
+          <div className="container-actions">
+            <Button
+              text="Cancelar"
+              onClick={() => setConfirmAction(false)}
+              customStyles={buttonCancelStyle}
+            />
+            <Button text="Continuar" customStyles={buttonStyles} />
+          </div>
+        </Modal>
+      )}
       <h1 className="section__title">{title}</h1>
       <article className="section__content-assignment">
         {showAddLetter && <CreateLetter setShowAddLetter={setShowAddLetter} />}
@@ -56,6 +87,16 @@ const StageAssignment = ({ title }) => {
           <span className="content__level-selection-title">
             Seleccionar nivel
           </span>
+          <select
+            style={{
+              marginLeft: 15,
+              boxShadow: '0px 2px 10px rgb(0,0,0,0.25)',
+            }}
+          >
+            {degrees.map(degree => {
+              return <option value={degree}>{degree}</option>;
+            })}
+          </select>
           <div className="selection__boxs-container">
             <button
               onClick={() => setShowAddLetter(true)}
@@ -91,19 +132,25 @@ const StageAssignment = ({ title }) => {
             <img src={searchIcon} alt="search icon" />
           </div>
           <div className="content__table-container">
-            {!showActionButtons && (
+            {showActionButtons && (
               <div className="content__difused difused-assignment">
-                <Button text="Eliminar" customStyles={buttonStylesCancel} />
+                <Button
+                  text="Eliminar"
+                  onClick={() => setConfirmAction(true)}
+                  customStyles={buttonCancelStyle}
+                />
                 <Button text="Asignar" customStyles={buttonStyles} />
               </div>
             )}
             <Table dataHeader={headerTable} data={data} />
           </div>
-          <Button
-            style={{ float: 'right', marginRight: '50px' }}
-            text="A&ntilde;adir"
-            customStyles={buttonStyles}
-          />
+          <div style={{ float: 'right', paddingRight: '45px' }}>
+            <Button
+              onClick={() => setAddTeacher(true)}
+              text="A&ntilde;adir"
+              customStyles={buttonStyles}
+            />
+          </div>
         </div>
       </article>
     </section>
