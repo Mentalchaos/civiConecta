@@ -1,5 +1,6 @@
 .manager__search-container {
   width: 90%;
+  margin-top: 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -30,6 +31,7 @@
 }
 
 .table-container {
+  margin-top: 40px;
   position: relative;
   width: 95%;
   overflow: hidden;
@@ -46,6 +48,13 @@
   background-color: rgb(255, 255, 255, 0.7);
   text-align: center;
   padding: 40px;
+}
+
+.container-actions {
+  margin-top: 40px;
+  display: flex;
+  gap: 5rem;
+  padding: 0px 40px;
 }
 
 /* input[type='checkbox'] { */
