@@ -13,11 +13,13 @@
   outline: none;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+  font-size: 14px;
 }
 
 .button > img {
   position: absolute;
-  left: 20px;
+  left: 15px;
+  top: 7px;
 }
 
 .button:hover {
@@ -150,14 +152,17 @@ input[type='checkbox']:checked + label:after {
 
 .modal-content {
   margin: auto;
-  padding: 50px 110px 70px 110px;
+  margin-top: 15rem;
   background-color: #fff;
   border-radius: 10px;
-  width: 40%;
+  width: fit-content;
 }
 
 .modal__title {
   font-size: 20px;
   font-weight: 600 !important;
   margin: 0;
+}
+.modal__subtitle {
+  font-size: 14px;
 }
