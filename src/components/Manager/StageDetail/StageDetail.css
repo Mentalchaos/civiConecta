@@ -3,6 +3,8 @@
   margin-right: 25px;
   padding: 10px 80px;
   border-radius: 10px;
+  margin-bottom: 2rem;
+  padding-bottom: 5rem;
 }
 
 .detail-content__header {
@@ -13,6 +15,8 @@
 }
 
 .main__info {
+  cursor: pointer;
+  position: relative;
   display: flex;
   justify-content: space-between;
   margin-top: 40px;
@@ -31,4 +35,23 @@
 
 .main__table {
   margin-top: 40px;
+}
+
+.info__modal-edit {
+  position: absolute;
+  right: 8px;
+  bottom: 2px;
+}
+.edit-letter,
+.edit-number {
+  margin-bottom: 50px;
+  width: 180px;
+  background-color: #fff;
+  padding: 7px;
+}
+
+.table-actions {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
 }
