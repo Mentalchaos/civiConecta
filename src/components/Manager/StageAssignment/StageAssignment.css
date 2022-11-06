@@ -109,6 +109,10 @@
   padding-left: 10px;
 }
 
+.section__letter-selection {
+  background-color: #fff;
+}
+
 .add-word__go-to {
   padding: 0px 10px;
   display: flex;

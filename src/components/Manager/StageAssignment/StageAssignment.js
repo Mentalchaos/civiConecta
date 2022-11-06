@@ -91,6 +91,7 @@ const StageAssignment = ({ title }) => {
             style={{
               marginLeft: 15,
               boxShadow: '0px 2px 10px rgb(0,0,0,0.25)',
+              backgroundColor: '#fff',
             }}
           >
             {degrees.map(degree => {

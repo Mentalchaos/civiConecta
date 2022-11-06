@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react';
 import { useRowSelect, useSortBy, useTable } from 'react-table';
 import arrow from 'src/assets/Icons/arrow.svg';
 
-const Table = ({ data, dataHeader }) => {
+const Table = ({ data, dataHeader, ...props }) => {
   const [showCheckbox, setShowCheckbox] = useState(false);
   const columns = useMemo(() => [...dataHeader], []);
   const sortBy = [{ id: 'name' }];
@@ -31,7 +31,7 @@ const Table = ({ data, dataHeader }) => {
   };
 
   return (
-    <table className="table" {...getTableProps()}>
+    <table className="table" {...getTableProps()} {...props}>
       <thead>
         {headerGroups.map(headerGroup => {
           const { key } = headerGroup.getHeaderGroupProps();
