@@ -73,7 +73,7 @@
   padding: 10px 0px;
   border-bottom: 1px solid rgb(0, 0, 0, 0.2);
   border-radius: none;
-  background-color: #fff;
+  /* background-color: #fff; */
 }
 
 .table > tbody > tr:hover {
