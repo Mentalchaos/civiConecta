@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import { useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useRowSelect, useSortBy, useTable } from 'react-table';
 import arrow from 'src/assets/Icons/arrow.svg';
 
@@ -8,10 +9,44 @@ const Table = ({ data, dataHeader, ...props }) => {
   const columns = useMemo(() => [...dataHeader], []);
   const sortBy = [{ id: 'name' }];
 
+  const IndeterminateCheckbox = React.forwardRef(
+    ({ indeterminate, ...rest }, ref) => {
+      const defaultRef = React.useRef();
+      const resolvedRef = ref || defaultRef;
+
+      React.useEffect(() => {
+        resolvedRef.current.indeterminate = indeterminate;
+      }, [resolvedRef, indeterminate]);
+
+      return (
+        <>
+          <input type="checkbox" ref={resolvedRef} {...rest} />
+        </>
+      );
+    },
+  );
+
   const tableInstance = useTable(
     { columns, data, initialState: { sortBy } },
     useSortBy,
     useRowSelect,
+    hooks => {
+      hooks.visibleColumns.push(columns => [
+        {
+          id: 'selection',
+          Cell: ({ row }) => (
+            <div>
+              <IndeterminateCheckbox
+                id={row.id}
+                {...row.getToggleRowSelectedProps()}
+              />
+              <label htmlFor={row.id}></label>
+            </div>
+          ),
+        },
+        ...columns,
+      ]);
+    },
   );
 
   const {
@@ -21,8 +56,12 @@ const Table = ({ data, dataHeader, ...props }) => {
     rows,
     prepareRow,
     setSortBy,
-    toggleRowSelected,
+    selectedFlatRows,
   } = tableInstance;
+  // Checkbox seleccionado
+
+  const rowCheckboxSelected = selectedFlatRows.map(item => item.original);
+  console.log(rowCheckboxSelected);
 
   const handleRowSelected = dataRow => {
     // Data table de fila seleccionada para vista de asignacion
