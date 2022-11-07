@@ -2,18 +2,21 @@ import { useState } from 'react';
 import Button from 'src/components/UI/Button';
 import Table from 'src/components/UI/Table';
 import arrow from 'src/assets/Icons/arrow-degree.svg';
+import addStudentIcon from 'src/assets/Icons/add-student.svg';
 
 import './StageDetail.css';
 import Modal from 'src/components/UI/Modal';
 
 const StageDetail = ({ title }) => {
   const [openEditModal, setOpenEditModal] = useState(false);
+  const [teacherSelected, setTeacherSelected] = useState(false);
+  const [studentSelected, setStudentSelected] = useState(false);
 
   const buttonStyle = {
     color: '#fff',
     backgroundColor: 'var(--color-secondary)',
     borderRadius: 20,
-    padding: '5px 30px',
+    padding: '5px 40px',
   };
 
   const buttonCancelStyle = {
@@ -82,7 +85,11 @@ const StageDetail = ({ title }) => {
                 <p>Letra</p>
                 <select className="section__letter-selection edit-letter">
                   {letters.map(letter => {
-                    return <option value={letter}>{letter}</option>;
+                    return (
+                      <option key={letter} value={letter}>
+                        {letter}
+                      </option>
+                    );
                   })}
                 </select>
                 <Button
@@ -95,7 +102,11 @@ const StageDetail = ({ title }) => {
                 <p>N&uacute;mero de estudiantes</p>
                 <select className="section__letter-selection edit-number">
                   {letters.map(letter => {
-                    return <option value={letter}>{letter}</option>;
+                    return (
+                      <option key={letter} value={letter}>
+                        {letter}
+                      </option>
+                    );
                   })}
                 </select>
                 <Button customStyles={buttonStyle} text="Continuar" />
@@ -134,10 +145,12 @@ const StageDetail = ({ title }) => {
               dataHeader={tableDataHeader}
               data={dataTeacher}
             />
-            <section className="table-actions">
-              <Button customStyles={buttonCancelStyle} text={'Eliminar'} />
-              <Button customStyles={buttonStyle} text={'Suspender'} />
-            </section>
+            {teacherSelected && (
+              <section className="table-actions">
+                <Button customStyles={buttonCancelStyle} text={'Eliminar'} />
+                <Button customStyles={buttonStyle} text={'Suspender'} />
+              </section>
+            )}
             <div style={{ marginTop: 50 }}>
               <p>
                 <strong>Alumnos</strong> asignados a letra:
@@ -147,10 +160,21 @@ const StageDetail = ({ title }) => {
                 dataHeader={tableDataHeaderStudents}
                 data={dataStudent}
               />
-              <section className="table-actions">
-                <Button customStyles={buttonCancelStyle} text={'Eliminar'} />
-                <Button customStyles={buttonStyle} text={'Suspender'} />
-              </section>
+              {studentSelected && (
+                <section className="table-actions">
+                  <Button customStyles={buttonCancelStyle} text={'Eliminar'} />
+                  <Button customStyles={buttonStyle} text={'Suspender'} />
+                </section>
+              )}
+              <form className="form__add-student">
+                <input type="text" placeholder="Nombre completo" />
+                <input type="text" placeholder="Rut" />
+                <Button
+                  customStyles={buttonStyle}
+                  icon={addStudentIcon}
+                  text={'Añadir'}
+                />
+              </form>
             </div>
           </div>
         </main>

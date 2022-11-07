@@ -95,7 +95,11 @@ const StageAssignment = ({ title }) => {
             }}
           >
             {degrees.map(degree => {
-              return <option value={degree}>{degree}</option>;
+              return (
+                <option key={degree} value={degree}>
+                  {degree}
+                </option>
+              );
             })}
           </select>
           <div className="selection__boxs-container">

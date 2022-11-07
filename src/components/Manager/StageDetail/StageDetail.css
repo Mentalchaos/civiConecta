@@ -55,3 +55,18 @@
   justify-content: center;
   gap: 50px;
 }
+
+.form__add-student {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.form__add-student > input {
+  font-family: 'Poppins';
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: #e0e0e0;
+}
