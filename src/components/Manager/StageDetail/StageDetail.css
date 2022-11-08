@@ -57,9 +57,8 @@
 }
 
 .form__add-student {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  text-align: right;
+  padding-top: 20px;
 }
 
 .form__add-student > input {
@@ -69,4 +68,8 @@
   padding: 10px 20px;
   border-radius: 10px;
   background-color: #e0e0e0;
+}
+
+.form__add-student :nth-child(1) {
+  margin-right: 20px;
 }

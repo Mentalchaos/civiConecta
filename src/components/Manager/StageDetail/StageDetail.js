@@ -3,6 +3,7 @@ import Button from 'src/components/UI/Button';
 import Table from 'src/components/UI/Table';
 import arrow from 'src/assets/Icons/arrow-degree.svg';
 import addStudentIcon from 'src/assets/Icons/add-student.svg';
+import replaceTeacherIcon from 'src/assets/Icons/replace-teacher.svg';
 
 import './StageDetail.css';
 import Modal from 'src/components/UI/Modal';
@@ -27,6 +28,11 @@ const StageDetail = ({ title }) => {
     padding: '5px 40px',
   };
 
+  const dataHeaderReplaceTeacher = [
+    { Header: 'Nombre', accessor: 'name' },
+    { Header: 'Fecha de registro', accessor: 'registerDate' },
+  ];
+
   const tableDataHeader = [
     { Header: 'Nombre', accessor: 'name' },
     { Header: 'Fecha de asignación', accessor: 'assignmentDate' },
@@ -37,6 +43,31 @@ const StageDetail = ({ title }) => {
     { Header: 'Nombre', accessor: 'name' },
     { Header: 'Rut', accessor: 'rut' },
     { Header: 'Fecha de registro', accessor: 'registerDate' },
+  ];
+
+  const teachersAvailable = [
+    {
+      id: 1,
+      name: 'Roberto Andres Lazaro Potrero',
+      registerDate: '10/10/2022',
+    },
+    { id: 2, name: 'Maria Antonia Jerez Duran', registerDate: '10/10/2022' },
+    {
+      id: 3,
+      name: 'Matias Nicolas Madariaga Zarate',
+      registerDate: '10/10/2022',
+    },
+    { id: 4, name: 'Gonzalo Alberto Jara Urrea', registerDate: '10/10/2022' },
+    {
+      id: 5,
+      name: 'Clara Andrea Norhambuena Gutierrez',
+      registerDate: '10/10/2022',
+    },
+    {
+      id: 6,
+      name: 'Rosa Alejandra Arevalo Petersen',
+      registerDate: '10/10/2022',
+    },
   ];
 
   const dataTeacher = [
@@ -140,23 +171,57 @@ const StageDetail = ({ title }) => {
             <p>
               <strong>Docentes</strong> asignados a letra:
             </p>
-            <Table
-              style={{ backgroundColor: '#f5f5f5' }}
-              dataHeader={tableDataHeader}
-              data={dataTeacher}
-            />
+            <Table dataHeader={tableDataHeader} data={dataTeacher} />
             {teacherSelected && (
               <section className="table-actions">
                 <Button customStyles={buttonCancelStyle} text={'Eliminar'} />
                 <Button customStyles={buttonStyle} text={'Suspender'} />
               </section>
             )}
+
+            <div
+              style={{
+                display: 'block',
+                paddingBottom: 20,
+                textAlign: 'right',
+                marginTop: 20,
+              }}
+            >
+              <Button
+                customStyles={buttonStyle}
+                icon={replaceTeacherIcon}
+                text={'Reemplazo'}
+              />
+            </div>
+
+            <>
+              <Table
+                style={{
+                  width: '80%',
+                  margin: 'auto',
+                }}
+                type={0}
+                dataHeader={dataHeaderReplaceTeacher}
+                data={teachersAvailable}
+              />
+              <div
+                style={{
+                  display: 'block',
+                  textAlign: 'right',
+                  marginRight: 100,
+                  marginTop: 20,
+                }}
+              >
+                <Button text={'Asignar'} customStyles={buttonStyle} />
+              </div>
+            </>
+
             <div style={{ marginTop: 50 }}>
               <p>
                 <strong>Alumnos</strong> asignados a letra:
               </p>
               <Table
-                style={{ marginTop: 0, backgroundColor: '#f5f5f5' }}
+                style={{ marginTop: 0 }}
                 dataHeader={tableDataHeaderStudents}
                 data={dataStudent}
               />
@@ -169,11 +234,13 @@ const StageDetail = ({ title }) => {
               <form className="form__add-student">
                 <input type="text" placeholder="Nombre completo" />
                 <input type="text" placeholder="Rut" />
-                <Button
-                  customStyles={buttonStyle}
-                  icon={addStudentIcon}
-                  text={'Añadir'}
-                />
+                <div style={{ marginTop: 20 }}>
+                  <Button
+                    customStyles={buttonStyle}
+                    icon={addStudentIcon}
+                    text={'Añadir'}
+                  />
+                </div>
               </form>
             </div>
           </div>
