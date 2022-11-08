@@ -36,7 +36,11 @@ const CreateLetter = ({ setShowAddLetter }) => {
             <p>Letra</p>
             <select className="section__letter-selection">
               {letters.map(letter => {
-                return <option value={letter}>{letter}</option>;
+                return (
+                  <option key={letter} value={letter}>
+                    {letter}
+                  </option>
+                );
               })}
             </select>
             <Button
@@ -46,10 +50,14 @@ const CreateLetter = ({ setShowAddLetter }) => {
             />
           </div>
           <div className="section__select-students">
-            <p>Numero de estudiantes</p>
+            <p>N&uacute;mero de estudiantes</p>
             <select className="section__letter-selection">
               {letters.map(letter => {
-                return <option value={letter}>{letter}</option>;
+                return (
+                  <option key={letter} value={letter}>
+                    {letter}
+                  </option>
+                );
               })}
             </select>
             <Button customStyles={buttonStyles} text="Continuar" />

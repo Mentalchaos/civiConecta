@@ -42,8 +42,8 @@
 }
 
 .content__difused {
-  position: fixed;
-  width: 85%;
+  position: absolute;
+  width: 100%;
   bottom: 0;
   background-color: rgb(255, 255, 255, 0.7);
   text-align: center;

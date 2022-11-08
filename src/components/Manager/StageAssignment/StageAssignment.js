@@ -91,10 +91,15 @@ const StageAssignment = ({ title }) => {
             style={{
               marginLeft: 15,
               boxShadow: '0px 2px 10px rgb(0,0,0,0.25)',
+              backgroundColor: '#fff',
             }}
           >
             {degrees.map(degree => {
-              return <option value={degree}>{degree}</option>;
+              return (
+                <option key={degree} value={degree}>
+                  {degree}
+                </option>
+              );
             })}
           </select>
           <div className="selection__boxs-container">
