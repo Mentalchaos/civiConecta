@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useRowSelect, useSortBy, useTable } from 'react-table';
 import arrow from 'src/assets/Icons/arrow.svg';
 
-const Table = ({ data, dataHeader, ...props }) => {
+const Table = ({ type, data, dataHeader, ...props }) => {
   const [showCheckbox, setShowCheckbox] = useState(false);
   const columns = useMemo(() => [...dataHeader], []);
   const sortBy = [{ id: 'name' }];
@@ -34,15 +34,17 @@ const Table = ({ data, dataHeader, ...props }) => {
       hooks.visibleColumns.push(columns => [
         {
           id: 'selection',
-          Cell: ({ row }) => (
-            <div>
-              <IndeterminateCheckbox
-                id={row.id}
-                {...row.getToggleRowSelectedProps()}
-              />
-              <label htmlFor={row.id}></label>
-            </div>
-          ),
+          Cell: ({ row }) => {
+            return (
+              <div>
+                <IndeterminateCheckbox
+                  id={row.original.name}
+                  {...row.getToggleRowSelectedProps()}
+                />
+                <label htmlFor={row.original.name}></label>
+              </div>
+            );
+          },
         },
         ...columns,
       ]);
@@ -71,7 +73,12 @@ const Table = ({ data, dataHeader, ...props }) => {
 
   return (
     <table className="table" {...getTableProps()} {...props}>
-      <thead>
+      <thead
+        style={{
+          backgroundColor:
+            type === 0 ? 'var(--color-primary)' : 'var(--color-secondary)',
+        }}
+      >
         {headerGroups.map(headerGroup => {
           const { key } = headerGroup.getHeaderGroupProps();
           return (

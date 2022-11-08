@@ -42,7 +42,6 @@
 }
 
 .table thead {
-  background-color: var(--color-secondary) !important;
   font-size: 14px;
   color: #fff;
 }
@@ -58,7 +57,7 @@
 
 .table tbody {
   display: block;
-  overflow-y: scroll;
+  overflow-y: auto;
   width: 100%;
   padding-bottom: 3rem;
   max-height: 270px;
