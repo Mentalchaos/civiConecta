@@ -1,17 +1,54 @@
 import PropTypes from 'prop-types';
-import { useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useRowSelect, useSortBy, useTable } from 'react-table';
 import arrow from 'src/assets/Icons/arrow.svg';
 
-const Table = ({ data, dataHeader }) => {
+const Table = ({ type, data, dataHeader, ...props }) => {
   const [showCheckbox, setShowCheckbox] = useState(false);
   const columns = useMemo(() => [...dataHeader], []);
   const sortBy = [{ id: 'name' }];
+
+  const IndeterminateCheckbox = React.forwardRef(
+    ({ indeterminate, ...rest }, ref) => {
+      const defaultRef = React.useRef();
+      const resolvedRef = ref || defaultRef;
+
+      React.useEffect(() => {
+        resolvedRef.current.indeterminate = indeterminate;
+      }, [resolvedRef, indeterminate]);
+
+      return (
+        <>
+          <input type="checkbox" ref={resolvedRef} {...rest} />
+        </>
+      );
+    },
+  );
 
   const tableInstance = useTable(
     { columns, data, initialState: { sortBy } },
     useSortBy,
     useRowSelect,
+    hooks => {
+      hooks.visibleColumns.push(columns => [
+        {
+          id: 'selection',
+          Cell: ({ row }) => {
+            return (
+              <div>
+                <IndeterminateCheckbox
+                  id={row.original.name}
+                  {...row.getToggleRowSelectedProps()}
+                />
+                <label htmlFor={row.original.name}></label>
+              </div>
+            );
+          },
+        },
+        ...columns,
+      ]);
+    },
   );
 
   const {
@@ -21,8 +58,12 @@ const Table = ({ data, dataHeader }) => {
     rows,
     prepareRow,
     setSortBy,
-    toggleRowSelected,
+    selectedFlatRows,
   } = tableInstance;
+  // Checkbox seleccionado
+
+  const rowCheckboxSelected = selectedFlatRows.map(item => item.original);
+  console.log(rowCheckboxSelected);
 
   const handleRowSelected = dataRow => {
     // Data table de fila seleccionada para vista de asignacion
@@ -31,8 +72,13 @@ const Table = ({ data, dataHeader }) => {
   };
 
   return (
-    <table className="table" {...getTableProps()}>
-      <thead>
+    <table className="table" {...getTableProps()} {...props}>
+      <thead
+        style={{
+          backgroundColor:
+            type === 0 ? 'var(--color-primary)' : 'var(--color-secondary)',
+        }}
+      >
         {headerGroups.map(headerGroup => {
           const { key } = headerGroup.getHeaderGroupProps();
           return (
