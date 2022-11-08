@@ -32,6 +32,7 @@ const Sidebar = () => {
         <NavButton icon={folder} ariaLabel="folder" />
         <NavButton icon={calendar} ariaLabel="calendar" />
         <NavButton
+          path={'/login'}
           icon={exit}
           ariaLabel="exit"
           style={{ width: '25px', position: 'absolute', left: 15, bottom: 15 }}
