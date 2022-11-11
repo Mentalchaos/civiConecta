@@ -1,11 +1,16 @@
-import PropTypes from 'prop-types';
-import React, { useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useRowSelect, useSortBy, useTable } from 'react-table';
+import PropTypes from 'prop-types';
 import arrow from 'src/assets/Icons/arrow.svg';
 
-const Table = ({ type, data, dataHeader, ...props }) => {
-  const [showCheckbox, setShowCheckbox] = useState(false);
+const Table = ({
+  type,
+  data,
+  dataHeader,
+  onHandleRowSelected,
+  onHandleCheckboxSelected,
+  ...props
+}) => {
   const columns = useMemo(() => [...dataHeader], []);
   const sortBy = [{ id: 'name' }];
 
@@ -30,10 +35,12 @@ const Table = ({ type, data, dataHeader, ...props }) => {
     { columns, data, initialState: { sortBy } },
     useSortBy,
     useRowSelect,
+
     hooks => {
       hooks.visibleColumns.push(columns => [
         {
           id: 'selection',
+          disableSortBy: true,
           Cell: ({ row }) => {
             return (
               <div>
@@ -60,15 +67,13 @@ const Table = ({ type, data, dataHeader, ...props }) => {
     setSortBy,
     selectedFlatRows,
   } = tableInstance;
-  // Checkbox seleccionado
 
+  // Checkbox selected
   const rowCheckboxSelected = selectedFlatRows.map(item => item.original);
-  console.log(rowCheckboxSelected);
+  rowCheckboxSelected.length && onHandleCheckboxSelected(rowCheckboxSelected);
 
-  const handleRowSelected = dataRow => {
-    // Data table de fila seleccionada para vista de asignacion
-    console.log(dataRow);
-    return dataRow;
+  const handleRowSelected = row => {
+    onHandleRowSelected(row);
   };
 
   return (

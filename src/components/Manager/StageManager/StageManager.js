@@ -1,77 +1,34 @@
 import { useState } from 'react';
 import Button from 'src/components/UI/Button';
 import Table from 'src/components/UI/Table';
-import deleteIcon from 'src/assets/Icons/delete_icon.svg';
-import './StageManager.css';
 import Modal from 'src/components/UI/Modal';
+import useForm from 'src/hooks/useForm';
+import deleteIcon from 'src/assets/Icons/delete_icon.svg';
+import locationIcon from 'src/assets/Icons/comune_icon.svg';
 
-const StageManager = ({ title }) => {
+import './StageManager.css';
+
+const StageManager = ({ title, setStage, handleRowSelected }) => {
   const [showButtonDelete, setShowButtonDelete] = useState(false);
   const [confirmAction, setConfirmAction] = useState(false);
+  const [formData, setFormData] = useState([]);
+  const [institutionSelected, setInstitutionSelected] = useState({});
+  const [checkboxDataSelected, setCheckboxDataSelected] = useState({});
+  const { values, handleInputChange, reset } = useForm({
+    name: '',
+    type: '',
+    region: '',
+    commune: '',
+  });
 
   const headerTable = [
     {
       Header: 'Nombre',
       accessor: 'name',
     },
-    { Header: 'Tipo', accessor: 'type', disableSortBy: true },
-    { Header: 'Región', accessor: 'region', disableSortBy: true },
-    { Header: 'Comuna', accessor: 'commune', disableSortBy: true },
-  ];
-
-  const dataTable = [
-    { id: 1, name: 'American', type: 'caca', region: 'vaca', commune: 'casca' },
-    {
-      id: 2,
-      name: 'Creativos',
-      type: 'caca1',
-      region: 'vaca1',
-      commune: 'casca1',
-    },
-    {
-      id: 3,
-      name: 'Euroamerican School',
-      type: 'caca2',
-      region: 'vaca2',
-      commune: 'casca2',
-    },
-    {
-      id: 4,
-      name: 'Larrea',
-      type: 'caca3',
-      region: 'vaca3',
-      commune: 'casca3',
-    },
-    {
-      id: 5,
-      name: 'Latin America School',
-      type: 'caca4',
-      region: 'vaca4',
-      commune: 'casca4',
-    },
-    {
-      id: 6,
-      name: 'Montealban',
-      type: 'caca',
-      region: 'vaca',
-      commune: 'casca',
-    },
-    { id: 7, name: 'Tarreo', type: 'caca', region: 'vaca', commune: 'casca' },
-    { id: 8, name: 'Zosa', type: 'caca', region: 'vaca', commune: 'casca' },
-    {
-      id: 9,
-      name: 'Sagrados Corazones',
-      type: 'caca',
-      region: 'vaca',
-      commune: 'casca',
-    },
-    {
-      id: 10,
-      name: 'Santiago College',
-      type: 'caca',
-      region: 'vaca',
-      commune: 'casca',
-    },
+    { Header: 'Tipo', accessor: 'type' },
+    { Header: 'Región', accessor: 'region' },
+    { Header: 'Comuna', accessor: 'commune' },
   ];
 
   const regiones = [
@@ -107,6 +64,24 @@ const StageManager = ({ title }) => {
     border: '1px solid var(--color-secondary)',
   };
 
+  const onHandleRowSelected = rowSelected => {
+    setInstitutionSelected(rowSelected);
+    console.log(rowSelected);
+  };
+
+  const onHandleCheckboxSelected = checkData => {
+    setCheckboxDataSelected(checkData);
+    console.log(checkData);
+  };
+
+  const onHandleSubmit = e => {
+    const { name, type, region, commune } = values;
+    if (!name || !type || !region || !commune) return;
+    e.preventDefault();
+    setFormData([...formData, values]);
+    reset();
+  };
+
   return (
     <section className="manager-section">
       {confirmAction && (
@@ -128,49 +103,93 @@ const StageManager = ({ title }) => {
       <h1 className="section__title">{title}</h1>
       <article className="section__content">
         <div className="manager__search-container">
-          <span className="manager__search-text">Nombre</span>
-          <div className="search-container__selects">
-            <select className="type-school">
-              <option value="colegio">Colegio</option>
-              <option value="liceo">Liceo</option>
-              <option value="escuela">Escuela</option>
-            </select>
-            <select className="type-region" defaultValue="Región">
-              <option disabled={true}>Región</option>
-              {regiones.map(region => {
-                return (
-                  <option value={region.name} key={region.id}>
-                    {region.name}
-                  </option>
-                );
-              })}
-            </select>
+          <form className="manager__form" onSubmit={onHandleSubmit}>
             <input
-              className="search__commune"
-              name="commune"
-              placeholder="Comuna"
+              className="form__input-name"
+              type="text"
+              name="name"
+              placeholder="Nombre"
+              autoComplete="off"
+              autoFocus={true}
+              value={values.name}
+              onChange={handleInputChange}
             />
-          </div>
+            <div className="search-container__selects">
+              <select
+                className="type-school"
+                defaultValue="Tipo"
+                name="type"
+                onChange={handleInputChange}
+              >
+                <option disabled={true}>Tipo</option>
+                <option value="colegio">Colegio</option>
+                <option value="liceo">Liceo</option>
+                <option value="escuela">Escuela</option>
+              </select>
+              <select
+                className="type-region"
+                defaultValue="Región"
+                name="region"
+                onChange={handleInputChange}
+              >
+                <option disabled={true}>Región</option>
+                {regiones.map(region => {
+                  return (
+                    <option value={region.name} key={region.id}>
+                      {region.name}
+                    </option>
+                  );
+                })}
+              </select>
+              <div className="input-group-icon">
+                <input
+                  onChange={handleInputChange}
+                  className="form__commune"
+                  name="commune"
+                  value={values.commune}
+                  placeholder="Comuna"
+                  autoComplete="off"
+                />
+                <img src={locationIcon} alt="commune icon" />
+              </div>
+            </div>
+          </form>
         </div>
         <div
           style={{ marginTop: 20, paddingRight: '10rem', textAlign: 'right' }}
         >
-          <Button text="A&ntilde;adir" customStyles={buttonStyles} />
+          <Button
+            type="submit"
+            text="A&ntilde;adir"
+            customStyles={buttonStyles}
+            onClick={onHandleSubmit}
+          />
         </div>
       </article>
-      <article className="section__content table-container">
-        {!showButtonDelete && (
-          <div className="content__difused">
-            <Button
-              onClick={() => setConfirmAction(true)}
-              text="Eliminar"
-              icon={deleteIcon}
-              customStyles={buttonDeleteStyles}
-            />
-          </div>
-        )}
-        <Table dataHeader={headerTable} data={dataTable} />
-      </article>
+      {formData.length ? (
+        <article className="section__content table-container">
+          {showButtonDelete && (
+            <div className="content__difused">
+              <Button
+                onClick={() => setConfirmAction(true)}
+                text="Eliminar"
+                icon={deleteIcon}
+                customStyles={buttonDeleteStyles}
+              />
+            </div>
+          )}
+          <Table
+            dataHeader={headerTable}
+            data={formData}
+            onHandleRowSelected={onHandleRowSelected}
+            onHandleCheckboxSelected={onHandleCheckboxSelected}
+          />
+        </article>
+      ) : (
+        <h1 style={{ textAlign: 'center', marginTop: 80 }}>
+          Aún no hay instituciones agregadas
+        </h1>
+      )}
     </section>
   );
 };
