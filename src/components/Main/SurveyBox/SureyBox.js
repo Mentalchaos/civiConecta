@@ -5,7 +5,6 @@ import teacherImage from 'src/assets/images/teacher-survey.png';
 import studentImage from 'src/assets/images/student-survey.png';
 import teacherIcon from 'src/assets/Icons/teacher.svg';
 import studentIcon from 'src/assets/Icons/student.svg';
-import schoolIcon from 'src/assets/Icons/school.svg';
 import linkTo from 'src/assets/Icons/link-to.svg';
 
 import './SurveyBox.css';
@@ -84,43 +83,6 @@ const SurveyBox = () => {
 
   return (
     <section className="content">
-      <article
-        style={{
-          borderColor: isHover && '#95CA76',
-          boxShadow: isHover && 'none',
-        }}
-        onMouseOver={() => setIsHover(true)}
-        onMouseLeave={() => setIsHover(false)}
-        onClick={() => navigate('/admin/manager')}
-        className="box create-school"
-      >
-        <header className="box__header">
-          <BoxIcon svg={schoolIcon} background="color-green" />
-          <div className="header__text">
-            <p>Crear Instituci&oacute;n</p>
-            <small>
-              Acceder a la creación de colegio, <br /> escuela o liceo.
-            </small>
-          </div>
-        </header>
-        <button
-          style={{ color: isHover && '#95CA76' }}
-          type="button"
-          className="box__link-to"
-        >
-          Comenzar
-          <img
-            style={{
-              filter:
-                isHover &&
-                'opacity(0.4) drop-shadow(0 0 0 green) brightness(170%)',
-            }}
-            className="box-link__icon"
-            src={linkTo}
-            alt="go to"
-          />
-        </button>
-      </article>
       <BoxContent
         notification={true}
         icon={teacherIcon}
