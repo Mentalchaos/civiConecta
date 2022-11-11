@@ -16,10 +16,7 @@ const Units = () => {
             <small>Incompleto</small>
           </div>
         </div>
-        <span className="header__info-tooltip">
-          El orden en que se muestran las <br /> unidades para intranet
-          depender&aacute; <br /> de la informaci&oacute;n de las encuestas.
-        </span>
+
         <img src={infoIcon} alt="info" />
       </div>
     </section>
