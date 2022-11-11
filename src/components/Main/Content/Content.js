@@ -1,5 +1,6 @@
 import Header from 'src/components/Header/Header';
 import AsideBoxs from '../AsideBoxs/AsideBoxs';
+import CreateInstitution from '../CreateInstitution/CreateInstitution';
 import SurveyBox from '../SurveyBox/SureyBox';
 import Units from '../Units/Units';
 
@@ -9,6 +10,7 @@ const Content = () => {
   return (
     <main className="main-content">
       <Header />
+      <CreateInstitution />
       <section className="main__section">
         <SurveyBox />
         <Units />
