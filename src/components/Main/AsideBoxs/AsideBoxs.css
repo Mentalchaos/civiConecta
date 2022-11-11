@@ -3,11 +3,18 @@
 }
 
 .boxs {
-  background-color: #fff;
   width: 258px;
   height: 290px;
-  padding: 5px 20px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background-color: #fff;
+  padding-bottom: 4px;
+  box-shadow: 0px 2px 10px rgb(0 0 0 / 25%);
   border-radius: 10px;
+  border: 1.7px solid transparent;
+  transition: all 0.3s ease-in-out;
 }
 
 .boxs-ephemeris {
@@ -16,8 +23,19 @@
 
 .boxs__header {
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
+  align-items: center;
+}
+
+.boxs__image {
+  margin-top: 15px;
+}
+
+.header__info-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 8px;
 }
 
 .boxs-header__title {
