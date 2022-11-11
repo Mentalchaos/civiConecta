@@ -85,18 +85,21 @@ select {
 
 select.type-school {
   background-image: url('../../assets/Icons/kind_icon.svg');
+  background-color: #fff;
 }
 
 select.type-region {
   background-image: url('../../assets/Icons/region_icon.svg');
+  background-color: #fff;
   overflow-y: scroll;
-  padding-left: 8%;
+  padding-left: 5%;
   padding-right: 3%;
   max-height: 363px;
 }
 
 select.type-commune {
   background-image: url('../../assets/Icons/comune_icon.svg');
+  background-color: #fff;
   overflow-y: scroll;
   padding-left: 8%;
   padding-right: 3%;
