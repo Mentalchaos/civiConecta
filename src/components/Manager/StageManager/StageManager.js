@@ -8,28 +8,19 @@ import locationIcon from 'src/assets/Icons/comune_icon.svg';
 
 import './StageManager.css';
 
-const StageManager = ({ title, setStage, handleRowSelected }) => {
-  const [showButtonDelete, setShowButtonDelete] = useState(false);
+const StageManager = ({ title, changeStage }) => {
+  const [showDeleteOption, setShowDeleteOption] = useState(false);
   const [confirmAction, setConfirmAction] = useState(false);
   const [formData, setFormData] = useState([]);
   const [institutionSelected, setInstitutionSelected] = useState({});
-  const [checkboxDataSelected, setCheckboxDataSelected] = useState({});
   const { values, handleInputChange, reset } = useForm({
     name: '',
-    type: '',
-    region: '',
+    type: 'Tipo',
+    region: 'Región',
     commune: '',
   });
 
-  const headerTable = [
-    {
-      Header: 'Nombre',
-      accessor: 'name',
-    },
-    { Header: 'Tipo', accessor: 'type' },
-    { Header: 'Región', accessor: 'region' },
-    { Header: 'Comuna', accessor: 'commune' },
-  ];
+  const headerTable = ['Nombre', 'Tipo', 'Region', 'Comuna'];
 
   const regiones = [
     { name: 'Región Metropolitana', id: 1 },
@@ -53,7 +44,6 @@ const StageManager = ({ title, setStage, handleRowSelected }) => {
     color: '#fff',
     padding: '6px 55px',
     borderRadius: '20px',
-    zIndex: 999,
   };
 
   const cancelButtonStyle = {
@@ -64,22 +54,36 @@ const StageManager = ({ title, setStage, handleRowSelected }) => {
     border: '1px solid var(--color-secondary)',
   };
 
-  const onHandleRowSelected = rowSelected => {
-    setInstitutionSelected(rowSelected);
-    console.log(rowSelected);
+  const onHandleCheckboxSelected = rowSelected => {
+    if (rowSelected) {
+      setShowDeleteOption(true);
+      setInstitutionSelected(rowSelected);
+    } else {
+      setShowDeleteOption(false);
+      setInstitutionSelected({});
+    }
   };
 
-  const onHandleCheckboxSelected = checkData => {
-    setCheckboxDataSelected(checkData);
-    console.log(checkData);
+  const onHandleGotoCreateCourse = data => {
+    console.log(data);
   };
 
-  const onHandleSubmit = e => {
+  const handleSubmit = e => {
+    e.preventDefault();
+    setShowDeleteOption(false);
     const { name, type, region, commune } = values;
     if (!name || !type || !region || !commune) return;
-    e.preventDefault();
     setFormData([...formData, values]);
     reset();
+  };
+
+  const handleInstitutionDelete = () => {
+    const filterRowDelete = formData.filter(
+      item => item !== institutionSelected,
+    );
+    setFormData(filterRowDelete);
+    setConfirmAction(false);
+    setShowDeleteOption(false);
   };
 
   return (
@@ -96,14 +100,18 @@ const StageManager = ({ title, setStage, handleRowSelected }) => {
               onClick={() => setConfirmAction(false)}
               customStyles={cancelButtonStyle}
             />
-            <Button text="Continuar" customStyles={buttonStyles} />
+            <Button
+              onClick={handleInstitutionDelete}
+              text="Continuar"
+              customStyles={buttonStyles}
+            />
           </div>
         </Modal>
       )}
       <h1 className="section__title">{title}</h1>
       <article className="section__content">
         <div className="manager__search-container">
-          <form className="manager__form" onSubmit={onHandleSubmit}>
+          <form className="manager__form" onSubmit={handleSubmit}>
             <input
               className="form__input-name"
               type="text"
@@ -117,7 +125,7 @@ const StageManager = ({ title, setStage, handleRowSelected }) => {
             <div className="search-container__selects">
               <select
                 className="type-school"
-                defaultValue="Tipo"
+                value={values.type}
                 name="type"
                 onChange={handleInputChange}
               >
@@ -128,7 +136,7 @@ const StageManager = ({ title, setStage, handleRowSelected }) => {
               </select>
               <select
                 className="type-region"
-                defaultValue="Región"
+                value={values.region}
                 name="region"
                 onChange={handleInputChange}
               >
@@ -162,27 +170,35 @@ const StageManager = ({ title, setStage, handleRowSelected }) => {
             type="submit"
             text="A&ntilde;adir"
             customStyles={buttonStyles}
-            onClick={onHandleSubmit}
+            onClick={handleSubmit}
           />
         </div>
       </article>
       {formData.length ? (
         <article className="section__content table-container">
-          {showButtonDelete && (
-            <div className="content__difused">
-              <Button
-                onClick={() => setConfirmAction(true)}
-                text="Eliminar"
-                icon={deleteIcon}
-                customStyles={buttonDeleteStyles}
-              />
-            </div>
-          )}
+          <div
+            style={{
+              opacity: showDeleteOption ? '1' : '0',
+              zIndex: showDeleteOption ? 'auto' : '-999',
+            }}
+            className="content__difused"
+          >
+            <Button
+              text="Eliminar"
+              onClick={() => setConfirmAction(true)}
+              icon={deleteIcon}
+              customStyles={buttonDeleteStyles}
+            />
+            <Button
+              onClick={onHandleGotoCreateCourse}
+              text="Crear curso"
+              customStyles={buttonDeleteStyles}
+            />
+          </div>
           <Table
             dataHeader={headerTable}
             data={formData}
-            onHandleRowSelected={onHandleRowSelected}
-            onHandleCheckboxSelected={onHandleCheckboxSelected}
+            handleCheckboxSelected={onHandleCheckboxSelected}
           />
         </article>
       ) : (

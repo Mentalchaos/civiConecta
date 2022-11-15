@@ -34,7 +34,6 @@
 }
 
 .table {
-  border-collapse: collapse;
   width: 100%;
   text-align: center;
   background-color: #fff;
@@ -48,6 +47,7 @@
 
 .table thead tr {
   display: block;
+  border-radius: 10px;
 }
 
 .table th,
@@ -73,6 +73,10 @@
   border-bottom: 1px solid rgb(0, 0, 0, 0.2);
   border-radius: none;
   /* background-color: #fff; */
+}
+
+.table > tbody > tr {
+  position: relative;
 }
 
 .table > tbody > tr:hover {
@@ -124,6 +128,10 @@ input[type='checkbox'] + label:before {
   float: left;
   border: 2px solid #000;
   background: #fff;
+}
+
+input[type='checkbox']:disabled + label:before {
+  border: 2px solid lightgray;
 }
 
 input[type='checkbox']:checked + label:after {
