@@ -1,166 +1,74 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { useRowSelect, useSortBy, useTable } from 'react-table';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import arrow from 'src/assets/Icons/arrow.svg';
+// import arrow from 'src/assets/Icons/arrow.svg';
 
 const Table = ({
   type,
   data,
   dataHeader,
-  onHandleRowSelected,
-  onHandleCheckboxSelected,
+  handleCheckboxSelected,
   ...props
 }) => {
-  const columns = useMemo(() => [...dataHeader], []);
-  const sortBy = [{ id: 'name' }];
+  const [checked, setChecked] = useState({});
+  const checkedCount = Object.keys(checked).filter(key => checked[key]).length;
+  const disabled = checkedCount > 0;
 
-  const IndeterminateCheckbox = React.forwardRef(
-    ({ indeterminate, ...rest }, ref) => {
-      const defaultRef = React.useRef();
-      const resolvedRef = ref || defaultRef;
-
-      React.useEffect(() => {
-        resolvedRef.current.indeterminate = indeterminate;
-      }, [resolvedRef, indeterminate]);
-
-      return (
-        <>
-          <input type="checkbox" ref={resolvedRef} {...rest} />
-        </>
-      );
-    },
-  );
-
-  const tableInstance = useTable(
-    { columns, data, initialState: { sortBy } },
-    useSortBy,
-    useRowSelect,
-
-    hooks => {
-      hooks.visibleColumns.push(columns => [
-        {
-          id: 'selection',
-          disableSortBy: true,
-          Cell: ({ row }) => {
-            return (
-              <div>
-                <IndeterminateCheckbox
-                  id={row.original.name}
-                  {...row.getToggleRowSelectedProps()}
-                />
-                <label htmlFor={row.original.name}></label>
-              </div>
-            );
-          },
-        },
-        ...columns,
-      ]);
-    },
-  );
-
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow,
-    setSortBy,
-    selectedFlatRows,
-  } = tableInstance;
-
-  // Checkbox selected
-  const rowCheckboxSelected = selectedFlatRows.map(item => item.original);
-  rowCheckboxSelected.length && onHandleCheckboxSelected(rowCheckboxSelected);
-
-  const handleRowSelected = row => {
-    onHandleRowSelected(row);
+  const onSelectedChange = index => {
+    setChecked({
+      ...checked,
+      [index]: !checked[index],
+    });
   };
 
   return (
-    <table className="table" {...getTableProps()} {...props}>
-      <thead
-        style={{
-          backgroundColor:
-            type === 0 ? 'var(--color-primary)' : 'var(--color-secondary)',
-        }}
-      >
-        {headerGroups.map(headerGroup => {
-          const { key } = headerGroup.getHeaderGroupProps();
-          return (
-            <tr {...headerGroup.getHeaderGroupProps()} key={key}>
-              {headerGroup.headers.map(column => {
-                const { key } = column.getHeaderProps();
-
-                return (
-                  <th
-                    {...column.getHeaderProps(column.getSortByToggleProps())}
-                    key={key}
-                    onClick={() => {
-                      const desc = column.isSortedDesc
-                        ? undefined
-                        : column.isSortedDesc
-                        ? false
-                        : true;
-                      setSortBy([{ id: column.id, desc }]);
-                    }}
+    <>
+      {data.length ? (
+        <table className="table" {...props}>
+          <thead
+            style={{
+              backgroundColor:
+                type === 0 ? 'var(--color-primary)' : 'var(--color-secondary)',
+            }}
+          >
+            <tr>
+              {dataHeader.map(headerName => (
+                <th>{headerName}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {Object.values(data).map((obj, index) => {
+              return (
+                <tr key={index}>
+                  <td
+                    key={index}
+                    style={{ position: 'absolute', border: 'none' }}
                   >
-                    <div className="header-table__arrow">
-                      <span>{column.render('Header')}</span>
-                      {column.isSorted ? (
-                        column.isSortedDesc ? (
-                          <img
-                            style={{
-                              transition: 'all 0.3s ease-in-out',
-                              marginLeft: '15px',
-                              rotate: '180deg',
-                            }}
-                            src={arrow}
-                            alt="arrow"
-                          />
-                        ) : (
-                          <img
-                            style={{
-                              marginLeft: '15px',
-                              transition: 'all 0.3s ease-in-out',
-                            }}
-                            src={arrow}
-                            alt="arrow"
-                          />
-                        )
-                      ) : (
-                        ''
-                      )}
-                    </div>
-                  </th>
-                );
-              })}
-            </tr>
-          );
-        })}
-      </thead>
-      <tbody {...getTableBodyProps()}>
-        {rows.map(row => {
-          prepareRow(row);
-          const { key } = row.getRowProps();
-          return (
-            <tr
-              key={key}
-              onClick={() => handleRowSelected(row)}
-              {...row.getRowProps()}
-            >
-              {row.cells.map(cell => {
-                const { key } = cell.getCellProps();
-                return (
-                  <td key={key} {...cell.getCellProps()}>
-                    {cell.render('Cell')}
+                    <input
+                      onChange={e => {
+                        onSelectedChange(index);
+                        e.target.checked
+                          ? handleCheckboxSelected(obj)
+                          : handleCheckboxSelected(null);
+                      }}
+                      disabled={!checked[index] && disabled}
+                      id={index}
+                      type="checkbox"
+                    />
+                    <label htmlFor={index}></label>
                   </td>
-                );
-              })}
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
+                  {Object.values(obj).map((value, dataIndex) => (
+                    <td key={dataIndex}>{value}</td>
+                  ))}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      ) : (
+        <h1>Aún no se registran instituciones</h1>
+      )}
+    </>
   );
 };
 

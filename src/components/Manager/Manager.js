@@ -8,6 +8,11 @@ import './Manager.css';
 
 const Manager = () => {
   const [stage, setStage] = useState('manager');
+
+  const changeStage = stage => {
+    setStage(stage);
+  };
+
   return (
     <>
       <header className="manager-header">
@@ -28,18 +33,18 @@ const Manager = () => {
         </div>
         {stage === 'manager' && (
           <StageManager
-            setStage={setStage}
+            changeStage={changeStage}
             title="A&ntilde;adir Instituci&oacute;n"
           />
         )}
         {stage === 'assignment' && (
           <StageAssignment
-            setStage={setStage}
+            changeStage={changeStage}
             title="Creaci&oacute;n de cursos"
           />
         )}
         {stage === 'detail' && (
-          <StageDetail setStage={setStage} title="Detalle de letra" />
+          <StageDetail changeStage={changeStage} title="Detalle de letra" />
         )}
       </main>
     </>
