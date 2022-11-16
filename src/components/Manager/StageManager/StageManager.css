@@ -1,9 +1,6 @@
 .manager__search-container {
   width: 90%;
   margin-top: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 10px;
   border-radius: 10px;
   background-color: #e0e0e0;
@@ -20,15 +17,52 @@
   padding-right: 25px;
 }
 
-.search__commune {
-  background-image: url('src/assets/Icons/comune_icon.svg');
-  background-repeat: no-repeat;
-  background-position: 15% 50%;
+.manager__form .form__input-name {
+  width: 100%;
+  background-color: #e0e0e0;
+  font-family: 'Poppins';
   border: none;
   outline: none;
   border-radius: 20px;
+  text-align: left;
+  padding: 9px;
+  font-size: 14px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.manager__form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-group-icon {
+  position: relative;
+}
+
+.input-group-icon input {
+  width: 165px;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 20px;
+  outline: none;
   text-align: center;
 }
+.input-group-icon input + img {
+  position: absolute;
+  top: 8px;
+  left: 12px;
+}
+
+/* .search__commune { */
+/*   background-image: url('src/assets/Icons/comune_icon.svg'); */
+/*   background-repeat: no-repeat; */
+/*   background-position: 15% 50%; */
+/*   border: none; */
+/*   outline: none; */
+/*   border-radius: 20px; */
+/*   text-align: center; */
+/* } */
 
 .table-container {
   margin-top: 40px;
@@ -42,13 +76,16 @@
 }
 
 .content__difused {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  transition: all 0.3s ease-in-out;
   position: absolute;
   width: 100%;
-  bottom: 0;
+  bottom: -30px;
   background-color: rgb(255, 255, 255, 0.7);
   text-align: center;
-  padding-top: 20px;
-  padding-bottom: 40px;
+  padding-bottom: 45px;
 }
 
 .container-actions {
