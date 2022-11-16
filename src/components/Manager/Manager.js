@@ -7,7 +7,12 @@ import background from 'src/assets/images/manager-header.png';
 import './Manager.css';
 
 const Manager = () => {
-  const [stage, setStage] = useState('detail');
+  const [stage, setStage] = useState('manager');
+
+  const changeStage = stage => {
+    setStage(stage);
+  };
+
   return (
     <>
       <header className="manager-header">
@@ -24,15 +29,23 @@ const Manager = () => {
       <main className="manager-content">
         <div className="current-path">
           {/*Aqui debe ir el path para controlar ruta actual*/}
-          <p className="path__text">Manager</p>
+          <p className="path__text">{stage}</p>
         </div>
         {stage === 'manager' && (
-          <StageManager title="A&ntilde;adir Instituci&oacute;n" />
+          <StageManager
+            changeStage={changeStage}
+            title="A&ntilde;adir Instituci&oacute;n"
+          />
         )}
         {stage === 'assignment' && (
-          <StageAssignment title="Creaci&oacute;n de cursos" />
+          <StageAssignment
+            changeStage={changeStage}
+            title="Creaci&oacute;n de cursos"
+          />
         )}
-        {stage === 'detail' && <StageDetail title="Detalle de letra" />}
+        {stage === 'detail' && (
+          <StageDetail changeStage={changeStage} title="Detalle de letra" />
+        )}
       </main>
     </>
   );
