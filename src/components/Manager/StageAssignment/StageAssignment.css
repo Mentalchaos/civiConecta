@@ -26,10 +26,21 @@
 }
 
 .container-input {
+  padding-bottom: 5px;
   position: relative;
   display: flex;
 }
 
+.container__button-search {
+  padding-bottom: 10px;
+  text-align: right;
+}
+
+.container__add-button {
+  text-align: right;
+  padding-top: 10px;
+  padding-right: 40px;
+}
 .container-input img {
   position: absolute;
   right: 1rem;
@@ -133,7 +144,6 @@
   display: flex;
   gap: 90px;
   justify-content: center;
-  padding: 20px;
   position: absolute;
 }
 
