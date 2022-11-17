@@ -1,27 +1,32 @@
 import { useState } from 'react';
 import Table from 'src/components/UI/Table';
 import CreateLetter from './CreateLetter/CreateLetter';
-import gotoIcon from 'src/assets/Icons/arrow-degree.svg';
-import searchIcon from 'src/assets/Icons/search_icon.svg';
-
-import './StageAssignment.css';
 import Button from 'src/components/UI/Button';
 import Modal from 'src/components/UI/Modal';
 import CreateTeacher from './CreateTeacher/CreateTeacher';
+import gotoIcon from 'src/assets/Icons/arrow-degree.svg';
+import addIcon from 'src/assets/Icons/replace-teacher.svg';
+import searchIcon from 'src/assets/Icons/search_icon.svg';
+
+import './StageAssignment.css';
 
 const StageAssignment = ({ title }) => {
-  const [showActionButtons, setShowActionButtons] = useState(true);
-  const [wordAdded, setWordAdded] = useState(true);
+  const [showActionButtons, setShowActionButtons] = useState(false);
+  const [wordAdded, setWordAdded] = useState(false);
   const [showAddLetter, setShowAddLetter] = useState(false);
   const [addTeacher, setAddTeacher] = useState(false);
   const [confirmAction, setConfirmAction] = useState(false);
+  const [dataTable, setDataTable] = useState([]);
+  const [rowDataSelected, setRowDataSelected] = useState({});
+  const headerTable = ['Nombre', 'Fecha de registro'];
+
+  const degrees = ['5º Básico'];
 
   const buttonStyles = {
     background: 'var(--color-secondary)',
     color: '#fff',
     padding: '5px 40px',
     borderRadius: '20px',
-    marginTop: '20px',
   };
   const buttonCancelStyle = {
     backgroundColor: '#fff',
@@ -29,41 +34,47 @@ const StageAssignment = ({ title }) => {
     border: '1px solid var(--color-secondary)',
     padding: '5px 40px',
     borderRadius: '20px',
-    marginTop: '20px',
   };
 
-  const headerTable = [
-    { Header: 'Nombre', accessor: 'name' },
-    { Header: 'Fecha de registro', accessor: 'date' },
-  ];
+  const onHandleCheckboxSelected = rowSelected => {
+    if (rowSelected) {
+      setShowActionButtons(true);
+      setRowDataSelected(rowSelected);
+    } else {
+      setShowActionButtons(false);
+      setRowDataSelected({});
+    }
+  };
 
-  const data = [
-    { id: 1, name: 'Tadeo Cespedes Vilaita', date: '10/10/2022' },
-    { id: 2, name: 'Juliano Soza', date: '10/10/2022' },
-    { id: 3, name: 'Nilda Antonia Cuéllar', date: '10/10/2022' },
-    { id: 4, name: 'Felipe Antonio Herrera Lopez', date: '10/10/2022' },
-    { id: 5, name: 'Guiomar Calvo Lobos', date: '10/10/2022' },
-    { id: 6, name: 'María Teresa Vigil Agudo', date: '10/10/2022' },
-    { id: 7, name: 'Emilio Rubio Madariaga', date: '10/10/2022' },
-    { id: 8, name: 'Stephanie Alejandra Pezoa Jara', date: '10/10/2022' },
-    { id: 9, name: 'Matias Nicolas Schurmann Neitlan', date: '10/10/2022' },
-    { id: 10, name: 'Ignacio Andrés Vergara Entlean', date: '10/10/2022' },
-    { id: 11, name: 'María Teresa Vigil Agudo', date: '10/10/2022' },
-  ];
+  const onHandleAddTeacher = teacher => {
+    const selectColumnDataToTable = {
+      name: teacher.name,
+      registerDate: teacher.houseNumber,
+    };
 
-  const degrees = [
-    '1º Básico',
-    '2º Básico',
-    '3º Básico',
-    '4º Básico',
-    '5º Básico',
-    '6º Básico',
-    '7º Básico',
-    '8º Básico',
-  ];
+    setDataTable([...dataTable, selectColumnDataToTable]);
+    setAddTeacher(false);
+  };
+
+  const handleDeleteTeacher = () => {
+    const dataFiltered = dataTable.filter(row => row !== rowDataSelected);
+    setDataTable(dataFiltered);
+    setShowActionButtons(false);
+    setConfirmAction(false);
+  };
+
+  const onHandleAddLetter = data => {
+    console.log(data);
+  };
+
   return (
     <section className="manager-section">
-      {addTeacher && <CreateTeacher setAddTeacher={setAddTeacher} />}
+      {addTeacher && (
+        <CreateTeacher
+          onHandleAddTeacher={onHandleAddTeacher}
+          setAddTeacher={setAddTeacher}
+        />
+      )}
       {confirmAction && (
         <Modal
           title="Eliminar Instituci&oacute;n"
@@ -76,13 +87,22 @@ const StageAssignment = ({ title }) => {
               onClick={() => setConfirmAction(false)}
               customStyles={buttonCancelStyle}
             />
-            <Button text="Continuar" customStyles={buttonStyles} />
+            <Button
+              onClick={handleDeleteTeacher}
+              text="Continuar"
+              customStyles={buttonStyles}
+            />
           </div>
         </Modal>
       )}
       <h1 className="section__title">{title}</h1>
       <article className="section__content-assignment">
-        {showAddLetter && <CreateLetter setShowAddLetter={setShowAddLetter} />}
+        {showAddLetter && (
+          <CreateLetter
+            onHandleAddLetter={onHandleAddLetter}
+            setShowAddLetter={setShowAddLetter}
+          />
+        )}
         <div className="content__level-selection">
           <span className="content__level-selection-title">
             Seleccionar nivel
@@ -136,9 +156,22 @@ const StageAssignment = ({ title }) => {
             />
             <img src={searchIcon} alt="search icon" />
           </div>
-          <div className="content__table-container">
-            {showActionButtons && (
-              <div className="content__difused difused-assignment">
+          <div className="container__button-search">
+            <Button
+              disabled={!dataTable.length}
+              text="Buscar"
+              customStyles={buttonStyles}
+            />
+          </div>
+          {dataTable.length ? (
+            <div className="content__table-container">
+              <div
+                style={{
+                  opacity: showActionButtons ? '1' : '0',
+                  zIndex: showActionButtons ? 'auto' : '-999',
+                }}
+                className="content__difused difused-assignment"
+              >
                 <Button
                   text="Eliminar"
                   onClick={() => setConfirmAction(true)}
@@ -146,12 +179,20 @@ const StageAssignment = ({ title }) => {
                 />
                 <Button text="Asignar" customStyles={buttonStyles} />
               </div>
-            )}
-            <Table dataHeader={headerTable} data={data} />
-          </div>
-          <div style={{ float: 'right', paddingRight: '45px' }}>
+              <Table
+                dataHeader={headerTable}
+                data={dataTable}
+                handleCheckboxSelected={onHandleCheckboxSelected}
+              />
+            </div>
+          ) : (
+            <h1 style={{ textAlign: 'center' }}>Aún no hay registros</h1>
+          )}
+
+          <div className="container__add-button">
             <Button
               onClick={() => setAddTeacher(true)}
+              icon={addIcon}
               text="A&ntilde;adir"
               customStyles={buttonStyles}
             />
