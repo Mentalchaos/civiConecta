@@ -1,8 +1,21 @@
 import Button from 'src/components/UI/Button';
 import Modal from 'src/components/UI/Modal';
+import useForm from 'src/hooks/useForm';
 import './CreateTeacher.css';
 
-const CreateTeacher = ({ setAddTeacher }) => {
+const CreateTeacher = ({ setAddTeacher, onHandleAddTeacher, ...props }) => {
+  const { values, handleInputChange } = useForm({
+    name: '',
+    rut: '',
+    profession: '',
+    email: '',
+    phone: '',
+    region: '',
+    commune: '',
+    street: '',
+    houseNumber: '',
+  });
+
   const buttonStyles = {
     backgroundColor: 'var(--color-secondary)',
     fontSize: '14px',
@@ -10,6 +23,7 @@ const CreateTeacher = ({ setAddTeacher }) => {
     color: '#fff',
     padding: '3px 30px',
   };
+
   const buttonCancelStyles = {
     backgroundColor: '#fff',
     fontSize: '14px',
@@ -21,7 +35,11 @@ const CreateTeacher = ({ setAddTeacher }) => {
 
   const handleAddTeacher = e => {
     e.preventDefault();
-    console.log('Accion para agregar docente');
+    const anyValueEmpty = Object.values(values).some(
+      item => item.trim() === '',
+    );
+    if (anyValueEmpty) return;
+    onHandleAddTeacher(values);
   };
 
   return (
@@ -34,27 +52,81 @@ const CreateTeacher = ({ setAddTeacher }) => {
         <div className="form-group-container">
           <label>Datos personales</label>
           <div className="input-group">
-            <input type="text" placeholder="Nombres" />
-            <input type="text" placeholder="Apellidos" />
+            <input
+              name="name"
+              autoFocus={true}
+              value={values.name}
+              type="text"
+              placeholder="Nombre completo"
+              onChange={handleInputChange}
+            />
           </div>
           <div className="input-group">
-            <input type="text" placeholder="Rut" />
-            <input type="text" placeholder="Profesión y Especialidad" />
+            <input
+              name="rut"
+              onChange={handleInputChange}
+              value={values.rut}
+              type="text"
+              placeholder="Rut"
+            />
+            <input
+              name="profession"
+              onChange={handleInputChange}
+              value={values.profession}
+              type="text"
+              placeholder="Profesión y Especialidad"
+            />
           </div>
         </div>
         <div className="form-group-container">
           <label>Datos de contacto</label>
           <div className="input-group">
-            <input type="text" placeholder="E-mail" />
-            <input type="text" placeholder="Fono personal" />
+            <input
+              name="email"
+              onChange={handleInputChange}
+              value={values.email}
+              type="text"
+              placeholder="E-mail"
+            />
+            <input
+              name="phone"
+              onChange={handleInputChange}
+              value={values.phone}
+              type="text"
+              placeholder="Fono personal"
+            />
           </div>
           <div className="input-group">
-            <input type="text" placeholder="Región" />
-            <input type="text" placeholder="Comuna" />
+            <input
+              name="region"
+              onChange={handleInputChange}
+              value={values.region}
+              type="text"
+              placeholder="Región"
+            />
+            <input
+              name="commune"
+              onChange={handleInputChange}
+              value={values.commune}
+              type="text"
+              placeholder="Comuna"
+            />
           </div>
           <div className="input-group">
-            <input type="text" placeholder="Calle" />
-            <input type="text" placeholder="Número" />
+            <input
+              name="street"
+              onChange={handleInputChange}
+              value={values.street}
+              type="text"
+              placeholder="Calle"
+            />
+            <input
+              name="houseNumber"
+              onChange={handleInputChange}
+              value={values.houseNumber}
+              type="text"
+              placeholder="Número"
+            />
           </div>
           <div className="form-actions">
             <Button

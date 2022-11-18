@@ -16,9 +16,14 @@
   font-size: 14px;
 }
 
+.button:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .button > img {
   position: absolute;
-  left: 15px;
+  left: 10px;
   top: 7px;
 }
 
@@ -34,10 +39,12 @@
 }
 
 .table {
+  border-collapse: collapse;
   width: 100%;
   text-align: center;
   background-color: #fff;
   border-radius: 10px;
+  overflow: hidden;
 }
 
 .table thead {
@@ -46,7 +53,7 @@
 }
 
 .table thead tr {
-  display: block;
+  /* display: block; */
   border-radius: 10px;
 }
 
@@ -56,7 +63,7 @@
 }
 
 .table tbody {
-  display: block;
+  /* display: block; */
   overflow-y: auto;
   width: 100%;
   padding-bottom: 3rem;
@@ -68,7 +75,6 @@
 }
 
 .table > tbody > tr > td {
-  cursor: pointer;
   padding: 10px 0px;
   border-bottom: 1px solid rgb(0, 0, 0, 0.2);
   border-radius: none;
@@ -76,7 +82,7 @@
 }
 
 .table > tbody > tr {
-  position: relative;
+  /* position: relative; */
 }
 
 .table > tbody > tr:hover {
@@ -117,6 +123,28 @@ body {
   border-radius: 10px;
 }
 
+input[type='text'],
+input[type='number'] {
+  border: none;
+  background-color: #e0e0e0;
+  font-family: 'Poppins';
+  outline: none;
+  padding: 13px;
+  padding-left: 13px;
+  padding-left: 40px;
+  border-radius: 10px;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
 input[type='checkbox'] {
   display: none;
 }
@@ -132,6 +160,7 @@ input[type='checkbox'] + label:before {
 
 input[type='checkbox']:disabled + label:before {
   border: 2px solid lightgray;
+  pointer-events: none;
 }
 
 input[type='checkbox']:checked + label:after {
