@@ -1,8 +1,14 @@
 import Button from 'src/components/UI/Button';
 import Modal from 'src/components/UI/Modal';
+import useForm from 'src/hooks/useForm';
 import './CreateLetter.css';
 
-const CreateLetter = ({ setShowAddLetter }) => {
+const CreateLetter = ({ setShowAddLetter, onHandleAddLetter }) => {
+  const { values, handleInputChange } = useForm({
+    letter: '',
+    amount: 0,
+  });
+
   const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
   const buttonStyles = {
     background: 'var(--color-secondary)',
@@ -21,6 +27,11 @@ const CreateLetter = ({ setShowAddLetter }) => {
     marginTop: '50px',
   };
 
+  const handleAddLetter = e => {
+    e.preventDefault();
+    onHandleAddLetter(values);
+  };
+
   return (
     <Modal
       title="Crear letra"
@@ -34,7 +45,11 @@ const CreateLetter = ({ setShowAddLetter }) => {
         <div className="select-section">
           <div className="section__select-letter">
             <p>Letra</p>
-            <select className="section__letter-selection">
+            <select
+              onChange={handleInputChange}
+              name="letter"
+              className="section__letter-selection"
+            >
               {letters.map(letter => {
                 return (
                   <option key={letter} value={letter}>
@@ -51,16 +66,19 @@ const CreateLetter = ({ setShowAddLetter }) => {
           </div>
           <div className="section__select-students">
             <p>N&uacute;mero de estudiantes</p>
-            <select className="section__letter-selection">
-              {letters.map(letter => {
-                return (
-                  <option key={letter} value={letter}>
-                    {letter}
-                  </option>
-                );
-              })}
-            </select>
-            <Button customStyles={buttonStyles} text="Continuar" />
+            <input
+              style={{ width: '165px', borderRadius: '20px' }}
+              type="number"
+              name="amount"
+              onChange={handleInputChange}
+              defaultValue={0}
+              min={0}
+            />
+            <Button
+              onClick={handleAddLetter}
+              customStyles={buttonStyles}
+              text="Continuar"
+            />
           </div>
         </div>
       </div>

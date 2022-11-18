@@ -22,52 +22,46 @@ const Table = ({
 
   return (
     <>
-      {data.length ? (
-        <table className="table" {...props}>
-          <thead
-            style={{
-              backgroundColor:
-                type === 0 ? 'var(--color-primary)' : 'var(--color-secondary)',
-            }}
-          >
-            <tr>
-              {dataHeader.map(headerName => (
-                <th>{headerName}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {Object.values(data).map((obj, index) => {
-              return (
-                <tr key={index}>
-                  <td
-                    key={index}
-                    style={{ position: 'absolute', border: 'none' }}
-                  >
-                    <input
-                      onChange={e => {
-                        onSelectedChange(index);
-                        e.target.checked
-                          ? handleCheckboxSelected(obj)
-                          : handleCheckboxSelected(null);
-                      }}
-                      disabled={!checked[index] && disabled}
-                      id={index}
-                      type="checkbox"
-                    />
-                    <label htmlFor={index}></label>
-                  </td>
-                  {Object.values(obj).map((value, dataIndex) => (
-                    <td key={dataIndex}>{value}</td>
-                  ))}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      ) : (
-        <h1>Aún no se registran instituciones</h1>
-      )}
+      <table className="table" {...props}>
+        <thead
+          style={{
+            backgroundColor:
+              type === 0 ? 'var(--color-primary)' : 'var(--color-secondary)',
+          }}
+        >
+          <tr>
+            <th style={{ width: 20 }}></th>
+            {dataHeader.map(headerName => (
+              <th>{headerName}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((obj, index) => {
+            return (
+              <tr key={index}>
+                <td style={{ width: 20 }}>
+                  <input
+                    onChange={e => {
+                      onSelectedChange(index);
+                      e.target.checked
+                        ? handleCheckboxSelected(obj)
+                        : handleCheckboxSelected(null);
+                    }}
+                    disabled={!checked[index] && disabled}
+                    id={index}
+                    type="checkbox"
+                  />
+                  <label htmlFor={index}></label>
+                </td>
+                {Object.values(obj).map((value, dataIndex) => (
+                  <td key={dataIndex}>{value}</td>
+                ))}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
     </>
   );
 };

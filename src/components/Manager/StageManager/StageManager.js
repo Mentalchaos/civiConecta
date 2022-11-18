@@ -8,7 +8,7 @@ import locationIcon from 'src/assets/Icons/comune_icon.svg';
 
 import './StageManager.css';
 
-const StageManager = ({ title, changeStage }) => {
+const StageManager = ({ title, changeStage, handleChangeInstitutionName }) => {
   const [showDeleteOption, setShowDeleteOption] = useState(false);
   const [confirmAction, setConfirmAction] = useState(false);
   const [formData, setFormData] = useState([]);
@@ -64,8 +64,9 @@ const StageManager = ({ title, changeStage }) => {
     }
   };
 
-  const onHandleGotoCreateCourse = data => {
-    console.log(data);
+  const onHandleGotoCreateCourse = () => {
+    changeStage('assignment');
+    handleChangeInstitutionName(institutionSelected.name);
   };
 
   const handleSubmit = e => {
@@ -179,7 +180,7 @@ const StageManager = ({ title, changeStage }) => {
           <div
             style={{
               opacity: showDeleteOption ? '1' : '0',
-              zIndex: showDeleteOption ? 'auto' : '-999',
+              zIndex: showDeleteOption ? 'initial' : '-999',
             }}
             className="content__difused"
           >
