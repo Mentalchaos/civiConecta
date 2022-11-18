@@ -1,25 +1,33 @@
-
 .login-section {
-    width: 35%;
-    padding: 6%;
+  width: 35%;
+  padding: 6%;
 }
 
 .login-section-header {
- font: inherit;   
+  font: inherit;
 }
 
 .login-section-title {
-    font-size: xxx-large;
-    font-weight: bolder;
-    margin: 0;
+  font-size: 60px;
+  font-weight: bolder;
+  margin: 0;
 }
 
 .login-section-footer {
-    font-weight: 600;
-    margin-top: 80px;
+  /* font-weight: 600; */
+  margin-top: 80px;
 }
 
 .login-section-footer a {
-    text-decoration: none;
-    padding-left: 15px;
+  text-decoration: none;
+  padding-left: 15px;
+}
+
+.civi-text {
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+.link-recover {
+  color: var(--color-primary);
 }
