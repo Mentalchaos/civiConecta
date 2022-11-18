@@ -82,7 +82,7 @@
 }
 
 .table > tbody > tr {
-  position: relative;
+  /* position: relative; */
 }
 
 .table > tbody > tr:hover {
