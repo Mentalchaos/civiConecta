@@ -8,9 +8,14 @@ import './Manager.css';
 
 const Manager = () => {
   const [stage, setStage] = useState('manager');
+  const [institutionName, setInstitutionName] = useState('');
 
   const changeStage = stage => {
     setStage(stage);
+  };
+
+  const handleChangeInstitutionName = name => {
+    setInstitutionName(name);
   };
 
   return (
@@ -22,19 +27,20 @@ const Manager = () => {
             CIVI <span>admin</span>
           </h1>
           {stage === 'manager' && <p>Manager de establecimientos</p>}
-          {stage === 'assignment' && <p>Nombre del establecimiento</p>}
-          {stage === 'detail' && <p>Nombre del establecimiento</p>}
+          {stage === 'assignment' && <p>{institutionName}</p>}
+          {stage === 'detail' && <p>{institutionName}</p>}
         </div>
       </header>
       <main className="manager-content">
         <div className="current-path">
-          {/*Aqui debe ir el path para controlar ruta actual*/}
+          {/*Aqui debe ir el path para controlar flujo actual*/}
           <p className="path__text">{stage}</p>
         </div>
         {stage === 'manager' && (
           <StageManager
             changeStage={changeStage}
             title="A&ntilde;adir Instituci&oacute;n"
+            handleChangeInstitutionName={handleChangeInstitutionName}
           />
         )}
         {stage === 'assignment' && (
