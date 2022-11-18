@@ -180,7 +180,7 @@ const StageManager = ({ title, changeStage, handleChangeInstitutionName }) => {
           <div
             style={{
               opacity: showDeleteOption ? '1' : '0',
-              zIndex: showDeleteOption ? 'auto' : '-999',
+              zIndex: showDeleteOption ? 'initial' : '-999',
             }}
             className="content__difused"
           >
