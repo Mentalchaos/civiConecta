@@ -1,35 +1,19 @@
-import { useNavigate } from 'react-router-dom';
-import useForm from 'src/hooks/useForm';
-import './loginForm.css';
+import "./loginForm.css";
 
 const LoginForm = () => {
-  const { values, handleInputChange } = useForm({
-    email: '',
-    password: '',
-  });
-  const navigate = useNavigate();
-
-  const onHandleSubmit = e => {
-    e.preventDefault();
-    const { email, password } = values;
-    if (!email || !password) return;
-    if (email === 'admin' && password === 'admin') navigate('/admin/dashboard');
-  };
-
   return (
     <div className="login-container">
-      <form className="login-form" onSubmit={onHandleSubmit}>
+      <form className="login-form" action="" method="POST">
         <div className="form-group">
           <label className="form-label" htmlFor="username">
             Email de usuario
           </label>
           <input
             className="form-input"
-            onChange={handleInputChange}
-            id="email"
-            name="email"
+            id="username"
             type="text"
             placeholder="Escriba su correo aquí"
+            spellCheck="false"
           />
         </div>
 
@@ -39,21 +23,14 @@ const LoginForm = () => {
           </label>
           <input
             className="form-input"
-            onChange={handleInputChange}
             id="password"
-            name="password"
             type="password"
             placeholder="Escriba su contraseña"
           />
         </div>
 
         <div className="form-group">
-          <input
-            onClick={onHandleSubmit}
-            className="form-input-submit"
-            type="submit"
-            value="Ingresar"
-          />
+          <input className="form-input-submit" type="submit" value="Ingresar" />
         </div>
       </form>
     </div>
