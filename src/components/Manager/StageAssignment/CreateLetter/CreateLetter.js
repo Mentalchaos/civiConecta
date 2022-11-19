@@ -30,6 +30,7 @@ const CreateLetter = ({ setShowAddLetter, onHandleAddLetter }) => {
   const handleAddLetter = e => {
     e.preventDefault();
     onHandleAddLetter(values);
+    setShowAddLetter(false);
   };
 
   return (
@@ -46,6 +47,7 @@ const CreateLetter = ({ setShowAddLetter, onHandleAddLetter }) => {
           <div className="section__select-letter">
             <p>Letra</p>
             <select
+              placeholder="Nivel"
               onChange={handleInputChange}
               name="letter"
               className="section__letter-selection"
