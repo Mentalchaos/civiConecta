@@ -1,7 +1,6 @@
 .units-container {
   position: relative;
   padding: 15px;
-  max-height: 557px;
   width: 100%;
   min-width: 400px;
   background-color: #fff;
@@ -73,7 +72,7 @@
 .unit-doc-title {
   font-size: 25px;
   font-weight: 900;
-  color: #D9687C;
+  color: #d9687c;
 }
 
 /* @Todo: cambiar css de ephemeris a su archivo correspondiente */
@@ -107,5 +106,5 @@
 }
 
 .ephemeris-select {
-  border: 1px solid #D9687C;
+  border: 1px solid #d9687c;
 }

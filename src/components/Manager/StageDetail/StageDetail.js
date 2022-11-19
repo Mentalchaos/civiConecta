@@ -7,11 +7,17 @@ import replaceTeacherIcon from 'src/assets/Icons/replace-teacher.svg';
 
 import './StageDetail.css';
 import Modal from 'src/components/UI/Modal';
+import useForm from 'src/hooks/useForm';
 
 const StageDetail = ({ title }) => {
   const [openEditModal, setOpenEditModal] = useState(false);
   const [teacherSelected, setTeacherSelected] = useState(false);
   const [studentSelected, setStudentSelected] = useState(false);
+  const [dataStudents, setDataStudents] = useState([]);
+  const { values, handleInputChange, reset } = useForm({
+    name: '',
+    rut: '',
+  });
 
   const buttonStyle = {
     color: '#fff',
@@ -28,43 +34,32 @@ const StageDetail = ({ title }) => {
     padding: '5px 40px',
   };
 
-  const dataHeaderReplaceTeacher = [
-    { Header: 'Nombre', accessor: 'name' },
-    { Header: 'Fecha de registro', accessor: 'registerDate' },
-  ];
+  const dataHeaderReplaceTeacher = ['Nombre', 'Fecha de registro'];
 
   const tableDataHeader = [
-    { Header: 'Nombre', accessor: 'name' },
-    { Header: 'Fecha de asignación', accessor: 'assignmentDate' },
-    { Header: 'Estado de actividad', accessor: 'activity' },
+    'Nombre',
+    'Fecha de asignación',
+    'Estado de actividad',
   ];
 
-  const tableDataHeaderStudents = [
-    { Header: 'Nombre', accessor: 'name' },
-    { Header: 'Rut', accessor: 'rut' },
-    { Header: 'Fecha de registro', accessor: 'registerDate' },
-  ];
+  const tableDataHeaderStudents = ['Nombre', 'Rut', 'Fecha de registro'];
 
   const teachersAvailable = [
     {
-      id: 1,
       name: 'Roberto Andres Lazaro Potrero',
       registerDate: '10/10/2022',
     },
-    { id: 2, name: 'Maria Antonia Jerez Duran', registerDate: '10/10/2022' },
+    { name: 'Maria Antonia Jerez Duran', registerDate: '10/10/2022' },
     {
-      id: 3,
       name: 'Matias Nicolas Madariaga Zarate',
       registerDate: '10/10/2022',
     },
-    { id: 4, name: 'Gonzalo Alberto Jara Urrea', registerDate: '10/10/2022' },
+    { name: 'Gonzalo Alberto Jara Urrea', registerDate: '10/10/2022' },
     {
-      id: 5,
       name: 'Clara Andrea Norhambuena Gutierrez',
       registerDate: '10/10/2022',
     },
     {
-      id: 6,
       name: 'Rosa Alejandra Arevalo Petersen',
       registerDate: '10/10/2022',
     },
@@ -72,35 +67,30 @@ const StageDetail = ({ title }) => {
 
   const dataTeacher = [
     {
-      id: 1,
       name: 'Tadeo Cespedes Vilaita',
       activity: 'Activo',
       assignmentDate: '10/10/2022',
     },
     {
-      id: 2,
-      name: 'Juliano Soza',
+      name: 'Emilio Andres Manriquez Espinosa',
       activity: 'Activo',
       assignmentDate: '10/10/2022',
-    },
-  ];
-
-  const dataStudent = [
-    {
-      id: 1,
-      name: 'Tadeo Cespedes Vilaita',
-      rut: '18481612-1',
-      registerDate: '10/10/2022',
-    },
-    {
-      id: 2,
-      name: 'Juliano Soza',
-      rut: '19513465-0',
-      registerDate: '10/10/2022',
     },
   ];
 
   const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+
+  const handleAddStudent = e => {
+    e.preventDefault();
+    const { name, rut } = values;
+    if (!name || !rut) return;
+    const mockData = {
+      ...values,
+      registerDate: '10/01/2023',
+    };
+    setDataStudents([...dataStudents, mockData]);
+    reset();
+  };
 
   return (
     <section className="manager-section">
@@ -115,6 +105,7 @@ const StageDetail = ({ title }) => {
               <div className="section__select-letter">
                 <p>Letra</p>
                 <select className="section__letter-selection edit-letter">
+                  <option disabled={true}>Letra</option>
                   {letters.map(letter => {
                     return (
                       <option key={letter} value={letter}>
@@ -131,15 +122,18 @@ const StageDetail = ({ title }) => {
               </div>
               <div className="section__select-students">
                 <p>N&uacute;mero de estudiantes</p>
-                <select className="section__letter-selection edit-number">
-                  {letters.map(letter => {
-                    return (
-                      <option key={letter} value={letter}>
-                        {letter}
-                      </option>
-                    );
-                  })}
-                </select>
+                <input
+                  style={{
+                    width: '165px',
+                    borderRadius: '20px',
+                    marginBottom: '50px',
+                  }}
+                  type="number"
+                  name="amount"
+                  onChange={handleInputChange}
+                  defaultValue={0}
+                  min={0}
+                />
                 <Button customStyles={buttonStyle} text="Continuar" />
               </div>
             </div>
@@ -223,7 +217,7 @@ const StageDetail = ({ title }) => {
               <Table
                 style={{ marginTop: 0 }}
                 dataHeader={tableDataHeaderStudents}
-                data={dataStudent}
+                data={dataStudents}
               />
               {studentSelected && (
                 <section className="table-actions">
@@ -231,11 +225,22 @@ const StageDetail = ({ title }) => {
                   <Button customStyles={buttonStyle} text={'Suspender'} />
                 </section>
               )}
-              <form className="form__add-student">
-                <input type="text" placeholder="Nombre completo" />
-                <input type="text" placeholder="Rut" />
+              <form className="form__add-student" onSubmit={handleAddStudent}>
+                <input
+                  onChange={handleInputChange}
+                  type="text"
+                  name="name"
+                  placeholder="Nombre completo"
+                />
+                <input
+                  onChange={handleInputChange}
+                  type="text"
+                  name="rut"
+                  placeholder="Rut"
+                />
                 <div style={{ marginTop: 20 }}>
                   <Button
+                    onClick={handleAddStudent}
                     customStyles={buttonStyle}
                     icon={addStudentIcon}
                     text={'Añadir'}
