@@ -15,6 +15,10 @@
   justify-content: space-between;
 }
 
+.header__subtitle {
+  font-size: 35px;
+}
+
 .header__left-content {
   display: flex;
   justify-content: center;
@@ -37,4 +41,69 @@
   padding: 14px 12px;
   border-radius: 10px;
   background-color: var(--color-green);
+}
+
+.select-opc {
+  box-shadow: 0px 2px 8px #c3c3c3;
+  background-color: white;
+}
+
+.unit-doc-container {
+  padding: 3% 10%;
+}
+
+.unit-doc {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid black;
+  padding: 0 0 0 15%;
+}
+
+.unit-doc-goto {
+  padding: 0 3% 2% 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.unit-doc-goto-icon {
+  height: 20px;
+  opacity: 0.5;
+}
+
+.unit-doc-title {
+  font-size: 25px;
+  font-weight: 900;
+  color: #D9687C;
+}
+
+.ephemeris-container {
+  border-radius: 10px;
+  border: 1px solid black;
+  background-color: white;
+  padding: 1%;
+  height: 67vh;
+  width: 95%;
+}
+
+.ephemeris-content {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  border-radius: 10px;
+  justify-content: space-around;
+}
+
+.ephemeris-select-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ephemeris-select-info {
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.ephemeris-select {
+  border: 1px solid #D9687C;
 }
