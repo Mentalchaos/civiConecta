@@ -18,8 +18,8 @@
 }
 
 .manager__form .form__input-name {
-  width: 100%;
-  background-color: #e0e0e0;
+  width: 30%;
+  background-color: #fff;
   font-family: 'Poppins';
   border: none;
   outline: none;

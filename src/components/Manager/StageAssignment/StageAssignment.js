@@ -9,18 +9,20 @@ import addIcon from 'src/assets/Icons/replace-teacher.svg';
 import searchIcon from 'src/assets/Icons/search_icon.svg';
 
 import './StageAssignment.css';
+import useForm from 'src/hooks/useForm';
 
-const StageAssignment = ({ title }) => {
+const StageAssignment = ({ title, changeStage }) => {
   const [showActionButtons, setShowActionButtons] = useState(false);
-  const [wordAdded, setWordAdded] = useState(false);
+  const [words, setWords] = useState([]);
   const [showAddLetter, setShowAddLetter] = useState(false);
   const [addTeacher, setAddTeacher] = useState(false);
   const [confirmAction, setConfirmAction] = useState(false);
   const [dataTable, setDataTable] = useState([]);
   const [rowDataSelected, setRowDataSelected] = useState({});
   const headerTable = ['Nombre', 'Fecha de registro'];
+  const { values, handleInputChange } = useForm({ level: 'Nivel' });
 
-  const degrees = ['5º Básico'];
+  const degrees = ['1 Básico', '2 Básico', '3 Básico', '4 Básico', '5º Básico'];
 
   const buttonStyles = {
     background: 'var(--color-secondary)',
@@ -64,7 +66,8 @@ const StageAssignment = ({ title }) => {
   };
 
   const onHandleAddLetter = data => {
-    console.log(data);
+    const newData = { ...data, level: values.level };
+    setWords([...words, newData]);
   };
 
   return (
@@ -113,7 +116,11 @@ const StageAssignment = ({ title }) => {
               boxShadow: '0px 2px 10px rgb(0,0,0,0.25)',
               backgroundColor: '#fff',
             }}
+            onChange={handleInputChange}
+            name="level"
+            value={values.level}
           >
+            <option disabled={true}>Nivel</option>
             {degrees.map(degree => {
               return (
                 <option key={degree} value={degree}>
@@ -130,21 +137,29 @@ const StageAssignment = ({ title }) => {
               <span className="add-word__plus-sign">+</span>
               <span className="add-word__text">A&ntilde;adir letra</span>
             </button>
-            {wordAdded && (
-              <section className="content__level-selected">
-                <input id="checkLetter" type="checkbox" />
-                <label htmlFor="checkLetter"></label>
-                <span className="level-selected__degree">{'5° B'}</span>
-                <span className="add-word__go-to">
-                  <span className="go-to__text">B&aacute;sico</span>
-                  <img
-                    src={gotoIcon}
-                    className="go-to__icon"
-                    alt="go to icon"
-                  />
-                </span>
-              </section>
-            )}
+            {words &&
+              words.map(word => {
+                return (
+                  <section
+                    onClick={() => changeStage('detail')}
+                    className="content__level-selected"
+                  >
+                    <input id="checkLetter" type="checkbox" />
+                    <label htmlFor="checkLetter"></label>
+                    <span className="level-selected__degree">
+                      {`${word.level.split(' ')[0]} ${word.letter}`}
+                    </span>
+                    <span className="add-word__go-to">
+                      <span className="go-to__text">B&aacute;sico</span>
+                      <img
+                        src={gotoIcon}
+                        className="go-to__icon"
+                        alt="go to icon"
+                      />
+                    </span>
+                  </section>
+                );
+              })}
           </div>
         </div>
         <div className="content__data-table">

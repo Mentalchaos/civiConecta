@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import StageManager from './StageManager/StageManager';
 import StageAssignment from './StageAssignment/StageAssignment';
 import StageDetail from './StageDetail/StageDetail';
@@ -11,6 +11,10 @@ const Manager = () => {
   const [stage, setStage] = useState('manager');
   const [institutionName, setInstitutionName] = useState('');
 
+  useEffect(() => {
+    setInstitutionName('Manager de establecimientos');
+  }, [setInstitutionName]);
+
   const changeStage = stage => {
     setStage(stage);
   };
@@ -21,10 +25,7 @@ const Manager = () => {
 
   return (
     <>
-      <SectionsHeader image={background} />
-      {/*{stage === 'manager' && <p>Manager de establecimientos</p>}
-      {stage === 'assignment' && <p>{institutionName}</p>}
-      {stage === 'detail' && <p>{institutionName}</p>}*/}
+      <SectionsHeader image={background} subtitle={institutionName} />
       <main className="manager-content">
         <div className="current-path">
           {/*Aqui debe ir el path para controlar flujo actual*/}
