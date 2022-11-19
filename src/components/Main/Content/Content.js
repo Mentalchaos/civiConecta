@@ -8,7 +8,7 @@ import './Content.css';
 
 const Content = () => {
   return (
-    <main className="main-content">
+    <main className="content-dashboard">
       <Header />
       <CreateInstitution />
       <section className="main__section">
