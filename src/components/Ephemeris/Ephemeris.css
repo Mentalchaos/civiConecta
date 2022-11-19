@@ -58,3 +58,18 @@
     background-color: #D9687C;
     color: white;
 }
+
+.ephimeris-dates:focus {
+    border: none;
+    outline: none;
+}
+
+.ephemeris-title {
+    font-weight: 600;
+    color: #7268DB;
+    font-size: 19px;
+}
+
+.ephemeris-subtitle {
+    font-size: 13px;
+}
