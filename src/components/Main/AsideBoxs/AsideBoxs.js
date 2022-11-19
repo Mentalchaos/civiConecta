@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import BoxIcon from 'src/components/UI/BoxIcon/BoxIcon';
 import emergentesIcon from 'src/assets/Icons/folder.svg';
 import efemeridesIcon from 'src/assets/Icons/calendar.svg';
@@ -8,9 +9,13 @@ import efemeridesImage from 'src/assets/images/efemerides-image.png';
 import './AsideBoxs.css';
 
 const AsideBoxs = ({ events = 0 }) => {
+  const navigate = useNavigate();
   return (
     <aside className="container-boxs">
-      <article className="boxs-situations boxs">
+      <article
+        onClick={() => navigate('/admin/situations')}
+        className="boxs-situations boxs"
+      >
         <header className="boxs__header">
           <BoxIcon svg={emergentesIcon} background="color-primary" />
           <div className="header__info-text">
@@ -24,7 +29,10 @@ const AsideBoxs = ({ events = 0 }) => {
           alt="imagen situaciones emergentes"
         />
       </article>
-      <article className="boxs-ephemeris boxs">
+      <article
+        onClick={() => navigate('/admin/ephemeris')}
+        className="boxs-ephemeris boxs"
+      >
         <header className="boxs__header">
           <BoxIcon svg={efemeridesIcon} background="color-primary" />
           <div className="header__info-text">
