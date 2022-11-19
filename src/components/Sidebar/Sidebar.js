@@ -25,12 +25,32 @@ const Sidebar = () => {
     <nav className="sidebar">
       <div className="sidebar__content">
         <NavButton icon={home} ariaLabel="home" path={'/admin'} />
-        <NavButton icon={teacher} ariaLabel="teacher" />
-        <NavButton icon={student} ariaLabel="student" />
-        <NavButton icon={blackboard} ariaLabel="blackboard" />
+        <NavButton
+          icon={teacher}
+          ariaLabel="teacher"
+          path={'/admin/teacher-survey'}
+        />
+        <NavButton
+          icon={student}
+          ariaLabel="student"
+          path={'/admin/student-survey'}
+        />
+        <NavButton
+          icon={blackboard}
+          ariaLabel="blackboard"
+          path={'/admin/units'}
+        />
         <NavButton icon={school} ariaLabel="school" path={'/admin/manager'} />
-        <NavButton icon={folder} ariaLabel="folder" />
-        <NavButton icon={calendar} ariaLabel="calendar" />
+        <NavButton
+          icon={folder}
+          ariaLabel="folder"
+          path={'/admin/situations'}
+        />
+        <NavButton
+          icon={calendar}
+          ariaLabel="calendar"
+          path={'/admin/ephemeris'}
+        />
         <NavButton
           path={'/login'}
           icon={exit}

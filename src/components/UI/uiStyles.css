@@ -6,6 +6,11 @@
   --gray-dark: #4d4d4d;
 }
 
+.main-content {
+  position: relative;
+  padding: 1rem 0.5rem 0 9rem;
+}
+
 .button {
   position: relative;
   font-family: 'Poppins';
