@@ -36,9 +36,14 @@ const Ephemeris = () => {
             <EphemerisDoc/>
           </div>
         </div>
-        <div>
+        <div className=''>
           <div className='ephimeris-pag'>
-          &lt;&lt;  &lt; 1/1 &gt;  &gt;&gt;
+          &lt;&lt; &lt; 1/1 &gt;  &gt;&gt;
+          </div>
+          <div className='ephimeris-tools'>
+            <input className='ephimeris-input' placeholder='Escribir el nombre de efeméride'></input>
+            <input className='ephimeris-dates' placeholder='Día/Mes'></input>
+            <button className='ephimeris-submit'>Añadir</button>
           </div>
         </div>
       </div>
