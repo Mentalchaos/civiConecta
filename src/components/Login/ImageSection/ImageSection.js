@@ -1,9 +1,14 @@
-import "./imageSection.css";
+import './imageSection.css';
+import loginImage from '../../../assets/images/login-image.png';
 
-const ImageSection = ({ img }) => {
+const ImageSection = () => {
   return (
     <div className="img-section">
-      <img className="img-section-image" src={img} alt="Imagen formulario" />
+      <img
+        className="img-section-image"
+        src={loginImage}
+        alt="Imagen formulario"
+      />
     </div>
   );
 };

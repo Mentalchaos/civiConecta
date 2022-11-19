@@ -1,6 +1,7 @@
-import './loginSection.css';
-import LoginForm from '../LoginForm/LoginForm';
 import { Link } from 'react-router-dom';
+import LoginForm from '../LoginForm/LoginForm';
+
+import './loginSection.css';
 
 const LoginSection = () => {
   return (
@@ -8,14 +9,16 @@ const LoginSection = () => {
       <div className="login-section-header">
         <p className="login-section-title">LOG IN</p>
         <p className="login-section-subtitle">
-          Bienvenido a la intranet <strong>CIVI Conecta</strong>
+          Admin <strong className="civi-text">CIVI Conecta</strong>.
         </p>
       </div>
       <LoginForm />
       <div className="login-section-footer">
         <div>
           Problemas al ingresar al sitio?{' '}
-          <Link to="../recover-password">Click aqu&iacute;</Link>
+          <Link className="link-recover" to="../recover-password">
+            Click aqu&iacute;
+          </Link>
         </div>
       </div>
     </div>
