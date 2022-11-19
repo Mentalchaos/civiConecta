@@ -24,7 +24,7 @@ const LoginForm = () => {
             Email de usuario
           </label>
           <input
-            className="form-input"
+            className="form-input input-name"
             onChange={handleInputChange}
             id="email"
             name="email"
