@@ -23,13 +23,13 @@ const StageManager = ({ title, changeStage, handleChangeInstitutionName }) => {
   const headerTable = ['Nombre', 'Tipo', 'Region', 'Comuna'];
 
   const regiones = [
-    { name: 'Región Metropolitana', id: 1 },
-    { name: 'Región Metropolitana', id: 2 },
-    { name: 'Región Metropolitana', id: 3 },
-    { name: 'Región Metropolitana', id: 4 },
-    { name: 'Región Metropolitana', id: 5 },
-    { name: 'Región Metropolitana', id: 6 },
-    { name: 'Región Metropolitana', id: 7 },
+    { name: 'Metropolitana', id: 1 },
+    { name: 'Metropolitana', id: 2 },
+    { name: 'Metropolitana', id: 3 },
+    { name: 'Metropolitana', id: 4 },
+    { name: 'Metropolitana', id: 5 },
+    { name: 'Metropolitana', id: 6 },
+    { name: 'Metropolitana', id: 7 },
   ];
 
   const buttonStyles = {
