@@ -9,7 +9,14 @@ import linkTo from 'src/assets/Icons/link-to.svg';
 
 import './SurveyBox.css';
 
-const BoxContent = ({ icon, title, subtitle, image, notification }) => {
+const BoxContent = ({
+  icon,
+  title,
+  subtitle,
+  image,
+  notification,
+  ...props
+}) => {
   const [isHover, setIsHover] = useState(false);
   const changeColor =
     icon === teacherIcon ? 'var(--color-primary)' : 'var(--color-secondary)';
@@ -27,6 +34,7 @@ const BoxContent = ({ icon, title, subtitle, image, notification }) => {
         boxShadow: isHover && 'none',
       }}
       className="box"
+      {...props}
     >
       <header className="box__header">
         <BoxIcon
@@ -89,6 +97,7 @@ const SurveyBox = () => {
         title="Encuesta al docente"
         subtitle="Incompleto"
         image={teacherImage}
+        onClick={() => navigate('/admin/teacher-survey')}
       />
       <BoxContent
         notification={true}
@@ -96,6 +105,7 @@ const SurveyBox = () => {
         title="Encuesta al estudiante"
         subtitle="Incompleto"
         image={studentImage}
+        onClick={() => navigate('/admin/student-survey')}
       />
     </section>
   );

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import BoxIcon from 'src/components/UI/BoxIcon/BoxIcon';
 import blackboard from 'src/assets/Icons/blackboard.svg';
 /* import infoIcon from 'src/assets/Icons/info.svg'; */
@@ -8,8 +9,12 @@ import UnitDocs from './UnitDocs/UnitDocs';
 import './Units.css';
 
 const Units = () => {
+  const navigate = useNavigate();
   return (
-    <section className="units-container">
+    <section
+      onClick={() => navigate('/admin/units')}
+      className="units-container"
+    >
       <div className="units__header">
         <div className="header__left-content">
           <BoxIcon svg={blackboard} background="color-green" />
