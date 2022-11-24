@@ -3,13 +3,15 @@
   margin: auto;
   text-align: center;
 }
+
 .planning__oa-detail {
   margin-top: 30px;
-  width: 100%;
+  width: 95%;
   display: inline-block;
 }
+
 .btn-container {
-  margin-top: 50px;
+  margin-top: 20px;
   text-align: right;
 }
 
@@ -25,8 +27,57 @@
 
 .table-section {
   position: relative;
+  padding-bottom: 30px;
+  border-radius: 10px;
+  background-color: #fff;
 }
 
 .content__difused.planning-section {
+  bottom: 5px;
   padding-bottom: 0;
+}
+
+.form-group.planning input {
+  width: 70%;
+  background-color: #e0e0e0;
+  padding: 10px 20px;
+  margin-left: 10px;
+}
+
+.planning-form {
+  width: 80%;
+  margin: auto;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 10px;
+}
+
+.form-group.planning {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-group.planning>label {
+  font-size: 14px;
+}
+
+.form-group.button {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.group__container-materials {
+  width: 70%;
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+}
+
+.group__container-materials>input {
+  width: 100% !important;
+  margin-top: 5px;
 }

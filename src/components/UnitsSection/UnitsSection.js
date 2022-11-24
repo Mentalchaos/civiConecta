@@ -3,6 +3,7 @@ import SectionsHeader from '../SectionsHeader/SectionsHeader';
 import headerImage from '../../assets/images/background-units.png';
 import Unit from './Unit/Unit';
 import './UnitsSection.css';
+import Planification from '../Planification/Planification';
 
 const UnitsSection = () => {
   const [levelSelected, setLevelSelected] = useState('');
