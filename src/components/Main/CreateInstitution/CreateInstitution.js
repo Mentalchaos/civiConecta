@@ -31,7 +31,7 @@ const CreateInstitution = () => {
       <button
         style={{ color: isHover && '#95CA76' }}
         type="button"
-        className="box__link-to"
+        className="box__link-to create"
       >
         Comenzar
         <img

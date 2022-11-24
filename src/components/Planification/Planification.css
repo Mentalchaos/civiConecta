@@ -1,0 +1,32 @@
+.planification-container {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+}
+.planning__oa-detail {
+  margin-top: 30px;
+  width: 100%;
+  display: inline-block;
+}
+.btn-container {
+  margin-top: 50px;
+  text-align: right;
+}
+
+.btn-container {
+  display: block;
+}
+
+.container__modal-actions {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.table-section {
+  position: relative;
+}
+
+.content__difused.planning-section {
+  padding-bottom: 0;
+}

@@ -12,9 +12,20 @@
   margin: 0px;
 }
 
+.section-title {
+  color: var(--gray-dark);
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.header__title.situation {
+  color: var(--gray-dark);
+}
+
 .select-date {
   border-radius: 20px;
-  padding: 10px;
+  background-color: #fff;
+  padding: 7px 10px;
   box-shadow: 0px 2px 10px hwb(0 0% 100% / 0.25);
 }
 
@@ -49,7 +60,7 @@
   color: var(--gray-dark);
   outline: none;
   border-radius: 20px;
-  border: 1px solid #D9687C;
+  border: 1px solid #d9687c;
   text-align: center;
   background-repeat: no-repeat;
   background-position-x: 10%;
@@ -95,5 +106,5 @@
   color: #ffffff;
   border: 0px;
   border-radius: 20px;
-  background-color: #D9687C;
+  background-color: #d9687c;
 }

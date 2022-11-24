@@ -8,7 +8,7 @@ const SectionsHeader = ({ image, subtitle }) => {
       <img src={image && image} alt="background image" />
       <div className="header__texts">
         <h1>
-          Civi{' '}
+          CIVI{' '}
           <span
             style={{ color: location.pathname === '/admin/manager' && '#fff' }}
           >
