@@ -1,3 +1,7 @@
 .create-school {
   margin-top: 45px;
 }
+
+.box__link-to .create {
+  margin-top: 0 !important;
+}

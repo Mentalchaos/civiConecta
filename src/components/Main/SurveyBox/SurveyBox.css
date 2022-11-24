@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: 20px;
 }
+
 .box {
   cursor: pointer;
   display: flex;
@@ -28,6 +29,7 @@
 }
 
 .box__link-to {
+  margin-top: 15px;
   color: #4d4d4d;
   cursor: pointer;
   font-family: 'Poppins';
@@ -38,7 +40,7 @@
   transition: all 0.3s ease-in-out;
 }
 
-.box__link-to > img {
+.box__link-to>img {
   transition: all 0.3s ease-in-out;
 }
 
@@ -89,7 +91,8 @@
   flex-direction: column;
   margin-left: 8px;
 }
-.header__text > small {
+
+.header__text>small {
   transition: all 0.3s ease-in-out;
 }
 
