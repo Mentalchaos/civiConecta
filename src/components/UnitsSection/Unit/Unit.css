@@ -1,7 +1,6 @@
 .box-container {
   margin: auto;
   margin-top: 10px;
-  width: 70%;
   display: flex;
   flex-direction: column;
   padding: 20px 10px 10px 20px;

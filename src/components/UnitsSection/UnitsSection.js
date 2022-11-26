@@ -8,7 +8,7 @@ import Planification from '../Planification/Planification';
 const UnitsSection = () => {
   const [levelSelected, setLevelSelected] = useState('');
   const [unitSelected, setUnitSelected] = useState({});
-  const levels = ['1° Básico', '2° Básico', '3° Básico', '4° Básico'];
+  const levels = ['5° Básico'];
 
   return (
     <>
