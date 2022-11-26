@@ -1,16 +1,15 @@
 import { useState } from 'react';
+import useForm from 'src/hooks/useForm';
 import Button from '../UI/Button';
 import Table from '../UI/Table';
 import Modal from '../UI/Modal';
-import planningIcon from 'src/assets/Icons/planning.svg';
 import uploadIcon from 'src/assets/Icons/upload.svg';
-
 import './Planification.css';
-import useForm from 'src/hooks/useForm';
 
-const Planification = ({ situation, ephemeris, unityClasses }) => {
+const Planification = ({ classData }) => {
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const [isRowSelected, setIsRowSelected] = useState(false);
+  console.log(classData);
   const { values, handleInputChange, reset } = useForm({
     topic: '',
     studentMaterials: '',
@@ -81,6 +80,12 @@ const Planification = ({ situation, ephemeris, unityClasses }) => {
           </div>
         </Modal>
       )}
+      <div className="data-class">
+        <h3 className="class-title">Clase {classData.number}</h3>
+        <span className="class-files">
+          {classData.files.length} documentos totales en esta clase.
+        </span>
+      </div>
       <input
         className="planning__oa-detail"
         type="text"
