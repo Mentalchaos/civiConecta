@@ -5,7 +5,7 @@
 }
 
 .planning__oa-detail {
-  margin-top: 30px;
+  margin-top: 10px;
   width: 95%;
   display: inline-block;
 }
@@ -62,7 +62,8 @@
 }
 
 .form-group.planning>label {
-  font-size: 14px;
+  text-align: left;
+  font-size: 15px;
 }
 
 .form-group.button {
@@ -80,4 +81,13 @@
 .group__container-materials>input {
   width: 100% !important;
   margin-top: 5px;
+}
+
+.data-class {
+  text-align: left;
+}
+
+.data-class>.class-title {
+  margin: 0;
+  color: var(--color-primary);
 }
