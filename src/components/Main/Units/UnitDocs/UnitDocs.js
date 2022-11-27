@@ -1,4 +1,5 @@
 import React from 'react';
+import linkTo from 'src/assets/Icons/link-to.svg';
 
 const UnitDocs = ({title}) => {
     return (
@@ -9,7 +10,7 @@ const UnitDocs = ({title}) => {
                 <p>0 documentos totales en clases</p>
             </div>
             <div className='unit-doc-goto'>
-                <img className='unit-doc-goto-icon' src="/static/media/link-to.6def5e3373dbc9e67d2f63283fc50b0f.svg" alt="go to"></img>
+                <img className='unit-doc-goto-icon' src={linkTo} alt="go to"></img>
             </div>
         </div>
       </div>
