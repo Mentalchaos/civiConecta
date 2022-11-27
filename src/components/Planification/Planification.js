@@ -1,31 +1,45 @@
 import { useState } from 'react';
+import useForm from 'src/hooks/useForm';
 import Button from '../UI/Button';
 import Table from '../UI/Table';
 import Modal from '../UI/Modal';
-import planningIcon from 'src/assets/Icons/planning.svg';
 import uploadIcon from 'src/assets/Icons/upload.svg';
-
 import './Planification.css';
 
-const Planification = ({ situation, ephemeris, unityClass }) => {
+const Planification = ({ classData }) => {
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const [isRowSelected, setIsRowSelected] = useState(false);
+  console.log(classData);
+  const { values, handleInputChange, reset } = useForm({
+    topic: '',
+    studentMaterials: '',
+    teacherMaterials: '',
+    startActivity: '',
+    mainActivity: '',
+    endActivity: '',
+  });
+
   const headerTexts = ['Nombre', 'Formato', 'Fecha de subida'];
   const data = [
     { name: 'archivo_adjunto_1', formato: 'PDF', addedDate: '01/10/2022' },
+    { name: 'archivo_adjunto_1', formato: 'PDF', addedDate: '01/10/2022' },
+    { name: 'archivo_adjunto_1', formato: 'PDF', addedDate: '01/10/2022' },
   ];
+
   const styleDefaultButton = {
     padding: '5px 40px',
     color: '#fff',
     backgroundColor: 'var(--color-secondary)',
     borderRadius: 20,
   };
+
   const styleDefaultWithIcon = {
     padding: '5px 20px 5px 40px',
     color: '#fff',
     backgroundColor: 'var(--color-secondary)',
     borderRadius: 20,
   };
+
   const styleCancelButton = {
     padding: '5px 40px',
     color: 'var(--color-secondary)',
@@ -40,6 +54,12 @@ const Planification = ({ situation, ephemeris, unityClass }) => {
     } else {
       setIsRowSelected(false);
     }
+  };
+
+  const onHandleSubmit = e => {
+    e.preventDefault();
+    console.log(values);
+    reset();
   };
 
   return (
@@ -60,11 +80,12 @@ const Planification = ({ situation, ephemeris, unityClass }) => {
           </div>
         </Modal>
       )}
-      <Button
-        text="Planificación"
-        icon={planningIcon}
-        customStyles={styleDefaultWithIcon}
-      />
+      <div className="data-class">
+        <h3 className="class-title">Clase {classData.number}</h3>
+        <span className="class-files">
+          {classData.files.length} documentos totales en esta clase.
+        </span>
+      </div>
       <input
         className="planning__oa-detail"
         type="text"
@@ -98,6 +119,76 @@ const Planification = ({ situation, ephemeris, unityClass }) => {
           text="Subir archivo"
         />
       </div>
+      <h2
+        style={{
+          textAlign: 'left',
+          marginBottom: 0,
+          color: 'var(--gray-dark)',
+          paddingLeft: '6rem',
+        }}
+      >
+        Planificaci&oacute;n
+      </h2>
+      <form className="planning-form" onSubmit={onHandleSubmit}>
+        <div className="form-group planning">
+          <label>Tema clase:</label>
+          <input
+            type="text"
+            name="topic"
+            value={values.topic}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="form-group planning">
+          <label>Materiales:</label>
+          <div className="group__container-materials">
+            <input
+              type="text"
+              name="teacherMaterials"
+              value={values.teacherMaterials}
+              onChange={handleInputChange}
+              placeholder="Materiales Docente"
+            />
+            <input
+              type="text"
+              name="studentMaterials"
+              value={values.studentMaterials}
+              onChange={handleInputChange}
+              placeholder="Materiales Estudiante"
+            />
+          </div>
+        </div>
+        <div className="form-group planning">
+          <label>Actividad de inicio:</label>
+          <input
+            type="text"
+            name="startActivity"
+            value={values.startActivity}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="form-group planning">
+          <label>Actividad central:</label>
+          <input
+            type="text"
+            name="mainActivity"
+            value={values.mainActivity}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="form-group planning">
+          <label>Actividad de cierre:</label>
+          <input
+            type="text"
+            name="endActivity"
+            value={values.endActivity}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="form-group button">
+          <Button customStyles={styleDefaultButton} text="Guardar" />
+        </div>
+      </form>
     </div>
   );
 };
