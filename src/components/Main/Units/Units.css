@@ -75,37 +75,3 @@
   font-weight: 900;
   color: #d9687c;
 }
-
-/* @Todo: cambiar css de ephemeris a su archivo correspondiente */
-
-.ephemeris-container {
-  border-radius: 10px;
-  border: 1px solid black;
-  background-color: white;
-  padding: 1%;
-  height: 67vh;
-  width: 95%;
-}
-
-.ephemeris-content {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 10px;
-  border-radius: 10px;
-  justify-content: space-around;
-}
-
-.ephemeris-select-container {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.ephemeris-select-info {
-  display: flex;
-  align-items: center;
-  margin-right: 15px;
-}
-
-.ephemeris-select {
-  border: 1px solid #d9687c;
-}
