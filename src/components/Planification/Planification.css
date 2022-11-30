@@ -61,7 +61,7 @@
   justify-content: space-between;
 }
 
-.form-group.planning>label {
+.form-group.planning > label {
   text-align: left;
   font-size: 15px;
 }
@@ -78,16 +78,33 @@
   flex-direction: column;
 }
 
-.group__container-materials>input {
+.group__container-materials > input {
   width: 100% !important;
   margin-top: 5px;
 }
 
 .data-class {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.class-title {
+  margin: 0;
+  color: var(--color-primary);
+}
+
+.data-info {
   text-align: left;
 }
 
-.data-class>.class-title {
+.class-title-events {
+  font-size: 25px;
   margin: 0;
-  color: var(--color-primary);
+  color: var(--color-secondary);
+}
+
+.icon-back-to {
+  cursor: pointer;
+  float: right;
 }

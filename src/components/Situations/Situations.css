@@ -13,13 +13,8 @@
 }
 
 .section-title {
-  color: var(--gray-dark);
-  font-size: 30px;
-  margin-bottom: 10px;
-}
-
-.header__title.situation {
-  color: var(--gray-dark);
+  font-size: 35px;
+  margin-bottom: 15px;
 }
 
 .select-date {
@@ -30,8 +25,10 @@
 }
 
 .body-content {
+  margin-bottom: 30px;
   padding: 15px;
   border: 1px solid black;
+  background-color: #fff;
   border-radius: 10px;
 }
 
@@ -78,6 +75,7 @@
 }
 
 .input-content {
+  margin-top: 20px;
   flex-direction: row;
   text-align: center;
   align-items: center;
@@ -89,7 +87,7 @@
 }
 
 .situations-input-date {
-  width: 200px;
+  width: 10%;
   height: 20px;
   margin-inline: 14px;
 }
@@ -97,14 +95,15 @@
 .situations-input-text,
 .situations-input-date {
   padding: 0;
-  text-align: center;
 }
 
 .input-button {
+  font-family: 'Poppins';
   width: 130px;
   height: 30px;
   color: #ffffff;
   border: 0px;
   border-radius: 20px;
   background-color: #d9687c;
+  cursor: pointer;
 }
