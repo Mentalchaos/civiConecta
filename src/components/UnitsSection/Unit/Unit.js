@@ -93,7 +93,10 @@ const Unit = ({ unitsData, levelSelected }) => {
               }
             >
               {classSelected ? (
-                <Planification classData={classData} />
+                <Planification
+                  classData={classData}
+                  setClassSelected={setClassSelected}
+                />
               ) : (
                 classes.map(item => {
                   const { files, number } = item;

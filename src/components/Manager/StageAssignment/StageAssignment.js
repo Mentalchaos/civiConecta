@@ -143,6 +143,7 @@ const StageAssignment = ({ title, changeStage }) => {
                   <section
                     onClick={() => changeStage('detail')}
                     className="content__level-selected"
+                    key={word}
                   >
                     <input id="checkLetter" type="checkbox" />
                     <label htmlFor="checkLetter"></label>

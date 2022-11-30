@@ -4,12 +4,12 @@ import Button from '../UI/Button';
 import Table from '../UI/Table';
 import Modal from '../UI/Modal';
 import uploadIcon from 'src/assets/Icons/upload.svg';
+import arrowIcon from 'src/assets/Icons/arrow-down.svg';
 import './Planification.css';
 
-const Planification = ({ classData }) => {
+const Planification = ({ classData, setClassSelected }) => {
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const [isRowSelected, setIsRowSelected] = useState(false);
-  console.log(classData);
   const { values, handleInputChange, reset } = useForm({
     topic: '',
     studentMaterials: '',
@@ -18,13 +18,6 @@ const Planification = ({ classData }) => {
     mainActivity: '',
     endActivity: '',
   });
-
-  const headerTexts = ['Nombre', 'Formato', 'Fecha de subida'];
-  const data = [
-    { name: 'archivo_adjunto_1', formato: 'PDF', addedDate: '01/10/2022' },
-    { name: 'archivo_adjunto_1', formato: 'PDF', addedDate: '01/10/2022' },
-    { name: 'archivo_adjunto_1', formato: 'PDF', addedDate: '01/10/2022' },
-  ];
 
   const styleDefaultButton = {
     padding: '5px 40px',
@@ -48,6 +41,13 @@ const Planification = ({ classData }) => {
     border: '1px solid var(--color-secondary)',
   };
 
+  const headerTexts = ['Nombre', 'Formato', 'Fecha de subida'];
+  const data = [
+    { name: 'archivo_adjunto_1', formato: 'PDF', addedDate: '01/10/2022' },
+    { name: 'archivo_adjunto_1', formato: 'PDF', addedDate: '01/10/2022' },
+    { name: 'archivo_adjunto_1', formato: 'PDF', addedDate: '01/10/2022' },
+  ];
+
   const onHandleCheckboxSelected = rowDataSelected => {
     if (rowDataSelected) {
       setIsRowSelected(true);
@@ -58,7 +58,6 @@ const Planification = ({ classData }) => {
 
   const onHandleSubmit = e => {
     e.preventDefault();
-    console.log(values);
     reset();
   };
 
@@ -81,10 +80,23 @@ const Planification = ({ classData }) => {
         </Modal>
       )}
       <div className="data-class">
-        <h3 className="class-title">Clase {classData.number}</h3>
-        <span className="class-files">
-          {classData.files.length} documentos totales en esta clase.
-        </span>
+        <div className="data-info">
+          {classData.number && (
+            <h3 className="class-title">Clase {classData.number}</h3>
+          )}
+          {classData.name && (
+            <h3 className="class-title-events">{classData.name}</h3>
+          )}
+          <span className="class-files">
+            {classData.files.length} documentos totales en esta clase.
+          </span>
+        </div>
+        <img
+          onClick={() => setClassSelected(false)}
+          className="icon-back-to"
+          src={arrowIcon}
+          alt="back to"
+        />
       </div>
       <input
         className="planning__oa-detail"
