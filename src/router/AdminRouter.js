@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Ephemeris from 'src/components/Ephemeris/Ephemeris';
 import Main from 'src/components/Main';
@@ -8,7 +9,7 @@ import StudentSurvey from 'src/components/StudentSurvey/StudentSurvey';
 import TeacherSurvey from 'src/components/TeacherSurvey/TeacherSurvey';
 import UnitsSection from 'src/components/UnitsSection/UnitsSection';
 
-const AdminRouter = () => {
+const AdminRouter = ({ userData }) => {
   return (
     <>
       <Sidebar />
@@ -20,7 +21,16 @@ const AdminRouter = () => {
         <Route path="/student-survey" element={<StudentSurvey />} />
         <Route path="/situations" element={<Situations />} />
         <Route path="/ephemeris" element={<Ephemeris />} />
-        <Route path="/*" element={<Navigate to={'dashboard'} />} />
+        <Route
+          path="/*"
+          element={
+            userData ? (
+              <Navigate to={'dashboard'} />
+            ) : (
+              <Navigate to={'login/auth'} />
+            )
+          }
+        />
       </Routes>
     </>
   );

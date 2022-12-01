@@ -86,10 +86,8 @@
 
 .ephemeris-container {
   border-radius: 10px;
-  border: 1px solid black;
   background-color: white;
   padding: 1%;
-  height: 67vh;
   width: 95%;
 }
 
