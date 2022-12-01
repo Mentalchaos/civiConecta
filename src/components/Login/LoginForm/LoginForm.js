@@ -1,8 +1,12 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { signIn } from 'src/services/admin/user.request';
 import useForm from 'src/hooks/useForm';
 import './loginForm.css';
 
 const LoginForm = () => {
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const { values, handleInputChange } = useForm({
     email: '',
     password: '',
@@ -13,7 +17,24 @@ const LoginForm = () => {
     e.preventDefault();
     const { email, password } = values;
     if (!email || !password) return;
-    if (email === 'admin' && password === 'admin') navigate('/admin/dashboard');
+    signIn(email, password).then(resp => {
+      if (!resp.ok) {
+        setShowErrorMessage(true);
+        setErrorMessage(resp.error);
+      } else {
+        const { email, name, active, role } = resp.user;
+        const userData = {
+          email,
+          name,
+          active,
+          role,
+        };
+        localStorage.setItem('userData', JSON.stringify(userData));
+        setShowErrorMessage(false);
+        setErrorMessage(false);
+        navigate('/admin');
+      }
+    });
   };
 
   return (
@@ -47,6 +68,19 @@ const LoginForm = () => {
             placeholder="Escriba su contraseña"
           />
         </div>
+
+        {showErrorMessage && (
+          <h3
+            style={{
+              color: 'red',
+              fontWeight: 100,
+              fontSize: 14,
+              marginTop: 10,
+            }}
+          >
+            {errorMessage}
+          </h3>
+        )}
 
         <div className="form-group">
           <input
