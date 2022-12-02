@@ -24,15 +24,3 @@
 .form-input:active {
   border: none;
 }
-
-.form-input-submit {
-  font-size: 15px;
-  font: inherit;
-  margin-top: 80px;
-  color: white;
-  padding: 20px 20px;
-  background-color: var(--color-secondary);
-  cursor: pointer;
-  outline: none;
-  border: none;
-}

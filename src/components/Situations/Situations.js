@@ -37,10 +37,8 @@ const Situations = () => {
         </div>
         <div>
           <select className="select-date">
-            <option value="1st-grade"> 1° basico </option>
-            <option value="1st-grade"> 2° basico </option>
-            <option value="1st-grade"> 3° basico </option>
-            <option value="1st-grade"> 4° basico </option>
+            {/* <option disabled>Seleccione nivel</option> */}
+            <option value="1st-grade"> 5º basico </option>
           </select>
         </div>
       </div>
@@ -48,7 +46,7 @@ const Situations = () => {
         {showPlanning ? (
           <Planification
             classData={situationSelected}
-            setClassSelected={setShowPlanning}
+            setIsSelectedClass={setShowPlanning}
           />
         ) : (
           <>

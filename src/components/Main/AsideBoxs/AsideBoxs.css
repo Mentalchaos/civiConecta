@@ -17,6 +17,10 @@
   transition: all 0.3s ease-in-out;
 }
 
+.boxs:hover {
+  border-color: var(--color-primary);
+}
+
 .boxs-ephemeris {
   margin-top: 20px;
 }

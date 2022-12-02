@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useForm from 'src/hooks/useForm';
 import Button from '../UI/Button';
 import Table from '../UI/Table';
@@ -7,7 +7,7 @@ import uploadIcon from 'src/assets/Icons/upload.svg';
 import arrowIcon from 'src/assets/Icons/arrow-down.svg';
 import './Planification.css';
 
-const Planification = ({ classData, setClassSelected }) => {
+const Planification = ({ classData, setIsSelectedClass }) => {
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const [isRowSelected, setIsRowSelected] = useState(false);
   const { values, handleInputChange, reset } = useForm({
@@ -88,11 +88,11 @@ const Planification = ({ classData, setClassSelected }) => {
             <h3 className="class-title-events">{classData.name}</h3>
           )}
           <span className="class-files">
-            {classData.files.length} documentos totales en esta clase.
+            {classData.files?.length} documentos totales en esta clase.
           </span>
         </div>
         <img
-          onClick={() => setClassSelected(false)}
+          onClick={() => setIsSelectedClass(false)}
           className="icon-back-to"
           src={arrowIcon}
           alt="back to"
