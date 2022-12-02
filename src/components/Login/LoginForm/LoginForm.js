@@ -1,25 +1,44 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signIn } from 'src/services/admin/user.request';
+import Button from 'src/components/UI/Button';
+import Spinner from 'src/components/UI/Spinner';
 import useForm from 'src/hooks/useForm';
 import './loginForm.css';
 
 const LoginForm = () => {
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const { values, handleInputChange } = useForm({
     email: '',
     password: '',
   });
   const navigate = useNavigate();
+  const styleButton = {
+    width: ' 100%',
+    fontSize: ' 15px',
+    font: ' inherit',
+    marginTop: ' 80px',
+    color: ' white',
+    padding: ' 20px 20px',
+    backgroundColor: ' var(--color-secondary)',
+    cursor: ' pointer',
+    outline: ' none',
+    border: ' none',
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
     const { email, password } = values;
     if (!email || !password) return;
+    onSignIn(email, password);
+  };
 
-    signIn(email, password).then(resp => {
-      try {
+  const onSignIn = (email, pass) => {
+    setIsLoading(true);
+    signIn(email, pass).then(resp => {
+      if (resp.ok) {
         const { email, name, role, active, token } = resp.user;
         const saveData = {
           name,
@@ -31,11 +50,12 @@ const LoginForm = () => {
         localStorage.setItem('user', JSON.stringify(saveData));
         setErrorMessage('');
         setShowErrorMessage(false);
+        setIsLoading(false);
         navigate('/admin/dashboard');
-      } catch (err) {
-        console.error(err);
+      } else {
         setErrorMessage(resp.error);
         setShowErrorMessage(true);
+        setIsLoading(false);
       }
     });
   };
@@ -86,11 +106,12 @@ const LoginForm = () => {
         )}
 
         <div className="form-group">
-          <input
+          <Button
+            customStyles={styleButton}
             onClick={handleSubmit}
-            className="form-input-submit"
+            text={isLoading ? ' Cargando...' : ' Ingresar'}
             type="submit"
-            value="Ingresar"
+            disabled={isLoading}
           />
         </div>
       </form>

@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { getClassesByUnitAndGrade } from 'src/services/admin/classes.request';
 import Planification from 'src/components/Planification/Planification';
 import Spinner from 'src/components/UI/Spinner';
-import getClassesByUnitAndGrade from 'src/services/admin/classes.request';
 import arrowDown from 'src/assets/Icons/arrow-down.svg';
 import arrow from 'src/assets/Icons/arrow-degree.svg';
 import './Unit.css';
@@ -24,6 +24,7 @@ const Unit = ({ unitsData, grade }) => {
     setShowClass(!showClass);
     setFetching(!fetching);
     setUnitSelectedNumber(unitNumber);
+    setIsSelectedClass(false);
     getClasses(unitNumber, grade);
   };
 

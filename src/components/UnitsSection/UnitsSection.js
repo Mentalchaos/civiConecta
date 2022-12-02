@@ -1,8 +1,8 @@
 import { useState } from 'react';
+import { getUnitsByGrade } from 'src/services/admin/units.request';
 import SectionsHeader from '../SectionsHeader/SectionsHeader';
 import Spinner from '../UI/Spinner';
 import Unit from './Unit/Unit';
-import getUnitsByGrade from 'src/services/admin/units.request';
 import headerImage from '../../assets/images/background-units.png';
 import './UnitsSection.css';
 
