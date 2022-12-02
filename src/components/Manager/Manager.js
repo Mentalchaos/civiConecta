@@ -11,9 +11,9 @@ const Manager = () => {
   const [stage, setStage] = useState('manager');
   const [institutionName, setInstitutionName] = useState('');
 
-  useEffect(() => {
-    setInstitutionName('Manager de establecimientos');
-  }, [setInstitutionName]);
+  // useEffect(() => {
+  //   setInstitutionName('Manager de establecimientos');
+  // }, [setInstitutionName]);
 
   const changeStage = stage => {
     setStage(stage);
