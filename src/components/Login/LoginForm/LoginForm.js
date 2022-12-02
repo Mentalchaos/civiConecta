@@ -17,22 +17,25 @@ const LoginForm = () => {
     e.preventDefault();
     const { email, password } = values;
     if (!email || !password) return;
+
     signIn(email, password).then(resp => {
-      if (!resp.ok) {
-        setShowErrorMessage(true);
-        setErrorMessage(resp.error);
-      } else {
-        const { email, name, active, role } = resp.user;
-        const userData = {
-          email,
+      try {
+        const { email, name, role, active, token } = resp.user;
+        const saveData = {
           name,
-          active,
+          email,
           role,
+          active,
+          token,
         };
-        localStorage.setItem('userData', JSON.stringify(userData));
+        localStorage.setItem('user', JSON.stringify(saveData));
+        setErrorMessage('');
         setShowErrorMessage(false);
-        setErrorMessage(false);
-        navigate('/admin');
+        navigate('/admin/dashboard');
+      } catch (err) {
+        console.error(err);
+        setErrorMessage(resp.error);
+        setShowErrorMessage(true);
       }
     });
   };
