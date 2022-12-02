@@ -29,35 +29,15 @@ const Sidebar = () => {
   return (
     <nav className="sidebar">
       <div className="sidebar__content">
-        <NavButton icon={home} ariaLabel="home" path={'/admin'} />
+        <NavButton icon={home} ariaLabel="home" path={'dashboard'} />
+        <NavButton icon={teacher} ariaLabel="teacher" path={'teacher-survey'} />
+        <NavButton icon={student} ariaLabel="student" path={'student-survey'} />
+        <NavButton icon={blackboard} ariaLabel="blackboard" path={'units'} />
+        <NavButton icon={school} ariaLabel="school" path={'manager'} />
+        <NavButton icon={folder} ariaLabel="folder" path={'situations'} />
+        <NavButton icon={calendar} ariaLabel="calendar" path={'ephemeris'} />
         <NavButton
-          icon={teacher}
-          ariaLabel="teacher"
-          path={'/admin/teacher-survey'}
-        />
-        <NavButton
-          icon={student}
-          ariaLabel="student"
-          path={'/admin/student-survey'}
-        />
-        <NavButton
-          icon={blackboard}
-          ariaLabel="blackboard"
-          path={'/admin/units'}
-        />
-        <NavButton icon={school} ariaLabel="school" path={'/admin/manager'} />
-        <NavButton
-          icon={folder}
-          ariaLabel="folder"
-          path={'/admin/situations'}
-        />
-        <NavButton
-          icon={calendar}
-          ariaLabel="calendar"
-          path={'/admin/ephemeris'}
-        />
-        <NavButton
-          path={'/login'}
+          path={'/login/auth'}
           handleClick={() => localStorage.clear()}
           icon={exit}
           ariaLabel="exit"
