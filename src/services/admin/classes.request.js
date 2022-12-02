@@ -1,6 +1,6 @@
-const BASE_URL = 'https://civi-conecta-server.adaptable.app';
+import { BASE_URL } from '../constants';
 
-const getClassesByUnitAndGrade = async (unitNumber, grade) => {
+export const getClassesByUnitAndGrade = async (unitNumber, grade) => {
   const user = JSON.parse(localStorage.getItem('user'));
   const jwt = user.token;
   const fetching = await fetch(
@@ -18,5 +18,3 @@ const getClassesByUnitAndGrade = async (unitNumber, grade) => {
     ...response,
   };
 };
-
-export default getClassesByUnitAndGrade;
