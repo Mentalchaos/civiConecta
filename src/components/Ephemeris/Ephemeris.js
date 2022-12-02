@@ -51,16 +51,14 @@ const Ephemeris = () => {
         {showPlanning ? (
           <Planification
             classData={ephemerisSelected}
-            setClassSelected={setShowPlanning}
+            setIsSelectedClass={setShowPlanning}
           />
         ) : (
           <div className="ephemeris-container">
             <div className="ephemeris-select-container">
               <div className="ephemeris-select-info">Filtrar items por:</div>
               <select className="ephemeris-select">
-                <option value="value1" selected>
-                  Nombre
-                </option>
+                <option value="value1">Nombre</option>
                 <option value="value2">Fecha</option>
               </select>
             </div>
