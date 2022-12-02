@@ -1,14 +1,33 @@
 import { useState } from 'react';
+import { getUnitsByGrade } from 'src/services/admin/units.request';
 import SectionsHeader from '../SectionsHeader/SectionsHeader';
-import headerImage from '../../assets/images/background-units.png';
+import Spinner from '../UI/Spinner';
 import Unit from './Unit/Unit';
+import headerImage from '../../assets/images/background-units.png';
 import './UnitsSection.css';
-import Planification from '../Planification/Planification';
 
 const UnitsSection = () => {
-  const [levelSelected, setLevelSelected] = useState('');
-  const [unitSelected, setUnitSelected] = useState({});
-  const levels = ['5° Básico'];
+  const [units, setUnits] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [gradeSelected, setGradeSelected] = useState('');
+  const level = '5º Básico';
+  const levels = ['5º Básico'];
+
+  const handleLevelSelected = ({ target }) => {
+    setIsLoading(true);
+    const value = target.value;
+    const grade = value.split(' ')[0];
+    setGradeSelected(grade);
+    getUnitsByGrade(grade).then(resp => {
+      try {
+        setUnits(resp.units);
+        setIsLoading(false);
+      } catch (err) {
+        console.error(err);
+        setIsLoading(false);
+      }
+    });
+  };
 
   return (
     <>
@@ -22,7 +41,7 @@ const UnitsSection = () => {
           <select
             className="select__level-units"
             defaultValue={'Nivel'}
-            onChange={e => setLevelSelected(e.target.value)}
+            onChange={handleLevelSelected}
           >
             <option disabled>Nivel</option>
             {levels.map(level => (
@@ -30,20 +49,26 @@ const UnitsSection = () => {
             ))}
           </select>
         </header>
-        {levelSelected ? (
-          <div className="content-units">
-            <Unit levelSelected={levelSelected} />
+        {isLoading && (
+          <div style={{ textAlign: 'center', marginTop: 50 }}>
+            <Spinner />
           </div>
-        ) : (
-          <h1
+        )}
+        {!isLoading && units && (
+          <div className="content-units">
+            <Unit unitsData={units} grade={gradeSelected} />
+          </div>
+        )}
+        {!units.length && !isLoading && (
+          <h2
             style={{
+              color: 'var(--gray-dark',
               textAlign: 'center',
-              marginTop: 80,
-              color: 'var(--gray-dark)',
+              marginTop: '5rem',
             }}
           >
-            Selecciona el nivel para ver las unidades.
-          </h1>
+            Selecciona el curso para ver sus unidades.
+          </h2>
         )}
       </main>
     </>

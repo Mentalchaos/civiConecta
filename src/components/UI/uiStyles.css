@@ -33,7 +33,7 @@
 }
 
 .button:hover {
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 .header-table__arrow {
@@ -96,8 +96,10 @@
 
 /* Scroll bar para Firefox */
 body {
-  scrollbar-width: auto; /* "auto" or "thin" */
-  scrollbar-color: var(--color-secondary) #fbf0f2; /* scroll thumb and track */
+  scrollbar-width: auto;
+  /* "auto" or "thin" */
+  scrollbar-color: var(--color-secondary) #fbf0f2;
+  /* scroll thumb and track */
 }
 
 .table tbody::-webkit-scrollbar {
@@ -134,8 +136,7 @@ input[type='number'] {
   background-color: #e0e0e0;
   font-family: 'Poppins';
   outline: none;
-  padding: 13px;
-  padding-left: 40px;
+  padding: 13px 40px;
   border-radius: 10px;
 }
 
@@ -205,6 +206,29 @@ input[type='checkbox']:checked + label:after {
   font-weight: 600 !important;
   margin: 0;
 }
+
 .modal__subtitle {
   font-size: 14px;
+}
+
+.spinner {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-left: 5px solid var(--color-secondary);
+  border-right: 5px solid var(--color-secondary);
+  border-top: 5px solid var(--color-secondary);
+  border-bottom: 5px solid transparent;
+  border-radius: 50px;
+  animation: loader 1s infinite linear;
+}
+
+@keyframes loader {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
