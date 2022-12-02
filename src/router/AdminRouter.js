@@ -13,13 +13,13 @@ const AdminRouter = () => {
     <>
       <Sidebar />
       <Routes>
-        <Route path="/manager" element={<Manager />} />
-        <Route path="/dashboard" element={<Main />} />
-        <Route path="/units" element={<UnitsSection />} />
-        <Route path="/teacher-survey" element={<TeacherSurvey />} />
-        <Route path="/student-survey" element={<StudentSurvey />} />
-        <Route path="/situations" element={<Situations />} />
-        <Route path="/ephemeris" element={<Ephemeris />} />
+        <Route path="dashboard" element={<Main />} />
+        <Route path="teacher-survey" element={<TeacherSurvey />} />
+        <Route path="student-survey" element={<StudentSurvey />} />
+        <Route path="units" element={<UnitsSection />} />
+        <Route path="manager" element={<Manager />} />
+        <Route path="situations" element={<Situations />} />
+        <Route path="ephemeris" element={<Ephemeris />} />
         <Route path="/*" element={<Navigate to={'dashboard'} />} />
       </Routes>
     </>
