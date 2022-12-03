@@ -1,5 +1,5 @@
 .login-container {
-  margin-top: 80px;
+  margin-top: 50px;
 }
 
 .form-group {
@@ -13,14 +13,36 @@
 }
 
 .form-input {
+  z-index: 99;
   border-radius: 0 !important;
   font: inherit !important;
   padding: 25px 15px !important;
   background-color: #d9d9d9 !important;
   border: none;
   outline: none;
+  transition: all 0.3s ease-in-out
 }
 
-.form-input:active {
+/* .form-input:active {
   border: none;
+  background-color: aqua !important;
+} */
+
+.form-input:hover {
+  border: none;
+  background-color: #EAEAEA !important;
+  transition: all 0.3s ease-in-out
+}
+
+/* .form-input:focus {
+  background-color: aqua;
+} */
+
+.button-container {
+  margin-top: -35px;
+}
+
+.button:hover {
+  background-color: var(--color-secondary) !important;
+  opacity: 0.8;
 }

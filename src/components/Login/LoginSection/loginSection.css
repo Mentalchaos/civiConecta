@@ -1,6 +1,6 @@
 .login-section {
   width: 35%;
-  padding: 6%;
+  padding: 6% 6% 0px 6%;
 }
 
 .login-section-header {
@@ -15,7 +15,7 @@
 
 .login-section-footer {
   /* font-weight: 600; */
-  margin-top: 80px;
+  margin-top: 20px;
 }
 
 .login-section-footer a {
@@ -29,5 +29,33 @@
 }
 
 .link-recover {
+  color: var(--color-primary);
+}
+
+/* Recover pass */
+
+.recover-section-header {
+  padding: 6%;
+}
+
+.recover-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.recover-form {
+  width: 30%;
+  margin-top: -60px;
+}
+
+.recover-container {
+  display: flex;
+  margin-top: 150px;
+  justify-content: flex-end;
+}
+
+.return-recover {
+  text-decoration: none;
   color: var(--color-primary);
 }
