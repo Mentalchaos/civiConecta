@@ -11,13 +11,18 @@ const Planification = ({ classData, setIsSelectedClass }) => {
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const [isRowSelected, setIsRowSelected] = useState(false);
   const { values, handleInputChange, reset } = useForm({
-    topic: '',
-    studentMaterials: '',
-    teacherMaterials: '',
-    startActivity: '',
-    mainActivity: '',
-    endActivity: '',
+    topic: classData.planning.topic,
+    studentMaterials: classData.planning.materials[0].student,
+    teacherMaterials: classData.planning.materials[0].teacher,
+    startActivity: classData.planning.startActivity,
+    mainActivity: classData.planning.mainActivity,
+    endActivity: classData.planning.endActivity,
+    description: classData.description,
   });
+
+  useEffect(() => {
+    console.log(classData);
+  }, [classData]);
 
   const styleDefaultButton = {
     padding: '5px 40px',
@@ -100,6 +105,9 @@ const Planification = ({ classData, setIsSelectedClass }) => {
       </div>
       <input
         className="planning__oa-detail"
+        onChange={handleInputChange}
+        name="description"
+        value={values.description}
         type="text"
         placeholder="Detalle OA"
       />

@@ -18,3 +18,22 @@ export const getClassesByUnitAndGrade = async (unitNumber, grade) => {
     ...response,
   };
 };
+
+export const createClass = async payload => {
+  const user = JSON.parse(localStorage.getItem('user'));
+  const jwt = user.token;
+  const fetching = await fetch(`${BASE_URL}/createClass`, {
+    method: 'POST',
+    body: JSON.stringify({ ...payload }),
+    headers: {
+      'Content-Type': 'application/json',
+      token: jwt,
+    },
+  });
+  const response = await fetching.json();
+  return {
+    ...response,
+  };
+};
+
+export const updateClass = async payload => {};
