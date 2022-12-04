@@ -6,6 +6,11 @@
   --gray-dark: #4d4d4d;
 }
 
+.row {
+  display: flex;
+  gap: 1rem;
+}
+
 .main-content {
   position: relative;
   padding: 1rem 0.5rem 0 9rem;
@@ -235,7 +240,7 @@ input[type='checkbox']:checked + label:after {
 
 .material-inputs {
   margin: auto;
-  width: 95%;
+  margin-top: 10px;
   padding-bottom: 10px;
   border-bottom: 1px solid lightgray;
 }
