@@ -123,45 +123,6 @@ const StageManager = ({ title, changeStage, handleChangeInstitutionName }) => {
               value={values.name}
               onChange={handleInputChange}
             />
-            <div className="search-container__selects">
-              <select
-                className="type-school"
-                value={values.type}
-                name="type"
-                onChange={handleInputChange}
-              >
-                <option disabled={true}>Tipo</option>
-                <option value="colegio">Colegio</option>
-                <option value="liceo">Liceo</option>
-                <option value="escuela">Escuela</option>
-              </select>
-              <select
-                className="type-region"
-                value={values.region}
-                name="region"
-                onChange={handleInputChange}
-              >
-                <option disabled={true}>Región</option>
-                {regiones.map(region => {
-                  return (
-                    <option value={region.name} key={region.id}>
-                      {region.name}
-                    </option>
-                  );
-                })}
-              </select>
-              <div className="input-group-icon">
-                <input
-                  onChange={handleInputChange}
-                  className="form__commune"
-                  name="commune"
-                  value={values.commune}
-                  placeholder="Comuna"
-                  autoComplete="off"
-                />
-                <img src={locationIcon} alt="commune icon" />
-              </div>
-            </div>
           </form>
         </div>
         <div
