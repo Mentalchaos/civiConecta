@@ -18,8 +18,6 @@ const UnitsSection = () => {
     number: 0,
     title: '',
     description: '',
-    grade: '5º',
-    topic: 1,
   });
 
   const levels = ['5º Básico'];
@@ -40,13 +38,13 @@ const UnitsSection = () => {
 
   const handleAddUnit = e => {
     e.preventDefault();
-    const { number, title, description, topic, grade } = values;
+    const { number, title, description } = values;
     const payload = {
       number,
       title,
       description,
-      grade,
-      topic,
+      grade: gradeSelected,
+      topic: 1,
     };
     createUnit(payload).then(resp => {
       setIsLoading(true);

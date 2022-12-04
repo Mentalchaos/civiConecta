@@ -59,12 +59,14 @@ const Unit = ({ unitsData, grade }) => {
       {showModalAddClass && (
         <Modal
           title="Agregar Clase"
-          subtitle={`${grade} Básico`}
-          style={{ padding: '30px 60px', marginTop: 60, width: '450px' }}
+          subtitle={`${grade} Básico - Unidad ${unitSelectedNumber}`}
+          style={{ padding: '20px 60px', marginTop: 50, width: '60%' }}
         >
           <PlanningForm
             unit={unitSelectedNumber}
             handleHiddeModal={setShowModalAddClass}
+            grade={grade}
+            needObjetives={true}
           />
         </Modal>
       )}
@@ -133,14 +135,16 @@ const Unit = ({ unitsData, grade }) => {
                     Unidad no registra clases.
                   </h2>
                 )}
-                <div className="add_button-container">
-                  <Button
-                    onClick={() => setShowModalAddClass(true)}
-                    text="Crear clase"
-                    customStyles={defaultButtonStyle}
-                    disabled={loadingData}
-                  />
-                </div>
+                {showClass && !isSelectedClass && (
+                  <div className="add_button-container">
+                    <Button
+                      onClick={() => setShowModalAddClass(true)}
+                      text="Crear clase"
+                      customStyles={defaultButtonStyle}
+                      disabled={loadingData}
+                    />
+                  </div>
+                )}
               </section>
               <div className="box-link">
                 <img
