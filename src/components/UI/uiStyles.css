@@ -232,3 +232,10 @@ input[type='checkbox']:checked + label:after {
     transform: rotate(360deg);
   }
 }
+
+.material-inputs {
+  margin: auto;
+  width: 95%;
+  padding-bottom: 10px;
+  border-bottom: 1px solid lightgray;
+}

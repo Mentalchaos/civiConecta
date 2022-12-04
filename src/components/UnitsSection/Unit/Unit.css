@@ -83,3 +83,7 @@
 .class-box__documents {
   font-size: 14px;
 }
+
+.add_button-container {
+  text-align: right;
+}
