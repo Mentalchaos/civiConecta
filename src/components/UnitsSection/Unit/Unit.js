@@ -41,17 +41,15 @@ const Unit = ({ unitsData, grade }) => {
 
   const getClasses = (unitNumber, grade) => {
     setLoadingData(true);
-    if (fetching) {
-      getClassesByUnitAndGrade(unitNumber, grade).then(resp => {
-        try {
-          setClassesList(resp.classes);
-          setLoadingData(false);
-        } catch (error) {
-          console.error(error);
-          setLoadingData(false);
-        }
-      });
-    }
+    getClassesByUnitAndGrade(unitNumber, grade).then(resp => {
+      try {
+        setClassesList(resp.classes);
+        setLoadingData(false);
+      } catch (error) {
+        console.error(error);
+        setLoadingData(false);
+      }
+    });
   };
 
   return (
@@ -65,6 +63,7 @@ const Unit = ({ unitsData, grade }) => {
           <PlanningForm
             unit={unitSelectedNumber}
             handleHiddeModal={setShowModalAddClass}
+            handleGetClasses={getClasses}
             grade={grade}
             needObjetives={true}
           />
@@ -102,6 +101,8 @@ const Unit = ({ unitsData, grade }) => {
                   <Planification
                     classData={dataClassSelected}
                     setIsSelectedClass={setIsSelectedClass}
+                    getClasses={getClasses}
+                    grade={grade}
                   />
                 )}
                 {classesList &&

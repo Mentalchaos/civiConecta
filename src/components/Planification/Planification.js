@@ -1,16 +1,23 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import useForm from 'src/hooks/useForm';
 import Button from '../UI/Button';
 import Table from '../UI/Table';
 import Modal from '../UI/Modal';
+import { updateClass } from 'src/services/admin/classes.request';
 import uploadIcon from 'src/assets/Icons/upload.svg';
 import arrowIcon from 'src/assets/Icons/arrow-down.svg';
 import './Planification.css';
 
-const Planification = ({ classData, setIsSelectedClass }) => {
+const Planification = ({
+  grade,
+  classData,
+  setIsSelectedClass,
+  getClasses,
+}) => {
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const [isRowSelected, setIsRowSelected] = useState(false);
-  const { values, handleInputChange, reset } = useForm({
+  const [onFetching, setOnFetching] = useState(false);
+  const { values, handleInputChange } = useForm({
     topic: classData.planning.topic,
     studentMaterials: classData.planning.materials[0].student,
     teacherMaterials: classData.planning.materials[0].teacher,
@@ -19,10 +26,6 @@ const Planification = ({ classData, setIsSelectedClass }) => {
     endActivity: classData.planning.endActivity,
     description: classData.description,
   });
-
-  useEffect(() => {
-    console.log(classData);
-  }, [classData]);
 
   const styleDefaultButton = {
     padding: '5px 40px',
@@ -61,9 +64,46 @@ const Planification = ({ classData, setIsSelectedClass }) => {
     }
   };
 
+  const onUpdateClass = (number, unit, grade) => {
+    setOnFetching(true);
+    const {
+      topic,
+      studentMaterials,
+      description,
+      teacherMaterials,
+      startActivity,
+      mainActivity,
+      endActivity,
+    } = values;
+
+    const payload = {
+      ...classData,
+      description,
+      planning: {
+        startActivity,
+        mainActivity,
+        endActivity,
+        topic,
+        materials: {
+          teacher: teacherMaterials.toString().trim().split(','),
+          student: studentMaterials.toString().trim().split(','),
+        },
+      },
+    };
+    updateClass(number, unit, grade, payload).then(resp => {
+      if (resp.ok) {
+        setOnFetching(false);
+      } else {
+        setOnFetching(false);
+        console.error(resp.error);
+      }
+    });
+  };
+
   const onHandleSubmit = e => {
     e.preventDefault();
-    reset();
+    const { number, unit } = classData;
+    onUpdateClass(number, unit.number, grade);
   };
 
   return (
@@ -97,7 +137,10 @@ const Planification = ({ classData, setIsSelectedClass }) => {
           </span>
         </div>
         <img
-          onClick={() => setIsSelectedClass(false)}
+          onClick={() => {
+            setIsSelectedClass(false);
+            getClasses(classData.unit.number, grade);
+          }}
           className="icon-back-to"
           src={arrowIcon}
           alt="back to"
@@ -117,6 +160,7 @@ const Planification = ({ classData, setIsSelectedClass }) => {
             style={{ marginTop: 10 }}
             handleCheckboxSelected={onHandleCheckboxSelected}
             data={data}
+            dataDisplayed={data}
             dataHeader={headerTexts}
           />
           {isRowSelected && (
@@ -162,6 +206,7 @@ const Planification = ({ classData, setIsSelectedClass }) => {
         <div className="form-group planning">
           <label>Materiales:</label>
           <div className="group__container-materials">
+            <label>Docente:</label>
             <input
               type="text"
               name="teacherMaterials"
@@ -169,6 +214,7 @@ const Planification = ({ classData, setIsSelectedClass }) => {
               onChange={handleInputChange}
               placeholder="Materiales Docente"
             />
+            <label>Estudiante:</label>
             <input
               type="text"
               name="studentMaterials"
@@ -206,7 +252,11 @@ const Planification = ({ classData, setIsSelectedClass }) => {
           />
         </div>
         <div className="form-group button">
-          <Button customStyles={styleDefaultButton} text="Guardar" />
+          <Button
+            disabled={onFetching}
+            customStyles={styleDefaultButton}
+            text="Guardar"
+          />
         </div>
       </form>
     </div>
