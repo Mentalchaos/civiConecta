@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from 'src/components/UI/Button';
 
 const RecoverPasswordSection = () => {
@@ -15,6 +15,17 @@ const RecoverPasswordSection = () => {
         outline: ' none',
         border: ' none',
       };
+
+      const greyButton = {
+        ...styleButton,
+        backgroundColor: 'var(--gray-dark)'
+      }
+
+    const [emailInput, setEmailInput] = useState('');
+    console.log(emailInput);
+    console.log(emailInput.length);
+
+    const btnAlert = () => alert('El correo se ha enviado con exito')
     
   return (
     <div className='recover-section'>
@@ -26,6 +37,8 @@ const RecoverPasswordSection = () => {
             <input
                 className="form-input input-name"
                 /* onChange={handleInputChange} */
+                value={emailInput}
+                onChange={e => setEmailInput(e.target.value)}
                 id="email"
                 name="email"
                 type="text"
@@ -35,7 +48,9 @@ const RecoverPasswordSection = () => {
             </div>
             <div className="form-group">
             <Button
-                customStyles={styleButton}
+                onClick={() => btnAlert()}
+                customStyles={emailInput.length === 0 ? greyButton : styleButton }
+                disabled={emailInput.length === 0 ? true : false}
                 type="submit"
                 text={"Enviar"}
             />
