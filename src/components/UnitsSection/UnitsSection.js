@@ -38,6 +38,7 @@ const UnitsSection = () => {
 
   const handleAddUnit = e => {
     e.preventDefault();
+    setIsLoading(true);
     const { number, title, description } = values;
     const payload = {
       number,
@@ -47,11 +48,10 @@ const UnitsSection = () => {
       topic: 1,
     };
     createUnit(payload).then(resp => {
-      setIsLoading(true);
       if (resp.ok) {
         setIsLoading(false);
         setOpenModalAddUnit(false);
-        getUnitsByGrade(gradeSelected);
+        getUnits(gradeSelected);
       } else {
         console.error(resp.error);
         setIsLoading(false);
@@ -59,11 +59,8 @@ const UnitsSection = () => {
     });
   };
 
-  const handleLevelSelected = ({ target }) => {
+  const getUnits = grade => {
     setIsLoading(true);
-    const value = target.value;
-    const grade = value.split(' ')[0];
-    setGradeSelected(grade);
     getUnitsByGrade(grade).then(resp => {
       try {
         setUnits(resp.units);
@@ -73,6 +70,13 @@ const UnitsSection = () => {
         setIsLoading(false);
       }
     });
+  };
+
+  const handleLevelSelected = ({ target }) => {
+    const value = target.value;
+    const grade = value.split(' ')[0];
+    getUnits(grade);
+    setGradeSelected(grade);
   };
 
   return (
@@ -90,6 +94,7 @@ const UnitsSection = () => {
                 value={values.number}
                 name="number"
                 type="number"
+                autoFocus={true}
               />
             </div>
             <div className="form-group">
@@ -115,11 +120,13 @@ const UnitsSection = () => {
                 onClick={() => setOpenModalAddUnit(false)}
                 customStyles={buttonCancelStyle}
                 text="Cancelar"
+                disabled={isLoading}
               />
               <Button
                 onClick={handleAddUnit}
                 customStyles={buttonStyle}
                 text="Continuar"
+                disabled={isLoading}
               />
             </div>
           </form>

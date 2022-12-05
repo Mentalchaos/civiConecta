@@ -1,36 +1,33 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from 'src/components/UI/Button';
 import Table from 'src/components/UI/Table';
 import Modal from 'src/components/UI/Modal';
+import Spinner from 'src/components/UI/Spinner';
 import useForm from 'src/hooks/useForm';
-import deleteIcon from 'src/assets/Icons/delete_icon.svg';
-import locationIcon from 'src/assets/Icons/comune_icon.svg';
+import {
+  getEstablishment,
+  inactivateEstablishment,
+  reactivateEstablishment,
+} from 'src/services/admin/establishment.request';
 
 import './StageManager.css';
 
-const StageManager = ({ title, changeStage, handleChangeInstitutionName }) => {
+const StageManager = ({ title, changeStage, handleInstitutionSelected }) => {
   const [showDeleteOption, setShowDeleteOption] = useState(false);
   const [confirmAction, setConfirmAction] = useState(false);
   const [formData, setFormData] = useState([]);
+  const [formDataDisplayed, setFormDataDisplayed] = useState([]);
   const [institutionSelected, setInstitutionSelected] = useState({});
+  const [fetching, setFetching] = useState(false);
   const { values, handleInputChange, reset } = useForm({
     name: '',
-    type: 'Tipo',
-    region: 'Región',
-    commune: '',
   });
 
-  const headerTable = ['Nombre', 'Tipo', 'Region', 'Comuna'];
+  useEffect(() => {
+    getEstablishments();
+  }, []);
 
-  const regiones = [
-    { name: 'Metropolitana', id: 1 },
-    { name: 'Metropolitana', id: 2 },
-    { name: 'Metropolitana', id: 3 },
-    { name: 'Metropolitana', id: 4 },
-    { name: 'Metropolitana', id: 5 },
-    { name: 'Metropolitana', id: 6 },
-    { name: 'Metropolitana', id: 7 },
-  ];
+  const headerTable = ['Nombre', 'Estado'];
 
   const buttonStyles = {
     backgroundColor: 'var(--color-secondary)',
@@ -54,10 +51,33 @@ const StageManager = ({ title, changeStage, handleChangeInstitutionName }) => {
     border: '1px solid var(--color-secondary)',
   };
 
+  const getEstablishments = () => {
+    setFetching(true);
+    getEstablishment().then(resp => {
+      if (resp.ok) {
+        setFetching(false);
+        setFormData(resp.establishments);
+        const data = resp.establishments;
+        const dataDisplayed = data.map(est => {
+          const { active, name } = est;
+          return {
+            name,
+            active: active ? 'Activo' : 'Inactivo',
+          };
+        });
+        setFormDataDisplayed(dataDisplayed);
+      } else {
+        setFetching(false);
+        console.error(resp.error);
+      }
+    });
+  };
+
   const onHandleCheckboxSelected = rowSelected => {
     if (rowSelected) {
       setShowDeleteOption(true);
       setInstitutionSelected(rowSelected);
+      handleInstitutionSelected(rowSelected);
     } else {
       setShowDeleteOption(false);
       setInstitutionSelected({});
@@ -66,7 +86,6 @@ const StageManager = ({ title, changeStage, handleChangeInstitutionName }) => {
 
   const onHandleGotoCreateCourse = () => {
     changeStage('assignment');
-    handleChangeInstitutionName(institutionSelected.name);
   };
 
   const handleSubmit = e => {
@@ -78,11 +97,26 @@ const StageManager = ({ title, changeStage, handleChangeInstitutionName }) => {
     reset();
   };
 
-  const handleInstitutionDelete = () => {
-    const filterRowDelete = formData.filter(
-      item => item !== institutionSelected,
-    );
-    setFormData(filterRowDelete);
+  const handleConfirmAction = () => {
+    setFetching(true);
+    const { number, active } = institutionSelected;
+    active &&
+      inactivateEstablishment(number).then(resp => {
+        if (resp.ok) {
+          setFetching(false);
+          getEstablishments();
+        } else {
+        }
+      });
+    !active &&
+      reactivateEstablishment(number).then(resp => {
+        if (resp.ok) {
+          setFetching(false);
+          getEstablishments();
+        } else {
+          setFetching(false);
+        }
+      });
     setConfirmAction(false);
     setShowDeleteOption(false);
   };
@@ -91,8 +125,16 @@ const StageManager = ({ title, changeStage, handleChangeInstitutionName }) => {
     <section className="manager-section">
       {confirmAction && (
         <Modal
-          title="Eliminar Instituci&oacute;n"
-          subtitle="Deseas eliminar el elemento seleccionado?"
+          title={
+            institutionSelected.active
+              ? 'Deshabilitar institución'
+              : 'Habilitar institución'
+          }
+          subtitle={
+            institutionSelected.active
+              ? 'Deseas deshabilitar el elemento seleccionado?'
+              : 'Deseas habilitar el elemento seleccionado?'
+          }
           style={{ padding: '50px 30px' }}
         >
           <div className="container-actions">
@@ -100,11 +142,13 @@ const StageManager = ({ title, changeStage, handleChangeInstitutionName }) => {
               text="Cancelar"
               onClick={() => setConfirmAction(false)}
               customStyles={cancelButtonStyle}
+              disabled={fetching}
             />
             <Button
-              onClick={handleInstitutionDelete}
+              onClick={handleConfirmAction}
               text="Continuar"
               customStyles={buttonStyles}
+              disabled={fetching}
             />
           </div>
         </Modal>
@@ -122,6 +166,7 @@ const StageManager = ({ title, changeStage, handleChangeInstitutionName }) => {
               autoFocus={true}
               value={values.name}
               onChange={handleInputChange}
+              required
             />
           </form>
         </div>
@@ -136,7 +181,10 @@ const StageManager = ({ title, changeStage, handleChangeInstitutionName }) => {
           />
         </div>
       </article>
-      {formData.length ? (
+      <section style={{ textAlign: 'center', marginTop: 50 }}>
+        {fetching && <Spinner />}
+      </section>
+      {formData.length > 0 && !fetching && (
         <article className="section__content table-container">
           <div
             style={{
@@ -146,9 +194,8 @@ const StageManager = ({ title, changeStage, handleChangeInstitutionName }) => {
             className="content__difused"
           >
             <Button
-              text="Eliminar"
+              text={institutionSelected.active ? 'Deshabilitar' : 'Habilitar'}
               onClick={() => setConfirmAction(true)}
-              icon={deleteIcon}
               customStyles={buttonDeleteStyles}
             />
             <Button
@@ -160,10 +207,12 @@ const StageManager = ({ title, changeStage, handleChangeInstitutionName }) => {
           <Table
             dataHeader={headerTable}
             data={formData}
+            dataDisplayed={formDataDisplayed}
             handleCheckboxSelected={onHandleCheckboxSelected}
           />
         </article>
-      ) : (
+      )}
+      {!formData.length && !fetching && (
         <h1 style={{ textAlign: 'center', marginTop: 80 }}>
           Aún no hay instituciones agregadas
         </h1>
