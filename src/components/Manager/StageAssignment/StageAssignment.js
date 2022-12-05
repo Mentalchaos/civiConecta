@@ -4,14 +4,13 @@ import CreateLetter from './CreateLetter/CreateLetter';
 import Button from 'src/components/UI/Button';
 import Modal from 'src/components/UI/Modal';
 import CreateTeacher from './CreateTeacher/CreateTeacher';
+import useForm from 'src/hooks/useForm';
 import gotoIcon from 'src/assets/Icons/arrow-degree.svg';
-import addIcon from 'src/assets/Icons/replace-teacher.svg';
-import searchIcon from 'src/assets/Icons/search_icon.svg';
+import addStudentIcon from 'src/assets/Icons/add-student.svg';
 
 import './StageAssignment.css';
-import useForm from 'src/hooks/useForm';
 
-const StageAssignment = ({ title, changeStage }) => {
+const StageAssignment = ({ title, changeStage, institutionSelected }) => {
   const [showActionButtons, setShowActionButtons] = useState(false);
   const [words, setWords] = useState([]);
   const [showAddLetter, setShowAddLetter] = useState(false);
@@ -19,10 +18,15 @@ const StageAssignment = ({ title, changeStage }) => {
   const [confirmAction, setConfirmAction] = useState(false);
   const [dataTable, setDataTable] = useState([]);
   const [rowDataSelected, setRowDataSelected] = useState({});
-  const headerTable = ['Nombre', 'Fecha de registro'];
-  const { values, handleInputChange } = useForm({ level: 'Nivel' });
+  const [studentSelected, setStudentSelected] = useState({});
+  const { values, handleInputChange, reset } = useForm({
+    level: 'Nivel',
+    name: '',
+    rut: '',
+  });
 
-  const degrees = ['1 Básico', '2 Básico', '3 Básico', '4 Básico', '5º Básico'];
+  const degrees = ['5º Básico'];
+  const tableDataHeaderStudents = ['Nombre', 'Rut', 'Fecha de registro'];
 
   const buttonStyles = {
     background: 'var(--color-secondary)',
@@ -42,6 +46,7 @@ const StageAssignment = ({ title, changeStage }) => {
     if (rowSelected) {
       setShowActionButtons(true);
       setRowDataSelected(rowSelected);
+      setStudentSelected(rowSelected);
     } else {
       setShowActionButtons(false);
       setRowDataSelected({});
@@ -68,6 +73,14 @@ const StageAssignment = ({ title, changeStage }) => {
   const onHandleAddLetter = data => {
     const newData = { ...data, level: values.level };
     setWords([...words, newData]);
+  };
+
+  const handleAddStudent = e => {
+    e.preventDefault();
+    const { name, rut } = values;
+    if (!name || !rut) return;
+
+    reset();
   };
 
   return (
@@ -163,7 +176,46 @@ const StageAssignment = ({ title, changeStage }) => {
               })}
           </div>
         </div>
-        <div className="content__data-table">
+        <div style={{ marginTop: 50 }}>
+          <p>
+            <strong>Alumnos</strong> asignados a letra:
+          </p>
+          <Table
+            style={{ marginTop: 0 }}
+            onHandleCheckboxSelected={onHandleCheckboxSelected}
+            dataHeader={tableDataHeaderStudents}
+            data={[]}
+          />
+          {studentSelected && (
+            <section className="table-actions">
+              <Button customStyles={buttonCancelStyle} text={'Eliminar'} />
+              <Button customStyles={buttonStyles} text={'Suspender'} />
+            </section>
+          )}
+          <form className="form__add-student" onSubmit={handleAddStudent}>
+            <input
+              onChange={handleInputChange}
+              type="text"
+              name="name"
+              placeholder="Nombre completo"
+            />
+            <input
+              onChange={handleInputChange}
+              type="text"
+              name="rut"
+              placeholder="Rut"
+            />
+            <div style={{ marginTop: 20 }}>
+              <Button
+                onClick={handleAddStudent}
+                customStyles={buttonStyles}
+                icon={addStudentIcon}
+                text={'Anadir'}
+              />
+            </div>
+          </form>
+        </div>
+        {/*<div className="content__data-table">
           <div className="container-input">
             <input
               className="content__search-teacher"
@@ -213,7 +265,7 @@ const StageAssignment = ({ title, changeStage }) => {
               customStyles={buttonStyles}
             />
           </div>
-        </div>
+        </div>*/}
       </article>
     </section>
   );

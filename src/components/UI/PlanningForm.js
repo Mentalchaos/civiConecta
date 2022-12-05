@@ -1,9 +1,17 @@
-import useForm from 'src/hooks/useForm';
+import { useState } from 'react';
 import { createClass } from 'src/services/admin/classes.request';
+import useForm from 'src/hooks/useForm';
 import Button from './Button';
 
-const PlanningForm = ({ unit, grade, handleHiddeModal, needObjetives }) => {
-  const { values, handleInputChange, reset } = useForm({
+const PlanningForm = ({
+  unit,
+  grade,
+  handleHiddeModal,
+  handleGetClasses,
+  needObjetives,
+}) => {
+  const [fetching, setFetching] = useState(false);
+  const { values, handleInputChange } = useForm({
     number: 0,
     title: '',
     description: '',
@@ -45,19 +53,18 @@ const PlanningForm = ({ unit, grade, handleHiddeModal, needObjetives }) => {
   } = values;
 
   const handleSubmit = e => {
+    setFetching(true);
     e.preventDefault();
     const planning = {
       topic,
       materials: {
-        teacher: [],
-        student: [],
+        teacher: teacherMaterials.trim().split(','),
+        student: studentMaterials.trim().split(','),
       },
       startActivity,
       mainActivity,
       endActivity,
     };
-    planning.materials.teacher.push(teacherMaterials);
-    planning.materials.student.push(studentMaterials);
     const payload = {
       number,
       title,
@@ -67,7 +74,15 @@ const PlanningForm = ({ unit, grade, handleHiddeModal, needObjetives }) => {
       unit,
       grade,
     };
-    createClass(payload).then(resp => console.log(resp));
+    createClass(payload).then(resp => {
+      if (resp.ok) {
+        setFetching(false);
+        handleHiddeModal(false);
+        handleGetClasses(unit, grade);
+      } else {
+        setFetching(false);
+      }
+    });
   };
 
   return (
@@ -80,27 +95,49 @@ const PlanningForm = ({ unit, grade, handleHiddeModal, needObjetives }) => {
             onChange={handleInputChange}
             name="number"
             type="number"
+            autoFocus={true}
+            required
           />
         </div>
         <div style={{ width: '80%' }} className="form-group">
           <label>Título de la clase:</label>
-          <input onChange={handleInputChange} name="title" type="text" />
+          <input
+            onChange={handleInputChange}
+            name="title"
+            type="text"
+            required
+          />
         </div>
       </div>
       {needObjetives && (
         <div className="form-group">
           <label>Objetivos:</label>
-          <input onChange={handleInputChange} name="objetives" type="text" />
+          <input
+            onChange={handleInputChange}
+            name="objetives"
+            type="text"
+            required
+          />
         </div>
       )}
       <div className="row">
         <div style={{ width: '50%' }} className="form-group">
           <label>Descripción:</label>
-          <input onChange={handleInputChange} name="description" type="text" />
+          <input
+            onChange={handleInputChange}
+            name="description"
+            type="text"
+            required
+          />
         </div>
         <div style={{ width: '50%' }} className="form-group">
           <label>Tema clase:</label>
-          <input onChange={handleInputChange} name="topic" type="text" />
+          <input
+            onChange={handleInputChange}
+            name="topic"
+            type="text"
+            required
+          />
         </div>
       </div>
 
@@ -111,16 +148,27 @@ const PlanningForm = ({ unit, grade, handleHiddeModal, needObjetives }) => {
             onChange={handleInputChange}
             name="startActivity"
             type="text"
+            required
           />
         </div>
         <div style={{ width: '50%' }} className="form-group">
           <label>Actividad central:</label>
-          <input onChange={handleInputChange} name="mainActivity" type="text" />
+          <input
+            onChange={handleInputChange}
+            name="mainActivity"
+            type="text"
+            required
+          />
         </div>
       </div>
       <div className="form-group">
         <label>Actividad de cierre:</label>
-        <input onChange={handleInputChange} name="endActivity" type="text" />
+        <input
+          onChange={handleInputChange}
+          name="endActivity"
+          type="text"
+          required
+        />
       </div>
       <div>
         <div className="material-inputs">
@@ -133,6 +181,7 @@ const PlanningForm = ({ unit, grade, handleHiddeModal, needObjetives }) => {
                 name="teacherMaterials"
                 type="text"
                 placeholder="materiales del docente"
+                required
               />
             </div>
             <div style={{ width: '50%' }} className="form-group">
@@ -142,6 +191,7 @@ const PlanningForm = ({ unit, grade, handleHiddeModal, needObjetives }) => {
                 name="studentMaterials"
                 type="text"
                 placeholder="materiales del estudiante"
+                required
               />
             </div>
           </div>
@@ -158,11 +208,13 @@ const PlanningForm = ({ unit, grade, handleHiddeModal, needObjetives }) => {
             onClick={() => handleHiddeModal(false)}
             customStyles={cancelButtonStyles}
             text="Cancelar"
+            disabled={fetching}
           />
           <Button
             onClick={handleSubmit}
             customStyles={defaultButtonStyles}
             text="Continuar"
+            disabled={fetching}
           />
         </div>
       </div>
