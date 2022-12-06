@@ -72,14 +72,17 @@
 }
 
 .group__container-materials {
-  width: 70%;
-  align-items: flex-end;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.group__container-materials > label {
+  font-size: 14px;
 }
 
 .group__container-materials > input {
-  width: 100% !important;
   margin-top: 5px;
 }
 

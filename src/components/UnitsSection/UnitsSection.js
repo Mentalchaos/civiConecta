@@ -1,8 +1,11 @@
 import { useState } from 'react';
-import { getUnitsByGrade } from 'src/services/admin/units.request';
+import { createUnit, getUnitsByGrade } from 'src/services/admin/units.request';
 import SectionsHeader from '../SectionsHeader/SectionsHeader';
 import Spinner from '../UI/Spinner';
+import Button from '../UI/Button';
+import Modal from '../UI/Modal';
 import Unit from './Unit/Unit';
+import useForm from 'src/hooks/useForm';
 import headerImage from '../../assets/images/background-units.png';
 import './UnitsSection.css';
 
@@ -10,14 +13,54 @@ const UnitsSection = () => {
   const [units, setUnits] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [gradeSelected, setGradeSelected] = useState('');
-  const level = '5º Básico';
+  const [openModalAddUnit, setOpenModalAddUnit] = useState(false);
+  const { values, handleInputChange } = useForm({
+    number: 0,
+    title: '',
+    description: '',
+  });
+
   const levels = ['5º Básico'];
 
-  const handleLevelSelected = ({ target }) => {
+  const buttonStyle = {
+    backgroundColor: 'var(--color-secondary)',
+    color: '#fff',
+    padding: '5px 30px',
+    borderRadius: '20px',
+  };
+  const buttonCancelStyle = {
+    backgroundColor: '#fff',
+    color: 'var(--color-secondary)',
+    padding: '5px 30px',
+    border: '1px solid var(--color-secondary)',
+    borderRadius: '20px',
+  };
+
+  const handleAddUnit = e => {
+    e.preventDefault();
     setIsLoading(true);
-    const value = target.value;
-    const grade = value.split(' ')[0];
-    setGradeSelected(grade);
+    const { number, title, description } = values;
+    const payload = {
+      number,
+      title,
+      description,
+      grade: gradeSelected,
+      topic: 1,
+    };
+    createUnit(payload).then(resp => {
+      if (resp.ok) {
+        setIsLoading(false);
+        setOpenModalAddUnit(false);
+        getUnits(gradeSelected);
+      } else {
+        console.error(resp.error);
+        setIsLoading(false);
+      }
+    });
+  };
+
+  const getUnits = grade => {
+    setIsLoading(true);
     getUnitsByGrade(grade).then(resp => {
       try {
         setUnits(resp.units);
@@ -29,8 +72,67 @@ const UnitsSection = () => {
     });
   };
 
+  const handleLevelSelected = ({ target }) => {
+    const value = target.value;
+    const grade = value.split(' ')[0];
+    getUnits(grade);
+    setGradeSelected(grade);
+  };
+
   return (
     <>
+      {openModalAddUnit && (
+        <Modal
+          style={{ padding: '30px 60px', width: '450px' }}
+          title={`Agregar unidad a ${levels[0]}`}
+        >
+          <form className="form_add-units" onSubmit={handleAddUnit}>
+            <div className="form-group">
+              <label>Número unidad:</label>
+              <input
+                onChange={handleInputChange}
+                value={values.number}
+                name="number"
+                type="number"
+                autoFocus={true}
+              />
+            </div>
+            <div className="form-group">
+              <label>Título:</label>
+              <input
+                onChange={handleInputChange}
+                value={values.title}
+                name="title"
+                type="text"
+              />
+            </div>
+            <div className="form-group">
+              <label>Descripción:</label>
+              <input
+                onChange={handleInputChange}
+                value={values.description}
+                name="description"
+                type="text"
+              />
+            </div>
+            <div className="actions-container">
+              <Button
+                onClick={() => setOpenModalAddUnit(false)}
+                customStyles={buttonCancelStyle}
+                text="Cancelar"
+                disabled={isLoading}
+              />
+              <Button
+                onClick={handleAddUnit}
+                customStyles={buttonStyle}
+                text="Continuar"
+                disabled={isLoading}
+              />
+            </div>
+          </form>
+        </Modal>
+      )}
+
       <SectionsHeader image={headerImage} subtitle="Unidades" />
       <main className="main-content">
         <header className="content__header">
@@ -54,12 +156,32 @@ const UnitsSection = () => {
             <Spinner />
           </div>
         )}
-        {!isLoading && units && (
+        {!isLoading && units.length > 0 && gradeSelected && (
           <div className="content-units">
             <Unit unitsData={units} grade={gradeSelected} />
           </div>
         )}
-        {!units.length && !isLoading && (
+        {gradeSelected && !units.length && !isLoading && (
+          <h2
+            style={{
+              color: 'var(--gray-dark)',
+              textAlign: 'center',
+              marginTop: 80,
+            }}
+          >
+            No hay unidades creadas para el curso.
+          </h2>
+        )}
+        {!isLoading && gradeSelected && (
+          <div style={{ textAlign: 'right', marginTop: 10, width: '85%' }}>
+            <Button
+              onClick={() => setOpenModalAddUnit(true)}
+              customStyles={buttonStyle}
+              text="Agregar unidad"
+            />
+          </div>
+        )}
+        {!units.length && !isLoading && !gradeSelected && (
           <h2
             style={{
               color: 'var(--gray-dark',
