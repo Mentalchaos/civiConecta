@@ -25,6 +25,7 @@ const TeacherSurvey = () => {
   ];
 
   const [state, setState] = useState(surveyCategories);
+  const [isSurveyVisible, setSurveyVisibility] = useState(false); 
 
   return (
     <>
@@ -35,17 +36,22 @@ const TeacherSurvey = () => {
             <span className="section-title">Encuesta del docente</span>
           </div>
         </div>
-        <div className="categories-container">
-          {surveyCategories.map(item => {
-            return (
-              <Categories
-                title={item.title}
-                detail={item.detail}
-                key={item.title}
-              />
-            );
-          })}
-        </div>
+
+        { isSurveyVisible ? <div> Aca deben ir las encuestas</div>
+         : 
+          <div className="categories-container">
+            { surveyCategories.map(item => {
+              return (
+                <Categories
+                  title={item.title}
+                  detail={item.detail}
+                  key={item.title}
+                  onclick={() => setSurveyVisibility(true)}
+                />
+              );
+            })}
+          </div>
+        }
       </main>
       {state.length < 4 &&
         <div className='button-container'>
