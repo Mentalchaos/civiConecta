@@ -42,8 +42,6 @@ const StageDetail = ({ title }) => {
     'Estado de actividad',
   ];
 
-  const tableDataHeaderStudents = ['Nombre', 'Rut', 'Fecha de registro'];
-
   const teachersAvailable = [
     {
       name: 'Roberto Andres Lazaro Potrero',
@@ -79,18 +77,6 @@ const StageDetail = ({ title }) => {
   ];
 
   const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
-
-  const handleAddStudent = e => {
-    e.preventDefault();
-    const { name, rut } = values;
-    if (!name || !rut) return;
-    const mockData = {
-      ...values,
-      registerDate: '10/01/2023',
-    };
-    setDataStudents([...dataStudents, mockData]);
-    reset();
-  };
 
   return (
     <section className="manager-section">
@@ -216,7 +202,7 @@ const StageDetail = ({ title }) => {
               </p>
               <Table
                 style={{ marginTop: 0 }}
-                dataHeader={tableDataHeaderStudents}
+                dataHeader={dataHeaderReplaceTeacher}
                 data={dataStudents}
               />
               {studentSelected && (
@@ -225,7 +211,7 @@ const StageDetail = ({ title }) => {
                   <Button customStyles={buttonStyle} text={'Suspender'} />
                 </section>
               )}
-              <form className="form__add-student" onSubmit={handleAddStudent}>
+              <form className="form__add-student">
                 <input
                   onChange={handleInputChange}
                   type="text"
@@ -240,7 +226,6 @@ const StageDetail = ({ title }) => {
                 />
                 <div style={{ marginTop: 20 }}>
                   <Button
-                    onClick={handleAddStudent}
                     customStyles={buttonStyle}
                     icon={addStudentIcon}
                     text={'Añadir'}
