@@ -7,6 +7,7 @@ const Table = ({
   data,
   dataHeader,
   handleCheckboxSelected,
+  dataDisplayed,
   ...props
 }) => {
   const [checked, setChecked] = useState({});
@@ -37,7 +38,7 @@ const Table = ({
           </tr>
         </thead>
         <tbody>
-          {data.map((obj, index) => {
+          {dataDisplayed.map((obj, index) => {
             return (
               <tr key={index}>
                 <td style={{ width: 20 }}>
@@ -45,7 +46,7 @@ const Table = ({
                     onChange={e => {
                       onSelectedChange(index);
                       e.target.checked
-                        ? handleCheckboxSelected(obj)
+                        ? handleCheckboxSelected(data[index])
                         : handleCheckboxSelected(null);
                     }}
                     disabled={!checked[index] && disabled}

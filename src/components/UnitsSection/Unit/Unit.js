@@ -5,6 +5,9 @@ import Spinner from 'src/components/UI/Spinner';
 import arrowDown from 'src/assets/Icons/arrow-down.svg';
 import arrow from 'src/assets/Icons/arrow-degree.svg';
 import './Unit.css';
+import Button from 'src/components/UI/Button';
+import Modal from 'src/components/UI/Modal';
+import PlanningForm from 'src/components/UI/PlanningForm';
 
 const Unit = ({ unitsData, grade }) => {
   const [showClass, setShowClass] = useState(false);
@@ -12,8 +15,16 @@ const Unit = ({ unitsData, grade }) => {
   const [dataClassSelected, setDataClassSelected] = useState({});
   const [classesList, setClassesList] = useState([]);
   const [loadingData, setLoadingData] = useState(false);
+  const [showModalAddClass, setShowModalAddClass] = useState(false);
   const [fetching, setFetching] = useState(true);
   const [unitSelectedNumber, setUnitSelectedNumber] = useState(0);
+
+  const defaultButtonStyle = {
+    backgroundColor: 'var(--color-secondary)',
+    padding: '5px 20px',
+    color: '#fff',
+    borderRadius: '20px',
+  };
 
   const handleOpenClass = classData => {
     setDataClassSelected({ ...classData });
@@ -30,21 +41,34 @@ const Unit = ({ unitsData, grade }) => {
 
   const getClasses = (unitNumber, grade) => {
     setLoadingData(true);
-    if (fetching) {
-      getClassesByUnitAndGrade(unitNumber, grade).then(resp => {
-        try {
-          setClassesList(resp.classes);
-          setLoadingData(false);
-        } catch (error) {
-          console.error(error);
-          setLoadingData(false);
-        }
-      });
-    }
+    getClassesByUnitAndGrade(unitNumber, grade).then(resp => {
+      try {
+        setClassesList(resp.classes);
+        setLoadingData(false);
+      } catch (error) {
+        console.error(error);
+        setLoadingData(false);
+      }
+    });
   };
 
   return (
     <>
+      {showModalAddClass && (
+        <Modal
+          title="Agregar Clase"
+          subtitle={`${grade} Básico - Unidad ${unitSelectedNumber}`}
+          style={{ padding: '20px 60px', marginTop: 50, width: '60%' }}
+        >
+          <PlanningForm
+            unit={unitSelectedNumber}
+            handleHiddeModal={setShowModalAddClass}
+            handleGetClasses={getClasses}
+            grade={grade}
+            needObjetives={true}
+          />
+        </Modal>
+      )}
       {unitsData ? (
         unitsData.map(unit => {
           const { title, description, number } = unit;
@@ -77,6 +101,8 @@ const Unit = ({ unitsData, grade }) => {
                   <Planification
                     classData={dataClassSelected}
                     setIsSelectedClass={setIsSelectedClass}
+                    getClasses={getClasses}
+                    grade={grade}
                   />
                 )}
                 {classesList &&
@@ -109,6 +135,16 @@ const Unit = ({ unitsData, grade }) => {
                   >
                     Unidad no registra clases.
                   </h2>
+                )}
+                {showClass && !isSelectedClass && (
+                  <div className="add_button-container">
+                    <Button
+                      onClick={() => setShowModalAddClass(true)}
+                      text="Crear clase"
+                      customStyles={defaultButtonStyle}
+                      disabled={loadingData}
+                    />
+                  </div>
                 )}
               </section>
               <div className="box-link">

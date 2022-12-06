@@ -9,23 +9,26 @@ import SectionsHeader from '../SectionsHeader/SectionsHeader';
 
 const Manager = () => {
   const [stage, setStage] = useState('manager');
-  const [institutionName, setInstitutionName] = useState('');
-
-  // useEffect(() => {
-  //   setInstitutionName('Manager de establecimientos');
-  // }, [setInstitutionName]);
+  const [institutionSelected, setInstitutionSelected] = useState({});
 
   const changeStage = stage => {
     setStage(stage);
   };
 
-  const handleChangeInstitutionName = name => {
-    setInstitutionName(name);
+  const handleInstitutionSelected = institution => {
+    setInstitutionSelected(institution);
   };
 
   return (
     <>
-      <SectionsHeader image={background} subtitle={institutionName} />
+      <SectionsHeader
+        image={background}
+        subtitle={
+          stage === 'manager'
+            ? 'Manager de establecimientos'
+            : institutionSelected.name
+        }
+      />
       <main className="manager-content">
         <div className="current-path">
           {/*Aqui debe ir el path para controlar flujo actual*/}
@@ -35,12 +38,13 @@ const Manager = () => {
           <StageManager
             changeStage={changeStage}
             title="A&ntilde;adir Instituci&oacute;n"
-            handleChangeInstitutionName={handleChangeInstitutionName}
+            handleInstitutionSelected={handleInstitutionSelected}
           />
         )}
         {stage === 'assignment' && (
           <StageAssignment
             changeStage={changeStage}
+            institutionSelected={institutionSelected}
             title="Creaci&oacute;n de cursos"
           />
         )}
