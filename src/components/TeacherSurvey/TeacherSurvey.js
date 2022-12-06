@@ -3,6 +3,7 @@ import SectionsHeader from '../SectionsHeader/SectionsHeader';
 import Categories from './Categories/Categories';
 import teacherImage from '../../assets/images/teacher-banner.png';
 import './TeacherSurvey.css';
+import Question from '../Question/Question';
 
 const TeacherSurvey = () => {
   const surveyCategories = [
@@ -37,7 +38,7 @@ const TeacherSurvey = () => {
           </div>
         </div>
 
-        { isSurveyVisible ? <div> Aca deben ir las encuestas</div>
+        { isSurveyVisible ? <Question />
          : 
           <div className="categories-container">
             { surveyCategories.map(item => {
