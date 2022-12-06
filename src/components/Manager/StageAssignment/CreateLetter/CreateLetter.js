@@ -6,7 +6,6 @@ import './CreateLetter.css';
 const CreateLetter = ({ setShowAddLetter, onHandleAddLetter }) => {
   const { values, handleInputChange } = useForm({
     letter: '',
-    amount: 0,
   });
 
   const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
@@ -64,22 +63,6 @@ const CreateLetter = ({ setShowAddLetter, onHandleAddLetter }) => {
               onClick={() => setShowAddLetter(false)}
               customStyles={buttonStylesCancel}
               text="Cancelar"
-            />
-          </div>
-          <div className="section__select-students">
-            <p>N&uacute;mero de estudiantes</p>
-            <input
-              style={{ width: '165px', borderRadius: '20px' }}
-              type="number"
-              name="amount"
-              onChange={handleInputChange}
-              defaultValue={0}
-              min={0}
-            />
-            <Button
-              onClick={handleAddLetter}
-              customStyles={buttonStyles}
-              text="Continuar"
             />
           </div>
         </div>
