@@ -3,6 +3,7 @@ import SectionsHeader from '../SectionsHeader/SectionsHeader';
 import Categories from '../TeacherSurvey/Categories/Categories';
 import studentImage from '../../assets/images/student-image.png';
 import './StudentSurvey.css';
+import Question from '../Question/Question';
 
 const StudentSurvey = () => {
   const surveyCategories = [
@@ -25,6 +26,7 @@ const StudentSurvey = () => {
   ];
 
   const [state, setState] = useState(surveyCategories);
+  const [isSurveyVisible, setSurveyVisibility] = useState(false);
 
   return (
     <>
@@ -35,18 +37,23 @@ const StudentSurvey = () => {
             <span className="section-title">Encuesta al estudiante</span>
           </div>
         </div>
-        <div className="categories-container">
-          {surveyCategories.map(item => {
-            return (
-              <Categories
-                type={'student'}
-                title={item.title}
-                detail={item.detail}
-                key={item.title}
-              />
-            );
-          })}
-        </div>
+
+        { isSurveyVisible ? <Question />
+         :
+          <div className="categories-container">
+            {surveyCategories.map(item => {
+              return (
+                <Categories
+                  type={'student'}
+                  title={item.title}
+                  detail={item.detail}
+                  key={item.title}
+                  onclick={() => setSurveyVisibility(true)}
+                />
+              );
+            })}
+          </div>
+        }
       </main>
       {state.length < 4 &&
         <div className='button-container'>
