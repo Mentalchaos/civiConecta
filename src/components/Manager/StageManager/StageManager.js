@@ -5,6 +5,7 @@ import Modal from 'src/components/UI/Modal';
 import Spinner from 'src/components/UI/Spinner';
 import useForm from 'src/hooks/useForm';
 import {
+  createEstablishment,
   getEstablishment,
   inactivateEstablishment,
   reactivateEstablishment,
@@ -15,7 +16,7 @@ import './StageManager.css';
 const StageManager = ({ title, changeStage, handleInstitutionSelected }) => {
   const [showDeleteOption, setShowDeleteOption] = useState(false);
   const [confirmAction, setConfirmAction] = useState(false);
-  const [formData, setFormData] = useState([]);
+  const [establishmentsData, setEstablishmentsData] = useState([]);
   const [formDataDisplayed, setFormDataDisplayed] = useState([]);
   const [institutionSelected, setInstitutionSelected] = useState({});
   const [fetching, setFetching] = useState(false);
@@ -56,7 +57,7 @@ const StageManager = ({ title, changeStage, handleInstitutionSelected }) => {
     getEstablishment().then(resp => {
       if (resp.ok) {
         setFetching(false);
-        setFormData(resp.establishments);
+        setEstablishmentsData(resp.establishments);
         const data = resp.establishments;
         const dataDisplayed = data.map(est => {
           const { active, name } = est;
@@ -90,10 +91,16 @@ const StageManager = ({ title, changeStage, handleInstitutionSelected }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    setShowDeleteOption(false);
-    const { name, type, region, commune } = values;
-    if (!name || !type || !region || !commune) return;
-    setFormData([...formData, values]);
+    if (!values.name) return;
+    const incrementalId = establishmentsData.length + 1;
+    createEstablishment(incrementalId, values.name).then(resp => {
+      if (resp.ok) {
+        getEstablishments();
+      } else {
+        console.error(resp.error);
+        getEstablishments();
+      }
+    });
     reset();
   };
 
@@ -105,7 +112,11 @@ const StageManager = ({ title, changeStage, handleInstitutionSelected }) => {
         if (resp.ok) {
           setFetching(false);
           getEstablishments();
+          setConfirmAction(false);
         } else {
+          console.error(resp.error);
+          setConfirmAction(false);
+          getEstablishments();
         }
       });
     !active &&
@@ -113,12 +124,16 @@ const StageManager = ({ title, changeStage, handleInstitutionSelected }) => {
         if (resp.ok) {
           setFetching(false);
           getEstablishments();
+          setShowDeleteOption(false);
+          setConfirmAction(false);
         } else {
+          console.error(resp.error);
           setFetching(false);
+          getEstablishments();
+          setShowDeleteOption(false);
+          setConfirmAction(false);
         }
       });
-    setConfirmAction(false);
-    setShowDeleteOption(false);
   };
 
   return (
@@ -178,13 +193,14 @@ const StageManager = ({ title, changeStage, handleInstitutionSelected }) => {
             text="A&ntilde;adir"
             customStyles={buttonStyles}
             onClick={handleSubmit}
+            disabled={fetching}
           />
         </div>
       </article>
       <section style={{ textAlign: 'center', marginTop: 50 }}>
         {fetching && <Spinner />}
       </section>
-      {formData.length > 0 && !fetching && (
+      {establishmentsData.length > 0 && !fetching && (
         <article className="section__content table-container">
           <div
             style={{
@@ -206,13 +222,13 @@ const StageManager = ({ title, changeStage, handleInstitutionSelected }) => {
           </div>
           <Table
             dataHeader={headerTable}
-            data={formData}
+            data={establishmentsData}
             dataDisplayed={formDataDisplayed}
             handleCheckboxSelected={onHandleCheckboxSelected}
           />
         </article>
       )}
-      {!formData.length && !fetching && (
+      {!establishmentsData.length && !fetching && (
         <h1 style={{ textAlign: 'center', marginTop: 80 }}>
           Aún no hay instituciones agregadas
         </h1>

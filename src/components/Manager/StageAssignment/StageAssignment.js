@@ -1,31 +1,43 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Table from 'src/components/UI/Table';
-import CreateLetter from './CreateLetter/CreateLetter';
 import Button from 'src/components/UI/Button';
 import Modal from 'src/components/UI/Modal';
-import CreateTeacher from './CreateTeacher/CreateTeacher';
 import useForm from 'src/hooks/useForm';
 import gotoIcon from 'src/assets/Icons/arrow-degree.svg';
 import addStudentIcon from 'src/assets/Icons/add-student.svg';
 
 import './StageAssignment.css';
+import {
+  getEstablishment,
+  updateEstablishment,
+} from 'src/services/admin/establishment.request';
 
 const StageAssignment = ({ title, changeStage, institutionSelected }) => {
   const [showActionButtons, setShowActionButtons] = useState(false);
   const [words, setWords] = useState([]);
-  const [showAddLetter, setShowAddLetter] = useState(false);
-  const [addTeacher, setAddTeacher] = useState(false);
   const [confirmAction, setConfirmAction] = useState(false);
   const [dataTable, setDataTable] = useState([]);
   const [rowDataSelected, setRowDataSelected] = useState({});
   const [studentSelected, setStudentSelected] = useState({});
+  const [institutionCourses, setInstitutionCourses] = useState([]);
   const { values, handleInputChange, reset } = useForm({
-    level: 'Nivel',
+    grade: '',
+    letter: '',
     name: '',
-    rut: '',
+    run: '',
   });
 
-  const degrees = ['5º Básico'];
+  useEffect(() => {
+    getEstablishment().then(resp => {
+      const coursesByInstitutionNumber = resp.establishments.filter(
+        item => item.number === institutionSelected.number,
+      );
+      setInstitutionCourses(coursesByInstitutionNumber[0].courses);
+    });
+  }, []);
+
+  const grades = ['5º Básico'];
+  const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
   const tableDataHeaderStudents = ['Nombre', 'Rut', 'Fecha de registro'];
 
   const buttonStyles = {
@@ -53,16 +65,6 @@ const StageAssignment = ({ title, changeStage, institutionSelected }) => {
     }
   };
 
-  const onHandleAddTeacher = teacher => {
-    const selectColumnDataToTable = {
-      name: teacher.name,
-      registerDate: teacher.houseNumber,
-    };
-
-    setDataTable([...dataTable, selectColumnDataToTable]);
-    setAddTeacher(false);
-  };
-
   const handleDeleteTeacher = () => {
     const dataFiltered = dataTable.filter(row => row !== rowDataSelected);
     setDataTable(dataFiltered);
@@ -70,27 +72,35 @@ const StageAssignment = ({ title, changeStage, institutionSelected }) => {
     setConfirmAction(false);
   };
 
-  const onHandleAddLetter = data => {
-    const newData = { ...data, level: values.level };
-    setWords([...words, newData]);
-  };
-
   const handleAddStudent = e => {
     e.preventDefault();
-    const { name, rut } = values;
-    if (!name || !rut) return;
-
+    onUpdateEstablishment(institutionSelected.number);
     reset();
+  };
+
+  const onUpdateEstablishment = establishmentNumber => {
+    const payload = {
+      ...institutionSelected,
+      ...institutionSelected.courses,
+      courses: [
+        {
+          grade: values.grade.split(' ')[0],
+          letters: [
+            {
+              character: values.letter,
+              students: [{ name: values.name, run: values.run }],
+            },
+          ],
+        },
+      ],
+    };
+    updateEstablishment(establishmentNumber, payload).then(res => {
+      console.log(res);
+    });
   };
 
   return (
     <section className="manager-section">
-      {addTeacher && (
-        <CreateTeacher
-          onHandleAddTeacher={onHandleAddTeacher}
-          setAddTeacher={setAddTeacher}
-        />
-      )}
       {confirmAction && (
         <Modal
           title="Eliminar Instituci&oacute;n"
@@ -113,104 +123,136 @@ const StageAssignment = ({ title, changeStage, institutionSelected }) => {
       )}
       <h1 className="section__title">{title}</h1>
       <article className="section__content-assignment">
-        {showAddLetter && (
-          <CreateLetter
-            onHandleAddLetter={onHandleAddLetter}
-            setShowAddLetter={setShowAddLetter}
-          />
-        )}
         <div className="content__level-selection">
-          <span className="content__level-selection-title">
-            Seleccionar nivel
-          </span>
-          <select
+          <div
             style={{
-              marginLeft: 15,
-              boxShadow: '0px 2px 10px rgb(0,0,0,0.25)',
-              backgroundColor: '#fff',
+              display: 'flex',
+              gap: '10px',
+              alignItems: 'center',
+              flexWrap: 'wrap',
             }}
-            onChange={handleInputChange}
-            name="level"
-            value={values.level}
           >
-            <option disabled={true}>Nivel</option>
-            {degrees.map(degree => {
-              return (
-                <option key={degree} value={degree}>
-                  {degree}
+            <div className="select-content">
+              <span className="content__level-selection-title">Nivel:</span>
+              <select
+                style={{
+                  boxShadow: '0px 2px 10px rgb(0,0,0,0.25)',
+                  backgroundColor: '#fff',
+                }}
+                onChange={handleInputChange}
+                name="grade"
+                value={values.grade}
+              >
+                <option value="" selected>
+                  Seleccione...
                 </option>
+                {grades.map(grade => {
+                  return (
+                    <option key={grade} value={grade}>
+                      {grade}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+            <div className="select-content">
+              <span className="content__level-selection-title">Letra:</span>
+              <select
+                style={{
+                  boxShadow: '0px 2px 10px rgb(0,0,0,0.25)',
+                  backgroundColor: '#fff',
+                }}
+                onChange={handleInputChange}
+                value={values.letter}
+                name="letter"
+              >
+                <option value="" selected>
+                  Seleccione...
+                </option>
+                {letters.map(letter => {
+                  return (
+                    <option key={letter} value={letter}>
+                      {letter}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+          </div>
+          {institutionCourses.length > 0 &&
+            institutionCourses.map(course => {
+              return (
+                <section
+                  onClick={() => changeStage('detail')}
+                  className="content__level-selected"
+                >
+                  <input id="checkLetter" type="checkbox" />
+                  <label htmlFor="checkLetter"></label>
+                  <span className="level-selected__degree">
+                    {/*`${word.level.split(' ')[0]} ${word.letter}`*/}
+                  </span>
+                  <span className="add-word__go-to">
+                    <span className="go-to__text">B&aacute;sico</span>
+                    <img
+                      src={gotoIcon}
+                      className="go-to__icon"
+                      alt="go to icon"
+                    />
+                  </span>
+                </section>
               );
             })}
-          </select>
-          <div className="selection__boxs-container">
-            <button
-              onClick={() => setShowAddLetter(true)}
-              className="content__level-add-word"
-            >
-              <span className="add-word__plus-sign">+</span>
-              <span className="add-word__text">A&ntilde;adir letra</span>
-            </button>
-            {words &&
-              words.map(word => {
-                return (
-                  <section
-                    onClick={() => changeStage('detail')}
-                    className="content__level-selected"
-                    key={word}
-                  >
-                    <input id="checkLetter" type="checkbox" />
-                    <label htmlFor="checkLetter"></label>
-                    <span className="level-selected__degree">
-                      {`${word.level.split(' ')[0]} ${word.letter}`}
-                    </span>
-                    <span className="add-word__go-to">
-                      <span className="go-to__text">B&aacute;sico</span>
-                      <img
-                        src={gotoIcon}
-                        className="go-to__icon"
-                        alt="go to icon"
-                      />
-                    </span>
-                  </section>
-                );
-              })}
-          </div>
         </div>
-        <div style={{ marginTop: 50 }}>
-          <p>
-            <strong>Alumnos</strong> asignados a letra:
-          </p>
-          <Table
-            style={{ marginTop: 0 }}
-            onHandleCheckboxSelected={onHandleCheckboxSelected}
-            dataHeader={tableDataHeaderStudents}
-            data={[]}
-          />
-          {studentSelected && (
+        <div style={{ width: '50%', marginRight: 50 }}>
+          {/*institutionSelected.courses.length > 0 && (
+            <>
+              <p style={{ margin: 0 }}>
+                <strong>Alumnos</strong> asignados a letra:
+              </p>
+              <Table
+                style={{ marginTop: 0 }}
+                onHandleCheckboxSelected={onHandleCheckboxSelected}
+                dataHeader={tableDataHeaderStudents}
+                data={dataTable}
+              />
+            </>
+          )*/}
+          {/*studentSelected && (
             <section className="table-actions">
               <Button customStyles={buttonCancelStyle} text={'Eliminar'} />
               <Button customStyles={buttonStyles} text={'Suspender'} />
             </section>
-          )}
+          )*/}
           <form className="form__add-student" onSubmit={handleAddStudent}>
-            <input
-              onChange={handleInputChange}
-              type="text"
-              name="name"
-              placeholder="Nombre completo"
-            />
-            <input
-              onChange={handleInputChange}
-              type="text"
-              name="rut"
-              placeholder="Rut"
-            />
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'flex-end',
+                gap: 5,
+                flexWrap: 'wrap',
+              }}
+            >
+              <input
+                onChange={handleInputChange}
+                type="text"
+                name="name"
+                value={values.name}
+                placeholder="Nombre completo"
+              />
+              <input
+                onChange={handleInputChange}
+                type="text"
+                name="run"
+                value={values.run}
+                placeholder="Formato: 12.543.343-8"
+              />
+            </div>
             <div style={{ marginTop: 20 }}>
               <Button
                 onClick={handleAddStudent}
                 customStyles={buttonStyles}
                 icon={addStudentIcon}
-                text={'Anadir'}
+                text="A&ntilde;adir alumno"
               />
             </div>
           </form>

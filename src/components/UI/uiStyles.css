@@ -58,6 +58,7 @@
 }
 
 .table thead {
+  display: block;
   font-size: 14px;
   color: #fff;
 }
@@ -73,7 +74,7 @@
 }
 
 .table tbody {
-  /* display: block; */
+  display: block;
   overflow-y: auto;
   width: 100%;
   padding-bottom: 3rem;
