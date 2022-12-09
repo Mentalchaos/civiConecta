@@ -1,43 +1,43 @@
 .categories-container {
-    min-height: 220px;
-    margin-top: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: space-around;
-    justify-content: space-around;
+  min-height: 220px;
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: space-around;
 }
 
-.button-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 40px 0;
+.button-container.teacher-survey {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 0;
 }
 
 .add-button {
-    width: 125px;
-    height :108px;
-    background: #FFFFFF;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    border-style: none;
+  width: 125px;
+  height: 108px;
+  background: #ffffff;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  border-style: none;
 }
 
 .add-button-icon,
 .add-button-text {
-    font-family: 'Poppins';
-    font-style: normal;
-    color: #000000;
-    margin: 0;
+  font-family: 'Poppins';
+  font-style: normal;
+  color: #000000;
+  margin: 0;
 }
 
 .add-button-icon {
-    font-size: 40px;
-    line-height: 60px;
+  font-size: 40px;
+  line-height: 60px;
 }
 
 .add-button-text {
-    font-size: 14px;
-    line-height: 21px;
-    text-align: center;
+  font-size: 14px;
+  line-height: 21px;
+  text-align: center;
 }
