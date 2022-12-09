@@ -9,24 +9,24 @@ const TeacherSurvey = () => {
   const surveyCategories = [
     {
       title: 'Relaciones interpersonales',
-      detail: '0 Preguntas en esta categoría'
+      detail: '0 Preguntas en esta categoría',
     },
     {
       title: 'Resolución de conflictos',
-      detail: '0 Preguntas en esta categoría'
+      detail: '0 Preguntas en esta categoría',
     },
     {
       title: 'Bienestar y autocuidado',
-      detail: '0 Preguntas en esta categoría'
+      detail: '0 Preguntas en esta categoría',
     },
     {
       title: 'Prevención consumo drogas y alcohol',
-      detail: '0 Preguntas en esta categoría'
-    }
+      detail: '0 Preguntas en esta categoría',
+    },
   ];
 
   const [state, setState] = useState(surveyCategories);
-  const [isSurveyVisible, setSurveyVisibility] = useState(false); 
+  const [isSurveyVisible, setSurveyVisibility] = useState(false);
 
   return (
     <>
@@ -38,10 +38,11 @@ const TeacherSurvey = () => {
           </div>
         </div>
 
-        { isSurveyVisible ? <Question />
-         : 
+        {isSurveyVisible ? (
+          <Question />
+        ) : (
           <div className="categories-container">
-            { surveyCategories.map(item => {
+            {surveyCategories.map(item => {
               return (
                 <Categories
                   title={item.title}
@@ -52,16 +53,16 @@ const TeacherSurvey = () => {
               );
             })}
           </div>
-        }
+        )}
       </main>
-      {state.length < 4 &&
-        <div className='button-container'>
-          <button className='add-button'>
-            <p className='add-button-icon'>+</p>
-            <p className='add-button-text'>Añadir Categoría</p>
+      {state.length < 4 && (
+        <div className="button-container teacher-survey">
+          <button className="add-button">
+            <p className="add-button-icon">+</p>
+            <p className="add-button-text">Añadir Categoría</p>
           </button>
         </div>
-      }
+      )}
     </>
   );
 };
