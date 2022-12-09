@@ -5,35 +5,27 @@ import Modal from 'src/components/UI/Modal';
 import useForm from 'src/hooks/useForm';
 import gotoIcon from 'src/assets/Icons/arrow-degree.svg';
 import addStudentIcon from 'src/assets/Icons/add-student.svg';
+import { updateEstablishment } from 'src/services/admin/establishment.request';
 
 import './StageAssignment.css';
-import {
-  getEstablishment,
-  updateEstablishment,
-} from 'src/services/admin/establishment.request';
 
 const StageAssignment = ({ title, changeStage, institutionSelected }) => {
   const [showActionButtons, setShowActionButtons] = useState(false);
-  const [words, setWords] = useState([]);
   const [confirmAction, setConfirmAction] = useState(false);
   const [dataTable, setDataTable] = useState([]);
   const [rowDataSelected, setRowDataSelected] = useState({});
   const [studentSelected, setStudentSelected] = useState({});
+  const [studentsAdded, setStudentsAdded] = useState([]);
   const [institutionCourses, setInstitutionCourses] = useState([]);
   const { values, handleInputChange, reset } = useForm({
-    grade: '',
-    letter: '',
+    grade: 'Seleccione',
+    letter: 'Seleccione',
     name: '',
     run: '',
   });
 
   useEffect(() => {
-    getEstablishment().then(resp => {
-      const coursesByInstitutionNumber = resp.establishments.filter(
-        item => item.number === institutionSelected.number,
-      );
-      setInstitutionCourses(coursesByInstitutionNumber[0].courses);
-    });
+    setInstitutionCourses(institutionSelected.courses);
   }, []);
 
   const grades = ['5º Básico'];
@@ -74,21 +66,43 @@ const StageAssignment = ({ title, changeStage, institutionSelected }) => {
 
   const handleAddStudent = e => {
     e.preventDefault();
+    const { name, run } = values;
+    // if(!name || !run) return;
+    const newStudent = { name, run };
+    setStudentsAdded([...studentsAdded, newStudent]);
+    values.name = '';
+    values.run = '';
+
+    // const filterLetterByCharacter = getLettersCourseSelected.filter(
+    //   item => item.character === values.letter,
+    // );
+  };
+
+  const handleAddCourse = e => {
+    e.preventDefault();
+
     onUpdateEstablishment(institutionSelected.number);
-    reset();
   };
 
   const onUpdateEstablishment = establishmentNumber => {
+    const filterCourseSelected = institutionCourses.filter(
+      course => course.level === values.grade.split(' ')[0],
+    );
+    const getLettersCourseSelected = filterCourseSelected.map(
+      item => item.letters[0],
+    );
+
     const payload = {
-      ...institutionSelected,
-      ...institutionSelected.courses,
+      name: institutionSelected.name,
+      ...filterCourseSelected,
       courses: [
         {
           grade: values.grade.split(' ')[0],
           letters: [
+            ...getLettersCourseSelected,
             {
               character: values.letter,
-              students: [{ name: values.name, run: values.run }],
+              students: [...studentsAdded],
             },
           ],
         },
@@ -143,8 +157,8 @@ const StageAssignment = ({ title, changeStage, institutionSelected }) => {
                 name="grade"
                 value={values.grade}
               >
-                <option value="" selected>
-                  Seleccione...
+                <option value="Seleccione" disabled>
+                  Seleccione
                 </option>
                 {grades.map(grade => {
                   return (
@@ -166,8 +180,8 @@ const StageAssignment = ({ title, changeStage, institutionSelected }) => {
                 value={values.letter}
                 name="letter"
               >
-                <option value="" selected>
-                  Seleccione...
+                <option value="Seleccione" disabled>
+                  Seleccione
                 </option>
                 {letters.map(letter => {
                   return (
@@ -189,7 +203,7 @@ const StageAssignment = ({ title, changeStage, institutionSelected }) => {
                   <input id="checkLetter" type="checkbox" />
                   <label htmlFor="checkLetter"></label>
                   <span className="level-selected__degree">
-                    {/*`${word.level.split(' ')[0]} ${word.letter}`*/}
+                    {`${course.level.split(' ')[0]} `}
                   </span>
                   <span className="add-word__go-to">
                     <span className="go-to__text">B&aacute;sico</span>
@@ -223,13 +237,16 @@ const StageAssignment = ({ title, changeStage, institutionSelected }) => {
               <Button customStyles={buttonStyles} text={'Suspender'} />
             </section>
           )*/}
-          <form className="form__add-student" onSubmit={handleAddStudent}>
+          <form className="form__add-student">
+            <p style={{ fontSize: 14 }}>
+              {' '}
+              Alumnos a&ntilde;adidos: <b>{studentsAdded.length}</b>
+            </p>
             <div
               style={{
                 display: 'flex',
                 justifyContent: 'flex-end',
                 gap: 5,
-                flexWrap: 'wrap',
               }}
             >
               <input
@@ -247,12 +264,26 @@ const StageAssignment = ({ title, changeStage, institutionSelected }) => {
                 placeholder="Formato: 12.543.343-8"
               />
             </div>
-            <div style={{ marginTop: 20 }}>
+            <div
+              style={{
+                marginTop: 20,
+                display: 'flex',
+                gap: 10,
+                justifyContent: 'right',
+              }}
+            >
               <Button
                 onClick={handleAddStudent}
                 customStyles={buttonStyles}
                 icon={addStudentIcon}
                 text="A&ntilde;adir alumno"
+                type="button"
+              />
+              <Button
+                onClick={handleAddCourse}
+                customStyles={buttonStyles}
+                text="Guardar"
+                type="button"
               />
             </div>
           </form>

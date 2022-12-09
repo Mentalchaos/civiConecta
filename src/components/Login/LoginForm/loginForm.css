@@ -20,7 +20,7 @@
   background-color: #d9d9d9 !important;
   border: none;
   outline: none;
-  transition: all 0.3s ease-in-out
+  transition: all 0.3s ease-in-out;
 }
 
 /* .form-input:active {
@@ -30,17 +30,13 @@
 
 .form-input:hover {
   border: none;
-  background-color: #EAEAEA !important;
-  transition: all 0.3s ease-in-out
+  background-color: #eaeaea !important;
+  transition: all 0.3s ease-in-out;
 }
 
 /* .form-input:focus {
   background-color: aqua;
 } */
-
-.button-container {
-  margin-top: -35px;
-}
 
 .button:hover {
   background-color: var(--color-secondary) !important;
