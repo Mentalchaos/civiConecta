@@ -3,26 +3,29 @@ import arrow from 'src/assets/Icons/arrow-degree.svg';
 import '../Ephemeris.css';
 
 const EphemerisDoc = ({
-  onHandleShowPlanning,
-  onHandleEphemerisSelected,
-  ...ephemerisData
+  handleEphemerisSelected,
+  handleShowPlanning,
+  ephemerisData,
 }) => {
-  const { name, date, files, detail } = ephemerisData;
+  const { title, files, description, number } = ephemerisData;
 
-  const handleShowPlanning = () => {
-    onHandleShowPlanning(true);
-    onHandleEphemerisSelected(ephemerisData);
+  const onHandleShowPlanning = () => {
+    handleShowPlanning(true);
+    handleEphemerisSelected(ephemerisData);
   };
 
   return (
     <div className="ephemeris-doc-container">
       <div className="doc-texts">
-        <div className="ephemeris-title">{name}</div>
-        <div className="ephemeris-subtitle">{files} documentos adjuntados.</div>
-        <div className="ephemeris-subtitle">OA: {detail}</div>
+        <p className="doc-event-number">{number}</p>
+        <div className="ephemeris-title">{title}</div>
+        <div className="ephemeris-subtitle">
+          {files.length} documentos adjuntados.
+        </div>
+        <div className="ephemeris-subtitle">OA: {description}</div>
       </div>
       <img
-        onClick={handleShowPlanning}
+        onClick={onHandleShowPlanning}
         className="go-planning"
         src={arrow}
         alt="Go to planning icon"
