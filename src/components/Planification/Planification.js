@@ -3,20 +3,21 @@ import useForm from 'src/hooks/useForm';
 import Button from '../UI/Button';
 import Table from '../UI/Table';
 import Modal from '../UI/Modal';
-import { updateClass } from 'src/services/admin/classes.request';
 import uploadIcon from 'src/assets/Icons/upload.svg';
 import arrowIcon from 'src/assets/Icons/arrow-down.svg';
 import './Planification.css';
 
 const Planification = ({
-  grade,
   classData,
   setIsSelectedClass,
+  handleSubmit,
   getClasses,
+  isClass,
+  fetching,
+  grade,
 }) => {
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const [isRowSelected, setIsRowSelected] = useState(false);
-  const [onFetching, setOnFetching] = useState(false);
   const { values, handleInputChange } = useForm({
     topic: classData.planning.topic,
     studentMaterials: classData.planning.materials[0].student,
@@ -64,46 +65,9 @@ const Planification = ({
     }
   };
 
-  const onUpdateClass = (number, unit, grade) => {
-    setOnFetching(true);
-    const {
-      topic,
-      studentMaterials,
-      description,
-      teacherMaterials,
-      startActivity,
-      mainActivity,
-      endActivity,
-    } = values;
-
-    const payload = {
-      ...classData,
-      description,
-      planning: {
-        startActivity,
-        mainActivity,
-        endActivity,
-        topic,
-        materials: {
-          teacher: teacherMaterials.toString().trim().split(','),
-          student: studentMaterials.toString().trim().split(','),
-        },
-      },
-    };
-    updateClass(number, unit, grade, payload).then(resp => {
-      if (resp.ok) {
-        setOnFetching(false);
-      } else {
-        setOnFetching(false);
-        console.error(resp.error);
-      }
-    });
-  };
-
   const onHandleSubmit = e => {
     e.preventDefault();
-    const { number, unit } = classData;
-    onUpdateClass(number, unit.number, grade);
+    handleSubmit(values);
   };
 
   return (
@@ -126,11 +90,11 @@ const Planification = ({
       )}
       <div className="data-class">
         <div className="data-info">
-          {classData.number && (
+          {classData.number && isClass && (
             <h3 className="class-title">Clase {classData.number}</h3>
           )}
-          {classData.name && (
-            <h3 className="class-title-events">{classData.name}</h3>
+          {classData.title && !isClass && (
+            <h3 className="class-title-events">{classData.title}</h3>
           )}
           <span className="class-files">
             {classData.files?.length} documentos totales en esta clase.
@@ -139,7 +103,9 @@ const Planification = ({
         <img
           onClick={() => {
             setIsSelectedClass(false);
-            getClasses(classData.unit.number, grade);
+            isClass
+              ? getClasses(classData.unit.number)
+              : getClasses(classData.grade.level);
           }}
           className="icon-back-to"
           src={arrowIcon}
@@ -253,9 +219,10 @@ const Planification = ({
         </div>
         <div className="form-group button">
           <Button
-            disabled={onFetching}
+            onClick={onHandleSubmit}
+            disabled={fetching}
             customStyles={styleDefaultButton}
-            text="Guardar"
+            text={fetching ? 'Guardando...' : 'Guardar'}
           />
         </div>
       </form>
