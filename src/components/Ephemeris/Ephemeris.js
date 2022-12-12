@@ -210,7 +210,7 @@ const Ephemeris = () => {
                 onClick={() => setShowForm(true)}
                 customStyles={buttonStyles}
                 text="Crear evento"
-                disabled={!gradeSelected}
+                disabled={!gradeSelected || fetching}
               />
             </div>
           </div>
