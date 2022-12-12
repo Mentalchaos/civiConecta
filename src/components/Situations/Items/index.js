@@ -1,25 +1,22 @@
 import arrow from 'src/assets/Icons/arrow-degree.svg';
 
-const Items = ({
-  name,
-  count,
-  date,
-  handleSituationSelected,
-  handleShowPlanning,
-}) => {
+const Items = ({ handleSituationSelected, handleShowPlanning, eventData }) => {
+  const { number, title, files, date, description } = eventData;
   const onHandleShowPlanning = () => {
     handleShowPlanning(true);
-    handleSituationSelected({ name, files: [count], date });
+    handleSituationSelected(eventData);
   };
+
+  const transformedDate = new Date(date).toLocaleDateString('es-CL');
 
   return (
     <div className="items">
       <div className="item-info">
-        <p> {date} </p>
+        <p className="info-date"> {transformedDate} </p>
         <div className="text-box">
-          <p className="text-box-p1"> {name} </p>
-          <p className="text-box-p2"> {count} Documentos adjuntos </p>
-          <p className="text-box-p3"> OA: </p>
+          <p className="text-box-p1"> {title} </p>
+          <p className="text-box-p2"> {files.length} documentos adjuntados. </p>
+          <p className="text-box-p3"> OA: {description} </p>
         </div>
       </div>
 

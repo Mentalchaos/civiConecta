@@ -131,3 +131,12 @@
 .ephemeris-select {
   border: 1px solid #d9687c;
 }
+
+.doc-event-number {
+  position: absolute;
+  right: 10px;
+  top: -5px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-dark);
+}

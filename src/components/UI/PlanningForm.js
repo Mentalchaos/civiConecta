@@ -8,6 +8,7 @@ const PlanningForm = ({
   grade,
   handleHiddeModal,
   handleGetClasses,
+  onHandleSubmit,
   needObjetives,
 }) => {
   const [fetching, setFetching] = useState(false);
@@ -53,7 +54,6 @@ const PlanningForm = ({
   } = values;
 
   const handleSubmit = e => {
-    setFetching(true);
     e.preventDefault();
     const planning = {
       topic,
@@ -69,21 +69,46 @@ const PlanningForm = ({
       number,
       title,
       description,
-      objetives,
+      objetives: needObjetives ? objetives : null,
       planning,
       unit,
       grade,
     };
-    createClass(payload).then(resp => {
-      if (resp.ok) {
-        setFetching(false);
-        handleHiddeModal(false);
-        handleGetClasses(unit, grade);
-      } else {
-        setFetching(false);
-      }
-    });
+    onHandleSubmit(payload);
   };
+
+  // const handleSubmit = e => {
+  //   setFetching(true);
+  //   e.preventDefault();
+  //   const planning = {
+  //     topic,
+  //     materials: {
+  //       teacher: teacherMaterials.trim().split(','),
+  //       student: studentMaterials.trim().split(','),
+  //     },
+  //     startActivity,
+  //     mainActivity,
+  //     endActivity,
+  //   };
+  //   const payload = {
+  //     number,
+  //     title,
+  //     description,
+  //     objetives,
+  //     planning,
+  //     unit,
+  //     grade,
+  //   };
+  //   createClass(payload).then(resp => {
+  //     if (resp.ok) {
+  //       setFetching(false);
+  //       handleHiddeModal(false);
+  //       handleGetClasses(unit, grade);
+  //     } else {
+  //       setFetching(false);
+  //     }
+  //   });
+  // };
 
   return (
     <form style={{ width: '100%' }}>

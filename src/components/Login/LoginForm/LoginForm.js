@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signIn } from 'src/services/admin/user.request';
 import Button from 'src/components/UI/Button';
-import Spinner from 'src/components/UI/Spinner';
 import useForm from 'src/hooks/useForm';
 import './loginForm.css';
 
@@ -19,7 +18,6 @@ const LoginForm = () => {
     width: ' 100%',
     fontSize: ' 15px',
     font: ' inherit',
-    marginTop: ' 80px',
     color: ' white',
     padding: ' 20px 20px',
     backgroundColor: ' var(--color-secondary)',
