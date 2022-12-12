@@ -1,22 +1,61 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Planification from '../Planification/Planification.js';
+import PlanningForm from '../UI/PlanningForm.js';
 import Items from './Items/index.js';
+import Spinner from '../UI/Spinner.js';
+import Button from '../UI/Button.js';
+import Modal from '../UI/Modal.js';
+import {
+  createEvent,
+  getEventsByGrade,
+  updateEvent,
+} from 'src/services/admin/situations.request.js';
+import { getGrades } from 'src/services/admin/grades.request.js';
+
 import './Items/index.css';
 import './Situations.css';
 
 const Situations = () => {
+  const [grades, setGrades] = useState([]);
+  const [gradeSelected, setGradeSelected] = useState('');
   const [showPlanning, setShowPlanning] = useState(false);
   const [situationSelected, setSituationSelected] = useState({});
+  const [events, setEvents] = useState([]);
+  const [showForm, setShowForm] = useState(false);
+  const [fetching, setFetching] = useState(false);
 
-  const nameDays = [
-    { name: 'Dia de Civi conecta', date: '02/02', count: 1 },
-    { name: 'Dia de glorias navales', date: '11/02', count: 4 },
-    { name: 'Dia del sol', date: '04/02', count: 12 },
-    { name: 'Dia del completo', date: '10/02', count: 0 },
-    { name: 'Dia del los gatos', date: '06/02', count: 10 },
-    { name: 'Dia del wow', date: '24/02', count: 5 },
-    { name: 'Dia de la luna', date: '14/02', count: 55 },
-  ];
+  useEffect(() => {
+    setFetching(true);
+    getGrades().then(resp => {
+      if (resp.ok) {
+        setFetching(false);
+        setGrades(resp.grades);
+      }
+    });
+  }, []);
+
+  const buttonStyles = {
+    backgroundColor: 'var(--color-secondary)',
+    borderRadius: '20px',
+    color: '#fff',
+    padding: '5px 30px',
+  };
+
+  const getEvents = grade => {
+    setFetching(true);
+    getEventsByGrade(grade).then(resp => {
+      if (resp.ok) {
+        setFetching(false);
+        setEvents(resp.events);
+      }
+    });
+  };
+
+  const handleChangeGrade = ({ target }) => {
+    setFetching(true);
+    setGradeSelected(target.value);
+    getEvents(target.value);
+  };
 
   const handleShowPlanning = option => {
     setShowPlanning(option);
@@ -26,8 +65,73 @@ const Situations = () => {
     setSituationSelected(situation);
   };
 
+  const onHandleSubmit = values => {
+    setFetching(true);
+    const payload = {
+      ...values,
+      date: new Date().toLocaleString('es-CL').split(',')[0],
+    };
+    createEvent(payload).then(resp => {
+      if (resp.ok) {
+        setFetching(false);
+        setEvents([...events, resp.event]);
+        setShowForm(false);
+      }
+    });
+  };
+
+  const updateSituation = (number, grade, formValues) => {
+    setFetching(true);
+    const {
+      topic,
+      studentMaterials,
+      description,
+      teacherMaterials,
+      startActivity,
+      mainActivity,
+      endActivity,
+    } = formValues;
+
+    const payload = {
+      ...situationSelected,
+      description,
+      planning: {
+        startActivity,
+        mainActivity,
+        endActivity,
+        topic,
+        materials: {
+          teacher: teacherMaterials.toString().trim().split(','),
+          student: studentMaterials.toString().trim().split(','),
+        },
+      },
+    };
+    updateEvent(number, grade, payload).then(resp => {
+      if (resp.ok) {
+        setFetching(false);
+      } else {
+        setFetching(false);
+        console.error(resp.error);
+      }
+    });
+  };
+
+  const onHandleUpdateSituation = values => {
+    updateSituation(situationSelected.number, gradeSelected, values);
+  };
+
   return (
     <main className="main-content">
+      {showForm && (
+        <Modal style={{ padding: '20px 40px', marginTop: 50 }}>
+          <PlanningForm
+            grade={gradeSelected}
+            needObjetives={false}
+            handleHiddeModal={setShowForm}
+            onHandleSubmit={onHandleSubmit}
+          />
+        </Modal>
+      )}
       <div className="header">
         <div>
           <h1 className="header__title situation">
@@ -36,9 +140,21 @@ const Situations = () => {
           <span className="section-title">Situaciones emergentes</span>
         </div>
         <div>
-          <select className="select-date">
-            {/* <option disabled>Seleccione nivel</option> */}
-            <option value="1st-grade"> 5º basico </option>
+          <select
+            name="grade"
+            className="select-date"
+            onChange={handleChangeGrade}
+            defaultValue="Seleccione nivel"
+            disabled={showPlanning}
+          >
+            <option disabled>Seleccione nivel</option>
+            {grades.map(grade => {
+              return (
+                <option key={grade.level} value={grade.level}>
+                  {grade.level} Basico
+                </option>
+              );
+            })}
           </select>
         </div>
       </div>
@@ -47,46 +163,56 @@ const Situations = () => {
           <Planification
             classData={situationSelected}
             setIsSelectedClass={setShowPlanning}
+            getClasses={getEvents}
+            handleSubmit={onHandleUpdateSituation}
+            isClass={false}
+            fetching={fetching}
           />
         ) : (
           <>
-            <div className="select-content">
-              filtrar item por:
-              <select className="select" id="select">
-                <option value="name">Nombre</option>
-                <option value="date">Fecha</option>
-              </select>
-            </div>
+            {fetching && (
+              <div style={{ textAlign: 'center' }}>
+                <Spinner />
+              </div>
+            )}
+            {events.length > 0 && !fetching && (
+              <div className="select-content">
+                filtrar item por:
+                <select className="select" id="select">
+                  <option value="name">Nombre</option>
+                  <option value="date">Fecha</option>
+                </select>
+              </div>
+            )}
+            {!events.length && !fetching && (
+              <h1 style={{ textAlign: 'center' }}>Sin registro de eventos.</h1>
+            )}
             <div className="items-content">
-              {nameDays.map(days => (
-                <Items
-                  key={days.name}
-                  handleShowPlanning={handleShowPlanning}
-                  handleSituationSelected={handleSituationSelected}
-                  name={days.name}
-                  date={days.date}
-                  count={days.count}
-                />
-              ))}
+              {!fetching &&
+                events.map(event => (
+                  <Items
+                    key={event.title}
+                    handleShowPlanning={handleShowPlanning}
+                    handleSituationSelected={handleSituationSelected}
+                    eventData={event}
+                  />
+                ))}
             </div>
-            <div className="pagination">
-              <a href="#">&laquo;</a>
-              <a href="#">&lt;</a>1/1
-              <a href="#">&gt;</a>
-              <a href="#">&raquo;</a>
-            </div>
-            <div className="input-content">
-              <input
-                className="input-text situations-input-text"
-                type="text"
-                placeholder="Escribir el nombre de la situacion emergente"
+            {events.length > 0 && !fetching && (
+              <div className="pagination">
+                <a href="#">&laquo;</a>
+                <a href="#">&lt;</a>1/1
+                <a href="#">&gt;</a>
+                <a href="#">&raquo;</a>
+              </div>
+            )}
+            <div style={{ textAlign: 'center', marginTop: 20 }}>
+              <Button
+                onClick={() => setShowForm(true)}
+                customStyles={buttonStyles}
+                text="Crear evento"
+                disabled={!gradeSelected}
               />
-              <input
-                className="input-date situations-input-date"
-                type="text"
-                placeholder="dia/mes"
-              />
-              <input className="input-button" value="Añadir" type="submit" />
             </div>
           </>
         )}
