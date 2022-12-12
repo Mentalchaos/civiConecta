@@ -1,5 +1,8 @@
-import { useState } from 'react';
-import { getClassesByUnitAndGrade } from 'src/services/admin/classes.request';
+import { useEffect, useState } from 'react';
+import {
+  getClassesByUnitAndGrade,
+  updateClass,
+} from 'src/services/admin/classes.request';
 import Planification from 'src/components/Planification/Planification';
 import Spinner from 'src/components/UI/Spinner';
 import arrowDown from 'src/assets/Icons/arrow-down.svg';
@@ -9,7 +12,7 @@ import Button from 'src/components/UI/Button';
 import Modal from 'src/components/UI/Modal';
 import PlanningForm from 'src/components/UI/PlanningForm';
 
-const Unit = ({ unitsData, grade }) => {
+const Unit = ({ unitsData, grade, handleSubmit }) => {
   const [showClass, setShowClass] = useState(false);
   const [isSelectedClass, setIsSelectedClass] = useState(false);
   const [dataClassSelected, setDataClassSelected] = useState({});
@@ -36,10 +39,10 @@ const Unit = ({ unitsData, grade }) => {
     setFetching(!fetching);
     setUnitSelectedNumber(unitNumber);
     setIsSelectedClass(false);
-    getClasses(unitNumber, grade);
+    !showClass && getClasses(unitNumber);
   };
 
-  const getClasses = (unitNumber, grade) => {
+  const getClasses = unitNumber => {
     setLoadingData(true);
     getClassesByUnitAndGrade(unitNumber, grade).then(resp => {
       try {
@@ -50,6 +53,47 @@ const Unit = ({ unitsData, grade }) => {
         setLoadingData(false);
       }
     });
+  };
+
+  const onUpdateClass = (number, unit, grade, formValues) => {
+    setFetching(true);
+    const {
+      topic,
+      studentMaterials,
+      description,
+      teacherMaterials,
+      startActivity,
+      mainActivity,
+      endActivity,
+    } = formValues;
+
+    const payload = {
+      ...dataClassSelected,
+      description,
+      planning: {
+        startActivity,
+        mainActivity,
+        endActivity,
+        topic,
+        materials: {
+          teacher: teacherMaterials.toString().trim().split(','),
+          student: studentMaterials.toString().trim().split(','),
+        },
+      },
+    };
+    updateClass(number, unit, grade, payload).then(resp => {
+      if (resp.ok) {
+        setFetching(false);
+      } else {
+        setFetching(false);
+        console.error(resp.error);
+      }
+    });
+  };
+
+  const onHandleSubmit = values => {
+    const { number, unit } = dataClassSelected;
+    onUpdateClass(number, unit.number, grade, values);
   };
 
   return (
@@ -101,8 +145,11 @@ const Unit = ({ unitsData, grade }) => {
                   <Planification
                     classData={dataClassSelected}
                     setIsSelectedClass={setIsSelectedClass}
-                    getClasses={getClasses}
+                    handleSubmit={onHandleSubmit}
                     grade={grade}
+                    fetching={fetching}
+                    getClasses={getClasses}
+                    isClass={true}
                   />
                 )}
                 {classesList &&
