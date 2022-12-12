@@ -215,7 +215,7 @@ const Situations = () => {
                 onClick={() => setShowForm(true)}
                 customStyles={buttonStyles}
                 text="Crear evento"
-                disabled={!gradeSelected && fetching}
+                disabled={!gradeSelected || fetching}
               />
             </div>
           </>
