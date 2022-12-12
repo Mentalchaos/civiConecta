@@ -25,13 +25,7 @@ const Situations = () => {
   const [fetching, setFetching] = useState(false);
 
   useEffect(() => {
-    setFetching(true);
-    getGrades().then(resp => {
-      if (resp.ok) {
-        setFetching(false);
-        setGrades(resp.grades);
-      }
-    });
+    onGetGrade();
   }, []);
 
   const buttonStyles = {
@@ -39,6 +33,16 @@ const Situations = () => {
     borderRadius: '20px',
     color: '#fff',
     padding: '5px 30px',
+  };
+
+  const onGetGrade = () => {
+    setFetching(true);
+    getGrades().then(resp => {
+      if (resp.ok) {
+        setFetching(false);
+        setGrades(resp.grades);
+      }
+    });
   };
 
   const getEvents = grade => {
@@ -145,7 +149,7 @@ const Situations = () => {
             className="select-date"
             onChange={handleChangeGrade}
             defaultValue="Seleccione nivel"
-            disabled={showPlanning}
+            disabled={showPlanning && !grades.length}
           >
             <option disabled>Seleccione nivel</option>
             {grades.map(grade => {
@@ -211,7 +215,7 @@ const Situations = () => {
                 onClick={() => setShowForm(true)}
                 customStyles={buttonStyles}
                 text="Crear evento"
-                disabled={!gradeSelected}
+                disabled={!gradeSelected && fetching}
               />
             </div>
           </>
