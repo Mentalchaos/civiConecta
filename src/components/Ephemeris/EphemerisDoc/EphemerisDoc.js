@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import arrow from 'src/assets/Icons/arrow-degree.svg';
 import '../Ephemeris.css';
 
