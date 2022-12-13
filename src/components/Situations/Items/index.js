@@ -14,6 +14,7 @@ const Items = ({ handleSituationSelected, handleShowPlanning, eventData }) => {
       <div className="item-info">
         <p className="info-date"> {transformedDate} </p>
         <div className="text-box">
+          <p className="doc-event-number situations">{number}</p>
           <p className="text-box-p1"> {title} </p>
           <p className="text-box-p2"> {files.length} documentos adjuntados. </p>
           <p className="text-box-p3"> OA: {description} </p>

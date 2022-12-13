@@ -59,3 +59,7 @@
 .info-date {
   font-size: 12px;
 }
+
+.doc-event-number.situations {
+  top: 5px;
+}

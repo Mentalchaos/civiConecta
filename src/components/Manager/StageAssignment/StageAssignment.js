@@ -102,6 +102,14 @@ const StageAssignment = ({ title, changeStage, institutionSelected }) => {
       <h1 className="section__title">{title}</h1>
       <article className="section__content-assignment">
         <div className="content__level-selection">
+          <h1 style={{ margin: 0, color: 'var(--color-secondary)' }}>
+            Lista de cursos
+          </h1>
+          {!institutionCourses.length && (
+            <h1 style={{ fontSize: '26px', textAlign: 'center' }}>
+              Aún no hay cursos registrados.
+            </h1>
+          )}
           <div
             style={{
               display: 'flex',
@@ -109,13 +117,11 @@ const StageAssignment = ({ title, changeStage, institutionSelected }) => {
               alignItems: 'center',
               flexWrap: 'wrap',
             }}
-          ></div>
-          {fetching && <Spinner />}
-          {institutionCourses.length > 0 &&
-            !fetching &&
-            institutionCourses.map(course => {
-              const { level } = course;
-              course?.letters?.map(letter => {
+          >
+            {institutionCourses.length > 0 &&
+              !fetching &&
+              institutionCourses.map(course => {
+                const { level } = course;
                 return (
                   <section
                     className="content__level-selected"
@@ -132,8 +138,9 @@ const StageAssignment = ({ title, changeStage, institutionSelected }) => {
                     </span>
                   </section>
                 );
-              });
-            })}
+              })}
+          </div>
+          {fetching && <Spinner />}
         </div>
         <div style={{ width: '50%', marginRight: 50 }}>
           <div
