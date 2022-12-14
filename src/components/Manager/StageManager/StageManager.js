@@ -86,7 +86,7 @@ const StageManager = ({ title, changeStage, handleInstitutionSelected }) => {
   };
 
   const onHandleGotoCreateCourse = () => {
-    changeStage('assignment');
+    changeStage('Asignación');
   };
 
   const handleSubmit = e => {

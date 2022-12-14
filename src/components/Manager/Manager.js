@@ -8,7 +8,7 @@ import './Manager.css';
 import SectionsHeader from '../SectionsHeader/SectionsHeader';
 
 const Manager = () => {
-  const [stage, setStage] = useState('manager');
+  const [stage, setStage] = useState('Manager');
   const [institutionSelected, setInstitutionSelected] = useState({});
 
   const changeStage = stage => {
@@ -24,7 +24,7 @@ const Manager = () => {
       <SectionsHeader
         image={background}
         subtitle={
-          stage === 'manager'
+          stage === 'Manager'
             ? 'Manager de establecimientos'
             : institutionSelected.name
         }
@@ -34,22 +34,26 @@ const Manager = () => {
           {/*Aqui debe ir el path para controlar flujo actual*/}
           <p className="path__text">{stage}</p>
         </div>
-        {stage === 'manager' && (
+        {stage === 'Manager' && (
           <StageManager
             changeStage={changeStage}
             title="A&ntilde;adir Instituci&oacute;n"
             handleInstitutionSelected={handleInstitutionSelected}
           />
         )}
-        {stage === 'assignment' && (
+        {stage === 'Asignación' && (
           <StageAssignment
             changeStage={changeStage}
             institutionSelected={institutionSelected}
             title="Creaci&oacute;n de cursos"
           />
         )}
-        {stage === 'detail' && (
-          <StageDetail changeStage={changeStage} title="Detalle de letra" />
+        {stage === 'Detalle' && (
+          <StageDetail
+            institutionSelected={institutionSelected}
+            changeStage={changeStage}
+            title="Detalle de letra"
+          />
         )}
       </main>
     </>
