@@ -1,21 +1,18 @@
 import { useState } from 'react';
 import Button from 'src/components/UI/Button';
-import Table from 'src/components/UI/Table';
 import arrow from 'src/assets/Icons/arrow-degree.svg';
-import addStudentIcon from 'src/assets/Icons/add-student.svg';
-import replaceTeacherIcon from 'src/assets/Icons/replace-teacher.svg';
 
 import './StageDetail.css';
 import Modal from 'src/components/UI/Modal';
 import useForm from 'src/hooks/useForm';
 
-const StageDetail = ({ title }) => {
+const StageDetail = ({ title, courseSelected, institutionSelected }) => {
   const [openEditModal, setOpenEditModal] = useState(false);
   const [teacherSelected, setTeacherSelected] = useState(false);
   const [studentSelected, setStudentSelected] = useState(false);
   const [dataStudents, setDataStudents] = useState([]);
   const { values, handleInputChange, reset } = useForm({
-    name: '',
+    /*  */ name: '',
     rut: '',
   });
 
@@ -34,46 +31,10 @@ const StageDetail = ({ title }) => {
     padding: '5px 40px',
   };
 
-  const dataHeaderReplaceTeacher = ['Nombre', 'Fecha de registro'];
-
   const tableDataHeader = [
     'Nombre',
     'Fecha de asignación',
     'Estado de actividad',
-  ];
-
-  const teachersAvailable = [
-    {
-      name: 'Roberto Andres Lazaro Potrero',
-      registerDate: '10/10/2022',
-    },
-    { name: 'Maria Antonia Jerez Duran', registerDate: '10/10/2022' },
-    {
-      name: 'Matias Nicolas Madariaga Zarate',
-      registerDate: '10/10/2022',
-    },
-    { name: 'Gonzalo Alberto Jara Urrea', registerDate: '10/10/2022' },
-    {
-      name: 'Clara Andrea Norhambuena Gutierrez',
-      registerDate: '10/10/2022',
-    },
-    {
-      name: 'Rosa Alejandra Arevalo Petersen',
-      registerDate: '10/10/2022',
-    },
-  ];
-
-  const dataTeacher = [
-    {
-      name: 'Tadeo Cespedes Vilaita',
-      activity: 'Activo',
-      assignmentDate: '10/10/2022',
-    },
-    {
-      name: 'Emilio Andres Manriquez Espinosa',
-      activity: 'Activo',
-      assignmentDate: '10/10/2022',
-    },
   ];
 
   const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
@@ -135,7 +96,7 @@ const StageDetail = ({ title }) => {
           <div onClick={() => setOpenEditModal(true)} className="main__info">
             <img className="info__modal-edit" src={arrow} />
             <p>
-              Colegio: <span>American</span>
+              Colegio: <span>{institutionSelected.name}</span>
             </p>
             <p>
               Nivel: <span>5º Básico</span>
@@ -151,7 +112,6 @@ const StageDetail = ({ title }) => {
             <p>
               <strong>Docentes</strong> asignados a letra:
             </p>
-            <Table dataHeader={tableDataHeader} data={dataTeacher} />
             {teacherSelected && (
               <section className="table-actions">
                 <Button customStyles={buttonCancelStyle} text={'Eliminar'} />
@@ -159,31 +119,7 @@ const StageDetail = ({ title }) => {
               </section>
             )}
 
-            <div
-              style={{
-                display: 'block',
-                paddingBottom: 20,
-                textAlign: 'right',
-                marginTop: 20,
-              }}
-            >
-              <Button
-                customStyles={buttonStyle}
-                icon={replaceTeacherIcon}
-                text={'Reemplazo'}
-              />
-            </div>
-
             <>
-              <Table
-                style={{
-                  width: '80%',
-                  margin: 'auto',
-                }}
-                type={0}
-                dataHeader={dataHeaderReplaceTeacher}
-                data={teachersAvailable}
-              />
               <div
                 style={{
                   display: 'block',
@@ -195,44 +131,6 @@ const StageDetail = ({ title }) => {
                 <Button text={'Asignar'} customStyles={buttonStyle} />
               </div>
             </>
-
-            <div style={{ marginTop: 50 }}>
-              <p>
-                <strong>Alumnos</strong> asignados a letra:
-              </p>
-              <Table
-                style={{ marginTop: 0 }}
-                dataHeader={dataHeaderReplaceTeacher}
-                data={dataStudents}
-              />
-              {studentSelected && (
-                <section className="table-actions">
-                  <Button customStyles={buttonCancelStyle} text={'Eliminar'} />
-                  <Button customStyles={buttonStyle} text={'Suspender'} />
-                </section>
-              )}
-              <form className="form__add-student">
-                <input
-                  onChange={handleInputChange}
-                  type="text"
-                  name="name"
-                  placeholder="Nombre completo"
-                />
-                <input
-                  onChange={handleInputChange}
-                  type="text"
-                  name="rut"
-                  placeholder="Rut"
-                />
-                <div style={{ marginTop: 20 }}>
-                  <Button
-                    customStyles={buttonStyle}
-                    icon={addStudentIcon}
-                    text={'Añadir'}
-                  />
-                </div>
-              </form>
-            </div>
           </div>
         </main>
       </article>
