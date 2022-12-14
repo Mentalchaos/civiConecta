@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Button from 'src/components/UI/Button';
+import Spinner from 'src/components/UI/Spinner';
 import useForm from 'src/hooks/useForm';
 import gotoIcon from 'src/assets/Icons/arrow-degree.svg';
 import addStudentIcon from 'src/assets/Icons/add-student.svg';
@@ -7,13 +8,13 @@ import { getGrades } from 'src/services/admin/grades.request';
 import { updateEstablishment } from 'src/services/admin/establishment.request';
 
 import './StageAssignment.css';
-import Spinner from 'src/components/UI/Spinner';
 
 const StageAssignment = ({ title, changeStage, institutionSelected }) => {
   const [grades, setGrades] = useState([]);
   const [studentsAdded, setStudentsAdded] = useState([]);
   const [institutionCourses, setInstitutionCourses] = useState([]);
   const [fetching, setFetching] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const { values, handleInputChange, reset } = useForm({
     grade: 'Seleccionar',
     letter: 'Seleccionar',
@@ -50,6 +51,7 @@ const StageAssignment = ({ title, changeStage, institutionSelected }) => {
   };
 
   const handleCourseSelected = course => {
+    changeStage('Detalle');
     console.log(course);
   };
 
@@ -69,12 +71,12 @@ const StageAssignment = ({ title, changeStage, institutionSelected }) => {
 
     const payload = {
       name: institutionSelected.name,
-      ...filterCourseSelected,
       courses: [
+        ...institutionSelected.courses,
         {
-          grade: values.grade.split(' ')[0],
-          ...getLettersCourseSelected,
+          level: values.grade.split(' ')[0],
           letters: [
+            ...getLettersCourseSelected,
             {
               character: values.letter,
               students: [...studentsAdded],
@@ -84,14 +86,23 @@ const StageAssignment = ({ title, changeStage, institutionSelected }) => {
       ],
     };
     updateEstablishment(establishmentNumber, payload).then(resp => {
+      if (resp.error) {
+        setFetching(false);
+        setErrorMessage('Ha ocurrido un error, porfavor inténtelo denuevo.');
+        setStudentsAdded([]);
+        values.name = '';
+        values.run = '';
+      }
+      if (resp.error?.message?.includes('run')) {
+        setErrorMessage('Rut incorrecto');
+        setFetching(false);
+      }
       if (resp.ok) {
         const courses = [...institutionCourses, resp.establishment.courses[0]];
+        setErrorMessage('');
         setInstitutionCourses(courses);
         setFetching(false);
         reset();
-        setStudentsAdded([]);
-      } else {
-        setFetching(false);
         setStudentsAdded([]);
       }
     });
@@ -102,9 +113,6 @@ const StageAssignment = ({ title, changeStage, institutionSelected }) => {
       <h1 className="section__title">{title}</h1>
       <article className="section__content-assignment">
         <div className="content__level-selection">
-          <h1 style={{ margin: 0, color: 'var(--color-secondary)' }}>
-            Lista de cursos
-          </h1>
           {!institutionCourses.length && (
             <h1 style={{ fontSize: '26px', textAlign: 'center' }}>
               Aún no hay cursos registrados.
@@ -216,9 +224,14 @@ const StageAssignment = ({ title, changeStage, institutionSelected }) => {
                 type="text"
                 name="run"
                 value={values.run}
-                placeholder="Formato: 12.543.343-8"
+                placeholder="Ingrese rut de estudiante"
               />
             </div>
+            {errorMessage.length > 0 && (
+              <span style={{ color: 'red', fontSize: '13px' }}>
+                {errorMessage}
+              </span>
+            )}
             <div
               style={{
                 marginTop: 20,
@@ -233,14 +246,18 @@ const StageAssignment = ({ title, changeStage, institutionSelected }) => {
                 icon={addStudentIcon}
                 text="A&ntilde;adir alumno"
                 type="button"
-                disabled={!values.name || !values.run}
+                disabled={values.name.length < 6 || values.run.length < 9}
               />
               <Button
                 onClick={handleAddCourse}
                 customStyles={buttonStyles}
                 text="Guardar"
                 type="button"
-                disabled={!studentsAdded.length}
+                disabled={
+                  !studentsAdded.length ||
+                  values.grade === 'Seleccionar' ||
+                  values.letter === 'Seleccionar'
+                }
               />
             </div>
           </form>
