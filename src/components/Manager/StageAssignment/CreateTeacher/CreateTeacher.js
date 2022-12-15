@@ -3,17 +3,16 @@ import Modal from 'src/components/UI/Modal';
 import useForm from 'src/hooks/useForm';
 import './CreateTeacher.css';
 
-const CreateTeacher = ({ setAddTeacher, onHandleAddTeacher, ...props }) => {
+const CreateTeacher = ({
+  setAddTeacher,
+  onHandleAddTeacher,
+  errorMessage,
+  fetching,
+  ...props
+}) => {
   const { values, handleInputChange } = useForm({
     name: '',
-    rut: '',
-    profession: '',
     email: '',
-    phone: '',
-    region: '',
-    commune: '',
-    street: '',
-    houseNumber: '',
   });
 
   const buttonStyles = {
@@ -35,16 +34,14 @@ const CreateTeacher = ({ setAddTeacher, onHandleAddTeacher, ...props }) => {
 
   const handleAddTeacher = e => {
     e.preventDefault();
-    const anyValueEmpty = Object.values(values).some(
-      item => item.trim() === '',
-    );
-    if (anyValueEmpty) return;
+    const { name, email } = values;
+    if ((!name, !email)) return;
     onHandleAddTeacher(values);
   };
 
   return (
     <Modal
-      style={{ padding: '40px 100px', marginTop: 120 }}
+      style={{ padding: '40px 100px', marginTop: '150px' }}
       title={'Creación docente'}
       subtitle="Llenar el formulario."
     >
@@ -60,27 +57,6 @@ const CreateTeacher = ({ setAddTeacher, onHandleAddTeacher, ...props }) => {
               placeholder="Nombre completo"
               onChange={handleInputChange}
             />
-          </div>
-          <div className="input-group">
-            <input
-              name="rut"
-              onChange={handleInputChange}
-              value={values.rut}
-              type="text"
-              placeholder="Rut"
-            />
-            <input
-              name="profession"
-              onChange={handleInputChange}
-              value={values.profession}
-              type="text"
-              placeholder="Profesión y Especialidad"
-            />
-          </div>
-        </div>
-        <div className="form-group-container">
-          <label>Datos de contacto</label>
-          <div className="input-group">
             <input
               name="email"
               onChange={handleInputChange}
@@ -88,56 +64,33 @@ const CreateTeacher = ({ setAddTeacher, onHandleAddTeacher, ...props }) => {
               type="text"
               placeholder="E-mail"
             />
-            <input
-              name="phone"
-              onChange={handleInputChange}
-              value={values.phone}
-              type="text"
-              placeholder="Fono personal"
-            />
           </div>
-          <div className="input-group">
-            <input
-              name="region"
-              onChange={handleInputChange}
-              value={values.region}
-              type="text"
-              placeholder="Región"
-            />
-            <input
-              name="commune"
-              onChange={handleInputChange}
-              value={values.commune}
-              type="text"
-              placeholder="Comuna"
-            />
-          </div>
-          <div className="input-group">
-            <input
-              name="street"
-              onChange={handleInputChange}
-              value={values.street}
-              type="text"
-              placeholder="Calle"
-            />
-            <input
-              name="houseNumber"
-              onChange={handleInputChange}
-              value={values.houseNumber}
-              type="text"
-              placeholder="Número"
-            />
-          </div>
+          {errorMessage.length > 0 && (
+            <div>
+              <h1
+                style={{
+                  marginLeft: 20,
+                  fontWeight: 500,
+                  color: 'red',
+                  fontSize: '13px',
+                }}
+              >
+                {errorMessage}
+              </h1>
+            </div>
+          )}
           <div className="form-actions">
             <Button
               onClick={() => setAddTeacher(false)}
               customStyles={buttonCancelStyles}
               text="Cancelar"
+              disabled={fetching}
             />
             <Button
               onClick={handleAddTeacher}
               customStyles={buttonStyles}
               text="Continuar"
+              disabled={fetching}
             />
           </div>
         </div>

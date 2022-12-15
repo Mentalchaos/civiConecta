@@ -5,11 +5,16 @@ import useForm from 'src/hooks/useForm';
 import gotoIcon from 'src/assets/Icons/arrow-degree.svg';
 import addStudentIcon from 'src/assets/Icons/add-student.svg';
 import { getGrades } from 'src/services/admin/grades.request';
-import { updateEstablishment } from 'src/services/admin/establishment.request';
+import { updateCoursesEstablishment } from 'src/services/admin/establishment.request';
 
 import './StageAssignment.css';
 
-const StageAssignment = ({ title, changeStage, institutionSelected }) => {
+const StageAssignment = ({
+  title,
+  changeStage,
+  institutionSelected,
+  onHandleCourseSelected,
+}) => {
   const [grades, setGrades] = useState([]);
   const [studentsAdded, setStudentsAdded] = useState([]);
   const [institutionCourses, setInstitutionCourses] = useState([]);
@@ -23,13 +28,16 @@ const StageAssignment = ({ title, changeStage, institutionSelected }) => {
   });
 
   useEffect(() => {
-    setInstitutionCourses(institutionSelected.courses);
+    const filterCoursesByGrade = institutionSelected.courses.filter(
+      course => course.level === values.grade,
+    );
+    setInstitutionCourses(filterCoursesByGrade);
     getGrades().then(resp => {
       if (resp.ok) {
         setGrades(resp.grades);
       }
     });
-  }, []);
+  }, [values.grade]);
 
   const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
 
@@ -44,7 +52,7 @@ const StageAssignment = ({ title, changeStage, institutionSelected }) => {
     e.preventDefault();
     const { name, run } = values;
     if (!name || !run) return;
-    const newStudent = { name, run };
+    const newStudent = { name, run, survey: [] };
     setStudentsAdded([...studentsAdded, newStudent]);
     values.name = '';
     values.run = '';
@@ -52,7 +60,12 @@ const StageAssignment = ({ title, changeStage, institutionSelected }) => {
 
   const handleCourseSelected = course => {
     changeStage('Detalle');
-    console.log(course);
+    const courseSelected = {
+      ...course,
+      establishment: institutionSelected.number,
+    };
+    console.log(courseSelected);
+    onHandleCourseSelected(courseSelected);
   };
 
   const handleAddCourse = e => {
@@ -62,22 +75,21 @@ const StageAssignment = ({ title, changeStage, institutionSelected }) => {
 
   const onUpdateEstablishment = establishmentNumber => {
     setFetching(true);
-    const filterCourseSelected = institutionCourses.filter(
-      course => course.level === values.grade.split(' ')[0],
+
+    // filtrar estudiantes para letra seleccionada
+    const filterData = institutionSelected.courses[0].letters.filter(
+      letter => letter.character === values.letter,
     );
-    const getLettersCourseSelected = filterCourseSelected.map(
-      item => item.letters[0],
-    );
+    console.log(institutionSelected.courses);
 
     const payload = {
-      name: institutionSelected.name,
       courses: [
-        ...institutionSelected.courses,
+        ...institutionCourses,
         {
-          level: values.grade.split(' ')[0],
+          grade: values.grade.split(' ')[0],
           letters: [
-            ...getLettersCourseSelected,
             {
+              ...filterData,
               character: values.letter,
               students: [...studentsAdded],
             },
@@ -85,7 +97,7 @@ const StageAssignment = ({ title, changeStage, institutionSelected }) => {
         },
       ],
     };
-    updateEstablishment(establishmentNumber, payload).then(resp => {
+    updateCoursesEstablishment(establishmentNumber, payload).then(resp => {
       if (resp.error) {
         setFetching(false);
         setErrorMessage('Ha ocurrido un error, porfavor inténtelo denuevo.');
@@ -111,6 +123,11 @@ const StageAssignment = ({ title, changeStage, institutionSelected }) => {
   return (
     <section className="manager-section">
       <h1 className="section__title">{title}</h1>
+      {fetching && (
+        <div style={{ marginTop: 30 }}>
+          <Spinner />
+        </div>
+      )}
       <article className="section__content-assignment">
         <div className="content__level-selection">
           {!institutionCourses.length && (
@@ -128,14 +145,18 @@ const StageAssignment = ({ title, changeStage, institutionSelected }) => {
           >
             {institutionCourses.length > 0 &&
               !fetching &&
-              institutionCourses.map(course => {
-                const { level } = course;
+              values.grade !== 'Seleccionar' &&
+              institutionCourses[0].letters.map(letter => {
+                const gradeSelected = values.grade;
                 return (
                   <section
+                    key={letter.character}
                     className="content__level-selected"
-                    onClick={() => handleCourseSelected(course)}
+                    onClick={() =>
+                      handleCourseSelected({ letter, gradeSelected })
+                    }
                   >
-                    <span className="level-selected__degree">{`${level}`}</span>
+                    <span className="level-selected__degree">{`${gradeSelected} ${letter.character}`}</span>
                     <span className="add-word__go-to">
                       <span className="go-to__text">B&aacute;sico</span>
                       <img
@@ -148,7 +169,6 @@ const StageAssignment = ({ title, changeStage, institutionSelected }) => {
                 );
               })}
           </div>
-          {fetching && <Spinner />}
         </div>
         <div style={{ width: '50%', marginRight: 50 }}>
           <div
@@ -201,15 +221,37 @@ const StageAssignment = ({ title, changeStage, institutionSelected }) => {
               </select>
             </div>
           </div>
+
           <form className="form__add-student">
             <p style={{ fontSize: 14 }}>
               Alumnos a&ntilde;adidos: <b>{studentsAdded.length}</b>
             </p>
+            {studentsAdded.map(student => {
+              return (
+                <div
+                  style={{
+                    display: 'flex',
+                    gap: 10,
+                    marginTop: 5,
+                    justifyContent: 'flex-end',
+                  }}
+                >
+                  <input
+                    type="text"
+                    name="name"
+                    value={student.name}
+                    onChange={handleInputChange}
+                  />
+                  <input type="text" name="run" value={student.run} />
+                </div>
+              );
+            })}
             <div
               style={{
                 display: 'flex',
                 justifyContent: 'flex-end',
                 gap: 5,
+                paddingTop: 10,
               }}
             >
               <input
@@ -238,6 +280,7 @@ const StageAssignment = ({ title, changeStage, institutionSelected }) => {
                 display: 'flex',
                 gap: 10,
                 justifyContent: 'right',
+                paddingBottom: 40,
               }}
             >
               <Button
@@ -261,6 +304,18 @@ const StageAssignment = ({ title, changeStage, institutionSelected }) => {
               />
             </div>
           </form>
+
+          {/* <Table
+            style={{ marginTop: 0 }}
+            dataHeader={tableDataHeaderStudents}
+            data={dataStudents}
+          />
+          {studentSelected && (
+            <section className="table-actions">
+              <Button customStyles={buttonCancelStyle} text={'Eliminar'} />
+              <Button customStyles={buttonStyles} text={'Suspender'} />
+            </section>
+          )} */}
         </div>
       </article>
     </section>

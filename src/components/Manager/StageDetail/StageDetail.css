@@ -15,7 +15,6 @@
 }
 
 .main__info {
-  cursor: pointer;
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -34,6 +33,7 @@
 }
 
 .main__table {
+  position: relative;
   margin-top: 40px;
 }
 
@@ -51,6 +51,9 @@
 }
 
 .table-actions {
+  position: absolute;
+  right: 50%;
+  left: 50%;
   display: flex;
   justify-content: center;
   gap: 50px;

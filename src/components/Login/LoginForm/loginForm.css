@@ -37,8 +37,3 @@
 /* .form-input:focus {
   background-color: aqua;
 } */
-
-.button:hover {
-  background-color: var(--color-secondary) !important;
-  opacity: 0.8;
-}
