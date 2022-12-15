@@ -7,8 +7,7 @@ import useForm from 'src/hooks/useForm';
 import {
   createEstablishment,
   getEstablishment,
-  inactivateEstablishment,
-  reactivateEstablishment,
+  updateActiveEstablishment,
 } from 'src/services/admin/establishment.request';
 
 import './StageManager.css';
@@ -105,35 +104,20 @@ const StageManager = ({ title, changeStage, handleInstitutionSelected }) => {
   };
 
   const handleConfirmAction = () => {
+    setShowDeleteOption(false);
     setFetching(true);
     const { number, active } = institutionSelected;
-    active &&
-      inactivateEstablishment(number).then(resp => {
-        if (resp.ok) {
-          setFetching(false);
-          getEstablishments();
-          setConfirmAction(false);
-        } else {
-          console.error(resp.error);
-          setConfirmAction(false);
-          getEstablishments();
-        }
-      });
-    !active &&
-      reactivateEstablishment(number).then(resp => {
-        if (resp.ok) {
-          setFetching(false);
-          getEstablishments();
-          setShowDeleteOption(false);
-          setConfirmAction(false);
-        } else {
-          console.error(resp.error);
-          setFetching(false);
-          getEstablishments();
-          setShowDeleteOption(false);
-          setConfirmAction(false);
-        }
-      });
+    updateActiveEstablishment(number, !active).then(resp => {
+      if (resp.ok) {
+        setFetching(false);
+        getEstablishments();
+        setConfirmAction(false);
+      } else {
+        console.error(resp.error);
+        setConfirmAction(false);
+        getEstablishments();
+      }
+    });
   };
 
   return (
