@@ -226,7 +226,7 @@ const StageAssignment = ({
             <p style={{ fontSize: 14 }}>
               Alumnos a&ntilde;adidos: <b>{studentsAdded.length}</b>
             </p>
-            {studentsAdded.map(student => {
+            {/*studentsAdded.map(student => {
               return (
                 <div
                   style={{
@@ -245,7 +245,7 @@ const StageAssignment = ({
                   <input type="text" name="run" value={student.run} />
                 </div>
               );
-            })}
+            })*/}
             <div
               style={{
                 display: 'flex',
