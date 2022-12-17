@@ -13,3 +13,37 @@ export const signIn = async (email, password) => {
     ...response,
   };
 };
+
+export const signUpUserRole = async payload => {
+  const user = JSON.parse(localStorage.getItem('user'));
+  const jwt = user.token;
+  const fetching = await fetch(`${BASE_URL}/signUpUserRole`, {
+    method: 'POST',
+    body: JSON.stringify({ ...payload }),
+    headers: {
+      'Content-Type': 'application/json',
+      token: jwt,
+    },
+  });
+  const response = await fetching.json();
+  return {
+    ...response,
+  };
+};
+
+export const updateActiveUser = async (email, active) => {
+  const user = JSON.parse(localStorage.getItem('user'));
+  const jwt = user.token;
+  const fetching = await fetch(`${BASE_URL}/updateActiveUser?email=${email}`, {
+    method: 'PUT',
+    body: JSON.stringify({ active }),
+    headers: {
+      'Content-Type': 'application/json',
+      token: jwt,
+    },
+  });
+  const response = await fetching.json();
+  return {
+    ...response,
+  };
+};
