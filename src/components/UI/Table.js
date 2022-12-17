@@ -8,6 +8,7 @@ const Table = ({
   dataHeader,
   handleCheckboxSelected,
   dataDisplayed,
+  displayCheckbox = true,
   ...props
 }) => {
   const [checked, setChecked] = useState({});
@@ -31,9 +32,9 @@ const Table = ({
           }}
         >
           <tr>
-            <th style={{ width: 20 }}></th>
+            {displayCheckbox && <th style={{ width: 20 }}></th>}
             {dataHeader.map(headerName => (
-              <th>{headerName}</th>
+              <th key={headerName}>{headerName}</th>
             ))}
           </tr>
         </thead>
@@ -41,20 +42,22 @@ const Table = ({
           {dataDisplayed.map((obj, index) => {
             return (
               <tr key={index}>
-                <td style={{ width: 20 }}>
-                  <input
-                    onChange={e => {
-                      onSelectedChange(index);
-                      e.target.checked
-                        ? handleCheckboxSelected(data[index])
-                        : handleCheckboxSelected(null);
-                    }}
-                    disabled={!checked[index] && disabled}
-                    id={index}
-                    type="checkbox"
-                  />
-                  <label htmlFor={index}></label>
-                </td>
+                {displayCheckbox && (
+                  <td style={{ width: 20 }}>
+                    <input
+                      onChange={e => {
+                        onSelectedChange(index);
+                        e.target.checked
+                          ? handleCheckboxSelected(data[index])
+                          : handleCheckboxSelected(null);
+                      }}
+                      disabled={!checked[index] && disabled}
+                      id={index}
+                      type="checkbox"
+                    />
+                    <label htmlFor={index}></label>
+                  </td>
+                )}
                 {Object.values(obj).map((value, dataIndex) => (
                   <td key={dataIndex}>{value}</td>
                 ))}
