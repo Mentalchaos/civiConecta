@@ -10,6 +10,7 @@ import SectionsHeader from '../SectionsHeader/SectionsHeader';
 const Manager = () => {
   const [stage, setStage] = useState('Manager');
   const [institutionSelected, setInstitutionSelected] = useState({});
+  const [courseSelected, setCourseSelected] = useState({});
 
   const changeStage = stage => {
     setStage(stage);
@@ -17,6 +18,10 @@ const Manager = () => {
 
   const handleInstitutionSelected = institution => {
     setInstitutionSelected(institution);
+  };
+
+  const handleCourseSelected = course => {
+    setCourseSelected(course);
   };
 
   return (
@@ -45,12 +50,14 @@ const Manager = () => {
           <StageAssignment
             changeStage={changeStage}
             institutionSelected={institutionSelected}
+            onHandleCourseSelected={handleCourseSelected}
             title="Creaci&oacute;n de cursos"
           />
         )}
         {stage === 'Detalle' && (
           <StageDetail
             institutionSelected={institutionSelected}
+            courseSelected={courseSelected}
             changeStage={changeStage}
             title="Detalle de letra"
           />

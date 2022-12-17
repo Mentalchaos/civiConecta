@@ -33,17 +33,18 @@ export const createEstablishment = async (number, name) => {
   };
 };
 
-export const inactivateEstablishment = async number => {
+export const updateActiveEstablishment = async (number, active) => {
   const user = JSON.parse(localStorage.getItem('user'));
   const jwt = user.token;
   const fetching = await fetch(
-    `${BASE_URL}/inactivateEstablishment?number=${number}`,
+    `${BASE_URL}/updateActiveEstablishment?number=${number}`,
     {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
         token: jwt,
       },
+      body: JSON.stringify({ active }),
     },
   );
   const response = await fetching.json();
@@ -52,30 +53,11 @@ export const inactivateEstablishment = async number => {
   };
 };
 
-export const reactivateEstablishment = async number => {
+export const updateCoursesEstablishment = async (number, payload) => {
   const user = JSON.parse(localStorage.getItem('user'));
   const jwt = user.token;
   const fetching = await fetch(
-    `${BASE_URL}/reactivateEstablishment?number=${number}`,
-    {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        token: jwt,
-      },
-    },
-  );
-  const response = await fetching.json();
-  return {
-    ...response,
-  };
-};
-
-export const updateEstablishment = async (number, payload) => {
-  const user = JSON.parse(localStorage.getItem('user'));
-  const jwt = user.token;
-  const fetching = await fetch(
-    `${BASE_URL}/updateEstablishment?number=${number}`,
+    `${BASE_URL}/updateCoursesEstablishment?number=${number}`,
     {
       method: 'PUT',
       headers: {
