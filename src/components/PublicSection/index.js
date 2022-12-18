@@ -1,3 +1,5 @@
+import './PublicSection.css';
+
 const PublicSection = () => {
     return (
         <div>
