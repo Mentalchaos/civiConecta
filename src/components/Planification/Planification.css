@@ -61,7 +61,7 @@
   justify-content: space-between;
 }
 
-.form-group.planning > label {
+.form-group.planning>label {
   text-align: left;
   font-size: 15px;
 }
@@ -78,11 +78,11 @@
   justify-content: flex-end;
 }
 
-.group__container-materials > label {
+.group__container-materials>label {
   font-size: 14px;
 }
 
-.group__container-materials > input {
+.group__container-materials>input {
   margin-top: 5px;
 }
 
@@ -110,4 +110,32 @@
 .icon-back-to {
   cursor: pointer;
   float: right;
+}
+
+.add-file-container {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+}
+
+.add-file-container::before {
+  background-color: var(--color-secondary);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  content: 'Subir archivo';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.add-file-container input[type="file"] {
+  opacity: 0;
+  width: 200px;
+  height: 32px;
+  display: inline-block;
 }

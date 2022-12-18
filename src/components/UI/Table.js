@@ -58,9 +58,9 @@ const Table = ({
                     <label htmlFor={index}></label>
                   </td>
                 )}
-                {Object.values(obj).map((value, dataIndex) => (
-                  <td key={dataIndex}>{value}</td>
-                ))}
+                {Object.values(obj).map((value, dataIndex) => {
+                  return <td key={dataIndex}>{value}</td>;
+                })}
               </tr>
             );
           })}
