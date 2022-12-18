@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import useForm from 'src/hooks/useForm';
 import Button from '../UI/Button';
 import Table from '../UI/Table';
@@ -6,6 +6,7 @@ import Modal from '../UI/Modal';
 import uploadIcon from 'src/assets/Icons/upload.svg';
 import arrowIcon from 'src/assets/Icons/arrow-down.svg';
 import './Planification.css';
+import { uploadFileByClassUnitAndGrade } from 'src/services/admin/files.request';
 
 const Planification = ({
   classData,
@@ -18,6 +19,8 @@ const Planification = ({
 }) => {
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const [isRowSelected, setIsRowSelected] = useState(false);
+  const [fileName, setFileName] = useState('');
+  const [filesData, setFilesData] = useState([]);
   const { values, handleInputChange } = useForm({
     topic: classData.planning.topic,
     studentMaterials: classData.planning.materials[0].student,
@@ -27,6 +30,11 @@ const Planification = ({
     endActivity: classData.planning.endActivity,
     description: classData.description,
   });
+
+  useEffect(() => {
+    setFilesData(classData.files);
+  }, [classData.files]);
+  const inputFile = useRef();
 
   const styleDefaultButton = {
     padding: '5px 40px',
@@ -50,12 +58,18 @@ const Planification = ({
     border: '1px solid var(--color-secondary)',
   };
 
-  const headerTexts = ['Nombre', 'Formato', 'Fecha de subida'];
-  const data = [
-    { name: 'archivo_adjunto_1', formato: 'PDF', addedDate: '01/10/2022' },
-    { name: 'archivo_adjunto_1', formato: 'PDF', addedDate: '01/10/2022' },
-    { name: 'archivo_adjunto_1', formato: 'PDF', addedDate: '01/10/2022' },
-  ];
+  const headerTexts = ['Nombre'];
+  const files = classData.files.map(file => {
+    return {
+      url: file,
+    };
+  });
+  const tableDataDisplayed = files.map(file => {
+    const separateNameFile = file.url.split('=')[4];
+    return {
+      name: separateNameFile,
+    };
+  });
 
   const onHandleCheckboxSelected = rowDataSelected => {
     if (rowDataSelected) {
@@ -68,6 +82,24 @@ const Planification = ({
   const onHandleSubmit = e => {
     e.preventDefault();
     handleSubmit(values);
+  };
+
+  const handleFileChange = () => {
+    const fileName = inputFile.current?.files[0]?.name;
+    console.log(inputFile);
+    setFileName(fileName);
+    uploadFileByClassUnitAndGrade(
+      classData.number,
+      classData.unit.number,
+      grade,
+      fileName,
+    ).then(resp => {
+      if (resp.ok) {
+        setFileName('');
+      } else {
+        setFileName('');
+      }
+    });
   };
 
   return (
@@ -120,13 +152,13 @@ const Planification = ({
         type="text"
         placeholder="Detalle OA"
       />
-      {data.length ? (
+      {classData.files.length ? (
         <div className="table-section">
           <Table
             style={{ marginTop: 10 }}
             handleCheckboxSelected={onHandleCheckboxSelected}
-            data={data}
-            dataDisplayed={data}
+            data={files}
+            dataDisplayed={tableDataDisplayed}
             dataHeader={headerTexts}
           />
           {isRowSelected && (
@@ -140,14 +172,22 @@ const Planification = ({
           )}
         </div>
       ) : (
-        <h1>Aún no se suben archivos</h1>
+        <h1>No se registran archivos.</h1>
       )}
-      <div className="btn-container">
-        <Button
-          icon={uploadIcon}
-          customStyles={styleDefaultWithIcon}
-          text="Subir archivo"
-        />
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+          alignItems: 'center',
+          gap: 5,
+        }}
+      >
+        {fileName.length > 0 && (
+          <span style={{ fontSize: 13 }}>{fileName}</span>
+        )}
+        <div className="add-file-container">
+          <input type="file" ref={inputFile} onChange={handleFileChange} />
+        </div>
       </div>
       <h2
         style={{
