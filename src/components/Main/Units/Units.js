@@ -24,7 +24,7 @@ const Units = () => {
           </div>
         </div>
         <div className="header__right-content">
-          <Select />
+          {/* <Select /> */}
         </div>
       </div>
       <UnitDocs title={'Unidad 1'} />
