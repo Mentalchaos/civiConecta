@@ -1,32 +1,39 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SectionsHeader from '../SectionsHeader/SectionsHeader';
 import Categories from '../TeacherSurvey/Categories/Categories';
 import studentImage from '../../assets/images/student-image.png';
 import './StudentSurvey.css';
 import Question from '../Question/Question';
+import Spinner from '../UI/Spinner';
 
 const StudentSurvey = () => {
-  const surveyCategories = [
-    {
-      title: 'Relaciones interpersonales',
-      detail: '0 Preguntas en esta categoría',
-    },
-    {
-      title: 'Resolución de conflictos',
-      detail: '0 Preguntas en esta categoría',
-    },
-    {
-      title: 'Bienestar y autocuidado',
-      detail: '0 Preguntas en esta categoría',
-    },
-    {
-      title: 'Prevención consumo drogas y alcohol',
-      detail: '0 Preguntas en esta categoría',
-    },
-  ];
-
-  const [state, setState] = useState(surveyCategories);
   const [isSurveyVisible, setSurveyVisibility] = useState(false);
+  const [topics, setTopics] = useState([]);
+  const [selectedTopic, setSelectedTopic] = useState(false);
+
+  useEffect(() => {
+    const getTopics = async function() { 
+      const user = JSON.parse(localStorage.getItem('user'));
+      const jwt = user.token;
+
+      fetch('https://civi-conecta-server.adaptable.app/getTopics', {
+        headers: {
+          'Content-Type': 'application/json',
+          token: jwt,
+        }
+      })
+      .then(response => response.json())
+      .then(data => setTopics(data.topics));
+    }
+    getTopics();
+  }, []);
+
+  console.log('selected topic',selectedTopic);
+
+  const setTopicAndVisibility = (number) => {
+    setSelectedTopic(number);
+    setSurveyVisibility(true);
+  }
 
   return (
     <>
@@ -38,25 +45,28 @@ const StudentSurvey = () => {
           </div>
         </div>
 
-        {isSurveyVisible ? (
+        { isSurveyVisible ? (
           <Question />
         ) : (
           <div className="categories-container">
-            {surveyCategories.map(item => {
-              return (
-                <Categories
-                  type={'student'}
-                  title={item.title}
-                  detail={item.detail}
-                  key={item.title}
-                  onclick={() => setSurveyVisibility(true)}
-                />
-              );
-            })}
+            { topics.length == 0 && <Spinner /> }
+            {
+              topics.map(item => {
+                return (
+                  <Categories
+                    type={'student'}
+                    title={item.title}
+                    detail={item.detail}
+                    key={`topic-${item.number}`}
+                    onclick={() => setTopicAndVisibility(item.number)}
+                  />
+                );
+              })
+            }
           </div>
         )}
       </main>
-      {state.length < 4 && (
+      { topics.length < 4 && (
         <div className="button-container teacher-survey">
           <button className="add-button">
             <p className="add-button-icon">+</p>

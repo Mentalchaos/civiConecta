@@ -1,9 +1,8 @@
 import relationships from '../../../assets/images/relationships-icon.png';
 import editArrow from '../../../assets/images/edit-arrow.png';
-// import studentsIcon from '../../../assets/images/relationships-red.png';
 import './Categories.css';
 
-const Categories = ({ title, detail, type, onclick}) => {
+const Categories = ({ title, detail, type, onclick, number }) => {
     const css = {color: type == 'student' ? '#D9687C'  : ''};
 
     return (
@@ -14,6 +13,9 @@ const Categories = ({ title, detail, type, onclick}) => {
             <div className='category-description'>
                 <p style={css} className='category-title'>{title}</p>
                 <p className='category-details'>{detail}</p>
+            </div>
+            <div className='remove-arrow'>
+              X
             </div>
             <div className='edit-arrow'>
                 <p style={css} className='edit-hover'>Editar categoría</p>
