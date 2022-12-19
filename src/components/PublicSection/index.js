@@ -1,9 +1,14 @@
+import PublicFooter from './Footer/PublicFooter';
+import PublicHeader from './Header/PublicHeader';
+import Welcome from './Welcome/Welcome';
 import './PublicSection.css';
 
 const PublicSection = () => {
     return (
         <div>
-            <p>Seccion publica aca</p>
+            <PublicHeader />
+            <Welcome />
+            <PublicFooter />
         </div>
     )
 }
