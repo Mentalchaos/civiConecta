@@ -1,0 +1,37 @@
+.welcome-container {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+}
+
+.left-container {
+    width: 50%;
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+    background-color: #fceff2;
+}
+
+.left-container h3 {
+    color: #e95f7b;
+}
+
+.p-1 {
+    font-size: 14px;
+    color: black;
+}
+
+.p-2 {
+    font-size: 14px;
+    color: #ed6595;
+}
+
+.right-container {
+    width: 50%;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    background-color: #e95f7b;
+}
+
+.right-container p {
+    color: #FFFFFF;
+}
