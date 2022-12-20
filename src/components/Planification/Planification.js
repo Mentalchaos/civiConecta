@@ -3,15 +3,15 @@ import useForm from 'src/hooks/useForm';
 import Button from '../UI/Button';
 import Table from '../UI/Table';
 import Modal from '../UI/Modal';
-import uploadIcon from 'src/assets/Icons/upload.svg';
 import arrowIcon from 'src/assets/Icons/arrow-down.svg';
 import './Planification.css';
-import { uploadFileByClassUnitAndGrade } from 'src/services/admin/files.request';
 
 const Planification = ({
   classData,
   setIsSelectedClass,
   handleSubmit,
+  onHandleAddFile,
+  onHandleDeleteFile,
   getClasses,
   isClass,
   fetching,
@@ -21,6 +21,7 @@ const Planification = ({
   const [isRowSelected, setIsRowSelected] = useState(false);
   const [fileName, setFileName] = useState('');
   const [filesData, setFilesData] = useState([]);
+  const [fileSelected, setFileSelected] = useState('');
   const { values, handleInputChange } = useForm({
     topic: classData.planning.topic,
     studentMaterials: classData.planning.materials[0].student,
@@ -30,21 +31,14 @@ const Planification = ({
     endActivity: classData.planning.endActivity,
     description: classData.description,
   });
+  const inputFile = useRef();
 
   useEffect(() => {
     setFilesData(classData.files);
   }, [classData.files]);
-  const inputFile = useRef();
 
   const styleDefaultButton = {
     padding: '5px 40px',
-    color: '#fff',
-    backgroundColor: 'var(--color-secondary)',
-    borderRadius: 20,
-  };
-
-  const styleDefaultWithIcon = {
-    padding: '5px 20px 5px 40px',
     color: '#fff',
     backgroundColor: 'var(--color-secondary)',
     borderRadius: 20,
@@ -71,11 +65,13 @@ const Planification = ({
     };
   });
 
-  const onHandleCheckboxSelected = rowDataSelected => {
-    if (rowDataSelected) {
+  const onHandleCheckboxSelected = row => {
+    if (row) {
       setIsRowSelected(true);
+      setFileSelected(row.url);
     } else {
       setIsRowSelected(false);
+      setFileSelected('');
     }
   };
 
@@ -84,22 +80,23 @@ const Planification = ({
     handleSubmit(values);
   };
 
-  const handleFileChange = () => {
+  const handleDeleteFile = () => {
+    const file = fileSelected.split('=')[4];
+    onHandleDeleteFile(file);
+  };
+
+  const onSubmitFile = e => {
+    e.preventDefault();
     const fileName = inputFile.current?.files[0]?.name;
-    console.log(inputFile);
     setFileName(fileName);
-    uploadFileByClassUnitAndGrade(
-      classData.number,
-      classData.unit.number,
-      grade,
-      fileName,
-    ).then(resp => {
-      if (resp.ok) {
-        setFileName('');
-      } else {
-        setFileName('');
-      }
-    });
+
+    const form = new FormData();
+    form.append('file', inputFile.current.files[0]);
+    onHandleAddFile(form);
+  };
+
+  const onDownloadFile = () => {
+    if (fileSelected.length) window.location.href = fileSelected;
   };
 
   return (
@@ -116,7 +113,11 @@ const Planification = ({
               customStyles={styleCancelButton}
               onClick={() => setShowConfirmDelete(false)}
             />
-            <Button text="Continuar" customStyles={styleDefaultButton} />
+            <Button
+              onClick={handleDeleteFile}
+              text="Continuar"
+              customStyles={styleDefaultButton}
+            />
           </div>
         </Modal>
       )}
@@ -168,6 +169,11 @@ const Planification = ({
                 text="Eliminar"
                 customStyles={styleCancelButton}
               />
+              <Button
+                onClick={() => onDownloadFile()}
+                text="Descargar"
+                customStyles={styleDefaultButton}
+              />
             </div>
           )}
         </div>
@@ -185,9 +191,11 @@ const Planification = ({
         {fileName.length > 0 && (
           <span style={{ fontSize: 13 }}>{fileName}</span>
         )}
-        <div className="add-file-container">
-          <input type="file" ref={inputFile} onChange={handleFileChange} />
-        </div>
+        <form encType="multipart/form-data" onChange={onSubmitFile}>
+          <div className="add-file-container">
+            <input type="file" name="file" ref={inputFile} />
+          </div>
+        </form>
       </div>
       <h2
         style={{
