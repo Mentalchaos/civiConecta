@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { createUnit, getUnitsByGrade } from 'src/services/admin/units.request';
+import { getGrades } from 'src/services/admin/grades.request';
 import SectionsHeader from '../SectionsHeader/SectionsHeader';
 import Spinner from '../UI/Spinner';
 import Button from '../UI/Button';
@@ -10,6 +11,7 @@ import headerImage from '../../assets/images/background-units.png';
 import './UnitsSection.css';
 
 const UnitsSection = () => {
+  const [grades, setGrades] = useState([]);
   const [units, setUnits] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [gradeSelected, setGradeSelected] = useState('');
@@ -21,7 +23,6 @@ const UnitsSection = () => {
   });
 
   const levels = ['5º Básico'];
-
   const buttonStyle = {
     backgroundColor: 'var(--color-secondary)',
     color: '#fff',
@@ -34,6 +35,16 @@ const UnitsSection = () => {
     padding: '5px 30px',
     border: '1px solid var(--color-secondary)',
     borderRadius: '20px',
+  };
+
+  useEffect(() => {
+    getGrade();
+  }, []);
+
+  const getGrade = () => {
+    getGrades().then(resp => {
+      if (resp.ok) setGrades(resp.grades);
+    });
   };
 
   const handleAddUnit = e => {
@@ -146,8 +157,8 @@ const UnitsSection = () => {
             onChange={handleLevelSelected}
           >
             <option disabled>Nivel</option>
-            {levels.map(level => (
-              <option key={level}>{level}</option>
+            {grades.map(grade => (
+              <option key={grade.level}>{grade.level} Basico</option>
             ))}
           </select>
         </header>

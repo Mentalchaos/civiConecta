@@ -1,16 +1,21 @@
-import { useEffect, useState } from 'react';
-import {
-  getClassesByUnitAndGrade,
-  updateClass,
-} from 'src/services/admin/classes.request';
+import { useState } from 'react';
 import Planification from 'src/components/Planification/Planification';
 import Spinner from 'src/components/UI/Spinner';
-import arrowDown from 'src/assets/Icons/arrow-down.svg';
-import arrow from 'src/assets/Icons/arrow-degree.svg';
-import './Unit.css';
 import Button from 'src/components/UI/Button';
 import Modal from 'src/components/UI/Modal';
 import PlanningForm from 'src/components/UI/PlanningForm';
+import {
+  createClass,
+  getClassesByUnitAndGrade,
+  updateClass,
+} from 'src/services/admin/classes.request';
+import arrowDown from 'src/assets/Icons/arrow-down.svg';
+import arrow from 'src/assets/Icons/arrow-degree.svg';
+import './Unit.css';
+import {
+  deleteFileByClassUnitAndGrade,
+  uploadFileByClassUnitAndGrade,
+} from 'src/services/admin/files.request';
 
 const Unit = ({ unitsData, grade, handleSubmit }) => {
   const [showClass, setShowClass] = useState(false);
@@ -96,6 +101,37 @@ const Unit = ({ unitsData, grade, handleSubmit }) => {
     onUpdateClass(number, unit.number, grade, values);
   };
 
+  const onHandleAddClass = data => {
+    setFetching(true);
+    createClass(data).then(resp => {
+      if (resp.ok) {
+        setFetching(false);
+        setShowModalAddClass(false);
+        getClasses(unitSelectedNumber);
+      } else {
+        setFetching(false);
+      }
+    });
+  };
+
+  const handleAddFile = file => {
+    const { number, unit } = dataClassSelected;
+    uploadFileByClassUnitAndGrade(number, unit.number, grade, file).then(
+      resp => {
+        console.log(resp);
+      },
+    );
+  };
+
+  const handleDeleteFile = file => {
+    const { number, unit } = dataClassSelected;
+    deleteFileByClassUnitAndGrade(number, unit.number, grade, file).then(
+      resp => {
+        console.log(resp);
+      },
+    );
+  };
+
   return (
     <>
       {showModalAddClass && (
@@ -108,8 +144,10 @@ const Unit = ({ unitsData, grade, handleSubmit }) => {
             unit={unitSelectedNumber}
             handleHiddeModal={setShowModalAddClass}
             handleGetClasses={getClasses}
+            onHandleSubmit={onHandleAddClass}
             grade={grade}
             needObjetives={true}
+            fetching={fetching}
           />
         </Modal>
       )}
@@ -146,6 +184,8 @@ const Unit = ({ unitsData, grade, handleSubmit }) => {
                     classData={dataClassSelected}
                     setIsSelectedClass={setIsSelectedClass}
                     handleSubmit={onHandleSubmit}
+                    onHandleAddFile={handleAddFile}
+                    onHandleDeleteFile={handleDeleteFile}
                     grade={grade}
                     fetching={fetching}
                     getClasses={getClasses}
