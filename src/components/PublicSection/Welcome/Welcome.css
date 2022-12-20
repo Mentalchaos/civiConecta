@@ -5,7 +5,7 @@
 }
 
 .welcome-container {
-    width: 80%;
+    width: 95%;
     height: 320px;
     display: flex;
     flex-direction: row;
@@ -42,7 +42,7 @@
     display: flex;
     flex-direction: row;
     height: 30%;
-    width: 70%;
+    width: 90%;
     align-items: center;
     justify-content: space-around;
 }
@@ -69,6 +69,13 @@
     color: #FFFFFF;
 }
 
+.second-right-container {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .date-container img,
 .school-container img,
 .grade-container img {
@@ -77,4 +84,13 @@
 
 .school-container p {
     width: 100%;
+}
+
+
+.man-image {
+    position: absolute;
+    width: 320px;
+    right: 40px;
+    top: 82px;
+    z-index: 2;
 }
