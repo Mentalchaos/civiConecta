@@ -1,5 +1,12 @@
+.welcome-section {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
 .welcome-container {
     width: 80%;
+    height: 320px;
     display: flex;
     flex-direction: row;
 }
@@ -9,6 +16,10 @@
     border-top-left-radius: 40px;
     border-bottom-left-radius: 40px;
     background-color: #fceff2;
+    padding: 1.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .left-container h3 {
@@ -25,13 +36,45 @@
     color: #ed6595;
 }
 
+.date-container,
+.school-container,
+.grade-container {
+    display: flex;
+    flex-direction: row;
+    height: 30%;
+    width: 70%;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.date-container p,
+.school-container p,
+.grade-info {
+    width: 80%;
+    margin: 0;
+}
+
 .right-container {
     width: 50%;
     border-top-right-radius: 40px;
     border-bottom-right-radius: 40px;
     background-color: #e95f7b;
+    padding: 1.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .right-container p {
     color: #FFFFFF;
+}
+
+.date-container img,
+.school-container img,
+.grade-container img {
+    width: 40px;
+}
+
+.school-container p {
+    width: 100%;
 }
