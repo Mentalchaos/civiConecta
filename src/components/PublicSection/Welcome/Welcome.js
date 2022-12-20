@@ -1,6 +1,7 @@
 import calendar from 'src/assets/Icons/calendar-public.svg';
 import school from 'src/assets/Icons/school.svg';
 import cap from 'src/assets/Icons/graduation-cap.svg';
+import man from 'src/assets/images/fraud-protection-hero.png';
 import './Welcome.css';
 
 const Welcome = () => {
@@ -21,25 +22,31 @@ const Welcome = () => {
                     </p>
                 </div>
                 <div className='right-container'>
-                    <div className='date-container'>
-                        <img src={calendar}/>
-                        <p>Miércoles 13, Julio 2022</p>
-                    </div>
-                    <div className='school-container'>
-                        <img src={school}/>
-                        <div>
-                            <p>Establecimiento o Institución educativa</p>
-                            <p>Liceo Amanda Labarca</p>
+                    <div className='second-right-container'>
+                        <div className='date-container'>
+                            <img src={calendar}/>
+                            <p>Miércoles 13, Julio 2022</p>
+                        </div>
+                        <div className='school-container'>
+                            <img src={school}/>
+                            <div>
+                                <p>Establecimiento o Institución educativa</p>
+                                <p>Liceo Amanda Labarca</p>
+                            </div>
+                        </div>
+                        <div className='grade-container'>
+                            <img src={cap}/>
+                            <div className='grade-info'>
+                                <p>Nivel del curso</p>
+                                <p>Jefatura 5º</p>
+                            </div>
                         </div>
                     </div>
-                    <div className='grade-container'>
-                        <img src={cap}/>
-                        <div className='grade-info'>
-                            <p>Nivel del curso</p>
-                            <p>Jefatura 5º</p>
-                        </div>
-                    </div>
+                    {/* <div>
+                        <img src={man} />
+                    </div> */}
                 </div>
+                <img className='man-image' src={man} />
             </div>
         </div>
     )
