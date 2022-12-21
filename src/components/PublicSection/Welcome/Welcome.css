@@ -13,8 +13,8 @@
 
 .left-container {
     width: 50%;
-    border-top-left-radius: 40px;
-    border-bottom-left-radius: 40px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
     background-color: #fceff2;
     padding: 1.5em;
     display: flex;
@@ -23,16 +23,21 @@
 }
 
 .left-container h3 {
+    font-family: 'Nunito Sans', sans-serif;
     color: #e95f7b;
 }
 
+.p-1,
+.p-2 {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 16px;
+}
+
 .p-1 {
-    font-size: 14px;
     color: black;
 }
 
 .p-2 {
-    font-size: 14px;
     color: #ed6595;
 }
 
@@ -66,6 +71,7 @@
 }
 
 .right-container p {
+    font-family: 'Nunito Sans', sans-serif;
     color: #FFFFFF;
 }
 
@@ -86,11 +92,56 @@
     width: 100%;
 }
 
-
 .man-image {
     position: absolute;
     width: 320px;
     right: 40px;
     top: 82px;
     z-index: 2;
+}
+
+.date-container p,
+.school-info,
+.grade {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.date-container p,
+.school-info-container,
+.grade-info {
+    width: 85%;
+}
+
+@media (max-width: 1024px) {
+    .welcome-container {
+        height: 300px;
+    }
+
+    .right-container p {
+        font-size: 14px;
+    }
+
+    .man-image {
+        position: absolute;
+        width: 287px;
+        right: 15px;
+        top: 95px;
+        z-index: 2;
+    }
+    
+    .planification-text h4 {
+        font-size: 14px;
+    }
+    
+    .button {
+        font-size: 12px;
+    }
+
+    .date-container p, 
+    .school-info-container, 
+    .grade-info {
+        margin-left: 10px
+    }
 }
