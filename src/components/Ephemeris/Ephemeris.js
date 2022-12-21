@@ -4,14 +4,15 @@ import Planification from '../Planification/Planification';
 import Modal from '../UI/Modal';
 import PlanningForm from '../UI/PlanningForm';
 import Button from '../UI/Button';
+import Spinner from '../UI/Spinner';
 import { getGrades } from 'src/services/admin/grades.request.js';
 import {
   createException,
   getExceptionsByGrade,
   updateException,
 } from 'src/services/admin/ephemeris.request';
+
 import './Ephemeris.css';
-import Spinner from '../UI/Spinner';
 
 const Ephemeris = () => {
   const [grades, setGrades] = useState([]);
@@ -127,6 +128,7 @@ const Ephemeris = () => {
             needObjetives={false}
             handleHiddeModal={setShowForm}
             onHandleSubmit={onHandleSubmit}
+            fetching={fetching}
           />
         </Modal>
       )}
