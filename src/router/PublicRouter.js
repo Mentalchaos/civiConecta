@@ -3,10 +3,12 @@ import PublicSection from 'src/components/PublicSection';
 
 const PublicRouter = () => {
   return (
-    <Routes>
-      <Route path="/*" element={<Navigate to={'dashboard'} />} />
-      <Route path="/PublicDashboard" element={<PublicSection />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/public-dashboard" element={<PublicSection />} />
+        <Route path="/*" element={<Navigate to={'public-dashboard'} />} />
+      </Routes>
+    </>
   );
 };
 

@@ -201,7 +201,7 @@ const Situations = () => {
                 <Spinner />
               </div>
             )}
-            {events.length > 0 && !fetching && (
+            {/* {events.length > 0 && !fetching && (
               <div className="select-content">
                 filtrar item por:
                 <select className="select" id="select">
@@ -209,7 +209,7 @@ const Situations = () => {
                   <option value="date">Fecha</option>
                 </select>
               </div>
-            )}
+            )} */}
             {!events.length && !fetching && (
               <h1 style={{ textAlign: 'center' }}>Sin registro de eventos.</h1>
             )}
