@@ -13,6 +13,10 @@ import {
 } from 'src/services/admin/ephemeris.request';
 
 import './Ephemeris.css';
+import {
+  deleteFileByExceptionAndGrade,
+  uploadFileByExceptionAndGrade,
+} from 'src/services/admin/files.request';
 
 const Ephemeris = () => {
   const [grades, setGrades] = useState([]);
@@ -119,6 +123,20 @@ const Ephemeris = () => {
     });
   };
 
+  const handleAddFile = file => {
+    const { number } = ephemerisSelected;
+    uploadFileByExceptionAndGrade(number, gradeSelected, file).then(resp => {
+      console.log(resp);
+    });
+  };
+
+  const handleDeleteFile = file => {
+    const { number } = ephemerisSelected;
+    deleteFileByExceptionAndGrade(number, gradeSelected, file).then(resp => {
+      console.log(resp);
+    });
+  };
+
   return (
     <main className="main-content">
       {showForm && (
@@ -164,6 +182,8 @@ const Ephemeris = () => {
             setIsSelectedClass={setShowPlanning}
             getClasses={getEphemeris}
             handleSubmit={onHandleUpdateEphemeris}
+            onHandleAddFile={handleAddFile}
+            onHandleDeleteFile={handleDeleteFile}
             isClass={false}
             fetching={fetching}
           />

@@ -75,7 +75,47 @@ export const deleteFileByEventAndGrade = async (event, grade, file) => {
   const user = JSON.parse(localStorage.getItem('user'));
   const jwt = user.token;
   const fetching = await fetch(
-    `${BASE_URL}/deleteFileByEventAndGrade?event=${event}&grade=${grade}${file}`,
+    `${BASE_URL}/deleteFileByEventAndGrade?event=${event}&grade=${grade}&file=${file}`,
+    {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        token: jwt,
+      },
+    },
+  );
+  const response = await fetching.json();
+  return {
+    ...response,
+  };
+};
+
+// Files para efemerides
+export const uploadFileByExceptionAndGrade = async (exception, grade, file) => {
+  const user = JSON.parse(localStorage.getItem('user'));
+  const jwt = user.token;
+  const fetching = await fetch(
+    `${BASE_URL}/uploadFileByExceptionAndGrade?event=${exception}&grade=${grade}`,
+    {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        token: jwt,
+      },
+      body: JSON.stringify({ file }),
+    },
+  );
+  const response = await fetching.json();
+  return {
+    ...response,
+  };
+};
+
+export const deleteFileByExceptionAndGrade = async (exception, grade, file) => {
+  const user = JSON.parse(localStorage.getItem('user'));
+  const jwt = user.token;
+  const fetching = await fetch(
+    `${BASE_URL}/deleteFileByExceptionAndGrade?exception=${exception}&grade=${grade}&file=${file}`,
     {
       method: 'PUT',
       headers: {
