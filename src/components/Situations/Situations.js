@@ -73,8 +73,9 @@ const Situations = () => {
     setFetching(true);
     const payload = {
       ...values,
-      date: new Date().toLocaleString('es-CL').split(',')[0],
+      date: new Date().toString(),
     };
+    console.log(payload);
     createEvent(payload).then(resp => {
       if (resp.ok) {
         setFetching(false);
@@ -133,6 +134,7 @@ const Situations = () => {
             needObjetives={false}
             handleHiddeModal={setShowForm}
             onHandleSubmit={onHandleSubmit}
+            fetching={fetching}
           />
         </Modal>
       )}
