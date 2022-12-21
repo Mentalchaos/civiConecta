@@ -9,19 +9,19 @@ const TeacherSurvey = () => {
   const surveyCategories = [
     {
       title: 'Relaciones interpersonales',
-      detail: '0 Preguntas en esta categoría',
+      // detail: '0 Preguntas en esta categoría',
     },
     {
       title: 'Resolución de conflictos',
-      detail: '0 Preguntas en esta categoría',
+      // detail: '0 Preguntas en esta categoría',
     },
     {
       title: 'Bienestar y autocuidado',
-      detail: '0 Preguntas en esta categoría',
+      // detail: '0 Preguntas en esta categoría',
     },
     {
       title: 'Prevención consumo drogas y alcohol',
-      detail: '0 Preguntas en esta categoría',
+      // detail: '0 Preguntas en esta categoría',
     },
   ];
 

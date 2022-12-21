@@ -14,9 +14,6 @@ const Categories = ({ title, detail, type, onclick, number }) => {
                 <p style={css} className='category-title'>{title}</p>
                 <p className='category-details'>{detail}</p>
             </div>
-            <div className='remove-arrow'>
-              X
-            </div>
             <div className='edit-arrow'>
                 <p style={css} className='edit-hover'>Editar categoría</p>
                 <img src={editArrow} alt="arrow-icon"/>
