@@ -91,12 +91,13 @@ const Planification = ({
     setFileName(fileName);
 
     const form = new FormData();
-    form.append('file', inputFile.current.files[0]);
+    form.append('file', e.target.uploadFile.files[0]);
     onHandleAddFile(form);
   };
 
   const onDownloadFile = () => {
     if (fileSelected.length) window.location.href = fileSelected;
+    setShowConfirmDelete(false);
   };
 
   return (
@@ -191,9 +192,14 @@ const Planification = ({
         {fileName.length > 0 && (
           <span style={{ fontSize: 13 }}>{fileName}</span>
         )}
-        <form encType="multipart/form-data" onChange={onSubmitFile}>
+        <form encType="multipart/form-data">
           <div className="add-file-container">
-            <input type="file" name="file" ref={inputFile} />
+            <input
+              onChange={onSubmitFile}
+              type="file"
+              name="file"
+              ref={inputFile}
+            />
           </div>
         </form>
       </div>
