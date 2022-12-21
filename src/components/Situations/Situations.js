@@ -14,6 +14,10 @@ import { getGrades } from 'src/services/admin/grades.request.js';
 
 import './Items/index.css';
 import './Situations.css';
+import {
+  deleteFileByEventAndGrade,
+  uploadFileByEventAndGrade,
+} from 'src/services/admin/files.request.js';
 
 const Situations = () => {
   const [grades, setGrades] = useState([]);
@@ -57,7 +61,7 @@ const Situations = () => {
 
   const handleChangeGrade = ({ target }) => {
     setFetching(true);
-    setGradeSelected(target.value);
+    setGradeSelected(target.value.trim());
     getEvents(target.value);
   };
 
@@ -75,7 +79,6 @@ const Situations = () => {
       ...values,
       date: new Date().toString(),
     };
-    console.log(payload);
     createEvent(payload).then(resp => {
       if (resp.ok) {
         setFetching(false);
@@ -125,6 +128,21 @@ const Situations = () => {
     updateSituation(situationSelected.number, gradeSelected, values);
   };
 
+  const handleAddFile = file => {
+    const { number } = situationSelected;
+    uploadFileByEventAndGrade(number, gradeSelected, file).then(resp => {
+      console.log(resp);
+    });
+  };
+
+  const handleDeleteFile = file => {
+    console.log(file);
+    const { number } = situationSelected;
+    deleteFileByEventAndGrade(number, gradeSelected, file).then(resp => {
+      console.log(resp);
+    });
+  };
+
   return (
     <main className="main-content">
       {showForm && (
@@ -171,6 +189,8 @@ const Situations = () => {
             setIsSelectedClass={setShowPlanning}
             getClasses={getEvents}
             handleSubmit={onHandleUpdateSituation}
+            onHandleAddFile={handleAddFile}
+            onHandleDeleteFile={handleDeleteFile}
             isClass={false}
             fetching={fetching}
           />
