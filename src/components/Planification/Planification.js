@@ -92,11 +92,14 @@ const Planification = ({
 
   const onSubmitFile = e => {
     e.preventDefault();
-    const fileName = inputFile.current?.files[0]?.name;
-    setFileName(fileName);
+
+    if (inputFile.current?.files[0]) {
+      const fileName = inputFile.current?.files[0]?.name;
+      setFileName(fileName);
+    }
 
     const form = new FormData();
-    form.append('file', e.target.uploadFile.files[0]);
+    form.append('file', inputFile.current?.files[0]);
     onHandleAddFile(form);
   };
 
