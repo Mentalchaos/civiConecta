@@ -14,10 +14,10 @@ export const uploadFileByClassUnitAndGrade = async (
     {
       method: 'PUT',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'multipart/form-data',
         token: jwt,
       },
-      body: JSON.stringify({ file }),
+      body: file,
     },
   );
   const response = await fetching.json();
@@ -59,7 +59,7 @@ export const uploadFileByEventAndGrade = async (event, grade, file) => {
     {
       method: 'PUT',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'multipart/form-data',
         token: jwt,
       },
       body: JSON.stringify({ file }),
