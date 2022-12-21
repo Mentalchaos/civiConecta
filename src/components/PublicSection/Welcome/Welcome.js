@@ -29,16 +29,16 @@ const Welcome = () => {
                         </div>
                         <div className='school-container'>
                             <img src={school}/>
-                            <div>
+                            <div className='school-info-container'>
                                 <p>Establecimiento o Institución educativa</p>
-                                <p>Liceo Amanda Labarca</p>
+                                <p className='school-info'>Liceo Amanda Labarca</p>
                             </div>
                         </div>
                         <div className='grade-container'>
                             <img src={cap}/>
                             <div className='grade-info'>
                                 <p>Nivel del curso</p>
-                                <p>Jefatura 5º</p>
+                                <p className='grade'>Jefatura 5º</p>
                             </div>
                         </div>
                     </div>

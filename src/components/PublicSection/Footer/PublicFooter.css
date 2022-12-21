@@ -6,9 +6,9 @@
 
 .footer-container {
     background-color: #7468E5;
-    width: 90%;
-    border-top-left-radius: 40px;
-    border-top-right-radius: 40px;
+    width: 95%;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
     height: 160px;
     display: flex;
     flex-direction: row;
@@ -27,7 +27,7 @@
 }
 
 .container-three {
-    width: 40%;
+    width: 41%;
 }
 
 .links-container {
@@ -39,6 +39,7 @@
 }
 
 .links-container a {
+    font-family: 'Nunito Sans', sans-serif;
     color: #FFFFFF;
     font-size: 14px;
 }
@@ -62,6 +63,8 @@
 }
 
 .last-footer-container p {
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 700;
     color: #FFFFFF;
     font-size: 15px;
     display: flex;
