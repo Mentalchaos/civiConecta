@@ -59,7 +59,10 @@ const Planification = ({
     };
   });
   const tableDataDisplayed = files.map(file => {
-    const separateNameFile = file.url.split('=')[4];
+    const separateNameFile = isClass
+      ? file.url.split('=')[4]
+      : file.url.split('=')[3];
+
     return {
       name: separateNameFile,
     };
@@ -81,7 +84,9 @@ const Planification = ({
   };
 
   const handleDeleteFile = () => {
-    const file = fileSelected.split('=')[4];
+    const file = isClass
+      ? fileSelected.split('=')[4]
+      : fileSelected.split('=')[3];
     onHandleDeleteFile(file);
   };
 
