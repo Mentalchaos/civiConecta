@@ -88,6 +88,7 @@ const Planification = ({
       ? fileSelected.split('=')[4]
       : fileSelected.split('=')[3];
     onHandleDeleteFile(file);
+    setShowConfirmDelete(false);
   };
 
   const onSubmitFile = e => {
@@ -105,7 +106,6 @@ const Planification = ({
 
   const onDownloadFile = () => {
     if (fileSelected.length) window.location.href = fileSelected;
-    setShowConfirmDelete(false);
   };
 
   return (
