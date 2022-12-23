@@ -10,6 +10,9 @@ const CreateInstitution = () => {
   const [isHover, setIsHover] = useState(false);
   const navigate = useNavigate();
 
+
+  console.log('asdfasdfds');
+
   return (
     <article
       style={{

@@ -9,6 +9,104 @@ import { updateCoursesEstablishment } from 'src/services/admin/establishment.req
 
 import './StageAssignment.css';
 
+
+class Memento {
+  constructor() {
+    this.institution = null;
+    this.deserialize();
+  }
+
+  serialize(institution, force = false) {
+    if (force) {
+      sessionStorage.setItem('institutionWD', JSON.stringify(institution));
+    } else {
+      if (!sessionStorage.getItem('institutionWD')) {
+        this.institution = institution;
+        sessionStorage.setItem('institutionWD', JSON.stringify(institution));
+      }
+    }
+  }
+
+  deserialize() {
+    if (sessionStorage.getItem('institutionWD')) {
+      this.institution = JSON.parse(sessionStorage.getItem('institutionWD'));
+    }
+
+    return this.institution;
+  }
+
+  saveStep(data) {
+    console.log('data', data);
+    console.log('institution', this.institution);
+
+    if (!this._hasGrade(data.grade, data.letter)) {
+      this._createGrade(data.grade, data.letter);
+    }
+
+    this._addStudent(data.grade, data.letter, data.name, data.run);
+    this.serialize(this.institution, true);
+  }
+
+  _hasGrade(grade, letter) {
+    return this.institution
+      .filter(g => g.level === grade)
+      .filter(g => g.letters.find(l => l.character === letter))
+      .length;
+  }
+
+  _createGrade(grade, letter) {
+    const newGrade = {
+      level: grade,
+      createdAt: new Date(),
+      letters: [
+        { 
+          character: letter,
+          students: [],
+          teachers: []
+        }
+      ]
+    };
+
+    this.institution.push(newGrade);
+  }
+
+  _addStudent(grade, letter, name, run) {
+    const _grade = this.institution.find(g => g.level === grade);
+    console.log('this inst', this.institution)
+    const section = _grade.letters.find(l => l.character === letter);
+    section.students.push({ name, run });
+  }
+}
+
+const institutionState = new Memento();
+
+// const serializeInstitution = (institution) => {
+//   if (!sessionStorage.getItem('institution')) {
+//     sessionStorage.setItem('institution', JSON.stringify(institution));
+//   }
+
+//   return institution;
+// };
+
+// const deserializeInstitution = () => {
+//   return JSON.parse(sessionStorage.getItem('institution'));
+// };
+
+// const saveStep = (data) => {
+//   const institution = deserializeInstitution();
+
+//   console.log('colegio oe', institution);
+//   console.log('data', data);
+
+
+//   // grade: "6º"
+//   // letter: "F"
+//   // name: "sebareal"
+//   // run: "16104879-8"
+// };
+
+
+
 const StageAssignment = ({
   title,
   changeStage,
@@ -121,6 +219,11 @@ const StageAssignment = ({
         setStudentsAdded([]);
       }
     });
+  };
+
+  const handlePersistState = () => {
+    institutionState.serialize(institutionCourses);
+    institutionState.saveStep(values);
   };
 
   return (
@@ -271,10 +374,11 @@ const StageAssignment = ({
                 type="button"
                 disabled={values.name.length < 6 || values.run.length < 9}
               />
+              <button onClick={handlePersistState} type="button">Guardar</button>
               <Button
                 onClick={handleAddCourse}
                 customStyles={buttonStyles}
-                text="Guardar"
+                text="Enviar formulario"
                 type="button"
                 disabled={
                   !studentsAdded.length ||
