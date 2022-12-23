@@ -64,7 +64,6 @@ const StageAssignment = ({
       ...course,
       establishment: institutionSelected.number,
     };
-    console.log(courseSelected);
     onHandleCourseSelected(courseSelected);
   };
 
@@ -75,42 +74,46 @@ const StageAssignment = ({
 
   const onUpdateEstablishment = establishmentNumber => {
     setFetching(true);
-
-    // filtrar estudiantes para letra seleccionada
-    const filterData = institutionSelected.courses[0].letters.filter(
-      letter => letter.character === values.letter,
-    );
-    console.log(institutionSelected.courses);
+    const newCourse = {
+      letters: [
+        {
+          character: values.letter,
+          students: [...studentsAdded],
+        },
+      ],
+    };
 
     const payload = {
+      name: institutionSelected.name,
       courses: [
-        ...institutionCourses,
         {
-          grade: values.grade.split(' ')[0],
+          grade: institutionCourses[0]?.level
+            ? institutionCourses[0].level
+            : values.grade,
           letters: [
-            {
-              ...filterData,
-              character: values.letter,
-              students: [...studentsAdded],
-            },
+            ...(institutionCourses[0]?.letters || []),
+            ...newCourse.letters,
           ],
         },
       ],
     };
     updateCoursesEstablishment(establishmentNumber, payload).then(resp => {
-      if (resp.error) {
-        setFetching(false);
-        setErrorMessage('Ha ocurrido un error, porfavor inténtelo denuevo.');
-        setStudentsAdded([]);
-        values.name = '';
-        values.run = '';
-      }
       if (resp.error?.message?.includes('run')) {
         setErrorMessage('Rut incorrecto');
         setFetching(false);
+        setStudentsAdded([]);
       }
+      if (resp.error?.duplicateStudents) {
+        setErrorMessage(
+          `Estudiante ya se encuentra en un curso, rut: ${resp.error.duplicateStudents.students[0].run}`,
+        );
+        setFetching(false);
+        setStudentsAdded([]);
+      }
+
       if (resp.ok) {
-        const courses = [...institutionCourses, resp.establishment.courses[0]];
+        const courses = [resp.establishment.courses[0]];
+        console.log(courses);
         setErrorMessage('');
         setInstitutionCourses(courses);
         setFetching(false);
