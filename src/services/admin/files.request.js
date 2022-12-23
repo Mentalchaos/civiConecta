@@ -1,35 +1,5 @@
 import { BASE_URL } from '../constants';
-
-// TODO ver que otros metodos son necesarios implementar de manera general
-const http = {
-  _getToken(token) {
-    if (token) return token;
-    return JSON.parse(localStorage.getItem('user')).token;
-  },
-  upload(url, formData, token) {
-    token = this._getToken(token);
-  
-    return fetch(url, {
-      method: 'PUT',
-      headers: {
-        enctype: 'multipart/form-data',
-        token
-      },
-      body: formData
-    });
-  },
-  delete(url, token) {
-    token = this._getToken(token);
-
-    return fetch(url, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        token
-      }
-    });
-  }
-};
+import http from '../helpers/http.helper.js';
 
 // Files para clases de unidades
 export const uploadFileByClassUnitAndGrade = async (
