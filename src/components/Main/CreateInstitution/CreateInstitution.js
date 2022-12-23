@@ -3,15 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import BoxIcon from 'src/components/UI/BoxIcon/BoxIcon';
 import schoolIcon from 'src/assets/Icons/school.svg';
 import linkTo from 'src/assets/Icons/link-to.svg';
-
 import './CreateInstitution.css';
+
 
 const CreateInstitution = () => {
   const [isHover, setIsHover] = useState(false);
   const navigate = useNavigate();
-
-
-  console.log('asdfasdfds');
 
   return (
     <article
