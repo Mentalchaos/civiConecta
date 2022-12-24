@@ -1,0 +1,443 @@
+{
+  "ok": true,
+  "total": 22,
+  "establishments": [
+    {
+      "number": 1,
+      "name": "College 1",
+      "active": true,
+      "courses": [
+        {
+          "letters": [
+            {
+              "character": "A",
+              "teachers": [],
+              "students": [
+                {
+                  "name": "eaea vera",
+                  "run": "17.857.233-4",
+                  "surveys": []
+                }
+              ]
+            }
+          ],
+          "level": "5º",
+          "createdAt": "2022-12-01T15:05:14.000Z",
+          "updatedAt": "2022-12-01T15:05:14.000Z"
+        }
+      ],
+      "createdAt": "2022-12-04T10:02:51.853Z",
+      "updatedAt": "2022-12-22T20:40:14.563Z"
+    },
+    {
+      "number": 2,
+      "name": "College 2",
+      "active": true,
+      "courses": [
+        {
+          "letters": [
+            {
+              "character": "A",
+              "teachers": [],
+              "students": [
+                {
+                  "name": "asdfasdf",
+                  "run": "5.860.502-6",
+                  "surveys": []
+                }
+              ]
+            },
+            {
+              "character": "B",
+              "teachers": [],
+              "students": [
+                {
+                  "name": "asdfasdfsadf",
+                  "run": "12.680.086-K",
+                  "surveys": []
+                }
+              ]
+            }
+          ],
+          "level": "5º",
+          "createdAt": "2022-12-01T15:05:14.000Z",
+          "updatedAt": "2022-12-01T15:05:14.000Z"
+        }
+      ],
+      "createdAt": "2022-12-04T10:03:19.387Z",
+      "updatedAt": "2022-12-21T21:57:39.391Z"
+    },
+    {
+      "number": 6,
+      "name": "hola12345",
+      "active": true,
+      "courses": [
+        {
+          "letters": [
+            {
+              "character": "A",
+              "teachers": [],
+              "students": [
+                {
+                  "name": "matias lara quezaada",
+                  "run": "9.265.619-5",
+                  "surveys": []
+                }
+              ]
+            },
+            {
+              "character": "B",
+              "teachers": [],
+              "students": [
+                {
+                  "name": "asdfasdfasdf",
+                  "run": "18.806.385-3",
+                  "surveys": []
+                }
+              ]
+            }
+          ],
+          "level": "5º",
+          "createdAt": "2022-12-01T15:05:14.000Z",
+          "updatedAt": "2022-12-01T15:05:14.000Z"
+        }
+      ],
+      "createdAt": "2022-12-05T22:46:23.700Z",
+      "updatedAt": "2022-12-22T14:49:03.683Z"
+    },
+    {
+      "number": 9,
+      "name": "12039escuela",
+      "active": true,
+      "courses": [
+        {
+          "letters": [
+            {
+              "character": "B",
+              "teachers": [],
+              "students": [
+                {
+                  "name": "nury alejandra jara urrea",
+                  "run": "11.851.494-7",
+                  "surveys": []
+                }
+              ]
+            }
+          ],
+          "level": "5º",
+          "createdAt": "2022-12-01T15:05:14.000Z",
+          "updatedAt": "2022-12-01T15:05:14.000Z"
+        }
+      ],
+      "createdAt": "2022-12-05T22:48:08.378Z",
+      "updatedAt": "2022-12-06T15:21:01.195Z"
+    },
+    {
+      "number": 10,
+      "name": "asdasdas123123",
+      "active": true,
+      "courses": [],
+      "createdAt": "2022-12-05T22:51:19.223Z",
+      "updatedAt": "2022-12-05T22:51:19.223Z"
+    },
+    {
+      "number": 11,
+      "name": "santa maria de santiago nombre largo",
+      "active": true,
+      "courses": [
+        {
+          "letters": [
+            {
+              "character": "C",
+              "teachers": [],
+              "students": [
+                {
+                  "name": "cualquier nombre",
+                  "run": "14.923.521-3",
+                  "surveys": []
+                }
+              ]
+            }
+          ],
+          "level": "5º",
+          "createdAt": "2022-12-01T15:05:14.000Z",
+          "updatedAt": "2022-12-01T15:05:14.000Z"
+        }
+      ],
+      "createdAt": "2022-12-05T22:56:17.812Z",
+      "updatedAt": "2022-12-13T20:37:14.999Z"
+    },
+    {
+      "number": 12,
+      "name": "escuelanumero12123",
+      "active": true,
+      "courses": [
+        {
+          "letters": [
+            {
+              "character": "B",
+              "teachers": [],
+              "students": [
+                {
+                  "name": "matias baldaza",
+                  "run": "9.060.591-7",
+                  "surveys": []
+                }
+              ]
+            }
+          ],
+          "level": "6º",
+          "createdAt": "2022-12-08T15:41:44.483Z",
+          "updatedAt": "2022-12-08T15:41:44.483Z"
+        }
+      ],
+      "createdAt": "2022-12-06T00:00:53.231Z",
+      "updatedAt": "2022-12-12T20:57:39.189Z"
+    },
+    {
+      "number": 13,
+      "name": "Escuelita numero123123",
+      "active": true,
+      "courses": [],
+      "createdAt": "2022-12-06T00:01:15.293Z",
+      "updatedAt": "2022-12-06T00:01:15.293Z"
+    },
+    {
+      "number": 15,
+      "name": "eaeae123",
+      "active": true,
+      "courses": [],
+      "createdAt": "2022-12-06T23:15:37.033Z",
+      "updatedAt": "2022-12-06T23:15:37.033Z"
+    },
+    {
+      "number": 16,
+      "name": "Colegio Eduardo",
+      "active": true,
+      "courses": [],
+      "createdAt": "2022-12-20T15:14:17.985Z",
+      "updatedAt": "2022-12-20T15:14:17.985Z"
+    },
+    {
+      "number": 17,
+      "name": "institucion nueva",
+      "active": true,
+      "courses": [
+        {
+          "letters": [
+            {
+              "character": "A",
+              "teachers": [],
+              "students": [
+                {
+                  "name": "sebareal",
+                  "run": "57.828.197-5",
+                  "surveys": []
+                }
+              ]
+            }
+          ],
+          "level": "5º",
+          "createdAt": "2022-12-01T15:05:14.000Z",
+          "updatedAt": "2022-12-01T15:05:14.000Z"
+        }
+      ],
+      "createdAt": "2022-12-23T15:43:09.276Z",
+      "updatedAt": "2022-12-23T18:47:11.123Z"
+    },
+    {
+      "number": 18,
+      "name": "otra inst",
+      "active": true,
+      "courses": [],
+      "createdAt": "2022-12-23T21:05:43.893Z",
+      "updatedAt": "2022-12-23T21:05:43.893Z"
+    },
+    {
+      "number": 19,
+      "name": "one piece ftw",
+      "active": true,
+      "courses": [],
+      "createdAt": "2022-12-23T21:08:31.976Z",
+      "updatedAt": "2022-12-23T21:08:31.976Z"
+    },
+    {
+      "number": 20,
+      "name": "naruto omg",
+      "active": true,
+      "courses": [],
+      "createdAt": "2022-12-23T21:15:20.955Z",
+      "updatedAt": "2022-12-23T21:15:20.955Z"
+    },
+    {
+      "number": 21,
+      "name": "dragonballz",
+      "active": true,
+      "courses": [
+        {
+          "letters": [
+            {
+              "character": "A",
+              "teachers": [],
+              "students": [
+                {
+                  "name": "jp vera",
+                  "run": "52.261.357-6",
+                  "surveys": []
+                }
+              ]
+            },
+            {
+              "character": "B",
+              "teachers": [],
+              "students": [
+                {
+                  "name": "asdfasdfasdf",
+                  "run": "18.481.612-1",
+                  "surveys": []
+                }
+              ]
+            }
+          ],
+          "level": "5º",
+          "createdAt": "2022-12-01T15:05:14.000Z",
+          "updatedAt": "2022-12-01T15:05:14.000Z"
+        }
+      ],
+      "createdAt": "2022-12-23T21:20:53.173Z",
+      "updatedAt": "2022-12-24T12:03:10.447Z"
+    },
+    {
+      "number": 22,
+      "name": "institucion de prueba 1",
+      "active": true,
+      "courses": [
+        {
+          "letters": [
+            {
+              "character": "C",
+              "teachers": [],
+              "students": [
+                {
+                  "name": "yep uno dos tres",
+                  "run": "62.211.471-2",
+                  "surveys": []
+                }
+              ]
+            }
+          ],
+          "level": "6º",
+          "createdAt": "2022-12-08T15:41:44.483Z",
+          "updatedAt": "2022-12-08T15:41:44.483Z"
+        }
+      ],
+      "createdAt": "2022-12-24T14:44:36.721Z",
+      "updatedAt": "2022-12-24T14:46:02.984Z"
+    },
+    {
+      "number": 33,
+      "name": "College 3",
+      "active": true,
+      "courses": [
+        {
+          "letters": [
+            {
+              "character": "A",
+              "teachers": [],
+              "students": [
+                {
+                  "name": "asdfasdfasdfsdaf",
+                  "run": "19.642.252-8",
+                  "surveys": []
+                }
+              ]
+            }
+          ],
+          "level": "5º",
+          "createdAt": "2022-12-01T15:05:14.000Z",
+          "updatedAt": "2022-12-01T15:05:14.000Z"
+        }
+      ],
+      "createdAt": "2022-12-06T18:45:25.293Z",
+      "updatedAt": "2022-12-14T20:20:21.027Z"
+    },
+    {
+      "number": 3,
+      "name": "Santa María de la Cruz",
+      "active": false,
+      "courses": [
+        {
+          "letters": [
+            {
+              "character": "A",
+              "teachers": [],
+              "students": [
+                {
+                  "name": "asdasdasd",
+                  "run": "22.827.475-5",
+                  "surveys": []
+                }
+              ]
+            }
+          ],
+          "level": "6º",
+          "createdAt": "2022-12-08T15:41:44.483Z",
+          "updatedAt": "2022-12-08T15:41:44.483Z"
+        }
+      ],
+      "createdAt": "2022-12-05T22:43:42.642Z",
+      "updatedAt": "2022-12-14T20:20:51.461Z"
+    },
+    {
+      "number": 4,
+      "name": "Santa María de Santiago",
+      "active": false,
+      "courses": [
+        {
+          "letters": [
+            {
+              "character": "A",
+              "teachers": [],
+              "students": [
+                {
+                  "name": "asdasdasd",
+                  "run": "7.704.755-7",
+                  "surveys": []
+                }
+              ]
+            }
+          ],
+          "level": "5º",
+          "createdAt": "2022-12-01T15:05:14.000Z",
+          "updatedAt": "2022-12-01T15:05:14.000Z"
+        }
+      ],
+      "createdAt": "2022-12-05T22:44:58.332Z",
+      "updatedAt": "2022-12-14T20:33:47.776Z"
+    },
+    {
+      "number": 5,
+      "name": "hola123",
+      "active": false,
+      "courses": [],
+      "createdAt": "2022-12-05T22:45:34.003Z",
+      "updatedAt": "2022-12-05T23:56:16.475Z"
+    },
+    {
+      "number": 7,
+      "name": "hola321",
+      "active": false,
+      "courses": [],
+      "createdAt": "2022-12-05T22:46:51.623Z",
+      "updatedAt": "2022-12-05T23:59:21.162Z"
+    },
+    {
+      "number": 8,
+      "name": "hola345345",
+      "active": false,
+      "courses": [],
+      "createdAt": "2022-12-05T22:47:26.672Z",
+      "updatedAt": "2022-12-06T00:09:33.232Z"
+    }
+  ]
+}

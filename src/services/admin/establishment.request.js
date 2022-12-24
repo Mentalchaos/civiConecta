@@ -6,6 +6,7 @@ export const getEstablishment = async () => {
   const url = `${BASE_URL}/getEstablishments`;
   const httpResponse = await http.get(url);
   const response = await httpResponse.json();
+  debugger;
   return { ...response };
 };
 
