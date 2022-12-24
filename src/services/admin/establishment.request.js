@@ -1,7 +1,6 @@
 import { BASE_URL } from '../constants';
 import http from '../helpers/http.helper.js';
 
-
 export const getEstablishment = async () => {
   const url = `${BASE_URL}/getEstablishments`;
   const httpResponse = await http.get(url);
