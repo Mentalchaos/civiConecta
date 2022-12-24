@@ -3,19 +3,14 @@ import Student from './Student.js';
 class Letter {
   constructor(data) {
     this.character = data.character;
-    this.teachers = data.teachers;
-    this.students = data.students.map(s => new Student(s));
-  }
-
-  static fromJSON({ letter, name, run }) {
-    const entity = new Letter({ character: letter, teachers: [], students: [] });
-    entity.addStudent(new Student({ name, run }));
-    return entity;
+    this.teachers = (data.teachers ?? []);
+    this.students = (data.students ?? []).map(s => new Student(s));
   }
 
   addStudent({ name, run }) {
     const entity = new Student({ name, run });
     this.students.push(entity);
+    return entity;
   }
 
   toJSON() {
