@@ -7,20 +7,24 @@ import Situations from 'src/components/Situations/Situations';
 import StudentSurvey from 'src/components/StudentSurvey/StudentSurvey';
 import TeacherSurvey from 'src/components/TeacherSurvey/TeacherSurvey';
 import UnitsSection from 'src/components/UnitsSection/UnitsSection';
+import { AdminGuard } from './guard/auth.guard';
 
 const AdminRouter = () => {
   return (
     <>
       <Sidebar />
       <Routes>
-        <Route path="dashboard" element={<Main />} />
-        <Route path="teacher-survey" element={<TeacherSurvey />} />
-        <Route path="student-survey" element={<StudentSurvey />} />
-        <Route path="units" element={<UnitsSection />} />
-        <Route path="manager" element={<Manager />} />
-        <Route path="situations" element={<Situations />} />
-        <Route path="ephemeris" element={<Ephemeris />} />
-        <Route path="/*" element={<Navigate to={'dashboard'} />} />
+        <Route element={<AdminGuard />}>
+          <Route path="/" element={<Main />} />
+          <Route path="dashboard" element={<Main />} />
+          <Route path="teacher-survey" element={<TeacherSurvey />} />
+          <Route path="student-survey" element={<StudentSurvey />} />
+          <Route path="units" element={<UnitsSection />} />
+          <Route path="manager" element={<Manager />} />
+          <Route path="situations" element={<Situations />} />
+          <Route path="ephemeris" element={<Ephemeris />} />
+          <Route path="*" element={<Navigate to="dashboard" />} />
+        </Route>
       </Routes>
     </>
   );

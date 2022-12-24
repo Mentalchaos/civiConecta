@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import home from 'src/assets/Icons/home.svg';
 import teacher from 'src/assets/Icons/teacher.svg';
 import student from 'src/assets/Icons/student.svg';
@@ -37,8 +37,10 @@ const Sidebar = () => {
         <NavButton icon={folder} ariaLabel="folder" path={'situations'} />
         <NavButton icon={calendar} ariaLabel="calendar" path={'ephemeris'} />
         <NavButton
-          path={'/login/auth'}
-          handleClick={() => localStorage.clear()}
+          path="/auth/login"
+          handleClick={() => {
+            localStorage.clear();
+          }}
           icon={exit}
           ariaLabel="exit"
           style={{ width: '25px', position: 'absolute', left: 15, bottom: 15 }}

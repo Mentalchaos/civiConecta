@@ -1,12 +1,14 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
+import NotFound from 'src/components/NotFound/NotFound';
 import PublicSection from 'src/components/PublicSection';
 
 const PublicRouter = () => {
   return (
     <>
       <Routes>
-        <Route path="/public-dashboard" element={<PublicSection />} />
-        <Route path="/*" element={<Navigate to={'public-dashboard'} />} />
+        <Route exact path="/" element={<PublicSection />} />
+        <Route exact path="/public-dashboard" element={<PublicSection />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
