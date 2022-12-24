@@ -186,7 +186,7 @@ const StageAssignment = ({
               <span className="content__level-selection-title">Nivel:</span>
               <select
                 name="grade"
-                className="select-date"
+                className="default-select"
                 onChange={handleInputChange}
                 value={values.grade}
               >
@@ -203,10 +203,7 @@ const StageAssignment = ({
             <div style={{ textAlign: 'center' }} className="form-group">
               <span className="content__level-selection-title">Letra:</span>
               <select
-                style={{
-                  boxShadow: '0px 2px 10px rgb(0,0,0,0.25)',
-                  backgroundColor: '#fff',
-                }}
+                className="default-select"
                 onChange={handleInputChange}
                 value={values.letter}
                 name="letter"
@@ -229,26 +226,6 @@ const StageAssignment = ({
             <p style={{ fontSize: 14 }}>
               Alumnos a&ntilde;adidos: <b>{studentsAdded.length}</b>
             </p>
-            {/*studentsAdded.map(student => {
-              return (
-                <div
-                  style={{
-                    display: 'flex',
-                    gap: 10,
-                    marginTop: 5,
-                    justifyContent: 'flex-end',
-                  }}
-                >
-                  <input
-                    type="text"
-                    name="name"
-                    value={student.name}
-                    onChange={handleInputChange}
-                  />
-                  <input type="text" name="run" value={student.run} />
-                </div>
-              );
-            })*/}
             <div
               style={{
                 display: 'flex',
@@ -307,18 +284,6 @@ const StageAssignment = ({
               />
             </div>
           </form>
-
-          {/* <Table
-            style={{ marginTop: 0 }}
-            dataHeader={tableDataHeaderStudents}
-            data={dataStudents}
-          />
-          {studentSelected && (
-            <section className="table-actions">
-              <Button customStyles={buttonCancelStyle} text={'Eliminar'} />
-              <Button customStyles={buttonStyles} text={'Suspender'} />
-            </section>
-          )} */}
         </div>
       </article>
     </section>
