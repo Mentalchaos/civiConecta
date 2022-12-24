@@ -5,19 +5,19 @@ class Establishment {
     this.number = data.number;
     this.name = data.name;
     this.active = data.active;
-    this.grades = (data.courses || data.grades).map(c => new Grade(c));
+    this.grades = (data.courses ?? data.grades).map(c => new Grade(c));
   }
 
-  addStudent({ name, run, grade, letter }) {
+  addGrade(grade) {
     let entity = this.grades.find(g => g.level === grade);
 
     if (entity) {
-      entity.addStudent({ letter, name, run });
-      return;
+      return entity;
     }
 
-    entity = Grade.fromJSON({ name, run, grade, letter });
+    entity = new Grade({ level: grade });
     this.grades.push(entity);
+    return entity;
   }
 
   clone() {

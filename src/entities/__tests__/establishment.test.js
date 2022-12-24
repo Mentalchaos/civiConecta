@@ -43,37 +43,45 @@ describe('entities/establishment.js', () => {
 
   test('using a previous establishment and adding 1 student into previous set grade|letter', () => {
     const entity = new Establishment(initialData);
-    const data = {
-      name: 'James Johnson',
-      run: '31641352-8',
-      grade: '5º',
-      letter: 'A'
-    };
-    entity.addStudent(data);
+
+    entity
+      .addGrade('5º')
+      .addLetter('A')
+      .addStudent({
+        name: 'James Johnson',
+        run: '31641352-8'
+      });
+
     expect(entity.grades[0].letters[0].students[0].name).toBe('Tina Soto');
     expect(entity.grades[0].letters[0].students[1].name).toBe('James Johnson');
   });
 
   test('using a previous establishment and adding 2 student into different grades and|or letters', () => {
     const entity = new Establishment(initialData);
-    entity.addStudent({
-      name: 'Denise Weber',
-      run: '31641352-8',
-      grade: '5º',
-      letter: 'A'
-    });
-    entity.addStudent({
-      name: 'Robert Carson',
-      run: '26691573-k',
-      grade: '6º',
-      letter: 'C'
-    });
-    entity.addStudent({
-      name: 'Taylor Baker',
-      run: '70666762-8',
-      grade: '6º',
-      letter: 'D'
-    });
+
+    entity
+      .addGrade('5º')
+      .addLetter('A')
+      .addStudent({
+        name: 'Denise Weber',
+        run: '31641352-8'
+      });
+
+    entity
+      .addGrade('6º')
+      .addLetter('C')
+      .addStudent({
+        name: 'Robert Carson',
+        run: '26691573-k'
+      });
+
+    entity
+      .addGrade('6º')
+      .addLetter('D')
+      .addStudent({
+        name: 'Taylor Baker',
+        run: '70666762-8'
+      });
 
     expect(entity.grades[0].letters[0].students[0].name).toBe('Tina Soto');
     expect(entity.grades[0].letters[0].students[1].name).toBe('Denise Weber');
@@ -88,5 +96,4 @@ describe('entities/establishment.js', () => {
     expect(entity).not.toBe(cloneEntity);
     expect(entity).toEqual(cloneEntity);
   });
-
 });
