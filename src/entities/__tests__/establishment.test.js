@@ -1,0 +1,92 @@
+import Establishment from '../Establishment.js';
+
+describe('entities/establishment.js', () => {
+  let initialData;
+
+  beforeEach(() => {
+    initialData = {
+      "number": 1,
+      "name": "College 1",
+      "active": true,
+      "courses": [
+        {
+          "letters": [
+            {
+              "character": "A",
+              "teachers": [],
+              "students": [
+                {
+                  "name": "Tina Soto",
+                  "run": "33608548-9",
+                  "surveys": []
+                }
+              ]
+            }
+          ],
+          "level": "5º",
+          "createdAt": "2022-12-01T15:05:14.000Z",
+          "updatedAt": "2022-12-01T15:05:14.000Z"
+        }
+      ],
+      "createdAt": "2022-12-04T10:02:51.853Z",
+      "updatedAt": "2022-12-22T20:40:14.563Z"
+    };
+  });
+
+  test('load and map 1 establishment', () => {
+    const entity = new Establishment(initialData);
+    expect(entity.grades.length).toBe(1);
+    expect(entity.grades[0].level).toBe('5º');
+    expect(entity.grades[0].letters[0].character).toBe('A');
+    expect(entity.grades[0].letters[0].students[0].name).toBe('Tina Soto');
+  });
+
+  test('using a previous establishment and adding 1 student into previous set grade|letter', () => {
+    const entity = new Establishment(initialData);
+    const data = {
+      name: 'James Johnson',
+      run: '31641352-8',
+      grade: '5º',
+      letter: 'A'
+    };
+    entity.addStudent(data);
+    expect(entity.grades[0].letters[0].students[0].name).toBe('Tina Soto');
+    expect(entity.grades[0].letters[0].students[1].name).toBe('James Johnson');
+  });
+
+  test('using a previous establishment and adding 2 student into different grades and|or letters', () => {
+    const entity = new Establishment(initialData);
+    entity.addStudent({
+      name: 'Denise Weber',
+      run: '31641352-8',
+      grade: '5º',
+      letter: 'A'
+    });
+    entity.addStudent({
+      name: 'Robert Carson',
+      run: '26691573-k',
+      grade: '6º',
+      letter: 'C'
+    });
+    entity.addStudent({
+      name: 'Taylor Baker',
+      run: '70666762-8',
+      grade: '6º',
+      letter: 'D'
+    });
+
+    expect(entity.grades[0].letters[0].students[0].name).toBe('Tina Soto');
+    expect(entity.grades[0].letters[0].students[1].name).toBe('Denise Weber');
+    expect(entity.grades[1].letters[0].students[0].name).toBe('Robert Carson');
+    expect(entity.grades[1].letters[1].students[0].name).toBe('Taylor Baker');
+  });
+
+  test('using the same object reference vs a clone with different reference', () => {
+    const entity = new Establishment(initialData);
+    const cloneEntity = entity.clone();
+    expect(entity).toBe(entity);
+    expect(entity).not.toBe(cloneEntity);
+    expect(entity).toEqual(cloneEntity);
+  });
+
+});
