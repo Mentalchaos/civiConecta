@@ -1,5 +1,4 @@
 /*
-
     {
       "number": 1,
       "name": "College 1",
@@ -27,12 +26,7 @@
       "createdAt": "2022-12-04T10:02:51.853Z",
       "updatedAt": "2022-12-22T20:40:14.563Z"
     },
-
-
 */
-
-
-
 
 class Letter {
   constructor() {
