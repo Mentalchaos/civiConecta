@@ -157,7 +157,7 @@ const Ephemeris = () => {
         <div>
           <select
             name="grade"
-            className="select-date"
+            className="default-select"
             onChange={handleChangeGrade}
             defaultValue="Seleccione nivel"
             disabled={showPlanning}

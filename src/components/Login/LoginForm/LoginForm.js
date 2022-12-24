@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { signIn } from 'src/services/admin/user.request';
 import Button from 'src/components/UI/Button';
 import useForm from 'src/hooks/useForm';
@@ -15,15 +15,15 @@ const LoginForm = () => {
   });
   const navigate = useNavigate();
   const styleButton = {
-    width: ' 100%',
-    fontSize: ' 15px',
-    font: ' inherit',
-    color: ' white',
-    padding: ' 20px 20px',
-    backgroundColor: ' var(--color-secondary)',
-    cursor: ' pointer',
-    outline: ' none',
-    border: ' none',
+    width: '100%',
+    fontSize: '15px',
+    font: 'inherit',
+    color: 'white',
+    padding: '20px 20px',
+    backgroundColor: 'var(--color-secondary)',
+    cursor: 'pointer',
+    outline: 'none',
+    border: 'none',
   };
 
   const handleSubmit = e => {

@@ -152,7 +152,7 @@ const UnitsSection = () => {
             <h2 className="header-title">Lista de unidades</h2>
           </div>
           <select
-            className="select__level-units"
+            className="default-select"
             defaultValue={'Nivel'}
             onChange={handleLevelSelected}
           >
