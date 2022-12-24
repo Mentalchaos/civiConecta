@@ -54,9 +54,11 @@ const StageManager = ({ title, changeStage, handleInstitutionSelected }) => {
   const getEstablishments = () => {
     setFetching(true);
     getEstablishment().then(resp => {
+    setFetching(false);
+
       if (resp.ok) {
-        setFetching(false);
         setEstablishmentsData(resp.establishments);
+
         const data = resp.establishments;
         const dataDisplayed = data.map(est => {
           const { active, name } = est;
@@ -67,7 +69,6 @@ const StageManager = ({ title, changeStage, handleInstitutionSelected }) => {
         });
         setFormDataDisplayed(dataDisplayed);
       } else {
-        setFetching(false);
         console.error(resp.error);
       }
     });

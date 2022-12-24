@@ -1,12 +1,16 @@
 import { BASE_URL } from '../constants';
 import http from '../helpers/http.helper.js';
+import Establishment from 'src/entities/Establishment.js';
 
 export const getEstablishment = async () => {
   const url = `${BASE_URL}/getEstablishments`;
   const httpResponse = await http.get(url);
   const response = await httpResponse.json();
-  debugger;
-  return { ...response };
+
+  return {
+    ok: response.ok,
+    establishments: response.establishments.map(e => new Establishment(e))
+  };
 };
 
 export const createEstablishment = async (number, name) => {
