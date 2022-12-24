@@ -1,0 +1,66 @@
+{
+  "courses": [
+    {
+      "grade": "5º",
+      "letters": [
+        {
+          "character": "A",
+          "students": [
+            {
+              "name": "Student 1",
+              "run": "14.781.222-1"
+            },
+            {
+              "name": "Student 2",
+              "run": "21.584.138-3"
+            }
+          ]
+        },
+        {
+          "character": "B",
+          "students": [
+            {
+              "name": "Student 1",
+              "run": "8.757.864-K"
+            },
+            {
+              "name": "Student 2",
+              "run": "21.788.183-8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "grade": "6º",
+      "letters": [
+        {
+          "character": "A",
+          "students": [
+            {
+              "name": "Student 1",
+              "run": "23.108.058-9"
+            },
+            {
+              "name": "Student 2",
+              "run": "20.811.853-6"
+            }
+          ]
+        },
+        {
+          "character": "B",
+          "students": [
+            {
+              "name": "Student 1",
+              "run": "10.313.884-1"
+            },
+            {
+              "name": "Student 2",
+              "run": "23.683.504-9"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
