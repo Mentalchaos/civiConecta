@@ -1,0 +1,23 @@
+.units-header-title {
+    display: flex;
+    flex-direction: row;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.units-header-title img {
+    width: 40px;
+}
+
+.units-header-title p {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #4d4d51;
+}
+
+.units-header-sub {
+    width: 55%;
+    color: #898c8c;
+    font-size: 12px;
+    margin-left: 10px;
+}

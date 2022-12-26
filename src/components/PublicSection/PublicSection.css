@@ -3,3 +3,16 @@
     justify-content: space-around;
     margin: 20px;
 }
+
+.units-cont {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.units-components {
+    display: flex;
+    justify-content: space-evenly;
+    width: 70%;
+}
