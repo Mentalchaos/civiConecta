@@ -1,0 +1,48 @@
+.link-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.survey-link-container {
+    display: flex;
+    width: 95%;
+    border-radius: 30px;
+    background-color: #7468E5;
+    margin: 20px 0;
+}
+
+.first-container-link,
+.second-container-link {
+    width: 50%;
+}
+
+.first-container-link {
+    display: flex;
+    justify-content: space-evenly;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 14px;
+    color: #FFFFFF;
+}
+
+.first-container-link img {
+    width: 40px;
+}
+
+.second-container-link {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 25px;
+}
+
+.second-container-link button {
+    height: 30px;
+    width: 25%;
+    color: #7268db;
+}
+
+.second-container-link button:hover {
+    cursor: pointer;
+}
