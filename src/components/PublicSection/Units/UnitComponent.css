@@ -1,0 +1,52 @@
+.unit-component-container {
+    width: 230px;
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 230px;
+}
+
+.unit-component-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.unit-component-title img {
+    width: 30px;
+}
+
+.unit-second-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.unit-second-container p {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 14px;
+    color: #898c8c;
+}
+
+.component-title,
+.component-subtitle,
+.go-to-unit {
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.component-subtitle {
+    color: #7468e5;
+}
+
+.component-description {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 12px;
+    color: #898c8c;
+}
+
+.component-title,
+.component-info,
+.go-to-unit {
+    margin-left: 5px;
+}
