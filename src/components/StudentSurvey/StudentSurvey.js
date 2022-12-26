@@ -10,6 +10,9 @@ const StudentSurvey = () => {
   const [isSurveyVisible, setSurveyVisibility] = useState(false);
   const [topics, setTopics] = useState([]);
   const [selectedTopic, setSelectedTopic] = useState(false);
+  const [title, setTitle] = useState('');
+  const [surveys, setSurveys] = useState('');
+  
 
   useEffect(() => {
     const getTopics = async function() { 
@@ -25,13 +28,31 @@ const StudentSurvey = () => {
       .then(response => response.json())
       .then(data => setTopics(data.topics));
     }
+
+    const getSurveys = async function() { 
+      const user = JSON.parse(localStorage.getItem('user'));
+      const jwt = user.token;
+
+      fetch('https://civi-conecta-server.adaptable.app/getSurveysByType?type=Student', {
+        headers: {
+          'Content-Type': 'application/json',
+          token: jwt,
+        }
+      })
+      .then(response => response.json())
+      .then(data => setSurveys(data.surveys));
+    }
+
+    getSurveys();
     getTopics();
   }, []);
 
   console.log('selected topic',selectedTopic);
+  console.log('surveys',surveys);
 
-  const setTopicAndVisibility = (number) => {
+  const setTopicAndVisibility = (number, title) => {
     setSelectedTopic(number);
+    setTitle(title);
     setSurveyVisibility(true);
   }
 
@@ -46,7 +67,11 @@ const StudentSurvey = () => {
         </div>
 
         { isSurveyVisible ? (
-          <Question />
+          <Question
+            title={title}
+            surveys={surveys}
+            selectedTopic={selectedTopic}
+          />
         ) : (
           <div className="categories-container">
             { topics.length == 0 && <Spinner /> }
@@ -58,7 +83,7 @@ const StudentSurvey = () => {
                     title={item.title}
                     detail={item.detail}
                     key={`topic-${item.number}`}
-                    onclick={() => setTopicAndVisibility(item.number)}
+                    onclick={() => setTopicAndVisibility(item.number, item.title)}
                   />
                 );
               })
