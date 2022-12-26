@@ -43,6 +43,7 @@
 .continue-button:hover {
     background-color: #D9687C;
     color: #FFFFFF;
+    cursor: pointer;
 }
 
 .edit-question-container {
@@ -51,10 +52,6 @@
     background: #FFFFFF;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
-}
-
-.edit-question-container:hover {
-    border: 1.2px solid #7268DB;
 }
 
 .question {
@@ -119,4 +116,8 @@
     background: #FFFFFF;
     border: 1.2px solid #D9687C;
     border-radius: 20px;
+}
+
+.red {
+  background-color: red;
 }
