@@ -48,6 +48,7 @@ const Manager = () => {
         )}
         {stage === 'Asignación' && (
           <StageAssignment
+            onUpdateInstitution={setInstitutionSelected}
             changeStage={changeStage}
             institutionSelected={institutionSelected}
             onHandleCourseSelected={handleCourseSelected}
