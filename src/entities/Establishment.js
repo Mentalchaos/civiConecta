@@ -44,6 +44,12 @@ class Establishment {
     };
   }
 
+  isStudentDuplicated(run) {
+    const students = this.students;
+    const foundStudent = students.find(s => s.run === run);
+    return foundStudent;
+  }
+
   get students() {
     return this.grades.map(grade =>
       grade.letters.map(letter =>
