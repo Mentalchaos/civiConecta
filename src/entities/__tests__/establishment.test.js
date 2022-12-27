@@ -96,4 +96,40 @@ describe('entities/establishment.js', () => {
     expect(entity).not.toBe(cloneEntity);
     expect(entity).toEqual(cloneEntity);
   });
+
+  test('check how many students are in a class', () => {
+    const entity = new Establishment(initialData);
+    entity
+      .addGrade('5º')
+      .addLetter('D')
+      .addStudent({
+        name: 'John Doe',
+        run: '34036753-7'
+    });
+
+    expect(entity.calculateStudentsInGradeLetter('5º', 'D')).toBe(1);
+  });
+
+  test('retrieve all students with their grade and letter', () => {
+    const entity = new Establishment(initialData);
+
+    entity
+      .addGrade('6º')
+      .addLetter('C')
+      .addStudent({ name: 'Alfonso', run: '39520737-7' });
+
+    const students = entity.students;
+    const tina = students[0];
+    const alfonso = students[1];
+
+    expect(tina.name).toBe('Tina Soto');
+    expect(tina.run).toBe('33608548-9');
+    expect(tina.grade).toBe('5º');
+    expect(tina.letter).toBe('A');
+
+    expect(alfonso.name).toBe('Alfonso');
+    expect(alfonso.run).toBe('39520737-7');
+    expect(alfonso.grade).toBe('6º');
+    expect(alfonso.letter).toBe('C');
+  });
 });
