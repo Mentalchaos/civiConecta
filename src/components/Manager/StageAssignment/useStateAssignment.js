@@ -50,7 +50,8 @@ const useStateAssignment = (institutionSelected) => {
       setFetching,
       setErrorMessage,
       handleInputChange,
-      reset
+      reset,
+      updateCoursesEstablishment
     },
     get isGradeRenderable() {
       return institutionCourses.length && !fetching && values.grade !== 'Seleccionar';
@@ -59,7 +60,7 @@ const useStateAssignment = (institutionSelected) => {
       return values.name.length < 6 || values.run.length < 9;
     },
     get isSendFormDisabled() {
-      return !studentsAdded.length || values.grade === 'Seleccionar' || values.letter === 'Seleccionar';
+      return !institutionSelected.students.length;
     }
   };
 };

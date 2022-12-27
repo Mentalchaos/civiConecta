@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useRef } from 'react';
 import Button from 'src/components/UI/Button';
 import Spinner from 'src/components/UI/Spinner';
-import useForm from 'src/hooks/useForm';
-import gotoIcon from 'src/assets/Icons/arrow-degree.svg';
+import Visible from 'src/components/UI/Visible';
 import addStudentIcon from 'src/assets/Icons/add-student.svg';
-import { getGrades } from 'src/services/admin/grades.request';
-import { updateCoursesEstablishment } from 'src/services/admin/establishment.request';
+import GradeLetter from './GradeLetter.js';
+import useStateAssignment from './useStateAssignment.js';
+import styles from './styles.js';
 import './StageAssignment.css';
 
 const StageAssignment = ({
@@ -13,170 +13,118 @@ const StageAssignment = ({
   changeStage,
   institutionSelected,
   onHandleCourseSelected,
+  onUpdateInstitution
 }) => {
-  const [grades, setGrades] = useState([]);
-  const [studentsAdded, setStudentsAdded] = useState([]);
-  const [institutionCourses, setInstitutionCourses] = useState([]);
-  const [fetching, setFetching] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-  const { values, handleInputChange, reset } = useForm({
-    grade: 'Seleccionar',
-    letter: 'Seleccionar',
-    name: '',
-    run: '',
-  });
+  const gradeRef = useRef(null);
+  const letterRef = useRef(null);
+  const { actions, ...rest } = useStateAssignment(institutionSelected);
+  const state = rest;
 
-  useEffect(() => {
-    const filterCoursesByGrade = institutionSelected.grades.filter(
-      g => g.level === values.grade
-    );
+  const handleAddStudent = (evt) => {
+    evt.preventDefault();
 
-    setInstitutionCourses(filterCoursesByGrade);
-    getGrades().then(resp => {
-      if (resp.ok) {
-        setGrades(resp.grades);
-      }
-    });
-  }, [values.grade]);
+    const { name, run, grade, letter } = state.values;
 
-  const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
+    if (!name || !run) {
+      return;
+    }
 
-  const buttonStyles = {
-    background: 'var(--color-secondary)',
-    color: '#fff',
-    padding: '5px 40px',
-    borderRadius: '20px',
+    institutionSelected
+      .addGrade(grade)
+      .addLetter(letter)
+      .addStudent({ name, run });
+
+    state.values.name = '';
+    state.values.run = '';
+
+    const clone = institutionSelected.clone();
+    onUpdateInstitution(clone);
   };
 
-  const handleAddStudent = e => {
-    e.preventDefault();
-
-    const { name, run } = values;
-    if (!name || !run) return;
-
-    // institutionSelected.addStudent({ name, run, letter, grade });
-    // setInstitutionSelected(institutionSelected.clone());
-
-    const newStudent = { name, run, survey: [] };
-    setStudentsAdded([...studentsAdded, newStudent]);
-    values.name = '';
-    values.run = '';
+  const handleCourseSelected = (course) => {
+    gradeRef.current.value = course.gradeSelected;
+    letterRef.current.value = course.letter.character;
   };
 
-  const handleCourseSelected = course => {
-    changeStage('Detalle');
-    const courseSelected = {
-      ...course,
-      establishment: institutionSelected.number,
-    };
-    onHandleCourseSelected(courseSelected);
-  };
+  const handleAddCourse = () => {
+    async function fn() {
+      actions.setFetching(true);
 
-  const handleAddCourse = e => {
-    e.preventDefault();
-    onUpdateEstablishment(institutionSelected.number);
-  };
+      const payload = institutionSelected.toJSON();
+      const response = await actions
+        .updateCoursesEstablishment(institutionSelected.number, payload);
 
-  const onUpdateEstablishment = establishmentNumber => {
-    setFetching(true);
-
-    const payload = institutionSelected.toJSON();
-
-    updateCoursesEstablishment(establishmentNumber, payload).then(resp => {
-      if (resp.error?.message?.includes('run')) {
-        setErrorMessage('Rut incorrecto');
-        setFetching(false);
-        setStudentsAdded([]);
-      }
-      if (resp.error?.duplicateStudents) {
-        setErrorMessage(
-          `Estudiante ya se encuentra en un curso, rut: ${resp.error.duplicateStudents.students[0].run}`,
-        );
-        setFetching(false);
-        setStudentsAdded([]);
+      if (response.error?.message?.includes('run')) {
+        actions.setErrorMessage('Rut incorrecto');
+        actions.setFetching(false);
+        return;
       }
 
-      if (resp.ok) {
-        const courses = [resp.establishment.courses[0]];
-        console.log(courses);
-        setErrorMessage('');
-        setInstitutionCourses(courses);
-        setFetching(false);
-        reset();
-        setStudentsAdded([]);
+      if (response.error?.duplicateStudents) {
+        actions.setErrorMessage(`Estudiante ya se encuentra en un curso, rut: ${response.error.duplicateStudents.students[0].run}`);
+        actions.setFetching(false);
+        return;
       }
-    });
+
+      if (response.ok) {
+        actions.setErrorMessage('');
+        actions.reset();
+      }
+
+      actions.setFetching(false);
+    }
+
+    fn();
   };
 
   return (
     <section className="manager-section">
       <h1 className="section__title">{title}</h1>
-      {fetching && (
-        <div style={{ marginTop: 30 }}>
+      <Visible condition={state.fetching}>
+        <div style={styles.spinnerWrapper}>
           <Spinner />
         </div>
-      )}
+      </Visible>
+
       <article className="section__content-assignment">
         <div className="content__level-selection">
-          {!institutionCourses.length && (
-            <h1 style={{ fontSize: '26px', textAlign: 'center' }}>
-              Aún no hay cursos registrados.
-            </h1>
-          )}
-          <div
-            style={{
-              display: 'flex',
-              gap: '10px',
-              alignItems: 'center',
-              flexWrap: 'wrap',
-            }}
-          >
-            {institutionCourses.length > 0 &&
-              !fetching &&
-              values.grade !== 'Seleccionar' &&
-              institutionCourses[0].letters.map(letter => {
-                const gradeSelected = values.grade;
-                return (
-                  <section
-                    key={letter.character}
-                    className="content__level-selected"
-                    onClick={() =>
-                      handleCourseSelected({ letter, gradeSelected })
-                    }
-                  >
-                    <span className="level-selected__degree">{`${gradeSelected} ${letter.character}`}</span>
-                    <span className="add-word__go-to">
-                      <span className="go-to__text">B&aacute;sico</span>
-                      <img
-                        src={gotoIcon}
-                        className="go-to__icon"
-                        alt="go to icon"
-                      />
-                    </span>
-                  </section>
-                );
-              })}
+          <Visible condition={!state.institutionCourses.length}>
+            <h1 style={styles.noGradeSelected}>Aún no hay cursos registrados.</h1>
+          </Visible>
+          <div style={styles.coursesWrapper}>
+            <Visible condition={state.isGradeRenderable}>
+              {() => {
+                return state.institutionCourses[0].letters.map(letter => {
+                  const grade = state.values.grade;
+
+                  return (
+                    <GradeLetter
+                      key={`${grade}${letter.character}`}
+                      grade={state.values.grade}
+                      letter={letter}
+                      onClick={() => handleCourseSelected({ letter, gradeSelected: grade })}
+                    />
+                  );
+                });
+              }}
+            </Visible>
           </div>
         </div>
-        <div style={{ width: '50%', marginRight: 50 }}>
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'end',
-              alignItems: 'center',
-              gap: '20px',
-            }}
-          >
-            <div style={{ textAlign: 'center' }} className="form-group">
+
+        <div style={styles.dropdownContainer}>
+          <div style={styles.dropdownWrapper}>
+            <div style={styles.centerContent} className="form-group">
               <span className="content__level-selection-title">Nivel:</span>
               <select
+                id="gradeDropdown"
+                ref={gradeRef}
                 name="grade"
                 className="default-select"
-                onChange={handleInputChange}
-                value={values.grade}
+                onChange={actions.handleInputChange}
+                value={state.values.grade}
               >
                 <option disabled>Seleccionar</option>
-                {grades.map(grade => {
+                {state.grades.map(grade => {
                   return (
                     <option key={grade.level} value={grade.level}>
                       {grade.level} Basico
@@ -185,18 +133,18 @@ const StageAssignment = ({
                 })}
               </select>
             </div>
-            <div style={{ textAlign: 'center' }} className="form-group">
+            <div style={styles.centerContent} className="form-group">
               <span className="content__level-selection-title">Letra:</span>
               <select
+                id="letterDropdown"
+                ref={letterRef}
                 className="default-select"
-                onChange={handleInputChange}
-                value={values.letter}
+                onChange={actions.handleInputChange}
+                value={state.values.letter}
                 name="letter"
               >
-                <option value="Seleccionar" disabled>
-                  Seleccionar
-                </option>
-                {letters.map(letter => {
+                <option value="Seleccionar" disabled>Seleccionar</option>
+                {state.letters.map(letter => {
                   return (
                     <option key={letter} value={letter}>
                       {letter}
@@ -208,69 +156,76 @@ const StageAssignment = ({
           </div>
 
           <form className="form__add-student">
-            <p style={{ fontSize: 14 }}>
-              Alumnos a&ntilde;adidos: <b>{studentsAdded.length}</b>
+            <p style={styles.studentsAdded}>
+              Alumnos añadidos:
+              <strong>
+                {institutionSelected.calculateStudentsInGradeLetter(state.values.grade, state.values.letter)}
+              </strong>
             </p>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'flex-end',
-                gap: 5,
-                paddingTop: 10,
-              }}
-            >
+            <div style={styles.fieldsWrapper}>
               <input
-                onChange={handleInputChange}
+                onChange={actions.handleInputChange}
                 type="text"
                 name="name"
-                value={values.name}
+                value={state.values.name}
                 placeholder="Nombre completo"
               />
               <input
-                onChange={handleInputChange}
+                onChange={actions.handleInputChange}
                 type="text"
                 name="run"
-                value={values.run}
+                value={state.values.run}
                 placeholder="Ingrese rut de estudiante"
               />
             </div>
-            {errorMessage.length > 0 && (
-              <span style={{ color: 'red', fontSize: '13px' }}>
-                {errorMessage}
+            <Visible condition={state.errorMessage}>
+              <span style={styles.errorMessage}>
+                {state.errorMessage}
               </span>
-            )}
-            <div
-              style={{
-                marginTop: 20,
-                display: 'flex',
-                gap: 10,
-                justifyContent: 'right',
-                paddingBottom: 40,
-              }}
-            >
+            </Visible>
+            <div style={styles.buttonWrapper}>
               <Button
                 onClick={handleAddStudent}
-                customStyles={buttonStyles}
+                customStyles={styles.button}
                 icon={addStudentIcon}
                 text="A&ntilde;adir alumno"
                 type="button"
-                disabled={values.name.length < 6 || values.run.length < 9}
+                disabled={state.isAddStudentDisabled}
               />
               <Button
                 onClick={handleAddCourse}
-                customStyles={buttonStyles}
+                customStyles={styles.button}
                 text="Enviar formulario"
                 type="button"
-                disabled={
-                  !studentsAdded.length ||
-                  values.grade === 'Seleccionar' ||
-                  values.letter === 'Seleccionar'
-                }
+                disabled={state.isSendFormDisabled}
               />
             </div>
           </form>
         </div>
       </article>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Curso</th>
+            <th>Letra</th>
+            <th>Nombre</th>
+            <th>RUN</th>
+          </tr>
+        </thead>
+        <tbody>
+          {institutionSelected.students.map(student => {
+            return (
+              <tr key={student.run}>
+                <th>{student.grade}</th>
+                <th>{student.letter}</th>
+                <th>{student.name}</th>
+                <th>{student.run}</th>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
     </section>
   );
 };
