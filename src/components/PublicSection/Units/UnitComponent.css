@@ -1,8 +1,11 @@
 .unit-component-container {
     width: 230px;
-    border: 1px solid black;
+    border: 1px solid #818181;
     border-radius: 10px;
-    height: 230px;
+    height: 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .unit-component-title {
@@ -35,6 +38,22 @@
     font-size: 14px;
 }
 
+.go-to-unit {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 50%;
+}
+
+.go-to-unit:hover {
+    cursor: pointer;
+}
+
+.component-title,
+.go-to-unit {
+    color: #4a4a4a;
+}
+
 .component-subtitle {
     color: #7468e5;
 }
@@ -49,4 +68,21 @@
 .component-info,
 .go-to-unit {
     margin-left: 5px;
+}
+
+
+@media (max-width: 1024px) {
+    .unit-component-container {
+        width: 205px;
+    }
+
+    .component-title,
+    .component-subtitle,
+    .go-to-unit p {
+        font-size: 12px;
+    }
+
+    .go-to-unit {
+        width: 60%;
+    }
 }

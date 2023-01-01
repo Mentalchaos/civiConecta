@@ -36,13 +36,22 @@
     align-items: center;
     margin-right: 25px;
 }
+.second-container-link img {
+    filter: invert(50%) sepia(25%) saturate(1638%) hue-rotate(207deg) brightness(92%) contrast(85%);
+}
 
 .second-container-link button {
     height: 30px;
     width: 25%;
-    color: #7268db;
+    color: var(--color-primary);
 }
 
 .second-container-link button:hover {
     cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+    .survey-link-container {
+        width: 98%;
+    }
 }
