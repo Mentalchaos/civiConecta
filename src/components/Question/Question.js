@@ -34,16 +34,18 @@ const mockData = {
   ]
 }
 
-const Question = ({ selectedTopic, title }) => {
+const Question = ({ selectedTopic, title, type }) => {
   const [alternatives, setAlternatives] = useState(mockData);
   const [number, setNumber] = useState({ number: 0 });
 
+  console.log('type', type);
+
   useEffect(() => {
-    const getQuestions = async function() { 
+    const getQuestions = async function() {
       const user = JSON.parse(localStorage.getItem('user'));
       const jwt = user.token;
 
-      fetch('https://civi-conecta-server.adaptable.app/getSurveysByType?type=Student', {
+      fetch(`https://civi-conecta-server.adaptable.app/getSurveysByType?type=${type}`, {
         headers: {
           'Content-Type': 'application/json',
           token: jwt,
@@ -98,7 +100,7 @@ const Question = ({ selectedTopic, title }) => {
           token: jwt
         }
       });
-      
+
       const response = await fetching.json();
       console.log('response', response);
   }
@@ -127,7 +129,7 @@ const Question = ({ selectedTopic, title }) => {
                 alternatives && alternatives.alternatives.map(
                   (data, key) => (
                     <div key={key} className='option-component'>
-                      <ColorButton 
+                      <ColorButton
                         changeColor={changeColor}
                         letter={data.letter}
                         value={data.value}

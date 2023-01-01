@@ -39,7 +39,9 @@ const TeacherSurvey = () => {
         </div>
 
         {isSurveyVisible ? (
-          <Question />
+          <Question
+            type={'Teacher'}
+          />
         ) : (
           <div className="categories-container">
             {surveyCategories.map(item => {
