@@ -83,7 +83,7 @@
 
 .ephemeris-title {
   font-weight: 600;
-  color: #7268db;
+  color: var(--color-primary);
   font-size: 19px;
 }
 

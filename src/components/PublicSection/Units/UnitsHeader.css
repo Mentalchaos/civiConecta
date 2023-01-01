@@ -1,7 +1,9 @@
 .units-header-title {
+    width: 10%;
     display: flex;
     flex-direction: row;
     font-family: 'Nunito Sans', sans-serif;
+    justify-content: space-evenly;
 }
 
 .units-header-title img {
@@ -16,8 +18,14 @@
 }
 
 .units-header-sub {
-    width: 55%;
+    width: 40%;
     color: #898c8c;
     font-size: 12px;
     margin-left: 10px;
+}
+
+@media (max-width: 1024px) {
+    .units-header-sub {
+        width: 55%;
+    }
 }

@@ -1,5 +1,6 @@
 import unitLogo from 'src/assets/Icons/unit-purple.svg';
 import brain from 'src/assets/Icons/heart-brain.svg';
+import goTo from 'src/assets/Icons/go-to-link.svg';
 import './UnitComponent.css';
 
 const UnitComponent = () => {
@@ -25,7 +26,7 @@ const UnitComponent = () => {
             </div>
             <div className='go-to-unit'>
                 <p>Ir a la unidad</p>
-                <img />
+                <img src={goTo} />
             </div>
         </div>
     )

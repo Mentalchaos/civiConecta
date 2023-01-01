@@ -58,3 +58,14 @@
 .second-container {
     width: 100%;
 }
+
+@media (max-width: 1024px) {
+    .planification-header {
+        width: 20%;
+    }
+
+    .planification-header p,
+    .planification-container-two p {
+        font-size: 14px;
+    }
+}

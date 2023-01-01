@@ -9,5 +9,5 @@
 }
 .header__title>span {
   font-size: 40px;
-  color: #7268DB;
+  color: var(--color-primary);
 }
