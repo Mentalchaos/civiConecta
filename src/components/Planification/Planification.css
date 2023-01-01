@@ -139,3 +139,9 @@
   height: 32px;
   display: inline-block;
 }
+
+@media (max-width: 1024px) {
+  .planification-container {
+    margin: 10px;
+  }
+}
