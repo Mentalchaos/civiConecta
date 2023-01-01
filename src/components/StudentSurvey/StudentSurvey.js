@@ -12,10 +12,9 @@ const StudentSurvey = () => {
   const [selectedTopic, setSelectedTopic] = useState(false);
   const [title, setTitle] = useState('');
   const [surveys, setSurveys] = useState('');
-  
 
   useEffect(() => {
-    const getTopics = async function() { 
+    const getTopics = async function() {
       const user = JSON.parse(localStorage.getItem('user'));
       const jwt = user.token;
 
@@ -29,7 +28,7 @@ const StudentSurvey = () => {
       .then(data => setTopics(data.topics));
     }
 
-    const getSurveys = async function() { 
+    const getSurveys = async function() {
       const user = JSON.parse(localStorage.getItem('user'));
       const jwt = user.token;
 
@@ -47,8 +46,7 @@ const StudentSurvey = () => {
     getTopics();
   }, []);
 
-  console.log('selected topic',selectedTopic);
-  console.log('surveys',surveys);
+  console.log('surveys', surveys);
 
   const setTopicAndVisibility = (number, title) => {
     setSelectedTopic(number);
@@ -68,6 +66,7 @@ const StudentSurvey = () => {
 
         { isSurveyVisible ? (
           <Question
+            type={'Student'}
             title={title}
             surveys={surveys}
             selectedTopic={selectedTopic}
