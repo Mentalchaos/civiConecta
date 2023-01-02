@@ -64,7 +64,7 @@
     height: 65px;
     border-radius: 15px;
     font-size: 14px;
-    align-items: center;   
+    align-items: center;
     margin: 0 25px;
 }
 
@@ -88,7 +88,7 @@
 .share-container-link {
     display: flex;
     flex-direction: column;
-}   
+}
 
 .share-container-link input {
     width: 90%;
@@ -123,4 +123,12 @@
     .share-container {
         width: 55%;
     }
+}
+
+.link-icon-img {
+    width: 25px;
+}
+
+.link-icon-button {
+    border-radius: 10px;
 }
