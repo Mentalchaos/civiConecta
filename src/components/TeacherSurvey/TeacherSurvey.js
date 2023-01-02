@@ -89,7 +89,7 @@ const TeacherSurvey = () => {
           </div>
         )}
       </main>
-      {topics.length < 4 && (
+      {topics.length < 4 && !isSurveyVisible && (
         <div className="button-container teacher-survey">
           <button className="add-button">
             <p className="add-button-icon">+</p>
