@@ -29,25 +29,28 @@ const StudentSurvey = () => {
         headers: {
           'Content-Type': 'application/json',
           token: jwt,
-        }
+        },
       })
-      .then(response => response.json())
-      .then(data => setTopics(data.topics));
-    }
+        .then(response => response.json())
+        .then(data => setTopics(data.topics));
+    };
 
     const getSurveys = async function() {
       const user = JSON.parse(localStorage.getItem('user'));
       const jwt = user.token;
 
-      fetch('https://civi-conecta-server.adaptable.app/getSurveysByType?type=Student', {
-        headers: {
-          'Content-Type': 'application/json',
-          token: jwt,
-        }
-      })
-      .then(response => response.json())
-      .then(data => setSurveys(data.surveys));
-    }
+      fetch(
+        'https://civi-conecta-server.adaptable.app/getSurveysByType?type=Student',
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            token: jwt,
+          },
+        },
+      )
+        .then(response => response.json())
+        .then(data => setSurveys(data.surveys));
+    };
 
     getSurveys();
     getTopics();
@@ -62,7 +65,7 @@ const StudentSurvey = () => {
     setSelectedTopic(number);
     setTitle(title);
     setSurveyVisibility(true);
-  }
+  };
 
   const createCategory = async () => {
     const user = JSON.parse(localStorage.getItem('user'));
@@ -108,7 +111,7 @@ const StudentSurvey = () => {
           </div>
         </div>
 
-        { isSurveyVisible ? (
+        {isSurveyVisible ? (
           <Question
             type={'Student'}
             title={title}
@@ -117,20 +120,18 @@ const StudentSurvey = () => {
           />
         ) : (
           <div className="categories-container">
-            { topics.length == 0 && <Spinner /> }
-            {
-              topics.map(item => {
-                return (
-                  <Categories
-                    type={'student'}
-                    title={item.title}
-                    detail={item.detail}
-                    key={`topic-${item.number}`}
-                    onclick={() => setTopicAndVisibility(item.number, item.title)}
-                  />
-                );
-              })
-            }
+            {topics.length == 0 && <Spinner />}
+            {topics.map(item => {
+              return (
+                <Categories
+                  type={'student'}
+                  title={item.title}
+                  detail={item.detail}
+                  key={`topic-${item.number}`}
+                  onclick={() => setTopicAndVisibility(item.number, item.title)}
+                />
+              );
+            })}
           </div>
         )}
       </main>

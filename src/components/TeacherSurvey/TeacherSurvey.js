@@ -1,32 +1,61 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SectionsHeader from '../SectionsHeader/SectionsHeader';
 import Categories from './Categories/Categories';
-import teacherImage from '../../assets/images/teacher-banner.png';
-import './TeacherSurvey.css';
 import Question from '../Question/Question';
 
-const TeacherSurvey = () => {
-  const surveyCategories = [
-    {
-      title: 'Relaciones interpersonales',
-      // detail: '0 Preguntas en esta categoría',
-    },
-    {
-      title: 'Resolución de conflictos',
-      // detail: '0 Preguntas en esta categoría',
-    },
-    {
-      title: 'Bienestar y autocuidado',
-      // detail: '0 Preguntas en esta categoría',
-    },
-    {
-      title: 'Prevención consumo drogas y alcohol',
-      // detail: '0 Preguntas en esta categoría',
-    },
-  ];
+import teacherImage from '../../assets/images/teacher-banner.png';
+import './TeacherSurvey.css';
 
-  const [state, setState] = useState(surveyCategories);
+const TeacherSurvey = () => {
+  const [topics, setTopics] = useState([]);
+  const [selectedTopic, setSelectedTopic] = useState(false);
   const [isSurveyVisible, setSurveyVisibility] = useState(false);
+  const [title, setTitle] = useState('');
+  const [surveys, setSurveys] = useState('');
+
+  useEffect(() => {
+    const getTopics = async function () {
+      const user = JSON.parse(localStorage.getItem('user'));
+      const jwt = user.token;
+
+      fetch('https://civi-conecta-server.adaptable.app/getTopics', {
+        headers: {
+          'Content-Type': 'application/json',
+          token: jwt,
+        },
+      })
+        .then(response => response.json())
+        .then(data => setTopics(data.topics));
+    };
+
+    const getSurveys = async function () {
+      const user = JSON.parse(localStorage.getItem('user'));
+      const jwt = user.token;
+
+      fetch(
+        'https://civi-conecta-server.adaptable.app/getSurveysByType?type=Teacher',
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            token: jwt,
+          },
+        },
+      )
+        .then(response => response.json())
+        .then(data => setSurveys(data.surveys));
+    };
+    getTopics();
+    getSurveys();
+  }, []);
+
+  console.log('selected topic', selectedTopic);
+  console.log('surveys', surveys);
+
+  const setTopicAndVisibility = (number, title) => {
+    setSelectedTopic(number);
+    setTitle(title);
+    setSurveyVisibility(true);
+  };
 
   return (
     <>
@@ -41,23 +70,26 @@ const TeacherSurvey = () => {
         {isSurveyVisible ? (
           <Question
             type={'Teacher'}
+            title={title}
+            surveys={surveys}
+            selectedTopic={selectedTopic}
           />
         ) : (
           <div className="categories-container">
-            {surveyCategories.map(item => {
+            {topics.map(item => {
               return (
                 <Categories
                   title={item.title}
                   detail={item.detail}
                   key={item.title}
-                  onclick={() => setSurveyVisibility(true)}
+                  onclick={() => setTopicAndVisibility(item.number, item.title)}
                 />
               );
             })}
           </div>
         )}
       </main>
-      {state.length < 4 && (
+      {topics.length < 4 && (
         <div className="button-container teacher-survey">
           <button className="add-button">
             <p className="add-button-icon">+</p>
