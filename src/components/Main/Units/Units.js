@@ -27,9 +27,7 @@ const Units = () => {
           {/* <Select /> */}
         </div>
       </div>
-      <UnitDocs title={'Unidad 1'} />
-      <UnitDocs title={'Unidad 2'} />
-      <UnitDocs title={'Unidad 3'} />
+
     </section>
   );
 };
