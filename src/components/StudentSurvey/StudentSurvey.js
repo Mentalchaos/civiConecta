@@ -136,7 +136,7 @@ const StudentSurvey = () => {
         )}
       </main>
       <div className="buttons-container-fetch">
-        { topics.length < 4 && (
+        { topics.length < 4 && !isSurveyVisible && (
           <div className="button-container teacher-survey category-button">
             <button className="add-button" onClick={() => setModal(true)}>
               <p className="add-button-icon">+</p>

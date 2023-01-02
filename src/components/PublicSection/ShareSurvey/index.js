@@ -35,8 +35,8 @@ const ShareSurvey = () => {
                     <input></input>
                 </div>
                 <div  className='share-container-button'>
-                    <button>
-                        <img src={link} alt="link-icon"/>
+                    <button className="link-icon-button">
+                        <img className="link-icon-img" src={link} alt="link-icon"/>
                         Copiar enlace
                     </button>
                 </div>
