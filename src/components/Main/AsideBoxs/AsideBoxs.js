@@ -8,7 +8,7 @@ import situacionesImage from 'src/assets/images/emergentes-image.png';
 import efemeridesImage from 'src/assets/images/efemerides-image.png';
 import './AsideBoxs.css';
 
-const AsideBoxs = ({ events = 0 }) => {
+const AsideBoxs = () => {
   const navigate = useNavigate();
   return (
     <aside className="container-boxs">

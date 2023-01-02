@@ -15,13 +15,13 @@ const Planification = ({
   getClasses,
   isClass,
   fetching,
-  grade,
 }) => {
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const [isRowSelected, setIsRowSelected] = useState(false);
   const [fileName, setFileName] = useState('');
-  const [filesData, setFilesData] = useState([]);
   const [fileSelected, setFileSelected] = useState('');
+  const [filesList, setFilesList] = useState([]);
+  const [dataDisplayed, setDataDisplayed] = useState([]);
   const { values, handleInputChange } = useForm({
     topic: classData.planning.topic,
     studentMaterials: classData.planning.materials[0].student,
@@ -34,8 +34,17 @@ const Planification = ({
   const inputFile = useRef();
 
   useEffect(() => {
-    setFilesData(classData.files);
-  }, [classData.files]);
+    const files = classData.files?.map(file => {
+      return file;
+    });
+    const tableDataDisplayed = files?.map(file => {
+      return {
+        name: file.fileName || 'Archivo sin nombre',
+      };
+    });
+    setDataDisplayed(tableDataDisplayed);
+    setFilesList(files);
+  }, []);
 
   const styleDefaultButton = {
     padding: '5px 40px',
@@ -53,25 +62,11 @@ const Planification = ({
   };
 
   const headerTexts = ['Nombre'];
-  const files = classData.files.map(file => {
-    return {
-      url: file,
-    };
-  });
-  const tableDataDisplayed = files.map(file => {
-    const separateNameFile = isClass
-      ? file.url.split('=')[4]
-      : file.url.split('=')[3];
-
-    return {
-      name: separateNameFile,
-    };
-  });
 
   const onHandleCheckboxSelected = row => {
     if (row) {
       setIsRowSelected(true);
-      setFileSelected(row.url);
+      setFileSelected(row);
     } else {
       setIsRowSelected(false);
       setFileSelected('');
@@ -84,10 +79,7 @@ const Planification = ({
   };
 
   const handleDeleteFile = () => {
-    const file = isClass
-      ? fileSelected.split('=')[4]
-      : fileSelected.split('=')[3];
-    onHandleDeleteFile(file);
+    onHandleDeleteFile(fileSelected.fileName);
     setShowConfirmDelete(false);
   };
 
@@ -96,16 +88,24 @@ const Planification = ({
 
     if (inputFile.current?.files[0]) {
       const fileName = inputFile.current?.files[0]?.name;
-      setFileName(fileName);
-    }
 
-    const form = new FormData();
-    form.append('file', inputFile.current?.files[0]);
-    onHandleAddFile(form);
+      const nameWithoutAccent = fileName
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '');
+      const setName = nameWithoutAccent.replace(' ', '_');
+      setFileName(setName);
+
+      const form = new FormData();
+      const file = inputFile.current?.files[0];
+      form.append('file', file);
+      form.set('file', file, setName);
+      onHandleAddFile(form);
+    }
   };
 
   const onDownloadFile = () => {
-    if (fileSelected.length) window.location.href = fileSelected;
+    console.log(fileSelected);
+    if (fileSelected) return (window.location.href = fileSelected.getPath);
   };
 
   return (
@@ -167,8 +167,8 @@ const Planification = ({
           <Table
             style={{ marginTop: 10 }}
             handleCheckboxSelected={onHandleCheckboxSelected}
-            data={files}
-            dataDisplayed={tableDataDisplayed}
+            data={filesList}
+            dataDisplayed={dataDisplayed}
             dataHeader={headerTexts}
           />
           {isRowSelected && (

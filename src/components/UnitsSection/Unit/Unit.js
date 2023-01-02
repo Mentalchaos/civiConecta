@@ -124,6 +124,7 @@ const Unit = ({ unitsData, grade, handleSubmit }) => {
   };
 
   const handleDeleteFile = file => {
+    console.log(file);
     const { number, unit } = dataClassSelected;
     deleteFileByClassUnitAndGrade(number, unit.number, grade, file).then(
       resp => {
