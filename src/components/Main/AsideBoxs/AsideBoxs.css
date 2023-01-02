@@ -27,7 +27,6 @@
 
 .boxs__header {
   display: flex;
-  align-items: flex-start;
   align-items: center;
 }
 
