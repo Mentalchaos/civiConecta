@@ -4,19 +4,15 @@ import goTo from 'src/assets/Icons/go-to-link.svg';
 import './UnitComponent.css';
 
 const UnitComponent = ({status, title, subtitle, description, color, borderColor}) => {
-    const textColor = {
-
-    }
-
     return (
         <div className={`unit-component-container ${color}`}>
             <div className='unit-component-title'>
                 <div>
-                    <img src={unitLogo} />
+                    <img src={unitLogo} alt='unit-logo' />
                 </div>
                 <div className='unit-second-container'>
                     <p>{status}</p>
-                    <img src={brain}/>
+                    <img src={brain} alt='brain-logo'/>
                 </div>
             </div>
             <div className='component-info'>
@@ -26,7 +22,7 @@ const UnitComponent = ({status, title, subtitle, description, color, borderColor
             </div>
             <div className='go-to-unit'>
                 <p>Ir a la unidad</p>
-                <img src={goTo} />
+                <img src={goTo} alt="arrow-icon" />
             </div>
         </div>
     )

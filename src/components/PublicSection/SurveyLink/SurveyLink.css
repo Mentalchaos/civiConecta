@@ -46,6 +46,14 @@
     color: var(--color-primary);
 }
 
+.second-container-link a {
+    text-decoration: none;
+}
+
+.second-container-link a:visited {
+    color: var(--color-primary);
+}
+
 .second-container-link button:hover {
     cursor: pointer;
 }
@@ -53,5 +61,15 @@
 @media (max-width: 1024px) {
     .survey-link-container {
         width: 98%;
+    }
+
+    .second-container-link button {
+        width: 35%;
+    }
+}
+
+@media (max-width: 1300px) {
+    .second-container-link button {
+        width: 30%;
     }
 }

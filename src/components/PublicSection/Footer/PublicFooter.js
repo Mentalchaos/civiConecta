@@ -15,10 +15,10 @@ const PublicFooter = () => {
                 </div>
                 <div className='container-three'>
                     <div className='links-container'>
-                        <a>Sobre CiviConecta</a>
-                        <a>Profesionales</a>
-                        <a>Testimonios</a>
-                        <a>Contacto</a>
+                        <a href='https://civiconecta.cl/#sobre-civi' target="_blank">Sobre CiviConecta</a>
+                        <a href='https://civiconecta.cl/#Profesionales' target="_blank">Profesionales</a>
+                        <a href='https://civiconecta.cl/' target="_blank">Testimonios</a>
+                        <a href='https://civiconecta.cl/#Contacto' target="_blank">Contacto</a>
                     </div>
                     <div className='last-footer-container'>
                         <p>Santiago, Chile.</p>
@@ -26,16 +26,16 @@ const PublicFooter = () => {
                     </div>
                 </div>
                 <div className='social-container'>
-                    <a>
+                    <a href='https://api.whatsapp.com/send/?phone=56931282897&text=CiviConecta&type=phone_number&app_absent=0' target="_blank">
                         <img className='social-icon' src={whatsapp} />
                     </a>
-                    <a>
+                    <a href='https://www.instagram.com/civiconecta/' target="_blank">
                         <img className='social-icon' src={instagram} />
                     </a>
-                    <a>
+                    <a href='https://m.facebook.com/CiviConecta?_rdr' target="_blank">
                         <img className='social-icon' src={facebook} />
                     </a>
-                    <a>
+                    <a href='https://civiconecta.cl/' target="_blank">
                         <img className='social-icon' src={linkedin} />
                     </a>
                 </div>

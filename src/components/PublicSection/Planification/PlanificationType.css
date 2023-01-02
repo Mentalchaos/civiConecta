@@ -24,6 +24,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    width: 70%;
 }
 
 .planification-text h4 {
