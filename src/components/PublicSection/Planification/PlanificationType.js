@@ -2,15 +2,14 @@ import teacher from 'src/assets/images/teacher.jpg'
 import right from 'src/assets/images/right-red.svg'
 import './PlanificationType.css';
 
-const PlanificationType = () => {
+const PlanificationType = ({title, textButton}) => {
     return (
         <div className='planification-type-container'>
             <div className='planification-type'>
                 <div className='planification-text'>
-                    <h4>Reorganiza la planificación de
-                    acuerdo con la realidad de tu curso.</h4>
+                    <h4>{title}</h4>
                     <button>
-                    Personalizar planificación
+                        {textButton}
                         <img src={right} />
                     </button>
                 </div>
