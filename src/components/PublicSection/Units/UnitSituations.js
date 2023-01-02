@@ -3,12 +3,12 @@ import emergent from 'src/assets/images/emergent.jpg';
 import goTo from 'src/assets/Icons/go-to-link.svg';
 
 
-const UnitSituations = () => {
+const UnitSituations = ({title}) => {
     return (
         <div className='unit-situations-container'>
             <div className='unit-situations-one'>
                 <div className='unit-title'>
-                    <p>Situaciones Emergentes</p>
+                    <p>{title}</p>
                 </div>
                 <div className='unit-subtitle'>
                     <p>Ir a los contenidos</p>
