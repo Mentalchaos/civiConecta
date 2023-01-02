@@ -1,6 +1,6 @@
 import unitLogo from 'src/assets/Icons/unit-purple.svg';
 import brain from 'src/assets/Icons/heart-brain.svg';
-import goTo from 'src/assets/Icons/go-to-link.svg';
+import goTo from 'src/assets/Icons/open-arrow.svg';
 import './UnitComponent.css';
 
 const UnitComponent = ({status, title, subtitle, description, color, borderColor}) => {

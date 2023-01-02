@@ -7,13 +7,13 @@ const SurveyLink = () => {
         <div className='link-container'>
             <div className='survey-link-container'>
                 <div className='first-container-link'>
-                    <img src={icon} />
+                    <img src={icon} alt="link-icon"/>
                     <p>¿Necesitas el enlace de la encuesta de tus estudiantes nuevamente?</p>
                 </div>
                 <div className='second-container-link'>
                     <button>
                         <a href='http://localhost:3000/public/share-survey' target="_blank">Ver enlace encuesta</a>
-                        <img src={right}/>
+                        <img src={right} alt="right-arrow"/>
                     </button>
                 </div>
             </div>

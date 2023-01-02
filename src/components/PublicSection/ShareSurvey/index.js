@@ -10,12 +10,12 @@ const ShareSurvey = () => {
         <div className='share-survey-container'>
             <PublicHeader />
             <div className='back-container'>
-                <img src={back}/>
+                <img src={back} alt="back-arrow-icon"/>
                 <p>Volver</p>
             </div>
             <div className='share-container'>
                 <div className='share-container-title'>
-                    <img src={unitLogo} />
+                    <img src={unitLogo} alt="unit-logo"/>
                     <p>Compartir encuesta con estudiantes</p>
                 </div>
                 <div className='share-container-description'>
@@ -36,7 +36,7 @@ const ShareSurvey = () => {
                 </div>
                 <div  className='share-container-button'>
                     <button>
-                        <img src={link}/>
+                        <img src={link} alt="link-icon"/>
                         Copiar enlace
                     </button>
                 </div>
