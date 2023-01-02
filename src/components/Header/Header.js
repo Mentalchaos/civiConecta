@@ -8,7 +8,7 @@ const Header = () => {
       <h1 className="header__title">
         CIVI <span>admin</span>
       </h1>
-      <Notification />
+      {/* <Notification /> */}
     </header>
   );
 };

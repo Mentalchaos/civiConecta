@@ -2,9 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import BoxIcon from 'src/components/UI/BoxIcon/BoxIcon';
 import blackboard from 'src/assets/Icons/blackboard.svg';
-/* import infoIcon from 'src/assets/Icons/info.svg'; */
-import Select from './Select/Select';
-import UnitDocs from './UnitDocs/UnitDocs';
+import classImg from 'src/assets/images/clases-presenciales.jpeg';
 
 import './Units.css';
 
@@ -26,6 +24,9 @@ const Units = () => {
         <div className="header__right-content">
           {/* <Select /> */}
         </div>
+      </div>
+      <div className="img-container">
+        <img className="img-units" src={classImg} />
       </div>
 
     </section>

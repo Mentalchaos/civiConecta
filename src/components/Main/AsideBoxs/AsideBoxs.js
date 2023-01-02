@@ -20,7 +20,6 @@ const AsideBoxs = ({ events = 0 }) => {
           <BoxIcon svg={emergentesIcon} background="color-primary" />
           <div className="header__info-text">
             <span className="boxs-header__title">Situaciones emergentes</span>
-            <span className="boxs-header__events">Hay {events} eventos</span>
           </div>
         </header>
         <img
@@ -37,7 +36,6 @@ const AsideBoxs = ({ events = 0 }) => {
           <BoxIcon svg={efemeridesIcon} background="color-primary" />
           <div className="header__info-text">
             <span className="boxs-header__title">Efem&eacute;rides</span>
-            <span className="boxs-header__events">Hay {events} eventos</span>
           </div>
         </header>
         <img
