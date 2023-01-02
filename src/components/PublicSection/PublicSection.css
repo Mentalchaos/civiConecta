@@ -1,6 +1,6 @@
 .planification-cont {
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 2fr 2fr;
     margin: 20px;
 }
 
