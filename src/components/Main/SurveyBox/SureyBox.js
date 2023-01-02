@@ -95,7 +95,6 @@ const SurveyBox = () => {
         notification={true}
         icon={teacherIcon}
         title="Encuesta al docente"
-        subtitle="Incompleto"
         image={teacherImage}
         onClick={() => navigate('/admin/teacher-survey')}
       />
@@ -103,7 +102,6 @@ const SurveyBox = () => {
         notification={true}
         icon={studentIcon}
         title="Encuesta al estudiante"
-        subtitle="Incompleto"
         image={studentImage}
         onClick={() => navigate('/admin/student-survey')}
       />
