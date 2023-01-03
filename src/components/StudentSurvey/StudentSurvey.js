@@ -16,12 +16,12 @@ const StudentSurvey = () => {
   const [showModal, setModal] = useState(false);
   const [topic, setTopic] = useState('');
   const [removeTopicModal, setRemoveTopicModal] = useState(false);
-  const [selectValue, setSelectValue] = useState("null");
+  const [selectValue, setSelectValue] = useState('null');
 
-  console.log('selectValue',selectValue);
+  console.log('selectValue', selectValue);
 
   useEffect(() => {
-    const getTopics = async function() {
+    const getTopics = async function () {
       const user = JSON.parse(localStorage.getItem('user'));
       const jwt = user.token;
 
@@ -35,7 +35,7 @@ const StudentSurvey = () => {
         .then(data => setTopics(data.topics));
     };
 
-    const getSurveys = async function() {
+    const getSurveys = async function () {
       const user = JSON.parse(localStorage.getItem('user'));
       const jwt = user.token;
 
@@ -73,8 +73,8 @@ const StudentSurvey = () => {
 
     const payload = {
       number: topicLength,
-      title: topic
-    }
+      title: topic,
+    };
 
     fetch('https://civi-conecta-server.adaptable.app/createTopic', {
       method: 'POST',
@@ -82,24 +82,33 @@ const StudentSurvey = () => {
       headers: {
         'Content-Type': 'application/json',
         token: jwt,
-      }
-    }).then(() => window.location.reload(true))
-  }
+      },
+    }).then(() => window.location.reload(true));
+  };
 
   const removeCategory = async () => {
     const user = JSON.parse(localStorage.getItem('user'));
     const jwt = user.token;
 
-    fetch(`https://civi-conecta-server.adaptable.app/deleteTopic?number=${selectValue}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        token: jwt,
+    fetch(
+      `https://civi-conecta-server.adaptable.app/deleteTopic?number=${selectValue}`,
+      {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          token: jwt,
+        },
+      },
+    ).then(resp => {
+      if (resp.ok) {
+        window.location.reload(true);
+      } else {
+        console.log(resp);
       }
-    }).then(() => window.location.reload(true))
-  }
+    });
+  };
 
-  const disabledStyle = selectValue == "null" ? 'disabled-styles' : '';
+  const disabledStyle = selectValue == 'null' ? 'disabled-styles' : '';
 
   return (
     <>
@@ -136,7 +145,7 @@ const StudentSurvey = () => {
         )}
       </main>
       <div className="buttons-container-fetch">
-        { topics.length < 4 && !isSurveyVisible && (
+        {topics.length < 4 && !isSurveyVisible && (
           <div className="button-container teacher-survey category-button">
             <button className="add-button" onClick={() => setModal(true)}>
               <p className="add-button-icon">+</p>
@@ -145,43 +154,76 @@ const StudentSurvey = () => {
           </div>
         )}
         <div className="button-container teacher-survey category-button">
-            <button className="add-button" onClick={() => setRemoveTopicModal(true)}>
-              <p className="add-button-icon">-</p>
-              <p className="add-button-text">Eliminar categoria</p>
-            </button>
-          </div>
+          <button
+            className="add-button"
+            onClick={() => setRemoveTopicModal(true)}
+          >
+            <p className="add-button-icon">-</p>
+            <p className="add-button-text">Eliminar categoria</p>
+          </button>
         </div>
-        {
-          showModal &&
-          <Modal style={{ padding: '20px 40px', marginTop: '50px' }}>
-            <div>
-              <p>Ingrese el nombre de la categoria que desea crear</p>
-              <input className="modal-input" value={topic} onChange={e => setTopic(e.target.value)}></input>
-              <div className="buttons-inputs">
-                <button className="create-category" onClick={() => createCategory()}>Crear</button>
-                <button className="close-modal" onClick={() => setModal(false)}>Cerrar</button>
-              </div>
+      </div>
+      {showModal && (
+        <Modal style={{ padding: '20px 40px', marginTop: '50px' }}>
+          <div>
+            <p>Ingrese el nombre de la categoria que desea crear</p>
+            <input
+              className="modal-input"
+              value={topic}
+              onChange={e => setTopic(e.target.value)}
+            ></input>
+            <div className="buttons-inputs">
+              <button
+                className="create-category"
+                onClick={() => createCategory()}
+              >
+                Crear
+              </button>
+              <button className="close-modal" onClick={() => setModal(false)}>
+                Cerrar
+              </button>
             </div>
-          </Modal>
-        }
-        {
-          removeTopicModal &&
-          <Modal style={{ padding: '20px 40px', marginTop: '50px' }}>
-            <div>
-              <p>Seleccione la categoria que desea eliminar</p>
-              <select name="select" className="remove-topic-select" onChange={e => setSelectValue(e.target.value)}>
-                <option value="null">Seleccionar</option>
-                {
-                  topics.map(data => <option key={data.number} value={data.number}>{data.title}</option> )
-                }
-              </select>
-              <div className="buttons-inputs">
-                <button className={`create-category ${disabledStyle}`} disabled={selectValue == null} onClick={() => removeCategory()}>Eliminar</button>
-                <button className="close-modal" onClick={() => setRemoveTopicModal(false)}>Cerrar</button>
-              </div>
+          </div>
+        </Modal>
+      )}
+      {removeTopicModal && (
+        <Modal style={{ padding: '20px 40px', marginTop: '50px' }}>
+          <div>
+            <p>Seleccione la categoria que desea eliminar</p>
+            <small>
+              Para eliminar una categoria, ésta no debe tener preguntas
+              asociadas.
+            </small>
+            <select
+              name="select"
+              className="remove-topic-select"
+              onChange={e => setSelectValue(e.target.value)}
+            >
+              <option value="null">Seleccionar</option>
+              {topics.map(data => (
+                <option key={data.number} value={data.number}>
+                  {data.title}
+                </option>
+              ))}
+            </select>
+            <div className="buttons-inputs">
+              <button
+                className={`create-category ${disabledStyle}`}
+                disabled={selectValue == null}
+                onClick={() => removeCategory()}
+              >
+                Eliminar
+              </button>
+              <button
+                className="close-modal"
+                onClick={() => setRemoveTopicModal(false)}
+              >
+                Cerrar
+              </button>
             </div>
-          </Modal>
-        }
+          </div>
+        </Modal>
+      )}
     </>
   );
 };
