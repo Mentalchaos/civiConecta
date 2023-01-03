@@ -16,7 +16,7 @@ const UnitsSection = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [gradeSelected, setGradeSelected] = useState('');
   const [openModalAddUnit, setOpenModalAddUnit] = useState(false);
-  const { values, handleInputChange } = useForm({
+  const { values, handleInputChange, reset } = useForm({
     number: 0,
     title: '',
     description: '',
@@ -167,12 +167,17 @@ const UnitsSection = () => {
             <Spinner />
           </div>
         )}
-        {!isLoading && units.length > 0 && gradeSelected && (
+        {!isLoading && units?.length > 0 && gradeSelected && (
           <div className="content-units">
-            <Unit unitsData={units} grade={gradeSelected} />
+            <Unit
+              getUnits={getUnits}
+              unitsData={units}
+              reset={reset}
+              grade={gradeSelected}
+            />
           </div>
         )}
-        {gradeSelected && !units.length && !isLoading && (
+        {gradeSelected && !units?.length && !isLoading && (
           <h2
             style={{
               color: 'var(--gray-dark)',
@@ -192,7 +197,7 @@ const UnitsSection = () => {
             />
           </div>
         )}
-        {!units.length && !isLoading && !gradeSelected && (
+        {!units?.length && !isLoading && !gradeSelected && (
           <h2
             style={{
               color: 'var(--gray-dark',
