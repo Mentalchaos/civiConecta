@@ -17,14 +17,16 @@ import {
   uploadFileByClassUnitAndGrade,
 } from 'src/services/admin/files.request';
 
-const Unit = ({ unitsData, grade, handleSubmit }) => {
+const Unit = ({ unitsData, grade, getUnits, reset }) => {
   const [showClass, setShowClass] = useState(false);
   const [isSelectedClass, setIsSelectedClass] = useState(false);
   const [dataClassSelected, setDataClassSelected] = useState({});
   const [classesList, setClassesList] = useState([]);
   const [loadingData, setLoadingData] = useState(false);
   const [showModalAddClass, setShowModalAddClass] = useState(false);
-  const [fetching, setFetching] = useState(true);
+  const [unitNumber, setUnitNumber] = useState(0);
+  const [showConfirmAction, setShowConfirmAction] = useState(false);
+  const [fetching, setFetching] = useState(false);
   const [unitSelectedNumber, setUnitSelectedNumber] = useState(0);
 
   const defaultButtonStyle = {
@@ -133,8 +135,64 @@ const Unit = ({ unitsData, grade, handleSubmit }) => {
     );
   };
 
+  const deleteUnit = async (number, grade) => {
+    setFetching(true);
+    const user = JSON.parse(localStorage.getItem('user'));
+    const jwt = user.token;
+
+    const fetching = await fetch(
+      `https://civi-conecta-server.adaptable.app/deleteUnit?number=${number}&grade=${grade}`,
+      {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          token: jwt,
+        },
+      },
+    );
+    const response = await fetching.json();
+    if (response.ok) {
+      setFetching(false);
+      setShowConfirmAction(false);
+      getUnits(grade);
+      reset();
+    } else {
+      reset();
+      setFetching(false);
+    }
+  };
+
   return (
     <>
+      {showConfirmAction && (
+        <Modal
+          title="Eliminar unidad"
+          subtitle="Para eliminar la unidad, ésta no debe tener clases asociadas."
+          style={{ padding: '20px 40px', marginTop: '20%', width: '35%' }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              gap: 40,
+              justifyContent: 'center',
+              marginTop: 30,
+            }}
+          >
+            <Button
+              onClick={() => setShowConfirmAction(false)}
+              customStyles={defaultButtonStyle}
+              text="Cancelar"
+              disabled={fetching}
+            />
+            <Button
+              onClick={() => deleteUnit(unitNumber, grade)}
+              customStyles={defaultButtonStyle}
+              text="Continuar"
+              disabled={fetching}
+            />
+          </div>
+        </Modal>
+      )}
       {showModalAddClass && (
         <Modal
           title="Agregar Clase"
@@ -158,9 +216,32 @@ const Unit = ({ unitsData, grade, handleSubmit }) => {
           return (
             <div
               key={number}
-              style={{ width: isSelectedClass ? '100%' : '70%' }}
+              style={{
+                width: isSelectedClass ? '100%' : '70%',
+                position: 'relative',
+              }}
               className="box-container"
             >
+              <span
+                onClick={() => {
+                  setShowConfirmAction(true);
+                  setUnitNumber(number);
+                }}
+                style={{
+                  position: 'absolute',
+                  right: 10,
+                  top: 8,
+                  cursor: 'pointer',
+                  fontWeight: 'bold',
+                  color: 'var(--color-secondary)',
+                  border: '1px solid var(--color-secondary)',
+                  padding: '3px 20px',
+                  borderRadius: 25,
+                  fontSize: 13,
+                }}
+              >
+                Eliminar unidad
+              </span>
               <header className="box__header unit-box">
                 <div className="box__header-number">{number}</div>
                 <section>
