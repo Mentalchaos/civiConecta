@@ -185,7 +185,6 @@ const Question = ({ selectedTopic, title, type }) => {
                   changeAlternative={changeAlternative}
                   letter={data.letter}
                   description={data.description}
-                  reset={resetInputs}
                 />
               </div>
             ))}
