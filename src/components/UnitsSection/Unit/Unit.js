@@ -43,7 +43,7 @@ const Unit = ({ unitsData, grade, getUnits, reset }) => {
 
   const handleOpenUnit = unitNumber => {
     setShowClass(!showClass);
-    setFetching(!fetching);
+    // setFetching(!fetching);
     setUnitSelectedNumber(unitNumber);
     setIsSelectedClass(false);
     !showClass && getClasses(unitNumber);
@@ -212,6 +212,7 @@ const Unit = ({ unitsData, grade, getUnits, reset }) => {
       )}
       {unitsData ? (
         unitsData.map(unit => {
+          console.log(unit);
           const { title, description, number } = unit;
           return (
             <div
