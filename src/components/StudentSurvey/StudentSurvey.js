@@ -190,10 +190,10 @@ const StudentSurvey = () => {
         <Modal style={{ padding: '20px 40px', marginTop: '50px' }}>
           <div>
             <p>Seleccione la categoria que desea eliminar</p>
-            <small>
+            <p style={{color: 'red'}}>
               Para eliminar una categoria, ésta no debe tener preguntas
               asociadas.
-            </small>
+            </p>
             <select
               name="select"
               className="remove-topic-select"

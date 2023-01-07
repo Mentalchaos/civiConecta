@@ -4,6 +4,7 @@ import { signIn } from 'src/services/admin/user.request';
 import Button from 'src/components/UI/Button';
 import useForm from 'src/hooks/useForm';
 import './loginForm.css';
+import cookie from '../../../utils/cookie.js';
 
 const LoginForm = () => {
   const [showErrorMessage, setShowErrorMessage] = useState(false);
@@ -50,6 +51,7 @@ const LoginForm = () => {
         setShowErrorMessage(false);
         setIsLoading(false);
         navigate('/admin/dashboard');
+        cookie.setCookie('token', token)
       } else {
         setErrorMessage(resp.error);
         setShowErrorMessage(true);
