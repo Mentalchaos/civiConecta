@@ -10,6 +10,17 @@ import UnitsSection from 'src/components/UnitsSection/UnitsSection';
 import { AdminGuard } from './guard/auth.guard';
 
 const AdminRouter = () => {
+  // const checkCookie = () => {
+  //   const getCookie = cookie.getCookie('token');
+  //   console.log('document cookie',document.cookie);
+  //   if(!getCookie){
+  //     console.log('redirigiendo');
+  //     return window.location.href = "https://plataforma.civiconecta.cl/auth/login/";
+  //   } else {
+  //     return;
+  //   }
+  // }
+
   return (
     <>
       <Sidebar />
