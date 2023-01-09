@@ -9,7 +9,7 @@ export const getEstablishment = async () => {
 
   return {
     ok: response.ok,
-    establishments: response.establishments.map(e => new Establishment(e))
+    establishments: response.establishments.map(e => new Establishment(e)),
   };
 };
 
