@@ -108,7 +108,7 @@ const StudentSurvey = () => {
     });
   };
 
-  const disabledStyle = selectValue == 'null' ? 'disabled-styles' : '';
+  const disabledStyle = selectValue === 'null' ? 'disabled-styles' : '';
 
   return (
     <>
@@ -129,7 +129,7 @@ const StudentSurvey = () => {
           />
         ) : (
           <div className="categories-container">
-            {topics.length == 0 && <Spinner />}
+            {topics.length === 0 && <Spinner />}
             {topics.map(item => {
               return (
                 <Categories
@@ -209,7 +209,7 @@ const StudentSurvey = () => {
             <div className="buttons-inputs">
               <button
                 className={`create-category ${disabledStyle}`}
-                disabled={selectValue == null}
+                disabled={selectValue === null}
                 onClick={() => removeCategory()}
               >
                 Eliminar
