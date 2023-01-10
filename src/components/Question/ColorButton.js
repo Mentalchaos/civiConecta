@@ -1,7 +1,7 @@
 import './Question.css';
 
 const ColorButton = ({ letter, changeColor, value }) => {
-  const css = ['#FFFFFF', 'green', 'yellow', 'red'];
+  const css = ['#FFFFFF', 'yellow', 'red'];
 
   return (
     <button
