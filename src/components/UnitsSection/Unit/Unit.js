@@ -8,14 +8,16 @@ import {
   createClass,
   getClassesByUnitAndGrade,
   updateClass,
+  deleteClass,
 } from 'src/services/admin/classes.request';
-import arrowDown from 'src/assets/Icons/arrow-down.svg';
-import arrow from 'src/assets/Icons/arrow-degree.svg';
-import './Unit.css';
 import {
   deleteFileByClassUnitAndGrade,
   uploadFileByClassUnitAndGrade,
 } from 'src/services/admin/files.request';
+
+import arrowDown from 'src/assets/Icons/arrow-down.svg';
+import arrow from 'src/assets/Icons/arrow-degree.svg';
+import './Unit.css';
 
 const Unit = ({ unitsData, grade, getUnits, reset }) => {
   const [showClass, setShowClass] = useState(false);
@@ -26,6 +28,7 @@ const Unit = ({ unitsData, grade, getUnits, reset }) => {
   const [showModalAddClass, setShowModalAddClass] = useState(false);
   const [unitNumber, setUnitNumber] = useState(0);
   const [showConfirmAction, setShowConfirmAction] = useState(false);
+  const [confirmDeleteClass, setConfirmDeleteClass] = useState(false);
   const [fetching, setFetching] = useState(false);
   const [unitSelectedNumber, setUnitSelectedNumber] = useState(0);
 
@@ -162,6 +165,19 @@ const Unit = ({ unitsData, grade, getUnits, reset }) => {
     }
   };
 
+  const deleteClassSelected = (number, unitNumber) => {
+    setFetching(true);
+    deleteClass(number, unitNumber, grade).then(resp => {
+      if (resp.ok) {
+        setFetching(false);
+        getClasses(unitNumber);
+      } else {
+        setFetching(false);
+        getClasses(unitNumber);
+      }
+    });
+  };
+
   return (
     <>
       {showConfirmAction && (
@@ -212,7 +228,6 @@ const Unit = ({ unitsData, grade, getUnits, reset }) => {
       )}
       {unitsData ? (
         unitsData.map(unit => {
-          console.log(unit);
           const { title, description, number } = unit;
           return (
             <div
@@ -279,14 +294,35 @@ const Unit = ({ unitsData, grade, getUnits, reset }) => {
                   !loadingData &&
                   !isSelectedClass &&
                   classesList.map(item => {
-                    const { files, number, objetives } = item;
+                    const { files, number, objetives, unit } = item;
                     return (
-                      <div key={number} className="class-box">
+                      <div
+                        style={{ position: 'relative' }}
+                        key={number}
+                        className="class-box"
+                      >
+                        <span
+                          onClick={() =>
+                            deleteClassSelected(number, unit.number)
+                          }
+                          style={{
+                            position: 'absolute',
+                            top: 10,
+                            right: '10px',
+                            fontSize: 15,
+                            fontWeight: 'bold',
+                            color: 'var(--color-secondary)',
+                            cursor: 'pointer',
+                          }}
+                        >
+                          X
+                        </span>
                         <h2 className="class-box__title">Clase {number}</h2>
                         <span className="class-box__documents">
                           {files.length} Documentos totales en esta clase.
                         </span>
                         <span className="class-box__oa">OA: {objetives}</span>
+
                         <div className="box-link">
                           <img
                             className="box-link"
@@ -299,7 +335,7 @@ const Unit = ({ unitsData, grade, getUnits, reset }) => {
                       </div>
                     );
                   })}
-                {!classesList.length && !loadingData && (
+                {!classesList?.length && !loadingData && (
                   <h2
                     style={{ textAlign: 'center', color: 'var(--gray-dark)' }}
                   >
@@ -312,7 +348,7 @@ const Unit = ({ unitsData, grade, getUnits, reset }) => {
                       onClick={() => setShowModalAddClass(true)}
                       text="Crear clase"
                       customStyles={defaultButtonStyle}
-                      disabled={loadingData}
+                      disabled={fetching}
                     />
                   </div>
                 )}
