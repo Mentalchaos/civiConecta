@@ -39,8 +39,6 @@ const Question = ({ selectedTopic, title, type }) => {
   const [questions, setQuestions] = useState([]);
   const [resetInputs, setResetInputs] = useState(false);
 
-  console.log('type', type);
-
   useEffect(() => {
     const getQuestions = async function () {
       const user = JSON.parse(localStorage.getItem('user'));
@@ -74,8 +72,10 @@ const Question = ({ selectedTopic, title, type }) => {
 
   const changeColor = letter => {
     setAlternatives(current => {
-      let changeThis = current.alternatives.find(data => data.letter == letter);
-      if (changeThis.value == 3) {
+      let changeThis = current.alternatives.find(
+        data => data.letter === letter,
+      );
+      if (changeThis.value === 2) {
         changeThis.value = 0;
       } else {
         changeThis.value = changeThis.value + 1;
@@ -86,7 +86,9 @@ const Question = ({ selectedTopic, title, type }) => {
 
   const changeAlternative = (letter, value) => {
     setAlternatives(current => {
-      let changeThis = current.alternatives.find(data => data.letter == letter);
+      let changeThis = current.alternatives.find(
+        data => data.letter === letter,
+      );
       changeThis.description = value;
       return { ...current };
     });
