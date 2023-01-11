@@ -23,17 +23,8 @@
   transition: all 0.3s ease-in-out;
 }
 
-/* .form-input:active {
-  border: none;
-  background-color: aqua !important;
-} */
-
 .form-input:hover {
   border: none;
-  background-color: #eaeaea !important;
+  background-color: #ececec !important;
   transition: all 0.3s ease-in-out;
 }
-
-/* .form-input:focus {
-  background-color: aqua;
-} */
