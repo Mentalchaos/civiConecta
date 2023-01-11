@@ -1,4 +1,5 @@
 import { BASE_URL } from '../constants';
+import http from '../helpers/http.helper';
 
 export const getClassesByUnitAndGrade = async (unitNumber, grade) => {
   const user = JSON.parse(localStorage.getItem('user'));
@@ -54,4 +55,12 @@ export const updateClass = async (number, unit, grade, payload) => {
   return {
     ...response,
   };
+};
+
+export const deleteClass = async (number, unit, grade) => {
+  const url = `${BASE_URL}/deleteClass?number=${number}&unit=${unit}&grade=${grade}`;
+  const httpResponse = await http.delete(url);
+  const response = await httpResponse.json();
+
+  return { ...response };
 };
