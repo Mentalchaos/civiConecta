@@ -8,6 +8,7 @@ import school from 'src/assets/Icons/school.svg';
 import folder from 'src/assets/Icons/folder.svg';
 import calendar from 'src/assets/Icons/calendar.svg';
 import exit from 'src/assets/Icons/exit.svg';
+import cookie from '../../utils/cookie';
 
 import './Sidebar.css';
 
@@ -39,6 +40,7 @@ const Sidebar = () => {
         <NavButton
           path="/auth/login"
           handleClick={() => {
+            cookie.removeCookie('token')
             localStorage.clear();
           }}
           icon={exit}

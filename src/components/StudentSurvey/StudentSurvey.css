@@ -11,9 +11,18 @@
 }
 
 .create-category {
-  background-color: var(--color-secondary);
-  color: white;
-  transition: all 0.4s;
+    background-color: var(--color-secondary);
+    color: white;
+    transition: all .4s;
+    border: 1px solid gray;
+    border-radius: 5px;
+    width: 100px;
+    height: 39px;
+    background: #e95f7b;
+    color: white;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
 }
 
 .close-modal,
@@ -24,6 +33,12 @@
 .create-category:hover,
 .close-modal:hover {
   transform: scale(1.15);
+}
+
+.close-modal {
+    width: 100px;
+    margin: 10px;
+    height: 40px;
 }
 
 .remove-topic-select {
