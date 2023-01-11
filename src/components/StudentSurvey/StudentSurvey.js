@@ -180,26 +180,18 @@ const StudentSurvey = () => {
               })}
           </div>
         )}
-      </main>
-      <div className="buttons-container-fetch">
-        {topics.length < 4 && !isSurveyVisible && (
-          <div className="button-container teacher-survey category-button">
-            <button className="add-button" onClick={() => setModal(true)}>
-              <p className="add-button-icon">+</p>
-              <p className="add-button-text">Añadir Categoría</p>
-            </button>
-          </div>
-        )}
-        <div className="button-container teacher-survey category-button">
-          <button
-            className="add-button"
-            onClick={() => setRemoveTopicModal(true)}
-          >
-            <p className="add-button-icon">-</p>
-            <p className="add-button-text">Eliminar categoria</p>
-          </button>
+        <div className="buttons-container-fetch">
+          {topics.length < 4 && !isSurveyVisible && (
+            <div className="button-container teacher-survey category-button">
+              <button className="add-button" onClick={() => setModal(true)}>
+                <p className="add-button-icon">+</p>
+                <p className="add-button-text">Añadir Categoría</p>
+              </button>
+            </div>
+          )}
         </div>
-      </div>
+      </main>
+
       {showModal && (
         <Modal style={{ padding: '20px 40px', marginTop: '50px' }}>
           <div>
@@ -230,7 +222,7 @@ const StudentSurvey = () => {
         <Modal style={{ padding: '20px 40px', marginTop: '50px' }}>
           <div>
             <p>Seleccione la categoria que desea eliminar</p>
-            <p style={{color: 'red'}}>
+            <p style={{ color: 'red' }}>
               Para eliminar una categoria, ésta no debe tener preguntas
               asociadas.
             </p>
