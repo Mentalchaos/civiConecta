@@ -4,10 +4,16 @@
 }
 
 .buttons-inputs {
-    margin-top: 10px;
+    margin-top: 1rem;
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 2rem;
+}
+
+.buttons-container-fetch {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
 }
 
 .create-category {
@@ -50,12 +56,6 @@
     font-size: 14px;
     width: 100%;
     margin: 20px 0;
-}
-
-.buttons-container-fetch {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
 }
 
 .category-button {

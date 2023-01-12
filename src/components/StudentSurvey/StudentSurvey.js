@@ -6,6 +6,7 @@ import Button from 'src/components/UI/Button';
 import Question from '../Question/Question';
 import Spinner from '../UI/Spinner';
 import Modal from '../UI/Modal';
+import './StudentSurvey.css';
 
 const StudentSurvey = () => {
   const [isSurveyVisible, setSurveyVisibility] = useState(false);
@@ -128,8 +129,6 @@ const StudentSurvey = () => {
     });
   };
 
-  const disabledStyle = selectValue === 'null' ? 'disabled-styles' : '';
-
   return (
     <>
       <SectionsHeader image={studentImage} />
@@ -167,10 +166,10 @@ const StudentSurvey = () => {
         <div className="buttons-container-fetch">
           {topics.length < 4 && !isSurveyVisible && (
             <div className="button-container teacher-survey category-button">
-              <Button onClick={() => setModal(true)}>
+              <button className="add-button" onClick={() => setModal(true)}>
                 <p className="add-button-icon">+</p>
                 <p className="add-button-text">Añadir Categoría</p>
-              </Button>
+              </button>
             </div>
           )}
           <div className="button-container teacher-survey category-button">
@@ -185,7 +184,7 @@ const StudentSurvey = () => {
       {showModal && (
         <Modal style={{ padding: '20px 40px', marginTop: '50px' }}>
           <div>
-            <p>Ingrese el nombre de la categoria que desea crear</p>
+            <p>Ingrese el nombre de la categor&iacute;a que desea crear</p>
             <input
               autoFocus={true}
               style={{ padding: 10 }}
@@ -203,7 +202,7 @@ const StudentSurvey = () => {
       {removeTopicModal && (
         <Modal style={{ padding: '20px 40px', marginTop: '50px' }}>
           <div>
-            <p>Seleccione la categoria que desea eliminar</p>
+            <p>Seleccione la categor&iacute;a que desea eliminar</p>
             <p style={{ color: 'red' }}>Para eliminar una categoria, ésta no debe tener preguntas asociadas.</p>
             <select name="select" className="remove-topic-select" onChange={e => setSelectValue(e.target.value)}>
               <option value="null">Seleccionar</option>
