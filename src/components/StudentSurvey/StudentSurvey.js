@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 import SectionsHeader from '../SectionsHeader/SectionsHeader';
 import Categories from '../TeacherSurvey/Categories/Categories';
 import studentImage from '../../assets/images/student-image.png';
-import './StudentSurvey.css';
+import Button from 'src/components/UI/Button';
 import Question from '../Question/Question';
 import Spinner from '../UI/Spinner';
 import Modal from '../UI/Modal';
+import './StudentSurvey.css';
 
 const StudentSurvey = () => {
   const [isSurveyVisible, setSurveyVisibility] = useState(false);
@@ -17,8 +18,6 @@ const StudentSurvey = () => {
   const [topic, setTopic] = useState('');
   const [removeTopicModal, setRemoveTopicModal] = useState(false);
   const [selectValue, setSelectValue] = useState('null');
-
-  console.log('selectValue', selectValue);
 
   useEffect(() => {
     const getTopics = async function () {
@@ -39,15 +38,12 @@ const StudentSurvey = () => {
       const user = JSON.parse(localStorage.getItem('user'));
       const jwt = user.token;
 
-      fetch(
-        'https://civi-conecta-server.adaptable.app/getSurveysByType?type=Student',
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            token: jwt,
-          },
+      fetch('https://civi-conecta-server.adaptable.app/getSurveysByType?type=Student', {
+        headers: {
+          'Content-Type': 'application/json',
+          token: jwt,
         },
-      )
+      })
         .then(response => response.json())
         .then(data => setSurveys(data.surveys));
     };
@@ -57,9 +53,6 @@ const StudentSurvey = () => {
   }, []);
 
   const topicLength = topics[topics.length - 1]?.number + 1;
-
-  console.log('surveys', surveys);
-  console.log('topics', topics);
 
   const setTopicAndVisibility = (number, title) => {
     setSelectedTopic(number);
@@ -90,16 +83,13 @@ const StudentSurvey = () => {
     const user = JSON.parse(localStorage.getItem('user'));
     const jwt = user.token;
 
-    fetch(
-      `https://civi-conecta-server.adaptable.app/deleteTopic?number=${selectValue}`,
-      {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          token: jwt,
-        },
+    fetch(`https://civi-conecta-server.adaptable.app/deleteTopic?number=${selectValue}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        token: jwt,
       },
-    ).then(resp => {
+    }).then(resp => {
       if (resp.ok) {
         window.location.reload(true);
       } else {
@@ -108,7 +98,7 @@ const StudentSurvey = () => {
     });
   };
 
-  const disabledStyle = selectValue == 'null' ? 'disabled-styles' : '';
+  const disabledStyle = selectValue === 'null' ? 'disabled-styles' : '';
 
   return (
     <>
@@ -121,15 +111,10 @@ const StudentSurvey = () => {
         </div>
 
         {isSurveyVisible ? (
-          <Question
-            type={'Student'}
-            title={title}
-            surveys={surveys}
-            selectedTopic={selectedTopic}
-          />
+          <Question type={'Student'} title={title} surveys={surveys} selectedTopic={selectedTopic} />
         ) : (
           <div className="categories-container">
-            {topics.length == 0 && <Spinner />}
+            {topics.length === 0 && <Spinner />}
             {topics.map(item => {
               return (
                 <Categories
@@ -146,12 +131,18 @@ const StudentSurvey = () => {
         <div className="buttons-container-fetch">
           {topics.length < 4 && !isSurveyVisible && (
             <div className="button-container teacher-survey category-button">
-              <button className="add-button" onClick={() => setModal(true)}>
+              <Button onClick={() => setModal(true)}>
                 <p className="add-button-icon">+</p>
                 <p className="add-button-text">Añadir Categoría</p>
-              </button>
+              </Button>
             </div>
           )}
+          <div className="button-container teacher-survey category-button">
+            <button className="add-button" onClick={() => setRemoveTopicModal(true)}>
+              <p className="add-button-icon">-</p>
+              <p className="add-button-text">Eliminar categoria</p>
+            </button>
+          </div>
         </div>
       </main>
 
@@ -159,16 +150,9 @@ const StudentSurvey = () => {
         <Modal style={{ padding: '20px 40px', marginTop: '50px' }}>
           <div>
             <p>Ingrese el nombre de la categoria que desea crear</p>
-            <input
-              className="modal-input"
-              value={topic}
-              onChange={e => setTopic(e.target.value)}
-            ></input>
+            <input className="modal-input" value={topic} onChange={e => setTopic(e.target.value)}></input>
             <div className="buttons-inputs">
-              <button
-                className="create-category"
-                onClick={() => createCategory()}
-              >
+              <button className="create-category" onClick={() => createCategory()}>
                 Crear
               </button>
               <button className="close-modal" onClick={() => setModal(false)}>
@@ -182,15 +166,8 @@ const StudentSurvey = () => {
         <Modal style={{ padding: '20px 40px', marginTop: '50px' }}>
           <div>
             <p>Seleccione la categoria que desea eliminar</p>
-            <p style={{ color: 'red' }}>
-              Para eliminar una categoria, ésta no debe tener preguntas
-              asociadas.
-            </p>
-            <select
-              name="select"
-              className="remove-topic-select"
-              onChange={e => setSelectValue(e.target.value)}
-            >
+            <p style={{ color: 'red' }}>Para eliminar una categoria, ésta no debe tener preguntas asociadas.</p>
+            <select name="select" className="remove-topic-select" onChange={e => setSelectValue(e.target.value)}>
               <option value="null">Seleccionar</option>
               {topics.map(data => (
                 <option key={data.number} value={data.number}>
@@ -206,10 +183,7 @@ const StudentSurvey = () => {
               >
                 Eliminar
               </button>
-              <button
-                className="close-modal"
-                onClick={() => setRemoveTopicModal(false)}
-              >
+              <button className="close-modal" onClick={() => setRemoveTopicModal(false)}>
                 Cerrar
               </button>
             </div>
