@@ -94,30 +94,6 @@ const Question = ({ selectedTopic, title, type }) => {
     });
   };
 
-  const deleteSurvey = async surveyNumber => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    const jwt = user.token;
-
-    const fetching = await fetch(
-      `https://civi-conecta-server.adaptable.app/deleteSurvey?number=${surveyNumber}&type=${type}&topic=${selectedTopic}`,
-      {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          token: jwt,
-        },
-      },
-    );
-    const response = await fetching.json();
-    if (response.ok) {
-      const questionDeleted = { ...response.survey };
-      const filterQuestions = questions.filter(
-        question => question.number !== questionDeleted.number,
-      );
-      setQuestions(filterQuestions);
-    }
-  };
-
   const createSurvey = async () => {
     const user = JSON.parse(localStorage.getItem('user'));
     const jwt = user.token;
@@ -130,8 +106,6 @@ const Question = ({ selectedTopic, title, type }) => {
       topic: selectedTopic,
       number,
     };
-
-    console.log('payload', payload);
 
     const fetching = await fetch(
       'https://civi-conecta-server.adaptable.app/createSurvey',
@@ -149,13 +123,10 @@ const Question = ({ selectedTopic, title, type }) => {
     if (response.ok) {
       setQuestions([...questions, response.survey]);
       setResetInputs(true);
+    } else {
+      setResetInputs(true);
     }
-    console.log('response', response);
   };
-
-  console.log('alternatives', alternatives);
-
-  console.log('selectedTopic', selectedTopic);
 
   return (
     <main className="main-question-container">
@@ -228,19 +199,6 @@ const Question = ({ selectedTopic, title, type }) => {
                     }}
                   >
                     Pregunta: {question.question}
-                  </span>
-                  <span
-                    onClick={() => deleteSurvey(question.number)}
-                    style={{
-                      cursor: 'pointer',
-                      color: 'var(--color-secondary)',
-                      fontWeight: 'bold',
-                      border: '1px solid var(--color-secondary)',
-                      borderRadius: 25,
-                      padding: '0px 20px',
-                    }}
-                  >
-                    X
                   </span>
                 </div>
                 <div
