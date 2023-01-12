@@ -6,7 +6,6 @@ import Button from 'src/components/UI/Button';
 import Question from '../Question/Question';
 import Spinner from '../UI/Spinner';
 import Modal from '../UI/Modal';
-import './StudentSurvey.css';
 
 const StudentSurvey = () => {
   const [isSurveyVisible, setSurveyVisibility] = useState(false);
@@ -18,6 +17,22 @@ const StudentSurvey = () => {
   const [topic, setTopic] = useState('');
   const [removeTopicModal, setRemoveTopicModal] = useState(false);
   const [selectValue, setSelectValue] = useState('null');
+  const [fetching, setFetching] = useState(false);
+
+  const buttonDefault = {
+    padding: '5px 35px',
+    backgroundColor: 'var(--color-secondary)',
+    color: '#fff',
+    borderRadius: 25,
+  };
+
+  const cancelButton = {
+    padding: '5px 35px',
+    backgroundColor: '#fff',
+    border: '1px solid var(--color-secondary)',
+    color: 'var(--color-secondary)',
+    borderRadius: 25,
+  };
 
   useEffect(() => {
     const getTopics = async function () {
@@ -52,7 +67,7 @@ const StudentSurvey = () => {
     getTopics();
   }, []);
 
-  const topicLength = topics[topics.length - 1]?.number + 1;
+  const topicLength = topics.length ? parseInt(topics[topics.length - 1]?.number + 1) : 1;
 
   const setTopicAndVisibility = (number, title) => {
     setSelectedTopic(number);
@@ -61,6 +76,7 @@ const StudentSurvey = () => {
   };
 
   const createCategory = async () => {
+    setFetching(true);
     const user = JSON.parse(localStorage.getItem('user'));
     const jwt = user.token;
 
@@ -76,10 +92,22 @@ const StudentSurvey = () => {
         'Content-Type': 'application/json',
         token: jwt,
       },
-    }).then(() => window.location.reload(true));
+    })
+      .then(response => response.json())
+      .then(resp => {
+        if (resp.ok) {
+          setFetching(false);
+          window.location.reload(true);
+        } else {
+          setFetching(false);
+          alert(resp.error?.message);
+          console.log(resp);
+        }
+      });
   };
 
   const removeCategory = async () => {
+    setFetching(true);
     const user = JSON.parse(localStorage.getItem('user'));
     const jwt = user.token;
 
@@ -91,8 +119,10 @@ const StudentSurvey = () => {
       },
     }).then(resp => {
       if (resp.ok) {
+        setFetching(false);
         window.location.reload(true);
       } else {
+        setFetching(false);
         console.log(resp);
       }
     });
@@ -114,18 +144,24 @@ const StudentSurvey = () => {
           <Question type={'Student'} title={title} surveys={surveys} selectedTopic={selectedTopic} />
         ) : (
           <div className="categories-container">
-            {topics.length === 0 && <Spinner />}
-            {topics.map(item => {
-              return (
-                <Categories
-                  type={'student'}
-                  title={item.title}
-                  detail={item.detail}
-                  key={`topic-${item.number}`}
-                  onclick={() => setTopicAndVisibility(item.number, item.title)}
-                />
-              );
-            })}
+            {fetching && (
+              <div style={{ textAlign: 'center', display: 'block' }}>
+                <Spinner />
+              </div>
+            )}
+
+            {!fetching &&
+              topics.map(item => {
+                return (
+                  <Categories
+                    type={'student'}
+                    title={item.title}
+                    detail={item.detail}
+                    key={`topic-${item.number}`}
+                    onclick={() => setTopicAndVisibility(item.number, item.title)}
+                  />
+                );
+              })}
           </div>
         )}
         <div className="buttons-container-fetch">
@@ -150,14 +186,16 @@ const StudentSurvey = () => {
         <Modal style={{ padding: '20px 40px', marginTop: '50px' }}>
           <div>
             <p>Ingrese el nombre de la categoria que desea crear</p>
-            <input className="modal-input" value={topic} onChange={e => setTopic(e.target.value)}></input>
+            <input
+              autoFocus={true}
+              style={{ padding: 10 }}
+              className="modal-input"
+              value={topic}
+              onChange={e => setTopic(e.target.value)}
+            ></input>
             <div className="buttons-inputs">
-              <button className="create-category" onClick={() => createCategory()}>
-                Crear
-              </button>
-              <button className="close-modal" onClick={() => setModal(false)}>
-                Cerrar
-              </button>
+              <Button text={'Crear'} customStyles={buttonDefault} onClick={() => createCategory()}></Button>
+              <Button text={'Cerrar'} customStyles={cancelButton} onClick={() => setModal(false)}></Button>
             </div>
           </div>
         </Modal>
@@ -176,16 +214,17 @@ const StudentSurvey = () => {
               ))}
             </select>
             <div className="buttons-inputs">
-              <button
-                className={`create-category ${disabledStyle}`}
-                disabled={selectValue == null}
+              <Button
+                customStyles={buttonDefault}
+                text={'Eliminar'}
+                disabled={selectValue === null}
                 onClick={() => removeCategory()}
               >
                 Eliminar
-              </button>
-              <button className="close-modal" onClick={() => setRemoveTopicModal(false)}>
+              </Button>
+              <Button text={'Cerrar'} customStyles={cancelButton} onClick={() => setRemoveTopicModal(false)}>
                 Cerrar
-              </button>
+              </Button>
             </div>
           </div>
         </Modal>

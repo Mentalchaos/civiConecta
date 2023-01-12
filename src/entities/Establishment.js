@@ -40,7 +40,7 @@ class Establishment {
 
   toJSON() {
     return {
-      courses: this.grades.map(g => g.toJSON())
+      courses: this.grades.map(g => g.toJSON()),
     };
   }
 
@@ -51,15 +51,18 @@ class Establishment {
   }
 
   get students() {
-    return this.grades.map(grade =>
-      grade.letters.map(letter =>
-        letter.students.map(student => ({
-          name: student.name,
-          run: student.run,
-          grade: grade.level,
-          letter: letter.character
-        }))
-    )).flat(2);
+    return this.grades
+      .map(grade =>
+        grade.letters.map(letter =>
+          letter.students.map(student => ({
+            name: student.name,
+            run: student.run,
+            grade: grade.level,
+            letter: letter.character,
+          })),
+        ),
+      )
+      .flat(2);
   }
 }
 
