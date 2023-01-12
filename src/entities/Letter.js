@@ -3,7 +3,7 @@ import Student from './Student.js';
 class Letter {
   constructor(data) {
     this.character = data.character;
-    this.teachers = (data.teachers ?? []);
+    this.teachers = data.teachers ?? [];
     this.students = (data.students ?? []).map(s => new Student(s));
   }
 
@@ -13,10 +13,14 @@ class Letter {
     return entity;
   }
 
+  deleteStudent({ run }) {
+    console.log(run);
+  }
+
   toJSON() {
     return {
       character: this.character,
-      students: this.students.map(s => s.toJSON())
+      students: this.students.map(s => s.toJSON()),
     };
   }
 }
