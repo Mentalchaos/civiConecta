@@ -1,13 +1,19 @@
 .modal-input {
-  width: 100%;
-  margin: 15px 0;
+    width: 100%;
+    margin: 15px 0;
 }
 
 .buttons-inputs {
-  margin-top: 10px;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.buttons-container-fetch {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
 }
 
 .create-category {
@@ -27,12 +33,12 @@
 
 .close-modal,
 .create-category {
-  transition: all 0.4s;
+    transition: all 0.4s;
 }
 
 .create-category:hover,
 .close-modal:hover {
-  transform: scale(1.15);
+    transform: scale(1.15);
 }
 
 .close-modal {
@@ -42,30 +48,25 @@
 }
 
 .remove-topic-select {
-  height: 40px;
-  background: none;
-  color: black;
-  border: 1px solid black;
-  border-radius: 8px;
-  font-size: 14px;
-  width: 100%;
-  margin: 20px 0;
-}
-
-.buttons-container-fetch {
-  display: flex;
-  justify-content: center;
+    height: 40px;
+    background: none;
+    color: black;
+    border: 1px solid black;
+    border-radius: 8px;
+    font-size: 14px;
+    width: 100%;
+    margin: 20px 0;
 }
 
 .category-button {
-  transition: all 0.4s;
+    transition: all 0.4s;
 }
 
 .category-button:hover {
-  transform: scale(1.15);
+    transform: scale(1.15);
 }
 
 .disabled-styles {
-  background: #efefef;
-  color: #e95f7b;
+    background: #efefef;
+    color: #e95f7b;
 }
