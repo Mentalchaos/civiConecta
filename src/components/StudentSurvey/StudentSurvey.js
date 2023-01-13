@@ -172,12 +172,14 @@ const StudentSurvey = () => {
               </button>
             </div>
           )}
-          <div className="button-container teacher-survey category-button">
-            <button className="add-button" onClick={() => setRemoveTopicModal(true)}>
-              <p className="add-button-icon">-</p>
-              <p className="add-button-text">Eliminar categoria</p>
-            </button>
-          </div>
+          {!isSurveyVisible && (
+            <div className="button-container teacher-survey category-button">
+              <button className="add-button" onClick={() => setRemoveTopicModal(true)}>
+                <p className="add-button-icon">-</p>
+                <p className="add-button-text">Eliminar categor&iacute;a</p>
+              </button>
+            </div>
+          )}
         </div>
       </main>
 
