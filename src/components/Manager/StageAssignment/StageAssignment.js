@@ -80,12 +80,22 @@ const StageAssignment = ({
 
   const handleDeleteStudent = evt => {
     evt.preventDefault();
-    const { run } = studentSelected;
-    const { grade, letter } = state.values;
+
+    const { run, grade, letter } = studentSelected;
+
+    if (!window.confirm('Esta seguro de que desea eliminar el estudiante ?')) {
+      return;
+    }
+
     institutionSelected
       .addGrade(grade)
       .addLetter(letter)
       .deleteStudent({ run });
+
+    const clone = institutionSelected.clone();
+    onUpdateInstitution(clone);
+
+    actions.updateEstablishment(clone);
   };
 
   const handleAddCourse = () => {
