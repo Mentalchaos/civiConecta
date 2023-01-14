@@ -5,19 +5,12 @@ import Items from './Items/index.js';
 import Spinner from '../UI/Spinner.js';
 import Button from '../UI/Button.js';
 import Modal from '../UI/Modal.js';
-import {
-  createEvent,
-  getEventsByGrade,
-  updateEvent,
-} from 'src/services/admin/situations.request.js';
+import { createEvent, getEventsByGrade, updateEvent } from 'src/services/admin/situations.request.js';
+import { deleteFileByEventAndGrade, uploadFileByEventAndGrade } from 'src/services/admin/files.request.js';
 import { getGrades } from 'src/services/admin/grades.request.js';
 
 import './Items/index.css';
 import './Situations.css';
-import {
-  deleteFileByEventAndGrade,
-  uploadFileByEventAndGrade,
-} from 'src/services/admin/files.request.js';
 
 const Situations = () => {
   const [grades, setGrades] = useState([]);
@@ -90,15 +83,8 @@ const Situations = () => {
 
   const updateSituation = (number, grade, formValues) => {
     setFetching(true);
-    const {
-      topic,
-      studentMaterials,
-      description,
-      teacherMaterials,
-      startActivity,
-      mainActivity,
-      endActivity,
-    } = formValues;
+    const { topic, studentMaterials, description, teacherMaterials, startActivity, mainActivity, endActivity } =
+      formValues;
 
     const payload = {
       ...situationSelected,
@@ -129,17 +115,34 @@ const Situations = () => {
   };
 
   const handleAddFile = file => {
+    setFetching(true);
     const { number } = situationSelected;
     uploadFileByEventAndGrade(number, gradeSelected, file).then(resp => {
-      console.log(resp);
+      if (resp.ok) {
+        setFetching(false);
+        setShowPlanning(false);
+        getEvents(gradeSelected);
+      } else {
+        setFetching(false);
+        setShowPlanning(false);
+        getEvents(gradeSelected);
+      }
     });
   };
 
   const handleDeleteFile = file => {
-    console.log(file);
+    setFetching(true);
     const { number } = situationSelected;
     deleteFileByEventAndGrade(number, gradeSelected, file).then(resp => {
-      console.log(resp);
+      if (resp.ok) {
+        setFetching(false);
+        setShowPlanning(false);
+        getEvents(gradeSelected);
+      } else {
+        setFetching(false);
+        setShowPlanning(false);
+        getEvents(gradeSelected);
+      }
     });
   };
 
@@ -183,7 +186,12 @@ const Situations = () => {
         </div>
       </div>
       <div className="body-content">
-        {showPlanning ? (
+        {fetching && (
+          <div style={{ textAlign: 'center' }}>
+            <Spinner />
+          </div>
+        )}
+        {showPlanning && (
           <Planification
             classData={situationSelected}
             setIsSelectedClass={setShowPlanning}
@@ -194,54 +202,35 @@ const Situations = () => {
             isClass={false}
             fetching={fetching}
           />
-        ) : (
-          <>
-            {fetching && (
-              <div style={{ textAlign: 'center' }}>
-                <Spinner />
-              </div>
-            )}
-            {/* {events.length > 0 && !fetching && (
-              <div className="select-content">
-                filtrar item por:
-                <select className="select" id="select">
-                  <option value="name">Nombre</option>
-                  <option value="date">Fecha</option>
-                </select>
-              </div>
-            )} */}
-            {!events.length && !fetching && (
-              <h1 style={{ textAlign: 'center' }}>Sin registro de eventos.</h1>
-            )}
-            <div className="items-content">
-              {!fetching &&
-                events.map(event => (
-                  <Items
-                    key={event.title}
-                    handleShowPlanning={handleShowPlanning}
-                    handleSituationSelected={handleSituationSelected}
-                    eventData={event}
-                  />
-                ))}
-            </div>
-            {events.length > 0 && !fetching && (
-              <div className="pagination">
-                <a href="#">&laquo;</a>
-                <a href="#">&lt;</a>1/1
-                <a href="#">&gt;</a>
-                <a href="#">&raquo;</a>
-              </div>
-            )}
-            <div style={{ textAlign: 'center', marginTop: 20 }}>
-              <Button
-                onClick={() => setShowForm(true)}
-                customStyles={buttonStyles}
-                text="Crear evento"
-                disabled={!gradeSelected || fetching}
-              />
-            </div>
-          </>
         )}
+        {!events.length && !fetching && <h1 style={{ textAlign: 'center' }}>Sin registro de eventos.</h1>}
+        <div className="items-content">
+          {!fetching &&
+            events.map(event => (
+              <Items
+                key={event.title}
+                handleShowPlanning={handleShowPlanning}
+                handleSituationSelected={handleSituationSelected}
+                eventData={event}
+              />
+            ))}
+        </div>
+        {events.length > 0 && !fetching && (
+          <div className="pagination">
+            <a href="#">&laquo;</a>
+            <a href="#">&lt;</a>1/1
+            <a href="#">&gt;</a>
+            <a href="#">&raquo;</a>
+          </div>
+        )}
+        <div style={{ textAlign: 'center', marginTop: 20 }}>
+          <Button
+            onClick={() => setShowForm(true)}
+            customStyles={buttonStyles}
+            text="Crear evento"
+            disabled={!gradeSelected || fetching}
+          />
+        </div>
       </div>
     </main>
   );
