@@ -4,6 +4,7 @@ import Button from '../UI/Button';
 import Table from '../UI/Table';
 import Modal from '../UI/Modal';
 import arrowIcon from 'src/assets/Icons/arrow-down.svg';
+import { getDownloadFile } from 'src/services/admin/files.request';
 import './Planification.css';
 
 const Planification = ({
@@ -89,23 +90,22 @@ const Planification = ({
     if (inputFile.current?.files[0]) {
       const fileName = inputFile.current?.files[0]?.name;
 
-      const nameWithoutAccent = fileName
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '');
+      const nameWithoutAccent = fileName.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
       const setName = nameWithoutAccent.replace(' ', '_');
-      setFileName(setName);
+      const fullNameReplacemente = setName.replace('-', '_');
+      setFileName(fullNameReplacemente);
 
       const form = new FormData();
       const file = inputFile.current?.files[0];
       form.append('file', file);
-      form.set('file', file, setName);
+      form.set('file', file, fullNameReplacemente);
       onHandleAddFile(form);
     }
   };
 
   const onDownloadFile = () => {
-    console.log(fileSelected);
-    if (fileSelected) return (window.location.href = fileSelected.getPath);
+    getDownloadFile(fileSelected.getPath);
+    // if (fileSelected) return (window.location.href = fileSelected.getPath);
   };
 
   return (
@@ -117,37 +117,21 @@ const Planification = ({
           subtitle="Deseas eliminar el documento seleccionado?"
         >
           <div className="container__modal-actions">
-            <Button
-              text="Cancelar"
-              customStyles={styleCancelButton}
-              onClick={() => setShowConfirmDelete(false)}
-            />
-            <Button
-              onClick={handleDeleteFile}
-              text="Continuar"
-              customStyles={styleDefaultButton}
-            />
+            <Button text="Cancelar" customStyles={styleCancelButton} onClick={() => setShowConfirmDelete(false)} />
+            <Button onClick={handleDeleteFile} text="Continuar" customStyles={styleDefaultButton} />
           </div>
         </Modal>
       )}
       <div className="data-class">
         <div className="data-info">
-          {classData.number && isClass && (
-            <h3 className="class-title">Clase {classData.number}</h3>
-          )}
-          {classData.title && !isClass && (
-            <h3 className="class-title-events">{classData.title}</h3>
-          )}
-          <span className="class-files">
-            {classData.files?.length} documentos totales en esta clase.
-          </span>
+          {classData.number && isClass && <h3 className="class-title">Clase {classData.number}</h3>}
+          {classData.title && !isClass && <h3 className="class-title-events">{classData.title}</h3>}
+          <span className="class-files">{classData.files?.length} documentos totales en esta clase.</span>
         </div>
         <img
           onClick={() => {
             setIsSelectedClass(false);
-            isClass
-              ? getClasses(classData.unit.number)
-              : getClasses(classData.grade.level);
+            isClass ? getClasses(classData.unit.number) : getClasses(classData.grade.level);
           }}
           className="icon-back-to"
           src={arrowIcon}
@@ -174,11 +158,13 @@ const Planification = ({
           {isRowSelected && (
             <div className="content__difused planning-section">
               <Button
+                disabled={fetching}
                 onClick={() => setShowConfirmDelete(true)}
                 text="Eliminar"
                 customStyles={styleCancelButton}
               />
               <Button
+                disabled={fetching}
                 onClick={() => onDownloadFile()}
                 text="Descargar"
                 customStyles={styleDefaultButton}
@@ -197,19 +183,14 @@ const Planification = ({
           gap: 5,
         }}
       >
-        {fileName.length > 0 && (
-          <span style={{ fontSize: 13 }}>{fileName}</span>
+        {fileName.length > 0 && <span style={{ fontSize: 14 }}>{fileName}</span>}
+        {!fetching && (
+          <form encType="multipart/form-data">
+            <div className="add-file-container">
+              <input disabled={fetching} onChange={onSubmitFile} type="file" name="file" ref={inputFile} />
+            </div>
+          </form>
         )}
-        <form encType="multipart/form-data">
-          <div className="add-file-container">
-            <input
-              onChange={onSubmitFile}
-              type="file"
-              name="file"
-              ref={inputFile}
-            />
-          </div>
-        </form>
       </div>
       <h2
         style={{
@@ -224,12 +205,7 @@ const Planification = ({
       <form className="planning-form" onSubmit={onHandleSubmit}>
         <div className="form-group planning">
           <label>Tema clase:</label>
-          <input
-            type="text"
-            name="topic"
-            value={values.topic}
-            onChange={handleInputChange}
-          />
+          <input type="text" name="topic" value={values.topic} onChange={handleInputChange} />
         </div>
         <div className="form-group planning">
           <label>Materiales:</label>
@@ -254,30 +230,15 @@ const Planification = ({
         </div>
         <div className="form-group planning">
           <label>Actividad de inicio:</label>
-          <input
-            type="text"
-            name="startActivity"
-            value={values.startActivity}
-            onChange={handleInputChange}
-          />
+          <input type="text" name="startActivity" value={values.startActivity} onChange={handleInputChange} />
         </div>
         <div className="form-group planning">
           <label>Actividad central:</label>
-          <input
-            type="text"
-            name="mainActivity"
-            value={values.mainActivity}
-            onChange={handleInputChange}
-          />
+          <input type="text" name="mainActivity" value={values.mainActivity} onChange={handleInputChange} />
         </div>
         <div className="form-group planning">
           <label>Actividad de cierre:</label>
-          <input
-            type="text"
-            name="endActivity"
-            value={values.endActivity}
-            onChange={handleInputChange}
-          />
+          <input type="text" name="endActivity" value={values.endActivity} onChange={handleInputChange} />
         </div>
         <div className="form-group button">
           <Button
