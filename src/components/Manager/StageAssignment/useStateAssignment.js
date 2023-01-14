@@ -35,6 +35,13 @@ const useStateAssignment = (institutionSelected) => {
     fn();
   }, [values.grade]);
 
+  const updateEstablishment = async (establishment) => {
+    setFetching(true);
+    const payload = establishment.toJSON();
+    await updateCoursesEstablishment(establishment.number, payload);
+    setFetching(false);
+  };
+
   return {
     letters,
     grades,
@@ -51,7 +58,8 @@ const useStateAssignment = (institutionSelected) => {
       setErrorMessage,
       handleInputChange,
       reset,
-      updateCoursesEstablishment
+      updateCoursesEstablishment,
+      updateEstablishment
     },
     get isGradeRenderable() {
       return institutionCourses.length && !fetching && values.grade !== 'Seleccionar';
