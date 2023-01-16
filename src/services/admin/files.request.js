@@ -50,9 +50,3 @@ export const deleteFileByExceptionAndGrade = async (exception, grade, fileName) 
 
   return { ...response };
 };
-
-export const getDownloadFile = async url => {
-  const httpResponse = await http.get(url);
-  const response = await httpResponse.json();
-  return { ...response };
-};
