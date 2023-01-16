@@ -6,17 +6,10 @@ import PlanningForm from '../UI/PlanningForm';
 import Button from '../UI/Button';
 import Spinner from '../UI/Spinner';
 import { getGrades } from 'src/services/admin/grades.request.js';
-import {
-  createException,
-  getExceptionsByGrade,
-  updateException,
-} from 'src/services/admin/ephemeris.request';
+import { createException, getExceptionsByGrade, updateException } from 'src/services/admin/ephemeris.request';
+import { deleteFileByExceptionAndGrade, uploadFileByExceptionAndGrade } from 'src/services/admin/files.request';
 
 import './Ephemeris.css';
-import {
-  deleteFileByExceptionAndGrade,
-  uploadFileByExceptionAndGrade,
-} from 'src/services/admin/files.request';
 
 const Ephemeris = () => {
   const [grades, setGrades] = useState([]);
@@ -70,15 +63,8 @@ const Ephemeris = () => {
 
   const updateEphemeris = (number, grade, formValues) => {
     setFetching(true);
-    const {
-      topic,
-      studentMaterials,
-      description,
-      teacherMaterials,
-      startActivity,
-      mainActivity,
-      endActivity,
-    } = formValues;
+    const { topic, studentMaterials, description, teacherMaterials, startActivity, mainActivity, endActivity } =
+      formValues;
 
     const payload = {
       ...ephemerisSelected,
@@ -124,16 +110,34 @@ const Ephemeris = () => {
   };
 
   const handleAddFile = file => {
+    setFetching(true);
     const { number } = ephemerisSelected;
     uploadFileByExceptionAndGrade(number, gradeSelected, file).then(resp => {
-      console.log(resp);
+      if (resp.ok) {
+        setFetching(false);
+        setShowPlanning(false);
+        getEphemeris(gradeSelected);
+      } else {
+        setFetching(false);
+        getEphemeris(gradeSelected);
+        setShowPlanning(false);
+      }
     });
   };
 
   const handleDeleteFile = file => {
+    setFetching(true);
     const { number } = ephemerisSelected;
     deleteFileByExceptionAndGrade(number, gradeSelected, file).then(resp => {
-      console.log(resp);
+      if (resp.ok) {
+        setFetching(false);
+        setShowPlanning(false);
+        getEphemeris(gradeSelected);
+      } else {
+        setFetching(false);
+        setShowPlanning(false);
+        getEphemeris(gradeSelected);
+      }
     });
   };
 
@@ -176,6 +180,11 @@ const Ephemeris = () => {
       <span className="header__subtitle">Efemérides</span>
 
       <div className="body-content">
+        {fetching && (
+          <div style={{ textAlign: 'center' }}>
+            <Spinner />
+          </div>
+        )}
         {showPlanning ? (
           <Planification
             classData={ephemerisSelected}
@@ -198,14 +207,7 @@ const Ephemeris = () => {
                 </select>
               </div>
             )}
-            {!ephemeris.length && !fetching && (
-              <h1 style={{ textAlign: 'center' }}>Sin registro de eventos.</h1>
-            )}
-            {fetching && (
-              <div style={{ textAlign: 'center' }}>
-                <Spinner />
-              </div>
-            )}
+            {!ephemeris.length && !fetching && <h1 style={{ textAlign: 'center' }}>Sin registro de eventos.</h1>}
             <div className="ephemeris-content">
               {!fetching &&
                 ephemeris.map(item => {

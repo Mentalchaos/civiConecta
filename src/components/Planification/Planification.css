@@ -61,7 +61,7 @@
   justify-content: space-between;
 }
 
-.form-group.planning>label {
+.form-group.planning > label {
   text-align: left;
   font-size: 15px;
 }
@@ -78,11 +78,11 @@
   justify-content: flex-end;
 }
 
-.group__container-materials>label {
+.group__container-materials > label {
   font-size: 14px;
 }
 
-.group__container-materials>input {
+.group__container-materials > input {
   margin-top: 5px;
 }
 
@@ -133,7 +133,7 @@
   bottom: 0;
 }
 
-.add-file-container input[type="file"] {
+.add-file-container input[type='file'] {
   opacity: 0;
   width: 200px;
   height: 32px;

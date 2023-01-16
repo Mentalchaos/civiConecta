@@ -2,12 +2,7 @@ import { BASE_URL } from '../constants';
 import http from '../helpers/http.helper.js';
 
 // Files para clases de unidades
-export const uploadFileByClassUnitAndGrade = async (
-  classNumber,
-  unit,
-  grade,
-  file,
-) => {
+export const uploadFileByClassUnitAndGrade = async (classNumber, unit, grade, file) => {
   const url = `${BASE_URL}/uploadFileByClassUnitAndGrade?class=${classNumber}&unit=${unit}&grade=${grade}`;
   const result = await http.upload(url, file);
   const response = await result.json();
@@ -53,5 +48,11 @@ export const deleteFileByExceptionAndGrade = async (exception, grade, fileName) 
   const httpResponse = await http.delete(url);
   const response = await httpResponse.json();
 
+  return { ...response };
+};
+
+export const getDownloadFile = async url => {
+  const httpResponse = await http.get(url);
+  const response = await httpResponse.json();
   return { ...response };
 };
