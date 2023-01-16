@@ -1,15 +1,7 @@
 import Button from './Button';
 import useForm from 'src/hooks/useForm';
 
-const PlanningForm = ({
-  unit,
-  grade,
-  fetching,
-  handleHiddeModal,
-  handleGetClasses,
-  onHandleSubmit,
-  needObjetives,
-}) => {
+const PlanningForm = ({ unit, grade, fetching, handleHiddeModal, onHandleSubmit, needObjetives, needDescription }) => {
   const { values, handleInputChange } = useForm({
     number: 0,
     title: '',
@@ -66,8 +58,8 @@ const PlanningForm = ({
     const payload = {
       number,
       title,
-      description,
-      objetives: needObjetives ? objetives : null,
+      description: needDescription ? description : 'No description',
+      objetives: needObjetives ? objetives : 'No objetives',
       planning,
       unit,
       grade,
@@ -91,74 +83,41 @@ const PlanningForm = ({
         </div>
         <div style={{ width: '80%' }} className="form-group">
           <label>Título de la clase:</label>
-          <input
-            onChange={handleInputChange}
-            name="title"
-            type="text"
-            required
-          />
+          <input onChange={handleInputChange} name="title" type="text" required />
         </div>
       </div>
       {needObjetives && (
         <div className="form-group">
           <label>Objetivos:</label>
-          <input
-            onChange={handleInputChange}
-            name="objetives"
-            type="text"
-            required
-          />
+          <input onChange={handleInputChange} name="objetives" type="text" required />
         </div>
       )}
       <div className="row">
-        <div style={{ width: '50%' }} className="form-group">
-          <label>Descripción:</label>
-          <input
-            onChange={handleInputChange}
-            name="description"
-            type="text"
-            required
-          />
-        </div>
+        {needDescription && (
+          <div style={{ width: '50%' }} className="form-group">
+            <label>Descripción:</label>
+            <input onChange={handleInputChange} name="description" type="text" required />
+          </div>
+        )}
         <div style={{ width: '50%' }} className="form-group">
           <label>Tema clase:</label>
-          <input
-            onChange={handleInputChange}
-            name="topic"
-            type="text"
-            required
-          />
+          <input onChange={handleInputChange} name="topic" type="text" required />
         </div>
       </div>
 
       <div className="row">
         <div style={{ width: '50%' }} className="form-group">
           <label>Actividad de inicio:</label>
-          <input
-            onChange={handleInputChange}
-            name="startActivity"
-            type="text"
-            required
-          />
+          <input onChange={handleInputChange} name="startActivity" type="text" required />
         </div>
         <div style={{ width: '50%' }} className="form-group">
           <label>Actividad central:</label>
-          <input
-            onChange={handleInputChange}
-            name="mainActivity"
-            type="text"
-            required
-          />
+          <input onChange={handleInputChange} name="mainActivity" type="text" required />
         </div>
       </div>
       <div className="form-group">
         <label>Actividad de cierre:</label>
-        <input
-          onChange={handleInputChange}
-          name="endActivity"
-          type="text"
-          required
-        />
+        <input onChange={handleInputChange} name="endActivity" type="text" required />
       </div>
       <div>
         <div className="material-inputs">
@@ -200,12 +159,7 @@ const PlanningForm = ({
             text="Cancelar"
             disabled={fetching}
           />
-          <Button
-            onClick={handleSubmit}
-            customStyles={defaultButtonStyles}
-            text="Continuar"
-            disabled={fetching}
-          />
+          <Button onClick={handleSubmit} customStyles={defaultButtonStyles} text="Continuar" disabled={fetching} />
         </div>
       </div>
     </form>
