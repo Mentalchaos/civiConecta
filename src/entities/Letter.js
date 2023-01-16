@@ -14,7 +14,8 @@ class Letter {
   }
 
   deleteStudent({ run }) {
-    console.log(run);
+    const otherStudents = this.students.filter(s => s.run !== run);
+    this.students = otherStudents;
   }
 
   toJSON() {

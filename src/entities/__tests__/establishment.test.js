@@ -132,4 +132,23 @@ describe('entities/establishment.js', () => {
     expect(alfonso.grade).toBe('6º');
     expect(alfonso.letter).toBe('C');
   });
+
+  test('delete a previous student from a grade will be done correctly', () => {
+    const entity = new Establishment(initialData);
+
+    entity
+      .addGrade('8')
+      .addLetter('F')
+      .addStudent({ name: 'Daniel Walker', run: '25139190-4' });
+
+    expect(entity.grades[0].letters[0].students[0].name).toBe('Tina Soto');
+    expect(entity.grades[1].letters[0].students[0].name).toBe('Daniel Walker');
+
+    entity
+      .addGrade('8')
+      .addLetter('F')
+      .deleteStudent({ run: '25139190-4' });
+
+    expect(entity.grades[1].letters[0].students.length).toBe(0);
+  });
 });
