@@ -151,6 +151,7 @@ const Ephemeris = () => {
             handleHiddeModal={setShowForm}
             onHandleSubmit={onHandleSubmit}
             fetching={fetching}
+            needDescription={true}
           />
         </Modal>
       )}

@@ -31,6 +31,7 @@ const Planification = ({
     mainActivity: classData.planning.mainActivity,
     endActivity: classData.planning.endActivity,
     description: classData.description,
+    objetives: classData.objetives,
   });
   const inputFile = useRef();
 
@@ -103,9 +104,17 @@ const Planification = ({
     }
   };
 
-  const onDownloadFile = () => {
-    getDownloadFile(fileSelected.getPath);
-    // if (fileSelected) return (window.location.href = fileSelected.getPath);
+  const onDownloadFile = async () => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const token = user.token;
+    const path = `${fileSelected.getPath}&token=${token}`;
+    const link = document.createElement('a');
+
+    link.href = path;
+    link.download = path.substring(path.lastIndexOf('/') + 1);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -142,7 +151,7 @@ const Planification = ({
         className="planning__oa-detail"
         onChange={handleInputChange}
         name="description"
-        value={values.description}
+        value={isClass ? values.objetives : values.description}
         type="text"
         placeholder="Detalle OA"
       />
