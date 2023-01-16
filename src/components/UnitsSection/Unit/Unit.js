@@ -4,16 +4,8 @@ import Spinner from 'src/components/UI/Spinner';
 import Button from 'src/components/UI/Button';
 import Modal from 'src/components/UI/Modal';
 import PlanningForm from 'src/components/UI/PlanningForm';
-import {
-  createClass,
-  getClassesByUnitAndGrade,
-  updateClass,
-  deleteClass,
-} from 'src/services/admin/classes.request';
-import {
-  deleteFileByClassUnitAndGrade,
-  uploadFileByClassUnitAndGrade,
-} from 'src/services/admin/files.request';
+import { createClass, getClassesByUnitAndGrade, updateClass, deleteClass } from 'src/services/admin/classes.request';
+import { deleteFileByClassUnitAndGrade, uploadFileByClassUnitAndGrade } from 'src/services/admin/files.request';
 
 import arrowDown from 'src/assets/Icons/arrow-down.svg';
 import arrow from 'src/assets/Icons/arrow-degree.svg';
@@ -24,11 +16,9 @@ const Unit = ({ unitsData, grade, getUnits, reset }) => {
   const [isSelectedClass, setIsSelectedClass] = useState(false);
   const [dataClassSelected, setDataClassSelected] = useState({});
   const [classesList, setClassesList] = useState([]);
-  const [loadingData, setLoadingData] = useState(false);
   const [showModalAddClass, setShowModalAddClass] = useState(false);
   const [unitNumber, setUnitNumber] = useState(0);
   const [showConfirmAction, setShowConfirmAction] = useState(false);
-  const [confirmDeleteClass, setConfirmDeleteClass] = useState(false);
   const [fetching, setFetching] = useState(false);
   const [unitSelectedNumber, setUnitSelectedNumber] = useState(0);
 
@@ -53,29 +43,22 @@ const Unit = ({ unitsData, grade, getUnits, reset }) => {
   };
 
   const getClasses = unitNumber => {
-    setLoadingData(true);
+    setFetching(true);
     getClassesByUnitAndGrade(unitNumber, grade).then(resp => {
       try {
         setClassesList(resp.classes);
-        setLoadingData(false);
+        setFetching(false);
       } catch (error) {
         console.error(error);
-        setLoadingData(false);
+        setFetching(false);
       }
     });
   };
 
   const onUpdateClass = (number, unit, grade, formValues) => {
     setFetching(true);
-    const {
-      topic,
-      studentMaterials,
-      description,
-      teacherMaterials,
-      startActivity,
-      mainActivity,
-      endActivity,
-    } = formValues;
+    const { topic, studentMaterials, description, teacherMaterials, startActivity, mainActivity, endActivity } =
+      formValues;
 
     const payload = {
       ...dataClassSelected,
@@ -120,22 +103,35 @@ const Unit = ({ unitsData, grade, getUnits, reset }) => {
   };
 
   const handleAddFile = file => {
+    setFetching(true);
     const { number, unit } = dataClassSelected;
-    uploadFileByClassUnitAndGrade(number, unit.number, grade, file).then(
-      resp => {
-        console.log(resp);
-      },
-    );
+    uploadFileByClassUnitAndGrade(number, unit.number, grade, file).then(resp => {
+      if (resp.ok) {
+        setFetching(false);
+        setIsSelectedClass(false);
+        getClasses(unit.number);
+      } else {
+        setFetching(false);
+        setIsSelectedClass(false);
+        getClasses(unit.number);
+      }
+    });
   };
 
   const handleDeleteFile = file => {
-    console.log(file);
+    setFetching(true);
     const { number, unit } = dataClassSelected;
-    deleteFileByClassUnitAndGrade(number, unit.number, grade, file).then(
-      resp => {
-        console.log(resp);
-      },
-    );
+    deleteFileByClassUnitAndGrade(number, unit.number, grade, file).then(resp => {
+      if (resp.ok) {
+        setFetching(false);
+        setIsSelectedClass(false);
+        getClasses(unit.number);
+      } else {
+        setFetching(false);
+        setIsSelectedClass(false);
+        getClasses(unit.number);
+      }
+    });
   };
 
   const deleteUnit = async (number, grade) => {
@@ -265,14 +261,8 @@ const Unit = ({ unitsData, grade, getUnits, reset }) => {
                   <p className="box__header-documents">{description}</p>
                 </section>
               </header>
-              <section
-                className={
-                  number === unitSelectedNumber && showClass
-                    ? 'show-class'
-                    : 'class-section'
-                }
-              >
-                {loadingData && (
+              <section className={number === unitSelectedNumber && showClass ? 'show-class' : 'class-section'}>
+                {fetching && (
                   <div style={{ textAlign: 'center' }}>
                     <Spinner />
                   </div>
@@ -291,20 +281,14 @@ const Unit = ({ unitsData, grade, getUnits, reset }) => {
                   />
                 )}
                 {classesList &&
-                  !loadingData &&
+                  !fetching &&
                   !isSelectedClass &&
                   classesList.map(item => {
                     const { files, number, objetives, unit } = item;
                     return (
-                      <div
-                        style={{ position: 'relative' }}
-                        key={number}
-                        className="class-box"
-                      >
+                      <div style={{ position: 'relative' }} key={number} className="class-box">
                         <span
-                          onClick={() =>
-                            deleteClassSelected(number, unit.number)
-                          }
+                          onClick={() => deleteClassSelected(number, unit.number)}
                           style={{
                             position: 'absolute',
                             top: 10,
@@ -318,9 +302,7 @@ const Unit = ({ unitsData, grade, getUnits, reset }) => {
                           X
                         </span>
                         <h2 className="class-box__title">Clase {number}</h2>
-                        <span className="class-box__documents">
-                          {files.length} Documentos totales en esta clase.
-                        </span>
+                        <span className="class-box__documents">{files.length} Documentos totales en esta clase.</span>
                         <span className="class-box__oa">OA: {objetives}</span>
 
                         <div className="box-link">
@@ -335,12 +317,8 @@ const Unit = ({ unitsData, grade, getUnits, reset }) => {
                       </div>
                     );
                   })}
-                {!classesList?.length && !loadingData && (
-                  <h2
-                    style={{ textAlign: 'center', color: 'var(--gray-dark)' }}
-                  >
-                    Unidad no registra clases.
-                  </h2>
+                {!classesList?.length && !fetching && (
+                  <h2 style={{ textAlign: 'center', color: 'var(--gray-dark)' }}>Unidad no registra clases.</h2>
                 )}
                 {showClass && !isSelectedClass && (
                   <div className="add_button-container">
@@ -357,11 +335,7 @@ const Unit = ({ unitsData, grade, getUnits, reset }) => {
                 <img
                   className="box-link"
                   onClick={() => handleOpenUnit(number)}
-                  src={
-                    number === unitSelectedNumber && showClass
-                      ? arrowDown
-                      : arrow
-                  }
+                  src={number === unitSelectedNumber && showClass ? arrowDown : arrow}
                   alt="Mostrar documentos"
                   width="15px"
                 />
@@ -370,9 +344,7 @@ const Unit = ({ unitsData, grade, getUnits, reset }) => {
           );
         })
       ) : (
-        <h1 style={{ textAlign: 'center', color: 'var(--gray-dark)' }}>
-          Curso sin registro de unidades.
-        </h1>
+        <h1 style={{ textAlign: 'center', color: 'var(--gray-dark)' }}>Curso sin registro de unidades.</h1>
       )}
     </>
   );
