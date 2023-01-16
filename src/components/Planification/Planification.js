@@ -109,8 +109,9 @@ const Planification = ({
     const token = user.token;
     const path = `${fileSelected.getPath}&token=${token}`;
     const link = document.createElement('a');
+    const splittedPath = path.split(':');
 
-    link.href = path;
+    link.href = `https://${splittedPath[1]}`;
     link.download = path.substring(path.lastIndexOf('/') + 1);
     document.body.appendChild(link);
     link.click();
