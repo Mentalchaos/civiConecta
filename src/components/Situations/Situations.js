@@ -156,6 +156,7 @@ const Situations = () => {
             handleHiddeModal={setShowForm}
             onHandleSubmit={onHandleSubmit}
             fetching={fetching}
+            needDescription={true}
           />
         </Modal>
       )}
@@ -206,6 +207,7 @@ const Situations = () => {
         {!events.length && !fetching && <h1 style={{ textAlign: 'center' }}>Sin registro de eventos.</h1>}
         <div className="items-content">
           {!fetching &&
+            !showPlanning &&
             events.map(event => (
               <Items
                 key={event.title}
@@ -215,7 +217,7 @@ const Situations = () => {
               />
             ))}
         </div>
-        {events.length > 0 && !fetching && (
+        {events.length > 0 && !fetching && !showPlanning && (
           <div className="pagination">
             <a href="#">&laquo;</a>
             <a href="#">&lt;</a>1/1
@@ -223,14 +225,16 @@ const Situations = () => {
             <a href="#">&raquo;</a>
           </div>
         )}
-        <div style={{ textAlign: 'center', marginTop: 20 }}>
-          <Button
-            onClick={() => setShowForm(true)}
-            customStyles={buttonStyles}
-            text="Crear evento"
-            disabled={!gradeSelected || fetching}
-          />
-        </div>
+        {!showPlanning && (
+          <div style={{ textAlign: 'center', marginTop: 20 }}>
+            <Button
+              onClick={() => setShowForm(true)}
+              customStyles={buttonStyles}
+              text="Crear evento"
+              disabled={!gradeSelected || fetching}
+            />
+          </div>
+        )}
       </div>
     </main>
   );
