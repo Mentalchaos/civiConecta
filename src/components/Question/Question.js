@@ -44,20 +44,15 @@ const Question = ({ selectedTopic, title, type }) => {
       const user = JSON.parse(localStorage.getItem('user'));
       const jwt = user.token;
 
-      fetch(
-        `https://civi-conecta-server.adaptable.app/getSurveysByType?type=${type}`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            token: jwt,
-          },
+      fetch(`https://civi-conecta-server.adaptable.app/getSurveysByType?type=${type}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          token: jwt,
         },
-      )
+      })
         .then(response => response.json())
         .then(data => {
-          const questionsFiltered = data.surveys.filter(
-            survey => survey.topic.number === selectedTopic,
-          );
+          const questionsFiltered = data.surveys.filter(survey => survey.topic.number === selectedTopic);
           setQuestions(questionsFiltered);
         });
     };
@@ -72,9 +67,7 @@ const Question = ({ selectedTopic, title, type }) => {
 
   const changeColor = letter => {
     setAlternatives(current => {
-      let changeThis = current.alternatives.find(
-        data => data.letter === letter,
-      );
+      let changeThis = current.alternatives.find(data => data.letter === letter);
       if (changeThis.value === 2) {
         changeThis.value = 0;
       } else {
@@ -86,9 +79,7 @@ const Question = ({ selectedTopic, title, type }) => {
 
   const changeAlternative = (letter, value) => {
     setAlternatives(current => {
-      let changeThis = current.alternatives.find(
-        data => data.letter === letter,
-      );
+      let changeThis = current.alternatives.find(data => data.letter === letter);
       changeThis.description = value;
       return { ...current };
     });
@@ -97,9 +88,7 @@ const Question = ({ selectedTopic, title, type }) => {
   const createSurvey = async () => {
     const user = JSON.parse(localStorage.getItem('user'));
     const jwt = user.token;
-    const number = questions.length
-      ? questions[questions.length - 1].number + 1
-      : 1;
+    const number = questions.length ? questions[questions.length - 1].number + 1 : 1;
     const payload = {
       ...alternatives,
       type,
@@ -107,17 +96,14 @@ const Question = ({ selectedTopic, title, type }) => {
       number,
     };
 
-    const fetching = await fetch(
-      'https://civi-conecta-server.adaptable.app/createSurvey',
-      {
-        method: 'POST',
-        body: JSON.stringify(payload),
-        headers: {
-          'Content-Type': 'application/json',
-          token: jwt,
-        },
+    const fetching = await fetch('https://civi-conecta-server.adaptable.app/createSurvey', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+      headers: {
+        'Content-Type': 'application/json',
+        token: jwt,
       },
-    );
+    });
 
     const response = await fetching.json();
     if (response.ok) {
@@ -125,6 +111,28 @@ const Question = ({ selectedTopic, title, type }) => {
       setResetInputs(true);
     } else {
       setResetInputs(true);
+    }
+  };
+
+  const deleteSurvey = async surveyNumber => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const jwt = user.token;
+
+    const fetching = await fetch(
+      `https://civi-conecta-server.adaptable.app/deleteSurvey?number=${surveyNumber}&type=${type}&topic=${selectedTopic}`,
+      {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          token: jwt,
+        },
+      },
+    );
+    const response = await fetching.json();
+    if (response.ok) {
+      const questionDeleted = { ...response.survey };
+      const filterQuestions = questions.filter(question => question.number !== questionDeleted.number);
+      setQuestions(filterQuestions);
     }
   };
 
@@ -149,11 +157,7 @@ const Question = ({ selectedTopic, title, type }) => {
           {alternatives &&
             alternatives.alternatives.map((data, key) => (
               <div key={key} className="option-component">
-                <ColorButton
-                  changeColor={changeColor}
-                  letter={data.letter}
-                  value={data.value}
-                />
+                <ColorButton changeColor={changeColor} letter={data.letter} value={data.value} />
                 <AddQuestionInput
                   changeAlternative={changeAlternative}
                   letter={data.letter}
@@ -178,11 +182,7 @@ const Question = ({ selectedTopic, title, type }) => {
               return <span>{item.letter}.</span>;
             });
             return (
-              <div
-                style={{ marginTop: 10 }}
-                key={question.number}
-                className="edit-question-container"
-              >
+              <div style={{ marginTop: 10 }} key={question.number} className="edit-question-container">
                 <div
                   style={{
                     display: 'flex',
@@ -199,6 +199,19 @@ const Question = ({ selectedTopic, title, type }) => {
                     }}
                   >
                     Pregunta: {question.question}
+                  </span>
+                  <span
+                    onClick={() => deleteSurvey(question.number)}
+                    style={{
+                      cursor: 'pointer',
+                      color: 'var(--color-secondary)',
+                      fontWeight: 'bold',
+                      border: '1px solid var(--color-secondary)',
+                      borderRadius: 25,
+                      padding: '0px 20px',
+                    }}
+                  >
+                    X
                   </span>
                 </div>
                 <div
