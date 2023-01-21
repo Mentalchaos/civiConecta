@@ -6,18 +6,20 @@ const EphemerisDoc = ({
   handleShowPlanning,
   ephemerisData,
 }) => {
-  const { title, files, description, number } = ephemerisData;
+  const { title, files, description, number, createdAt } = ephemerisData;
 
   const onHandleShowPlanning = () => {
     handleShowPlanning(true);
     handleEphemerisSelected(ephemerisData);
   };
 
+  const transformedDate = new Date(createdAt).toLocaleDateString('es-CL');
+
   return (
     <div className="ephemeris-doc-container">
       <div className="doc-texts">
         <p className="doc-event-number">{number}</p>
-        <div className="ephemeris-title">{title}</div>
+        <div className="ephemeris-title">{transformedDate} {title}</div>
         <div className="ephemeris-subtitle">
           {files.length} documentos adjuntados.
         </div>
