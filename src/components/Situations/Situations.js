@@ -5,8 +5,8 @@ import Items from './Items/index.js';
 import Spinner from '../UI/Spinner.js';
 import Button from '../UI/Button.js';
 import Modal from '../UI/Modal.js';
-import { createEvent, getEventsByGrade, updateEvent } from 'src/services/admin/situations.request.js';
-import { deleteFileByEventAndGrade, uploadFileByEventAndGrade } from 'src/services/admin/files.request.js';
+import { deleteFileByExceptionAndGrade, uploadFileByExceptionAndGrade } from 'src/services/admin/files.request.js';
+import { createException, getExceptionsByGrade, updateException } from 'src/services/admin/ephemeris.request.js';
 import { getGrades } from 'src/services/admin/grades.request.js';
 
 import './Items/index.css';
@@ -44,10 +44,10 @@ const Situations = () => {
 
   const getEvents = grade => {
     setFetching(true);
-    getEventsByGrade(grade).then(resp => {
+    getExceptionsByGrade(grade).then(resp => {
       if (resp.ok) {
         setFetching(false);
-        setEvents(resp.events);
+        setEvents(resp.exceptions);
       }
     });
   };
@@ -71,12 +71,12 @@ const Situations = () => {
     console.log('values', values);
 
     const payload = {
-      ...values
+      ...values,
     };
-    createEvent(payload).then(resp => {
+    createException(payload).then(resp => {
       if (resp.ok) {
         setFetching(false);
-        setEvents([...events, resp.event]);
+        setEvents([...events, resp.exception]);
         setShowForm(false);
       }
     });
@@ -102,7 +102,7 @@ const Situations = () => {
         },
       },
     };
-    updateEvent(number, grade, payload).then(resp => {
+    updateException(number, grade, payload).then(resp => {
       if (resp.ok) {
         setFetching(false);
       } else {
@@ -119,7 +119,7 @@ const Situations = () => {
   const handleAddFile = file => {
     setFetching(true);
     const { number } = situationSelected;
-    uploadFileByEventAndGrade(number, gradeSelected, file).then(resp => {
+    uploadFileByExceptionAndGrade(number, gradeSelected, file).then(resp => {
       if (resp.ok) {
         setFetching(false);
         setShowPlanning(false);
@@ -135,7 +135,7 @@ const Situations = () => {
   const handleDeleteFile = file => {
     setFetching(true);
     const { number } = situationSelected;
-    deleteFileByEventAndGrade(number, gradeSelected, file).then(resp => {
+    deleteFileByExceptionAndGrade(number, gradeSelected, file).then(resp => {
       if (resp.ok) {
         setFetching(false);
         setShowPlanning(false);
@@ -175,7 +175,7 @@ const Situations = () => {
             className="default-select"
             onChange={handleChangeGrade}
             defaultValue="Seleccione nivel"
-            disabled={showPlanning && !grades.length}
+            disabled={showPlanning && !grades?.length}
           >
             <option disabled>Seleccione nivel</option>
             {grades.map(grade => {
@@ -206,20 +206,20 @@ const Situations = () => {
             fetching={fetching}
           />
         )}
-        {!events.length && !fetching && <h1 style={{ textAlign: 'center' }}>Sin registro de eventos.</h1>}
+        {!events?.length && !fetching && <h1 style={{ textAlign: 'center' }}>Sin registro de eventos.</h1>}
         <div className="items-content">
           {!fetching &&
             !showPlanning &&
-            events.map(event => (
+            events?.map(event => (
               <Items
-                key={event.title}
+                key={event.number}
                 handleShowPlanning={handleShowPlanning}
                 handleSituationSelected={handleSituationSelected}
                 eventData={event}
               />
             ))}
         </div>
-        {events.length > 0 && !fetching && !showPlanning && (
+        {events?.length > 0 && !fetching && !showPlanning && (
           <div className="pagination">
             <a href="#">&laquo;</a>
             <a href="#">&lt;</a>1/1
