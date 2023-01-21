@@ -97,8 +97,7 @@ const Ephemeris = () => {
   const onHandleSubmit = values => {
     setFetching(true);
     const payload = {
-      ...values,
-      date: new Date().toLocaleString('es-CL').split(',')[0],
+      ...values
     };
     createException(payload).then(resp => {
       if (resp.ok) {
@@ -139,6 +138,15 @@ const Ephemeris = () => {
         getEphemeris(gradeSelected);
       }
     });
+  };
+
+  const sortedData = array => {
+    const sort = array.sort(function(a, b) {
+      var c = a.date
+      var d = b.date
+      return c-d;
+    })
+    return sort;
   };
 
   return (
@@ -199,19 +207,10 @@ const Ephemeris = () => {
           />
         ) : (
           <div className="ephemeris-container">
-            {ephemeris.length > 0 && !fetching && (
-              <div className="ephemeris-select-container">
-                <div className="ephemeris-select-info">Filtrar items por:</div>
-                <select className="ephemeris-select">
-                  <option value="value1">Nombre</option>
-                  <option value="value2">Fecha</option>
-                </select>
-              </div>
-            )}
             {!ephemeris.length && !fetching && <h1 style={{ textAlign: 'center' }}>Sin registro de eventos.</h1>}
             <div className="ephemeris-content">
               {!fetching &&
-                ephemeris.map(item => {
+                sortedData(ephemeris).map(item => {
                   return (
                     <EphemerisDoc
                       key={item.title}

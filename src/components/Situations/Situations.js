@@ -68,9 +68,10 @@ const Situations = () => {
 
   const onHandleSubmit = values => {
     setFetching(true);
+    console.log('values', values);
+
     const payload = {
-      ...values,
-      date: new Date().toString(),
+      ...values
     };
     createEvent(payload).then(resp => {
       if (resp.ok) {
@@ -83,12 +84,13 @@ const Situations = () => {
 
   const updateSituation = (number, grade, formValues) => {
     setFetching(true);
-    const { topic, studentMaterials, description, teacherMaterials, startActivity, mainActivity, endActivity } =
+    const { topic, studentMaterials, description, teacherMaterials, startActivity, mainActivity, endActivity, date } =
       formValues;
 
     const payload = {
       ...situationSelected,
       description,
+      date,
       planning: {
         startActivity,
         mainActivity,
