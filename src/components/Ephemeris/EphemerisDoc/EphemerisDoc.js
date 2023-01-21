@@ -6,14 +6,14 @@ const EphemerisDoc = ({
   handleShowPlanning,
   ephemerisData,
 }) => {
-  const { title, files, description, number, createdAt } = ephemerisData;
+  const { title, files, description, number, date } = ephemerisData;
 
   const onHandleShowPlanning = () => {
     handleShowPlanning(true);
     handleEphemerisSelected(ephemerisData);
   };
 
-  const transformedDate = new Date(createdAt).toLocaleDateString('es-CL');
+  const transformedDate = new Date(date).toLocaleDateString('es-CL');
 
   return (
     <div className="ephemeris-doc-container">

@@ -16,6 +16,7 @@ const Planification = ({
   getClasses,
   isClass,
   fetching,
+  type
 }) => {
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
   const [isRowSelected, setIsRowSelected] = useState(false);
@@ -32,8 +33,11 @@ const Planification = ({
     endActivity: classData.planning.endActivity,
     description: classData.description,
     objetives: classData.objetives,
+    date: classData.date
   });
   const inputFile = useRef();
+
+  console.log('values', values);
 
   useEffect(() => {
     const files = classData.files?.map(file => {
@@ -250,6 +254,13 @@ const Planification = ({
           <label>Actividad de cierre:</label>
           <input type="text" name="endActivity" value={values.endActivity} onChange={handleInputChange} />
         </div>
+        {
+        type == 'ephemeris' &&
+          <div className="form-group planning">
+            <label>Fecha:</label>
+            <input placeholder="AÑO-MES-DIA" type="text" name="date" value={values.date} onChange={handleInputChange} />
+          </div>
+        }
         <div className="form-group button">
           <Button
             onClick={onHandleSubmit}
