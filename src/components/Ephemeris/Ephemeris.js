@@ -6,8 +6,8 @@ import PlanningForm from '../UI/PlanningForm';
 import Button from '../UI/Button';
 import Spinner from '../UI/Spinner';
 import { getGrades } from 'src/services/admin/grades.request.js';
-import { createException, getExceptionsByGrade, updateException } from 'src/services/admin/ephemeris.request';
-import { deleteFileByExceptionAndGrade, uploadFileByExceptionAndGrade } from 'src/services/admin/files.request';
+import { deleteFileByEventAndGrade, uploadFileByEventAndGrade } from 'src/services/admin/files.request';
+import { createEvent, getEventsByGrade, updateEvent } from 'src/services/admin/situations.request';
 
 import './Ephemeris.css';
 
@@ -43,10 +43,10 @@ const Ephemeris = () => {
 
   const getEphemeris = grade => {
     setFetching(true);
-    getExceptionsByGrade(grade).then(resp => {
+    getEventsByGrade(grade).then(resp => {
       if (resp.ok) {
         setFetching(false);
-        setEphemeris(resp.exceptions);
+        setEphemeris(resp.events);
       }
     });
   };
@@ -80,7 +80,7 @@ const Ephemeris = () => {
         },
       },
     };
-    updateException(number, grade, payload).then(resp => {
+    updateEvent(number, grade, payload).then(resp => {
       if (resp.ok) {
         setFetching(false);
       } else {
@@ -97,12 +97,12 @@ const Ephemeris = () => {
   const onHandleSubmit = values => {
     setFetching(true);
     const payload = {
-      ...values
+      ...values,
     };
-    createException(payload).then(resp => {
+    createEvent(payload).then(resp => {
       if (resp.ok) {
         setFetching(false);
-        setEphemeris([...ephemeris, resp.exception]);
+        setEphemeris([...ephemeris, resp.event]);
         setShowForm(false);
       }
     });
@@ -111,7 +111,7 @@ const Ephemeris = () => {
   const handleAddFile = file => {
     setFetching(true);
     const { number } = ephemerisSelected;
-    uploadFileByExceptionAndGrade(number, gradeSelected, file).then(resp => {
+    uploadFileByEventAndGrade(number, gradeSelected, file).then(resp => {
       if (resp.ok) {
         setFetching(false);
         setShowPlanning(false);
@@ -127,7 +127,7 @@ const Ephemeris = () => {
   const handleDeleteFile = file => {
     setFetching(true);
     const { number } = ephemerisSelected;
-    deleteFileByExceptionAndGrade(number, gradeSelected, file).then(resp => {
+    deleteFileByEventAndGrade(number, gradeSelected, file).then(resp => {
       if (resp.ok) {
         setFetching(false);
         setShowPlanning(false);
@@ -141,11 +141,11 @@ const Ephemeris = () => {
   };
 
   const sortedData = array => {
-    const sort = array.sort(function(a, b) {
-      var c = a.date
-      var d = b.date
-      return c-d;
-    })
+    const sort = array.sort(function (a, b) {
+      var c = a.date;
+      var d = b.date;
+      return c - d;
+    });
     return sort;
   };
 
@@ -213,7 +213,7 @@ const Ephemeris = () => {
                 sortedData(ephemeris).map(item => {
                   return (
                     <EphemerisDoc
-                      key={item.title}
+                      key={item.number}
                       handleShowPlanning={handleShowPlanning}
                       handleEphemerisSelected={handleEphemerisSelected}
                       ephemerisData={item}
