@@ -13,6 +13,7 @@ const PlanningForm = ({ unit, grade, fetching, handleHiddeModal, onHandleSubmit,
     mainActivity: '',
     endActivity: '',
     topic: '',
+    date: ''
   });
 
   const defaultButtonStyles = {
@@ -41,6 +42,7 @@ const PlanningForm = ({ unit, grade, fetching, handleHiddeModal, onHandleSubmit,
     startActivity,
     mainActivity,
     endActivity,
+    date
   } = values;
 
   const handleSubmit = e => {
@@ -63,6 +65,7 @@ const PlanningForm = ({ unit, grade, fetching, handleHiddeModal, onHandleSubmit,
       planning,
       unit,
       grade,
+      date
     };
     onHandleSubmit(payload);
   };
@@ -71,7 +74,7 @@ const PlanningForm = ({ unit, grade, fetching, handleHiddeModal, onHandleSubmit,
     <form style={{ width: '100%' }}>
       <div className="row">
         <div style={{ width: '20%' }} className="form-group">
-          <label>Número clase:</label>
+          <label>Número:</label>
           <input
             style={{ width: 'auto', padding: 'auto' }}
             onChange={handleInputChange}
@@ -118,6 +121,10 @@ const PlanningForm = ({ unit, grade, fetching, handleHiddeModal, onHandleSubmit,
       <div className="form-group">
         <label>Actividad de cierre:</label>
         <input onChange={handleInputChange} name="endActivity" type="text" required />
+      </div>
+      <div className="form-group">
+        <label>Fecha:</label>
+        <input placeholder="AÑO-MES-DIA" onChange={handleInputChange} name="date" type="text" required />
       </div>
       <div>
         <div className="material-inputs">
