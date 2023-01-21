@@ -63,12 +63,13 @@ const Ephemeris = () => {
 
   const updateEphemeris = (number, grade, formValues) => {
     setFetching(true);
-    const { topic, studentMaterials, description, teacherMaterials, startActivity, mainActivity, endActivity } =
+    const { topic, studentMaterials, description, teacherMaterials, startActivity, mainActivity, endActivity, date } =
       formValues;
 
     const payload = {
       ...ephemerisSelected,
       description,
+      date,
       planning: {
         startActivity,
         mainActivity,
@@ -196,6 +197,7 @@ const Ephemeris = () => {
         )}
         {showPlanning ? (
           <Planification
+            type="ephemeris"
             classData={ephemerisSelected}
             setIsSelectedClass={setShowPlanning}
             getClasses={getEphemeris}
