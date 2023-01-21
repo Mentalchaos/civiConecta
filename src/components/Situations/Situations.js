@@ -153,6 +153,7 @@ const Situations = () => {
       {showForm && (
         <Modal style={{ padding: '20px 40px', marginTop: 50 }}>
           <PlanningForm
+            type="situations"
             grade={gradeSelected}
             needObjetives={false}
             handleHiddeModal={setShowForm}

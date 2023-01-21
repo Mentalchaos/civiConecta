@@ -1,7 +1,7 @@
 import Button from './Button';
 import useForm from 'src/hooks/useForm';
 
-const PlanningForm = ({ unit, grade, fetching, handleHiddeModal, onHandleSubmit, needObjetives, needDescription }) => {
+const PlanningForm = ({ unit, grade, fetching, handleHiddeModal, onHandleSubmit, needObjetives, needDescription, type }) => {
   const { values, handleInputChange } = useForm({
     number: 0,
     title: '',
@@ -122,10 +122,12 @@ const PlanningForm = ({ unit, grade, fetching, handleHiddeModal, onHandleSubmit,
         <label>Actividad de cierre:</label>
         <input onChange={handleInputChange} name="endActivity" type="text" required />
       </div>
-      <div className="form-group">
-        <label>Fecha:</label>
-        <input placeholder="AÑO-MES-DIA" onChange={handleInputChange} name="date" type="text" required />
-      </div>
+      { type != "situations" &&
+        <div className="form-group">
+          <label>Fecha:</label>
+          <input placeholder="AÑO-MES-DIA" onChange={handleInputChange} name="date" type="text" required />
+        </div>
+        }
       <div>
         <div className="material-inputs">
           <p style={{ margin: 0 }}>Materiales:</p>
