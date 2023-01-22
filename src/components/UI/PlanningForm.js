@@ -45,6 +45,8 @@ const PlanningForm = ({ unit, grade, fetching, handleHiddeModal, onHandleSubmit,
     date
   } = values;
 
+  console.log('type', type);
+
   const handleSubmit = e => {
     e.preventDefault();
     const planning = {
@@ -122,7 +124,7 @@ const PlanningForm = ({ unit, grade, fetching, handleHiddeModal, onHandleSubmit,
         <label>Actividad de cierre:</label>
         <input onChange={handleInputChange} name="endActivity" type="text" required />
       </div>
-      { type != "situations" || type != 'class' &&
+      { type == "ephemeris" &&
         <div className="form-group">
           <label>Fecha:</label>
           <input placeholder="AÑO-MES-DIA" onChange={handleInputChange} name="date" type="text" required />
