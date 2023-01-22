@@ -23,7 +23,7 @@ const EphemerisDoc = ({
         <div className="ephemeris-subtitle">
           {files.length} documentos adjuntados.
         </div>
-        <div className="ephemeris-subtitle">OA: {description}</div>
+        <div className="ephemeris-subtitle">Objetivo: {description}</div>
       </div>
       <img
         onClick={onHandleShowPlanning}

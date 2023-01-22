@@ -91,14 +91,14 @@ const PlanningForm = ({ unit, grade, fetching, handleHiddeModal, onHandleSubmit,
       </div>
       {needObjetives && (
         <div className="form-group">
-          <label>Objetivos:</label>
+          <label>Objetivo:</label>
           <input onChange={handleInputChange} name="objetives" type="text" required />
         </div>
       )}
       <div className="row">
         {needDescription && (
           <div style={{ width: '50%' }} className="form-group">
-            <label>Descripción:</label>
+            <label>Objetivo:</label>
             <input onChange={handleInputChange} name="description" type="text" required />
           </div>
         )}
@@ -122,7 +122,7 @@ const PlanningForm = ({ unit, grade, fetching, handleHiddeModal, onHandleSubmit,
         <label>Actividad de cierre:</label>
         <input onChange={handleInputChange} name="endActivity" type="text" required />
       </div>
-      { type != "situations" &&
+      { type != "situations" || type != 'class' &&
         <div className="form-group">
           <label>Fecha:</label>
           <input placeholder="AÑO-MES-DIA" onChange={handleInputChange} name="date" type="text" required />
