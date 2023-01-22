@@ -158,7 +158,7 @@ const Planification = ({
         name="description"
         value={isClass ? values.objetives : values.description}
         type="text"
-        placeholder="Detalle OA"
+        placeholder="Detalle Objetivo"
       />
       {classData.files.length ? (
         <div className="table-section">
