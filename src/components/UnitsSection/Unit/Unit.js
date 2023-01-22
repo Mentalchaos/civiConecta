@@ -212,6 +212,7 @@ const Unit = ({ unitsData, grade, getUnits, reset }) => {
           style={{ padding: '20px 60px', marginTop: 50, width: '60%' }}
         >
           <PlanningForm
+            type="class"
             unit={unitSelectedNumber}
             handleHiddeModal={setShowModalAddClass}
             handleGetClasses={getClasses}
@@ -303,7 +304,7 @@ const Unit = ({ unitsData, grade, getUnits, reset }) => {
                         </span>
                         <h2 className="class-box__title">Clase {number}</h2>
                         <span className="class-box__documents">{files.length} Documentos totales en esta clase.</span>
-                        <span className="class-box__oa">OA: {objetives}</span>
+                        <span className="class-box__oa">Objetivo: {objetives}</span>
 
                         <div className="box-link">
                           <img
