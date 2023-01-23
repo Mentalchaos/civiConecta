@@ -24,12 +24,6 @@
   margin: 0px;
 }
 
-.text-box-p1 {
-  font-weight: 600;
-  color: var(--color-primary);
-  font-size: 20px;
-}
-
 .text-box-p2 {
   font-size: 14px;
 }
@@ -62,4 +56,11 @@
 
 .doc-event-number.situations {
   top: 5px;
+}
+
+.text-box-p1 {
+    font-weight: 600;
+    color: var(--color-primary);
+    font-size: 20px;
+    margin-top: 10px !important;
 }
