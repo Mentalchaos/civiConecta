@@ -220,6 +220,8 @@ const Ephemeris = () => {
                       handleShowPlanning={handleShowPlanning}
                       handleEphemerisSelected={handleEphemerisSelected}
                       ephemerisData={item}
+                      getEphemeris={getEphemeris}
+                      grade={gradeSelected}
                     />
                   );
                 })}
