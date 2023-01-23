@@ -217,6 +217,8 @@ const Situations = () => {
                 handleShowPlanning={handleShowPlanning}
                 handleSituationSelected={handleSituationSelected}
                 eventData={event}
+                getEvents={getEvents}
+                grade={gradeSelected}
               />
             ))}
         </div>

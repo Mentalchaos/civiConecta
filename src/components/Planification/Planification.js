@@ -4,7 +4,6 @@ import Button from '../UI/Button';
 import Table from '../UI/Table';
 import Modal from '../UI/Modal';
 import arrowIcon from 'src/assets/Icons/arrow-down.svg';
-import { getDownloadFile } from 'src/services/admin/files.request';
 import './Planification.css';
 
 const Planification = ({
