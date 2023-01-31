@@ -66,7 +66,7 @@ const ImageSection = () => {
     console.log(document.getElementsByClassName(`img${b}`));
     document.getElementById(`img${b-1}`).classList.remove("active");
 
-  },4000);
+  },2000);
 
   return (
     <div className="img-section">
