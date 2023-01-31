@@ -3,13 +3,7 @@ import Modal from 'src/components/UI/Modal';
 import useForm from 'src/hooks/useForm';
 import './CreateTeacher.css';
 
-const CreateTeacher = ({
-  setAddTeacher,
-  onHandleAddTeacher,
-  errorMessage,
-  fetching,
-  ...props
-}) => {
+const CreateTeacher = ({ setAddTeacher, onHandleAddTeacher, errorMessage, fetching, ...props }) => {
   const { values, handleInputChange } = useForm({
     name: '',
     email: '',
@@ -42,7 +36,7 @@ const CreateTeacher = ({
   return (
     <Modal
       style={{ padding: '40px 100px', marginTop: '150px' }}
-      title={'Creación docente'}
+      title={'Crear docente'}
       subtitle="Llenar el formulario."
     >
       <form className="form-container">
@@ -57,13 +51,7 @@ const CreateTeacher = ({
               placeholder="Nombre completo"
               onChange={handleInputChange}
             />
-            <input
-              name="email"
-              onChange={handleInputChange}
-              value={values.email}
-              type="text"
-              placeholder="E-mail"
-            />
+            <input name="email" onChange={handleInputChange} value={values.email} type="text" placeholder="E-mail" />
           </div>
           {errorMessage.length > 0 && (
             <div>
@@ -86,12 +74,7 @@ const CreateTeacher = ({
               text="Cancelar"
               disabled={fetching}
             />
-            <Button
-              onClick={handleAddTeacher}
-              customStyles={buttonStyles}
-              text="Continuar"
-              disabled={fetching}
-            />
+            <Button onClick={handleAddTeacher} customStyles={buttonStyles} text="Continuar" disabled={fetching} />
           </div>
         </div>
       </form>
