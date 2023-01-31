@@ -1,4 +1,5 @@
 import { BASE_URL } from '../constants';
+import http from '../helpers/http.helper';
 
 export const signIn = async (email, password) => {
   const fetching = await fetch(`${BASE_URL}/signIn`, {
@@ -46,4 +47,12 @@ export const updateActiveUser = async (email, active) => {
   return {
     ...response,
   };
+};
+
+export const generateRandomPassword = async () => {
+  const url = `${BASE_URL}/generateRandomPassword`;
+  const httpResponse = await http.get(url);
+  const response = await httpResponse.json();
+
+  return { ...response };
 };
