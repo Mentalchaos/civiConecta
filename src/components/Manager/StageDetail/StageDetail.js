@@ -4,12 +4,10 @@ import Table from 'src/components/UI/Table';
 import Modal from 'src/components/UI/Modal';
 import CreateTeacher from '../StageAssignment/CreateTeacher/CreateTeacher';
 import Spinner from 'src/components/UI/Spinner';
-import {
-  signUpUserRole,
-  updateActiveUser,
-} from 'src/services/admin/user.request';
+import { generateRandomPassword, signUpUserRole, updateActiveUser } from 'src/services/admin/user.request';
 
 import './StageDetail.css';
+import CopyToClipboard from 'react-copy-to-clipboard';
 
 const StageDetail = ({ title, courseSelected, institutionSelected }) => {
   const [teacherSelected, setTeacherSelected] = useState(false);
@@ -20,6 +18,8 @@ const StageDetail = ({ title, courseSelected, institutionSelected }) => {
   const [errorMessage, setErrorMessage] = useState('');
   const [confirmAction, setConfirmAction] = useState(false);
   const [fetching, setFetching] = useState(false);
+  const [showCreatedUser, setShowCreatedUser] = useState(false);
+  const [dataUserCreated, setDataUserCreated] = useState({});
 
   useEffect(() => {
     setLetterStudents(courseSelected.letter.students || []);
@@ -80,6 +80,11 @@ const StageDetail = ({ title, courseSelected, institutionSelected }) => {
         const { name, email, active } = resp.user;
         const newUser = { name, email, active };
         setLetterTeachers([...letterTeachers, newUser]);
+        setShowCreatedUser(true);
+        setFetching(false);
+        setAddTeacher(false);
+      } else {
+        setShowCreatedUser(false);
         setFetching(false);
         setAddTeacher(false);
       }
@@ -88,37 +93,35 @@ const StageDetail = ({ title, courseSelected, institutionSelected }) => {
 
   const onHandleAddTeacher = data => {
     const { email, name } = data;
-    const capitalizeLetter = name.charAt(0).toUpperCase();
-    const followingLetters = name.split(' ')[1];
-    const generatePassword = `${capitalizeLetter}${followingLetters}${Math.random().toFixed(
-      3,
-    )}`;
-
-    const teacherPayload = {
-      email,
-      name,
-      password: generatePassword,
-      workplaces: [
-        {
-          establishment: courseSelected.establishment,
-          courses: [
+    setFetching(true);
+    generateRandomPassword().then(resp => {
+      if (resp.ok) {
+        setDataUserCreated({ email, password: resp.password });
+        const teacherPayload = {
+          email,
+          name,
+          password: resp.password,
+          workplaces: [
             {
-              grade: courseSelected.gradeSelected,
-              letters: [courseSelected.letter.character],
+              establishment: institutionSelected.number,
+              courses: [
+                {
+                  grade: courseSelected.gradeSelected,
+                  letters: [courseSelected.letter.character],
+                },
+              ],
             },
           ],
-        },
-      ],
-    };
-    addTeacherService(teacherPayload);
+        };
+        addTeacherService(teacherPayload);
+      }
+    });
   };
 
   const handleConfirmAction = () => {
     setFetching(true);
     const { email, active } = dataTeacherSelected;
-    const selectTeacher = letterTeachers.filter(
-      teacher => teacher.email === email,
-    );
+    const selectTeacher = letterTeachers.filter(teacher => teacher.email === email);
     selectTeacher[0].active = !active;
     updateActiveUser(email, !active).then(resp => {
       if (resp.ok) {
@@ -135,13 +138,27 @@ const StageDetail = ({ title, courseSelected, institutionSelected }) => {
 
   return (
     <section className="manager-section">
+      {showCreatedUser && (
+        <Modal
+          style={{ padding: '20px 100px', marginTop: '10%' }}
+          subtitle="Copiar datos del usuario creado"
+          title="Datos de usuario"
+        >
+          <section style={{ marginTop: 30, paddingBottom: 20 }}>
+            <textarea style={{ resize: 'none' }} rows={5} cols={28}></textarea>
+            <span style={{ display: 'block', fontSize: '14px' }}>Pegue aquí para verificar</span>
+          </section>
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <CopyToClipboard text={`usuario: ${dataUserCreated.email}, contraseña: ${dataUserCreated.password}`}>
+              <Button text="Copiar datos" customStyles={buttonStyle} />
+            </CopyToClipboard>
+            <Button text="Cerrar" customStyles={buttonStyle} onClick={() => setShowCreatedUser(false)} />
+          </div>
+        </Modal>
+      )}
       {confirmAction && (
         <Modal
-          title={
-            dataTeacherSelected.active
-              ? 'Deshabilitar Docente'
-              : 'Habilitar Docente'
-          }
+          title={dataTeacherSelected.active ? 'Deshabilitar Docente' : 'Habilitar Docente'}
           subtitle={
             dataTeacherSelected.active
               ? 'Deseas deshabilitar docente seleccionado?'
@@ -156,12 +173,7 @@ const StageDetail = ({ title, courseSelected, institutionSelected }) => {
               customStyles={buttonCancelStyle}
               disabled={fetching}
             />
-            <Button
-              onClick={handleConfirmAction}
-              text="Continuar"
-              customStyles={buttonStyle}
-              disabled={fetching}
-            />
+            <Button onClick={handleConfirmAction} text="Continuar" customStyles={buttonStyle} disabled={fetching} />
           </div>
         </Modal>
       )}
@@ -175,12 +187,6 @@ const StageDetail = ({ title, courseSelected, institutionSelected }) => {
       )}
       <h1 className="section__title">{title}</h1>
       <article className="section__content detail-content">
-        {/*<header className="detail-content__header">
-          <Button
-            text={'Deshabilitar curso'}
-            customStyles={buttonCancelStyle}
-          />
-        </header>*/}
         <main className="detail-content__main">
           <div className="main__info">
             <p>
@@ -189,12 +195,9 @@ const StageDetail = ({ title, courseSelected, institutionSelected }) => {
             <p>
               Nivel: <span>{courseSelected.gradeSelected}</span>
             </p>
+            <p></p>
             <p>
-              Letra actual: <span>{courseSelected.letter.character}</span>
-            </p>
-            <p>
-              N&uacute;mero de estudiantes:
-              <span>{courseSelected.letter.students.length}</span>
+              N&uacute;mero de estudiantes: <span>{courseSelected.letter.students.length}</span>
             </p>
           </div>
           <div className="main__table">
@@ -218,9 +221,7 @@ const StageDetail = ({ title, courseSelected, institutionSelected }) => {
               <section className="table-actions">
                 <Button
                   customStyles={buttonStyle}
-                  text={
-                    dataTeacherSelected.active ? 'Deshabilitar' : 'Habilitar'
-                  }
+                  text={dataTeacherSelected.active ? 'Deshabilitar' : 'Habilitar'}
                   onClick={() => setConfirmAction(true)}
                 />
               </section>
@@ -234,11 +235,7 @@ const StageDetail = ({ title, courseSelected, institutionSelected }) => {
                   marginTop: 20,
                 }}
               >
-                <Button
-                  text={'Asignar'}
-                  customStyles={buttonStyle}
-                  onClick={() => setAddTeacher(true)}
-                />
+                <Button text={'Asignar'} customStyles={buttonStyle} onClick={() => setAddTeacher(true)} />
               </div>
             </>
             <p>
@@ -252,12 +249,6 @@ const StageDetail = ({ title, courseSelected, institutionSelected }) => {
                 displayCheckbox={false}
               />
             )}
-            {/*studentSelected && (
-              <section className="table-actions">
-                <Button customStyles={buttonCancelStyle} text={'Eliminar'} />
-                <Button customStyles={buttonStyle} text={'Suspender'} />
-              </section>
-            )*/}
           </div>
         </main>
       </article>
