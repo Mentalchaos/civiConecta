@@ -1,20 +1,15 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import Button from 'src/components/UI/Button';
 import Spinner from 'src/components/UI/Spinner';
+import Table from 'src/components/UI/Table.js';
 import Visible from 'src/components/UI/Visible';
-import addStudentIcon from 'src/assets/Icons/add-student.svg';
 import GradeLetter from './GradeLetter.js';
 import useStateAssignment from './useStateAssignment.js';
+import addStudentIcon from 'src/assets/Icons/add-student.svg';
 import styles from './styles.js';
 import './StageAssignment.css';
-import Table from 'src/components/UI/Table.js';
 
-const StageAssignment = ({
-  title,
-  changeStage,
-  institutionSelected,
-  onUpdateInstitution,
-}) => {
+const StageAssignment = ({ onHandleCourseSelected, title, changeStage, institutionSelected, onUpdateInstitution }) => {
   const [studentSelected, setStudentSelected] = useState({});
   const [showButtonDelete, setShowButtonDelete] = useState(false);
   const gradeRef = useRef(null);
@@ -22,9 +17,7 @@ const StageAssignment = ({
   const { actions, ...rest } = useStateAssignment(institutionSelected);
   const state = rest;
   const tableHeader = ['Nombre', 'RUN', 'Curso', 'Letra'];
-  const filterStudentsByGrade = institutionSelected.students.filter(
-    item => item.grade === state.values.grade,
-  );
+  const filterStudentsByGrade = institutionSelected.students.filter(item => item.grade === state.values.grade);
   const tableDataDisplayed = filterStudentsByGrade.map(student => {
     const { grade, letter, name, run } = student;
     return {
@@ -51,10 +44,7 @@ const StageAssignment = ({
       return;
     }
 
-    institutionSelected
-      .addGrade(grade)
-      .addLetter(letter)
-      .addStudent({ name, run });
+    institutionSelected.addGrade(grade).addLetter(letter).addStudent({ name, run });
 
     state.values.name = '';
     state.values.run = '';
@@ -66,6 +56,9 @@ const StageAssignment = ({
   const handleCourseSelected = course => {
     gradeRef.current.value = course.gradeSelected;
     letterRef.current.value = course.letter.character;
+    console.log(course);
+    onHandleCourseSelected(course);
+    changeStage('Detalle');
   };
 
   const handleCheckboxSelected = rowSelected => {
@@ -87,10 +80,7 @@ const StageAssignment = ({
       return;
     }
 
-    institutionSelected
-      .addGrade(grade)
-      .addLetter(letter)
-      .deleteStudent({ run });
+    institutionSelected.addGrade(grade).addLetter(letter).deleteStudent({ run });
 
     const clone = institutionSelected.clone();
     onUpdateInstitution(clone);
@@ -103,10 +93,7 @@ const StageAssignment = ({
       actions.setFetching(true);
 
       const payload = institutionSelected.toJSON();
-      const response = await actions.updateCoursesEstablishment(
-        institutionSelected.number,
-        payload,
-      );
+      const response = await actions.updateCoursesEstablishment(institutionSelected.number, payload);
 
       if (response.error?.message?.includes('run')) {
         actions.setErrorMessage('Rut incorrecto');
@@ -145,9 +132,7 @@ const StageAssignment = ({
       <article className="section__content-assignment">
         <div className="content__level-selection">
           <Visible condition={!state.institutionCourses.length}>
-            <h1 style={styles.noGradeSelected}>
-              Aún no hay cursos registrados.
-            </h1>
+            <h1 style={styles.noGradeSelected}>Aún no hay cursos registrados.</h1>
           </Visible>
           <div style={styles.coursesWrapper}>
             <Visible condition={state.isGradeRenderable}>
@@ -160,9 +145,7 @@ const StageAssignment = ({
                       key={`${grade}${letter.character}`}
                       grade={state.values.grade}
                       letter={letter}
-                      onClick={() =>
-                        handleCourseSelected({ letter, gradeSelected: grade })
-                      }
+                      onClick={() => handleCourseSelected({ letter, gradeSelected: grade })}
                     />
                   );
                 });
@@ -221,10 +204,7 @@ const StageAssignment = ({
             <p style={styles.studentsAdded}>
               Alumnos a&ntilde;adidos:
               <strong>
-                {institutionSelected.calculateStudentsInGradeLetter(
-                  state.values.grade,
-                  state.values.letter,
-                )}
+                {institutionSelected.calculateStudentsInGradeLetter(state.values.grade, state.values.letter)}
               </strong>
             </p>
             <div style={styles.fieldsWrapper}>
@@ -277,11 +257,7 @@ const StageAssignment = ({
           />
           {showButtonDelete && (
             <div className="content__difused">
-              <Button
-                customStyles={buttonStyles}
-                text="Eliminar"
-                onClick={handleDeleteStudent}
-              />
+              <Button customStyles={buttonStyles} text="Eliminar" onClick={handleDeleteStudent} />
             </div>
           )}
         </div>
