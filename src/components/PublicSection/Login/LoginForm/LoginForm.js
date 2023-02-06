@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { signIn } from 'src/services/admin/user.request';
 import Button from 'src/components/UI/Button';
 import useForm from 'src/hooks/useForm';
 import './loginForm.css';
-/* import cookie from '../../../utils/cookie.js'; */
+import cookie from 'src/utils/cookie';
 
 const LoginForm = () => {
   const [showErrorMessage, setShowErrorMessage] = useState(false);
@@ -14,7 +14,9 @@ const LoginForm = () => {
     email: '',
     password: '',
   });
+
   const navigate = useNavigate();
+
   const styleButton = {
     width: '100%',
     fontSize: '15px',
@@ -46,12 +48,12 @@ const LoginForm = () => {
           active,
           token,
         };
-        localStorage.setItem('user', JSON.stringify(saveData));
         setErrorMessage('');
         setShowErrorMessage(false);
         setIsLoading(false);
-        navigate('/admin/dashboard');
-        /* cookie.setCookie('token', token) */
+        role === 'Administrator' && navigate('/admin');
+        role === 'User' && navigate('/public');
+        cookie.setCookie('token', JSON.stringify(saveData));
       } else {
         setErrorMessage(resp.error);
         setShowErrorMessage(true);
