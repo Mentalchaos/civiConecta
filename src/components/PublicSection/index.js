@@ -3,11 +3,20 @@ import PublicHeader from './Header/PublicHeader';
 import Welcome from './Welcome/Welcome';
 import PlanificationType from './Planification/PlanificationType';
 import PlanificationText from './PlanificationText/PlanificationText';
-import SurveyLink from './SurveyLink/SurveyLink';
+import LinkGenerator from './LinkGenerator/LinkGenerator';
 import UnitsHeader from './Units/UnitsHeader';
 import UnitComponent from './Units/UnitComponent';
 import UnitSituations from './Units/UnitSituations';
 import './PublicSection.css';
+
+const planningPrograms = [
+    {
+        program: 'CiviConecta'
+    },
+    {
+        program: 'Ministerial'
+    }
+]
 
 const planificationData = [
     {
@@ -77,6 +86,33 @@ const emergentSituations = [
 
 ]
 
+const links = [
+    {
+        description: '¿Necesitas el enlace de la encuesta de tus estudiantes nuevamente?',
+        textButton: 'Ver enlace encuesta',
+        textButtonColor: 'text-purple',
+        backgroundColor: 'background-purple',
+        width: 'first-container-width',
+        icon: ''
+    },
+    {
+        description: 'Revisar planificación estandarizada.',
+        textButton: 'Ver planificación',
+        textButtonColor: 'text-red',
+        backgroundColor: 'background-gray',
+        width: 'container-width',
+        icon: ''
+    },
+    {
+        description: 'Revisar planificación personalizada.',
+        textButton: 'Ver planificación',
+        textButtonColor: 'text-purple',
+        backgroundColor: 'background-red',
+        width: 'container-width',
+        icon: ''
+    }
+]
+
 const PublicSection = () => {
     return (
         <div>
@@ -94,7 +130,13 @@ const PublicSection = () => {
                 }
             </div>
             <div className='units-cont'>
-                <UnitsHeader />
+                {
+                    planningPrograms.map((data, key) =>
+                        <UnitsHeader 
+                            program={data.program}
+                        />
+                    )
+                }
                 <div className='units-components'>
                     {
                         mockData.map((data, key) =>
@@ -120,7 +162,19 @@ const PublicSection = () => {
                     </div>
                 </div>
             </div>
-            <SurveyLink />
+            {
+                links.map((data, key) => 
+                    <LinkGenerator
+                        key={key}
+                        description={data.description}
+                        textButton={data.textButton}
+                        backgroundColor={data.backgroundColor}
+                        width={data.width}
+                        textButtonColor={data.textButtonColor}
+                    />
+                )
+            }
+            {/* <LinkGenerator /> */}
             <PublicFooter />
         </div>
     )
