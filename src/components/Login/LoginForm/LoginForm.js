@@ -51,7 +51,7 @@ const LoginForm = () => {
         setShowErrorMessage(false);
         setIsLoading(false);
         navigate('/admin/dashboard');
-        cookie.setCookie('token', token);
+        cookie.setCookie('token', JSON.stringify(saveData));
       } else {
         setErrorMessage(resp.error);
         setShowErrorMessage(true);

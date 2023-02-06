@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import home from 'src/assets/Icons/home.svg';
 import teacher from 'src/assets/Icons/teacher.svg';
 import student from 'src/assets/Icons/student.svg';
@@ -14,13 +14,7 @@ import './Sidebar.css';
 
 const NavButton = ({ icon, ariaLabel, path, handleClick, ...props }) => {
   return (
-    <Link
-      to={path}
-      onClick={handleClick}
-      className="nav-button"
-      type="button"
-      aria-label={ariaLabel}
-    >
+    <Link as="a" to={path} onClick={handleClick} className="nav-button" type="button" aria-label={ariaLabel}>
       <img src={icon} alt={ariaLabel} {...props} />
     </Link>
   );
@@ -38,9 +32,9 @@ const Sidebar = () => {
         <NavButton icon={folder} ariaLabel="folder" path={'situations'} />
         <NavButton icon={calendar} ariaLabel="calendar" path={'ephemeris'} />
         <NavButton
-          path="/auth/login"
+          path="/"
           handleClick={() => {
-            cookie.removeCookie('token')
+            cookie.removeCookie('token');
             localStorage.clear();
           }}
           icon={exit}
