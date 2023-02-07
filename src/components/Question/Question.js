@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import ColorButton from './ColorButton';
 import AddQuestionInput from './AddQuestionInput';
-
 import questionIcon from 'src/assets/images/question-icon.png';
+import config from 'src/config.js';
 import './Question.css';
 
 const mockData = {
@@ -44,7 +44,7 @@ const Question = ({ selectedTopic, title, type }) => {
       const user = JSON.parse(localStorage.getItem('user'));
       const jwt = user.token;
 
-      fetch(`https://civi-conecta-server.adaptable.app/getSurveysByType?type=${type}`, {
+      fetch(`${config.baseURL}/getSurveysByType?type=${type}`, {
         headers: {
           'Content-Type': 'application/json',
           token: jwt,
@@ -96,7 +96,7 @@ const Question = ({ selectedTopic, title, type }) => {
       number,
     };
 
-    const fetching = await fetch('https://civi-conecta-server.adaptable.app/createSurvey', {
+    const fetching = await fetch(`${config.baseURL}/createSurvey`, {
       method: 'POST',
       body: JSON.stringify(payload),
       headers: {
@@ -119,7 +119,7 @@ const Question = ({ selectedTopic, title, type }) => {
     const jwt = user.token;
 
     const fetching = await fetch(
-      `https://civi-conecta-server.adaptable.app/deleteSurvey?number=${surveyNumber}&type=${type}&topic=${selectedTopic}`,
+      `${config.baseURL}/deleteSurvey?number=${surveyNumber}&type=${type}&topic=${selectedTopic}`,
       {
         method: 'DELETE',
         headers: {
