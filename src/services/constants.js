@@ -1,1 +1,2 @@
-export const BASE_URL = 'https://civi-conecta-server.adaptable.app';
+import config from 'src/config.js';
+export const BASE_URL = config.baseURL;
