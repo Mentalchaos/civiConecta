@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import config from 'src/config.js';
 import SectionsHeader from '../SectionsHeader/SectionsHeader';
 import Categories from '../TeacherSurvey/Categories/Categories';
 import studentImage from '../../assets/images/student-image.png';
@@ -40,7 +41,7 @@ const StudentSurvey = () => {
       const user = JSON.parse(localStorage.getItem('user'));
       const jwt = user.token;
 
-      fetch('https://civi-conecta-server.adaptable.app/getTopics', {
+      fetch(`${config.baseURL}/getTopics`, {
         headers: {
           'Content-Type': 'application/json',
           token: jwt,
@@ -54,7 +55,7 @@ const StudentSurvey = () => {
       const user = JSON.parse(localStorage.getItem('user'));
       const jwt = user.token;
 
-      fetch('https://civi-conecta-server.adaptable.app/getSurveysByType?type=Student', {
+      fetch(`${config.baseURL}/getSurveysByType?type=Student`, {
         headers: {
           'Content-Type': 'application/json',
           token: jwt,
@@ -86,7 +87,7 @@ const StudentSurvey = () => {
       title: topic,
     };
 
-    fetch('https://civi-conecta-server.adaptable.app/createTopic', {
+    fetch(`${config.baseURL}/createTopic`, {
       method: 'POST',
       body: JSON.stringify(payload),
       headers: {
@@ -112,7 +113,7 @@ const StudentSurvey = () => {
     const user = JSON.parse(localStorage.getItem('user'));
     const jwt = user.token;
 
-    fetch(`https://civi-conecta-server.adaptable.app/deleteTopic?number=${selectValue}`, {
+    fetch(`${config.baseURL}/deleteTopic?number=${selectValue}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
