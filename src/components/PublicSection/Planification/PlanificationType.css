@@ -17,13 +17,18 @@
 
 .planification-type,
 .teacher-image {
-  height: 210px;
+  height: 195px;
 }
 
 .planification-text {
+  width: 56%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+}
+
+.planification-image {
+  width: 44%;
 }
 
 .planification-text h4 {
