@@ -7,6 +7,7 @@ import LinkGenerator from './LinkGenerator/LinkGenerator';
 import UnitsHeader from './Units/UnitsHeader';
 import UnitComponent from './Units/UnitComponent';
 import UnitSituations from './Units/UnitSituations';
+import SurveyModal from './SurveyModal';
 import './PublicSection.css';
 
 const planningPrograms = [
@@ -116,6 +117,7 @@ const links = [
 const PublicSection = () => {
     return (
         <div>
+            <SurveyModal />
             <PublicHeader />
             <Welcome />
             <PlanificationText />
