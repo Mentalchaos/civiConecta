@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import SectionsHeader from '../SectionsHeader/SectionsHeader';
 import Categories from './Categories/Categories';
 import Question from '../Question/Question';
-
+import config from 'src/config.js';
 import teacherImage from '../../assets/images/teacher-banner.png';
 import './TeacherSurvey.css';
 
@@ -18,7 +18,7 @@ const TeacherSurvey = () => {
       const user = JSON.parse(localStorage.getItem('user'));
       const jwt = user.token;
 
-      fetch('https://civi-conecta-server.adaptable.app/getTopics', {
+      fetch(`${config.baseURL}/getTopics`, {
         headers: {
           'Content-Type': 'application/json',
           token: jwt,
@@ -33,7 +33,7 @@ const TeacherSurvey = () => {
       const jwt = user.token;
 
       fetch(
-        'https://civi-conecta-server.adaptable.app/getSurveysByType?type=Teacher',
+        `${config.baseURL}/getSurveysByType?type=Teacher`,
         {
           headers: {
             'Content-Type': 'application/json',

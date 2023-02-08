@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import config from 'src/config.js';
 import Planification from 'src/components/Planification/Planification';
 import Spinner from 'src/components/UI/Spinner';
 import Button from 'src/components/UI/Button';
@@ -140,7 +141,7 @@ const Unit = ({ unitsData, grade, getUnits, reset }) => {
     const jwt = user.token;
 
     const fetching = await fetch(
-      `https://civi-conecta-server.adaptable.app/deleteUnit?number=${number}&grade=${grade}`,
+      `${config.baseURL}/deleteUnit?number=${number}&grade=${grade}`,
       {
         method: 'DELETE',
         headers: {
