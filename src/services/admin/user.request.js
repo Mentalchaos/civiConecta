@@ -2,17 +2,7 @@ import { BASE_URL } from '../constants';
 import http from '../helpers/http.helper';
 
 export const signIn = async (email, password) => {
-  const fetching = await fetch(`${BASE_URL}/signIn`, {
-    method: 'POST',
-    body: JSON.stringify({ email, password }),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-  const response = await fetching.json();
-  return {
-    ...response,
-  };
+  return http.post(`${BASE_URL}/auth/signIn`, { email, password });
 };
 
 export const signUpUserRole = async payload => {
