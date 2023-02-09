@@ -2,47 +2,21 @@ import { BASE_URL } from '../constants';
 import http from '../helpers/http.helper';
 
 export const signIn = async (email, password) => {
-  return http.post(`${BASE_URL}/auth/signIn`, { email, password });
-};
-
-export const signUpUserRole = async payload => {
-  const user = JSON.parse(localStorage.getItem('user'));
-  const jwt = user.token;
-  const fetching = await fetch(`${BASE_URL}/signUpUserRole`, {
+  return fetch(`${BASE_URL}/auth/signIn`, {
     method: 'POST',
-    body: JSON.stringify({ ...payload }),
-    headers: {
-      'Content-Type': 'application/json',
-      token: jwt,
-    },
-  });
-  const response = await fetching.json();
-  return {
-    ...response,
-  };
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password })
+  }).then(response => response.json());
 };
 
-export const updateActiveUser = async (email, active) => {
-  const user = JSON.parse(localStorage.getItem('user'));
-  const jwt = user.token;
-  const fetching = await fetch(`${BASE_URL}/updateActiveUser?email=${email}`, {
-    method: 'PUT',
-    body: JSON.stringify({ active }),
-    headers: {
-      'Content-Type': 'application/json',
-      token: jwt,
-    },
-  });
-  const response = await fetching.json();
-  return {
-    ...response,
-  };
+export const signUpUserRole = payload => {
+  return http.post(`${BASE_URL}/signUpUserRole`, payload);
 };
 
-export const generateRandomPassword = async () => {
-  const url = `${BASE_URL}/generateRandomPassword`;
-  const httpResponse = await http.get(url);
-  const response = await httpResponse.json();
+export const updateActiveUser = (email, active) => {
+  return http.put(`${BASE_URL}/updateActiveUser?email=${email}`, { active });
+};
 
-  return { ...response };
+export const generateRandomPassword = () => {
+  return http.get(`${BASE_URL}/generateRandomPassword`);
 };
