@@ -1,8 +1,9 @@
 import './imageSection.css';
-import loginImage from '../../../../assets/images/clases-presenciales.jpeg';
-import img2 from '../../../../assets/images/teacher.jpg'
-import img3 from '../../../../assets/images/statistics.jpg'
-import img4 from '../../../../assets/images/emergent.jpg'
+import loginImage from 'src/assets/images/clases-presenciales.jpeg';
+import img2 from 'src/assets/images/teacher.jpg';
+import img3 from 'src/assets/images/statistics.jpg';
+import img4 from 'src/assets/images/emergent.jpg';
+import { useEffect } from 'react';
 
 const ImageSection = () => {
   let a = 1
@@ -32,33 +33,12 @@ const ImageSection = () => {
 
   return (
     <div className="img-section">
-      <img
-        className="image active"
-        src={loginImage}
-        alt="Imagen formulario"
-        id='img1'
-      />
-      <img
-        className="image2"
-        src={img2}
-        alt="Imagen formulario"
-        id='img2'
-      />
-      <img
-        className="image3"
-        src={img3}
-        alt="Imagen formulario"
-        id='img3'
-      />
-      <img
-        className="image4"
-        src={img4}
-        alt="Imagen formulario"
-        id='img4'
-      />
+      <img className="image active" src={loginImage} alt="Imagen formulario" id="img1" />
+      <img className="image2" src={img2} alt="Imagen formulario" id="img2" />
+      <img className="image3" src={img3} alt="Imagen formulario" id="img3" />
+      <img className="image4" src={img4} alt="Imagen formulario" id="img4" />
     </div>
   );
-
 };
 
 export default ImageSection;
