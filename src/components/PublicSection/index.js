@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import PublicFooter from './Footer/PublicFooter';
-import PublicHeader from './Header/PublicHeader';
 import Welcome from './Welcome/Welcome';
 import PlanificationType from './Planification/PlanificationType';
 import PlanificationText from './PlanificationText/PlanificationText';
@@ -9,6 +8,9 @@ import UnitsHeader from './Units/UnitsHeader';
 import UnitComponent from './Units/UnitComponent';
 import UnitSituations from './Units/UnitSituations';
 import SurveyModal from './SurveyModal';
+import cookie from 'src/utils/cookie';
+import PublicHeader from './Header/PublicHeader';
+//import SurveyLink from './SurveyLink/SurveyLink';
 import './PublicSection.css';
 
 const planningPrograms = [
@@ -21,72 +23,72 @@ const planningPrograms = [
 ]
 
 const planificationData = [
-    {
-        title: 'Reorganiza la planificación de acuerdo con la realidad de tu curso.',
-        textButton: 'Personalizar planificación'
-    },
-    {
-        title: 'Accede a la planificación estandarizada.',
-        textButton: 'Ver planificación estandarizada'
-    },
-    {
-        title: 'Genera el enlace para que tus estudiantes respondan la encuesta.',
-        textButton: 'Generar enlace'
-    },
-    {
-        title: 'Revisa el progreso de la encuesta de tus estudiantes.',
-        textButton: 'Ver progreso'
-    },
-    {
-        title: 'Contesta la encuesta docente.',
-        textButton: 'Ir a la encuesta'
-    }
-]
+  {
+    title: 'Reorganiza la planificación de acuerdo con la realidad de tu curso.',
+    textButton: 'Personalizar planificación',
+  },
+  {
+    title: 'Accede a la planificación estandarizada.',
+    textButton: 'Ver planificación estandarizada',
+  },
+  {
+    title: 'Genera el enlace para que tus estudiantes respondan la encuesta.',
+    textButton: 'Generar enlace',
+  },
+  {
+    title: 'Revisa el progreso de la encuesta de tus estudiantes.',
+    textButton: 'Ver progreso',
+  },
+  {
+    title: 'Contesta la encuesta docente.',
+    textButton: 'Ir a la encuesta',
+  },
+];
 
 const mockData = [
-    {
-        status: 'Completada',
-        title: 'Unidad I',
-        subtitle: 'Relaciones interpersonales',
-        description: 'Fomentar trato respetuoso y solidario; rechazar violencia y discriminación en las relaciones.',
-        color: 'unit-green',
-        borderColor: 'border-green'
-    },
-    {
-        status: 'En desarrollo',
-        title: 'Unidad II',
-        subtitle: 'Resolución de conflictos',
-        description: 'Aplicar autónomamente estrategias para la resolución de conflictos.',
-        color: 'unit-purple',
-        borderColor: 'border-purple'
-    },
-    {
-        status: 'Pendiente',
-        title: 'Unidad III',
-        subtitle: 'Bienestar y autocuidado',
-        description: 'Practicar en forma autónoma conductas protectoras y de autocuidado en relación a su cuerpo e intimidad.',
-        color: 'unit-red',
-        borderColor: 'border-red'
-    },
-    {
-        status: 'Pendiente',
-        title: 'Unidad IV',
-        subtitle: 'Autorregulación',
-        description: 'Reconocer y describir causas y consecuencias del consumo de drogas.',
-        color: 'unit-red',
-        borderColor: 'border-red'
-    }
-]
+  {
+    status: 'Completada',
+    title: 'Unidad I',
+    subtitle: 'Relaciones interpersonales',
+    description: 'Fomentar trato respetuoso y solidario; rechazar violencia y discriminación en las relaciones.',
+    color: 'unit-green',
+    borderColor: 'border-green',
+  },
+  {
+    status: 'En desarrollo',
+    title: 'Unidad II',
+    subtitle: 'Resolución de conflictos',
+    description: 'Aplicar autónomamente estrategias para la resolución de conflictos.',
+    color: 'unit-purple',
+    borderColor: 'border-purple',
+  },
+  {
+    status: 'Pendiente',
+    title: 'Unidad III',
+    subtitle: 'Bienestar y autocuidado',
+    description:
+      'Practicar en forma autónoma conductas protectoras y de autocuidado en relación a su cuerpo e intimidad.',
+    color: 'unit-red',
+    borderColor: 'border-red',
+  },
+  {
+    status: 'Pendiente',
+    title: 'Unidad IV',
+    subtitle: 'Autorregulación',
+    description: 'Reconocer y describir causas y consecuencias del consumo de drogas.',
+    color: 'unit-red',
+    borderColor: 'border-red',
+  },
+];
 
 const emergentSituations = [
-    {
-        title: 'Situaciones Emergentes'
-    },
-    {
-        title: 'Efemérides'
-    }
-
-]
+  {
+    title: 'Situaciones Emergentes',
+  },
+  {
+    title: 'Efemérides',
+  },
+];
 
 const links = [
     {
@@ -128,6 +130,10 @@ const PublicSection = () => {
 
   const closeModal = () => setModalVisibility(false);
   const modal = isModalShown && <SurveyModal closeModal={closeModal} />;
+  useEffect(() => {
+    const cookies = cookie.getCookie('token');
+    const dataCookie = cookies !== undefined && JSON.parse(cookies);
+  }, []);
 
     return (
         <div>
@@ -195,7 +201,7 @@ const PublicSection = () => {
             }
             <PublicFooter />
         </div>
-    )
-}
+  );
+};
 
 export default PublicSection;

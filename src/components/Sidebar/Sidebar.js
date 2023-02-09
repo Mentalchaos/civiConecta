@@ -14,13 +14,7 @@ import './Sidebar.css';
 
 const NavButton = ({ icon, ariaLabel, path, handleClick, ...props }) => {
   return (
-    <Link
-      to={path}
-      onClick={handleClick}
-      className="nav-button"
-      type="button"
-      aria-label={ariaLabel}
-    >
+    <Link as="a" to={path} onClick={handleClick} className="nav-button" type="button" aria-label={ariaLabel}>
       <img src={icon} alt={ariaLabel} {...props} />
     </Link>
   );
@@ -38,9 +32,9 @@ const Sidebar = () => {
         <NavButton icon={folder} ariaLabel="folder" path={'situations'} />
         <NavButton icon={calendar} ariaLabel="calendar" path={'ephemeris'} />
         <NavButton
-          path="/auth/login"
+          path="/"
           handleClick={() => {
-            cookie.removeCookie('token')
+            cookie.removeCookie('token');
             localStorage.clear();
           }}
           icon={exit}
