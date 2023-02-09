@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { signIn } from 'src/services/admin/user.request';
 import Button from 'src/components/UI/Button';
 import useForm from 'src/hooks/useForm';

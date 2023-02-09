@@ -24,18 +24,18 @@ const Welcome = () => {
                 <div className='right-container'>
                     <div className='second-right-container'>
                         <div className='date-container'>
-                            <img src={calendar}/>
+                            <img src={calendar} alt="calendar"/>
                             <p>Miércoles 13, Julio 2022</p>
                         </div>
                         <div className='school-container'>
-                            <img src={school}/>
+                            <img src={school} alt="school" />
                             <div className='school-info-container'>
                                 <p>Establecimiento o Institución educativa</p>
                                 <p className='school-info'>Liceo Amanda Labarca</p>
                             </div>
                         </div>
                         <div className='grade-container'>
-                            <img src={cap}/>
+                            <img src={cap} alt="cap"/>
                             <div className='grade-info'>
                                 <p>Nivel del curso</p>
                                 <p className='grade'>Jefatura 5º</p>
@@ -46,7 +46,7 @@ const Welcome = () => {
                         <img src={man} />
                     </div> */}
                 </div>
-                <img className='man-image' src={man} />
+                <img className='man-image' src={man} alt="man"/>
             </div>
         </div>
     )

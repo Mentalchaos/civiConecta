@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import home from 'src/assets/Icons/home.svg';
 import teacher from 'src/assets/Icons/teacher.svg';
 import student from 'src/assets/Icons/student.svg';

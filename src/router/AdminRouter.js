@@ -26,7 +26,7 @@ const AdminRouter = () => {
       <Sidebar />
       <Routes>
         <Route element={<AdminGuard />}>
-          <Route path="/" element={<Main />} />
+          <Route path="*" element={<Main />} />
           <Route path="dashboard" element={<Main />} />
           <Route path="teacher-survey" element={<TeacherSurvey />} />
           <Route path="student-survey" element={<StudentSurvey />} />
