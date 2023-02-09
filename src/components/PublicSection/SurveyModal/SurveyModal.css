@@ -19,7 +19,7 @@
 }
 
 .modal-content {
-  margin-top: 12rem !important; 
+  margin-top: 12rem !important;
   text-align: center;
   height: 400px;
   width: 550px;
@@ -43,6 +43,7 @@
   width: 45px;
   margin-bottom: 90px;
   padding-right: 10px;
+  cursor: pointer;
 }
 
 p {

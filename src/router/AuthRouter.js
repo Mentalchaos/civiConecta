@@ -6,7 +6,7 @@ import RecoverPassword from 'src/components/Login/RecoverPassword/RecoverPasswor
 const AuthRouter = () => {
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
+      <Route path="*" element={<Login />} />
       <Route path="/login" element={<Login />} />
       <Route path="/recover-password" element={<RecoverPassword />} />
     </Routes>

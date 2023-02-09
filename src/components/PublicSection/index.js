@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import PublicFooter from './Footer/PublicFooter';
 import PublicHeader from './Header/PublicHeader';
 import Welcome from './Welcome/Welcome';
@@ -115,16 +116,30 @@ const links = [
 ]
 
 const PublicSection = () => {
+  const [isModalShown, setModalVisibility] = useState(false);
+
+  useEffect(() => {
+    (() => {
+      setTimeout(() => {
+        setModalVisibility(true);
+      }, 3000)
+    })()
+  }, [])
+
+  const closeModal = () => setModalVisibility(false);
+  const modal = isModalShown && <SurveyModal closeModal={closeModal} />;
+
     return (
         <div>
-            <SurveyModal />
+            { modal }
             <PublicHeader />
             <Welcome />
             <PlanificationText />
             <div className='planification-cont'>
                 {
-                    planificationData.map((data, key) => 
+                    planificationData.map((data, key) =>
                         <PlanificationType
+                            key={key}
                             title={data.title}
                             textButton={data.textButton}
                         />
@@ -134,7 +149,8 @@ const PublicSection = () => {
             <div className='units-cont'>
                 {
                     planningPrograms.map((data, key) =>
-                        <UnitsHeader 
+                        <UnitsHeader
+                            key={key}
                             program={data.program}
                         />
                     )
@@ -156,7 +172,8 @@ const PublicSection = () => {
                     <div className='units-components-two'>
                         {
                             emergentSituations.map((data, key) =>
-                                <UnitSituations 
+                                <UnitSituations
+                                    key={key}
                                     title={data.title}
                                 />
                             )
@@ -165,7 +182,7 @@ const PublicSection = () => {
                 </div>
             </div>
             {
-                links.map((data, key) => 
+                links.map((data, key) =>
                     <LinkGenerator
                         key={key}
                         description={data.description}
@@ -176,7 +193,6 @@ const PublicSection = () => {
                     />
                 )
             }
-            {/* <LinkGenerator /> */}
             <PublicFooter />
         </div>
     )

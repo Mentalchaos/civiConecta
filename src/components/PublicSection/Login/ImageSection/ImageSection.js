@@ -5,44 +5,6 @@ import img3 from '../../../../assets/images/statistics.jpg'
 import img4 from '../../../../assets/images/emergent.jpg'
 
 const ImageSection = () => {
-
-  /* document.getElementsByClassName('img-section-image'); */
-
-  /* document.getElementById('img1').className = " clase"; */
-
-  /* for (let index = 0; index < array.length; index++) {
-    const element = array[index];
-    
-  } */
-
-  /* for (let i = 0; i < 3; i++) {
-    text += cars[i] + "<br>";
-  } */
-
-  /* setInterval(() => {
-
-    for (let i = 0; i < 4; i++) {
-      setTimeout(() => {
-        console.log(`ciclo ${i}`);
-        document.getElementById('img1').className += " clase";
-
-      },5000)
-    }
-      console.log('termino ciclo');
-    },3000); */
-
-    /* (() => {
-
-      while (true) {
-  
-        setTimeout(() => {
-  
-        },3000)
-  
-      }
-      
-    })(); */
-
   let a = 1
   let b = 0
 
@@ -60,7 +22,7 @@ const ImageSection = () => {
       },3800)
     }
 
-    const c = document.getElementById(`img${b}`);
+    //const c = document.getElementById(`img${b}`);
 
     document.getElementById(`img${b}`).classList.add("active");
     console.log(document.getElementsByClassName(`img${b}`));
