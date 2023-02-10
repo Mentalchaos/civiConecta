@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import config from 'src/config.js';
 import Planification from 'src/components/Planification/Planification';
 import Spinner from 'src/components/UI/Spinner';
 import Button from 'src/components/UI/Button';
@@ -7,6 +6,7 @@ import Modal from 'src/components/UI/Modal';
 import PlanningForm from 'src/components/UI/PlanningForm';
 import { createClass, getClassesByUnitAndGrade, updateClass, deleteClass } from 'src/services/admin/classes.request';
 import { deleteFileByClassUnitAndGrade, uploadFileByClassUnitAndGrade } from 'src/services/admin/files.request';
+import * as unitRequest from 'src/services/admin/units.request';
 
 import arrowDown from 'src/assets/Icons/arrow-down.svg';
 import arrow from 'src/assets/Icons/arrow-degree.svg';
@@ -137,20 +137,9 @@ const Unit = ({ unitsData, grade, getUnits, reset }) => {
 
   const deleteUnit = async (number, grade) => {
     setFetching(true);
-    const user = JSON.parse(localStorage.getItem('user'));
-    const jwt = user.token;
 
-    const fetching = await fetch(
-      `${config.baseURL}/deleteUnit?number=${number}&grade=${grade}`,
-      {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          token: jwt,
-        },
-      },
-    );
-    const response = await fetching.json();
+    const response = await unitRequest.deleteUnit(number, grade);
+
     if (response.ok) {
       setFetching(false);
       setShowConfirmAction(false);

@@ -1,6 +1,8 @@
-import { BASE_URL } from '../constants';
+import config from 'src/config';
 import http from '../helpers/http.helper.js';
 import QueryString from '../helpers/QueryString';
+
+const BASE_URL = config.baseURL;
 
 // Files para clases de unidades
 export const uploadFileByClassUnitAndGrade = (classNumber, unit, grade, file) => {
