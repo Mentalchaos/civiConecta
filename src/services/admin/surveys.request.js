@@ -3,7 +3,7 @@ import http from '../helpers/http.helper';
 
 const BASE_URL = config.baseURL;
 
-export const getGrades = () => {
-  const url = `${BASE_URL}/getGrades`;
+export const getSurveys = (type) => {
+  const url = `${BASE_URL}/getSurveysByType?type=${type}`;
   return http.get(url);
 };

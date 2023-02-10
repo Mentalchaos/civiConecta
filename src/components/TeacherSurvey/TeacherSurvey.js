@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import SectionsHeader from '../SectionsHeader/SectionsHeader';
 import Categories from './Categories/Categories';
 import Question from '../Question/Question';
-import config from 'src/config.js';
 import teacherImage from '../../assets/images/teacher-banner.png';
+import { getTopics } from 'src/services/admin/topics.request';
+import { getSurveys } from 'src/services/admin/surveys.request';
 import './TeacherSurvey.css';
 
 const TeacherSurvey = () => {
@@ -14,38 +15,17 @@ const TeacherSurvey = () => {
   const [surveys, setSurveys] = useState('');
 
   useEffect(() => {
-    const getTopics = async function () {
-      const user = JSON.parse(localStorage.getItem('user'));
-      const jwt = user.token;
+    async function fetchInfo() {
+      const [topics, surveys] = await Promise.all([
+        getTopics().then(r => r.topics),
+        getSurveys('Teacher').then(r => r.surveys)
+      ]);
 
-      fetch(`${config.baseURL}/getTopics`, {
-        headers: {
-          'Content-Type': 'application/json',
-          token: jwt,
-        },
-      })
-        .then(response => response.json())
-        .then(data => setTopics(data.topics));
-    };
+      setTopics(topics);
+      setSurveys(surveys);
+    }
 
-    const getSurveys = async function () {
-      const user = JSON.parse(localStorage.getItem('user'));
-      const jwt = user.token;
-
-      fetch(
-        `${config.baseURL}/getSurveysByType?type=Teacher`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            token: jwt,
-          },
-        },
-      )
-        .then(response => response.json())
-        .then(data => setSurveys(data.surveys));
-    };
-    getTopics();
-    getSurveys();
+    fetchInfo();
   }, []);
 
   console.log('selected topic', selectedTopic);

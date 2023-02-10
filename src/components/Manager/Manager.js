@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import StageManager from './StageManager/StageManager';
 import StageAssignment from './StageAssignment/StageAssignment';
 import StageDetail from './StageDetail/StageDetail';
-
 import background from 'src/assets/images/manager-header.png';
 import './Manager.css';
 import SectionsHeader from '../SectionsHeader/SectionsHeader';

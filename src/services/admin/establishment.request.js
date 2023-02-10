@@ -1,11 +1,12 @@
-import { BASE_URL } from '../constants';
+import config from 'src/config';
 import http from '../helpers/http.helper.js';
 import Establishment from 'src/entities/Establishment.js';
 
+const BASE_URL = config.baseURL;
+
 export const getEstablishment = async () => {
   const url = `${BASE_URL}/getEstablishments`;
-  const httpResponse = await http.get(url);
-  const response = await httpResponse.json();
+  const response = await http.get(url);
 
   return {
     ok: response.ok,
@@ -13,47 +14,18 @@ export const getEstablishment = async () => {
   };
 };
 
-export const createEstablishment = async (number, name) => {
-  const user = JSON.parse(localStorage.getItem('user'));
-  const jwt = user.token;
-  const fetching = await fetch(`${BASE_URL}/createEstablishment`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      token: jwt,
-    },
-    body: JSON.stringify({ number, name }),
-  });
-  const response = await fetching.json();
-  return {
-    ...response,
-  };
+export const createEstablishment = (number, name) => {
+  const payload = { number, name };
+  return http.post(`${BASE_URL}/createEstablishment`, payload);
 };
 
-export const updateActiveEstablishment = async (number, active) => {
-  const user = JSON.parse(localStorage.getItem('user'));
-  const jwt = user.token;
-  const fetching = await fetch(
-    `${BASE_URL}/updateActiveEstablishment?number=${number}`,
-    {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        token: jwt,
-      },
-      body: JSON.stringify({ active }),
-    },
-  );
-  const response = await fetching.json();
-  return {
-    ...response,
-  };
+export const updateActiveEstablishment = (number, active) => {
+  const payload = { active };
+  const url = `${BASE_URL}/updateActiveEstablishment?number=${number}`;
+  return http.put(url, payload);
 };
 
-export const updateCoursesEstablishment = async (number, payload) => {
+export const updateCoursesEstablishment = (number, payload) => {
   const url = `${BASE_URL}/updateCoursesEstablishment?number=${number}`;
-  const httpResponse = await http.put(url, payload);
-  const response = await httpResponse.json();
-
-  return { ...response };
+  return http.put(url, payload);
 };
