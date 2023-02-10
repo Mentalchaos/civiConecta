@@ -7,6 +7,6 @@ export const getUnitsByGrade = grade => {
 };
 
 export const createUnit = payload => {
-  const url = `${BASE_URL}/createUnit`;
+  const url = `${BASE_URL}/units`;
   return http.post(url, payload);
 };
