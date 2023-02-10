@@ -1,58 +1,24 @@
-import { BASE_URL } from '../constants';
+import config from 'src/config';
 import http from '../helpers/http.helper';
 
+const BASE_URL = config.baseURL;
+
 export const signIn = async (email, password) => {
-  const fetching = await fetch(`${BASE_URL}/signIn`, {
+  return fetch(`${BASE_URL}/auth/signIn`, {
     method: 'POST',
-    body: JSON.stringify({ email, password }),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-  const response = await fetching.json();
-  return {
-    ...response,
-  };
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password })
+  }).then(response => response.json());
 };
 
-export const signUpUserRole = async payload => {
-  const user = JSON.parse(localStorage.getItem('user'));
-  const jwt = user.token;
-  const fetching = await fetch(`${BASE_URL}/signUpUserRole`, {
-    method: 'POST',
-    body: JSON.stringify({ ...payload }),
-    headers: {
-      'Content-Type': 'application/json',
-      token: jwt,
-    },
-  });
-  const response = await fetching.json();
-  return {
-    ...response,
-  };
+export const signUpUserRole = payload => {
+  return http.post(`${BASE_URL}/signUpUserRole`, payload);
 };
 
-export const updateActiveUser = async (email, active) => {
-  const user = JSON.parse(localStorage.getItem('user'));
-  const jwt = user.token;
-  const fetching = await fetch(`${BASE_URL}/updateActiveUser?email=${email}`, {
-    method: 'PUT',
-    body: JSON.stringify({ active }),
-    headers: {
-      'Content-Type': 'application/json',
-      token: jwt,
-    },
-  });
-  const response = await fetching.json();
-  return {
-    ...response,
-  };
+export const updateActiveUser = (email, active) => {
+  return http.put(`${BASE_URL}/updateActiveUser?email=${email}`, { active });
 };
 
-export const generateRandomPassword = async () => {
-  const url = `${BASE_URL}/generateRandomPassword`;
-  const httpResponse = await http.get(url);
-  const response = await httpResponse.json();
-
-  return { ...response };
+export const generateRandomPassword = () => {
+  return http.get(`${BASE_URL}/generateRandomPassword`);
 };

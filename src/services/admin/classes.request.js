@@ -1,66 +1,38 @@
-import { BASE_URL } from '../constants';
+import config from 'src/config';
 import http from '../helpers/http.helper';
+import QueryString from '../helpers/QueryString';
 
-export const getClassesByUnitAndGrade = async (unitNumber, grade) => {
-  const user = JSON.parse(localStorage.getItem('user'));
-  const jwt = user.token;
-  const fetching = await fetch(
-    `${BASE_URL}/getClassesByUnitAndGrade?unit=${unitNumber}&grade=${grade}`,
-    {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        token: jwt,
-      },
-    },
-  );
-  const response = await fetching.json();
-  return {
-    ...response,
-  };
+const BASE_URL = config.baseURL;
+
+export const getClassesByUnitAndGrade = (unit, grade) => {
+  const qs = new QueryString()
+    .add('unit', unit)
+    .add('grade', grade);
+
+  const url = `${BASE_URL}/getClassesByUnitAndGrade?${qs.query}`;
+  return http.get(url);
 };
 
-export const createClass = async payload => {
-  const user = JSON.parse(localStorage.getItem('user'));
-  const jwt = user.token;
-  const fetching = await fetch(`${BASE_URL}/createClass`, {
-    method: 'POST',
-    body: JSON.stringify({ ...payload }),
-    headers: {
-      'Content-Type': 'application/json',
-      token: jwt,
-    },
-  });
-  const response = await fetching.json();
-  return {
-    ...response,
-  };
+export const createClass = payload => {
+  return http.post(`${BASE_URL}/createClass`, payload);
 };
 
-export const updateClass = async (number, unit, grade, payload) => {
-  const user = JSON.parse(localStorage.getItem('user'));
-  const jwt = user.token;
-  const fetching = await fetch(
-    `${BASE_URL}/updateClass?number=${number}&unit=${unit}&grade=${grade}`,
-    {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        token: jwt,
-      },
-      body: JSON.stringify({ ...payload }),
-    },
-  );
-  const response = await fetching.json();
-  return {
-    ...response,
-  };
+export const updateClass = (number, unit, grade, payload) => {
+  const qs = new QueryString()
+    .add('number', number)
+    .add('unit', unit)
+    .add('grade', grade);
+
+  const url = `${BASE_URL}/updateClass?${qs.query}`;
+  return http.put(url, payload);
 };
 
 export const deleteClass = async (number, unit, grade) => {
-  const url = `${BASE_URL}/deleteClass?number=${number}&unit=${unit}&grade=${grade}`;
-  const httpResponse = await http.delete(url);
-  const response = await httpResponse.json();
+  const qs = new QueryString()
+    .add('number', number)
+    .add('unit', unit)
+    .add('grade', grade);
 
-  return { ...response };
+  const url = `${BASE_URL}/deleteClass?${qs.query}`;
+  return http.delete(url);
 };

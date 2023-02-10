@@ -1,3 +1,5 @@
+const toJSON = (response) => response.json();
+
 const http = {
   getHeaders() {
     return {
@@ -6,9 +8,15 @@ const http = {
     };
   },
   get(url) {
+    return fetch(url, { headers: { ...this.getHeaders() } })
+      .then(toJSON);
+  },
+  post(url, payload) {
     return fetch(url, {
+      method: 'POST',
       headers: { ...this.getHeaders() },
-    });
+      body: JSON.stringify(payload)
+    }).then(toJSON);
   },
   upload(url, formData) {
     return fetch(url, {
@@ -18,20 +26,20 @@ const http = {
         token: JSON.parse(localStorage.getItem('user')).token,
       },
       body: formData,
-    });
+    }).then(toJSON);
   },
   delete(url) {
     return fetch(url, {
       method: 'DELETE',
       headers: { ...this.getHeaders() },
-    });
+    }).then(toJSON);
   },
   put(url, payload) {
     return fetch(url, {
       method: 'PUT',
       headers: { ...this.getHeaders() },
       body: JSON.stringify(payload),
-    });
+    }).then(toJSON);
   },
 };
 

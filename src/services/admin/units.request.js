@@ -1,34 +1,24 @@
-import { BASE_URL } from '../constants';
+import config from 'src/config';
+import http from '../helpers/http.helper';
+import QueryString from '../helpers/QueryString';
 
-export const getUnitsByGrade = async grade => {
-  const user = JSON.parse(localStorage.getItem('user'));
-  const jwt = user.token;
-  const fetching = await fetch(`${BASE_URL}/getUnitsByGrade?grade=${grade}`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      token: jwt,
-    },
-  });
-  const response = await fetching.json();
-  return {
-    ...response,
-  };
+const BASE_URL = config.baseURL;
+
+export const getUnitsByGrade = grade => {
+  const url = `${BASE_URL}/getUnitsByGrade?grade=${grade}`;
+  return http.get(url);
 };
 
-export const createUnit = async payload => {
-  const user = JSON.parse(localStorage.getItem('user'));
-  const jwt = user.token;
-  const fetching = await fetch(`${BASE_URL}/createUnit`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      token: jwt,
-    },
-    body: JSON.stringify({ ...payload }),
-  });
-  const response = await fetching.json();
-  return {
-    ...response,
-  };
+export const createUnit = payload => {
+  const url = `${BASE_URL}/units`;
+  return http.post(url, payload);
+};
+
+export const deleteUnit = (number, grade) => {
+  const qs = new QueryString()
+    .add('number', number)
+    .add('grade', grade);
+
+  const url = `${BASE_URL}/deleteUnit?${qs.query}`;
+  return http.delete(url);
 };

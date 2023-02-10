@@ -37,26 +37,27 @@ const LoginForm = () => {
   const onSignIn = (email, pass) => {
     setIsLoading(true);
     signIn(email, pass).then(resp => {
-      if (resp.ok) {
-        const { email, name, role, active, token } = resp.user;
-        const saveData = {
-          name,
-          email,
-          role,
-          active,
-          token,
-        };
-        localStorage.setItem('user', JSON.stringify(saveData));
-        setErrorMessage('');
-        setShowErrorMessage(false);
-        setIsLoading(false);
-        navigate('/admin/dashboard');
-        cookie.setCookie('token', JSON.stringify(saveData));
-      } else {
+      if (!resp.ok) {
         setErrorMessage(resp.error);
         setShowErrorMessage(true);
         setIsLoading(false);
+        return;
       }
+
+      const { email, name, role, active, token } = resp.user;
+      const saveData = {
+        name,
+        email,
+        role,
+        active,
+        token,
+      };
+      localStorage.setItem('user', JSON.stringify(saveData));
+      setErrorMessage('');
+      setShowErrorMessage(false);
+      setIsLoading(false);
+      navigate('/admin/dashboard');
+      cookie.setCookie('token', token);
     });
   };
 
