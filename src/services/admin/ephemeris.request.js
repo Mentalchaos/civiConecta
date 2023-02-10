@@ -1,59 +1,31 @@
 import { BASE_URL } from '../constants';
 import http from '../helpers/http.helper';
+import QueryString from '../helpers/QueryString';
 
-export const getExceptionsByGrade = async grade => {
-  const user = JSON.parse(localStorage.getItem('user'));
-  const jwt = user.token;
-  const fetching = await fetch(`${BASE_URL}/getExceptionsByGrade?grade=${grade}`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      token: jwt,
-    },
-  });
-  const response = await fetching.json();
-  return {
-    ...response,
-  };
+export const getExceptionsByGrade = grade => {
+  const url = `${BASE_URL}/getExceptionsByGrade?grade=${grade}`;
+  return http.get(url);
 };
 
-export const createException = async payload => {
-  const user = JSON.parse(localStorage.getItem('user'));
-  const jwt = user.token;
-  const fetching = await fetch(`${BASE_URL}/createException`, {
-    method: 'POST',
-    body: JSON.stringify({ ...payload }),
-    headers: {
-      'Content-Type': 'application/json',
-      token: jwt,
-    },
-  });
-  const response = await fetching.json();
-  return {
-    ...response,
-  };
+export const createException = payload => {
+  const url = `${BASE_URL}/createException`;
+  return http.post(url, payload);
 };
 
-export const updateException = async (number, grade, payload) => {
-  const user = JSON.parse(localStorage.getItem('user'));
-  const jwt = user.token;
-  const fetching = await fetch(`${BASE_URL}/updateException?number=${number}&grade=${grade}`, {
-    method: 'PUT',
-    body: JSON.stringify({ ...payload }),
-    headers: {
-      'Content-Type': 'application/json',
-      token: jwt,
-    },
-  });
-  const response = await fetching.json();
-  return {
-    ...response,
-  };
+export const updateException = (number, grade, payload) => {
+  const qs = new QueryString()
+    .add('grade', grade)
+    .add('number', number);
+
+  const url = `${BASE_URL}/updateException?${qs.query}`;
+  return http.put(url, payload);
 };
 
-export const deleteException = async (number, grade) => {
-  const url = `${BASE_URL}/deleteException?number=${number}&grade=${grade}`;
-  const httpResponse = await http.delete(url);
-  const response = await httpResponse.json();
-  return { ...response };
+export const deleteException = (number, grade) => {
+  const qs = new QueryString()
+    .add('number', number)
+    .add('grade', grade);
+
+  const url = `${BASE_URL}/deleteException?${qs.query}`;
+  return http.delete(url);
 };

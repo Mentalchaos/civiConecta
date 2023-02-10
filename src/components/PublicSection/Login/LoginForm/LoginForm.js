@@ -48,6 +48,7 @@ const LoginForm = () => {
           active,
           token,
         };
+        localStorage.setItem('user', JSON.stringify(saveData));
         setErrorMessage('');
         setShowErrorMessage(false);
         setIsLoading(false);
