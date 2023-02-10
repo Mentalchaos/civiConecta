@@ -41,7 +41,7 @@ const StudentSurvey = () => {
     const fetchInfo = async () => {
       const [topics, surveys] = await Promise.all([
         getTopics().then(r => r.topics),
-        getSurveys().then(r => r.surveys)
+        getSurveys('Student').then(r => r.surveys)
       ]);
 
       setTopics(topics);

@@ -1,5 +1,7 @@
-import { BASE_URL } from '../constants';
+import config from 'src/config';
 import http from '../helpers/http.helper';
+
+const BASE_URL = config.baseURL;
 
 export const signIn = async (email, password) => {
   return fetch(`${BASE_URL}/auth/signIn`, {
