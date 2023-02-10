@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import config from 'src/config.js';
 import SectionsHeader from '../SectionsHeader/SectionsHeader';
 import Categories from '../TeacherSurvey/Categories/Categories';
 import studentImage from '../../assets/images/student-image.png';
@@ -7,6 +6,8 @@ import Button from 'src/components/UI/Button';
 import Question from '../Question/Question';
 import Spinner from '../UI/Spinner';
 import Modal from '../UI/Modal';
+import { getTopics, createTopic, deleteTopic } from '../../services/admin/topics.request';
+import { getSurveys } from '../../services/admin/surveys.request';
 import './StudentSurvey.css';
 
 const StudentSurvey = () => {
@@ -37,36 +38,17 @@ const StudentSurvey = () => {
   };
 
   useEffect(() => {
-    const getTopics = async function () {
-      const user = JSON.parse(localStorage.getItem('user'));
-      const jwt = user.token;
+    const fetchInfo = async () => {
+      const [topics, surveys] = await Promise.all([
+        getTopics().then(r => r.topics),
+        getSurveys().then(r => r.surveys)
+      ]);
 
-      fetch(`${config.baseURL}/getTopics`, {
-        headers: {
-          'Content-Type': 'application/json',
-          token: jwt,
-        },
-      })
-        .then(response => response.json())
-        .then(data => setTopics(data.topics));
+      setTopics(topics);
+      setSurveys(surveys);
     };
 
-    const getSurveys = async function () {
-      const user = JSON.parse(localStorage.getItem('user'));
-      const jwt = user.token;
-
-      fetch(`${config.baseURL}/getSurveysByType?type=Student`, {
-        headers: {
-          'Content-Type': 'application/json',
-          token: jwt,
-        },
-      })
-        .then(response => response.json())
-        .then(data => setSurveys(data.surveys));
-    };
-
-    getSurveys();
-    getTopics();
+    fetchInfo();
   }, []);
 
   const topicLength = topics.length ? parseInt(topics[topics.length - 1]?.number + 1) : 1;
@@ -79,55 +61,35 @@ const StudentSurvey = () => {
 
   const createCategory = async () => {
     setFetching(true);
-    const user = JSON.parse(localStorage.getItem('user'));
-    const jwt = user.token;
 
     const payload = {
       number: topicLength,
       title: topic,
     };
 
-    fetch(`${config.baseURL}/createTopic`, {
-      method: 'POST',
-      body: JSON.stringify(payload),
-      headers: {
-        'Content-Type': 'application/json',
-        token: jwt,
-      },
-    })
-      .then(response => response.json())
-      .then(resp => {
-        if (resp.ok) {
-          setFetching(false);
-          window.location.reload(true);
-        } else {
-          setFetching(false);
-          alert(resp.error?.message);
-          console.log(resp);
-        }
-      });
+    const response = await createTopic(payload);
+
+    if (!response.ok) {
+      setFetching(false);
+      alert(response.error);
+      console.log(response);
+      return;
+    }
+
+    window.location.reload(true);
   };
 
   const removeCategory = async () => {
     setFetching(true);
-    const user = JSON.parse(localStorage.getItem('user'));
-    const jwt = user.token;
+    const response = await deleteTopic(selectValue);
 
-    fetch(`${config.baseURL}/deleteTopic?number=${selectValue}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        token: jwt,
-      },
-    }).then(resp => {
-      if (resp.ok) {
-        setFetching(false);
-        window.location.reload(true);
-      } else {
-        setFetching(false);
-        console.log(resp);
-      }
-    });
+    if (response.ok) {
+      setFetching(false);
+      window.location.reload(true);
+    } else {
+      setFetching(false);
+      console.log(response);
+    }
   };
 
   return (
