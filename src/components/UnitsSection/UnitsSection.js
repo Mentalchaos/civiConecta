@@ -11,6 +11,7 @@ import headerImage from '../../assets/images/background-units.png';
 import './UnitsSection.css';
 
 const UnitsSection = () => {
+  const [error, setError] = useState('');
   const [grades, setGrades] = useState([]);
   const [units, setUnits] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -58,20 +59,23 @@ const UnitsSection = () => {
       grade: gradeSelected,
       topic: 1,
     };
-    createUnit(payload).then(resp => {
-      if (resp.ok) {
+    createUnit(payload)
+      .then(response => {
+        if (response.ok) {
+          setOpenModalAddUnit(false);
+          getUnits(gradeSelected);
+        } else {
+          console.error(response.error);
+          setError(response.error);
+        }
+
         setIsLoading(false);
-        setOpenModalAddUnit(false);
-        getUnits(gradeSelected);
-      } else {
-        console.error(resp.error);
-        setIsLoading(false);
-      }
-    });
+      });
   };
 
   const getUnits = grade => {
     setIsLoading(true);
+
     getUnitsByGrade(grade).then(resp => {
       try {
         setUnits(resp.units);
@@ -98,6 +102,11 @@ const UnitsSection = () => {
           title={`Agregar unidad a ${levels[0]}`}
         >
           <form className="form_add-units" onSubmit={handleAddUnit}>
+            <div>
+              {error && (
+                <p>{error}</p>
+              )}
+            </div>
             <div className="form-group">
               <label>Número unidad:</label>
               <input
