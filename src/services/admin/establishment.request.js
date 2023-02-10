@@ -1,6 +1,8 @@
-import { BASE_URL } from '../constants';
+import config from 'src/config';
 import http from '../helpers/http.helper.js';
 import Establishment from 'src/entities/Establishment.js';
+
+const BASE_URL = config.baseURL;
 
 export const getEstablishment = async () => {
   const url = `${BASE_URL}/getEstablishments`;

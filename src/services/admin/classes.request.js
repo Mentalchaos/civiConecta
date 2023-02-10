@@ -1,6 +1,8 @@
-import { BASE_URL } from '../constants';
+import config from 'src/config';
 import http from '../helpers/http.helper';
 import QueryString from '../helpers/QueryString';
+
+const BASE_URL = config.baseURL;
 
 export const getClassesByUnitAndGrade = (unit, grade) => {
   const qs = new QueryString()
