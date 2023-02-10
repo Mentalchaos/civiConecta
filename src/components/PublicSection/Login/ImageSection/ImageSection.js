@@ -5,39 +5,66 @@ import img3 from 'src/assets/images/statistics.jpg';
 import img4 from 'src/assets/images/emergent.jpg';
 import { useEffect } from 'react';
 
+const $ = x => document.querySelector(x);
+
+
 const ImageSection = () => {
-  let a = 1
-  let b = 0
+  useEffect(() => {
+    let timer;
+    const images = ['img1', 'img2', 'img3', 'img4'];
 
-  setInterval(() => {
+    const createImages = () => {
+      const imagesContainer = $('#images');
+      const image1 = document.createElement('img');
+      const image2 = document.createElement('img');
+      const image3 = document.createElement('img');
+      const image4 = document.createElement('img');
 
-    a += 1;
-    console.log(a);
-    b = a;
+      image1.id = 'img1';
+      image1.classList.add('image');
+      image1.classList.add('active');
+      image1.src = loginImage;
+      image1.alt = 'Imagen formulario';
+      imagesContainer.appendChild(image1);
 
-    if (a === 4) {
-      console.log('pasando')
-      a = 0;
-      setTimeout(() => {
-        document.getElementById(`img${b}`).classList.remove("active");
-      },3800)
-    }
+      image2.id = 'img2';
+      image2.classList.add('image');
+      image2.src = img2;
+      image2.alt = 'Imagen formulario';
+      imagesContainer.appendChild(image2);
 
-    //const c = document.getElementById(`img${b}`);
+      image3.id = 'img3';
+      image3.classList.add('image');
+      image3.src = img3;
+      image3.alt = 'Imagen formulario';
+      imagesContainer.appendChild(image3);
 
-    document.getElementById(`img${b}`).classList.add("active");
-    console.log(document.getElementsByClassName(`img${b}`));
-    document.getElementById(`img${b-1}`).classList.remove("active");
+      image4.id = 'img4';
+      image4.classList.add('image');
+      image4.src = img4;
+      image4.alt = 'Imagen formulario';
+      imagesContainer.appendChild(image4);
+    };
 
-  },2000);
+    const slideImages = () => {
+      const currentImage = images.shift();
+      const nextImage = images[0];
+      $(`#${currentImage}`).classList.remove('active');
+      $(`#${nextImage}`).classList.add('active');
+      images.push(currentImage);
+      timer = setTimeout(slideImages, 2000);
+    };
+
+    createImages();
+    timer = setTimeout(slideImages, 2000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
 
   return (
-    <div className="img-section">
-      <img className="image active" src={loginImage} alt="Imagen formulario" id="img1" />
-      <img className="image2" src={img2} alt="Imagen formulario" id="img2" />
-      <img className="image3" src={img3} alt="Imagen formulario" id="img3" />
-      <img className="image4" src={img4} alt="Imagen formulario" id="img4" />
-    </div>
+    <div id="images" className="img-section"></div>
   );
 };
 
