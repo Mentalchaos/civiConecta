@@ -130,6 +130,7 @@ const PublicSection = () => {
 
   const closeModal = () => setModalVisibility(false);
   const modal = isModalShown && <SurveyModal closeModal={closeModal} />;
+
   useEffect(() => {
     const cookies = cookie.getCookie('token');
     const dataCookie = cookies !== undefined && JSON.parse(cookies);
@@ -138,7 +139,6 @@ const PublicSection = () => {
     return (
         <div>
             { modal }
-            <PublicHeader />
             <Welcome />
             <PlanificationText />
             <div className='planification-cont'>
