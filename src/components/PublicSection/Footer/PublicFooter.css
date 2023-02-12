@@ -78,3 +78,11 @@
         width: 98%;
     }
 }
+
+.footer-links {
+    transition: all .3s;
+}
+
+.footer-links:hover {
+    transform: scale(1.2);
+}

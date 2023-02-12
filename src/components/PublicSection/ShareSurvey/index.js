@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import PublicFooter from '../Footer/PublicFooter';
 import back from 'src/assets/Icons/back.svg';
 import unitLogo from 'src/assets/Icons/unit-section-red.svg';
 import link from 'src/assets/Icons/button-enlace.svg';
@@ -47,7 +46,6 @@ const ShareSurvey = () => {
           </button>
         </div>
       </div>
-      <PublicFooter />
     </div>
   );
 };
