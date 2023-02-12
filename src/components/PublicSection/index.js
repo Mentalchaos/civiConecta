@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import PublicFooter from './Footer/PublicFooter';
 import Welcome from './Welcome/Welcome';
 import PlanificationType from './Planification/PlanificationType';
 import PlanificationText from './PlanificationText/PlanificationText';
@@ -9,8 +8,6 @@ import UnitComponent from './Units/UnitComponent';
 import UnitSituations from './Units/UnitSituations';
 import SurveyModal from './SurveyModal';
 import cookie from 'src/utils/cookie';
-import PublicHeader from './Header/PublicHeader';
-//import SurveyLink from './SurveyLink/SurveyLink';
 import './PublicSection.css';
 
 const planningPrograms = [
@@ -199,9 +196,10 @@ const PublicSection = () => {
                     />
                 )
             }
-            <PublicFooter />
         </div>
   );
 };
+
+PublicSection.displayName = 'PublicSection';
 
 export default PublicSection;
