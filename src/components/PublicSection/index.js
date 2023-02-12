@@ -6,7 +6,7 @@ import LinkGenerator from './LinkGenerator/LinkGenerator';
 import UnitsHeader from './Units/UnitsHeader';
 import UnitComponent from './Units/UnitComponent';
 import UnitSituations from './Units/UnitSituations';
-import SurveyModal from './SurveyModal';
+import SurveyModal from './Surveys/SurveyModal';
 import cookie from 'src/utils/cookie';
 import './PublicSection.css';
 
