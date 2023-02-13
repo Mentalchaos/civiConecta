@@ -141,7 +141,7 @@ const PublicSection = () => {
   }, []);
 
     return (
-        <div>
+        <div className='public-section-container'>
             { modal }
             <Welcome />
             <PlanificationText />

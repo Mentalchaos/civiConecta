@@ -7,11 +7,12 @@ import ProfessorSurvey from 'src/components/PublicSection/Surveys/ProfessorSurve
 import StudentSurvey from 'src/components/PublicSection/Surveys/StudentSurvey';
 import ProfessorProfile from 'src/components/PublicSection/ProfessorProfile';
 import Footer from 'src/components/PublicSection/Footer/';
+import StudentsHeader from 'src/components/PublicSection/Surveys/StudentSurvey/StudentsHeader';
 
 const PublicRouter = () => {
   return (
     <>
-      <PublicHeader />
+      { document.location.pathname != '/student-survey' && <PublicHeader /> }
       <Routes>
         <Route exact path="/" element={<PublicSection />} />
         {/* Ruta para login */}
