@@ -12,7 +12,8 @@ import StudentsHeader from 'src/components/PublicSection/Surveys/StudentSurvey/S
 const PublicRouter = () => {
   return (
     <>
-      { document.location.pathname != '/student-survey' && <PublicHeader /> }
+      {/*TODO: fix this route later*/}
+      { document.location.pathname != '/student-survey' && document.location.pathname != 'public/student-survey' && <PublicHeader /> }
       <Routes>
         <Route exact path="/" element={<PublicSection />} />
         {/* Ruta para login */}
