@@ -1,0 +1,144 @@
+.students-survey-container {
+  padding: 3em 8em;
+  display: flex;
+  margin: 1em;
+}
+
+.students-left {
+  width: 50%;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.students-left img {
+  width: 75%;
+  border-radius: 10px;
+}
+
+.image-container {
+  background-image: url(src/assets/images/student-survey-img.jpeg);
+  width: 536px;
+  height: 350px;
+  background-size: 135%;
+  background-repeat: no-repeat;
+  background-position: 90%;
+  border-radius: 10px;
+  border: none;
+}
+
+.students-right {
+  width: 50%;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.students-text-container {
+  width: 536px;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.students-title-container {
+  display: flex;
+  width: 100px;
+  justify-content: space-around;
+}
+
+.students-title-container img {
+  width: 30px;
+}
+
+.students-title-container p {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 16px;
+  color: #504f5e;
+  font-weight: 700;
+}
+
+.students-info-container p {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 14px;
+  color: #504f5e;
+  margin-left: 10px;
+}
+
+.id-one {
+  width: 50%;
+  margin: auto;
+}
+
+.id-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.id-container p {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #9d95ea;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.id-container input {
+  border-radius: 5px;
+  width: 245px;
+  height: 35px;
+  border: 1px solid #9d95ea;
+}
+
+.id-container input::placeholder {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 14px;
+  padding-left: 1em;
+}
+
+.id-two {
+  width: 90%;
+  height: 65px;
+  background-color: #fceff2;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.id-two p {
+  color: #ed617d;
+}
+
+.id-two img {
+  width: 30px;
+}
+
+.students-button button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 175px;
+  height: 40px;
+  font-family: 'Nunito Sans', sans-serif;
+  color: #FFFFFF;
+  background-color: #d5d1f6;
+  border-radius: 20px;
+  border-style: none;
+}
+
+.students-button {
+  padding-top: 2em;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 75px;
+}
+
+.students-button button img {
+  width: 30px;
+  filter: invert(51%) sepia(21%) saturate(51%) hue-rotate(132deg) brightness(247%) contrast(90%);
+}
