@@ -5,7 +5,7 @@ import './LinkGenerator.css';
 const LinkGenerator = ({ data, onClick }) => {
 
     const {description, textButton, backgroundColor, width, textButtonColor} = data;
-    const href = textButton === "Ver enlace encuesta" ? `/public/share-survey` : null;
+    const href = textButton === "Ver enlace encuesta" ? `/share-survey` : null;
 
     return (
         <div className='link-container'>
