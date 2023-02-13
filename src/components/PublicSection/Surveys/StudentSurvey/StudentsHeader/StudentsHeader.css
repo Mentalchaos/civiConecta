@@ -45,6 +45,7 @@
 
 .tooltip-container img:hover ~ .tooltip-text {
   opacity: 1;
+  transition: all .3s;
 }
 
 .tooltip-text {
