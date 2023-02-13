@@ -1,3 +1,7 @@
+.public-section-container {
+    padding: 0 1.5em;
+}
+
 .planification-cont {
     display: grid;
     grid-template-columns: 2fr 2fr;
