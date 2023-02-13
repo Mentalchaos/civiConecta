@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Welcome from './Welcome/Welcome';
+import Welcome from './Welcome';
 import PlanificationType from './Planification/PlanificationType';
 import PlanificationText from './PlanificationText/PlanificationText';
 import LinkGenerator from './LinkGenerator/LinkGenerator';
@@ -9,6 +9,7 @@ import UnitSituations from './Units/UnitSituations';
 import SurveyModal from './Surveys/SurveyModal';
 import cookie from 'src/utils/cookie';
 import './PublicSection.css';
+import Footer from './Footer';
 
 const planningPrograms = [
     {
@@ -93,7 +94,7 @@ const links = {
         textButton: 'Ver enlace encuesta',
         textButtonColor: 'text-purple',
         backgroundColor: 'background-purple',
-        width: 'first-container-width',
+        width: 'container-width',
         icon: ''
     },
   standartPlanification:
@@ -157,14 +158,9 @@ const PublicSection = () => {
                 }
             </div>
             <div className='units-cont'>
-                {
-                    planningPrograms.map((data, key) =>
-                        <UnitsHeader
-                            key={key}
-                            program={data.program}
-                        />
-                    )
-                }
+              <UnitsHeader
+                  program={planningPrograms[1].program}
+              />
                 <div className='units-components'>
                     {
                         mockData.map((data, key) =>
@@ -193,7 +189,8 @@ const PublicSection = () => {
             </div>
            { needLinkButton }
            { standartPlanificationButton }
-           { customPlanificationButton } 
+           { customPlanificationButton }
+           <Footer />
       </div>
   );
 };

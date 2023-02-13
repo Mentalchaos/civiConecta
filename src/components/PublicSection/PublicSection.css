@@ -1,11 +1,12 @@
 .public-section-container {
-    padding: 0 1.5em;
+    padding: 0 2.4em;
 }
 
 .planification-cont {
-    display: grid;
+    display: flex;
     grid-template-columns: 2fr 2fr;
-    margin: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .units-cont {
@@ -13,13 +14,12 @@
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
-    margin: 20px 30px;
 }
 
 .units-components {
     display: flex;
-    justify-content: space-evenly;
-    width: 95%;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .units-components-two {

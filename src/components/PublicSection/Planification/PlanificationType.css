@@ -1,16 +1,15 @@
 .planification-type-container {
-  width: 100%;
+  width: 50%;
   height: 225px;
   display: flex;
   justify-content: center;
+  flex-basis: 49%;
 }
 
 .planification-type {
-  width: 95%;
+  width: 100%;
   background-color: #e95f7b;
-  /* background: url('src/assets/images/teacher.jpg');
-    background-size: cover;  */
-  border-radius: 40px;
+  border-radius: 16px;
   display: flex;
   flex-direction: row;
 }
@@ -40,8 +39,8 @@
 
 .teacher-image {
   width: 100%;
-  border-top-right-radius: 30px;
-  border-bottom-right-radius: 30px;
+  border-top-right-radius: 14px;
+  border-bottom-right-radius: 14px;
 }
 
 button.planification-button {

@@ -7,8 +7,8 @@ const PlanificationText = () => {
     <div className="planification-container planning-text">
       <div>
         <div className="planification-header">
-          <img src={logo} />
-          <p>Para comenzar</p>
+          <img src={logo} alt="logo" />
+          <p className="to-begin-text">Para comenzar</p>
         </div>
         <div>
           <p className="planification-subtitle">
@@ -18,7 +18,7 @@ const PlanificationText = () => {
         </div>
         <div className="alternatives-container">
           <div className="alternative">
-            <img src={arrow} />
+            <img src={arrow} alt="arrow" />
             <p>
               Personalizada, reorganiza las unidades de acuerdo con las
               necesidades de tu curso. Para esta opción, tanto tú como tus
@@ -26,7 +26,7 @@ const PlanificationText = () => {
             </p>
           </div>
           <div className="alternative">
-            <img src={arrow} />
+            <img src={arrow} alt="arrow" />
             <p>
               Estandarizada, respeta la organización ministerial de unidades.{' '}
             </p>
@@ -35,8 +35,8 @@ const PlanificationText = () => {
       </div>
       <div className="second-container">
         <div className="planification-container-two">
-          <img src={logo} />
-          <p>Estás a un paso de obtener tu planificación personalizada:</p>
+          <img src={logo} alt="logo"/>
+          <p className="one-step-custom">Estás a un paso de obtener tu planificación personalizada:</p>
         </div>
       </div>
     </div>

@@ -3,6 +3,7 @@ import back from 'src/assets/Icons/back.svg';
 import unitLogo from 'src/assets/Icons/unit-section-red.svg';
 import link from 'src/assets/Icons/button-enlace.svg';
 import './ShareSurvey.css';
+import Footer from '../../Footer';
 
 const ShareSurvey = () => {
   const navigate = useNavigate();
@@ -46,6 +47,7 @@ const ShareSurvey = () => {
           </button>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };
