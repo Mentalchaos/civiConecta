@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import modalImage from 'src/assets/images/modal-image.png';
 import closeButton from 'src/assets/images/close-popup.svg';
 import teacher from 'src/assets/Icons/teacher-white.svg';
@@ -5,6 +7,7 @@ import student from 'src/assets/Icons/student-purple.svg';
 import './SurveyModal.css';
 
 const SurveyModal = ({ closeModal }) => {
+  const redirect = section => window.location.href = section;
   return (
     <div className='survey-modal-container'>
       <div className='survey-modal'>
@@ -22,7 +25,7 @@ const SurveyModal = ({ closeModal }) => {
             <p>Para que puedas acceder a tus planificaciones personalizadas es necesario que continues con los siguientes pasos:</p>
           </div>
           <div className='survey-buttons-container'>
-            <div className='teacher-survey-button'>
+            <div className='teacher-survey-button' onClick={() => redirect('/public/professor-survey')}>
               <div className='teacher-button-header'>
                 <p>Contestar encuesta docente</p>
                 <img src={teacher} alt="teacher"/>
@@ -31,7 +34,7 @@ const SurveyModal = ({ closeModal }) => {
                 <p>Ir a la encuesta</p>
               </div>
             </div>
-            <div className='student-survey-button'>
+            <div className='student-survey-button' onClick={() => redirect('/public/student-survey')}>
               <div className='student-button-header'>
                 <p>Generar enlace para encuestar estudiantes</p>
                 <img src={student} alt="student" />
@@ -41,13 +44,19 @@ const SurveyModal = ({ closeModal }) => {
               </div>
             </div>
           </div>
-          <div className='modal-footer'>
-            <p>Omitir encuestas</p>
+          <div className='modal-footer' >
+            <p onClick={closeModal} className='footer-text'>Omitir encuestas</p>
           </div>
         </div>
       </div>
     </div>
   )
 }
+
+SurveyModal.propTypes = {
+  closeModal: PropTypes.func.isRequired
+};
+
+SurveyModal.displayName = 'SurveyModal';
 
 export default SurveyModal;
