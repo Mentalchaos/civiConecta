@@ -1,9 +1,9 @@
-import './imageSection.css';
-import loginImage from 'src/assets/images/clases-presenciales.jpeg';
-import img2 from 'src/assets/images/teacher.jpg';
-import img3 from 'src/assets/images/statistics.jpg';
-import img4 from 'src/assets/images/emergent.jpg';
 import { useEffect } from 'react';
+import loginImage from 'src/assets/images/slider/slide-1.png';
+import img2 from 'src/assets/images/slider/slide-2.png';
+import img3 from 'src/assets/images/slider/slide-3.png';
+import img4 from 'src/assets/images/slider/slide-4.png';
+import './imageSection.css';
 
 const $ = x => document.querySelector(x);
 
@@ -52,11 +52,11 @@ const ImageSection = () => {
       $(`#${currentImage}`).classList.remove('active');
       $(`#${nextImage}`).classList.add('active');
       images.push(currentImage);
-      timer = setTimeout(slideImages, 2000);
+      timer = setTimeout(slideImages, 3000);
     };
 
     createImages();
-    timer = setTimeout(slideImages, 2000);
+    timer = setTimeout(slideImages, 3000);
 
     return () => {
       clearTimeout(timer);
