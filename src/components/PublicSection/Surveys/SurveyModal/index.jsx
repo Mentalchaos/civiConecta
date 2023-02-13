@@ -25,7 +25,7 @@ const SurveyModal = ({ closeModal }) => {
             <p>Para que puedas acceder a tus planificaciones personalizadas es necesario que continues con los siguientes pasos:</p>
           </div>
           <div className='survey-buttons-container'>
-            <div className='teacher-survey-button' onClick={() => redirect('/public/professor-survey')}>
+            <div className='teacher-survey-button' onClick={() => redirect('/professor-survey')}>
               <div className='teacher-button-header'>
                 <p>Contestar encuesta docente</p>
                 <img src={teacher} alt="teacher"/>
@@ -34,7 +34,7 @@ const SurveyModal = ({ closeModal }) => {
                 <p>Ir a la encuesta</p>
               </div>
             </div>
-            <div className='student-survey-button' onClick={() => redirect('/public/student-survey')}>
+            <div className='student-survey-button' onClick={() => redirect('/share-survey')}>
               <div className='student-button-header'>
                 <p>Generar enlace para encuestar estudiantes</p>
                 <img src={student} alt="student" />
