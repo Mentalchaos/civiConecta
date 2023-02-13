@@ -87,8 +87,8 @@ const emergentSituations = [
   },
 ];
 
-const links = [
-    {
+const links = {
+  needLink: {
         description: '¿Necesitas el enlace de la encuesta de tus estudiantes nuevamente?',
         textButton: 'Ver enlace encuesta',
         textButtonColor: 'text-purple',
@@ -96,6 +96,7 @@ const links = [
         width: 'first-container-width',
         icon: ''
     },
+  standartPlanification:
     {
         description: 'Revisar planificación estandarizada.',
         textButton: 'Ver planificación',
@@ -104,7 +105,7 @@ const links = [
         width: 'container-width',
         icon: ''
     },
-    {
+    customPlanification: {
         description: 'Revisar planificación personalizada.',
         textButton: 'Ver planificación',
         textButtonColor: 'text-purple',
@@ -112,10 +113,16 @@ const links = [
         width: 'container-width',
         icon: ''
     }
-]
+}
 
 const PublicSection = () => {
   const [isModalShown, setModalVisibility] = useState(false);
+  const [planificationType, setPlanificationType] = useState('custom');
+  const [wasLinkClicked, setIsLinkClicked] = useState(true);
+
+  const needLinkButton = wasLinkClicked === true && <LinkGenerator data={links.needLink} />;
+  const standartPlanificationButton = planificationType === 'custom' && <LinkGenerator data={links.standartPlanification} onClick={() => setPlanificationType('standart')} />;
+  const customPlanificationButton = planificationType === 'standart' && <LinkGenerator data={links.customPlanification} onClick={() => setPlanificationType('custom')}/>;
 
   useEffect(() => {
     (() => {
@@ -184,19 +191,10 @@ const PublicSection = () => {
                     </div>
                 </div>
             </div>
-            {
-                links.map((data, key) =>
-                    <LinkGenerator
-                        key={key}
-                        description={data.description}
-                        textButton={data.textButton}
-                        backgroundColor={data.backgroundColor}
-                        width={data.width}
-                        textButtonColor={data.textButtonColor}
-                    />
-                )
-            }
-        </div>
+           { needLinkButton }
+           { standartPlanificationButton }
+           { customPlanificationButton } 
+      </div>
   );
 };
 
