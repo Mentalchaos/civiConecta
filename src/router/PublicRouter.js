@@ -13,7 +13,7 @@ const PublicRouter = () => {
   return (
     <>
       {/*TODO: fix this route later*/}
-      { document.location.pathname != '/student-survey' && document.location.pathname != 'public/student-survey' && <PublicHeader /> }
+      { document.location.pathname != '/student-survey' && <PublicHeader /> }
       <Routes>
         <Route exact path="/" element={<PublicSection />} />
         {/* Ruta para login */}
