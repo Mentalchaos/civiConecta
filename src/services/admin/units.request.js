@@ -5,7 +5,7 @@ import QueryString from '../helpers/QueryString';
 const BASE_URL = config.baseURL;
 
 export const getUnitsByGrade = grade => {
-  const url = `${BASE_URL}/getUnitsByGrade?grade=${grade}`;
+  const url = `${BASE_URL}/units?grade=${grade}`;
   return http.get(url);
 };
 
@@ -19,6 +19,6 @@ export const deleteUnit = (number, grade) => {
     .add('number', number)
     .add('grade', grade);
 
-  const url = `${BASE_URL}/deleteUnit?${qs.query}`;
+  const url = `${BASE_URL}?${qs.query}`;
   return http.delete(url);
 };
