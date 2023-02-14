@@ -56,7 +56,6 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
   const handleCourseSelected = course => {
     gradeRef.current.value = course.gradeSelected;
     letterRef.current.value = course.letter.character;
-    console.log(course);
     onHandleCourseSelected(course);
     changeStage('Detalle');
   };
@@ -93,7 +92,7 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
       actions.setFetching(true);
 
       const payload = institutionSelected.toJSON();
-      const response = await actions.updateCoursesEstablishment(institutionSelected.number, payload);
+      const response = await actions.updateCoursesEstablishment(institutionSelected.id, payload);
 
       if (response.error?.message?.includes('run')) {
         actions.setErrorMessage('Rut incorrecto');
@@ -170,7 +169,7 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
                 {state.grades.map(grade => {
                   return (
                     <option key={grade.level} value={grade.level}>
-                      {grade.level} Basico
+                      {grade.level}
                     </option>
                   );
                 })}
