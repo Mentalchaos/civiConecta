@@ -2,6 +2,7 @@ import Grade from './Grade.js';
 
 class Establishment {
   constructor(data = {}) {
+    this.id = data.id;
     this.number = data.number;
     this.name = data.name;
     this.active = data.active;
@@ -40,6 +41,7 @@ class Establishment {
 
   toJSON() {
     return {
+      id: this.id,
       courses: this.grades.map(g => g.toJSON()),
     };
   }
