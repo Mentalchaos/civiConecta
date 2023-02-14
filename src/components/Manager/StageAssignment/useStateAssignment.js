@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import useForm from 'src/hooks/useForm';
-import { getGrades } from 'src/services/admin/grades.request';
+import { getGrades, getLetters } from 'src/services/admin/grades.request';
 import { updateCoursesEstablishment } from 'src/services/admin/establishment.request';
 
 const useStateAssignment = (institutionSelected) => {
   const [grades, setGrades] = useState([]);
+  const [letters, setLetters] = useState([]);
   const [studentsAdded, setStudentsAdded] = useState([]);
   const [institutionCourses, setInstitutionCourses] = useState([]);
   const [fetching, setFetching] = useState(false);
@@ -15,7 +16,6 @@ const useStateAssignment = (institutionSelected) => {
     name: '',
     run: '',
   });
-  const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
 
   useEffect(() => {
     async function fn() {
@@ -25,11 +25,13 @@ const useStateAssignment = (institutionSelected) => {
 
       setInstitutionCourses(filterCoursesByGrade);
 
-      const response = await getGrades();
+      const [_grades, _letters] = await Promise.all([
+        getGrades().then(r => r.grades),
+        getLetters().then(r => r.letters.map(l => l.character))
+      ]);
 
-      if (response.ok) {
-        setGrades(response.grades);
-      }
+      setGrades(_grades);
+      setLetters(_letters);
     }
 
     fn();
@@ -38,7 +40,7 @@ const useStateAssignment = (institutionSelected) => {
   const updateEstablishment = async (establishment) => {
     setFetching(true);
     const payload = establishment.toJSON();
-    await updateCoursesEstablishment(establishment.number, payload);
+    await updateCoursesEstablishment(establishment.id, payload);
     setFetching(false);
   };
 
