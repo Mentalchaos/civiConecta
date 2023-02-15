@@ -5,7 +5,7 @@ import Establishment from 'src/entities/Establishment.js';
 const BASE_URL = config.baseURL;
 
 export const getEstablishment = async () => {
-  const url = `${BASE_URL}/getEstablishments`;
+  const url = `${BASE_URL}/establishments`;
   const response = await http.get(url);
 
   return {
@@ -16,7 +16,7 @@ export const getEstablishment = async () => {
 
 export const createEstablishment = (number, name) => {
   const payload = { number, name };
-  return http.post(`${BASE_URL}/createEstablishment`, payload);
+  return http.post(`${BASE_URL}/establishments`, payload);
 };
 
 export const updateActiveEstablishment = (number, active) => {
@@ -26,6 +26,6 @@ export const updateActiveEstablishment = (number, active) => {
 };
 
 export const updateCoursesEstablishment = (number, payload) => {
-  const url = `${BASE_URL}/updateCoursesEstablishment?number=${number}`;
+  const url = `${BASE_URL}/establishments/${number}/courses`;
   return http.put(url, payload);
 };
