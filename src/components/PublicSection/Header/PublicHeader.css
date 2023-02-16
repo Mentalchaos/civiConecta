@@ -1,68 +1,73 @@
 .container {
-    display: flex;
-    justify-content: center;
-    border-bottom-style: solid;
-    border-color: #808080;
-    border-width: thin;
-    height: 70px;
+  display: flex;
+  justify-content: center;
+  border-bottom-style: solid;
+  border-color: #808080;
+  border-width: thin;
+  height: 70px;
 }
 
 .public-header-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    width: 90%;
-    justify-content: space-evenly;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 90%;
+  justify-content: space-evenly;
 }
 
 .logo-container {
-    width: 50%;
-    display: flex;
-    justify-content: center;
+  width: 50%;
+  display: flex;
+  justify-content: center;
 }
 
 .logos-container {
-    width: 10%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+  width: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .docente-info-container {
-    font-family: 'Nunito Sans', sans-serif;
-    color: #e95f7b;
-    font-size: 14px;
-    width: 20%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  font-family: 'Nunito Sans', sans-serif;
+  color: #e95f7b;
+  font-size: 14px;
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.teacher-name {
+  font-size: 14px;
 }
 
 .sesion-container {
-    width: 20%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .sesion-container:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .session-info {
-    color: #808080;
+  color: #808080;
+  font-size: 14px;
 }
 
 .civi {
-    width: 100px;
+  width: 100px;
 }
 
 .question-icon,
 .notification-icon,
 .arrow-right {
-    width: 30px;
+  width: 30px;
 }
 
 .menu-docente {
-    width: 40px;
+  width: 40px;
 }
