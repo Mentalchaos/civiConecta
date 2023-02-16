@@ -10,15 +10,16 @@ import SurveyModal from './Surveys/SurveyModal';
 import cookie from 'src/utils/cookie';
 import './PublicSection.css';
 import Footer from './Footer';
+import { useNavigate } from 'react-router-dom';
 
 const planningPrograms = [
-    {
-        program: 'CiviConecta'
-    },
-    {
-        program: 'Ministerial'
-    }
-]
+  {
+    program: 'CiviConecta',
+  },
+  {
+    program: 'Ministerial',
+  },
+];
 
 const planificationData = [
   {
@@ -90,31 +91,30 @@ const emergentSituations = [
 
 const links = {
   needLink: {
-        description: '¿Necesitas el enlace de la encuesta de tus estudiantes nuevamente?',
-        textButton: 'Ver enlace encuesta',
-        textButtonColor: 'text-purple',
-        backgroundColor: 'background-purple',
-        width: 'container-width',
-        icon: ''
-    },
-  standartPlanification:
-    {
-        description: 'Revisar planificación estandarizada.',
-        textButton: 'Ver planificación',
-        textButtonColor: 'text-red',
-        backgroundColor: 'background-gray',
-        width: 'container-width',
-        icon: ''
-    },
-    customPlanification: {
-        description: 'Revisar planificación personalizada.',
-        textButton: 'Ver planificación',
-        textButtonColor: 'text-purple',
-        backgroundColor: 'background-red',
-        width: 'container-width',
-        icon: ''
-    }
-}
+    description: '¿Necesitas el enlace de la encuesta de tus estudiantes nuevamente?',
+    textButton: 'Ver enlace encuesta',
+    textButtonColor: 'text-purple',
+    backgroundColor: 'background-purple',
+    width: 'container-width',
+    icon: '',
+  },
+  standardPlanification: {
+    description: 'Revisar planificación estandarizada.',
+    textButton: 'Ver planificación',
+    textButtonColor: 'text-red',
+    backgroundColor: 'background-gray',
+    width: 'container-width',
+    icon: '',
+  },
+  customPlanification: {
+    description: 'Revisar planificación personalizada.',
+    textButton: 'Ver planificación',
+    textButtonColor: 'text-purple',
+    backgroundColor: 'background-red',
+    width: 'container-width',
+    icon: '',
+  },
+};
 
 const PublicSection = () => {
   const [isModalShown, setModalVisibility] = useState(false);
@@ -122,76 +122,67 @@ const PublicSection = () => {
   const [wasLinkClicked, setIsLinkClicked] = useState(true);
 
   const needLinkButton = wasLinkClicked === true && <LinkGenerator data={links.needLink} />;
-  const standartPlanificationButton = planificationType === 'custom' && <LinkGenerator data={links.standartPlanification} onClick={() => setPlanificationType('standart')} />;
-  const customPlanificationButton = planificationType === 'standart' && <LinkGenerator data={links.customPlanification} onClick={() => setPlanificationType('custom')}/>;
+  const standardPlanificationButton = planificationType === 'custom' && (
+    <LinkGenerator data={links.standardPlanification} onClick={() => setPlanificationType('standard')} />
+  );
+  const customPlanificationButton = planificationType === 'standard' && (
+    <LinkGenerator data={links.customPlanification} onClick={() => setPlanificationType('custom')} />
+  );
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     (() => {
+      const dataCookies = cookie.getDataParser();
+      if (dataCookies.role === 'Administrator') {
+        alert('No puede ingresar a esta sección como usuario Administrador');
+        navigate('/admin');
+      }
       setTimeout(() => {
         setModalVisibility(true);
-      }, 3000)
-    })()
-  }, [])
+      }, 3000);
+    })();
+  }, []);
 
   const closeModal = () => setModalVisibility(false);
   const modal = isModalShown && <SurveyModal closeModal={closeModal} />;
 
-  useEffect(() => {
-    const cookies = cookie.getCookie('token');
-    const dataCookie = cookies !== undefined && JSON.parse(cookies);
-  }, []);
-
-    return (
-        <div className='public-section-container'>
-            { modal }
-            <Welcome />
-            <PlanificationText />
-            <div className='planification-cont'>
-                {
-                    planificationData.map((data, key) =>
-                        <PlanificationType
-                            key={key}
-                            title={data.title}
-                            textButton={data.textButton}
-                        />
-                    )
-                }
-            </div>
-            <div className='units-cont'>
-              <UnitsHeader
-                  program={planningPrograms[1].program}
-              />
-                <div className='units-components'>
-                    {
-                        mockData.map((data, key) =>
-                            <UnitComponent
-                                key={key}
-                                status={data.status}
-                                title={data.title}
-                                subtitle={data.subtitle}
-                                description={data.description}
-                                color={data.color}
-                                borderColor={data.borderColor}
-                            />
-                        )
-                    }
-                    <div className='units-components-two'>
-                        {
-                            emergentSituations.map((data, key) =>
-                                <UnitSituations
-                                    key={key}
-                                    title={data.title}
-                                />
-                            )
-                        }
-                    </div>
-                </div>
-            </div>
-           { needLinkButton }
-           { standartPlanificationButton }
-           { customPlanificationButton }
-           <Footer />
+  return (
+    <div className="public-section-container">
+      {modal}
+      <Welcome />
+      <PlanificationText />
+      <div className="planification-cont">
+        {planificationData.map((data, key) => (
+          <PlanificationType key={key} title={data.title} textButton={data.textButton} />
+        ))}
       </div>
+      <div className="units-cont">
+        <UnitsHeader program={planningPrograms[1].program} />
+        <div className="units-components">
+          {mockData.map((data, key) => (
+            <UnitComponent
+              key={key}
+              status={data.status}
+              title={data.title}
+              subtitle={data.subtitle}
+              description={data.description}
+              color={data.color}
+              borderColor={data.borderColor}
+            />
+          ))}
+          <div className="units-components-two">
+            {emergentSituations.map((data, key) => (
+              <UnitSituations key={key} title={data.title} />
+            ))}
+          </div>
+        </div>
+      </div>
+      {needLinkButton}
+      {standardPlanificationButton}
+      {customPlanificationButton}
+      <Footer />
+    </div>
   );
 };
 

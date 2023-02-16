@@ -2,12 +2,11 @@ import calendar from 'src/assets/Icons/calendar-public.svg';
 import school from 'src/assets/Icons/school.svg';
 import cap from 'src/assets/Icons/graduation-cap.svg';
 import man from 'src/assets/images/fraud-protection-hero.png';
-import './Welcome.css';
 import cookie from 'src/utils/cookie';
+import './Welcome.css';
 
 const Welcome = () => {
-  const cookies = cookie.getCookie('token');
-  const cookiesData = cookies !== undefined && JSON.parse(cookies);
+  const cookiesData = cookie.getDataParser();
   return (
     <div className="welcome-section">
       <div className="welcome-container">
