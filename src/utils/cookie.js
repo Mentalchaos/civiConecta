@@ -14,18 +14,22 @@ const cookie = {
     document.cookie = newCookie;
   },
   getCookie(key) {
-    const objCookie = document.cookie.split('; ')
-      .reduce((obj, chunk) => {
-        const parts = chunk.split('=');
-        obj[parts[0]] = parts[1];
-        return obj;
-      }, {});
+    const objCookie = document.cookie.split('; ').reduce((obj, chunk) => {
+      const parts = chunk.split('=');
+      obj[parts[0]] = parts[1];
+      return obj;
+    }, {});
 
     return objCookie[key];
   },
   removeCookie(key) {
     this.setCookie(key, '', 'Thu, 01 Jan 1970 00:00:00 GMT');
-  }
+  },
+  getDataParser() {
+    const cookies = this.getCookie('token');
+    const data = cookies !== undefined && JSON.parse(cookies);
+    return data;
+  },
 };
 
 export default cookie;
