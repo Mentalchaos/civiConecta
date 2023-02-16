@@ -7,15 +7,9 @@ import Situations from 'src/components/Situations/Situations';
 import StudentSurvey from 'src/components/StudentSurvey/StudentSurvey';
 import TeacherSurvey from 'src/components/TeacherSurvey/TeacherSurvey';
 import UnitsSection from 'src/components/UnitsSection/UnitsSection';
-import cookie from 'src/utils/cookie';
-import { AdminGuard } from './guard/auth.guard';
+import { AdminGuard } from './guard/admin.guard';
 
 const AdminRouter = () => {
-  const navigate = useNavigate();
-  const cookies = cookie.getCookie('token');
-  const cookiesData = cookies !== undefined && JSON.parse(cookies);
-  cookiesData.role !== 'Administrator' && navigate('/public');
-
   return (
     <>
       <Sidebar />

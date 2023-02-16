@@ -37,7 +37,7 @@ const PublicHeader = () => {
               <p
                 onClick={() => {
                   cookie.removeCookie('token');
-                  window.location.reload();
+                  navigate('/auth/login');
                 }}
                 className="session-info"
               >
