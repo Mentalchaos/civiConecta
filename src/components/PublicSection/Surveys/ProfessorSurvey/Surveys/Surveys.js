@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import ModalToFinish from '../ModalToFinish/ModalToFinish';
 
 const questions = [
   {
@@ -85,24 +87,35 @@ const questions = [
 
 const Surveys = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [showModal, setShowModal] = useState(false);
   const { alternativas, pregunta, preguntaNum } = questions[currentQuestion];
 
+  const navigate = useNavigate();
+
   const handleSendAnswer = () => {
-    if (currentQuestion === questions.length - 1) return;
+    if (currentQuestion === questions.length - 1) {
+      setShowModal(true);
+      return;
+    }
     currentQuestion < questions.length && setCurrentQuestion(currentQuestion + 1);
-    const question = document.querySelectorAll('.question-number')[preguntaNum];
-    question.classList.add('question-submitted');
-    setTimeout(() => {
-      console.log(question);
-    }, 1500);
+  };
+
+  const handleFinishSurvey = () => {
+    console.log('finish survey');
+    navigate('/completed-survey');
   };
 
   const handlePreviousQuestion = () => {
     currentQuestion > 0 && setCurrentQuestion(currentQuestion - 1);
   };
 
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <section className="surveys">
+      {showModal && <ModalToFinish closeModal={handleCloseModal} finishSurvey={handleFinishSurvey} />}
       <article className="surveys__questions-list">
         {questions.map(question => {
           const { preguntaNum } = question;

@@ -277,3 +277,36 @@ button.form__previous-question:disabled {
   padding: 5px 30px;
   font-weight: 800;
 }
+
+.modal__actions-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 50px;
+}
+
+.actions__first {
+  font-family: 'Nunito Sans';
+  border: none;
+  outline: none;
+  padding: 8px 30px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  border-radius: 25px;
+  background-color: var(--color-primary);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.actions__second {
+  font-family: 'Nunito Sans';
+  border: none;
+  outline: none;
+  padding: 8px 30px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  border-radius: 25px;
+  background-color: var(--color-primary);
+}
