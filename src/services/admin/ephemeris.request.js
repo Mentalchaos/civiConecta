@@ -3,9 +3,14 @@ import http from '../helpers/http.helper';
 import QueryString from '../helpers/QueryString';
 
 const BASE_URL = config.baseURL;
+const eventType = config.constants.EventTypes.EPHEMERIS;
 
 export const getExceptionsByGrade = grade => {
-  const url = `${BASE_URL}/getExceptionsByGrade?grade=${grade}`;
+  const qs = new QueryString()
+    .add('grade', grade)
+    .add('eventType', eventType);
+
+  const url = `${BASE_URL}/events?${qs.query}`;
   return http.get(url);
 };
 
