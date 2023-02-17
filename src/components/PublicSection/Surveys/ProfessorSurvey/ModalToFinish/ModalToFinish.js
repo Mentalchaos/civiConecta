@@ -1,11 +1,15 @@
-const ModalToFinish = () => {
+import modalImage from 'src/assets/images/modal-image.png';
+import closeButton from 'src/assets/images/close-popup.svg';
+
+const ModalToFinish = ({ closeModal, finishSurvey }) => {
+  const redirect = section => (window.location.href = section);
   return (
     <div className="survey-modal-container">
       <div className="survey-modal">
-        <div className="modal-content">
-          <div className="modal-header">
+        <div className="modal-content" style={{ width: '600px', height: '370px', justifyContent: 'initial' }}>
+          <div className="modal-header" style={{ borderTopLeftRadius: '10px', borderTopRightRadius: '10px' }}>
             <div className="modal-title">
-              <h2>Estás por terminar</h2>
+              <h1 style={{ fontSize: '32px' }}>Estás por terminar</h1>
             </div>
             <div className="modal-header-img">
               <img className="modal-image" src={modalImage} alt="modal"></img>
@@ -13,36 +17,20 @@ const ModalToFinish = () => {
             </div>
           </div>
           <div className="modal-paragraph">
-            <p>
-              Para que puedas acceder a tus planificaciones personalizadas es necesario que continues con los siguientes
-              pasos:
+            <p style={{ fontSize: '14px', marginTop: 30, color: 'rgb(0,0,0,0.7)' }}>
+              ¿Quieres ﬁnalizar la encuesta y guardar tus respuestas? Ten en cuenta que si lo haces, ya no podrás
+              modiﬁcarlas.
             </p>
           </div>
-          <div className="survey-buttons-container">
-            <div className="teacher-survey-button" onClick={() => redirect('/professor-survey')}>
-              <div className="teacher-button-header">
-                <p>Contestar encuesta docente</p>
-                <img src={teacher} alt="teacher" />
-              </div>
-              <div className="teacher-button-footer">
-                <p>Ir a la encuesta</p>
-              </div>
-            </div>
-            <div className="student-survey-button" onClick={() => redirect('/share-survey')}>
-              <div className="student-button-header">
-                <p>Generar enlace para encuestar estudiantes</p>
-                <img src={student} alt="student" />
-              </div>
-              <div className="student-button-footer">
-                <p>Generar enlace</p>
-              </div>
-            </div>
-          </div>
-          <div className="modal-footer">
-            <p onClick={closeModal} className="footer-text">
-              Omitir encuestas
-            </p>
-          </div>
+
+          <section className="modal__actions-container">
+            <button className="actions__first" onClick={() => redirect('/professor-survey')}>
+              Continuar en otro momento
+            </button>
+            <button className="actions__second" onClick={finishSurvey}>
+              Finalizar y cerrar respuestas
+            </button>
+          </section>
         </div>
       </div>
     </div>
