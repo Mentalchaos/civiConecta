@@ -8,9 +8,11 @@ import UnitComponent from './Units/UnitComponent';
 import UnitSituations from './Units/UnitSituations';
 import SurveyModal from './Surveys/SurveyModal';
 import cookie from 'src/utils/cookie';
+import config from 'src/config';
 import './PublicSection.css';
 import Footer from './Footer';
 import { useNavigate } from 'react-router-dom';
+import { getUnits } from 'src/services/public/unit.request';
 
 const planningPrograms = [
   {
@@ -41,42 +43,6 @@ const planificationData = [
   {
     title: 'Contesta la encuesta docente.',
     textButton: 'Ir a la encuesta',
-  },
-];
-
-const mockData = [
-  {
-    status: 'Completada',
-    title: 'Unidad I',
-    subtitle: 'Relaciones interpersonales',
-    description: 'Fomentar trato respetuoso y solidario; rechazar violencia y discriminación en las relaciones.',
-    color: 'unit-green',
-    borderColor: 'border-green',
-  },
-  {
-    status: 'En desarrollo',
-    title: 'Unidad II',
-    subtitle: 'Resolución de conflictos',
-    description: 'Aplicar autónomamente estrategias para la resolución de conflictos.',
-    color: 'unit-purple',
-    borderColor: 'border-purple',
-  },
-  {
-    status: 'Pendiente',
-    title: 'Unidad III',
-    subtitle: 'Bienestar y autocuidado',
-    description:
-      'Practicar en forma autónoma conductas protectoras y de autocuidado en relación a su cuerpo e intimidad.',
-    color: 'unit-red',
-    borderColor: 'border-red',
-  },
-  {
-    status: 'Pendiente',
-    title: 'Unidad IV',
-    subtitle: 'Autorregulación',
-    description: 'Reconocer y describir causas y consecuencias del consumo de drogas.',
-    color: 'unit-red',
-    borderColor: 'border-red',
   },
 ];
 
@@ -116,28 +82,47 @@ const links = {
   },
 };
 
+const { PlanificationTypes, UserTypes } = config.constants;
+
+
 const PublicSection = () => {
+  const [unitsContent, setUnitsContent] = useState([]);
   const [isModalShown, setModalVisibility] = useState(false);
-  const [planificationType, setPlanificationType] = useState('custom');
+  const [planificationType, setPlanificationType] = useState(PlanificationTypes.CUSTOM);
   const [wasLinkClicked, setIsLinkClicked] = useState(true);
 
   const needLinkButton = wasLinkClicked === true && <LinkGenerator data={links.needLink} />;
-  const standardPlanificationButton = planificationType === 'custom' && (
-    <LinkGenerator data={links.standardPlanification} onClick={() => setPlanificationType('standard')} />
+  const standardPlanificationButton = planificationType === PlanificationTypes.CUSTOM && (
+    <LinkGenerator
+      data={links.standardPlanification}
+      onClick={() => setPlanificationType(PlanificationTypes.STANDARD)}
+    />
   );
-  const customPlanificationButton = planificationType === 'standard' && (
-    <LinkGenerator data={links.customPlanification} onClick={() => setPlanificationType('custom')} />
+  const customPlanificationButton = planificationType === PlanificationTypes.STANDARD && (
+    <LinkGenerator
+      data={links.customPlanification}
+      onClick={() => setPlanificationType(PlanificationTypes.CUSTOM)}
+    />
   );
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    (() => {
+    async function getUnitsFromDashboard() {
+      const results = await getUnits();
+      setUnitsContent(results);
+    }
+  }, []);
+
+  useEffect(() => {
+    (async () => {
       const dataCookies = cookie.getDataParser();
-      if (dataCookies.role === 'Administrator') {
+
+      if (dataCookies.role ===  UserTypes.ADMIN) {
         alert('No puede ingresar a esta sección como usuario Administrador');
         navigate('/admin');
       }
+
       setTimeout(() => {
         setModalVisibility(true);
       }, 3000);
@@ -160,7 +145,7 @@ const PublicSection = () => {
       <div className="units-cont">
         <UnitsHeader program={planningPrograms[1].program} />
         <div className="units-components">
-          {mockData.map((data, key) => (
+          {unitsContent.map((data, key) => (
             <UnitComponent
               key={key}
               status={data.status}
