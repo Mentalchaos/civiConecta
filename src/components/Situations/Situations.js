@@ -5,12 +5,20 @@ import Items from './Items/index.js';
 import Spinner from '../UI/Spinner.js';
 import Button from '../UI/Button.js';
 import Modal from '../UI/Modal.js';
+import config from 'src/config';
+import createServices from 'src/services/admin/event.request';
 import { deleteFileByExceptionAndGrade, uploadFileByExceptionAndGrade } from 'src/services/admin/files.request.js';
-import { createException, getExceptionsByGrade, updateException } from 'src/services/admin/ephemeris.request.js';
 import { getGrades } from 'src/services/admin/grades.request.js';
-
 import './Items/index.css';
 import './Situations.css';
+
+const {
+  getEventsByGrade,
+  createEvent,
+  updateEvent,
+  deleteEvent
+} = createServices(config.constants.EventTypes.SITUATION);
+
 
 const Situations = () => {
   const [grades, setGrades] = useState([]);
@@ -44,7 +52,7 @@ const Situations = () => {
 
   const getEvents = grade => {
     setFetching(true);
-    getExceptionsByGrade(grade).then(resp => {
+    getEventsByGrade(grade).then(resp => {
       if (resp.ok) {
         setFetching(false);
         setEvents(resp.exceptions);
@@ -73,7 +81,7 @@ const Situations = () => {
     const payload = {
       ...values,
     };
-    createException(payload).then(resp => {
+    createEvent(payload).then(resp => {
       if (resp.ok) {
         setFetching(false);
         setEvents([...events, resp.exception]);
@@ -102,7 +110,7 @@ const Situations = () => {
         },
       },
     };
-    updateException(number, grade, payload).then(resp => {
+    updateEvent(number, grade, payload).then(resp => {
       if (resp.ok) {
         setFetching(false);
       } else {

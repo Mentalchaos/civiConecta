@@ -6,10 +6,18 @@ import PlanningForm from '../UI/PlanningForm';
 import Button from '../UI/Button';
 import Spinner from '../UI/Spinner';
 import { getGrades } from 'src/services/admin/grades.request.js';
+import config from 'src/config';
 import { deleteFileByEventAndGrade, uploadFileByEventAndGrade } from 'src/services/admin/files.request';
-import { createEvent, getEventsByGrade, updateEvent } from 'src/services/admin/situations.request';
-
+import createServices from 'src/services/admin/event.request';
 import './Ephemeris.css';
+
+const {
+  getEventsByGrade,
+  createEvent,
+  updateEvent,
+  deleteEvent
+} = createServices(config.constants.EventTypes.EPHEMERIS);
+
 
 const Ephemeris = () => {
   const [grades, setGrades] = useState([]);
@@ -92,7 +100,7 @@ const Ephemeris = () => {
   };
 
   const onHandleUpdateEphemeris = values => {
-    updateEphemeris(ephemerisSelected.number, gradeSelected, values);
+    updateEvent(ephemerisSelected.number, gradeSelected, values);
   };
 
   const onHandleSubmit = values => {
