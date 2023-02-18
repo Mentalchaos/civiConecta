@@ -4,6 +4,7 @@ import Table from 'src/components/UI/Table';
 import Modal from 'src/components/UI/Modal';
 import CreateTeacher from '../StageAssignment/CreateTeacher/CreateTeacher';
 import Spinner from 'src/components/UI/Spinner';
+import { assignTeacherToCourse } from 'src/services/admin/establishment.request';
 import { generateRandomPassword, signUpUserRole, updateActiveUser } from 'src/services/admin/user.request';
 
 import './StageDetail.css';
@@ -94,28 +95,19 @@ const StageDetail = ({ title, courseSelected, institutionSelected }) => {
   const onHandleAddTeacher = data => {
     const { email, name } = data;
     setFetching(true);
-    generateRandomPassword().then(resp => {
-      if (resp.ok) {
-        setDataUserCreated({ email, password: resp.password });
-        const teacherPayload = {
-          email,
-          name,
-          password: resp.password,
-          workplaces: [
-            {
-              establishment: institutionSelected.number,
-              courses: [
-                {
-                  grade: courseSelected.gradeSelected,
-                  letters: [courseSelected.letter.character],
-                },
-              ],
-            },
-          ],
-        };
-        addTeacherService(teacherPayload);
-      }
-    });
+
+    const payload = {
+      email,
+      name,
+      grade: courseSelected.gradeSelected,
+      letter: courseSelected.letter.character,
+      institution: sessionStorage.getItem('establishmentId')
+    };
+
+    assignTeacherToCourse(payload)
+      .then(response => {
+        alert('el profesor ha sido asignado exitosamente');
+      });
   };
 
   const handleConfirmAction = () => {
