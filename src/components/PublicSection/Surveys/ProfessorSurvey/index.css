@@ -18,6 +18,9 @@
 }
 
 .content-start__header-text {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-size: 14px;
   font-weight: bold;
   color: rgb(0, 0, 0, 0.9);
@@ -34,8 +37,11 @@
 }
 
 .important {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-size: 14px;
-  padding: 20px;
+  padding: 10px;
   border-radius: 12px;
   background-color: rgba(255, 0, 0, 0.076);
   color: var(--color-secondary);
@@ -218,6 +224,11 @@ button.form__previous-question:disabled {
 .text-content__success-message {
   font-size: 14px;
   color: var(--color-secondary);
+  text-align: center;
+}
+
+.text-content__success-message > span {
+  display: block;
 }
 
 .text-content__paragraph {
@@ -255,11 +266,13 @@ button.form__previous-question:disabled {
 
 .survey-completion {
   margin-top: 60px;
+  text-align: center;
 }
 
 .completion__text {
   font-size: 14px;
   color: var(--color-secondary);
+  display: block;
 }
 
 .completion__actions {
@@ -309,4 +322,13 @@ button.form__previous-question:disabled {
   font-weight: 800;
   border-radius: 25px;
   background-color: var(--color-primary);
+}
+
+.professor-survey {
+  background-image: url('src/assets/images/texturaModal.png');
+  background-repeat: no-repeat;
+  background-size: 30rem;
+  background-blend-mode: difference;
+  background-position-x: left;
+  background-position-y: bottom;
 }
