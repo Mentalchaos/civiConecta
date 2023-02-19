@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Footer from 'src/components/PublicSection/Footer';
 import cookie from 'src/utils/cookie';
+import succesIcon from 'src/assets/images/success-icon.svg';
 
 import '../index.css';
 
@@ -21,6 +22,7 @@ const CompletedSurvey = () => {
         {!generatedLink && (
           <div className="completed-survey__text-content">
             <div className="text-content__success-message">
+              <img src={succesIcon} alt="Check icon" width={60} />
               <span>Has completado la encuesta con éxito</span>
             </div>
             <p className="text-content__paragraph">
@@ -40,6 +42,7 @@ const CompletedSurvey = () => {
         )}
         {generatedLink && (
           <div className="survey-completion">
+            <img src={succesIcon} alt="Check icon" width={60} />
             <span className="completion__text">{name}, has completado la encuesta con éxito</span>
             <div className="completion__actions">
               <button onClick={() => navigate('/')} type="button" className="actions__button">

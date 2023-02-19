@@ -1,4 +1,4 @@
-import modalImage from 'src/assets/images/modal-image.png';
+import modalImage from 'src/assets/images/modal-survey-image.png';
 import closeButton from 'src/assets/images/close-popup.svg';
 
 const ModalToFinish = ({ closeModal, finishSurvey }) => {
@@ -7,12 +7,20 @@ const ModalToFinish = ({ closeModal, finishSurvey }) => {
     <div className="survey-modal-container">
       <div className="survey-modal">
         <div className="modal-content" style={{ width: '600px', height: '370px', justifyContent: 'initial' }}>
-          <div className="modal-header" style={{ borderTopLeftRadius: '10px', borderTopRightRadius: '10px' }}>
+          <div
+            className="modal-header professor-survey"
+            style={{ borderTopLeftRadius: '10px', borderTopRightRadius: '10px' }}
+          >
             <div className="modal-title">
               <h1 style={{ fontSize: '32px' }}>Estás por terminar</h1>
             </div>
             <div className="modal-header-img">
-              <img className="modal-image" src={modalImage} alt="modal"></img>
+              <img
+                style={{ width: '108px', top: '-40px', right: '95px' }}
+                className="modal-image"
+                src={modalImage}
+                alt="modal"
+              ></img>
               <img onClick={closeModal} className="close-button" src={closeButton} alt="close-button"></img>
             </div>
           </div>
