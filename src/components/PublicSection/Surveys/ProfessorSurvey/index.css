@@ -1,0 +1,334 @@
+.survey-content-container {
+  font-family: 'Nunito Sans';
+  width: 80%;
+  margin: auto;
+  margin-top: 35px;
+  padding-bottom: 180px;
+}
+
+.survey-content__start {
+  margin-top: 25px;
+  display: flex;
+  gap: 50px;
+}
+
+.survey-content__start > .content-start__image {
+  width: 450px;
+  border-radius: 12px;
+}
+
+.content-start__header-text {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: rgb(0, 0, 0, 0.9);
+}
+
+.content-start__text {
+  font-size: 14px;
+  color: rgb(0, 0, 0, 0.8);
+}
+
+.content-start__important-section {
+  margin-top: 40px;
+  font-size: 14px;
+}
+
+.important {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 12px;
+  background-color: rgba(255, 0, 0, 0.076);
+  color: var(--color-secondary);
+}
+
+.important-text {
+  font-size: 14px;
+  margin-top: 40px;
+  color: var(--color-secondary);
+}
+
+.survey-start-button {
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  padding: 7px 30px;
+  border-radius: 25px;
+  background-color: var(--color-secondary);
+  border: none;
+  outline: none;
+}
+
+.content-start__back-link {
+  display: flex;
+  align-items: center;
+}
+
+.content-start__back-link > img {
+  width: 30px;
+}
+
+.content-start__back-link > a {
+  font-size: 14px;
+  color: rgb(0, 0, 0, 0.9);
+  text-decoration: none;
+}
+
+.surveys {
+  margin-top: 30px;
+  display: flex;
+  gap: 40px;
+}
+
+.surveys__header-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: rgb(0, 0, 0, 0.8);
+}
+
+.surveys__questions-list {
+  background-color: rgb(255 0 123 / 4%);
+  display: flex;
+  flex-direction: column;
+  padding: 10px 50px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.question-number {
+  font-size: 14px;
+  margin-top: 10px;
+  font-weight: 700;
+  color: rgb(0, 0, 0, 0.2);
+}
+
+.question-number.active {
+  color: #000;
+}
+
+.question-submitted {
+  color: var(--color-secondary);
+}
+
+.surveys__question {
+  margin-top: 35px;
+  margin-left: 40px;
+  font-size: 14px;
+}
+
+.surveys__question-alternatives {
+  flex: 1;
+}
+
+.alternatives__form {
+  margin-top: 50px;
+  margin-left: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.form__input {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid gray;
+  padding-bottom: 12px;
+}
+
+.form__input > input[type='radio'] {
+  display: none;
+}
+
+input[type='radio'] + label {
+  cursor: pointer;
+  font-size: 14px;
+}
+
+input[type='radio'] + label:before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  float: left;
+  margin: 0 20px 0 0;
+  border: 1px solid var(--color-secondary);
+  border-radius: 100%;
+  background: #fff;
+}
+
+input[type='radio']:checked + label:after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  float: left;
+  margin-left: -2.3rem;
+  margin-top: 5.4px;
+  border-radius: 100%;
+  background-color: var(--color-secondary);
+}
+
+.surveys__alternatives-container {
+  padding: 50px 100px 40px 40px;
+}
+
+.form__actions {
+  margin-top: 60px;
+  margin-left: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+button.form__previous-question:disabled {
+  pointer-events: none;
+  opacity: 0.4;
+  color: gray;
+  border-color: gray;
+}
+
+.form__previous-question {
+  font-size: 12px;
+  font-weight: 700;
+  font-family: 'Poppins';
+  background-color: #fff;
+  border: 1px solid var(--color-secondary);
+  color: var(--color-secondary);
+  padding: 7px 30px;
+  border-radius: 25px;
+  outline: none;
+}
+
+.form__next-question {
+  font-size: 12px;
+  font-weight: 700;
+  font-family: 'Poppins';
+  color: #fff;
+  padding: 7px 30px;
+  border-radius: 25px;
+  background-color: var(--color-secondary);
+  border: none;
+  outline: none;
+}
+
+.completed-survey-container {
+  font-family: 'Nunito Sans';
+  font-size: 14px;
+  text-align: center;
+  padding: 200px 200px;
+  padding-bottom: 220px;
+}
+
+.text-content__success-message {
+  font-size: 14px;
+  color: var(--color-secondary);
+  text-align: center;
+}
+
+.text-content__success-message > span {
+  display: block;
+}
+
+.text-content__paragraph {
+  font-size: 14px;
+  margin-top: 20px;
+  color: rgb(0, 0, 0, 0.7);
+}
+
+.text-content__actions {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.actions__back-home {
+  font-family: 'Nunito Sans';
+  border: none;
+  outline: none;
+  border-radius: 25px;
+  background-color: var(--color-secondary);
+  color: #fff;
+  padding: 5px 30px;
+}
+
+.actions__generate-link {
+  font-family: 'Nunito Sans';
+  border: none;
+  outline: none;
+  border-radius: 25px;
+  background-color: var(--color-primary);
+  color: #fff;
+  padding: 5px 30px;
+}
+
+.survey-completion {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.completion__text {
+  font-size: 14px;
+  color: var(--color-secondary);
+  display: block;
+}
+
+.completion__actions {
+  margin-top: 50px;
+}
+
+.actions__button {
+  font-size: 14px;
+  font-family: 'Nunito Sans';
+  border: none;
+  outline: none;
+  border-radius: 25px;
+  background-color: var(--color-secondary);
+  color: #fff;
+  padding: 5px 30px;
+  font-weight: 800;
+}
+
+.modal__actions-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 50px;
+}
+
+.actions__first {
+  font-family: 'Nunito Sans';
+  border: none;
+  outline: none;
+  padding: 8px 30px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  border-radius: 25px;
+  background-color: var(--color-primary);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.actions__second {
+  font-family: 'Nunito Sans';
+  border: none;
+  outline: none;
+  padding: 8px 30px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  border-radius: 25px;
+  background-color: var(--color-primary);
+}
+
+.professor-survey {
+  background-image: url('src/assets/images/texturaModal.png');
+  background-repeat: no-repeat;
+  background-size: 30rem;
+  background-blend-mode: difference;
+  background-position-x: left;
+  background-position-y: bottom;
+}
