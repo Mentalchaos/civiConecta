@@ -13,6 +13,7 @@ import arrow from 'src/assets/Icons/arrow-degree.svg';
 import './Unit.css';
 
 const Unit = ({ unitsData, grade, getUnits, reset }) => {
+  const [ unitId, setUnitId ] = useState(null);
   const [showClass, setShowClass] = useState(false);
   const [isSelectedClass, setIsSelectedClass] = useState(false);
   const [dataClassSelected, setDataClassSelected] = useState({});
@@ -138,7 +139,7 @@ const Unit = ({ unitsData, grade, getUnits, reset }) => {
   const deleteUnit = async (number, grade) => {
     setFetching(true);
 
-    const response = await unitRequest.deleteUnit(number, grade);
+    const response = await unitRequest.deleteUnit(unitId);
 
     if (response.ok) {
       setFetching(false);
@@ -215,7 +216,8 @@ const Unit = ({ unitsData, grade, getUnits, reset }) => {
       )}
       {unitsData ? (
         unitsData.map(unit => {
-          const { title, description, number } = unit;
+          const { title, description, number, id } = unit;
+
           return (
             <div
               key={number}
@@ -229,6 +231,7 @@ const Unit = ({ unitsData, grade, getUnits, reset }) => {
                 onClick={() => {
                   setShowConfirmAction(true);
                   setUnitNumber(number);
+                  setUnitId(id);
                 }}
                 style={{
                   position: 'absolute',
