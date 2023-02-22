@@ -2,9 +2,7 @@ import { useEffect, useState } from 'react';
 import arrowBack from 'src/assets/Icons/back.svg';
 import Surveys from './Surveys/Surveys';
 import Footer from 'src/components/PublicSection/Footer/index';
-import planificationImage from 'src/assets/images/professorSurvey.jpg';
-import surveyIcon from 'src/assets/images/professor-survey-icon.svg';
-import clockIcon from 'src/assets/images/clock-icon.svg';
+import FirstStep from '../FirstStep/FirstStep';
 import './index.css';
 
 const ProfessorSurvey = () => {
@@ -21,39 +19,9 @@ const ProfessorSurvey = () => {
           <img src={arrowBack} alt="Arrow" />
           <a href="/">Volver</a>
         </div>
-        {!isStartSurvey && (
-          <section className="survey-content__start">
-            <img className="content-start__image" alt="planification image" src={planificationImage} />
-            <article className="content-start__suggestions">
-              <header className="content-start__header-text">
-                <img src={surveyIcon} alt="icono encuesta" width={30} />
-                <span>Planificaci&oacute;n adecuada</span>
-              </header>
-              <p className="content-start__text">
-                Te sugerimos que, si no conoces la realidad del curso, completes esta encuesta considerando la
-                opini&oacute;n del profesor o profesora jefe anterior, u otros colegas que tengan experiencia con el
-                grupo de estudiantes.
-              </p>
-              <div className="content-start__important-section">
-                <div className="important">
-                  <img src={clockIcon} alt="Icono tiempo" width={45} />
-                  <span> La encuesta consta de 16 preguntas.</span>
-                </div>
-                <p className="important-text">
-                  Es importante que contestes con calma y sinceridad respecto a tu percepción del curso, ya que te
-                  permitirá obtener una planiﬁcación acorde con sus necesidades.
-                </p>
-              </div>
-              <div style={{ textAlign: 'right', marginTop: 40 }}>
-                <button onClick={() => setIsStartSurvey(true)} className="survey-start-button" type="button">
-                  Iniciar la encuesta
-                </button>
-              </div>
-            </article>
-          </section>
-        )}
+        {!isStartSurvey && <FirstStep type={'teacher'} setIsStartSurvey={setIsStartSurvey} />}
 
-        {isStartSurvey && <Surveys />}
+        {isStartSurvey && <Surveys userType={'teacher'} />}
       </main>
 
       <div style={{ padding: '0 2.4em' }}>
