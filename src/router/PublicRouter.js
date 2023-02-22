@@ -16,7 +16,7 @@ const PublicRouter = () => {
       {document.location.pathname !== '/student-survey' && <PublicHeader />}
       <Routes>
         <Route exact path="/" element={<PublicSection />} />
-        <Route element={<PublicGuard />}>
+        {/* <Route element={<PublicGuard />}> */}
           <Route exact path="/share-survey" element={<ShareSurvey />} />
           <Route exact path="/professor-survey" element={<ProfessorSurvey />} />
           <Route exact path="/student-survey" element={<StudentSurvey />} />
@@ -24,7 +24,7 @@ const PublicRouter = () => {
           <Route exact path="/not-found" element={<NotFound />} />
           <Route exact path="/completed-survey" element={<CompletedSurvey />} />
           <Route path="*" element={<Navigate to="/not-found" />} />
-        </Route>
+        {/* </Route> */}
       </Routes>
     </>
   );
