@@ -47,10 +47,20 @@
   color: var(--color-secondary);
 }
 
+.important.student {
+  background-color: rgba(25, 0, 255, 0.076);
+  color: var(--color-primary);
+}
+
 .important-text {
   font-size: 14px;
   margin-top: 40px;
   color: var(--color-secondary);
+}
+
+.important-text.student {
+  color: var(--color-primary);
+
 }
 
 .survey-start-button {
@@ -62,6 +72,10 @@
   background-color: var(--color-secondary);
   border: none;
   outline: none;
+}
+
+.survey-start-button.student {
+  background-color: var(--color-primary)
 }
 
 .content-start__back-link {
@@ -171,6 +185,28 @@ input[type='radio']:checked + label:after {
   background-color: var(--color-secondary);
 }
 
+input[type='radio'].student + label:before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  float: left;
+  margin: 0 20px 0 0;
+  border: 1px solid var(--color-primary);
+  border-radius: 100%;
+  background: #fff;
+}
+
+input[type='radio'].student:checked + label:after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  float: left;
+  margin-left: -2.3rem;
+  margin-top: 5.4px;
+  border-radius: 100%;
+  background-color: var(--color-primary);
+}
+
 .surveys__alternatives-container {
   padding: 50px 100px 40px 40px;
 }
@@ -201,6 +237,11 @@ button.form__previous-question:disabled {
   outline: none;
 }
 
+.form__previous-question.student {
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+}
+
 .form__next-question {
   font-size: 12px;
   font-weight: 700;
@@ -213,12 +254,23 @@ button.form__previous-question:disabled {
   outline: none;
 }
 
+.form__next-question.student {
+  font-size: 12px;
+  font-weight: 700;
+  font-family: 'Poppins';
+  color: #fff;
+  padding: 7px 30px;
+  border-radius: 25px;
+  background-color: var(--color-primary);
+  border: none;
+  outline: none;
+}
+
 .completed-survey-container {
   font-family: 'Nunito Sans';
   font-size: 14px;
   text-align: center;
-  padding: 200px 200px;
-  padding-bottom: 220px;
+  padding: 180px 200px;
 }
 
 .text-content__success-message {
