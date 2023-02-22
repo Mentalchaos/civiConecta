@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Fragment } from 'react';
 import SectionsHeader from '../SectionsHeader/SectionsHeader';
 import Categories from '../TeacherSurvey/Categories/Categories';
 import studentImage from '../../assets/images/student-image.png';
@@ -6,94 +6,41 @@ import Button from 'src/components/UI/Button';
 import Question from '../Question/Question';
 import Spinner from '../UI/Spinner';
 import Modal from '../UI/Modal';
-import { getTopics, createTopic, deleteTopic } from '../../services/admin/topics.request';
-import { getSurveys } from '../../services/admin/surveys.request';
+import Visible from '../UI/Visible';
+import useStudentSurvey from './hooks/useStudentSurvey';
 import './StudentSurvey.css';
 
-const StudentSurvey = () => {
-  const [isSurveyVisible, setSurveyVisibility] = useState(false);
-  const [topics, setTopics] = useState([]);
-  const [selectedTopic, setSelectedTopic] = useState(false);
-  const [title, setTitle] = useState('');
-  const [surveys, setSurveys] = useState('');
-  const [showModal, setModal] = useState(false);
-  const [topic, setTopic] = useState('');
-  const [removeTopicModal, setRemoveTopicModal] = useState(false);
-  const [selectValue, setSelectValue] = useState('null');
-  const [fetching, setFetching] = useState(false);
-
-  const buttonDefault = {
+const styles = {
+  button: {
     padding: '5px 35px',
     backgroundColor: 'var(--color-secondary)',
     color: '#fff',
-    borderRadius: 25,
-  };
-
-  const cancelButton = {
+    borderRadius: 25
+  },
+  cancelButton: {
     padding: '5px 35px',
     backgroundColor: '#fff',
     border: '1px solid var(--color-secondary)',
     color: 'var(--color-secondary)',
     borderRadius: 25,
-  };
+  },
+  spinnerWrapper: {
+    textAlign: 'center',
+    display: 'block'
+  },
+  modal: {
+    padding: '20px 40px',
+    marginTop: '50px'
+  },
+  modalInput: { padding: 10 },
+  modalParagraph: { color: 'red' }
+};
 
-  useEffect(() => {
-    const fetchInfo = async () => {
-      const [topics, surveys] = await Promise.all([
-        getTopics().then(r => r.topics),
-        getSurveys('Student').then(r => r.surveys)
-      ]);
-
-      setTopics(topics);
-      setSurveys(surveys);
-    };
-
-    fetchInfo();
-  }, []);
-
-  const topicLength = topics.length ? parseInt(topics[topics.length - 1]?.number + 1) : 1;
-
-  const setTopicAndVisibility = (number, title) => {
-    setSelectedTopic(number);
-    setTitle(title);
-    setSurveyVisibility(true);
-  };
-
-  const createCategory = async () => {
-    setFetching(true);
-
-    const payload = {
-      number: topicLength,
-      title: topic,
-    };
-
-    const response = await createTopic(payload);
-
-    if (!response.ok) {
-      setFetching(false);
-      alert(response.error);
-      console.log(response);
-      return;
-    }
-
-    window.location.reload(true);
-  };
-
-  const removeCategory = async () => {
-    setFetching(true);
-    const response = await deleteTopic(selectValue);
-
-    if (response.ok) {
-      setFetching(false);
-      window.location.reload(true);
-    } else {
-      setFetching(false);
-      console.log(response);
-    }
-  };
+const StudentSurvey = () => {
+  const { states, setters, actions } = useStudentSurvey();
 
   return (
-    <>
+    <Fragment>
       <SectionsHeader image={studentImage} />
       <main className="main-content">
         <div className="header">
@@ -102,76 +49,101 @@ const StudentSurvey = () => {
           </div>
         </div>
 
-        {isSurveyVisible ? (
-          <Question type={'Student'} title={title} surveys={surveys} selectedTopic={selectedTopic} />
-        ) : (
+        <Visible condition={states.isSurveyVisible}>
+          <Question
+            type="Student"
+            title={states.title}
+            surveys={states.surveys}
+            selectedTopic={states.selectedTopic}
+          />
+        </Visible>
+
+        <Visible condition={!states.isSurveyVisible}>
           <div className="categories-container">
-            {fetching && (
-              <div style={{ textAlign: 'center', display: 'block' }}>
+            <Visible condition={states.fetching}>
+              <div style={styles.spinnerWrapper}>
                 <Spinner />
               </div>
-            )}
-
-            {!fetching &&
-              topics.map(item => {
+            </Visible>
+            <Visible condition={!states.fetching}>
+              {states.topics.map(item => {
                 return (
                   <Categories
-                    type={'student'}
+                    type="student"
                     title={item.title}
                     detail={item.detail}
-                    key={`topic-${item.number}`}
-                    onclick={() => setTopicAndVisibility(item.number, item.title)}
+                    key={`topic-${item.id}`}
+                    onclick={() => actions.setTopicAndVisibility(item.number, item.title)}
                   />
                 );
               })}
+            </Visible>
           </div>
-        )}
+        </Visible>
         <div className="buttons-container-fetch">
-          {topics.length < 4 && !isSurveyVisible && (
+          <Visible condition={states.topics.length < 4 && !states.isSurveyVisible}>
             <div className="button-container teacher-survey category-button">
-              <button className="add-button" onClick={() => setModal(true)}>
+              <button className="add-button" onClick={() => setters.setModal(true)}>
                 <p className="add-button-icon">+</p>
                 <p className="add-button-text">Añadir Categoría</p>
               </button>
             </div>
-          )}
-          {!isSurveyVisible && (
+          </Visible>
+
+          <Visible condition={!states.isSurveyVisible}>
             <div className="button-container teacher-survey category-button">
-              <button className="add-button" onClick={() => setRemoveTopicModal(true)}>
+              <button className="add-button" onClick={() => setters.setRemoveTopicModal(true)}>
                 <p className="add-button-icon">-</p>
                 <p className="add-button-text">Eliminar categor&iacute;a</p>
               </button>
             </div>
-          )}
+          </Visible>
         </div>
       </main>
 
-      {showModal && (
-        <Modal style={{ padding: '20px 40px', marginTop: '50px' }}>
+      <Visible condition={states.showModal}>
+        <Modal style={styles.modal}>
           <div>
-            <p>Ingrese el nombre de la categor&iacute;a que desea crear</p>
+            <p>Ingrese el nombre de la categoría que desea crear</p>
             <input
               autoFocus={true}
-              style={{ padding: 10 }}
+              style={styles.modalInput}
               className="modal-input"
-              value={topic}
-              onChange={e => setTopic(e.target.value)}
-            ></input>
+              value={states.topic}
+              onChange={e => setters.setTopic(e.target.value)}
+            />
             <div className="buttons-inputs">
-              <Button text={'Crear'} customStyles={buttonDefault} onClick={() => createCategory()}></Button>
-              <Button text={'Cerrar'} customStyles={cancelButton} onClick={() => setModal(false)}></Button>
+              <Button
+                text="Crear"
+                customStyles={styles.button}
+                onClick={() => actions.createCategory()}
+              />
+              <Button
+                text="Cerrar"
+                customStyles={styles.cancelButton}
+                onClick={() => setters.setModal(false)}
+              />
             </div>
           </div>
         </Modal>
-      )}
-      {removeTopicModal && (
-        <Modal style={{ padding: '20px 40px', marginTop: '50px' }}>
+      </Visible>
+
+      <Visible condition={states.removeTopicModal}>
+        <Modal style={styles.modal}>
           <div>
-            <p>Seleccione la categor&iacute;a que desea eliminar</p>
-            <p style={{ color: 'red' }}>Para eliminar una categoria, ésta no debe tener preguntas asociadas.</p>
-            <select name="select" className="remove-topic-select" onChange={e => setSelectValue(e.target.value)}>
+            <p>
+              Seleccione la categoría que desea eliminar
+            </p>
+            <p style={styles.modalParagraph}>
+              Para eliminar una categoria, ésta no debe tener preguntas asociadas.
+            </p>
+            <select
+              name="select"
+              className="remove-topic-select"
+              onChange={e => setters.setSelectValue(e.target.value)}
+            >
               <option value="null">Seleccionar</option>
-              {topics.map(data => (
+              {states.topics.map(data => (
                 <option key={data.number} value={data.number}>
                   {data.title}
                 </option>
@@ -179,21 +151,21 @@ const StudentSurvey = () => {
             </select>
             <div className="buttons-inputs">
               <Button
-                customStyles={buttonDefault}
-                text={'Eliminar'}
-                disabled={selectValue === null}
-                onClick={() => removeCategory()}
-              >
-                Eliminar
-              </Button>
-              <Button text={'Cerrar'} customStyles={cancelButton} onClick={() => setRemoveTopicModal(false)}>
-                Cerrar
-              </Button>
+                customStyles={styles.button}
+                text="Eliminar"
+                disabled={!states.selectValue}
+                onClick={() => actions.removeCategory()}
+              />
+              <Button
+                text="Cerrar"
+                customStyles={styles.cancelButton}
+                onClick={() => setters.setRemoveTopicModal(false)}
+              />
             </div>
           </div>
         </Modal>
-      )}
-    </>
+      </Visible>
+    </Fragment >
   );
 };
 
