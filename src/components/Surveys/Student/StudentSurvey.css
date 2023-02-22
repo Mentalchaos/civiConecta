@@ -92,29 +92,3 @@
 .student-modal .warning-message {
     color: red;
 }
-
-/* const styles = {
-    button: {
-      padding: '5px 35px',
-      backgroundColor: 'var(--color-secondary)',
-      color: '#fff',
-      borderRadius: 25
-    },
-    cancelButton: {
-      padding: '5px 35px',
-      backgroundColor: '#fff',
-      border: '1px solid var(--color-secondary)',
-      color: 'var(--color-secondary)',
-      borderRadius: 25,
-    },
-    spinnerWrapper: {
-      textAlign: 'center',
-      display: 'block'
-    },
-    modal: {
-      padding: '20px 40px',
-      marginTop: '50px'
-    },
-    modalInput: { padding: 10 },
-    modalParagraph: { color: 'red' }
-  }; */
