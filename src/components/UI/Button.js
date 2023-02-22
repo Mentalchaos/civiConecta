@@ -22,15 +22,16 @@ const Button = ({ text, icon, customStyles, onClick, ...props }) => {
 };
 
 Button.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
   customStyles: PropTypes.object,
   onClick: PropTypes.func.isRequired,
+  children: PropTypes.node
 };
 
 Button.defaultProps = {
   text: 'Boton sin texto :(',
   customStyles: '',
-  onClick: () => null,
+  onClick: () => null
 };
 
 Button.displayName = 'Button';
