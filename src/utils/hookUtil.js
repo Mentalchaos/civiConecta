@@ -1,4 +1,4 @@
-const requestWrapper = (fetcher) => (fn) => async (...args) => {
+const fetchLoading = (fetcher) => (fn) => async (...args) => {
   fetcher(true);
 
   try {
@@ -10,4 +10,4 @@ const requestWrapper = (fetcher) => (fn) => async (...args) => {
   fetcher(false);
 };
 
-export { requestWrapper };
+export { fetchLoading };
