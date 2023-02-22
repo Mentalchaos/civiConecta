@@ -25,9 +25,13 @@ const Categories = ({ title, detail, type, onClick }) => {
 
 Categories.propTypes = {
   title: PropTypes.string.isRequired,
-  detail: PropTypes.string.isRequired,
+  detail: PropTypes.string,
   type: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired
+};
+
+Categories.defaultProps = {
+  detail: ''
 };
 
 export default Categories;

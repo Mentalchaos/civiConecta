@@ -5,17 +5,28 @@
 import PropTypes from 'prop-types';
 import './uiStyles.css';
 
-const Button = ({ text, icon, customStyles, onClick, ...props }) => {
+const Button = ({
+  text,
+  icon,
+  customStyles,
+  onClick,
+  customClasses,
+  children,
+  ...props
+}) => {
+  const cls = ['button', customClasses].join(' ');
+  const content = children || text;
+
   return (
     <div className="button-container">
       <button
         onClick={onClick}
         style={customStyles}
-        className="button"
+        className={cls}
         {...props}
       >
         {icon && <img src={icon} alt="icon" />}
-        {text}
+        {content}
       </button>
     </div>
   );
@@ -25,13 +36,16 @@ Button.propTypes = {
   text: PropTypes.string,
   customStyles: PropTypes.object,
   onClick: PropTypes.func.isRequired,
-  children: PropTypes.node
+  children: PropTypes.node,
+  customClasses: PropTypes.string
 };
 
 Button.defaultProps = {
   text: 'Boton sin texto :(',
-  customStyles: '',
-  onClick: () => null
+  children: null,
+  customClasses: '',
+  onClick: () => null,
+  customStyles: {}
 };
 
 Button.displayName = 'Button';

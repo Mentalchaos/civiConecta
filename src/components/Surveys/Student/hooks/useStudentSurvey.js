@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import * as topicRequest from 'src/services/admin/topics.request';
 import * as surveyRequest from 'src/services/admin/surveys.request';
+import { fetchLoading } from 'src/utils/hookUtil';
 
 const useStudentSurvey = () => {
   const [topics, setTopics] = useState([]);
@@ -12,6 +13,8 @@ const useStudentSurvey = () => {
   const [removeTopicModal, setRemoveTopicModal] = useState(false);
   const [selectValue, setSelectValue] = useState('null');
   const [fetching, setFetching] = useState(false);
+
+  const wrapRequest = fetchLoading(setFetching);
 
   const fetchInfo = async () => {
     const [topics, surveys] = await Promise.all([
@@ -50,13 +53,10 @@ const useStudentSurvey = () => {
       setModal,
       setTopic,
       setRemoveTopicModal,
-      setSelectValue,
-      setFetching
+      setSelectValue
     },
     actions: {
-      async createCategory() {
-        setFetching(true);
-
+      createCategory: wrapRequest(async () => {
         const topicLength = topics.length ?
           Number.parseInt(topics[topics.length - 1]?.number + 1) :
           1;
@@ -69,25 +69,16 @@ const useStudentSurvey = () => {
         const response = await topicRequest.createTopic(payload);
 
         if (!response.ok) {
-          setFetching(false);
           alert(response.error);
           return;
         }
 
-        setFetching(false);
         setModal(false);
         fetchInfo();
-      },
-      async removeCategory() {
-        setFetching(true);
-        const response = await topicRequest.deleteTopic(selectValue);
-
-        if (response.ok) {
-          setFetching(false);
-        } else {
-          setFetching(false);
-        }
-      }
+      }),
+      removeCategory: wrapRequest(async () => {
+        await topicRequest.deleteTopic(selectValue);
+      })
     }
   }
 };
