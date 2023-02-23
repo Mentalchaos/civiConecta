@@ -8,6 +8,11 @@ export const getTopics = () => {
   return http.get(url);
 };
 
+export const getTopic = topicId => {
+  const url = `${BASE_URL}/topics/${topicId}`;
+  return http.get(url)
+};
+
 export const createTopic = (payload) => {
   const url = `${BASE_URL}/topics`;
   return http.post(url, payload);
