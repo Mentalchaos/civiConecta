@@ -14,7 +14,7 @@ const StudentSurvey = () => {
   const { states, setters, actions } = useStudentSurvey();
 
   const handleEditCategory = (topicId) => () => {
-    navigate(`${topicId}/questions`);
+    navigate(`student/${topicId}/questions`);
   };
 
   return (

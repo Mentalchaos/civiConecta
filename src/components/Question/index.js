@@ -1,33 +1,22 @@
-import { Fragment } from 'react';
 import { useParams } from 'react-router-dom';
-import SectionsHeader from '../SectionsHeader/SectionsHeader';
+import Loading from '../UI/Loading';
+import StudentSurveyLayout from 'src/Layouts/StudentSurveyLayout';
 import Question from './Question';
-import studentImage from 'src/assets/images/student-image.png';
+import useQuestion from './hooks/useQuestion';
+import { QuestionContext } from './context';
 
 const QuestionSection = () => {
-  const { surveyId } = useParams();
-  console.log('args', surveyId);
+  const { topicId, surveyType } = useParams();
+  const { states, setters, actions } = useQuestion(topicId, surveyType);
 
   return (
-    <Fragment>
-      <SectionsHeader image={studentImage} />
-      <main className="main-content">
-          <div className="header">
-            <div>
-              <span className="section-title">Encuesta al estudiante</span>
-            </div>
-          </div>
-
-
-
-          {/* <Question
-            type="Student"
-            title={states.title}
-            surveys={states.surveys}
-            selectedTopic={states.selectedTopic}
-          /> */}
-      </main>
-    </Fragment>
+    <QuestionContext.Provider value={{states, setters, actions}}>
+      <StudentSurveyLayout>
+        <Loading isLoading={states.isLoading}>
+          <Question />
+        </Loading>
+      </StudentSurveyLayout>
+    </QuestionContext.Provider>
   );
 };
 
