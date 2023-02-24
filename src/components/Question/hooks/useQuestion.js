@@ -27,7 +27,7 @@ const useQuestion = (topicId, surveyType) => {
 
   useEffect(() => {
     async function fn() {
-      const response = await topicRequest.getTopic(topicId);
+      const response = await topicRequest.getTopic(topicId, surveyType);
       const topic = response.topic;
       const alternatives = createAlternatives(topic.alternatives);
 

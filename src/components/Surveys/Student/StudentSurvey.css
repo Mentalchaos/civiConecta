@@ -79,7 +79,7 @@
     border-radius: 25px
 }
 
-.modal-content.student-modal {
+.modal-content.custom-modal {
     padding: 20px 40px;
     margin-top: 50px;
 }
@@ -89,6 +89,6 @@
     display: block;
 }
 
-.student-modal .warning-message {
+.custom-modal .warning-message {
     color: red;
 }
