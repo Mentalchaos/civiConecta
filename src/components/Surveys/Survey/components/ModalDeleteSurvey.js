@@ -1,13 +1,14 @@
 import { useContext } from 'react';
 import Modal from 'src/components/UI/Modal';
 import Button from 'src/components/UI/Button';
-import { StudentSurveyContext } from '../context';
+import Visible from 'src/components/UI/Visible';
+import { SurveyContext } from '../../context';
 
-const ModalDeleteStudentSurvey = () => {
-  const { states, actions, setters } = useContext(StudentSurveyContext);
+const ModalDeleteSurvey = () => {
+  const { states, actions, setters } = useContext(SurveyContext);
 
   return (
-    <Modal customClass="student-modal">
+    <Modal customClass="custom-modal">
       <div>
         <p>Seleccione la categoría que desea eliminar</p>
         <p className="warning-message">
@@ -25,6 +26,9 @@ const ModalDeleteStudentSurvey = () => {
             </option>
           ))}
         </select>
+        <Visible condition={states.errorMessage}>
+          <p className="warning-message">{states.errorMessage}</p>
+        </Visible>
         <div className="buttons-inputs">
           <Button disabled={!states.selectValue} onClick={() => actions.removeCategory()}>
             Eliminar
@@ -38,4 +42,4 @@ const ModalDeleteStudentSurvey = () => {
   );
 };
 
-export default ModalDeleteStudentSurvey;
+export default ModalDeleteSurvey;
