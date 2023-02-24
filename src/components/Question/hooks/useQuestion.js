@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import * as topicRequest from 'src/services/admin/topics.request';
 import * as surveyRequest from 'src/services/admin/surveys.request';
+import { addUUID } from 'src/utils/uuid';
 
 const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
@@ -36,7 +37,7 @@ const useQuestion = (topicId, surveyType) => {
       setAlternatives(alternatives);
 
       if (topic.questions.length) {
-        setQuestions(topic.questions);
+        setQuestions(topic.questions.map(addUUID));
       }
     }
 
@@ -92,12 +93,11 @@ const useQuestion = (topicId, surveyType) => {
         );
         const question = response.question;
 
-        const payload = {
+        const payload = addUUID({
           id: question.id,
           title,
-          alternatives,
-          number: questions.length + 1
-        };
+          alternatives
+        });
         const newQuestions = [...questions, payload];
         setQuestions(newQuestions);
         reset(topic.alternatives);
