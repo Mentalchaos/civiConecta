@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import arrowBack from 'src/assets/Icons/back.svg';
-import Surveys from './Surveys/Surveys';
+import Surveys from '../Surveys/Surveys';
 import Footer from 'src/components/PublicSection/Footer/index';
 import FirstStep from '../FirstStep/FirstStep';
 import './index.css';

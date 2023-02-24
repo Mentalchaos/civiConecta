@@ -1,6 +1,4 @@
 import React, { useEffect } from 'react';
-import planificationImage from 'src/assets/images/professorSurvey.jpg';
-import studentSurveyImage from 'src/assets/images/student-survey-img.jpeg';
 import surveyIcon from 'src/assets/images/professor-survey-icon.svg';
 import clockIcon from 'src/assets/images/clock-icon.svg';
 import clockIconStudent from 'src/assets/images/student-survey-clock.svg';
@@ -13,11 +11,9 @@ const FirstStep = ({ type, setIsStartSurvey }) => {
 
   return (
     <section className="survey-content__start">
-      <img
-        className="content-start__image"
-        alt="planification image"
-        src={type === 'teacher' ? planificationImage : studentSurveyImage}
-      />
+      <div className="content-start__left">
+        <div className={`image-container ${type}`}></div>
+      </div>
       <article className="content-start__suggestions">
         <header className="content-start__header-text">
           {type === 'teacher' ? (
@@ -68,7 +64,7 @@ const FirstStep = ({ type, setIsStartSurvey }) => {
             )}
           </p>
         </div>
-        <div style={{ textAlign: 'right', marginTop: 40 }}>
+        <div className="firststep-actions">
           <button onClick={() => setIsStartSurvey(true)} className={`survey-start-button ${type}`} type="button">
             Iniciar la encuesta
           </button>
