@@ -4,10 +4,12 @@ import Table from 'src/components/UI/Table';
 import Modal from 'src/components/UI/Modal';
 import CreateTeacher from '../StageAssignment/CreateTeacher/CreateTeacher';
 import Spinner from 'src/components/UI/Spinner';
-import { generateRandomPassword, signUpUserRole, updateActiveUser } from 'src/services/admin/user.request';
+import { assignTeacherToCourse } from 'src/services/admin/establishment.request';
+import { updateActiveUser } from 'src/services/admin/user.request';
+import { throwOnError } from 'src/utils/httpHandler';
+import CopyToClipboard from 'react-copy-to-clipboard';
 
 import './StageDetail.css';
-import CopyToClipboard from 'react-copy-to-clipboard';
 
 const StageDetail = ({ title, courseSelected, institutionSelected }) => {
   const [teacherSelected, setTeacherSelected] = useState(false);
@@ -65,57 +67,39 @@ const StageDetail = ({ title, courseSelected, institutionSelected }) => {
     setDataTeacherSelected(data);
   };
 
-  const addTeacherService = payload => {
-    setFetching(true);
-    signUpUserRole(payload).then(resp => {
-      if (resp.error?.message?.includes('unique')) {
-        setErrorMessage('Email ya existe');
-        setFetching(false);
-      } else {
-        setErrorMessage('');
-        setFetching(false);
-      }
-
-      if (resp.ok) {
-        const { name, email, active } = resp.user;
-        const newUser = { name, email, active };
-        setLetterTeachers([...letterTeachers, newUser]);
-        setShowCreatedUser(true);
-        setFetching(false);
-        setAddTeacher(false);
-      } else {
-        setShowCreatedUser(false);
-        setFetching(false);
-        setAddTeacher(false);
-      }
-    });
-  };
-
   const onHandleAddTeacher = data => {
     const { email, name } = data;
     setFetching(true);
-    generateRandomPassword().then(resp => {
-      if (resp.ok) {
-        setDataUserCreated({ email, password: resp.password });
-        const teacherPayload = {
-          email,
-          name,
-          password: resp.password,
-          workplaces: [
-            {
-              establishment: institutionSelected.number,
-              courses: [
-                {
-                  grade: courseSelected.gradeSelected,
-                  letters: [courseSelected.letter.character],
-                },
-              ],
-            },
-          ],
-        };
-        addTeacherService(teacherPayload);
-      }
-    });
+
+    const payload = {
+      email,
+      name,
+      grade: courseSelected.gradeSelected,
+      letter: courseSelected.letter.character,
+      institution: sessionStorage.getItem('establishmentId')
+    };
+
+    assignTeacherToCourse(payload)
+      .then(throwOnError)
+      .then(response => {
+        const { name, email, active } = response.user;
+        const newUser = { name, email, active };
+        const isTeacherAlreadyAdded = letterTeachers
+          .find(t => t.email === newUser.email);
+
+        setShowCreatedUser(true);
+        setFetching(false);
+        setAddTeacher(false);
+
+        if (!isTeacherAlreadyAdded) {
+          setLetterTeachers([...letterTeachers, newUser]);
+        }
+      })
+      .catch(error => {
+        setErrorMessage(error.message);
+        setShowCreatedUser(false);
+        setFetching(false);
+      });
   };
 
   const handleConfirmAction = () => {
