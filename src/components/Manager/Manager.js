@@ -23,6 +23,12 @@ const Manager = () => {
     setCourseSelected(course);
   };
 
+  if (institutionSelected) {
+    // TODO: remove this after proper institution selecting to detail working corretly
+    sessionStorage.setItem('establishmentId', institutionSelected.id);
+  }
+
+
   return (
     <>
       <SectionsHeader
