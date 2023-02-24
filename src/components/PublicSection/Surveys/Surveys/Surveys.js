@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ModalToFinish from '../ModalToFinish/ModalToFinish';
+import CompletedSurvey from '../ProfessorSurvey/CompletedSurvey/CompletedSurvey';
+import ModalToFinish from '../ProfessorSurvey/ModalToFinish/ModalToFinish';
 
 const questions = [
   {
@@ -85,9 +86,10 @@ const questions = [
   },
 ];
 
-const Surveys = ({ userType = 'student' }) => {
+const Surveys = ({ userType }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showModal, setShowModal] = useState(false);
+  const [isSurveyCompleted, setIsSurveyCompleted] = useState(false);
   const { alternativas, pregunta, preguntaNum } = questions[currentQuestion];
 
   const navigate = useNavigate();
@@ -96,19 +98,25 @@ const Surveys = ({ userType = 'student' }) => {
   useEffect(() => {
     // get survey depending type
     console.log(userType);
+    setIsSurveyCompleted(false);
   }, []);
 
   const handleSendAnswer = () => {
-    if (currentQuestion === questions.length - 1) {
+    if (currentQuestion === questions.length - 1 && userType !== 'student') {
       setShowModal(true);
+      return;
+    } else if (currentQuestion === questions.length - 1 && userType === 'student') {
+      //send answer
+      console.log('survey is completed from student');
+      setIsSurveyCompleted(true);
       return;
     }
     currentQuestion < questions.length && setCurrentQuestion(currentQuestion + 1);
   };
 
   const handleFinishSurvey = () => {
-    console.log('finish survey');
-    navigate('/completed-survey');
+    // navigate('/completed-survey');
+    setIsSurveyCompleted(true);
   };
 
   const handlePreviousQuestion = () => {
@@ -119,10 +127,12 @@ const Surveys = ({ userType = 'student' }) => {
     setShowModal(false);
   };
 
+  if (isSurveyCompleted) return <CompletedSurvey type={userType} />;
+
   return (
     <section className="surveys">
       {showModal && <ModalToFinish closeModal={handleCloseModal} finishSurvey={handleFinishSurvey} />}
-      <article className="surveys__questions-list">
+      <article className={`surveys__questions-list ${userType}`}>
         {questions.map(question => {
           const { preguntaNum } = question;
           const currentQuestionNumber = currentQuestion === preguntaNum - 1 && 'active';

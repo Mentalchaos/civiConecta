@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import smileIcon from 'src/assets/Icons/student-survey-smile.svg';
 import arrow from 'src/assets/Icons/thin-right.svg';
 import warning from 'src/assets/Icons/warning-icon.svg';
+import Footer from '../../Footer';
 import FirstStep from '../FirstStep/FirstStep';
-import Surveys from '../ProfessorSurvey/Surveys/Surveys';
+import Surveys from '../Surveys/Surveys';
 import StudentsHeader from './StudentsHeader';
 import './StudentSurvey.css';
 
@@ -18,7 +19,7 @@ const StudentSurvey = () => {
   return (
     <>
       <StudentsHeader />
-      <main className="survey-content-container">
+      <main className="survey-content-container student">
         {!isStartSurvey && !changeToFirstStep && (
           <div className="students-survey-container">
             <div className="students-left">
@@ -61,6 +62,9 @@ const StudentSurvey = () => {
 
         {isStartSurvey && <Surveys userType={'student'} />}
       </main>
+      <div style={{ padding: '0 2.4em' }}>
+        <Footer />
+      </div>
     </>
   );
 };
