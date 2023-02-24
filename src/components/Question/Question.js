@@ -42,7 +42,7 @@ const Question = () => {
       <Visible condition={states.questions.length}>
         {states.questions.map((question, idx) => {
           return (
-            <div key={question.number} className="edit-question-container custom-question-wrapper">
+            <div key={question.uuid} className="edit-question-container custom-question-wrapper">
               <div className="custom-question__header">
                 <span className="custom-question__title">Pregunta #{idx + 1}: {question.title}</span>
                 <span className="custom-question__delete" onClick={() => actions.deleteQuestion(question.id)}>X</span>
