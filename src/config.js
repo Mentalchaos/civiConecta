@@ -20,4 +20,6 @@ const config = {
   constants
 };
 
+console.log('config', config);
+
 export default config;
