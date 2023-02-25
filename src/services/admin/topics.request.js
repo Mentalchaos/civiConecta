@@ -8,12 +8,17 @@ export const getTopics = () => {
   return http.get(url);
 };
 
+export const getTopic = (topicId, surveyType) => {
+  const url = `${BASE_URL}/topics/${topicId}/${surveyType}`;
+  return http.get(url)
+};
+
 export const createTopic = (payload) => {
   const url = `${BASE_URL}/topics`;
   return http.post(url, payload);
 };
 
-export const deleteTopic = (number) => {
-  const url = `${BASE_URL}/deleteTopic?number=${number}`;
+export const deleteTopic = (topicId) => {
+  const url = `${BASE_URL}/topics/${topicId}`;
   return http.delete(url);
 };
