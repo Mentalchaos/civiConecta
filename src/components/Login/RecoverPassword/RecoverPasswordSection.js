@@ -22,11 +22,8 @@ const RecoverPasswordSection = () => {
       }
 
     const [emailInput, setEmailInput] = useState('');
-    console.log(emailInput);
-    console.log(emailInput.length);
-
     const btnAlert = () => alert('El correo se ha enviado con exito')
-    
+
   return (
     <div className='recover-section'>
         <form className='recover-form'>
