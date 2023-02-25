@@ -1,0 +1,56 @@
+.box-container {
+  margin: auto;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10px 10px 20px;
+  background: #ffffff;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  border: 1px solid transparent;
+  transition: border-color 0.3s ease-in-out;
+  position: relative;
+  width: 70%;
+}
+
+.box__header.unit-box {
+  gap: 15px;
+}
+
+.box__header-number {
+  background-color: var(--color-secondary);
+  color: #fff;
+  padding: 3px 32px;
+  border-radius: 10px;
+  font-weight: 900;
+  font-size: 50px;
+}
+
+.box__header-title {
+  color: var(--color-primary);
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.box__header-documents {
+  margin: 0;
+}
+
+.delete-unit-button {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--color-secondary);
+  border: 1px solid var(--color-secondary);
+  padding: 3px 20px;
+  border-radius: 25px;
+  font-size: 13px;
+}
+
+.box-link {
+  cursor: pointer;
+  display: block;
+  float: right;
+}
