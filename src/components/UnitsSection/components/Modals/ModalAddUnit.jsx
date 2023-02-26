@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import Modal from 'src/components/UI/Modal';
 import Visible from 'src/components/UI/Visible';
 import Button from 'src/components/UI/Button';
-import { UnitContext } from '../context';
+import { UnitContext } from '../../context';
 import useForm from 'src/hooks/useForm';
 
 const ModalAddUnit = () => {
@@ -23,6 +23,7 @@ const ModalAddUnit = () => {
       grade: states.gradeSelected,
       topicId: values.topicSelected
     };
+    console.log('here ?', payload);
     actions.createUnit(payload);
   };
 
@@ -71,6 +72,7 @@ const ModalAddUnit = () => {
         </div>
         <div className="actions-container">
           <Button
+            type="submit"
             customClasses="custom-button"
             disabled={states.isLoading}
           >

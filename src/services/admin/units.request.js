@@ -17,3 +17,8 @@ export const deleteUnit = (unitId) => {
   const url = `${BASE_URL}/units/${unitId}`;
   return http.delete(url);
 };
+
+export const getUnit = (unitId) => {
+  const url = `${BASE_URL}/units/${unitId}`;
+  return http.get(url);
+};
