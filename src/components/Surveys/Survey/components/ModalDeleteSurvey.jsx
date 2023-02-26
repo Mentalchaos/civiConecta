@@ -7,9 +7,14 @@ import { SurveyContext } from '../../context';
 const ModalDeleteSurvey = () => {
   const { states, actions, setters } = useContext(SurveyContext);
 
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    actions.removeCategory();
+  };
+
   return (
     <Modal customClass="custom-modal">
-      <div>
+      <form onSubmit={handleSubmit}>
         <p>Seleccione la categoría que desea eliminar</p>
         <p className="warning-message">
           Para eliminar una categoria, ésta no debe tener preguntas asociadas.
@@ -30,14 +35,14 @@ const ModalDeleteSurvey = () => {
           <p className="warning-message">{states.errorMessage}</p>
         </Visible>
         <div className="buttons-inputs">
-          <Button disabled={!states.selectValue} onClick={() => actions.removeCategory()}>
+          <Button disabled={!states.selectValue} type="submit">
             Eliminar
           </Button>
           <Button onClick={() => setters.setRemoveTopicModal(false)}>
             Cerrar
           </Button>
         </div>
-      </div>
+      </form>
     </Modal>
   );
 };
