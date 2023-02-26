@@ -3,7 +3,7 @@ import arrowBack from 'src/assets/Icons/back.svg';
 import Surveys from '../Surveys/Surveys';
 import Footer from 'src/components/PublicSection/Footer/index';
 import FirstStep from '../FirstStep/FirstStep';
-import './index.css';
+import '../index.css';
 
 const ProfessorSurvey = () => {
   const [isStartSurvey, setIsStartSurvey] = useState(false);

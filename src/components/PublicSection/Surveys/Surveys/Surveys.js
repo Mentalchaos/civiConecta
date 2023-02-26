@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import CompletedSurvey from '../ProfessorSurvey/CompletedSurvey/CompletedSurvey';
+import CompletedSurvey from '../CompletedSurvey/CompletedSurvey';
 import ModalToFinish from '../ProfessorSurvey/ModalToFinish/ModalToFinish';
 
 const questions = [
