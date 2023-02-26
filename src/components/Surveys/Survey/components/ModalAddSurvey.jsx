@@ -7,9 +7,14 @@ import { SurveyContext } from '../../context';
 const ModalAddSurvey = () => {
   const {states, setters, actions} = useContext(SurveyContext);
 
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    actions.createCategory();
+  };
+
   return (
     <Modal customClass="custom-modal">
-      <div>
+      <form onSubmit={handleSubmit}>
         <p>Ingrese el nombre de la categoría que desea crear</p>
         <input
           autoFocus={true}
@@ -21,14 +26,12 @@ const ModalAddSurvey = () => {
           <p className="warning-message">{states.errorMessage}</p>
         </Visible>
         <div className="buttons-inputs">
-          <Button onClick={actions.createCategory}>
-            Crear
-          </Button>
+          <Button type="submit">Crear</Button>
           <Button onClick={() => setters.setModal(false)}>
             Cerrar
           </Button>
         </div>
-      </div>
+      </form>
     </Modal>
   );
 };

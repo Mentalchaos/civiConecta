@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import Modal from 'src/components/UI/Modal';
 import Button from 'src/components/UI/Button';
 import Visible from 'src/components/UI/Visible';
-import { UnitContext } from '../context';
+import { UnitContext } from '../../context';
 
 const ModalDeleteUnit = () => {
   const { states, setters, actions } = useContext(UnitContext);

@@ -12,6 +12,7 @@ const Button = ({
   onClick,
   customClasses,
   children,
+  type,
   ...props
 }) => {
   const cls = ['button', customClasses].join(' ');
@@ -20,6 +21,7 @@ const Button = ({
   return (
     <div className="button-container">
       <button
+        type={type}
         onClick={onClick}
         style={customStyles}
         className={cls}
@@ -33,6 +35,7 @@ const Button = ({
 };
 
 Button.propTypes = {
+  type: PropTypes.string,
   text: PropTypes.string,
   customStyles: PropTypes.object,
   onClick: PropTypes.func.isRequired,
@@ -41,6 +44,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
+  type: 'button',
   text: 'Boton sin texto :(',
   children: null,
   customClasses: '',
