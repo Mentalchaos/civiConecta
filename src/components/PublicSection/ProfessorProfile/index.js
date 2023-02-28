@@ -3,7 +3,6 @@ import Footer from 'src/components/PublicSection/Footer';
 import ProfessorInfo from './ProfessorInfo.js';
 import StudentNomina from './StudentNomina.js';
 import back from 'src/assets/Icons/back-arrow.svg';
-import CriticalAnswers from './CriticalAnswers';
 
 const ProfessorProfile = () => {
     return (
