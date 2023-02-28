@@ -11,6 +11,20 @@
   gap: 5px;
 }
 
+.planification-title {
+  text-align: left;
+  margin-bottom: 0;
+  color: var(--gray-dark);
+  padding-left: 6rem;
+}
+
+.planification-form__button {
+  padding: 5px 40px;
+  color: #FFFFFF;
+  background-color: var(--color-secondary);
+  border-radius: 20px;
+}
+
 @media (min-width: 1024px) {
   .planification-container {
     margin: auto;
