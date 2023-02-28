@@ -1,7 +1,6 @@
 .students-survey-container {
-  padding: 3em 8em;
   display: flex;
-  margin: 1em;
+  gap: 30px;
 }
 
 .students-left {
