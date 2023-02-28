@@ -1,0 +1,149 @@
+.profile-container {
+    margin: 3em;
+    border: 1px solid black;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.professor-info-container {
+    height: 100%;
+    width: 25%;
+}
+
+.student-nomina-container {
+    width: 55%;
+    height: 100%;
+}
+
+.professor-info-data {
+    border: none;
+    border-radius: 10px;
+    height: 80%;
+    margin: 2em;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    box-shadow: 0px 0px 1.5px 0px grey;
+    padding-top: 2em;
+}
+
+.disguised-input-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    margin-bottom: 1em;
+    background-color: #f1f2f2;
+    border-radius: 10px;
+    padding: .5em;
+}
+
+.disguised-label,
+.disguised-value {
+    margin: 0;
+    font-family: 'Poppins'
+}
+
+.disguised-value {
+    color: gray;
+    cursor: not-allowed;
+}
+
+.disguised-label {
+    color: #e85f7b;
+}
+
+.disguised-inputs-cont {
+    width: 90%;
+}
+
+.professor-info-name {
+    margin: 0;
+    color: #e85f7b;
+    font-weight: 700;
+}
+
+.professor-info-type {
+    margin: 0;
+}
+
+.professor-info-data-cont {
+    margin-bottom: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.student-tablehead,
+.student-tablebody {
+    display: flex;
+    padding: 0 2em;
+}
+
+.student-tablehead {
+    border-bottom: 1.7px solid #80808029
+}
+
+.student-tablebody-values,
+.student-tablehead-values
+ {
+    font-size: 13px;
+    font-family: 'Poppins';
+}
+
+.student-tablehead-values {
+    color: #e85f7b;
+}
+
+.student-tablehead-values:nth-child(1),
+.student-tablebody-values:nth-child(1) {
+    width: 10%;
+}
+
+.student-tablehead-values:nth-child(2),
+.student-tablebody-values:nth-child(2) {
+   width: 30%;
+}
+
+.student-tablehead-values:nth-child(3),
+.student-tablebody-values:nth-child(3) {
+    width: 20%;
+}
+
+.student-tablehead-values:nth-child(4),
+.student-tablebody-values:nth-child(4) {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+}
+
+.student-tablebody-values:nth-child(4){
+    background: #fbd0d9;
+    color: #e8617c;
+    display: flex;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.student-tablehead-values:nth-child(5),
+.student-tablebody-values:nth-child(5) {
+    width: 15%;
+    margin-left: 2em;
+}
+
+.student-nomina-table-container {
+    margin-top: 2em;
+    border-radius: 10px;
+    border: 1.7px solid #80808029;
+}
+
+.student-tablebody {
+    display: flex;
+}
+
+.tbody-cont {
+    height: 382px;
+    overflow-y: auto;
+}
