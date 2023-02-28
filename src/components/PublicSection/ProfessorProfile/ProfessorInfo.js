@@ -2,6 +2,7 @@ import './professor-profile.css';
 import './DisguisedInput.js';
 import DisguisedInput from './DisguisedInput.js';
 import MenuDocenteIcon from 'src/assets/Icons/menu-docente.svg';
+import profile from 'src/assets/Icons/profile-image.svg';
 
 const data = [
   {
@@ -20,7 +21,10 @@ const ProfessorInfo = () => {
   const inputs = data.map(input => <DisguisedInput key={input.label} label={input.label} value={input.value} />);
   return (
     <div className="professor-info-container">
-        <p>Perfil</p>
+        <div className='professor-info-title'>
+          <img className='professor-profile-img' src={profile} />
+          <p>Perfil</p>
+        </div>
         <div className="professor-info-data">
           <div className="professor-info-data-cont">
             <img src={MenuDocenteIcon} />
