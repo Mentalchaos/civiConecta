@@ -1,6 +1,7 @@
 import './professor-profile.css';
 import StudentTableBody from './StudentTableBody.js';
 import listIcon from 'src/assets/Icons/student-list.svg';
+import CriticalAnswers from './CriticalAnswers';
 
 const values = ["Alumno", "Nombre", "Rut", "Encuesta", "Fecha"];
 const tbodyValues = ["01","Eduardo Cossio Brante", "24.040.904-9","Pendiente", "24/08/22"];
@@ -8,6 +9,7 @@ const tbodyValues = ["01","Eduardo Cossio Brante", "24.040.904-9","Pendiente", "
 const StudentNomina = () => {
   return (
     <div className="student-nomina-container">
+      <CriticalAnswers />
       <div className='student-nomina-title'>
         <img className='student-nomina-icon' src={listIcon} />
         <p>Nómina</p>
