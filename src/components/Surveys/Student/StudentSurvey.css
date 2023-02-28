@@ -1,6 +1,7 @@
 .modal-input {
     width: 100%;
     margin: 15px 0;
+    padding: 10px;
 }
 
 .buttons-inputs {
@@ -69,4 +70,25 @@
 .disabled-styles {
     background: #efefef;
     color: #e95f7b;
+}
+
+.buttons-inputs .button {
+    padding: 5px 35px;
+    background-color: var(--color-secondary);
+    color: #FFF;
+    border-radius: 25px
+}
+
+.modal-content.custom-modal {
+    padding: 20px 40px;
+    margin-top: 50px;
+}
+
+.spinner-wrapper {
+    text-align: center;
+    display: block;
+}
+
+.custom-modal .warning-message {
+    color: red;
 }
