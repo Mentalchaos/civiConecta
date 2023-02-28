@@ -1,20 +1,18 @@
 import { useState, useReducer, useEffect } from 'react';
 import * as unitRequest from 'src/services/admin/units.request';
-import createServices from 'src/services/admin/event.request';
+import * as lessonRequest from 'src/services/admin/lesson.request';
 import { fetchLoading } from 'src/utils/hookUtil';
-
-const classEventService = createServices(1);
 
 const initialState = {
   id: null,
   title: '',
   number: null,
-  description: ''
+  description: '',
+  lessons: []
 };
 
 const modalState = {
-  addClass: false,
-  removeClass: false
+  addLesson: false
 };
 
 const reduceModals = (state, action) => {
@@ -22,7 +20,7 @@ const reduceModals = (state, action) => {
     case 'MODAL_ADD':
       return {
         ...state,
-        addClass: action.payload
+        addLesson: action.payload
       };
   }
 
@@ -37,7 +35,18 @@ const reduceUnit = (state, action) => {
         id: action.payload.id,
         title: action.payload.title,
         number: action.payload.number,
-        description: action.payload.description
+        description: action.payload.description,
+        lessons: action.payload.lessons
+      };
+    case 'UNIT_DELETE_LESSON':
+      return {
+        ...state,
+        lessons: state.lessons.filter(c => c.id !== action.payload)
+      };
+    case 'UNIT_ADD_LESSON':
+      return {
+        ...state,
+        lessons: [...state.lessons, action.payload]
       };
   }
 
@@ -64,30 +73,38 @@ const useUnitManager = (unitId) => {
   const self = {
     states: {
       isLoading,
-      title: state.title,
-      number: state.number,
-      description: state.description,
-      modalAddOpened: modals.addClass
+      modalAddOpened: modals.addLesson,
+      unit: {
+        id: state.id,
+        title: state.title,
+        number: state.number,
+        description: state.description,
+        lessons: state.lessons
+      }
     },
     setters: {
-      openModalAddClass() {
+      openModalAddLesson() {
         modalDispatcher({ type: 'MODAL_ADD', payload: true });
       },
-      closeModalAddClass() {
-        console.log('trying to close modal');
+      closeModalAddLesson() {
         modalDispatcher({ type: 'MODAL_ADD', payload: false });
       }
     },
     actions: {
-      addClass: wrapRequest(async (payload) => {
-        const response = await classEventService.createEvent(payload);
+      addLesson: wrapRequest(async (payload) => {
+        const response = await lessonRequest.createLesson(payload);
 
         if (!response.ok) {
           console.error(response.error);
           return Promise.reject();
         }
 
-        self.setters.closeModalAddClass();
+        dispatcher({ type: 'UNIT_ADD_LESSON', payload: response.lesson });
+        self.setters.closeModalAddLesson();
+      }),
+      deleteLesson: wrapRequest(async (lessonId) => {
+        dispatcher({ type: 'UNIT_DELETE_LESSON', payload: lessonId });
+        await lessonRequest.deleteLesson(lessonId);
       })
     }
   };

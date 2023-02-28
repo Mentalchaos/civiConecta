@@ -5,7 +5,8 @@ import Visible from 'src/components/UI/Visible';
 import Button from 'src/components/UI/Button';
 import UnitWrapper from './components/UnitWrapper';
 import UnitHeader from './components/UnitHeader';
-import ModalAddClass from './components/Modals/ModalAddClass';
+import Lesson from './components/Lesson';
+import ModalAddLesson from './components/Modals/ModalAddLesson';
 import useUnitManager from './hooks/useUnitManager';
 import { UnitManagerContext } from './context';
 import './UnitManager.css';
@@ -20,28 +21,38 @@ const UnitManager = () => {
         <UnitWrapper customClass="w100">
           <Loading isLoading={states.isLoading}>
             <UnitHeader
-              number={states.number}
-              title={states.title}
-              description={states.description}
+              number={states.unit.number}
+              title={states.unit.title}
+              description={states.unit.description}
             />
           </Loading>
         </UnitWrapper>
-        <Visible condition={true}>
+        <Visible condition={!states.unit.lessons.length}>
           <h2 className="no-classes">
             Unidad no registra clases.
           </h2>
         </Visible>
+        <Visible condition={states.unit.lessons.length}>
+          {states.unit.lessons.map((lesson) => (
+            <Lesson
+              key={lesson.id}
+              id={lesson.id}
+              number={lesson.number}
+              objective={lesson.objective}
+            />
+          ))}
+        </Visible>
         <div className="add_button-container">
           <Button
             className="custom-button"
-            onClick={setters.openModalAddClass}
+            onClick={setters.openModalAddLesson}
             disabled={states.isLoading}
           >
             Crear clase
           </Button>
         </div>
         <Visible condition={states.modalAddOpened}>
-          <ModalAddClass />
+          <ModalAddLesson />
         </Visible>
       </UnitLayout>
     </UnitManagerContext.Provider>
