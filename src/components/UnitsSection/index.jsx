@@ -15,7 +15,6 @@ const UnitsSection = () => {
 
   const handleLevelSelected = ({ target }) => {
     const value = target.value;
-    setters.setGradeSelected(value);
     actions.getUnits(value);
   };
 

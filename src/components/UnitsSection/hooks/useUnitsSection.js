@@ -76,12 +76,14 @@ const useUnitsSection = () => {
           return setError(response.error);
         }
 
+        console.log('response', response);
         setOpenModalAddUnit(false);
         setError('');
-        self.actions.getUnits(gradeSelected);
+        setUnits([...units, response.unit]);
       }),
       getUnits: wrapRequest(async (grade) => {
         const response = await unitRequest.getUnitsByGrade(grade);
+        setGradeSelected(grade);
         setUnits(response.units);
       }),
       deleteUnit: wrapRequest(async () => {
@@ -91,9 +93,10 @@ const useUnitsSection = () => {
           return setError(response.error);
         }
 
+        const filteredUnits = units.filter(u => u.id != unitSelected);
+        setUnits(filteredUnits);
         setError('');
         setOpenModalDeleteUnit(false);
-        self.actions.getUnits();
       })
     }
   };

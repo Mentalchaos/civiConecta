@@ -229,7 +229,7 @@ const PlanningForm = ({
 };
 
 PlanningForm.propTypes = {
-  unit: PropTypes.number.isRequired,
+  unit: PropTypes.number,
   fetching: PropTypes.bool,
   handleHiddeModal: PropTypes.func.isRequired,
   onHandleSubmit: PropTypes.func.isRequired,
@@ -240,7 +240,8 @@ PlanningForm.propTypes = {
 
 PlanningForm.defaultProps = {
   needObjectives: false,
-  needDescription: false
+  needDescription: false,
+  unit: null
 };
 
 export default PlanningForm;

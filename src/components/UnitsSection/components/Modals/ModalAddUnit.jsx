@@ -23,7 +23,6 @@ const ModalAddUnit = () => {
       grade: states.gradeSelected,
       topicId: values.topicSelected
     };
-    console.log('here ?', payload);
     actions.createUnit(payload);
   };
 
