@@ -11,7 +11,7 @@ const Welcome = () => {
     <div className="welcome-section">
       <div className="welcome-container">
         <div className="left-container">
-          <h3>¡Bienvenido/a {cookiesData.name}!</h3>
+          <h3>¡Hola {cookiesData.name}!</h3>
           <p className="p-1">
             Ya eres parte de la Civicomunidad, aquí encontrarás todos los recursos que necesitas para tus clases de
             Orientación. Esperamos contribuir en tu labor como docente a cargo de un curso. No dudes en contactarnos si
