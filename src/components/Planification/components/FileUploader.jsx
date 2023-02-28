@@ -1,8 +1,9 @@
-import { useContext } from 'react';
+import { useContext, useRef } from 'react';
 import { PlanificationContext } from '../context';
 
 const FileUploader = () => {
   const { states, actions } = useContext(PlanificationContext);
+  const fileRef = useRef();
 
   const handleUpload = (evt) => {
     if (!evt.target.files[0]?.name) {
@@ -10,14 +11,13 @@ const FileUploader = () => {
     }
 
     actions.uploadFile(evt.target.files[0]);
+    fileRef.current.value = '';
   };
 
   return (
     <div className="file-upload">
-      {states.files.map(f => {
-        return <div key={f.uuid}>{f.name}</div>;
-      })}
       <input
+        ref={fileRef}
         onChange={handleUpload}
         type="file"
       />
