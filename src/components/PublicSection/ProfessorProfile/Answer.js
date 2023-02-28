@@ -1,15 +1,22 @@
+import arrow from 'src/assets/Icons/open-arrow.svg';
 
-const Answer = () => {
+
+const Answer = ({question, status}) => {
   return (
-    <div>
+    <div className="answer-container">
       <div>
-        <p>1.- ¿Cómo calificarías tu capacidad para reconocer tus cualidades y habilidades...</p>
+        <p>{question}</p>
       </div>
-      <div>
-        <img />
-        <p>Requiere atención</p>
+      <div className="answer-container-alert">
+        <div className="answer-alert-icon">
+          <p>!</p>
+        </div>
+        <p className='answer-status'>{status}</p>
       </div>
-      <div></div>
+      <button>
+        Ver más
+        <img src={arrow}/>
+      </button>
     </div>
   )
 }

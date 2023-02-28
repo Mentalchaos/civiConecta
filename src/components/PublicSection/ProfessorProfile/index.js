@@ -14,7 +14,6 @@ const ProfessorProfile = () => {
         </button>
         <div className="profile-container">
           <ProfessorInfo />
-          <CriticalAnswers />
           <StudentNomina />
         </div>
           <div style={{ padding: '0 2.4em' }}>
