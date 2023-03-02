@@ -5,7 +5,7 @@ import { SurveyContext } from './context';
 
 const createSurveyType = (surveyType, Layout) => () => {
   const navigate = useNavigate();
-  const { states, setters, actions } = useSurvey();
+  const { states, setters, actions } = useSurvey(surveyType);
 
   const handleEditCategory = (topicId) => () => {
     navigate(`${surveyType}/${topicId}/questions`);
@@ -19,6 +19,5 @@ const createSurveyType = (surveyType, Layout) => () => {
     </SurveyContext.Provider>
   );
 };
-
 
 export default createSurveyType;

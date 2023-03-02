@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import * as topicRequest from 'src/services/admin/topics.request';
 import { fetchLoading } from 'src/utils/hookUtil';
 
-const useSurvey = () => {
+const useSurvey = (surveyType) => {
   const [topics, setTopics] = useState([]);
   const [selectedTopic, setSelectedTopic] = useState(false);
   const [title, setTitle] = useState('');
@@ -16,7 +16,7 @@ const useSurvey = () => {
   const wrapRequest = fetchLoading(setFetching);
 
   const fetchInfo = async () => {
-    const response = await topicRequest.getTopics();
+    const response = await topicRequest.getTopics(surveyType);
     setTopics(response.topics);
   };
 
@@ -51,7 +51,7 @@ const useSurvey = () => {
     actions: {
       createCategory: wrapRequest(async () => {
         const payload = { title: topic };
-        const response = await topicRequest.createTopic(payload);
+        const response = await topicRequest.createTopic(payload, surveyType);
 
         if (!response.ok) {
           return setErrorMessage(response.error);
