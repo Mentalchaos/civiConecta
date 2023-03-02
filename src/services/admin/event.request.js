@@ -19,29 +19,20 @@ const createServices = (eventType) => {
     return http.post(url, payload);
   };
 
-  const updateEvent = (number, grade, payload) => {
-    const qs = new QueryString()
-      .add('grade', grade)
-      .add('number', number)
-      .add('eventType', eventType);
-
-    const url = `${BASE_URL}/events?${qs.query}`;
-    return http.put(url, payload);
-  };
-
-  const deleteEvent = (number, grade) => {
-    const qs = new QueryString()
-      .add('number', number)
-      .add('grade', grade);
-
-    const url = `${BASE_URL}/events?${qs.query}`;
+  const deleteEvent = (eventId) => {
+    const url = `${BASE_URL}/events/${eventId}`;
     return http.delete(url);
   };
 
+  const getEventById = (eventId) => {
+    const url = `${BASE_URL}/events/${eventId}`;
+    return http.get(url);
+  };
+
   return {
+    getEventById,
     getEventsByGrade,
     createEvent,
-    updateEvent,
     deleteEvent
   };
 };

@@ -1,34 +1,46 @@
 import { useState, useEffect } from 'react';
 import * as unitRequest from 'src/services/admin/units.request';
-import { getGrades } from 'src/services/admin/grades.request';
-import { throwOnError } from 'src/utils/httpHandler';
-import { getUnits } from 'src/services/public/unit.request';
+import * as gradeRequest from 'src/services/admin/grades.request';
+import * as topicRequest from 'src/services/admin/topics.request';
+import { fetchLoading } from 'src/utils/hookUtil';
 
 const useUnitsSection = () => {
   const [error, setError] = useState('');
   const [grades, setGrades] = useState([]);
   const [units, setUnits] = useState([]);
+  const [topics, setTopics] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [gradeSelected, setGradeSelected] = useState('');
+  const [unitSelected, setUnitSelected] = useState(null);
   const [openModalAddUnit, setOpenModalAddUnit] = useState(false);
+  const [openModalDeleteUnit, setOpenModalDeleteUnit] = useState(false);
+
+  const wrapRequest = fetchLoading(setIsLoading);
 
   useEffect(() => {
-    getGrades()
-      .then(resp => {
-        if (resp.ok) {
-          setGrades(resp.grades);
-        }
-      });
+    async function fn() {
+      const [grades, topics] = await Promise.all([
+        gradeRequest.getGrades().then(r => r.grades),
+        topicRequest.getTopics().then(r => r.topics)
+      ]);
+
+      setGrades(grades);
+      setTopics(topics);
+    }
+
+    fn();
   }, []);
 
-  return {
+  const self = {
     states: {
       error,
       grades,
+      topics,
       units,
       isLoading,
       gradeSelected,
       openModalAddUnit,
+      openModalDeleteUnit,
       get unitsWithinGrade() {
         return !isLoading && units?.length > 0 && gradeSelected;
       },
@@ -52,37 +64,44 @@ const useUnitsSection = () => {
       setUnits,
       setIsLoading,
       setGradeSelected,
-      setOpenModalAddUnit
+      setOpenModalAddUnit,
+      setOpenModalDeleteUnit,
+      setUnitSelected
     },
     actions: {
-      createUnit(payload) {
-        setIsLoading(true);
+      createUnit: wrapRequest(async (payload) => {
+        const response = await unitRequest.createUnit(payload);
 
-        unitRequest.createUnit(payload)
-          .then(throwOnError)
-          .then(() => {
-            setOpenModalAddUnit(false);
-            getUnits(gradeSelected);
-          })
-          .catch((error) => {
-            console.error(error.message);
-            setError(error.message);
-          })
-          .then(() => {
-            setIsLoading(false);
-          });
-      },
-      getUnits(grade) {
-        setIsLoading(true);
+        if (!response.ok) {
+          return setError(response.error);
+        }
 
-        unitRequest.getUnitsByGrade(grade)
-          .then(response => {
-            setUnits(response.units);
-            setIsLoading(false);
-          });
-      }
+        console.log('response', response);
+        setOpenModalAddUnit(false);
+        setError('');
+        setUnits([...units, response.unit]);
+      }),
+      getUnits: wrapRequest(async (grade) => {
+        const response = await unitRequest.getUnitsByGrade(grade);
+        setGradeSelected(grade);
+        setUnits(response.units);
+      }),
+      deleteUnit: wrapRequest(async () => {
+        const response = await unitRequest.deleteUnit(unitSelected);
+
+        if (!response.ok) {
+          return setError(response.error);
+        }
+
+        const filteredUnits = units.filter(u => u.id != unitSelected);
+        setUnits(filteredUnits);
+        setError('');
+        setOpenModalDeleteUnit(false);
+      })
     }
   };
+
+  return self;
 };
 
 export default useUnitsSection;

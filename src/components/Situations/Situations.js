@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import Planification from '../Planification/Planification.js';
-import PlanningForm from '../UI/PlanningForm.js';
+import PlanningForm from 'src/components/UI/PlanningForm';
 import Items from './Items/index.js';
-import Spinner from '../UI/Spinner.js';
-import Button from '../UI/Button.js';
-import Modal from '../UI/Modal.js';
+import Spinner from 'src/components/UI/Spinner';
+import Button from 'src/components/UI/Button';
+import Modal from 'src/components/UI/Modal';
 import config from 'src/config';
 import createServices from 'src/services/admin/event.request';
 import { deleteFileByExceptionAndGrade, uploadFileByExceptionAndGrade } from 'src/services/admin/files.request.js';

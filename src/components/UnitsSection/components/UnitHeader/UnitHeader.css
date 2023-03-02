@@ -1,0 +1,18 @@
+.box__header.unit-box {
+  gap: 15px;
+}
+
+.box__header-number {
+  background-color: var(--color-secondary);
+  color: #fff;
+  padding: 3px 32px;
+  border-radius: 10px;
+  font-weight: 900;
+  font-size: 50px;
+}
+
+.box__header-title {
+  color: var(--color-primary);
+  font-size: 20px;
+  font-weight: 900;
+}

@@ -7,7 +7,9 @@ import Sidebar from 'src/components/Sidebar/Sidebar';
 import Situations from 'src/components/Situations/Situations';
 import StudentSurvey from 'src/components/Surveys/Student';
 import TeacherSurvey from 'src/components/Surveys/Teacher';
-import UnitsSection from 'src/components/UnitsSection/UnitsSection';
+import UnitsSection from 'src/components/UnitsSection';
+import UnitManager from 'src/components/UnitsSection/UnitManager';
+import Planification from 'src/components/Planification';
 import { StudentQuestionSection, TeacherQuestionSection } from 'src/components/Question';
 import { AdminGuard } from './guard/admin.guard';
 
@@ -19,10 +21,12 @@ const AdminRouter = () => {
         <Route element={<AdminGuard />}>
           <Route path="*" element={<Main />} />
           <Route path="dashboard" element={<Main />} />
+          <Route path="lesson/:lessonId" element={<Planification />} />
           <Route path="teacher-survey/:surveyType/:topicId/questions" element={<TeacherQuestionSection />} />
           <Route path="student-survey/:surveyType/:topicId/questions" element={<StudentQuestionSection />} />
           <Route path="student-survey" element={<StudentSurvey />} />
           <Route path="teacher-survey" element={<TeacherSurvey />} />
+          <Route path="units/:unitId" element={<UnitManager />} />
           <Route path="units" element={<UnitsSection />} />
           <Route path="manager" element={<Manager />} />
           <Route path="situations" element={<Situations />} />
