@@ -4,6 +4,13 @@ import QueryString from '../helpers/QueryString';
 
 const BASE_URL = config.baseURL;
 
+
+export const uploadByLesson = (lessonId, formData) => {
+  const url = `${BASE_URL}/files/lessons/${lessonId}`;
+  return http.upload(url, formData);
+};
+
+
 // Files para clases de unidades
 export const uploadFileByClassUnitAndGrade = (classNumber, unit, grade, file) => {
   const qs = new QueryString()

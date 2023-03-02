@@ -1,0 +1,25 @@
+.event-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-info {
+  text-align: left;
+}
+
+.header-info .class-title {
+  margin: 0;
+  color: var(--color-primary);
+}
+
+.header-info .class-title-events {
+  font-size: 25px;
+  margin: 0;
+  color: var(--color-secondary);
+}
+
+.event-header .icon-back-to {
+  cursor: pointer;
+  float: right;
+}
