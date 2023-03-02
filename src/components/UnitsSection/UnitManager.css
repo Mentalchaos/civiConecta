@@ -1,0 +1,22 @@
+.add_button-container {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.custom-button {
+  background-color: var(--color-secondary);
+  padding: 5px 20px;
+  color: #fff;
+  border-radius: 20px;
+}
+
+.no-classes {
+  text-align: center;
+  color: var(--gray-dark);
+}
+
+.custom-modal.add {
+  padding: 20px 60px;
+  margin-top: 50px;
+  width: 60%
+}

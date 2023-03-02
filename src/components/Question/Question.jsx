@@ -44,7 +44,7 @@ const Question = () => {
           return (
             <div key={question.uuid} className="edit-question-container custom-question-wrapper">
               <div className="custom-question__header">
-                <span className="custom-question__title">Pregunta #{idx + 1}: {question.title}</span>
+                <span className="custom-question__title">Pregunta #{idx + 1}: {question.description}</span>
                 <span className="custom-question__delete" onClick={() => actions.deleteQuestion(question.id)}>X</span>
               </div>
               <div className="custom-question__body">

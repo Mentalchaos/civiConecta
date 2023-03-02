@@ -5,7 +5,7 @@ import { addUUID } from 'src/utils/uuid';
 
 const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-const useQuestion = (topicId, surveyType) => {
+const useQuestion = (topicId) => {
   const [isLoading, setIsLoading] = useState(true);
   const [topic, setTopic] = useState({});
   const [alternatives, setAlternatives] = useState([]);
@@ -28,7 +28,7 @@ const useQuestion = (topicId, surveyType) => {
 
   useEffect(() => {
     async function fn() {
-      const response = await topicRequest.getTopic(topicId, surveyType);
+      const response = await topicRequest.getTopic(topicId);
       const topic = response.topic;
       const alternatives = createAlternatives(topic.alternatives);
 
@@ -85,8 +85,7 @@ const useQuestion = (topicId, surveyType) => {
         setAlternatives(newAlternatives);
       },
       async saveSurvey() {
-        const response = await surveyRequest.saveSurvey(
-          surveyType,
+        const response = await topicRequest.addQuestion(
           topicId,
           title,
           alternatives

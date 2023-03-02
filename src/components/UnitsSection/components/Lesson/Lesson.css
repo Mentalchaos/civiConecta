@@ -1,0 +1,39 @@
+.class-box {
+  margin-top: 10px;
+  transition: border-color 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px 10px 10px 20px;
+  border: 1px solid transparent;
+  position: relative;
+}
+
+.class-box__delete {
+  position: absolute;
+  cursor: pointer;
+  top: 10px;
+  right: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--color-secondary);
+}
+
+.class-box__title {
+  margin: 0;
+  font-size: 20px;
+  color: var(--color-primary);
+  font-weight: 900;
+}
+
+.class-box__documents {
+  font-size: 14px;
+}
+
+.box-link {
+  cursor: pointer;
+  display: block;
+  float: right;
+}

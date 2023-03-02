@@ -1,0 +1,22 @@
+.box__header-documents {
+  margin: 0;
+}
+
+.delete-unit-button {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  color: var(--color-secondary);
+  border: 1px solid var(--color-secondary);
+  padding: 3px 20px;
+  border-radius: 25px;
+  font-size: 13px;
+}
+
+.box-link {
+  cursor: pointer;
+  display: block;
+  float: right;
+}

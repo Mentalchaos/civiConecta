@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import Button from 'src/components/UI/Button';
 import Spinner from 'src/components/UI/Spinner';
-import Table from 'src/components/UI/Table.js';
+import Table from 'src/components/UI/Table';
 import Visible from 'src/components/UI/Visible';
 import GradeLetter from './GradeLetter.js';
 import useStateAssignment from './useStateAssignment.js';
