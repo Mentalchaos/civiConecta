@@ -25,6 +25,23 @@
   border-radius: 20px;
 }
 
+
+.button {
+  padding: 5px 40px;
+  border-radius: 20px;
+}
+
+.primary {
+  color: #FFFFFF;
+  background-color: var(--color-secondary);
+}
+
+.delete {
+  color: var(--color-secondary);
+  border: 1px solid var(--color-secondary);
+  background-color: #FFFFFF;
+}
+
 @media (min-width: 1024px) {
   .planification-container {
     margin: auto;
