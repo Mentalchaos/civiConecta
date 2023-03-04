@@ -10,6 +10,16 @@ export const uploadByLesson = (lessonId, formData) => {
   return http.upload(url, formData);
 };
 
+export const downloadFile = (uuid) => {
+  const url = `${BASE_URL}/files/${uuid}`;
+  return http.download(url);
+};
+
+export const deleteFile = (uuid) => {
+  const url = `${BASE_URL}/files/${uuid}`;
+  return http.delete(url);
+};
+
 
 // Files para clases de unidades
 export const uploadFileByClassUnitAndGrade = (classNumber, unit, grade, file) => {

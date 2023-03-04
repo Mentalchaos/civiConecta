@@ -41,6 +41,14 @@ const http = {
       body: JSON.stringify(payload),
     }).then(toJSON);
   },
+  download(url) {
+    return fetch(url, {
+      method: 'GET',
+      headers: {
+        token: JSON.parse(localStorage.getItem('user')).token
+      }
+    });
+  }
 };
 
 export default http;
