@@ -3,34 +3,18 @@ import Modal from 'src/components/UI/Modal';
 import useForm from 'src/hooks/useForm';
 import './CreateLetter.css';
 
+const buttonStylesCancel = {
+  backgroundColor: '#fff',
+  color: 'var(--color-secondary)',
+  border: '1px solid var(--color-secondary)',
+  padding: '5px 30px',
+  borderRadius: '20px',
+  marginTop: '50px',
+};
+
 const CreateLetter = ({ setShowAddLetter, onHandleAddLetter }) => {
-  const { values, handleInputChange } = useForm({
-    letter: '',
-  });
-
+  const { handleInputChange } = useForm({letter: ''});
   const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
-  const buttonStyles = {
-    background: 'var(--color-secondary)',
-    color: '#fff',
-    padding: '5px 30px',
-    borderRadius: '20px',
-    marginTop: '50px',
-  };
-
-  const buttonStylesCancel = {
-    backgroundColor: '#fff',
-    color: 'var(--color-secondary)',
-    border: '1px solid var(--color-secondary)',
-    padding: '5px 30px',
-    borderRadius: '20px',
-    marginTop: '50px',
-  };
-
-  const handleAddLetter = e => {
-    e.preventDefault();
-    onHandleAddLetter(values);
-    setShowAddLetter(false);
-  };
 
   return (
     <Modal

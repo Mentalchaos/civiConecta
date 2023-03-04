@@ -15,7 +15,7 @@ const Answer = ({question, status}) => {
       </div>
       <button>
         Ver más
-        <img src={arrow}/>
+        <img src={arrow} alt="" />
       </button>
     </div>
   )

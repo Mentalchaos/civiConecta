@@ -22,12 +22,12 @@ const ProfessorInfo = () => {
   return (
     <div className="professor-info-container">
         <div className='professor-info-title'>
-          <img className='professor-profile-img' src={profile} />
+          <img className='professor-profile-img' src={profile} alt="" />
           <p>Perfil</p>
         </div>
         <div className="professor-info-data">
           <div className="professor-info-data-cont">
-            <img src={MenuDocenteIcon} />
+            <img src={MenuDocenteIcon} alt="" />
             <p className="professor-info-name">Catalina Acevedo Setz</p>
             <p className="professor-info-type">Docente</p>
           </div>

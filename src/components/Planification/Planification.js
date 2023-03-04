@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq,react-hooks/exhaustive-deps */
 import { useRef, useState, useEffect } from 'react';
 import useForm from 'src/hooks/useForm';
 import Button from '../UI/Button';

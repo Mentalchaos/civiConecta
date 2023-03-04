@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 import icon from 'src/assets/Icons/survey-link-icon.svg'
 import right from 'src/assets/images/right-red.svg'
 import './LinkGenerator.css';

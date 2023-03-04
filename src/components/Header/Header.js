@@ -1,6 +1,5 @@
 import React from 'react';
 import './Header.css';
-import Notification from './Notification/Notification';
 
 const Header = () => {
   return (

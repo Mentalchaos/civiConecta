@@ -4,7 +4,7 @@ import editArrow from 'src/assets/images/edit-arrow.png';
 import './Categories.css';
 
 const Categories = ({ title, detail, type, onClick }) => {
-  const css = { color: type == 'student' ? '#D9687C' : '' };
+  const css = { color: type === 'student' ? '#D9687C' : '' };
 
   return (
     <div className="category-container" onClick={onClick}>

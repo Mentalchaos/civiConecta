@@ -1,16 +1,12 @@
-import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import successIcon from 'src/assets/images/success-icon.svg';
-
 import '../../index.css';
 
 const TeacherType = () => {
-  const [generatedLink, setGeneratedLink] = useState(false);
   const navigate = useNavigate();
 
   return (
     <article className="completed-survey-container">
-      {!generatedLink && (
         <div className="completed-survey__text-content">
           <div className="text-content__success-message">
             <img src={successIcon} alt="Check icon" width={60} />
@@ -30,18 +26,6 @@ const TeacherType = () => {
             </button>
           </div>
         </div>
-      )}
-      {/* {generatedLink && (
-        <div className="survey-completion">
-          <img src={successIcon} alt="Check icon" width={60} />
-          <span className="completion__text">{'username'}, has completado la encuesta con éxito</span>
-          <div className="completion__actions">
-            <button onClick={() => navigate('/')} type="button" className="actions__button">
-              Ir a la planificación personalizada
-            </button>
-          </div>
-        </div>
-      )} */}
     </article>
   );
 };

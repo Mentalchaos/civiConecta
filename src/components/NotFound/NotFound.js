@@ -29,7 +29,7 @@ const NotFound = () => {
         />
       </div>
       <div className="not-found_image-container">
-        <img src={civiLogo} alt="civi image" />
+        <img src={civiLogo} alt="civiconecta not found" />
       </div>
     </div>
   );

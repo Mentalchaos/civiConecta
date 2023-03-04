@@ -26,7 +26,7 @@ const Units = () => {
         </div>
       </div>
       <div className="img-container">
-        <img className="img-units" src={classImg} />
+        <img className="img-units" src={classImg} alt="" />
       </div>
 
     </section>

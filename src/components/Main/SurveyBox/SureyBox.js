@@ -86,7 +86,6 @@ const BoxContent = ({
 };
 
 const SurveyBox = () => {
-  const [isHover, setIsHover] = useState(false);
   const navigate = useNavigate();
 
   return (

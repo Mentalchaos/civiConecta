@@ -1,4 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Welcome from './Welcome';
 import PlanificationType from './Planification/PlanificationType';
 import PlanificationText from './PlanificationText/PlanificationText';
@@ -11,7 +13,6 @@ import cookie from 'src/utils/cookie';
 import config from 'src/config';
 import './PublicSection.css';
 import Footer from './Footer';
-import { useNavigate } from 'react-router-dom';
 import { getUnits } from 'src/services/public/unit.request';
 
 const planningPrograms = [
@@ -86,12 +87,12 @@ const { PlanificationTypes, UserTypes } = config.constants;
 
 
 const PublicSection = () => {
+  const navigate = useNavigate();
   const [unitsContent, setUnitsContent] = useState([]);
   const [isModalShown, setModalVisibility] = useState(false);
   const [planificationType, setPlanificationType] = useState(PlanificationTypes.CUSTOM);
-  const [wasLinkClicked, setIsLinkClicked] = useState(true);
 
-  const needLinkButton = wasLinkClicked === true && <LinkGenerator data={links.needLink} />;
+  const needLinkButton = <LinkGenerator data={links.needLink} />;
   const standardPlanificationButton = planificationType === PlanificationTypes.CUSTOM && (
     <LinkGenerator
       data={links.standardPlanification}
@@ -105,13 +106,13 @@ const PublicSection = () => {
     />
   );
 
-  const navigate = useNavigate();
-
   useEffect(() => {
     async function getUnitsFromDashboard() {
       const results = await getUnits();
       setUnitsContent(results);
     }
+
+    getUnitsFromDashboard();
   }, []);
 
   useEffect(() => {
@@ -121,6 +122,7 @@ const PublicSection = () => {
       if (dataCookies.role ===  UserTypes.ADMIN) {
         alert('No puede ingresar a esta sección como usuario Administrador');
         navigate('/admin');
+        return;
       }
 
       setTimeout(() => {

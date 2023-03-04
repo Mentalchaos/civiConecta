@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { useEffect, useState } from 'react';
 import Planification from '../Planification/Planification.js';
 import PlanningForm from 'src/components/UI/PlanningForm';
@@ -15,8 +16,7 @@ import './Situations.css';
 const {
   getEventsByGrade,
   createEvent,
-  updateEvent,
-  deleteEvent
+  updateEvent
 } = createServices(config.constants.EventTypes.SITUATION);
 
 

@@ -18,7 +18,8 @@
     "start": "cross-env REACT_APP_BASE_URL=https://civi-server-dev.adaptable.app react-scripts start",
     "build": "REACT_APP_BASE_URL=https://civi-postgres.adaptable.app react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint --ext=js --ext=jsx ."
   },
   "eslintConfig": {
     "extends": [

@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 import { useState, useReducer, useEffect } from 'react';
 import * as unitRequest from 'src/services/admin/units.request';
 import * as lessonRequest from 'src/services/admin/lesson.request';

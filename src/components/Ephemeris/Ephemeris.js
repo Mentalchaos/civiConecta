@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { useEffect, useState } from 'react';
 import EphemerisDoc from './EphemerisDoc/EphemerisDoc';
 import Planification from '../Planification/Planification';
@@ -14,8 +15,7 @@ import './Ephemeris.css';
 const {
   getEventsByGrade,
   createEvent,
-  updateEvent,
-  deleteEvent
+  updateEvent
 } = createServices(config.constants.EventTypes.EPHEMERIS);
 
 
@@ -67,36 +67,6 @@ const Ephemeris = () => {
 
   const handleEphemerisSelected = data => {
     setEphemerisSelected(data);
-  };
-
-  const updateEphemeris = (number, grade, formValues) => {
-    setFetching(true);
-    const { topic, studentMaterials, description, teacherMaterials, startActivity, mainActivity, endActivity, date } =
-      formValues;
-
-    const payload = {
-      ...ephemerisSelected,
-      description,
-      date,
-      planning: {
-        startActivity,
-        mainActivity,
-        endActivity,
-        topic,
-        materials: {
-          teacher: teacherMaterials.toString().trim().split(','),
-          student: studentMaterials.toString().trim().split(','),
-        },
-      },
-    };
-    updateEvent(number, grade, payload).then(resp => {
-      if (resp.ok) {
-        setFetching(false);
-      } else {
-        setFetching(false);
-        console.error(resp.error);
-      }
-    });
   };
 
   const onHandleUpdateEphemeris = values => {

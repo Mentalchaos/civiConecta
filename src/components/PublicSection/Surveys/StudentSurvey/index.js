@@ -28,7 +28,7 @@ const StudentSurvey = () => {
             <div className="students-right">
               <div className="students-text-container">
                 <div className="students-title-container">
-                  <img src={smileIcon} />
+                  <img src={smileIcon} alt="" />
                   <p>¡Hola!</p>
                 </div>
                 <div className="students-info-container">
@@ -40,7 +40,7 @@ const StudentSurvey = () => {
                     <input placeholder="00.000.000-k" />
                   </div>
                   <div className="id-two">
-                    <img src={warning} />
+                    <img src={warning} alt="" />
                     <p>
                       El RUT que ingresaste no coincide con ningún estudiante.
                       <br />
@@ -51,7 +51,7 @@ const StudentSurvey = () => {
                 <div className="students-button">
                   <button onClick={() => setChangeToFirstStep(true)}>
                     Ingresar RUT
-                    <img src={arrow} />
+                    <img src={arrow} alt="" />
                   </button>
                 </div>
               </div>

@@ -1,5 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import CompletedSurvey from '../CompletedSurvey/CompletedSurvey';
 import ModalToFinish from '../ProfessorSurvey/ModalToFinish/ModalToFinish';
 
@@ -90,9 +90,7 @@ const Surveys = ({ userType }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [isSurveyCompleted, setIsSurveyCompleted] = useState(false);
-  const { alternativas, pregunta, preguntaNum } = questions[currentQuestion];
-
-  const navigate = useNavigate();
+  const { alternativas, pregunta } = questions[currentQuestion];
   const typeUser = userType === 'student' ? 'estudiante' : 'docente';
 
   useEffect(() => {
@@ -115,7 +113,6 @@ const Surveys = ({ userType }) => {
   };
 
   const handleFinishSurvey = () => {
-    // navigate('/completed-survey');
     setIsSurveyCompleted(true);
   };
 

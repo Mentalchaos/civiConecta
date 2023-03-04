@@ -12,11 +12,11 @@ const PlanificationType = ({title, textButton}) => {
           </h4>
           <button className="planification-button">
             {textButton}
-            <img src={right} />
+            <img src={right} alt="" />
           </button>
         </div>
         <div className="planification-image">
-          <img className="teacher-image" src={teacher} />
+          <img className="teacher-image" src={teacher} alt="" />
         </div>
       </div>
     </div>

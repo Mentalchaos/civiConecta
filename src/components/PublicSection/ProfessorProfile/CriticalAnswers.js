@@ -20,16 +20,17 @@ const CriticalAnswers = () => {
   return (
     <div className='critical-answers-container'>
       <div className='critical-answers-title'>
-        <img src={criticalIcon}/>
+        <img src={criticalIcon} alt="" />
         <p>Respuestas críticas</p>
       </div>
       <div className='critical-answers-units'>
         {
           criticsData.map(critics => 
-          <Answer
-          question={critics.question}
-          status={critics.status}
-          />)
+            <Answer
+              question={critics.question}
+              status={critics.status}
+            />
+          )
         }
       </div>
     </div>

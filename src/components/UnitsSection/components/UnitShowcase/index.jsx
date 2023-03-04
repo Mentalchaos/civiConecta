@@ -31,6 +31,7 @@ const UnitShowcase = ({ id, number, title, description }) => {
           className="box-link"
           src={arrow}
           width="15px"
+          alt=""
         />
       </div>
     </UnitWrapper>

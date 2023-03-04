@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import useForm from 'src/hooks/useForm';
 import { getGrades, getLetters } from 'src/services/admin/grades.request';

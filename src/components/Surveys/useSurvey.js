@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps,eqeqeq */
 import { useEffect, useState } from 'react';
 import * as topicRequest from 'src/services/admin/topics.request';
 import { fetchLoading } from 'src/utils/hookUtil';

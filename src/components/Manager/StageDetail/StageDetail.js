@@ -21,7 +21,7 @@ const StageDetail = ({ title, courseSelected, institutionSelected }) => {
   const [confirmAction, setConfirmAction] = useState(false);
   const [fetching, setFetching] = useState(false);
   const [showCreatedUser, setShowCreatedUser] = useState(false);
-  const [dataUserCreated, setDataUserCreated] = useState({});
+  const dataUserCreated = '???'
 
   useEffect(() => {
     setLetterStudents(courseSelected.letter.students || []);

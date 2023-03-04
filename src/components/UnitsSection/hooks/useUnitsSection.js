@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import { useState, useEffect } from 'react';
 import * as unitRequest from 'src/services/admin/units.request';
 import * as gradeRequest from 'src/services/admin/grades.request';

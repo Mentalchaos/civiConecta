@@ -11,7 +11,7 @@ const StudentNomina = () => {
     <div className="student-nomina-container">
       <CriticalAnswers />
       <div className='student-nomina-title'>
-        <img className='student-nomina-icon' src={listIcon} />
+        <img className='student-nomina-icon' src={listIcon} alt="" />
         <p>Nómina</p>
       </div>
       <div className="student-nomina-table-container">

@@ -8,7 +8,7 @@ const ProfessorProfile = () => {
     return (
       <>
         <button className='profile-back-container'>
-          <img src={back}/>
+          <img src={back} alt="" />
           Volver
         </button>
         <div className="profile-container">

@@ -8,7 +8,7 @@ import '../Ephemeris.css';
 const EphemerisDoc = ({ grade, handleEphemerisSelected, handleShowPlanning, ephemerisData, getEphemeris }) => {
   const [ephemerisSelected, setEphemerisSelected] = useState(false);
   const [fetching, setFetching] = useState(false);
-  const { title, files, description, number, createdAt, date } = ephemerisData;
+  const { title, files, description, number, date } = ephemerisData;
 
   const styleDefaultButton = {
     padding: '5px 30px',
