@@ -38,6 +38,7 @@ const UnitManager = () => {
               key={lesson.id}
               id={lesson.id}
               number={lesson.number}
+              files={lesson.files}
               objective={lesson.objective}
             />
           ))}
