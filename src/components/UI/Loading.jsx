@@ -10,7 +10,7 @@ const Loading = ({ isLoading, children }) => {
     return <div style={styles}><Spinner /></div>;
   }
 
-  return children;
+  return typeof children === 'function' ? children() : children;
 };
 
 export default Loading;
