@@ -144,22 +144,29 @@ const PublicSection = () => {
       <PlanificationText />
       <div className="planification-cont">
           <PlanificationType
-            textButton={'Personalizar Planificación'}
+            textButton={'Personalizar planificación'}
             title={'Reorganiza la planificación de acuerdo con la realidad de tu curso.'}
             img={planificationCustom}
+            
           />
           <PlanificationType
-            textButton={'Ver Planificacion estandarizada'}
-            title={'Accede a la planificacion estandarizada.'}
+            textButton={'Ver planificación estandarizada'}
+            colorTextBtn={"black"}
+            colorIconRight={'color-icon-black'}
+            title={'Accede a la planificación estandarizada.'}
             img={planificationStandarized}
           />
           <PlanificationType
             textButton={'Generar enlace'}
+            colorTextBtn={"purple"}
+            colorIconRight={'color-icon-purple'}
             title={'Genera el enlace para que tus estudiantes respondan la encuesta.'}
             img={planificationGenerateLink}
           />
           <PlanificationType
             textButton={'Ver progreso'}
+            colorTextBtn={"purple"}
+            colorIconRight={'color-icon-purple'}
             title={'Revisa el progreso de la encuesta de tus estudiantes.'}
             img={planificationProgress}
           />
