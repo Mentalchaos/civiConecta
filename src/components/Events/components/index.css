@@ -1,0 +1,27 @@
+.modal-content.create-event-modal {
+  padding: 20px 40px;
+  margin-top: 50px;
+  height: 680px;
+  width: 700px;
+  text-align: left;
+}
+
+.add-event-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.not-events-text {
+  text-align: center;
+}
+
+.container__modal-actions {
+  display: flex;
+  gap: 30px;
+}
+
+.modal-content.modal-delete-event {
+  padding: 30px 10px;
+  height: 200px;
+  justify-content: space-evenly;
+}

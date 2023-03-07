@@ -253,3 +253,16 @@ input[type='checkbox']:checked+label:after {
   padding-bottom: 10px;
   border-bottom: 1px solid lightgray;
 }
+
+.events-container {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.select-container {
+  text-align: right;
+}
