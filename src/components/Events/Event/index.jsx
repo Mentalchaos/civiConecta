@@ -50,7 +50,7 @@ const Event = ({ eventType, onEditEvent }) => {
                 id={event.id}
                 title={event.title}
                 description={event.description}
-                files={event.files}
+                date={event.date}
               />
             ))}
           </Loading>
