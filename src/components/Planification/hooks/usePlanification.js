@@ -8,6 +8,7 @@ const usePlanification = (lessonId, eventId, eventType) => {
   const [lesson, setLesson] = useState({});
   const [files, setFiles] = useState([]);
   const [file, setFile] = useState(null);
+  const [tableId, setTableId] = useState(crypto.randomUUID());
   const [rowSelected, setRowSelected] = useState(false);
 
   useEffect(() => {
@@ -34,6 +35,7 @@ const usePlanification = (lessonId, eventId, eventType) => {
       rowSelected,
       lesson,
       files,
+      tableId,
       isLoading,
     },
     setters: {},
