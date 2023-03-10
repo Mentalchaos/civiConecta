@@ -9,7 +9,7 @@ export const uploadByLesson = (lessonId, formData) => {
   return http.upload(url, formData);
 };
 
-export const downloadFile = uuid => {
+export const downloadFile = (uuid) => {
   const url = `${BASE_URL}/files/${uuid}`;
   return http.download(url);
 };
