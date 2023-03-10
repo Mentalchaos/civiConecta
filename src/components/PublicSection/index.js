@@ -13,6 +13,11 @@ import './PublicSection.css';
 import Footer from './Footer';
 import { useNavigate } from 'react-router-dom';
 import { getUnits } from 'src/services/public/unit.request';
+import planificationCustom from 'src/assets/images/planification-custom.png';
+import planificationGenerateLink from 'src/assets/images/planification-generate-link.png';
+import planificationProgress from 'src/assets/images/planification-progress.png';
+import planificationStandarized from 'src/assets/images/planification-standarized.png';
+import planificationSurvey from 'src/assets/images/planification-survey.png';
 
 const planningPrograms = [
   {
@@ -138,9 +143,39 @@ const PublicSection = () => {
       <Welcome />
       <PlanificationText />
       <div className="planification-cont">
-        {planificationData.map((data, key) => (
-          <PlanificationType key={key} title={data.title} textButton={data.textButton} />
-        ))}
+          <PlanificationType
+            textButton={'Personalizar planificación'}
+            title={'Reorganiza la planificación de acuerdo con la realidad de tu curso.'}
+            img={planificationCustom}
+            
+          />
+          <PlanificationType
+            textButton={'Ver planificación estandarizada'}
+            colorTextBtn={"black"}
+            colorIconRight={'color-icon-black'}
+            title={'Accede a la planificación estandarizada.'}
+            img={planificationStandarized}
+          />
+          <PlanificationType
+            textButton={'Generar enlace'}
+            colorTextBtn={"purple"}
+            colorIconRight={'color-icon-purple'}
+            title={'Genera el enlace para que tus estudiantes respondan la encuesta.'}
+            img={planificationGenerateLink}
+          />
+          <PlanificationType
+            textButton={'Ver progreso'}
+            colorTextBtn={"purple"}
+            colorIconRight={'color-icon-purple'}
+            title={'Revisa el progreso de la encuesta de tus estudiantes.'}
+            img={planificationProgress}
+          />
+          <PlanificationType
+            textButton={'Ir a la encuesta'}
+            title={'Contesta la encuesta docente.'}
+            img={planificationSurvey}
+          />
+        
       </div>
       <div className="units-cont">
         <UnitsHeader program={planningPrograms[1].program} />

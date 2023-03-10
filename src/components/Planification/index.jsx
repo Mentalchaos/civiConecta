@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import UnitLayout from 'src/Layouts/UnitLayout';
 import Visible from 'src/components/UI/Visible';
 import Table from 'src/components/UI/Table';
+import Button from 'src/components/UI/Button';
 import Header from './components/Header';
 import ObjectiveDescription from './components/ObjectiveDescription';
 import FileUploader from './components/FileUploader';
@@ -22,7 +23,23 @@ const Planification = () => {
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    console.log('asdfasdfasdf');
+    console.warn('not implemented yet');
+  };
+
+  const handleCheckboxSelected = (file) => {
+    actions.selectFile(file);
+  };
+
+  const handleDownload = (evt) => {
+    actions.downloadFile();
+  };
+
+  const handleDelete = () => {
+    if (!window.confirm('Al confirmar, se eliminara el archivo almacenado, desea continuar ?')) {
+      return;
+    }
+
+    actions.deleteFile();
   };
 
   return (

@@ -5,7 +5,7 @@ import { UnitManagerContext } from '../../context';
 import arrow from 'src/assets/Icons/arrow-degree.svg';
 import './Lesson.css';
 
-const Lesson = ({ id, number, objective }) => {
+const Lesson = ({ id, number, objective, files }) => {
   const { actions } = useContext(UnitManagerContext);
   const navigate = useNavigate();
 
@@ -24,7 +24,7 @@ const Lesson = ({ id, number, objective }) => {
       </span>
       <h2 className="class-box__title">Clase {number}</h2>
       <span className="class-box__documents">
-        0 Documentos totales en esta clase.
+        {files.length} Documentos totales en esta clase.
       </span>
       <span>Objetivo: {objective}</span>
 
@@ -38,7 +38,8 @@ const Lesson = ({ id, number, objective }) => {
 Lesson.propTypes = {
   id: PropTypes.number.isRequired,
   number: PropTypes.number.isRequired,
-  objective: PropTypes.string.isRequired
+  objective: PropTypes.string.isRequired,
+  files: PropTypes.array.isRequired
 };
 
 export default Lesson;

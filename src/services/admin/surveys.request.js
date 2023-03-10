@@ -22,3 +22,8 @@ export const deleteQuestion = (questionId) => {
   const url = `${BASE_URL}/surveys/question/${questionId}`;
   return http.delete(url);
 };
+
+export const getSurveyToAnswer = (userType, uuid) => {
+  const url = `${BASE_URL}/feedback/${userType}/${uuid}`
+  return http.get(url);
+};

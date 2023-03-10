@@ -94,7 +94,7 @@ const useQuestion = (topicId) => {
 
         const payload = addUUID({
           id: question.id,
-          title,
+          description: question.description,
           alternatives
         });
         const newQuestions = [...questions, payload];
