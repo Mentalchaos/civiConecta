@@ -23,7 +23,7 @@ const createServices = eventTypeId => {
   };
 
   const getEventById = eventId => {
-    const url = `${BASE_URL}/events/${eventId}`;
+    const url = `${BASE_URL}/events/${eventTypeId}/${eventId}`;
     return http.get(url);
   };
 

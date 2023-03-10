@@ -71,7 +71,6 @@
 
 .important-text.student {
   color: var(--color-primary);
-
 }
 
 .survey-start-button {
@@ -86,7 +85,7 @@
 }
 
 .survey-start-button.student {
-  background-color: var(--color-primary)
+  background-color: var(--color-primary);
 }
 
 .content-start__back-link {

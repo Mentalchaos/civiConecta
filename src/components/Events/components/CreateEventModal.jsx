@@ -6,7 +6,7 @@ import './index.css';
 
 const CreateEventModal = () => {
   const { states, setters, actions } = useContext(EventContext);
-  const type = states.eventType === 2 ? 'situations' : 'ephemeris';
+  const type = states.eventType === 1 ? 'situations' : 'ephemeris';
 
   return (
     <Modal customClass="create-event-modal">

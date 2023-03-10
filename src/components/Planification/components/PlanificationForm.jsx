@@ -11,17 +11,17 @@ const PlanificationForm = ({ type }) => {
 
   const { values, handleInputChange } = useForm({
     topic: planning.topic,
-    keywords: planning.keywords.join(','),
+    keywords: planning.keywords,
     studentMaterials: planning.materials.student.join(','),
     teacherMaterials: planning.materials.teacher.join(','),
     startActivity: planning.startActivity,
     mainActivity: planning.mainActivity,
     endActivity: planning.endActivity,
     description: planning.description,
-    date: planning.date
+    date: planning.date,
   });
 
-  const handleSubmit = (evt) => {
+  const handleSubmit = evt => {
     evt.preventDefault();
 
     const payload = {
@@ -33,7 +33,7 @@ const PlanificationForm = ({ type }) => {
       mainActivity: values.mainActivity,
       endActivity: values.endActivity,
       description: values.description,
-      date: values.date
+      date: values.date,
     };
 
     actions.updatePlanification(payload);
@@ -43,21 +43,11 @@ const PlanificationForm = ({ type }) => {
     <form className="planning-form" onSubmit={handleSubmit}>
       <div className="form-group planning">
         <label>Tema clase:</label>
-        <input
-          type="text"
-          name="topic"
-          value={values.topic}
-          onChange={handleInputChange}
-        />
+        <input type="text" name="topic" value={values.topic} onChange={handleInputChange} />
       </div>
       <div className="form-group planning">
         <label>Palabras clave:</label>
-        <input
-          type="text"
-          name="keywords"
-          value={values.keywords}
-          onChange={handleInputChange}
-        />
+        <input type="text" name="keywords" value={values.keywords} onChange={handleInputChange} />
       </div>
       <div className="form-group planning">
         <label>Materiales:</label>
@@ -82,45 +72,25 @@ const PlanificationForm = ({ type }) => {
       </div>
       <div className="form-group planning">
         <label>Actividad de inicio:</label>
-        <input
-          type="text"
-          name="startActivity"
-          value={values.startActivity}
-          onChange={handleInputChange}
-        />
+        <input type="text" name="startActivity" value={values.startActivity} onChange={handleInputChange} />
       </div>
       <div className="form-group planning">
         <label>Actividad central:</label>
-        <input
-          type="text"
-          name="mainActivity"
-          value={values.mainActivity}
-          onChange={handleInputChange}
-        />
+        <input type="text" name="mainActivity" value={values.mainActivity} onChange={handleInputChange} />
       </div>
       <div className="form-group planning">
         <label>Actividad de cierre:</label>
-        <input
-          type="text"
-          name="endActivity"
-          value={values.endActivity}
-          onChange={handleInputChange}
-        />
+        <input type="text" name="endActivity" value={values.endActivity} onChange={handleInputChange} />
       </div>
       <Visible condition={type === 'ephemeris'}>
         <div className="form-group planning">
           <label>Fecha:</label>
-          <input
-            placeholder="AÑO-MES-DIA"
-            type="text"
-            name="date"
-            value={values.date}
-            onChange={handleInputChange}
-          />
+          <input placeholder="AÑO-MES-DIA" type="text" name="date" value={values.date} onChange={handleInputChange} />
         </div>
       </Visible>
       <div className="form-group button">
         <Button
+          onClick={handleSubmit}
           type="submit"
           disabled={states.isLoading}
           customClasses="planification-form__button"
@@ -132,11 +102,11 @@ const PlanificationForm = ({ type }) => {
 };
 
 PlanificationForm.propTypes = {
-  type: PropTypes.oneOf(['lesson', 'situation', 'ephemeris'])
+  type: PropTypes.oneOf(['lesson', 'situation', 'ephemeris']),
 };
 
 PlanificationForm.defaultProps = {
-  type: 'lesson'
+  type: 'lesson',
 };
 
 export default PlanificationForm;

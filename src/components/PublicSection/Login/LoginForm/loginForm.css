@@ -24,7 +24,7 @@
   transition: all 0.3s ease-in-out;
 }
 
-input[type='text'] {
+input[type='text'].form-input {
   border: 1px solid #7468e2;
 }
 
@@ -40,10 +40,10 @@ input[type='text'] {
 }
 
 .button {
-  padding: 15px !important;
+  padding: 15px;
   margin-top: 5px;
-  border-radius: 10px !important;
-  background-color: #7468e2 !important;
+  border-radius: 10px;
+  background-color: #7468e2;
 }
 
 /* .form-input:focus {
