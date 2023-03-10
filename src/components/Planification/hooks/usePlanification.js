@@ -7,6 +7,8 @@ const usePlanification = (lessonId, eventId, eventType) => {
   const [isLoading, setIsLoading] = useState(false);
   const [lesson, setLesson] = useState({});
   const [files, setFiles] = useState([]);
+  const [file, setFile] = useState(null);
+  const [rowSelected, setRowSelected] = useState(false);
 
   useEffect(() => {
     async function fn() {
@@ -29,12 +31,16 @@ const usePlanification = (lessonId, eventId, eventType) => {
 
   return {
     states: {
+      rowSelected,
       lesson,
       files,
       isLoading,
     },
     setters: {},
     actions: {
+      updatePlanification(payload) {
+        console.log('payload', payload);
+      },
       async uploadFile(fileData) {
         setIsLoading(true);
         const filename = fileData.name;
@@ -52,8 +58,24 @@ const usePlanification = (lessonId, eventId, eventType) => {
           setIsLoading(false);
         }
       },
-      updatePlanification(payload) {
-        console.log('payload', payload);
+      selectFile(file) {
+        setRowSelected(!!file);
+        setFile(file);
+      },
+      async downloadFile() {
+        const response = await fileRequest.downloadFile(file.uuid, file.filename);
+        const content = await response.blob();
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(content);
+        link.download = file.filename;
+        link.click();
+      },
+      async deleteFile() {
+        await fileRequest.deleteFile(file.uuid);
+        setFiles(files.filter(f => f.uuid !== file.uuid));
+        setTableId(crypto.randomUUID());
+        setFile(null);
+        setRowSelected(null);
       },
     },
   };
