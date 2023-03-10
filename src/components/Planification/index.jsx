@@ -26,11 +26,11 @@ const Planification = () => {
     console.warn('not implemented yet');
   };
 
-  const handleCheckboxSelected = (file) => {
+  const handleCheckboxSelected = file => {
     actions.selectFile(file);
   };
 
-  const handleDownload = (evt) => {
+  const handleDownload = evt => {
     actions.downloadFile();
   };
 
@@ -62,6 +62,16 @@ const Planification = () => {
                     dataDisplayed={states.files.map(identity)}
                     dataHeader={['uuid', 'Nombre']}
                   />
+                  <Visible condition={states.rowSelected}>
+                    <div className="content__difused planning-section">
+                      <Button disabled={states.isLoading} onClick={handleDownload} customClasses="button primary">
+                        Descargar
+                      </Button>
+                      <Button disabled={states.isLoading} onClick={handleDelete} customClasses="button delete">
+                        Eliminar
+                      </Button>
+                    </div>
+                  </Visible>
                 </div>
               </Visible>
               <FileUploader />
