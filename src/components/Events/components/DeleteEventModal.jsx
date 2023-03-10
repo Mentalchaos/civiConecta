@@ -25,13 +25,13 @@ const DeleteEventModal = () => {
     >
       <div className="container__modal-actions">
         <Button
-          onClick={() => setters.setOpenModalDeleteEvent(false)}
-          text="Cancelar"
+          onClick={() => actions.deleteEventById(states.eventSelected.id)}
+          text="Continuar"
           customStyles={styles.defaultButton}
         />
         <Button
-          onClick={() => actions.deleteEventById(states.eventSelected.id)}
-          text="Continuar"
+          onClick={() => setters.setOpenModalDeleteEvent(false)}
+          text="Cancelar"
           customStyles={styles.defaultButton}
         />
       </div>

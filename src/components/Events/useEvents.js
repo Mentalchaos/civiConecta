@@ -65,8 +65,14 @@ const useEvents = eventType => {
       }),
       deleteEventById: wrapRequest(async eventId => {
         const response = await createServices(eventType).deleteEvent(eventId);
+
+        if (!response.ok) {
+          return setError(response.error);
+        }
+
+        const filteredEvents = events.filter(event => event.id !== eventSelected.id);
+        setEvents(filteredEvents);
         setOpenModalDeleteEvent(false);
-        console.log(response.event);
       }),
       sortedEvents: arr => {
         const sort = arr.sort(function (a, b) {

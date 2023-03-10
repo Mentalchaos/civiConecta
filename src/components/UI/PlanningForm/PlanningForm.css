@@ -1,8 +1,13 @@
 .planning-form {
-  width: 100%;
+  width: 80%;
+  margin: auto;
 }
 
-.planning-form__button {
+.form-group.planning input {
+  padding: 15px 30px;
+}
+
+.button.planning-form__button {
   background-color: var(--color-secondary);
   color: #fff;
   padding: 5px 20px;
@@ -18,7 +23,7 @@
 
 .planning-form__number {
   width: auto;
-  padding: auto
+  padding: auto;
 }
 
 .w20 {

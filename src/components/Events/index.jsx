@@ -9,7 +9,7 @@ const createEventTypes = (eventType, Layout) => () => {
   const { states, setters, actions } = useEvents(eventType);
 
   const handleEditEvents = eventId => () => {
-    navigate(`lesson/${eventId}`);
+    navigate(`events/${eventType}/${eventId}`);
   };
 
   return (
