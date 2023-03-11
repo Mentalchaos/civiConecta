@@ -144,7 +144,7 @@ p {
 }
 
 .teacher-button-footer p {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Poppins';
   font-size: 12px;
   color: #f1cb57;
 }
@@ -164,7 +164,8 @@ p {
   text-align: initial;
   color: #766ae2;
   font-weight: 700;
-  width: 80%;
+  width: 75%;
+  margin-left: 5px;
 }
 
 .student-button-footer p {

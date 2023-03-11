@@ -87,8 +87,23 @@ const links = {
   },
 };
 
-const { PlanificationTypes, UserTypes } = config.constants;
+const statusData = {
+  status: {
+    survey: {},
+    teacher: {
+      generated: false,
+      completed: false
+    },
+    student: {
+      generated: false,
+      completed: false
+    }
+  }
+}
 
+const { teacher, student } = statusData.status;
+
+const { PlanificationTypes, UserTypes } = config.constants;
 
 const PublicSection = () => {
   const [unitsContent, setUnitsContent] = useState([]);
@@ -144,27 +159,29 @@ const PublicSection = () => {
   }, []);
 
   const closeModal = () => setModalVisibility(false);
-  const modal = isModalShown && <SurveyModal closeModal={closeModal} />;
+  const modal = (isModalShown && !teacher.completed && !student.completed) && <SurveyModal statusData={statusData} closeModal={closeModal} />;
 
   return (
     <div className="public-section-container">
       {modal}
       <Welcome />
-      <PlanificationText />
-      <div className="planification-cont">
-          <PlanificationType
+      { console.log('test',!student.completed || !teacher.completed)}
+      { (!student.completed || !teacher.completed) && <PlanificationText /> }
+      { (!student.completed || !teacher.completed) && <div className="planification-cont">
+      { !teacher.generated && !student.generated && <PlanificationType
             textButton={'Personalizar planificación'}
             title={'Reorganiza la planificación de acuerdo con la realidad de tu curso.'}
             img={planificationCustom}
-
           />
+      }
+        { (!teacher.completed && teacher.generated) &&
           <PlanificationType
-            textButton={'Ver planificación estandarizada'}
-            colorTextBtn={"black"}
-            colorIconRight={'color-icon-black'}
-            title={'Accede a la planificación estandarizada.'}
-            img={planificationStandarized}
+            textButton={'Ir a la encuesta'}
+            title={'Contesta la encuesta docente.'}
+            img={planificationSurvey}
           />
+        }
+        { (teacher.completed && !student.generated) &&
           <PlanificationType
             textButton={'Generar enlace'}
             colorTextBtn={"purple"}
@@ -172,6 +189,8 @@ const PublicSection = () => {
             title={'Genera el enlace para que tus estudiantes respondan la encuesta.'}
             img={planificationGenerateLink}
           />
+        }
+        { (teacher.completed && student.generated) &&
           <PlanificationType
             textButton={'Ver progreso'}
             colorTextBtn={"purple"}
@@ -179,13 +198,16 @@ const PublicSection = () => {
             title={'Revisa el progreso de la encuesta de tus estudiantes.'}
             img={planificationProgress}
           />
-          <PlanificationType
-            textButton={'Ir a la encuesta'}
-            title={'Contesta la encuesta docente.'}
-            img={planificationSurvey}
+        }
+        <PlanificationType
+            textButton={'Ver planificación estandarizada'}
+            colorTextBtn={"black"}
+            colorIconRight={'color-icon-black'}
+            title={'Accede a la planificación estandarizada.'}
+            img={planificationStandarized}
           />
-
       </div>
+      }
       <div className="units-cont">
         <UnitsHeader program={planningPrograms[1].program} />
         <div className="units-components">
@@ -205,7 +227,7 @@ const PublicSection = () => {
               <UnitSituations key={key} title={data.title} />
             ))}
           </div>
-        </div>
+        </div> 
       </div>
       {needLinkButton}
       {standardPlanificationButton}

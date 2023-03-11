@@ -6,7 +6,10 @@ import teacher from 'src/assets/Icons/teacher-white.svg';
 import student from 'src/assets/Icons/student-purple.svg';
 import './SurveyModal.css';
 
-const SurveyModal = ({ closeModal }) => {
+const SurveyModal = ({ closeModal, statusData }) => {
+
+  // Borrar boton de docente o estudiante basandose si la encuesta fue contestada o no
+  const { student  } = statusData;
   const redirect = section => window.location.href = section;
   return (
     <div className='survey-modal-container'>
