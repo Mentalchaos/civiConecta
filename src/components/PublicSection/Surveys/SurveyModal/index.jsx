@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import modalImage from 'src/assets/images/modal-image.png';
 import closeButton from 'src/assets/images/close-popup.svg';
 import teacher from 'src/assets/Icons/teacher-white.svg';
-import student from 'src/assets/Icons/student-purple.svg';
+import studentImg from 'src/assets/Icons/student-purple.svg';
 import './SurveyModal.css';
 
 const SurveyModal = ({ closeModal, statusData }) => {
@@ -40,7 +40,7 @@ const SurveyModal = ({ closeModal, statusData }) => {
             <div className='student-survey-button' onClick={() => redirect('/share-survey')}>
               <div className='student-button-header'>
                 <p>Generar enlace para encuestar estudiantes</p>
-                <img src={student} alt="student" />
+                <img src={studentImg} alt="student" />
               </div>
               <div className='student-button-footer'>
                 <p>Generar enlace</p>
