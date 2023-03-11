@@ -95,6 +95,7 @@ const PublicSection = () => {
   const [isModalShown, setModalVisibility] = useState(false);
   const [planificationType, setPlanificationType] = useState(PlanificationTypes.CUSTOM);
   const [wasLinkClicked, setIsLinkClicked] = useState(true);
+  const [status, setStatus] = useState();
 
   const needLinkButton = wasLinkClicked === true && <LinkGenerator data={links.needLink} />;
   const standardPlanificationButton = planificationType === PlanificationTypes.CUSTOM && (
@@ -118,6 +119,14 @@ const PublicSection = () => {
       setUnitsContent(results);
     }
   }, []);
+
+  useEffect(() => {
+    fetch(`${config.baseURL}/feedback/status/455fd91d-15ac-48b6-8b2a-e75d7891bbab`)
+    .then(d => d.json())
+    .then(data => setStatus(data))
+  }, []);
+
+  console.log('status',status);
 
   useEffect(() => {
     (async () => {
@@ -147,7 +156,7 @@ const PublicSection = () => {
             textButton={'Personalizar planificación'}
             title={'Reorganiza la planificación de acuerdo con la realidad de tu curso.'}
             img={planificationCustom}
-            
+
           />
           <PlanificationType
             textButton={'Ver planificación estandarizada'}
@@ -175,7 +184,7 @@ const PublicSection = () => {
             title={'Contesta la encuesta docente.'}
             img={planificationSurvey}
           />
-        
+
       </div>
       <div className="units-cont">
         <UnitsHeader program={planningPrograms[1].program} />
