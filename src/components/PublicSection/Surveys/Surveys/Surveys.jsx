@@ -17,6 +17,8 @@ const SurveyTypes = {
 
 const Surveys = ({ userType }) => {
   const { states, actions } = useSurvey(userType);
+
+  console.log('states',states);
   // const [currentQuestion, setCurrentQuestion] = useState(0);
   // const [showModal, setShowModal] = useState(false);
   // const [isSurveyCompleted, setIsSurveyCompleted] = useState(false);
