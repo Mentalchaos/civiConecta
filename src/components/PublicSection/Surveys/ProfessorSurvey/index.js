@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import arrowBack from 'src/assets/Icons/back.svg';
 import Surveys from '../Surveys/Surveys';
 import Footer from 'src/components/PublicSection/Footer/index';
