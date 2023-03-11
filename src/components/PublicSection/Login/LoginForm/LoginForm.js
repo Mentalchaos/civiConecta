@@ -23,7 +23,7 @@ const LoginForm = () => {
     font: 'inherit',
     color: 'white',
     padding: '20px 20px',
-    backgroundColor: 'var(--color-secondary)',
+    backgroundColor: 'var(--color-primary)',
     cursor: 'pointer',
     outline: 'none',
     border: 'none',
