@@ -8,9 +8,8 @@ const constants = {
     USER: 'User',
   },
   EventTypes: {
-    CLASS: 1,
-    SITUATION: 2,
-    EPHEMERIS: 3,
+    SITUATION: 1,
+    EPHEMERIS: 2,
   },
 };
 

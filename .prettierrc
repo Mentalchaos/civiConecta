@@ -6,6 +6,6 @@
   "tabWidth": 2,
   "arrowParens": "avoid",
   "bracketSpacing": true,
-  "printWidth": 120
+  "printWidth": 80
 }
 
