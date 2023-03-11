@@ -9,7 +9,7 @@ export const uploadByLesson = (lessonId, formData) => {
   return http.upload(url, formData);
 };
 
-export const downloadFile = (uuid) => {
+export const downloadFile = uuid => {
   const url = `${BASE_URL}/files/${uuid}`;
   return http.download(url);
 };
@@ -20,15 +20,32 @@ export const deleteFile = uuid => {
 };
 
 // Files para clases de unidades
-export const uploadFileByClassUnitAndGrade = (classNumber, unit, grade, file) => {
-  const qs = new QueryString().add('class', classNumber).add('unit', unit).add('grade', grade);
+export const uploadFileByClassUnitAndGrade = (
+  classNumber,
+  unit,
+  grade,
+  file,
+) => {
+  const qs = new QueryString()
+    .add('class', classNumber)
+    .add('unit', unit)
+    .add('grade', grade);
 
   const url = `${BASE_URL}/uploadFileByClassUnitAndGrade?${qs.query}`;
   return http.upload(url, file);
 };
 
-export const deleteFileByClassUnitAndGrade = (classNumber, unit, grade, fileName) => {
-  const qs = new QueryString().add('class', classNumber).add('unit', unit).add('grade', grade).add('file', fileName);
+export const deleteFileByClassUnitAndGrade = (
+  classNumber,
+  unit,
+  grade,
+  fileName,
+) => {
+  const qs = new QueryString()
+    .add('class', classNumber)
+    .add('unit', unit)
+    .add('grade', grade)
+    .add('file', fileName);
 
   const url = `${BASE_URL}/deleteFileByClassUnitAndGrade?${qs.query}`;
   return http.delete(url);
@@ -43,7 +60,10 @@ export const uploadFileByEventAndGrade = (event, grade, file) => {
 };
 
 export const deleteFileByEventAndGrade = (event, grade, fileName) => {
-  const qs = new QueryString().add('event', event).add('grade', grade).add('file', fileName);
+  const qs = new QueryString()
+    .add('event', event)
+    .add('grade', grade)
+    .add('file', fileName);
 
   const url = `${BASE_URL}/deleteFileByEventAndGrade?${qs.query}`;
   return http.delete(url);
@@ -56,8 +76,15 @@ export const uploadFileByExceptionAndGrade = (exception, grade, file) => {
   return http.upload(url, file);
 };
 
-export const deleteFileByExceptionAndGrade = async (exception, grade, fileName) => {
-  const qs = new QueryString().add('exception', exception).add('grade', grade).add('file', fileName);
+export const deleteFileByExceptionAndGrade = async (
+  exception,
+  grade,
+  fileName,
+) => {
+  const qs = new QueryString()
+    .add('exception', exception)
+    .add('grade', grade)
+    .add('file', fileName);
 
   const url = `${BASE_URL}/deleteFileByExceptionAndGrade?${qs.query}`;
   return http.delete(url);
