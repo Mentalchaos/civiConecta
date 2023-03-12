@@ -1,9 +1,12 @@
+import { getFormattedDate } from 'src/utils/date.js';
+import cookie from 'src/utils/cookie';
+import './Welcome.css';
+
+// Imgs
 import calendar from 'src/assets/Icons/calendar-public.svg';
 import school from 'src/assets/Icons/school.svg';
 import cap from 'src/assets/Icons/graduation-cap.svg';
 import man from 'src/assets/images/fraud-protection-hero.png';
-import cookie from 'src/utils/cookie';
-import './Welcome.css';
 
 const Welcome = () => {
   const cookiesData = cookie.getDataParser();
@@ -26,7 +29,7 @@ const Welcome = () => {
           <div className="second-right-container">
             <div className="date-container">
               <img src={calendar} alt="Icono Calendario" />
-              <p>Miércoles 13, Julio 2022</p>
+              <p>{ getFormattedDate()}</p>
             </div>
             <div className="school-container">
               <img src={school} alt="Icono Escuela" />
