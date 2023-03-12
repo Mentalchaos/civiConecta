@@ -87,22 +87,6 @@ const links = {
   },
 };
 
-const statusData = {
-  status: {
-    survey: {},
-    teacher: {
-      generated: false,
-      completed: false
-    },
-    student: {
-      generated: false,
-      completed: false
-    }
-  }
-}
-
-const { teacher, student } = statusData.status;
-
 const { PlanificationTypes, UserTypes } = config.constants;
 
 const PublicSection = () => {
@@ -111,6 +95,8 @@ const PublicSection = () => {
   const [planificationType, setPlanificationType] = useState(PlanificationTypes.CUSTOM);
   const [wasLinkClicked, setIsLinkClicked] = useState(true);
   const [status, setStatus] = useState();
+
+  const { student, teacher } = status || {};
 
   const needLinkButton = wasLinkClicked === true && <LinkGenerator data={links.needLink} />;
   const standardPlanificationButton = planificationType === PlanificationTypes.CUSTOM && (
@@ -138,7 +124,7 @@ const PublicSection = () => {
   useEffect(() => {
     fetch(`${config.baseURL}/feedback/status/455fd91d-15ac-48b6-8b2a-e75d7891bbab`)
     .then(d => d.json())
-    .then(data => setStatus(data))
+    .then(data => setStatus(data.status))
   }, []);
 
   console.log('status',status);
@@ -159,19 +145,30 @@ const PublicSection = () => {
   }, []);
 
   const closeModal = () => setModalVisibility(false);
-  const modal = (isModalShown && !teacher.completed && !student.completed) && <SurveyModal statusData={statusData} closeModal={closeModal} />;
+  const modal = (isModalShown && !teacher.completed && !student.completed) && <SurveyModal statusData={status} closeModal={closeModal} />;  
+
+  const teacherSurvey = () => {
+    fetch(`${config.baseURL}/feedback/teacher/455fd91d-15ac-48b6-8b2a-e75d7891bbab`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      }
+    });
+  }
 
   return (
     <div className="public-section-container">
       {modal}
       <Welcome />
-      { console.log('test',!student.completed || !teacher.completed)}
-      { (!student.completed || !teacher.completed) && <PlanificationText /> }
-      { (!student.completed || !teacher.completed) && <div className="planification-cont">
+
+      { status && (!student.completed || !teacher.completed) && <PlanificationText /> }
+      { status && (!student.completed || !teacher.completed) && <div className="planification-cont">
+      
       { !teacher.generated && !student.generated && <PlanificationType
             textButton={'Personalizar planificación'}
             title={'Reorganiza la planificación de acuerdo con la realidad de tu curso.'}
             img={planificationCustom}
+            onClick={teacherSurvey}
           />
       }
         { (!teacher.completed && teacher.generated) &&
