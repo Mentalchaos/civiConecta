@@ -1,0 +1,96 @@
+.analysis-modal-container {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(116, 104, 226, 0.7);
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.analysis-modal {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  top: 0;
+}
+
+.analysis-modal-content {
+  margin-top: 8rem !important;
+  text-align: center;
+  height: 450px;
+  width: 580px;
+  background: linear-gradient(180deg, #FFFFFF 0%, #e5e5e5 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 10px;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.4);
+}
+
+.analysis-modal-image {
+  width: 173px;
+  position: absolute;
+  top: -56px;
+  right: 66px;
+}
+
+.analysis-close-button {
+  width: 45px;
+  margin-bottom: 90px;
+  padding-right: 10px;
+  cursor: pointer;
+  transition: all .3s;
+}
+
+.analysis-close-button:hover {
+  transform: scale(1.2);
+}
+
+p {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 12px;
+}
+
+.analysis-modal-title {
+  width: 40%;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 18px;
+  color: #7468e2;
+  text-align: initial;
+  margin-left: 5em;
+}
+
+.analysis-modal-header {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #dcdaed;
+}
+
+.finish-analysis-modal-header-img {
+  display: flex;
+  align-items: flex-start;
+}
+
+.analysis-modal-paragraph {
+  width: 90%;
+  text-align: initial;
+}
+
+.analysis-modal-paragraph p {
+  width: 100%;
+}
+
+.chart-container {
+  width: 60%;
+  height: 200px;
+  background-color: #7468e2;
+}

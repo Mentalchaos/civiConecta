@@ -1,7 +1,7 @@
 import arrow from 'src/assets/Icons/open-arrow.svg';
 
 
-const Answer = ({question, status}) => {
+const Answer = ({question, status, onClick}) => {
   return (
     <div className="answer-container">
       <div>
@@ -13,7 +13,7 @@ const Answer = ({question, status}) => {
         </div>
         <p className='answer-status'>{status}</p>
       </div>
-      <button>
+      <button onClick={onClick}>
         Ver más
         <img src={arrow}/>
       </button>

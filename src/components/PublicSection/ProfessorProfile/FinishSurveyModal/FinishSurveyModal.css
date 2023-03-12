@@ -1,0 +1,154 @@
+.finish-modal-container {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(116, 104, 226, 0.7);
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.finish-modal {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  top: 0;
+}
+
+.finish-modal-content {
+  margin-top: 3rem !important;
+  text-align: center;
+  height: 340px;
+  width: 550px;
+  background: linear-gradient(180deg, #FFFFFF 0%, #e5e5e5 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 10px;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.4);
+}
+
+.finish-modal-image {
+  width: 173px;
+  position: absolute;
+  top: -45px;
+  right: 55px;
+}
+
+.finish-close-button {
+  width: 45px;
+  margin-bottom: 90px;
+  padding-right: 10px;
+  cursor: pointer;
+  transition: all .3s;
+}
+
+.finish-close-button:hover {
+  transform: scale(1.2);
+}
+
+p {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 12px;
+}
+
+.finish-modal-title {
+  width: 65%;
+  font-family: 'Nunito Sans', sans-serif;
+  color: #7468e2;
+}
+
+.finish-modal-header {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #dcdaed;
+}
+
+.finish-finish-modal-header-img {
+  display: flex;
+  align-items: flex-start;
+}
+
+.finish-modal-paragraph {
+  width: 90%;
+  text-align: initial;
+}
+
+.finish-modal-paragraph p {
+  width: 95%;
+}
+
+.finish-survey-buttons-container {
+  width: 100%;
+  height: 55px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.keep-open-button{
+  background: #7468e2;
+}
+
+.keep-open-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 35%;
+  height: 55%;
+
+}
+
+.keep-open {
+  display: flex;
+  justify-content: space-around;
+  background: #7468e2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 35%;
+  height: 55%;
+}
+
+.keep-open img {
+  width: 20px;
+}
+
+.keep-open p {
+  color: white;
+  width: 80%;
+  text-align: initial;
+  margin-left: 5px;
+}
+
+.keep-open p {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 12px;
+}
+
+.finish-survey-buttons-container .keep-open {
+  transition: all .3s;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.finish-survey-buttons-container .keep-open img  {
+  filter: invert(100%) sepia(97%) saturate(0%) hue-rotate(59deg) brightness(145%) contrast(106%);
+}
+
+.finish-survey-buttons-container .keep-open:hover {
+  cursor: pointer;
+  transform: scale(1.15);
+  box-shadow: 0px 0px 8px rgb(0 0 0 / 25%);
+}

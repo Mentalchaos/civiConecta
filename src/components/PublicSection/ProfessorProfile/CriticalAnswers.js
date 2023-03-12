@@ -16,7 +16,7 @@ const criticsData = [
   }
 ]
 
-const CriticalAnswers = () => {
+const CriticalAnswers = ({onClick}) => {
   return (
     <div className='critical-answers-container'>
       <div className='critical-answers-title'>
@@ -29,6 +29,7 @@ const CriticalAnswers = () => {
           <Answer
           question={critics.question}
           status={critics.status}
+          onClick={onClick}
           />)
         }
       </div>
