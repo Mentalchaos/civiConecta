@@ -1,0 +1,51 @@
+.modal-trigger-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2em;
+}
+
+.modal-trigger-container .modal-trigger {
+  width: 290px;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.modal-trigger-container .modal-trigger p {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 16px;
+  color: #ffffff;
+  width: 135px;
+  margin-left: 1em;
+}
+
+.modal-trigger-container .modal-trigger button {
+  background: #FFFFFF;
+  width: 146px;
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin-left: 1em;
+  color: #2eb99e;
+  border-style: none;
+  border-radius: 5px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.modal-trigger-container .modal-trigger .modal-trigger-image {
+  width: 290px;
+  position: absolute;
+  z-index: -1;
+}
+
+.modal-trigger-container .modal-trigger button img {
+  width: 25px;
+  filter: invert(62%) sepia(62%) saturate(479%) hue-rotate(118deg) brightness(88%) contrast(83%);
+}
