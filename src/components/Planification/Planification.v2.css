@@ -1,10 +1,12 @@
 .planification-container {
+  margin: auto;
   width: 80%;
   text-align: center;
   padding-bottom: 30px;
 }
 
 .file-upload {
+  margin-top: 20px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -33,7 +35,7 @@
   width: 70%;
 }
 
-.planification-container > input {
+.planification-container>input {
   padding: 14px 30px;
 }
 
@@ -56,20 +58,31 @@
   box-shadow: 0px 0px 5px rgb(0, 0, 0, 0.4);
 }
 
-
-.button {
-  padding: 5px 40px;
-  border-radius: 20px;
+.content__difused.planning-section {
+  width: auto;
+  right: 30%;
+  top: 70%;
+  bottom: initial;
+  background-color: transparent;
+  padding-bottom: initial;
+  align-items: center;
 }
 
-.primary {
+.button.primary {
   color: #FFFFFF;
+  padding: 5px 30px;
   background-color: var(--color-secondary);
+  border-radius: 25px;
 }
 
-.delete {
+.button.delete {
+  padding: 5px 30px;
+  border-radius: 25px;
   color: var(--color-secondary);
   border: 1px solid var(--color-secondary);
   background-color: #FFFFFF;
 }
 
+.table-section {
+  position: relative;
+}
