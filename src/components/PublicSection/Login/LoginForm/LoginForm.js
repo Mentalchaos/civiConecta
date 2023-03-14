@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signIn } from 'src/services/admin/user.request';
+import { setUserData } from 'src/utils/user';
 import Button from 'src/components/UI/Button';
 import useForm from 'src/hooks/useForm';
 import './loginForm.css';
@@ -40,15 +41,15 @@ const LoginForm = () => {
     setIsLoading(true);
     signIn(email, pass).then(resp => {
       if (resp.ok) {
-        const { email, name, role, active, token } = resp.user;
+        const { email, name, role, active, token, uuid } = resp.user;
         const saveData = {
           name,
           email,
           role,
           active,
-          token,
+          token
         };
-        localStorage.setItem('user', JSON.stringify(saveData));
+        setUserData(saveData, uuid);
         setErrorMessage('');
         setShowErrorMessage(false);
         setIsLoading(false);
