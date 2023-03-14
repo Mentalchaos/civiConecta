@@ -2,10 +2,10 @@ import { useContext, useRef } from 'react';
 import { PlanificationContext } from '../context';
 
 const FileUploader = () => {
-  const { states, actions } = useContext(PlanificationContext);
+  const { actions } = useContext(PlanificationContext);
   const fileRef = useRef();
 
-  const handleUpload = (evt) => {
+  const handleUpload = evt => {
     if (!evt.target.files[0]?.name) {
       return;
     }
@@ -16,11 +16,7 @@ const FileUploader = () => {
 
   return (
     <div className="file-upload">
-      <input
-        ref={fileRef}
-        onChange={handleUpload}
-        type="file"
-      />
+      <input ref={fileRef} onChange={handleUpload} type="file" />
     </div>
   );
 };
