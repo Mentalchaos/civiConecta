@@ -63,6 +63,7 @@ const useSurvey = (userType) => {
           return alert('sha terminaste la encuesta cheeee');
         }
 
+        surveyRequest.saveAnswer(survey.uuid, "455fd91d-15ac-48b6-8b2a-e75d7891bbab", questions[currentQuestion].id, savedAlternatives[currentQuestion])
         setCurrentQuestion(currentQuestion + 1);
       },
       saveAlternative(letter) {
@@ -77,8 +78,7 @@ const useSurvey = (userType) => {
       isAlternativeSelected(letter) {
         return savedAlternatives[currentQuestion] === letter;
       },
-      sendData() {
-        // const answers = toArray(savedAlternatives);
+      async sendData() {
       }
     }
   };
