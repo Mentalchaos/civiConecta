@@ -6,10 +6,10 @@ import CriticalAnswers from './CriticalAnswers';
 const values = ["Alumno", "Nombre", "Rut", "Encuesta", "Fecha"];
 const tbodyValues = ["01","Eduardo Cossio Brante", "24.040.904-9","Pendiente", "24/08/22"];
 
-const StudentNomina = () => {
+const StudentNomina = ({onClick}) => {
   return (
     <div className="student-nomina-container">
-      <CriticalAnswers />
+      <CriticalAnswers onClick={onClick}/>
       <div className='student-nomina-title'>
         <img className='student-nomina-icon' src={listIcon} />
         <p>Nómina</p>
