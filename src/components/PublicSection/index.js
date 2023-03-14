@@ -143,7 +143,6 @@ const PublicSection = () => {
     })();
   }, []);
 
-
   const teacherSurvey = () => {
     fetch(`${config.baseURL}/feedback/teacher/455fd91d-15ac-48b6-8b2a-e75d7891bbab`, {
       method: "POST",
@@ -173,7 +172,7 @@ const PublicSection = () => {
 
       { status && (!student.completed || !teacher.completed) && <PlanificationText /> }
       { status && (!student.completed || !teacher.completed) && <div className="planification-cont">
-      
+
       { !teacher.generated && !student.generated && <PlanificationType
             textButton={'Personalizar planificación'}
             title={'Reorganiza la planificación de acuerdo con la realidad de tu curso.'}
@@ -234,7 +233,7 @@ const PublicSection = () => {
               <UnitSituations key={key} title={data.title} />
             ))}
           </div>
-        </div> 
+        </div>
       </div>
       {needLinkButton}
       {standardPlanificationButton}
