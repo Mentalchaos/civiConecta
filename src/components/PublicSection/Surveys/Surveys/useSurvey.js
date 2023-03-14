@@ -7,9 +7,15 @@ const toArray = (obj) => {
 
 const calculatePreviousAnswers = (questions) => {
   return questions.reduce((answers, question, index) => {
-    if (question.selected) {
-      answers[index] = question.selected;
+
+    const something = question.alternatives.find(a => a.isSelected);
+
+    console.log('answers', answers);
+
+    if(something){
+      answers[index] = something.letter;
     }
+
     return answers;
   }, {});
 };
