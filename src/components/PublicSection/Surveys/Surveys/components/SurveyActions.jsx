@@ -25,6 +25,7 @@ const SurveyActions = () => {
       <button
         className={`form__next-question ${userType}`}
         onClick={handleContinue}
+        disabled={!states.canContinue}
       >
         {text}
       </button>
