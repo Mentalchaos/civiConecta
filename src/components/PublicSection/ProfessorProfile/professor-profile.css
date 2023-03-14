@@ -20,6 +20,7 @@
 .professor-info-container {
     height: 100%;
     width: 25%;
+    position: relative;
 }
 
 .student-nomina-container {
