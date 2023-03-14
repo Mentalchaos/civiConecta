@@ -8,7 +8,12 @@ import school from 'src/assets/Icons/school.svg';
 import cap from 'src/assets/Icons/graduation-cap.svg';
 import man from 'src/assets/images/fraud-protection-hero.png';
 
-const Welcome = () => {
+const Welcome = ({ userData }) => {
+
+  const { establishment, grade } = userData || {};
+
+  console.log('establishment',establishment);
+  console.log('grade',grade);
   const cookiesData = cookie.getDataParser();
   return (
     <div className="welcome-section">
@@ -35,14 +40,14 @@ const Welcome = () => {
               <img src={school} alt="Icono Escuela" />
               <div className="school-info-container">
                 <p>Establecimiento o Institución educativa</p>
-                <p className="school-info">Liceo Amanda Labarca</p>
+                <p className="school-info">{ establishment }</p>
               </div>
             </div>
             <div className="grade-container">
               <img src={cap} alt="Icono Curso" />
               <div className="grade-info">
                 <p>Nivel del curso</p>
-                <p className="grade">Jefatura 5º</p>
+                <p className="grade">{ grade }</p>
               </div>
             </div>
           </div>
