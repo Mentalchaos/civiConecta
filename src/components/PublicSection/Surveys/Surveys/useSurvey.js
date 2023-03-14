@@ -1,18 +1,12 @@
 import { useEffect, useState } from 'react';
+import { getUserData } from 'src/utils/user';
 import * as surveyRequest from 'src/services/admin/surveys.request';
-
-const toArray = (obj) => {
-  return Object.entries(obj).map(e => ({ letter: e[1] }));
-};
 
 const calculatePreviousAnswers = (questions) => {
   return questions.reduce((answers, question, index) => {
-
     const something = question.alternatives.find(a => a.isSelected);
 
-    console.log('answers', answers);
-
-    if(something){
+    if (something) {
       answers[index] = something.letter;
     }
 
@@ -28,10 +22,9 @@ const useSurvey = (userType) => {
 
   useEffect(() => {
     async function fn() {
-      const uuid = '455fd91d-15ac-48b6-8b2a-e75d7891bbab';
+      const userData = getUserData();
+      const uuid = userData.uuid;
       const response = await surveyRequest.getSurveyToAnswer(userType, uuid);
-      console.log('response', response);
-
       setSurvey(response.feedback);
       setQuestions(response.survey);
       setSavedAlternatives(calculatePreviousAnswers(response.survey));
@@ -58,6 +51,9 @@ const useSurvey = (userType) => {
       },
       get hasQuestions() {
         return questions.length;
+      },
+      get canContinue() {
+        return !!savedAlternatives[currentQuestion];
       }
     },
     actions: {
@@ -69,7 +65,7 @@ const useSurvey = (userType) => {
           return alert('sha terminaste la encuesta cheeee');
         }
 
-        surveyRequest.saveAnswer(survey.uuid, "455fd91d-15ac-48b6-8b2a-e75d7891bbab", questions[currentQuestion].id, savedAlternatives[currentQuestion])
+        this.sendData();
         setCurrentQuestion(currentQuestion + 1);
       },
       saveAlternative(letter) {
@@ -85,6 +81,15 @@ const useSurvey = (userType) => {
         return savedAlternatives[currentQuestion] === letter;
       },
       async sendData() {
+        const userData = getUserData();
+        const uuid = userData.uuid;
+
+        return surveyRequest.saveAnswer(
+          survey.uuid,
+          uuid,
+          questions[currentQuestion].id,
+          savedAlternatives[currentQuestion]
+        );
       }
     }
   };
