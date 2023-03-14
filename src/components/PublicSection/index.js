@@ -95,6 +95,7 @@ const PublicSection = () => {
   const [planificationType, setPlanificationType] = useState(PlanificationTypes.CUSTOM);
   const [wasLinkClicked, setIsLinkClicked] = useState(true);
   const [status, setStatus] = useState();
+  const [userData, setUserData] = useState();
 
   const { student, teacher } = status || {};
 
@@ -127,8 +128,6 @@ const PublicSection = () => {
     .then(data => setStatus(data.status))
   }, []);
 
-  console.log('status',status);
-
   useEffect(() => {
     (async () => {
       const dataCookies = cookie.getDataParser();
@@ -144,8 +143,6 @@ const PublicSection = () => {
     })();
   }, []);
 
-  const closeModal = () => setModalVisibility(false);
-  const modal = (isModalShown && !teacher.completed && !student.completed) && <SurveyModal statusData={status} closeModal={closeModal} />;  
 
   const teacherSurvey = () => {
     fetch(`${config.baseURL}/feedback/teacher/455fd91d-15ac-48b6-8b2a-e75d7891bbab`, {
@@ -156,10 +153,23 @@ const PublicSection = () => {
     });
   }
 
+  useEffect(() => {
+    fetch(`${config.baseURL}/establishments/info/455fd91d-15ac-48b6-8b2a-e75d7891bbab`, {
+      headers: {
+        token: JSON.parse(localStorage.getItem('user')).token
+      }
+    })
+    .then(d => d.json())
+    .then(data => setUserData(data.info))
+  }, [])
+
+  const closeModal = () => setModalVisibility(false);
+  const modal = (isModalShown && !teacher.completed && !student.completed) && <SurveyModal statusData={status} closeModal={closeModal} />;
+
   return (
     <div className="public-section-container">
       {modal}
-      <Welcome />
+      <Welcome userData={userData} />
 
       { status && (!student.completed || !teacher.completed) && <PlanificationText /> }
       { status && (!student.completed || !teacher.completed) && <div className="planification-cont">

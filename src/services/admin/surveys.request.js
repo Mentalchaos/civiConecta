@@ -27,3 +27,8 @@ export const getSurveyToAnswer = (userType, uuid) => {
   const url = `${BASE_URL}/feedback/${userType}/${uuid}`
   return http.get(url);
 };
+
+export const saveAnswer = (surveyId, professorUuid, questionId, letter) => {
+  const payload = { questionId, letter };
+  return http.post(`${BASE_URL}/feedback/${surveyId}/teacher/${professorUuid}`, payload);
+};
