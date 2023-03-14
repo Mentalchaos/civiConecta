@@ -15,7 +15,7 @@ const styles = {
 
 const DeleteEventModal = () => {
   const { states, setters, actions } = useContext(EventContext);
-  const type = states.eventType === 2 ? 'situación emergente' : 'efeméride';
+  const type = states.eventType === 1 ? 'situación emergente' : 'efeméride';
 
   return (
     <Modal
