@@ -24,13 +24,13 @@ const FinishSurveyModal = ({ onClick }) => {
           </div>
           <div className='finish-modal-paragraph'>
             <p>
-            ¿Quieres finalizar la encuesta aplicada a tu curso y generar los informes? Ten en cuenta 
+            ¿Quieres finalizar la encuesta aplicada a tu curso y generar los informes? Ten en cuenta
             que si lo haces finalizarás el proceso de encuestar a tus estudiantes, y quienes no hayan
             respondido ya no podrán hacerlo.
             </p>
           </div>
           <div className='finish-survey-buttons-container'>
-              <div className='keep-open'>
+              <div onClick={onClick} className='keep-open'>
                 <p>Mantener encuesta abierta</p>
                 <img src={right} alt="arrow-icon"/>
               </div>

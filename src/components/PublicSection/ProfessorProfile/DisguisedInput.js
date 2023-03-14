@@ -7,4 +7,9 @@ const DisguisedInput = ({ label, value }) => {
   )
 }
 
+DisguisedInput.defaultProps = {
+  label: '',
+  value: ''
+}
+
 export default DisguisedInput;
