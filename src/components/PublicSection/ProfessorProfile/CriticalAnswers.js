@@ -25,11 +25,12 @@ const CriticalAnswers = ({onClick}) => {
       </div>
       <div className='critical-answers-units'>
         {
-          criticsData.map(critics => 
+          criticsData.map((critics, key) =>
           <Answer
-          question={critics.question}
-          status={critics.status}
-          onClick={onClick}
+            key={key}
+            question={critics.question}
+            status={critics.status}
+            onClick={onClick}
           />)
         }
       </div>
