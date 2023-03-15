@@ -27,7 +27,7 @@ const PublicHeader = () => {
           {currentUser && (
             <>
               <p className="teacher-name">{currentUser.name}</p>
-              <img className="menu-docente" src={docente} alt="docente-icon" />
+              <img onClick={() => navigate('/public/professor-survey')} className="menu-docente" src={docente} alt="docente-icon" />
             </>
           )}
         </div>
