@@ -106,7 +106,7 @@ const PublicSection = () => {
   }, [])
 
   const closeModal = () => setModalVisibility(false);
-  const modal = (isModalShown && !teacher.completed && !student.completed) && <SurveyModal statusData={status} closeModal={closeModal} />;
+  const modal = (isModalShown && !teacher.completed && !student.completed) && <SurveyModal statusData={status} closeModal={closeModal} teacherSurveyOnclick={teacherSurvey}/>;
 
   return (
     <div className="public-section-container">
@@ -120,13 +120,14 @@ const PublicSection = () => {
             textButton={'Personalizar planificación'}
             title={'Reorganiza la planificación de acuerdo con la realidad de tu curso.'}
             img={planificationCustom}
-            onClick={teacherSurvey}
+            onClick={() => setModalVisibility(true)}
           />
       }
         { (!teacher.completed && teacher.generated) &&
           <PlanificationType
             textButton={'Ir a la encuesta'}
             title={'Contesta la encuesta docente.'}
+            onClick={() => navigate('/public/professor-survey')}
             img={planificationSurvey}
           />
         }
