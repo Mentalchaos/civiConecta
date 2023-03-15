@@ -6,9 +6,15 @@ import teacher from 'src/assets/Icons/teacher-white.svg';
 import studentImg from 'src/assets/Icons/student-purple.svg';
 import './SurveyModal.css';
 
-const SurveyModal = ({ closeModal, statusData }) => {
+const SurveyModal = ({ closeModal, statusData, teacherSurveyOnclick }) => {
 
   // Borrar boton de docente o estudiante basandose si la encuesta fue contestada o no
+
+  const teacherSurveyButton = () => {
+    teacherSurveyOnclick();
+    redirect('/professor-survey');
+  }
+
   const { student  } = statusData;
   const redirect = section => window.location.href = section;
   return (
@@ -28,7 +34,7 @@ const SurveyModal = ({ closeModal, statusData }) => {
             <p>Para que puedas acceder a tus planificaciones personalizadas es necesario que continues con los siguientes pasos:</p>
           </div>
           <div className='survey-buttons-container'>
-            <div className='teacher-survey-button' onClick={() => redirect('/professor-survey')}>
+            <div className='teacher-survey-button' onClick={() => teacherSurveyButton()}>
               <div className='teacher-button-header'>
                 <p>Contestar encuesta docente</p>
                 <img src={teacher} alt="teacher"/>
