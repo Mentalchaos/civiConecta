@@ -3,7 +3,7 @@ import http from '../helpers/http.helper';
 
 const BASE_URL = config.baseURL;
 
-export const getTopics = (surveyType) => {
+export const getTopics = (surveyType='all') => {
   const url = `${BASE_URL}/topics/type/${surveyType}`;
   return http.get(url);
 };
