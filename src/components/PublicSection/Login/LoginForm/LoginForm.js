@@ -53,9 +53,16 @@ const LoginForm = () => {
         setErrorMessage('');
         setShowErrorMessage(false);
         setIsLoading(false);
-        role === 'Administrator' && navigate('/admin');
-        role === 'User' && navigate('/public');
+
         cookie.setCookie('token', JSON.stringify(saveData));
+
+        if (role === 'Administrator') {
+          navigate('/admin');
+        } else if (role === 'User') {
+          navigate('/public');
+        } else {
+          throw new Error('culpa del cake');
+        }
       } else {
         setErrorMessage(resp.error);
         setShowErrorMessage(true);

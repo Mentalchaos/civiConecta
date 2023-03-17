@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signIn } from 'src/services/admin/user.request';
+import { setUserData } from 'src/utils/user.js';
 import Button from 'src/components/UI/Button';
 import useForm from 'src/hooks/useForm';
 import cookie from '../../../utils/cookie.js';
@@ -44,7 +45,7 @@ const LoginForm = () => {
         return;
       }
 
-      const { email, name, role, active, token } = resp.user;
+      const { email, name, role, active, token, uuid } = resp.user;
       const saveData = {
         name,
         email,
@@ -52,7 +53,8 @@ const LoginForm = () => {
         active,
         token,
       };
-      localStorage.setItem('user', JSON.stringify(saveData));
+
+      setUserData(saveData, uuid);
       setErrorMessage('');
       setShowErrorMessage(false);
       setIsLoading(false);
