@@ -10,8 +10,16 @@ const prop = x => (obj, idx) => (<span key={`${x}-${idx}`}>{obj[x]}</span>);
 const Question = () => {
   const { states, setters, actions } = useContext(QuestionContext);
 
+  const handleBack = (evt) => {
+    evt.preventDefault();
+    window.history.back();
+  };
+
   return (
     <main className="main-question-container">
+      <div className="go-back-section">
+        <a className="link" href="#" onClick={handleBack}>Volver</a>
+      </div>
       <div>
         <div className="question-container">
           <img src={questionIcon} alt="question-icon" />
