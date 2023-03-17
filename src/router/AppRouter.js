@@ -9,7 +9,7 @@ const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="*" element={<PublicRouter />} />
+        <Route path="*" element={<AuthRouter />} />
         <Route path="/auth/*" element={<AuthRouter />} />
         <Route path="/admin/*" element={<AdminRouter />} />
         <Route path="/public/*" element={<PublicRouter />} />
