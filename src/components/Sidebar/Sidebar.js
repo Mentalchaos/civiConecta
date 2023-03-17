@@ -9,7 +9,7 @@ import folder from 'src/assets/Icons/folder.svg';
 import calendar from 'src/assets/Icons/calendar.svg';
 import exit from 'src/assets/Icons/exit.svg';
 import cookie from '../../utils/cookie';
-
+import { clearUserData } from 'src/utils/user';
 import './Sidebar.css';
 
 const NavButton = ({ icon, ariaLabel, path, handleClick, ...props }) => {
@@ -21,6 +21,11 @@ const NavButton = ({ icon, ariaLabel, path, handleClick, ...props }) => {
 };
 
 const Sidebar = () => {
+  const handleClear = () => {
+    cookie.removeCookie('token');
+    clearUserData();
+  };
+
   return (
     <nav className="sidebar">
       <div className="sidebar__content">
@@ -33,10 +38,7 @@ const Sidebar = () => {
         <NavButton icon={calendar} ariaLabel="calendar" path={'ephemeris'} />
         <NavButton
           path="/"
-          handleClick={() => {
-            cookie.removeCookie('token');
-            localStorage.clear();
-          }}
+          handleClick={handleClear}
           icon={exit}
           ariaLabel="exit"
           style={{ width: '25px', position: 'absolute', left: 15, bottom: 15 }}
