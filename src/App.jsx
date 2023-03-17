@@ -1,12 +1,12 @@
-import './index.css';
+import { Fragment } from 'react';
 import AppRouter from './router/AppRouter';
-import config from './config.js';
+import './index.css';
 
 function App() {
   return (
-    <>
+    <Fragment>
       <AppRouter />
-    </>
+    </Fragment>
   );
 }
 

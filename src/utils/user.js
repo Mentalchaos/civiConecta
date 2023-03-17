@@ -1,5 +1,5 @@
 const getUserData = () => {
-  return JSON.parse(localStorage.getItem('user'));
+  return JSON.parse(sessionStorage.getItem('user'));
 };
 
 const setUserData = (saveData, uuid) => {
@@ -11,7 +11,11 @@ const setUserData = (saveData, uuid) => {
     token: saveData.token,
     uuid
   };
-  localStorage.setItem('user', JSON.stringify(userData));
+  sessionStorage.setItem('user', JSON.stringify(userData));
 };
 
-export { getUserData, setUserData };
+const clearUserData = () => {
+  sessionStorage.clear();
+};
+
+export { getUserData, setUserData, clearUserData };
