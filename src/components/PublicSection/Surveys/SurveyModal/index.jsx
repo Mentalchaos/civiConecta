@@ -12,8 +12,8 @@ const SurveyModal = ({ closeModal, statusData, teacherSurveyOnclick }) => {
 
   const teacherSurveyButton = () => {
     teacherSurveyOnclick();
-    redirect('/professor-survey');
-  }
+    redirect('/public/professor-survey');
+  };
 
   const { student  } = statusData;
   const redirect = section => window.location.href = section;
