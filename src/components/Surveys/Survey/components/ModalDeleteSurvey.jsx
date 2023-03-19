@@ -7,7 +7,7 @@ import { SurveyContext } from '../../context';
 const ModalDeleteSurvey = () => {
   const { states, actions, setters } = useContext(SurveyContext);
 
-  const handleSubmit = (evt) => {
+  const handleSubmit = evt => {
     evt.preventDefault();
     actions.removeCategory();
   };
@@ -38,9 +38,7 @@ const ModalDeleteSurvey = () => {
           <Button disabled={!states.selectValue} type="submit">
             Eliminar
           </Button>
-          <Button onClick={() => setters.setRemoveTopicModal(false)}>
-            Cerrar
-          </Button>
+          <Button onClick={() => setters.setRemoveTopicModal(false)}>Cerrar</Button>
         </div>
       </form>
     </Modal>

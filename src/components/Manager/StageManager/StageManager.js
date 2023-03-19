@@ -19,7 +19,7 @@ const StageManager = ({ title, changeStage, handleInstitutionSelected }) => {
   const [formDataDisplayed, setFormDataDisplayed] = useState([]);
   const [institutionSelected, setInstitutionSelected] = useState({});
   const [fetching, setFetching] = useState(false);
-  const { values, handleInputChange, reset } = useForm({
+  const { values, handleInputChange, reset, self } = useForm({
     name: '',
   });
 
@@ -54,7 +54,7 @@ const StageManager = ({ title, changeStage, handleInstitutionSelected }) => {
   const getEstablishments = () => {
     setFetching(true);
     getEstablishment().then(resp => {
-    setFetching(false);
+      setFetching(false);
 
       if (resp.ok) {
         setEstablishmentsData(resp.establishments);
@@ -170,15 +170,13 @@ const StageManager = ({ title, changeStage, handleInstitutionSelected }) => {
             />
           </form>
         </div>
-        <div
-          style={{ marginTop: 20, paddingRight: '10rem', textAlign: 'right' }}
-        >
+        <div style={{ marginTop: 20, paddingRight: '10rem', textAlign: 'right' }}>
           <Button
             type="submit"
             text="A&ntilde;adir"
             customStyles={buttonStyles}
             onClick={handleSubmit}
-            disabled={fetching}
+            disabled={fetching || !self.states.isCompletedForm}
           />
         </div>
       </article>
