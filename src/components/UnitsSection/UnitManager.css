@@ -16,7 +16,6 @@
 }
 
 .custom-modal.add {
-  padding: 20px 60px;
-  margin-top: 50px;
-  width: 60%;
+  height: auto;
+  margin-top: 10%px;
 }

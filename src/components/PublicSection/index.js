@@ -33,7 +33,9 @@ const PublicSection = () => {
 
   const { student, teacher } = status || {};
 
-  const needLinkButton = wasLinkClicked === true && <LinkGenerator data={links.needLink} />;
+  const needLinkButton = wasLinkClicked === true && (
+    <LinkGenerator data={links.needLink} />
+  );
   const standardPlanificationButton = planificationType === PlanificationTypes.CUSTOM && (
     <LinkGenerator
       data={links.standardPlanification}
@@ -58,18 +60,18 @@ const PublicSection = () => {
 
   useEffect(() => {
     const userData = getUserData();
-    const uuid = userData.uuid;
+    const uuid = userData?.uuid;
 
     fetch(`${config.baseURL}/feedback/status/${uuid}`)
       .then(d => d.json())
-      .then(data => setStatus(data.status))
+      .then(data => setStatus(data.status));
   }, []);
 
   useEffect(() => {
     (async () => {
       const dataCookies = cookie.getDataParser();
 
-      if (dataCookies.role ===  UserTypes.ADMIN) {
+      if (dataCookies.role === UserTypes.ADMIN) {
         alert('No puede ingresar a esta sección como usuario Administrador');
         navigate('/admin');
       }
@@ -85,12 +87,12 @@ const PublicSection = () => {
     const uuid = userData.uuid;
 
     fetch(`${config.baseURL}/feedback/teacher/${uuid}`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
-      }
+        'Content-Type': 'application/json',
+      },
     });
-  }
+  };
 
   useEffect(() => {
     const userData = getUserData();
@@ -98,66 +100,75 @@ const PublicSection = () => {
 
     fetch(`${config.baseURL}/establishments/info/${uuid}`, {
       headers: {
-        token: JSON.parse(localStorage.getItem('user')).token
-      }
+        token: JSON.parse(localStorage.getItem('user')).token,
+      },
     })
       .then(d => d.json())
-      .then(data => setUserData(data.info))
-  }, [])
+      .then(data => setUserData(data.info));
+  }, []);
 
   const closeModal = () => setModalVisibility(false);
-  const modal = (isModalShown && !teacher.completed && !student.completed) && <SurveyModal statusData={status} closeModal={closeModal} teacherSurveyOnclick={teacherSurvey}/>;
+  const modal = isModalShown && !teacher.completed && !student.completed && (
+    <SurveyModal
+      statusData={status}
+      closeModal={closeModal}
+      teacherSurveyOnclick={teacherSurvey}
+    />
+  );
 
   return (
     <div className="public-section-container">
       {modal}
       <Welcome userData={userData} />
 
-      { status && (!student.completed || !teacher.completed) && <PlanificationText /> }
-      { status && (!student.completed || !teacher.completed) && <div className="planification-cont">
-
-      { !teacher.generated && !student.generated && <PlanificationType
-            textButton={'Personalizar planificación'}
-            title={'Reorganiza la planificación de acuerdo con la realidad de tu curso.'}
-            img={planificationCustom}
-            onClick={() => setModalVisibility(true)}
-          />
-      }
-        { (!teacher.completed && teacher.generated) &&
+      {status && (!student.completed || !teacher.completed) && <PlanificationText />}
+      {status && (!student.completed || !teacher.completed) && (
+        <div className="planification-cont">
+          {!teacher.generated && !student.generated && (
+            <PlanificationType
+              textButton={'Personalizar planificación'}
+              title={
+                'Reorganiza la planificación de acuerdo con la realidad de tu curso.'
+              }
+              img={planificationCustom}
+              onClick={() => setModalVisibility(true)}
+            />
+          )}
+          {!teacher.completed && teacher.generated && (
+            <PlanificationType
+              textButton={'Ir a la encuesta'}
+              title={'Contesta la encuesta docente.'}
+              onClick={() => navigate('/public/professor-survey')}
+              img={planificationSurvey}
+            />
+          )}
+          {teacher.completed && !student.generated && (
+            <PlanificationType
+              textButton={'Generar enlace'}
+              colorTextBtn={'purple'}
+              colorIconRight={'color-icon-purple'}
+              title={'Genera el enlace para que tus estudiantes respondan la encuesta.'}
+              img={planificationGenerateLink}
+            />
+          )}
+          {teacher.completed && student.generated && (
+            <PlanificationType
+              textButton={'Ver progreso'}
+              colorTextBtn={'purple'}
+              colorIconRight={'color-icon-purple'}
+              title={'Revisa el progreso de la encuesta de tus estudiantes.'}
+              img={planificationProgress}
+            />
+          )}
           <PlanificationType
-            textButton={'Ir a la encuesta'}
-            title={'Contesta la encuesta docente.'}
-            onClick={() => navigate('/public/professor-survey')}
-            img={planificationSurvey}
-          />
-        }
-        { (teacher.completed && !student.generated) &&
-          <PlanificationType
-            textButton={'Generar enlace'}
-            colorTextBtn={"purple"}
-            colorIconRight={'color-icon-purple'}
-            title={'Genera el enlace para que tus estudiantes respondan la encuesta.'}
-            img={planificationGenerateLink}
-          />
-        }
-        { (teacher.completed && student.generated) &&
-          <PlanificationType
-            textButton={'Ver progreso'}
-            colorTextBtn={"purple"}
-            colorIconRight={'color-icon-purple'}
-            title={'Revisa el progreso de la encuesta de tus estudiantes.'}
-            img={planificationProgress}
-          />
-        }
-        <PlanificationType
             textButton={'Ver planificación estandarizada'}
-            colorTextBtn={"black"}
+            colorTextBtn={'black'}
             colorIconRight={'color-icon-black'}
             title={'Accede a la planificación estandarizada.'}
             img={planificationStandarized}
           />
-      </div>
-      }
+        </div>
+      )}
       <div className="units-cont">
         <UnitsHeader program={planningPrograms[1].program} />
         <div className="units-components">
