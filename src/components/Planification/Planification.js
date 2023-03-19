@@ -110,7 +110,7 @@ const Planification = ({
   };
 
   const onDownloadFile = async () => {
-    const user = JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(sessionStorage.getItem('user'));
     const token = user.token;
     const path = `${fileSelected.getPath}&token=${token}`;
     const link = document.createElement('a');

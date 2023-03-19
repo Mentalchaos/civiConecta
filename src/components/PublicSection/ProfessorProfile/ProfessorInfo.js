@@ -10,6 +10,7 @@ import report from 'src/assets/images/report-container.png';
 import right from 'src/assets/Icons/thin-right.svg';
 import ModalTrigger from './ModalTrigger';
 import cookie from 'src/utils/cookie';
+import { getUserData } from 'src/utils/user';
 
 const dataCookies = cookie.getCookie('token');
 const currentUser = dataCookies !== undefined && JSON.parse(dataCookies);
@@ -17,12 +18,12 @@ const currentUser = dataCookies !== undefined && JSON.parse(dataCookies);
 const ProfessorInfo = ({ onClick }) => {
   const [userData, setUserData] = useState({});
 
-  console.log('userData',userData);
-
   useEffect(() => {
-    fetch(`${config.baseURL}/establishments/info/455fd91d-15ac-48b6-8b2a-e75d7891bbab`, {
+    const userData = getUserData();
+
+    fetch(`${config.baseURL}/establishments/info/${userData.uuid}`, {
       headers: {
-        token: JSON.parse(localStorage.getItem('user')).token
+        token: userData.token
       }
     })
     .then(d => d.json())

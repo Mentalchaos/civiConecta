@@ -1,10 +1,13 @@
+import { getUserData } from 'src/utils/user';
+
 const toJSON = (response) => response.json();
 
 const http = {
   getHeaders() {
+    const userData = getUserData();
     return {
       'Content-Type': 'application/json',
-      token: JSON.parse(localStorage.getItem('user')).token,
+      token: userData.token,
     };
   },
   get(url) {
@@ -19,11 +22,13 @@ const http = {
     }).then(toJSON);
   },
   upload(url, formData) {
+    const userData = getUserData();
+
     return fetch(url, {
       method: 'POST',
       headers: {
         enctype: 'multipart/form-data',
-        token: JSON.parse(localStorage.getItem('user')).token,
+        token: userData.token,
       },
       body: formData,
     }).then(toJSON);
@@ -42,10 +47,12 @@ const http = {
     }).then(toJSON);
   },
   download(url) {
+    const userData = getUserData();
+
     return fetch(url, {
       method: 'GET',
       headers: {
-        token: JSON.parse(localStorage.getItem('user')).token
+        token: userData.token
       }
     });
   }
