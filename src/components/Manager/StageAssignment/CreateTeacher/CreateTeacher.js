@@ -3,8 +3,14 @@ import Modal from 'src/components/UI/Modal';
 import useForm from 'src/hooks/useForm';
 import './CreateTeacher.css';
 
-const CreateTeacher = ({ setAddTeacher, onHandleAddTeacher, errorMessage, fetching, ...props }) => {
-  const { values, handleInputChange } = useForm({
+const CreateTeacher = ({
+  setAddTeacher,
+  onHandleAddTeacher,
+  errorMessage,
+  fetching,
+  ...props
+}) => {
+  const { values, handleInputChange, self } = useForm({
     name: '',
     email: '',
   });
@@ -51,7 +57,13 @@ const CreateTeacher = ({ setAddTeacher, onHandleAddTeacher, errorMessage, fetchi
               placeholder="Nombre completo"
               onChange={handleInputChange}
             />
-            <input name="email" onChange={handleInputChange} value={values.email} type="text" placeholder="E-mail" />
+            <input
+              name="email"
+              onChange={handleInputChange}
+              value={values.email}
+              type="text"
+              placeholder="E-mail"
+            />
           </div>
           {errorMessage.length > 0 && (
             <div>
@@ -74,7 +86,12 @@ const CreateTeacher = ({ setAddTeacher, onHandleAddTeacher, errorMessage, fetchi
               text="Cancelar"
               disabled={fetching}
             />
-            <Button onClick={handleAddTeacher} customStyles={buttonStyles} text="Continuar" disabled={fetching} />
+            <Button
+              onClick={handleAddTeacher}
+              customStyles={buttonStyles}
+              text="Continuar"
+              disabled={fetching || !self.states.isCompletedForm}
+            />
           </div>
         </div>
       </form>

@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import Modal from 'src/components/UI/Modal';
 import Visible from 'src/components/UI/Visible';
 import Button from 'src/components/UI/Button';
@@ -7,12 +7,14 @@ import useForm from 'src/hooks/useForm';
 
 const ModalAddUnit = () => {
   const { states, setters, actions } = useContext(UnitContext);
-  const { values, handleInputChange } = useForm({
+  const { values, handleInputChange, self } = useForm({
     number: 0,
     title: '',
     description: '',
-    topicSelected: 'null',
+    topicSelected: '',
   });
+
+  useEffect(() => {}, []);
 
   const handleSubmit = evt => {
     evt.preventDefault();
@@ -27,7 +29,10 @@ const ModalAddUnit = () => {
   };
 
   return (
-    <Modal customClass="custom-modal" title={`Agregar unidad a ${states.gradeToShow.level}`}>
+    <Modal
+      customClass="custom-modal add"
+      title={`Agregar unidad a ${states.gradeToShow.level}`}
+    >
       <form className="form_add-units" onSubmit={handleSubmit}>
         <Visible condition={states.error}>
           <div>
@@ -37,7 +42,7 @@ const ModalAddUnit = () => {
 
         <div className="form-group">
           <label>Tema:</label>
-          <select onChange={handleInputChange} name="topicSelected">
+          <select onChange={handleInputChange} name="topicSelected" required>
             <option value="null">Seleccione</option>
             {states.topics.map(t => (
               <option key={t.id} value={t.id}>
@@ -48,18 +53,38 @@ const ModalAddUnit = () => {
         </div>
         <div className="form-group">
           <label>Número unidad:</label>
-          <input onChange={handleInputChange} value={values.number} name="number" type="number" autoFocus={true} />
+          <input
+            onChange={handleInputChange}
+            value={values.number}
+            name="number"
+            type="number"
+            autoFocus={true}
+          />
         </div>
         <div className="form-group">
           <label>Título:</label>
-          <input onChange={handleInputChange} value={values.title} name="title" type="text" />
+          <input
+            onChange={handleInputChange}
+            value={values.title}
+            name="title"
+            type="text"
+          />
         </div>
         <div className="form-group">
           <label>Descripción:</label>
-          <input onChange={handleInputChange} value={values.description} name="description" type="text" />
+          <input
+            onChange={handleInputChange}
+            value={values.description}
+            name="description"
+            type="text"
+          />
         </div>
         <div className="actions-container">
-          <Button type="submit" customClasses="custom-button" disabled={states.isLoading}>
+          <Button
+            type="submit"
+            customClasses="custom-button"
+            disabled={states.isLoading || !self.states.isCompletedForm}
+          >
             Continuar
           </Button>
           <Button
