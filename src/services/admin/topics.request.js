@@ -8,7 +8,7 @@ export const getAllTopics = () => {
   return http.get(url);
 };
 
-export const getTopics = surveyType => {
+export const getTopics = (surveyType = '') => {
   const url = `${BASE_URL}/topics/type/${surveyType}`;
   return http.get(url);
 };

@@ -10,8 +10,16 @@ const prop = x => (obj, idx) => (<span key={`${x}-${idx}`}>{obj[x]}</span>);
 const Question = () => {
   const { states, setters, actions } = useContext(QuestionContext);
 
+  const handleBack = (evt) => {
+    evt.preventDefault();
+    window.history.back();
+  };
+
   return (
     <main className="main-question-container">
+      <div className="go-back-section">
+        <a className="link" href="#" onClick={handleBack}>Volver</a>
+      </div>
       <div>
         <div className="question-container">
           <img src={questionIcon} alt="question-icon" />
@@ -44,8 +52,15 @@ const Question = () => {
           return (
             <div key={question.uuid} className="edit-question-container custom-question-wrapper">
               <div className="custom-question__header">
-                <span className="custom-question__title">Pregunta #{idx + 1}: {question.description}</span>
-                <span className="custom-question__delete" onClick={() => actions.deleteQuestion(question.id)}>X</span>
+                <span className="custom-question__title">
+                  Pregunta #{idx + 1}: {question.description}
+                </span>
+                <span
+                  className="custom-question__delete"
+                  onClick={() => actions.deleteQuestion(question.id)}
+                >
+                  X
+                </span>
               </div>
               <div className="custom-question__body">
                 <div className="custom-question__body__label">
