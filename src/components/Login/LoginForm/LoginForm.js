@@ -4,7 +4,6 @@ import { signIn } from 'src/services/admin/user.request';
 import { setUserData } from 'src/utils/user.js';
 import Button from 'src/components/UI/Button';
 import useForm from 'src/hooks/useForm';
-import cookie from '../../../utils/cookie.js';
 import './loginForm.css';
 
 const LoginForm = () => {
@@ -59,7 +58,6 @@ const LoginForm = () => {
       setShowErrorMessage(false);
       setIsLoading(false);
       navigate('/admin/dashboard');
-      cookie.setCookie('token', token);
     });
   };
 

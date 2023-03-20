@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
-import config from 'src/config';
-import './professor-profile.css';
 import './DisguisedInput.js';
+import config from 'src/config';
 import DisguisedInput from './DisguisedInput.js';
 import MenuDocenteIcon from 'src/assets/Icons/menu-docente.svg';
 import profile from 'src/assets/Icons/profile-image.svg';
@@ -9,14 +8,14 @@ import finishImage from 'src/assets/images/finish-survey.png';
 import report from 'src/assets/images/report-container.png';
 import right from 'src/assets/Icons/thin-right.svg';
 import ModalTrigger from './ModalTrigger';
-import cookie from 'src/utils/cookie';
 import { getUserData } from 'src/utils/user';
 
-const dataCookies = cookie.getCookie('token');
-const currentUser = dataCookies !== undefined && JSON.parse(dataCookies);
+import './professor-profile.css';
+
 
 const ProfessorInfo = ({ onClick }) => {
   const [userData, setUserData] = useState({});
+  const currentUser = getUserData();
 
   useEffect(() => {
     const userData = getUserData();
