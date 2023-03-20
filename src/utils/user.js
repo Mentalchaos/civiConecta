@@ -1,5 +1,9 @@
 const getUserData = () => {
-  return JSON.parse(sessionStorage.getItem('user'));
+  try {
+    return JSON.parse(sessionStorage.getItem('user'));
+  } catch (err) {
+    return null;
+  }
 };
 
 const setUserData = (saveData, uuid) => {

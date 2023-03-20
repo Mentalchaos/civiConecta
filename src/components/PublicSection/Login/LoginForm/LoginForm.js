@@ -5,7 +5,7 @@ import { setUserData } from 'src/utils/user';
 import Button from 'src/components/UI/Button';
 import useForm from 'src/hooks/useForm';
 import './loginForm.css';
-import cookie from 'src/utils/cookie';
+
 
 const LoginForm = () => {
   const [showErrorMessage, setShowErrorMessage] = useState(false);
@@ -53,8 +53,6 @@ const LoginForm = () => {
         setErrorMessage('');
         setShowErrorMessage(false);
         setIsLoading(false);
-
-        cookie.setCookie('token', JSON.stringify(saveData));
 
         if (role === 'Administrator') {
           navigate('/admin');

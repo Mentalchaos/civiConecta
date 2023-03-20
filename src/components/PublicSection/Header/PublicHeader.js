@@ -1,17 +1,23 @@
+import { Fragment } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Visible from 'src/components/UI/Visible';
 import civiIcon from 'src/assets/Icons/CiviConecta.svg';
 import questionIcon from 'src/assets/Icons/question-icon.svg';
 import notificationIcon from 'src/assets/Icons/notification.svg';
 import docente from 'src/assets/Icons/menu-docente.svg';
 import arrowRight from 'src/assets/Icons/arrow-right.svg';
-import cookie from 'src/utils/cookie';
+import { getUserData, clearUserData } from 'src/utils/user';
 
 import './PublicHeader.css';
 
 const PublicHeader = () => {
   const navigate = useNavigate();
-  const dataCookies = cookie.getCookie('token');
-  const currentUser = dataCookies !== undefined && JSON.parse(dataCookies);
+  const currentUser = getUserData();
+
+  const handleLogout = () => {
+    clearUserData();
+    navigate('/auth/login');
+  };
 
   return (
     <div className="container">
@@ -24,32 +30,30 @@ const PublicHeader = () => {
           <img className="notification-icon" src={notificationIcon} alt="notification-icon" />
         </div>
         <div className="docente-info-container">
-          {currentUser && (
-            <>
+          <Visible condition={currentUser}>
+            <Fragment>
               <p className="teacher-name">{currentUser.name}</p>
               <img onClick={() => navigate('/public/professor-survey')} className="menu-docente" src={docente} alt="docente-icon" />
-            </>
-          )}
+            </Fragment>
+          </Visible>
         </div>
         <div className="sesion-container">
-          {currentUser.name ? (
-            <>
+          <Visible condition={currentUser}>
+            <Fragment>
               <p
-                onClick={() => {
-                  cookie.removeCookie('token');
-                  navigate('/auth/login');
-                }}
+                onClick={handleLogout}
                 className="session-info"
               >
                 Cerrar Sesión
               </p>
               <img className="arrow-right" src={arrowRight} alt="arrow-right-icon" />
-            </>
-          ) : (
+            </Fragment>
+          </Visible>
+          <Visible condition={!currentUser}>
             <p onClick={() => navigate('/auth/login')} className="session-info">
               Iniciar sesion
             </p>
-          )}
+          </Visible>
         </div>
       </div>
     </div>
