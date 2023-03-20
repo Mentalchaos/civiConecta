@@ -32,7 +32,7 @@ const ModalToFinish = ({ closeModal, finishSurvey }) => {
           </div>
 
           <section className="modal__actions-container">
-            <button className="actions__first" onClick={() => redirect('/professor-survey')}>
+            <button className="actions__first" onClick={() => redirect('/public/professor-survey')}>
               Continuar en otro momento
             </button>
             <button className="actions__second" onClick={finishSurvey}>
