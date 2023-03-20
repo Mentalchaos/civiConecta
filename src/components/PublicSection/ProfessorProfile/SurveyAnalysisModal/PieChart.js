@@ -10,10 +10,10 @@ class PieChart extends Component {
 
   componentDidMount() {
     const options = {
-      series: [44, 55, 13, 43],
+      series: [40, 30, 20, 10],
       colors: ['#54bfed', '#c275ef', '#2dba9f', '#f48e76'],
       chart: {
-      width: 330,
+      width: 360,
       type: 'pie',
       },
       labels: ['Muy baja', 'Baja', 'Alta', 'Muy alta'],
