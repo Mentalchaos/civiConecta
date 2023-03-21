@@ -43,7 +43,7 @@ const SurveyModal = ({ closeModal, statusData, teacherSurveyOnclick }) => {
                 <p>Ir a la encuesta</p>
               </div>
             </div>
-            <div className='student-survey-button' onClick={() => redirect('/share-survey')}>
+            <div className='student-survey-button' onClick={() => redirect('/public/share-survey')}>
               <div className='student-button-header'>
                 <p>Generar enlace para encuestar estudiantes</p>
                 <img src={studentImg} alt="student" />
