@@ -6,7 +6,6 @@ import MenuDocenteIcon from 'src/assets/Icons/menu-docente.svg';
 import profile from 'src/assets/Icons/profile-image.svg';
 import finishImage from 'src/assets/images/finish-survey.png';
 import report from 'src/assets/images/report-container.png';
-import right from 'src/assets/Icons/thin-right.svg';
 import ModalTrigger from './ModalTrigger';
 import { getUserData } from 'src/utils/user';
 
@@ -47,12 +46,12 @@ const ProfessorInfo = ({ onClick }) => {
   return (
     <div className="professor-info-container">
         <div className='professor-info-title'>
-          <img className='professor-profile-img' src={profile} />
+          <img className='professor-profile-img' src={profile} alt="professor-profile-img"/>
           <p>Perfil</p>
         </div>
         <div className="professor-info-data">
           <div className="professor-info-data-cont">
-            <img src={MenuDocenteIcon} />
+            <img src={MenuDocenteIcon} alt="menu-icon" />
             <p className="professor-info-name">{ currentUser.name }</p>
             <p className="professor-info-type">Docente</p>
           </div>
