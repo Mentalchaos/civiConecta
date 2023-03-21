@@ -94,3 +94,8 @@ p {
   height: 200px;
   background-color: #7468e2;
 }
+
+.apexcharts-legend.apexcharts-align-center.apx-legend-position-right {
+  align-items: baseline;
+  justify-content: center;
+}
