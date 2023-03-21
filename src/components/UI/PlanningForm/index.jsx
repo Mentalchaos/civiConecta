@@ -8,24 +8,32 @@ import { EventContext } from 'src/components/Events/context';
 
 const initialState = {
   title: '',
-  description: '',
-  objective: '',
+  description: 'null',
+  objective: 'null',
   teacherMaterials: '',
   studentMaterials: '',
   startActivity: '',
   mainActivity: '',
   endActivity: '',
   topic: '',
-  date: '',
+  date: 'null',
   keywords: '',
 };
 
 const toArray = x => x.trim().split(',');
 
-const PlanningForm = ({ unit, fetching, handleHiddeModal, onHandleSubmit, needObjectives, needDescription, type }) => {
+const PlanningForm = ({
+  unit,
+  fetching,
+  handleHiddeModal,
+  onHandleSubmit,
+  needObjectives,
+  needDescription,
+  type,
+}) => {
   const isEphemeris = type === 'ephemeris';
   const { states } = useContext(EventContext);
-  const { values, handleInputChange, reset } = useForm(initialState);
+  const { values, handleInputChange, reset, self } = useForm(initialState);
 
   const handleSubmit = evt => {
     evt.preventDefault();
@@ -111,7 +119,13 @@ const PlanningForm = ({ unit, fetching, handleHiddeModal, onHandleSubmit, needOb
       <Visible condition={isEphemeris}>
         <div className="form-group">
           <label>Fecha:</label>
-          <input placeholder="AÑO-MES-DIA" onChange={handleInputChange} name="date" type="text" required />
+          <input
+            placeholder="AÑO-MES-DIA"
+            onChange={handleInputChange}
+            name="date"
+            type="text"
+            required
+          />
         </div>
       </Visible>
       <div>
@@ -141,10 +155,18 @@ const PlanningForm = ({ unit, fetching, handleHiddeModal, onHandleSubmit, needOb
           </div>
         </div>
         <div className="planning-form__button-section">
-          <Button type="submit" customClasses="planning-form__button" disabled={fetching}>
+          <Button
+            type="submit"
+            customClasses="planning-form__button"
+            disabled={fetching || !self.states.isCompletedForm}
+          >
             Continuar
           </Button>
-          <Button onClick={() => handleHiddeModal(false)} customClasses="planning-form__button" disabled={fetching}>
+          <Button
+            onClick={() => handleHiddeModal(false)}
+            customClasses="planning-form__button"
+            disabled={fetching}
+          >
             Cancelar
           </Button>
         </div>

@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react';
 import * as topicRequest from 'src/services/admin/topics.request';
 import { fetchLoading } from 'src/utils/hookUtil';
 
-const useSurvey = (surveyType) => {
+const useSurvey = surveyType => {
   const [topics, setTopics] = useState([]);
   const [selectedTopic, setSelectedTopic] = useState(false);
   const [title, setTitle] = useState('');
   const [showModal, setModal] = useState(false);
   const [topic, setTopic] = useState('');
   const [removeTopicModal, setRemoveTopicModal] = useState(false);
-  const [selectValue, setSelectValue] = useState('null');
+  const [selectValue, setSelectValue] = useState('');
   const [fetching, setFetching] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -37,7 +37,7 @@ const useSurvey = (surveyType) => {
       errorMessage,
       get isAbleToAddCategories() {
         return topics.length < 4;
-      }
+      },
     },
     setters: {
       setTopics,
@@ -46,7 +46,7 @@ const useSurvey = (surveyType) => {
       setModal,
       setTopic,
       setRemoveTopicModal,
-      setSelectValue
+      setSelectValue,
     },
     actions: {
       createCategory: wrapRequest(async () => {
@@ -72,9 +72,9 @@ const useSurvey = (surveyType) => {
         setErrorMessage(false);
         setRemoveTopicModal(false);
         setTopics(filteredTopics);
-      })
-    }
-  }
+      }),
+    },
+  };
 };
 
 export default useSurvey;

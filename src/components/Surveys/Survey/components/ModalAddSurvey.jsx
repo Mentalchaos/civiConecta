@@ -5,9 +5,9 @@ import Visible from 'src/components/UI/Visible';
 import { SurveyContext } from '../../context';
 
 const ModalAddSurvey = () => {
-  const {states, setters, actions} = useContext(SurveyContext);
+  const { states, setters, actions } = useContext(SurveyContext);
 
-  const handleSubmit = (evt) => {
+  const handleSubmit = evt => {
     evt.preventDefault();
     actions.createCategory();
   };
@@ -26,10 +26,10 @@ const ModalAddSurvey = () => {
           <p className="warning-message">{states.errorMessage}</p>
         </Visible>
         <div className="buttons-inputs">
-          <Button type="submit">Crear</Button>
-          <Button onClick={() => setters.setModal(false)}>
-            Cerrar
+          <Button type="submit" disabled={!states.topic.length}>
+            Crear
           </Button>
+          <Button onClick={() => setters.setModal(false)}>Cerrar</Button>
         </div>
       </form>
     </Modal>
