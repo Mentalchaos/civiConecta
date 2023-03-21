@@ -4,7 +4,6 @@ import PublicSection from 'src/components/PublicSection';
 import PublicHeader from 'src/components/PublicSection/Header/PublicHeader';
 import ShareSurvey from 'src/components/PublicSection/Surveys/ShareSurvey';
 import ProfessorSurvey from 'src/components/PublicSection/Surveys/ProfessorSurvey';
-import StudentSurvey from 'src/components/PublicSection/Surveys/StudentSurvey';
 import ProfessorProfile from 'src/components/PublicSection/ProfessorProfile';
 import CompletedSurvey from 'src/components/PublicSection/Surveys/CompletedSurvey/CompletedSurvey';
 import { PublicGuard } from './guard/public.guard';
@@ -19,7 +18,6 @@ const PublicRouter = () => {
         {/* <Route element={<PublicGuard />}> */}
           <Route exact path="/share-survey" element={<ShareSurvey />} />
           <Route exact path="/professor-survey" element={<ProfessorSurvey />} />
-          <Route exact path="/student-survey" element={<StudentSurvey />} />
           <Route exact path="/professor-profile" element={<ProfessorProfile />} />
           <Route exact path="/not-found" element={<NotFound />} />
           <Route exact path="/completed-survey" element={<CompletedSurvey />} />
