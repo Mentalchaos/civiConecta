@@ -25,35 +25,37 @@ const PublicHeader = () => {
         <div className="logo-container">
           <img onClick={() => navigate('/public/')} className="civi" src={civiIcon} alt="civi-icon" />
         </div>
-        <div className="logos-container">
-          <img className="question-icon" src={questionIcon} alt="question-icon" />
-          <img className="notification-icon" src={notificationIcon} alt="notification-icon" />
-        </div>
-        <div className="docente-info-container">
-          <Visible condition={currentUser}>
-            <Fragment>
-              <p onClick={() => navigate('/public/professor-profile')} className="teacher-name">{currentUser.name}</p>
-              <img onClick={() => navigate('/public/professor-profile')} className="menu-docente" src={docente} alt="docente-icon" />
-            </Fragment>
-          </Visible>
-        </div>
-        <div className="sesion-container">
-          <Visible condition={currentUser}>
-            <Fragment>
-              <p
-                onClick={handleLogout}
-                className="session-info"
-              >
-                Cerrar Sesión
+        <div className="public-header-container-two">
+          <div className="logos-container">
+            <img className="question-icon" src={questionIcon} alt="question-icon" />
+            <img className="notification-icon" src={notificationIcon} alt="notification-icon" />
+          </div>
+          <div className="docente-info-container">
+            <Visible condition={currentUser}>
+              <Fragment>
+                <p onClick={() => navigate('/public/professor-profile')} className="teacher-name">{currentUser.name}</p>
+                <img onClick={() => navigate('/public/professor-profile')} className="menu-docente" src={docente} alt="docente-icon" />
+              </Fragment>
+            </Visible>
+          </div>
+          <div className="sesion-container">
+            <Visible condition={currentUser}>
+              <Fragment>
+                <p
+                  onClick={handleLogout}
+                  className="session-info"
+                >
+                  Cerrar Sesión
+                </p>
+                <img className="arrow-right" src={arrowRight} alt="arrow-right-icon" />
+              </Fragment>
+            </Visible>
+            <Visible condition={!currentUser}>
+              <p onClick={() => navigate('/auth/login')} className="session-info">
+                Iniciar sesion
               </p>
-              <img className="arrow-right" src={arrowRight} alt="arrow-right-icon" />
-            </Fragment>
-          </Visible>
-          <Visible condition={!currentUser}>
-            <p onClick={() => navigate('/auth/login')} className="session-info">
-              Iniciar sesion
-            </p>
-          </Visible>
+            </Visible>
+          </div>
         </div>
       </div>
     </div>
