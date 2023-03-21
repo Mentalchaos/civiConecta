@@ -17,7 +17,7 @@ const ProfessorSurvey = () => {
       <main className="survey-content-container">
         <div className="content-start__back-link">
           <img src={arrowBack} alt="Arrow" />
-          <a href="/">Volver</a>
+          <a onClick={() => window.history.back()}>Volver</a>
         </div>
         {!isStartSurvey && <FirstStep type={'teacher'} setIsStartSurvey={setIsStartSurvey} />}
 
