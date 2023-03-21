@@ -1,25 +1,20 @@
 import { getFormattedDate } from 'src/utils/date.js';
-import cookie from 'src/utils/cookie';
-import './Welcome.css';
-
-// Imgs
+import { getUserData } from 'src/utils/user.js';
 import calendar from 'src/assets/Icons/calendar-public.svg';
 import school from 'src/assets/Icons/school.svg';
 import cap from 'src/assets/Icons/graduation-cap.svg';
 import man from 'src/assets/images/fraud-protection-hero.png';
+import './Welcome.css';
 
 const Welcome = ({ userData }) => {
-
   const { establishment, grade } = userData || {};
+  const user = getUserData();
 
-  console.log('establishment',establishment);
-  console.log('grade',grade);
-  const cookiesData = cookie.getDataParser();
   return (
     <div className="welcome-section">
       <div className="welcome-container">
         <div className="left-container">
-          <h3>¡Hola {cookiesData.name}!</h3>
+          <h3>¡Hola {user.name}!</h3>
           <p className="p-1">
             Ya eres parte de la Civicomunidad, aquí encontrarás todos los recursos que necesitas para tus clases de
             Orientación. Esperamos contribuir en tu labor como docente a cargo de un curso. No dudes en contactarnos si
