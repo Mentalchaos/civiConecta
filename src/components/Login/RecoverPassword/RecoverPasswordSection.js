@@ -53,7 +53,7 @@ const RecoverPasswordSection = () => {
             />
             </div>
             <div className='recover-container'>
-                <a className='return-recover' href='/auth/login'>Volver al inicio</a>
+                <a className='return-recover' >Volver al inicio</a>
             </div>
         </form>
     </div>

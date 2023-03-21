@@ -285,6 +285,7 @@ button.form__previous-question:disabled {
   font-size: 14px;
   text-align: center;
   padding: 135px 0px;
+  margin: auto;
 }
 
 .completed-survey-container.student {
