@@ -22,10 +22,10 @@ const TeacherType = () => {
             estudiantes.
           </p>
           <div className="text-content__actions">
-            <button onClick={() => navigate('/')} type="button" className="actions__back-home">
+            <button onClick={() => navigate('/public/')} type="button" className="actions__back-home">
               Volver al inicio
             </button>
-            <button onClick={() => navigate('/share-survey')} type="button" className="actions__generate-link">
+            <button onClick={() => navigate('/public/share-survey')} type="button" className="actions__generate-link">
               Generar enlace
             </button>
           </div>
