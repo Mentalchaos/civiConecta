@@ -1,94 +1,95 @@
 .modal-input {
-    width: 100%;
-    margin: 15px 0;
-    padding: 10px;
+  width: 100%;
+  margin: 15px 0;
+  padding: 10px;
 }
 
 .buttons-inputs {
-    margin-top: 1rem;
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
 }
 
 .buttons-container-fetch {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
 }
 
 .create-category {
-    background-color: var(--color-secondary);
-    color: white;
-    transition: all .4s;
-    border: 1px solid gray;
-    border-radius: 5px;
-    width: 100px;
-    height: 39px;
-    background: #e95f7b;
-    color: white;
-    margin: 10px;
-    display: flex;
-    justify-content: center;
+  background-color: var(--color-secondary);
+  color: white;
+  transition: all 0.4s;
+  border: 1px solid gray;
+  border-radius: 5px;
+  width: 100px;
+  height: 39px;
+  background: #e95f7b;
+  color: white;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
 }
 
 .close-modal,
 .create-category {
-    transition: all 0.4s;
+  transition: all 0.4s;
 }
 
 .create-category:hover,
 .close-modal:hover {
-    transform: scale(1.15);
+  transform: scale(1.15);
 }
 
 .close-modal {
-    width: 100px;
-    margin: 10px;
-    height: 40px;
+  width: 100px;
+  margin: 10px;
+  height: 40px;
 }
 
 .remove-topic-select {
-    height: 40px;
-    background: none;
-    color: black;
-    border: 1px solid black;
-    border-radius: 8px;
-    font-size: 14px;
-    width: 100%;
-    margin: 20px 0;
+  height: 40px;
+  background: none;
+  color: black;
+  border: 1px solid black;
+  border-radius: 8px;
+  font-size: 14px;
+  width: 100%;
+  margin: 20px 0;
 }
 
 .category-button {
-    transition: all 0.4s;
+  transition: all 0.4s;
 }
 
 .category-button:hover {
-    transform: scale(1.15);
+  transform: scale(1.15);
 }
 
 .disabled-styles {
-    background: #efefef;
-    color: #e95f7b;
+  background: #efefef;
+  color: #e95f7b;
 }
 
 .buttons-inputs .button {
-    padding: 5px 35px;
-    background-color: var(--color-secondary);
-    color: #FFF;
-    border-radius: 25px
+  padding: 5px 35px;
+  background-color: var(--color-secondary);
+  color: #fff;
+  border-radius: 25px;
 }
 
 .modal-content.custom-modal {
-    padding: 20px 40px;
-    margin-top: 50px;
+  padding: 20px 40px;
+  margin-top: 10%;
+  height: 25%;
 }
 
 .spinner-wrapper {
-    text-align: center;
-    display: block;
+  text-align: center;
+  display: block;
 }
 
 .custom-modal .warning-message {
-    color: red;
+  color: red;
 }

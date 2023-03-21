@@ -3,12 +3,17 @@ import http from '../helpers/http.helper';
 
 const BASE_URL = config.baseURL;
 
-export const getTopics = (surveyType='all') => {
+export const getAllTopics = () => {
+  const url = `${BASE_URL}/topics`;
+  return http.get(url);
+};
+
+export const getTopics = (surveyType = '') => {
   const url = `${BASE_URL}/topics/type/${surveyType}`;
   return http.get(url);
 };
 
-export const getTopic = (topicId) => {
+export const getTopic = topicId => {
   const url = `${BASE_URL}/topics/${topicId}`;
   return http.get(url);
 };
@@ -18,7 +23,7 @@ export const createTopic = (payload, surveyType) => {
   return http.post(url, payload);
 };
 
-export const deleteTopic = (topicId) => {
+export const deleteTopic = topicId => {
   const url = `${BASE_URL}/topics/${topicId}`;
   return http.delete(url);
 };
@@ -28,7 +33,7 @@ export const addQuestion = (topicId, title, alternatives) => {
   return http.put(url, { topicId, title, alternatives });
 };
 
-export const deleteQuestion = (questionId) => {
+export const deleteQuestion = questionId => {
   const url = `${BASE_URL}/topics/question/${questionId}`;
   return http.delete(url);
 };
