@@ -19,6 +19,8 @@ const useSurvey = (userType) => {
   const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [savedAlternatives, setSavedAlternatives] = useState({});
+  const [showModal, setShowModal] = useState(false);
+  const [completedSurvey, setCompletedSurvey] = useState(false);
 
   useEffect(() => {
     async function fn() {
@@ -40,6 +42,8 @@ const useSurvey = (userType) => {
       questions,
       currentQuestion,
       savedAlternatives,
+      showModal,
+      completedSurvey,
       get isFirstQuestion() {
         return currentQuestion === 0;
       },
@@ -62,7 +66,8 @@ const useSurvey = (userType) => {
       },
       continue() {
         if (currentQuestion === questions.length -1) {
-          return alert('sha terminaste la encuesta cheeee');
+          this.sendData();
+          return setShowModal(true);
         }
 
         this.sendData();
@@ -79,6 +84,12 @@ const useSurvey = (userType) => {
       },
       isAlternativeSelected(letter) {
         return savedAlternatives[currentQuestion] === letter;
+      },
+      closeModal(){
+        return setShowModal(false);
+      },
+      completedSurvey(){
+        return setCompletedSurvey(true);
       },
       async sendData() {
         const userData = getUserData();

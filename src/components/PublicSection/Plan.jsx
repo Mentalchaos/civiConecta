@@ -39,6 +39,7 @@ const Plan = () => {
           textButton={'Generar enlace'}
           colorTextBtn={"purple"}
           colorIconRight={'color-icon-purple'}
+          onClick={() => actions.navigate('/public/share-survey')}
           title={'Genera el enlace para que tus estudiantes respondan la encuesta.'}
           img={planificationGenerateLink}
         />

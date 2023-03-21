@@ -9,6 +9,10 @@ import useSurvey from './useSurvey';
 import CompletedSurvey from '../CompletedSurvey/CompletedSurvey';
 import ModalToFinish from '../ProfessorSurvey/ModalToFinish/ModalToFinish';
 import '../index.css';
+import { getUserData, clearUserData } from 'src/utils/user';
+import config from 'src/config';
+import Visible from 'src/components/UI/Visible';
+
 
 const SurveyTypes = {
   student: 'Estudiante',
@@ -17,32 +21,53 @@ const SurveyTypes = {
 
 const Surveys = ({ userType }) => {
   const { states, actions } = useSurvey(userType);
+  const userData = getUserData();
+  const uuid = userData.uuid;
+
+  console.log('states', states);
+
+  console.log('userData',userData);
+
+  const finishUser = () => {
+    fetch(`${config.baseURL}/feedback/teacher/${uuid}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      token: userData.token
+    },})
+    actions.completedSurvey();
+  }
 
   return (
     <section className="surveys">
-      <SurveyContext.Provider value={{ userType, states, actions }}>
-        {/* {showModal && <ModalToFinish closeModal={handleCloseModal} finishSurvey={handleFinishSurvey} />} */}
-        <Loading isLoading={!states.hasQuestions}>
-          {() => (
-            <Fragment>
-              <SurveyHeader
-                userType={userType}
-                questions={states.questions}
-                currentQuestion={states.currentQuestion}
-              />
-              <article className="surveys__question-alternatives">
-                <div className="surveys__alternatives-container">
-                  <span className="surveys__header-title">
-                    Encuesta {SurveyTypes[userType]}
-                  </span>
-                  <Question question={states.questionToShow} />
-                  <SurveyActions />
-                </div>
-              </article>
-            </Fragment>
-          )}
-        </Loading>
-      </SurveyContext.Provider>
+      <Visible condition={states.completedSurvey}>
+      <CompletedSurvey type="user" />
+      </Visible>
+      <Visible condition={!states.completedSurvey}>
+        <SurveyContext.Provider value={{ userType, states, actions }}>
+          {states.showModal && <ModalToFinish closeModal={actions.closeModal} finishSurvey={() => finishUser()} />}
+          <Loading isLoading={!states.hasQuestions}>
+            {() => (
+              <Fragment>
+                <SurveyHeader
+                  userType={userType}
+                  questions={states.questions}
+                  currentQuestion={states.currentQuestion}
+                />
+                <article className="surveys__question-alternatives">
+                  <div className="surveys__alternatives-container">
+                    <span className="surveys__header-title">
+                      Encuesta {SurveyTypes[userType]}
+                    </span>
+                    <Question question={states.questionToShow} />
+                    <SurveyActions />
+                  </div>
+                </article>
+              </Fragment>
+            )}
+          </Loading>
+        </SurveyContext.Provider>
+      </Visible>
     </section>
   );
 };
