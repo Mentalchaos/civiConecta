@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import config from 'src/config';
-import cookie from 'src/utils/cookie';
 import { getUserData } from 'src/utils/user';
 const { UserTypes, PlanificationTypes } = config.constants;
 
@@ -38,9 +37,9 @@ const usePublicSection = () => {
 
   useEffect(() => {
     (async () => {
-      const dataCookies = cookie.getDataParser();
+      const userData = getUserData();
 
-      if (dataCookies.role === UserTypes.ADMIN) {
+      if (userData.role === UserTypes.ADMIN) {
         alert('No puede ingresar a esta sección como usuario Administrador');
         navigate('/admin');
       }

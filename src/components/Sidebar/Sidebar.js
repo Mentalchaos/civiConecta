@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { clearUserData } from 'src/utils/user';
 import home from 'src/assets/Icons/home.svg';
 import teacher from 'src/assets/Icons/teacher.svg';
 import student from 'src/assets/Icons/student.svg';
@@ -8,8 +9,6 @@ import school from 'src/assets/Icons/school.svg';
 import folder from 'src/assets/Icons/folder.svg';
 import calendar from 'src/assets/Icons/calendar.svg';
 import exit from 'src/assets/Icons/exit.svg';
-import cookie from '../../utils/cookie';
-import { clearUserData } from 'src/utils/user';
 import './Sidebar.css';
 
 const NavButton = ({ icon, ariaLabel, path, handleClick, ...props }) => {
@@ -22,7 +21,6 @@ const NavButton = ({ icon, ariaLabel, path, handleClick, ...props }) => {
 
 const Sidebar = () => {
   const handleClear = () => {
-    cookie.removeCookie('token');
     clearUserData();
   };
 
