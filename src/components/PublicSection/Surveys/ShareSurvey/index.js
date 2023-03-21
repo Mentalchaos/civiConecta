@@ -10,7 +10,7 @@ const ShareSurvey = () => {
   return (
     <div className="share-survey-container">
       <div className="back-container">
-        <p onClick={() => navigate('/')} style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
+        <p onClick={() => window.history.back()} style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
           <img src={back} alt="back-arrow-icon" />
           Volver
         </p>
