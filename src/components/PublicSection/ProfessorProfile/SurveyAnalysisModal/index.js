@@ -1,5 +1,6 @@
 import modalImage from 'src/assets/images/analysis-image.png';
 import closeButton from 'src/assets/images/close-popup.svg';
+import PieChart from './PieChart';
 
 import './SurveyAnalysisModal.css';
 
@@ -24,8 +25,8 @@ const SurveyAnalysisModal = ({ onClick }) => {
             paciencia, trabajo en equipo, etc.?
             </p>
           </div>
-          <div className='chart-container'>
-            <p>Gráfico</p>
+          <div id='app'>
+            <PieChart />
           </div>
         </div>
       </div>
