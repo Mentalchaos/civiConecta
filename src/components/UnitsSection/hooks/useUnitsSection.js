@@ -21,7 +21,7 @@ const useUnitsSection = () => {
     async function fn() {
       const [grades, topics] = await Promise.all([
         gradeRequest.getGrades().then(r => r.grades),
-        topicRequest.getTopics().then(r => r.topics)
+        topicRequest.getAllTopics().then(r => r.topics),
       ]);
 
       setGrades(grades);
@@ -55,8 +55,8 @@ const useUnitsSection = () => {
         return !isLoading && gradeSelected;
       },
       get initialState() {
-        return !units?.length && !isLoading && !gradeSelected
-      }
+        return !units?.length && !isLoading && !gradeSelected;
+      },
     },
     setters: {
       setError,
@@ -66,22 +66,21 @@ const useUnitsSection = () => {
       setGradeSelected,
       setOpenModalAddUnit,
       setOpenModalDeleteUnit,
-      setUnitSelected
+      setUnitSelected,
     },
     actions: {
-      createUnit: wrapRequest(async (payload) => {
+      createUnit: wrapRequest(async payload => {
         const response = await unitRequest.createUnit(payload);
 
         if (!response.ok) {
           return setError(response.error);
         }
 
-        console.log('response', response);
         setOpenModalAddUnit(false);
         setError('');
         setUnits([...units, response.unit]);
       }),
-      getUnits: wrapRequest(async (grade) => {
+      getUnits: wrapRequest(async grade => {
         const response = await unitRequest.getUnitsByGrade(grade);
         setGradeSelected(grade);
         setUnits(response.units);
@@ -97,8 +96,8 @@ const useUnitsSection = () => {
         setUnits(filteredUnits);
         setError('');
         setOpenModalDeleteUnit(false);
-      })
-    }
+      }),
+    },
   };
 
   return self;

@@ -13,7 +13,17 @@ const useForm = (initialState = {}) => {
     });
   };
 
-  return { values, handleInputChange, reset, isSubmitted };
+  const self = {
+    states: {
+      get isCompletedForm() {
+        const formValues = Object.values(values);
+        const formCompleted = formValues.every(value => value !== '');
+        return formCompleted;
+      },
+    },
+  };
+
+  return { values, handleInputChange, reset, isSubmitted, self };
 };
 
 export default useForm;

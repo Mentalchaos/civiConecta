@@ -38,8 +38,7 @@ const CreateLetter = ({ setShowAddLetter, onHandleAddLetter }) => {
       style={{ marginTop: '15rem', padding: '40px 120px 40px 120px' }}
     >
       <span className="custom-subtitle">
-        Seleccione una Letra para{' '}
-        <strong>5° básico y cantidad de alumnos</strong>.
+        Seleccione una Letra para <strong>5° básico y cantidad de alumnos</strong>.
       </span>
       <div className="section__select-actions">
         <div className="select-section">
