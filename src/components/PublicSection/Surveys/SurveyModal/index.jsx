@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
 import modalImage from 'src/assets/images/modal-image.png';
 import closeButton from 'src/assets/images/close-popup.svg';
@@ -6,17 +7,16 @@ import teacher from 'src/assets/Icons/teacher-white.svg';
 import studentImg from 'src/assets/Icons/student-purple.svg';
 import './SurveyModal.css';
 
-const SurveyModal = ({ closeModal, statusData, teacherSurveyOnclick }) => {
+const SurveyModal = ({ closeModal, teacherSurveyOnclick }) => {
 
+  const navigate = useNavigate();
   // Borrar boton de docente o estudiante basandose si la encuesta fue contestada o no
 
-  const teacherSurveyButton = () => {
-    teacherSurveyOnclick();
-    redirect('/public/professor-survey');
+  const teacherSurveyButton = async () => {
+    await teacherSurveyOnclick();
+    navigate('/public/professor-survey');
   };
 
-  const { student  } = statusData;
-  const redirect = section => window.location.href = section;
   return (
     <div className='survey-modal-container'>
       <div className='survey-modal'>
@@ -43,7 +43,7 @@ const SurveyModal = ({ closeModal, statusData, teacherSurveyOnclick }) => {
                 <p>Ir a la encuesta</p>
               </div>
             </div>
-            <div className='student-survey-button' onClick={() => redirect('/public/share-survey')}>
+            <div className='student-survey-button' onClick={() => navigate('/public/share-survey')}>
               <div className='student-button-header'>
                 <p>Generar enlace para encuestar estudiantes</p>
                 <img src={studentImg} alt="student" />

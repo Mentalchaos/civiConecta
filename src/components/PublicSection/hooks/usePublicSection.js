@@ -69,6 +69,10 @@ const usePublicSection = () => {
   }, []);
 
   return {
+    setters: {
+      setModalVisibility,
+      setPlanificationType,
+    },
     states: {
       status,
       userData,
@@ -106,10 +110,6 @@ const usePublicSection = () => {
       get isCustomPlanification() {
         return planificationType === PlanificationTypes.CUSTOM;
       }
-    },
-    setters: {
-      setModalVisibility,
-      setPlanificationType
     },
     actions: {
       navigate,
