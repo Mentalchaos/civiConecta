@@ -17,17 +17,16 @@ import Plan from './Plan';
 const { links, emergentSituations, planningPrograms } = config.contents;
 
 const PublicSection = () => {
-  const { states, actions } = usePublicSection();
+  const { states, actions, setters } = usePublicSection();
 
   return (
-    <PublicContext.Provider value={{ states, actions }}>
+    <PublicContext.Provider value={{ states, actions, setters }}>
       <div className="public-section-container">
         <Loading isLoading={states.isLoading}>
           {() => (
             <Fragment>
               <Visible condition={states.shouldModalBeShown}>
                 <SurveyModal
-                  statusData={states.status}
                   closeModal={actions.closeModal}
                   teacherSurveyOnclick={actions.teacherSurvey}
                 />
