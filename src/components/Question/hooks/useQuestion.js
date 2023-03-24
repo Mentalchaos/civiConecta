@@ -102,9 +102,14 @@ const useQuestion = (topicId) => {
         reset(topic.alternatives);
       },
       async deleteQuestion(questionId) {
-        await surveyRequest.deleteQuestion(questionId);
-        const filteredQuestions = questions.filter(q => q.id !== questionId);
-        setQuestions(filteredQuestions);
+        const response = await surveyRequest.deleteQuestion(questionId);
+
+        if (response.ok) {
+          const filteredQuestions = questions.filter(q => q.id !== questionId);
+          setQuestions(filteredQuestions);
+        } else {
+          alert(response.error);
+        }
       }
     }
   };
