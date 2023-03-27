@@ -1,9 +1,11 @@
 import './UnitSituations.css';
 import emergent from 'src/assets/images/emergent.jpg';
 import goTo from 'src/assets/Icons/open-arrow.svg';
+import { useNavigate } from 'react-router-dom';
 
 
 const UnitSituations = ({title}) => {
+  const navigate = useNavigate();
     return (
         <div className='unit-situations-container'>
             <div className='unit-situations-one'>
