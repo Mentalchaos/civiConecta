@@ -1,0 +1,61 @@
+.classes {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+    margin: 30px 0;
+}
+
+.class {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 26%;
+    padding: 30px;
+    border: 1px solid rgb(225, 225, 225);
+    border-radius: 10px;
+}
+
+.class-title {
+    color: white;
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    background-color: #96cb76;
+    border-radius: 30px;
+    padding: 10px;
+    width: 32%;
+    margin-bottom: 12px;
+}
+
+.sub-title {
+    font-weight: bolder;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.class-text {
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+.see-class-container {
+    display: flex;
+    justify-content: end;
+}
+
+.see-class {
+    font-weight: bolder;
+    font-size: 15px;
+    color: #96cb76;
+    width: 45%;
+    height: 25px;
+    border: none;
+    background-color: transparent;
+}
+
+.arrow {
+    fill: #96cb76;
+    height: 10px;
+    margin-left: 10px;
+}
