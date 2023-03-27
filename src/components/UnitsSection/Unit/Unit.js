@@ -4,8 +4,16 @@ import Spinner from 'src/components/UI/Spinner';
 import Button from 'src/components/UI/Button';
 import Modal from 'src/components/UI/Modal';
 import PlanningForm from 'src/components/UI/PlanningForm';
-import { createClass, getClassesByUnitAndGrade, updateClass, deleteClass } from 'src/services/admin/classes.request';
-import { deleteFileByClassUnitAndGrade, uploadFileByClassUnitAndGrade } from 'src/services/admin/files.request';
+import {
+  createClass,
+  getClassesByUnitAndGrade,
+  updateClass,
+  deleteClass,
+} from 'src/services/admin/classes.request';
+import {
+  deleteFileByClassUnitAndGrade,
+  uploadFileByClassUnitAndGrade,
+} from 'src/services/admin/files.request';
 import * as unitRequest from 'src/services/admin/units.request';
 
 import arrowDown from 'src/assets/Icons/arrow-down.svg';
@@ -13,7 +21,7 @@ import arrow from 'src/assets/Icons/arrow-degree.svg';
 import './Unit.css';
 
 const Unit = ({ unitsData, grade, getUnits, reset }) => {
-  const [ unitId, setUnitId ] = useState(null);
+  const [unitId, setUnitId] = useState(null);
   const [showClass, setShowClass] = useState(false);
   const [isSelectedClass, setIsSelectedClass] = useState(false);
   const [dataClassSelected, setDataClassSelected] = useState({});
@@ -59,8 +67,15 @@ const Unit = ({ unitsData, grade, getUnits, reset }) => {
 
   const onUpdateClass = (number, unit, grade, formValues) => {
     setFetching(true);
-    const { topic, studentMaterials, description, teacherMaterials, startActivity, mainActivity, endActivity } =
-      formValues;
+    const {
+      topic,
+      studentMaterials,
+      description,
+      teacherMaterials,
+      startActivity,
+      mainActivity,
+      endActivity,
+    } = formValues;
 
     const payload = {
       ...dataClassSelected,
@@ -255,7 +270,13 @@ const Unit = ({ unitsData, grade, getUnits, reset }) => {
                   <p className="box__header-documents">{description}</p>
                 </section>
               </header>
-              <section className={number === unitSelectedNumber && showClass ? 'show-class' : 'class-section'}>
+              <section
+                className={
+                  number === unitSelectedNumber && showClass
+                    ? 'show-class'
+                    : 'class-section'
+                }
+              >
                 {fetching && (
                   <div style={{ textAlign: 'center' }}>
                     <Spinner />
@@ -280,7 +301,11 @@ const Unit = ({ unitsData, grade, getUnits, reset }) => {
                   classesList.map(item => {
                     const { files, number, objetives, unit } = item;
                     return (
-                      <div style={{ position: 'relative' }} key={number} className="class-box">
+                      <div
+                        style={{ position: 'relative' }}
+                        key={number}
+                        className="class-box"
+                      >
                         <span
                           onClick={() => deleteClassSelected(number, unit.number)}
                           style={{
@@ -296,7 +321,9 @@ const Unit = ({ unitsData, grade, getUnits, reset }) => {
                           X
                         </span>
                         <h2 className="class-box__title">Clase {number}</h2>
-                        <span className="class-box__documents">{files.length} Documentos totales en esta clase.</span>
+                        <span className="class-box__documents">
+                          {files.length} Documentos totales en esta clase.
+                        </span>
                         <span className="class-box__oa">Objetivo: {objetives}</span>
 
                         <div className="box-link">
@@ -312,7 +339,9 @@ const Unit = ({ unitsData, grade, getUnits, reset }) => {
                     );
                   })}
                 {!classesList?.length && !fetching && (
-                  <h2 style={{ textAlign: 'center', color: 'var(--gray-dark)' }}>Unidad no registra clases.</h2>
+                  <h2 style={{ textAlign: 'center', color: 'var(--gray-dark)' }}>
+                    Unidad no registra clases.
+                  </h2>
                 )}
                 {showClass && !isSelectedClass && (
                   <div className="add_button-container">
@@ -338,7 +367,9 @@ const Unit = ({ unitsData, grade, getUnits, reset }) => {
           );
         })
       ) : (
-        <h1 style={{ textAlign: 'center', color: 'var(--gray-dark)' }}>Curso sin registro de unidades.</h1>
+        <h1 style={{ textAlign: 'center', color: 'var(--gray-dark)' }}>
+          Curso sin registro de unidades.
+        </h1>
       )}
     </>
   );

@@ -11,13 +11,16 @@ const UnitsDashboard = () => {
             <div className='dashboard-container'>
                 <ButtonOptions />
                 <button className='profile-back-container back1'>
-                    <img src={back}/>
+                    <img src={back} alt=''/>
                     Volver
                 </button>
                 <Unit />
                 <Class />
             </div>
-            <Footer />
+
+            <div className='footer-div'>
+                <Footer />
+            </div>
         </div>
     )
 }

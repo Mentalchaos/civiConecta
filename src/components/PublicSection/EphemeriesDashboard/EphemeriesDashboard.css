@@ -1,3 +1,155 @@
-body {
-  color: black;
+.ephemeris-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3em;
+}
+
+.ephemeris {
+  border: 1px solid rgb(225, 225, 225);
+  border-radius: 20px;
+  padding: 30px;
+  height: 130px;
+  width: 72%;
+  margin: 3em 4em;
+}
+
+.ephemeris-cont{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+}
+
+.ephemeris-header {
+  display: flex;
+  height: 100%;
+  width: 25%;
+  justify-content: flex-start;
+  align-items: center;
+  border-right: 1px solid rgb(225, 225, 225);
+}
+
+.ephemeris-image {
+  width: 60px;
+  background-color: #54bfed;
+  border-radius: 10px;
+  padding: 10px;
+  margin-right: 15px;
+}
+
+.ephemeris-header-text p {
+  font-family: 'Poppins';
+  font-size: 18px;
+  font-weight: bold;
+  color: #54bfed;
+}
+
+.ephemeris-description {
+  display: flex;
+  height: 90%;
+  margin-top: 1.5em;
+}
+
+.ephemeris-description-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 70%;
+  justify-content: space-around;
+}
+
+.book-icon {
+  height: 30px;
+  width: 30px;
+  margin-right: 15px;
+}
+
+.ephemeris-info {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.ephemeris-desc-title {
+  color: #54bfed;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.ephemeris-desc-text {
+  font-family: 'Poppins';
+  font-size: 13px;
+  color: #535353;
+  height: 100%;
+}
+
+.dates-container {
+  display: grid;
+  justify-content: flex-end;
+  margin-right: 10px;
+  width: 76%;
+  margin-bottom: 4em;
+}
+
+.dates-section {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px;
+  justify-content: flex-end;
+}
+
+.ephemeris-day {
+  border: 1px solid rgb(225, 225, 225);
+  border-radius: 20px;
+  padding: 12px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ephemeris-date {
+  background: #54bfed;
+  width: 49%;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+.ephemeris-date p {
+  font-size: 14px;
+  color: white;
+  font-weight: bold;
+}
+
+.ephemeris-title {
+  width: 90%;
+}
+
+.ephemeris-title p {
+  color: #535353;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.ephemeris-see-class {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.ephemeris-see-class p {
+  color: #54bfed;
+  display: flex;
+  width: 50%;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.ephemeris-see-class img {
+  width: 10px;
+  filter: invert(70%) sepia(51%) saturate(923%) hue-rotate(167deg) brightness(97%) contrast(92%);
 }

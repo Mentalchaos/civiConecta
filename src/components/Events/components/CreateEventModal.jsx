@@ -17,6 +17,7 @@ const CreateEventModal = () => {
         onHandleSubmit={actions.addEvent}
         fetching={states.isFetching}
         needDescription={true}
+        eventGradeSelected={states.gradeSelected}
       />
     </Modal>
   );
