@@ -3,8 +3,6 @@ import Button from '../Button';
 import Visible from '../Visible';
 import useForm from 'src/hooks/useForm';
 import './PlanningForm.css';
-import { useContext } from 'react';
-import { EventContext } from 'src/components/Events/context';
 
 const initialState = {
   title: '',
@@ -24,6 +22,7 @@ const toArray = x => x.trim().split(',');
 
 const PlanningForm = ({
   unit,
+  eventGradeSelected,
   fetching,
   handleHiddeModal,
   onHandleSubmit,
@@ -31,9 +30,8 @@ const PlanningForm = ({
   needDescription,
   type,
 }) => {
-  const isEphemeris = type === 'ephemeris';
-  const { states } = useContext(EventContext);
   const { values, handleInputChange, reset, self } = useForm(initialState);
+  const isEphemeris = type === 'ephemeris';
 
   const handleSubmit = evt => {
     evt.preventDefault();
@@ -53,7 +51,8 @@ const PlanningForm = ({
       description: needDescription ? values.description : 'Sin descripcion',
       objective: needObjectives ? values.objective : 'Sin objetivos',
       date: values.date,
-      grade: states.gradeSelected,
+      grade: eventGradeSelected || null,
+      number: type === 'class' ? values.number : null,
       planning,
       unit,
     };
@@ -63,6 +62,12 @@ const PlanningForm = ({
   return (
     <form className="planning-form" onSubmit={handleSubmit}>
       <div className="row">
+        <Visible condition={type === 'class'}>
+          <div className="form-group">
+            <label>Clase Nº:</label>
+            <input onChange={handleInputChange} name="number" type="text" required />
+          </div>
+        </Visible>
         <div className="form-group w80">
           <label>Título de la clase:</label>
           <input onChange={handleInputChange} name="title" type="text" required />
@@ -182,12 +187,14 @@ PlanningForm.propTypes = {
   needObjetives: PropTypes.bool,
   needDescription: PropTypes.bool,
   type: PropTypes.string.isRequired,
+  eventGradeSelected: PropTypes.any,
 };
 
 PlanningForm.defaultProps = {
   needObjectives: false,
   needDescription: false,
   unit: null,
+  eventGradeSelected: null,
 };
 
 export default PlanningForm;
