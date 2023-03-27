@@ -1,17 +1,17 @@
 import { useParams } from 'react-router-dom';
-import UnitLayout from 'src/Layouts/UnitLayout';
-import Visible from 'src/components/UI/Visible';
-import Table from 'src/components/UI/Table';
 import Button from 'src/components/UI/Button';
+import Table from 'src/components/UI/Table';
+import Visible from 'src/components/UI/Visible';
+import UnitLayout from 'src/Layouts/UnitLayout';
+import { identity } from 'src/utils/functional';
+import Loading from '../UI/Loading';
+import FileUploader from './components/FileUploader';
 import Header from './components/Header';
 import ObjectiveDescription from './components/ObjectiveDescription';
-import FileUploader from './components/FileUploader';
 import PlanificationForm from './components/PlanificationForm';
 import { PlanificationContext } from './context';
 import usePlanification from './hooks/usePlanification';
-import { identity } from 'src/utils/functional';
 import './Planification.v2.css';
-import Loading from '../UI/Loading';
 
 const styles = {
   table: { marginTop: 10 },
@@ -53,17 +53,17 @@ const Planification = () => {
           <Header />
           <ObjectiveDescription />
           <div className="planification__files">
-            <Visible condition={!states.files.length && !states.isLoading}>
+            <Visible condition={!states.files?.length && !states.isLoading}>
               <h1>No se registran archivos.</h1>
             </Visible>
             <Loading isLoading={states.isLoading}>
-              <Visible condition={states.files.length}>
+              <Visible condition={states.files?.length}>
                 <div className="table-section">
                   <Table
                     style={styles.table}
                     handleCheckboxSelected={handleCheckboxSelected}
                     data={states.files}
-                    dataDisplayed={states.files.map(identity)}
+                    dataDisplayed={states.files?.map(identity)}
                     dataHeader={['uuid', 'Nombre']}
                   />
                   <Visible condition={states.rowSelected}>
@@ -94,7 +94,7 @@ const Planification = () => {
             <Visible condition={states.lesson.planning}>
               {() => (
                 <PlanificationForm
-                  type={eventType == 1 ? 'situation' : 'ephemeris'}
+                  type={eventType === 1 ? 'situation' : 'ephemeris'}
                   onHandleSubmit={handleSubmit}
                 />
               )}

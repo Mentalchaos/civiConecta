@@ -21,17 +21,30 @@ const AdminRouter = () => {
         <Route element={<AdminGuard />}>
           <Route path="*" element={<Main />} />
           <Route path="dashboard" element={<Main />} />
-          <Route path="teacher-survey/:surveyType/:topicId/questions" element={<TeacherQuestionSection />} />
-          <Route path="student-survey/:surveyType/:topicId/questions" element={<StudentQuestionSection />} />
+          <Route
+            path="teacher-survey/:surveyType/:topicId/questions"
+            element={<TeacherQuestionSection />}
+          />
+          <Route
+            path="student-survey/:surveyType/:topicId/questions"
+            element={<StudentQuestionSection />}
+          />
           <Route path="student-survey" element={<StudentSurvey />} />
           <Route path="teacher-survey" element={<TeacherSurvey />} />
           <Route path="units/:unitId" element={<UnitManager />} />
           <Route path="units" element={<UnitsSection />} />
           <Route path="manager" element={<Manager />} />
-          <Route path="situations/events/:eventType/:eventId" element={<Planification />} />
-          <Route path="ephemeris/events/:eventType/:eventId" element={<Planification />} />
+          <Route
+            path="situations/events/:eventType/:eventId"
+            element={<Planification />}
+          />
+          <Route
+            path="ephemeris/events/:eventType/:eventId"
+            element={<Planification />}
+          />
           <Route path="situations" element={<Situations />} />
           <Route path="ephemeris" element={<Ephemeris />} />
+          <Route path="lesson/:lessonId" element={<Planification />} />
           <Route path="*" element={<Navigate to="dashboard" />} />
         </Route>
       </Routes>

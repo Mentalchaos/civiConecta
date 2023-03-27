@@ -39,7 +39,7 @@ Lesson.propTypes = {
   id: PropTypes.number.isRequired,
   number: PropTypes.number.isRequired,
   objective: PropTypes.string.isRequired,
-  files: PropTypes.array.isRequired
+  files: PropTypes.array.isRequired,
 };
 
 export default Lesson;
