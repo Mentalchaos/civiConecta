@@ -29,8 +29,8 @@ const EphemeriesDashboard = () => {
                     </div>
                 </div>
             </div>
-            <div class="dates-container">
-                <div class="dates-section">
+            <div className="dates-container">
+                <div className="dates-section">
                     <EphemerisDate />
                     <EphemerisDate />
                     <EphemerisDate />

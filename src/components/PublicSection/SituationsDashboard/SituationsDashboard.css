@@ -1,3 +1,160 @@
-body {
-    color: black;
+.situations-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 3em;
+}
+
+.situations {
+    border: 1px solid rgb(225, 225, 225);
+    border-radius: 20px;
+    padding: 30px;
+    height: 130px;
+    width: 72%;
+    margin: 3em 4em;
+}
+
+.situations-cont{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+}
+
+.situations-header {
+    display: flex;
+    height: 100%;
+    width: 25%;
+    justify-content: flex-start;
+    align-items: center;
+    border-right: 1px solid rgb(225, 225, 225);
+}
+
+.situations-image {
+    width: 60px;
+    background-color: #2dba9f;
+    border-radius: 10px;
+    padding: 10px;
+    margin-right: 15px;
+}
+
+.situations-header-text p {
+    font-family: 'Poppins';
+    font-size: 18px;
+    font-weight: bold;
+    color: #2dba9f;
+}
+
+.situations-description {
+    display: flex;
+    height: 90%;
+    margin-top: 1.5em;
+}
+
+.situations-description-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 70%;
+    justify-content: space-around;
+}
+
+.book-icon {
+    height: 30px;
+    width: 30px;
+    margin-right: 15px;
+}
+
+.situations-info {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.situations-desc-title {
+    color: #2dba9f;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.situations-desc-text {
+    font-family: 'Poppins';
+    font-size: 13px;
+    color: #535353;
+    height: 100%;
+}
+
+.classes-container {
+    display: grid;
+    margin-right: 5px;
+    width: 76%;
+    margin-bottom: 4em;
+}
+
+.classes-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    justify-content: flex-end;
+}
+
+.situation-day {
+    border: 1px solid rgb(225, 225, 225);
+    border-radius: 20px;
+    padding: 12px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 240px;
+}
+
+.situation-date {
+    background: #2dba9f;
+    width: 35%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+}
+.situation-date p {
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+}
+
+.situation-title {
+    width: 65%;
+}
+
+.situation-title p {
+    color: #535353;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.situation-desc p {
+    font-size: 14px;
+    color: #535353;
+}
+
+.situation-see-class {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.situation-see-class p {
+    color: #2dba9f;
+    display: flex;
+    width: 25%;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.situation-see-class img {
+    width: 10px;
+    filter: invert(58%) sepia(29%) saturate(920%) hue-rotate(119deg) brightness(99%) contrast(89%);
 }
