@@ -17,14 +17,23 @@ const Header = () => {
       <div className="header-info">
         <Visible condition={lesson.eventType}>
           <h3 className="class-title">{lesson.title}</h3>
-          <span className="class-files">{states.files.length} documentos totales en esta clase.</span>
+          <span className="class-files">
+            {states.files?.length} documentos totales en esta clase.
+          </span>
         </Visible>
         <Visible condition={lesson.number}>
           <h3 className="class-title">Clase {lesson.number}</h3>
-          <span className="class-files">{states.files.length} documentos totales en esta clase.</span>
+          <span className="class-files">
+            {states.files?.length} documentos totales en esta clase.
+          </span>
         </Visible>
       </div>
-      <img onClick={handleGoBack} className="icon-back-to" src={arrowIcon} alt="back to" />
+      <img
+        onClick={handleGoBack}
+        className="icon-back-to"
+        src={arrowIcon}
+        alt="back to"
+      />
     </div>
   );
 };
