@@ -2,11 +2,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 3em;
+    margin: 3em 3em 0 3em;
 }
 
 .situations {
-    border: 1px solid rgb(225, 225, 225);
+    border: 1px solid #e1e1e1;
     border-radius: 20px;
     padding: 30px;
     height: 130px;
@@ -27,7 +27,7 @@
     width: 25%;
     justify-content: flex-start;
     align-items: center;
-    border-right: 1px solid rgb(225, 225, 225);
+    border-right: 1px solid #e1e1e1;
 }
 
 .situations-image {
@@ -84,6 +84,55 @@
     height: 100%;
 }
 
+.situations-search {
+    display: flex;
+    width: 76%;
+    margin-bottom: 2em;
+}
+
+.search-container {
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+    align-items: center;
+}
+
+.search-info {
+    display: flex;
+    justify-content: space-between;
+    width: 25%;
+}
+
+.search-info p {
+    font-family: 'Poppins';
+    font-size: 15px;
+    color: #535353;
+    font-weight: bold;
+}
+
+.search-input {
+    width: 70%;
+    border: 1px solid #e1e1e1;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.search-input input {
+    width: 76%;
+    border-radius: 20px;
+    background: white;
+    border: none;
+}
+
+.search-input img {
+    width: 20px;
+}
+
+.search-input input::placeholder {
+    color: #E1E1E1;
+}
+
 .classes-container {
     display: grid;
     margin-right: 5px;
@@ -99,7 +148,7 @@
 }
 
 .situation-day {
-    border: 1px solid rgb(225, 225, 225);
+    border: 1px solid #e1e1e1;
     border-radius: 20px;
     padding: 12px 20px;
     display: flex;
@@ -133,8 +182,12 @@
     font-weight: bold;
 }
 
+.situation-desc {
+    width: 95%;
+}
+
 .situation-desc p {
-    font-size: 14px;
+    font-size: 15px;
     color: #535353;
 }
 
@@ -157,4 +210,9 @@
 .situation-see-class img {
     width: 10px;
     filter: invert(58%) sepia(29%) saturate(920%) hue-rotate(119deg) brightness(99%) contrast(89%);
+}
+
+
+.search-info img {
+    width: 30px;
 }

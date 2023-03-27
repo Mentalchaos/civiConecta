@@ -3,6 +3,7 @@ import unitGreen from '../../../assets/Icons/unit-green.svg';
 import Footer from '../Footer/index';
 import './SituationsDashboard.css';
 import EmergentSituation from './components/EmergentSituation';
+import SearchBar from './components/SearchBar';
 
 const SituationsDashboard = () => {
     return (
@@ -28,6 +29,9 @@ const SituationsDashboard = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className='situations-search'>
+                <SearchBar />
             </div>
             <div className="classes-container">
                 <div className="classes-section">
