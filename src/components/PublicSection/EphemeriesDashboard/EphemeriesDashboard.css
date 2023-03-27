@@ -6,7 +6,7 @@
 }
 
 .ephemeris {
-  border: 1px solid rgb(225, 225, 225);
+  border: 1px solid #e1e1e1;
   border-radius: 20px;
   padding: 30px;
   height: 130px;
@@ -27,7 +27,7 @@
   width: 25%;
   justify-content: flex-start;
   align-items: center;
-  border-right: 1px solid rgb(225, 225, 225);
+  border-right: 1px solid #e1e1e1;
 }
 
 .ephemeris-image {
@@ -100,7 +100,7 @@
 }
 
 .ephemeris-day {
-  border: 1px solid rgb(225, 225, 225);
+  border: 1px solid #e1e1e1;
   border-radius: 20px;
   padding: 12px 20px;
   display: flex;
