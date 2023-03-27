@@ -1,10 +1,11 @@
 import Footer from '../Footer/index';
 import './Planning.css';
+import UnitContent from './UnitContent/UnitContent';
 
 const Planning = () => {
     return (
         <div>
-            Planning
+            <UnitContent />
             <Footer />
         </div>
     )
