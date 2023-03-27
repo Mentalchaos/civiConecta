@@ -11,10 +11,46 @@ import './StudentSurvey.css';
 const StudentSurvey = () => {
   const [changeToFirstStep, setChangeToFirstStep] = useState(false);
   const [isStartSurvey, setIsStartSurvey] = useState(false);
+  const [rutValue, setRutValue] = useState('');
+  const [isValidRut, setIsValidRut] = useState(false);
+  const [showInvalidRutError, setShowInvalidRutError] = useState(false);
+
+  console.log('rutValue', rutValue);
+  console.log('isValidRut', isValidRut);
+
+  const validateRut = (rut) => {
+    const regex = /^(\d{1,2}(\.?\d{3}){2})-([\dkK])$/;
+    return regex.test(rut);
+  };
+
+  const handleRutChange = (event) => {
+    const value = event.target.value;
+    setRutValue(value);
+    setIsValidRut(validateRut(value));
+    setShowInvalidRutError(false);
+  };
 
   useEffect(() => {
     setChangeToFirstStep(false);
   }, []);
+
+  const handleIngresarRutClick = () =>
+    isValidRut ? setChangeToFirstStep(true) : setShowInvalidRutError(true);
+
+  const buttonStyle = {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '175px',
+    height: '40px',
+    fontFamily: 'Nunito Sans, sans-serif',
+    color: '#FFFFFF',
+    backgroundColor: isValidRut ? '#7560E8' : '#D5D1F6',
+    borderRadius: '20px',
+    borderStyle: 'none',
+    cursor: isValidRut ? 'pointer' : 'not-allowed',
+  };
 
   return (
     <>
@@ -37,19 +73,26 @@ const StudentSurvey = () => {
                 <div className="id-container">
                   <div className="id-one">
                     <p>RUT</p>
-                    <input placeholder="00.000.000-k" />
+                    <input
+                      className="rut-input"
+                      placeholder="00.000.000-k"
+                      value={rutValue}
+                      onChange={handleRutChange}
+                    />
                   </div>
-                  <div className="id-two">
-                    <img src={warning} />
-                    <p>
-                      El RUT que ingresaste no coincide con ningún estudiante.
-                      <br />
-                      Verifíca que esté bien escrito y vuelve a intentarlo.
-                    </p>
-                  </div>
+                  {showInvalidRutError && (
+                    <div className="id-two">
+                      <img src={warning} />
+                      <p>
+                        El RUT que ingresaste no es válido.
+                        <br />
+                        Verifíca que esté bien escrito y vuelve a intentarlo.
+                      </p>
+                    </div>
+                  )}
                 </div>
                 <div className="students-button">
-                  <button onClick={() => setChangeToFirstStep(true)}>
+                  <button onClick={handleIngresarRutClick} style={buttonStyle}>
                     Ingresar RUT
                     <img src={arrow} />
                   </button>
@@ -59,8 +102,8 @@ const StudentSurvey = () => {
           </div>
         )}
         {changeToFirstStep && !isStartSurvey && <FirstStep type={'student'} setIsStartSurvey={setIsStartSurvey} />}
-
         {isStartSurvey && <Surveys userType={'student'} />}
+
       </main>
       <div style={{ padding: '0 2.4em' }}>
         <Footer />
