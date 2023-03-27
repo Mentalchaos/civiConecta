@@ -9,3 +9,8 @@ body {
 .back1 {
   margin-left: 0 !important;
 }
+
+.footer-div {
+  width: 90%;
+  margin: auto; 
+}

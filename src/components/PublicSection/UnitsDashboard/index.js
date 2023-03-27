@@ -17,7 +17,10 @@ const UnitsDashboard = () => {
                 <Unit />
                 <Class />
             </div>
-            <Footer />
+
+            <div className='footer-div'>
+                <Footer />
+            </div>
         </div>
     )
 }

@@ -6,7 +6,9 @@ const Planning = () => {
     return (
         <div>
             <UnitContent />
-            <Footer />
+            <div className='footer-div'>
+                <Footer />
+            </div>
         </div>
     )
 }
