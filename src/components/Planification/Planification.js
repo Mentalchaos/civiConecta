@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
+import { getUserData } from 'src/utils/user';
 import useForm from 'src/hooks/useForm';
 import Button from '../UI/Button';
 import Table from '../UI/Table';
@@ -110,7 +111,7 @@ const Planification = ({
   };
 
   const onDownloadFile = async () => {
-    const user = JSON.parse(sessionStorage.getItem('user'));
+    const user = getUserData();
     const token = user.token;
     const path = `${fileSelected.getPath}&token=${token}`;
     const link = document.createElement('a');

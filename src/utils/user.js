@@ -1,6 +1,6 @@
 const getUserData = () => {
   try {
-    return JSON.parse(sessionStorage.getItem('user'));
+    return JSON.parse(localStorage.getItem('user'));
   } catch (err) {
     return null;
   }
@@ -15,11 +15,11 @@ const setUserData = (saveData, uuid) => {
     token: saveData.token,
     uuid
   };
-  sessionStorage.setItem('user', JSON.stringify(userData));
+  localStorage.setItem('user', JSON.stringify(userData));
 };
 
 const clearUserData = () => {
-  sessionStorage.clear();
+  localStorage.clear();
 };
 
 export { getUserData, setUserData, clearUserData };
