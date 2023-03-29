@@ -12,7 +12,7 @@ const services = {
   async getUserData(uuid) {
     const response = await fetch(`${config.baseURL}/establishments/info/${uuid}`, {
       headers: {
-        token: JSON.parse(sessionStorage.getItem('user')).token
+        token: getUserData().token
       }
     });
 
