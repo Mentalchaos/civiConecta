@@ -39,16 +39,17 @@
   position: absolute;
 }
 
-.current-path {
-  padding-left: 30px;
-}
-
 .path__text {
   display: initial;
   cursor: pointer;
   color: var(--color-primary);
   font-weight: 600;
   font-size: 14px;
+}
+
+.path__text > .return {
+  font-weight: 900;
+  padding-right: 5px;
 }
 
 .section__title {

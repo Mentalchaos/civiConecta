@@ -10,7 +10,7 @@ class Establishment {
   }
 
   addGrade(grade) {
-    let entity = this.grades.find(g => g.level === grade);
+    let entity = this.grades.find(g => g.id === grade);
 
     if (entity) {
       return entity;

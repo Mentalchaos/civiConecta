@@ -11,6 +11,11 @@ const constants = {
     SITUATION: 1,
     EPHEMERIS: 2,
   },
+  ManagerStage: {
+    MANAGER: 1,
+    ASSIGNMENT: 2,
+    DETAIL: 3,
+  },
 };
 
 const links = {
@@ -40,15 +45,9 @@ const links = {
   },
 };
 
-const emergentSituations = [
-  { title: 'Situaciones Emergentes' },
-  { title: 'Efemérides' },
-];
+const emergentSituations = [{ title: 'Situaciones Emergentes' }, { title: 'Efemérides' }];
 
-const planningPrograms = [
-  { program: 'CiviConecta' },
-  { program: 'Ministerial' }
-];
+const planningPrograms = [{ program: 'CiviConecta' }, { program: 'Ministerial' }];
 
 const config = {
   baseURL: process.env.REACT_APP_BASE_URL || 'http://127.0.0.1:3001',
@@ -56,8 +55,8 @@ const config = {
   contents: {
     links,
     emergentSituations,
-    planningPrograms
-  }
+    planningPrograms,
+  },
 };
 
 export default config;

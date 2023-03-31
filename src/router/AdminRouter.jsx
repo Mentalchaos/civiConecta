@@ -1,17 +1,19 @@
 import { Fragment } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
+import Ephemeris from 'src/components/Events/Ephemeris';
+import Situations from 'src/components/Events/Situations';
 import Main from 'src/components/Main';
-import Manager from 'src/components/Manager/Manager';
+import Manager from 'src/components/Manager/index';
+import StageAssignment from 'src/components/Manager/StageAssignment/StageAssignment';
+import StageDetail from 'src/components/Manager/StageDetail/StageDetail';
+import Planification from 'src/components/Planification';
+import { StudentQuestionSection, TeacherQuestionSection } from 'src/components/Question';
 import Sidebar from 'src/components/Sidebar/Sidebar';
 import StudentSurvey from 'src/components/Surveys/Student';
 import TeacherSurvey from 'src/components/Surveys/Teacher';
 import UnitsSection from 'src/components/UnitsSection';
 import UnitManager from 'src/components/UnitsSection/UnitManager';
-import Planification from 'src/components/Planification';
-import { StudentQuestionSection, TeacherQuestionSection } from 'src/components/Question';
 import { AdminGuard } from './guard/admin.guard';
-import Situations from 'src/components/Events/Situations';
-import Ephemeris from 'src/components/Events/Ephemeris';
 
 const AdminRouter = () => {
   return (
@@ -34,6 +36,11 @@ const AdminRouter = () => {
           <Route path="units/:unitId" element={<UnitManager />} />
           <Route path="units" element={<UnitsSection />} />
           <Route path="manager" element={<Manager />} />
+          <Route
+            path="manager/assignment/:establishmentId"
+            element={<StageAssignment />}
+          />
+          <Route path="manager/details/:grade/:letter" element={<StageDetail />} />
           <Route
             path="situations/events/:eventType/:eventId"
             element={<Planification />}

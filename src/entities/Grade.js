@@ -2,6 +2,7 @@ import Letter from './Letter.js';
 
 class Grade {
   constructor(data) {
+    this.id = data.id;
     this.level = data.level;
     this.createdAt = data.createdAt;
     this.updatedAt = data.updatedAt;
@@ -23,7 +24,7 @@ class Grade {
   toJSON() {
     return {
       grade: this.level,
-      letters: this.letters.map(l => l.toJSON())
+      letters: this.letters.map(l => l.toJSON()),
     };
   }
 }

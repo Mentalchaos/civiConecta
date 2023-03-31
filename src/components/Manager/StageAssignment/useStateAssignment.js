@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react';
 import useForm from 'src/hooks/useForm';
 import { getGrades, getLetters } from 'src/services/admin/grades.request';
-import { updateCoursesEstablishment } from 'src/services/admin/establishment.request';
+import {
+  getCoursesByGrade,
+  updateCoursesEstablishment,
+} from 'src/services/admin/establishment.request';
+import { fetchLoading } from 'src/utils/hookUtil';
 
-const useStateAssignment = (institutionSelected) => {
+const useStateAssignment = establishmentSelected => {
+  const [establishmentDataToUpdate, setEstablishmentDataToUpdate] = useState({});
   const [grades, setGrades] = useState([]);
   const [letters, setLetters] = useState([]);
-  const [studentsAdded, setStudentsAdded] = useState([]);
   const [institutionCourses, setInstitutionCourses] = useState([]);
   const [fetching, setFetching] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -17,17 +21,13 @@ const useStateAssignment = (institutionSelected) => {
     run: '',
   });
 
+  const fetchWrap = fetchLoading(setFetching);
+
   useEffect(() => {
     async function fn() {
-      const filterCoursesByGrade = institutionSelected
-        .grades
-        .filter(g => g.level === values.grade);
-
-      setInstitutionCourses(filterCoursesByGrade);
-
       const [_grades, _letters] = await Promise.all([
         getGrades().then(r => r.grades),
-        getLetters().then(r => r.letters.map(l => l.character))
+        getLetters().then(r => r.letters.map(l => l.character)),
       ]);
 
       setGrades(_grades);
@@ -35,43 +35,103 @@ const useStateAssignment = (institutionSelected) => {
     }
 
     fn();
+  }, []);
+
+  useEffect(() => {
+    if (values.grade === 'Seleccionar') return;
+    async function fn() {
+      const coursesByGrade = await getCoursesByGrade(
+        establishmentSelected.id,
+        values.grade,
+      );
+      setInstitutionCourses(coursesByGrade.courses);
+    }
+    fn();
   }, [values.grade]);
 
-  const updateEstablishment = async (establishment) => {
-    setFetching(true);
-    const payload = establishment.toJSON();
-    await updateCoursesEstablishment(establishment.id, payload);
-    setFetching(false);
-  };
-
   return {
-    letters,
-    grades,
-    studentsAdded,
-    institutionCourses,
-    fetching,
-    errorMessage,
-    values,
-    actions: {
+    states: {
+      establishmentDataToUpdate,
+      letters,
+      grades,
+      institutionCourses,
+      fetching,
+      errorMessage,
+      values,
+      establishmentSelected,
+      get getStudentsByGrade() {
+        const studentsFiltered = establishmentSelected.students.filter(
+          item => item.grade === values.grade,
+        );
+        return studentsFiltered;
+      },
+      get isGradeRenderable() {
+        return institutionCourses.length && !fetching && values.grade !== 'Seleccionar';
+      },
+      get isAddStudentDisabled() {
+        return (
+          !values.name ||
+          !values.run ||
+          values.grade === 'Seleccionar' ||
+          values.letter === 'Seleccionar'
+        );
+      },
+      get isGradeSelected() {
+        console.log(institutionCourses);
+        return values.grade !== 'Seleccionar';
+      },
+      get isSendFormDisabled() {
+        const students = establishmentSelected.grades[0].letters[0].students;
+        return !students.length;
+      },
+    },
+    setters: {
+      setEstablishmentDataToUpdate,
       setGrades,
-      setStudentsAdded,
       setInstitutionCourses,
       setFetching,
       setErrorMessage,
+    },
+    actions: {
       handleInputChange,
       reset,
       updateCoursesEstablishment,
-      updateEstablishment
+      addStudent: () => {
+        const { grade, letter, name, run } = values;
+        establishmentSelected.addGrade(grade).addLetter(letter).addStudent({ name, run });
+
+        const clone = establishmentSelected.clone();
+        console.log(clone);
+        setEstablishmentDataToUpdate(clone);
+        reset();
+      },
+      deleteStudent: async () => {
+        const { grade, letter, run } = values;
+        if (!window.confirm('Esta seguro de que desea eliminar el estudiante ?')) {
+          return;
+        }
+        establishmentSelected.addGrade(grade).addLetter(letter).deleteStudent({ run });
+
+        const clone = establishmentSelected.clone();
+        setEstablishmentDataToUpdate(clone);
+        const response = await updateCoursesEstablishment(
+          establishmentDataToUpdate.id,
+          clone,
+        );
+        if (!response.ok) {
+          setErrorMessage(response.error);
+        }
+      },
+      addCourse: fetchWrap(async payload => {
+        const response = await updateCoursesEstablishment(
+          establishmentSelected.id,
+          payload,
+        );
+        if (!response.ok) {
+          setErrorMessage(response.error);
+        }
+      }),
     },
-    get isGradeRenderable() {
-      return institutionCourses.length && !fetching && values.grade !== 'Seleccionar';
-    },
-    get isAddStudentDisabled() {
-      return values.name.length < 6 || values.run.length < 9;
-    },
-    get isSendFormDisabled() {
-      return !institutionSelected.students.length;
-    }
   };
 };
 

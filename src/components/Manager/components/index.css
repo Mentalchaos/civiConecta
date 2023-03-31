@@ -1,0 +1,16 @@
+.confirm-action-error {
+  font-size: 13px;
+  color: red;
+}
+
+.container-actions {
+  display: flex;
+  gap: 2rem;
+  padding: 0px 40px;
+}
+
+.modal-content.confirm-action {
+  justify-content: center;
+  gap: 2rem;
+  height: 250px;
+}
