@@ -7,6 +7,8 @@ import FirstStep from '../FirstStep/FirstStep';
 import Surveys from '../Surveys/Surveys';
 import StudentsHeader from './StudentsHeader';
 import './StudentSurvey.css';
+import config from 'src/config';
+import { setUserData, getUserData } from 'src/utils/user';
 
 const StudentSurvey = () => {
   const [changeToFirstStep, setChangeToFirstStep] = useState(false);
@@ -14,6 +16,38 @@ const StudentSurvey = () => {
   const [rutValue, setRutValue] = useState('');
   const [isValidRut, setIsValidRut] = useState(false);
   const [showInvalidRutError, setShowInvalidRutError] = useState(false);
+
+  const checkUser = () => {
+    console.log('pasando por aca');
+
+    const resp = async () =>
+    await fetch(`${config.baseURL}/auth/student`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({"run": rutValue})
+    }).then(e => e.json()).then(res => {
+
+      const { name, token, uuid } = res.student;
+      const saveData = {
+        name,
+        email: '',
+        role: '',
+        active: '',
+        token
+      };
+
+      setUserData(saveData, uuid);
+    }).then(async () => {
+      const userData = getUserData();
+      const uuid = userData.uuid;
+      await fetch(`${config.baseURL}/feedback/student/${uuid}`, {
+        method: 'POST'
+      }).then(response => console.log('response', response))
+    });
+    resp();
+  }
 
   console.log('rutValue', rutValue);
   console.log('isValidRut', isValidRut);
@@ -34,8 +68,14 @@ const StudentSurvey = () => {
     setChangeToFirstStep(false);
   }, []);
 
-  const handleIngresarRutClick = () =>
-    isValidRut ? setChangeToFirstStep(true) : setShowInvalidRutError(true);
+  const handleIngresarRutClick = async () => {
+    if(isValidRut){
+      await checkUser();
+      setChangeToFirstStep(true);
+    } else {
+      setShowInvalidRutError(true);
+    }
+  }
 
   const buttonStyle = {
     display: 'flex',
