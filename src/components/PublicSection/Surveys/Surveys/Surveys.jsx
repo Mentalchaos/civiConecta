@@ -1,5 +1,4 @@
 import { Fragment, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Loading from 'src/components/UI/Loading';
 import SurveyHeader from './components/SurveyHeader';
 import Question from './components/Question';
