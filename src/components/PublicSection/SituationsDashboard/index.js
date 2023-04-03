@@ -65,7 +65,7 @@ const SituationsDashboard = () => {
               description={data.description}
               date={data.date}
             />
-          ))};
+          ))}
         </div>
       </div>
       <Footer />
