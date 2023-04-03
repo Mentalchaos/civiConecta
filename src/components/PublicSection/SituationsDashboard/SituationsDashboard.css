@@ -195,6 +195,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    transition: 0.3s;
 }
 
 .situation-see-class p {
@@ -209,9 +210,15 @@
 
 .situation-see-class img {
     width: 10px;
+    padding: 10px;
     filter: invert(58%) sepia(29%) saturate(920%) hue-rotate(119deg) brightness(99%) contrast(89%);
 }
 
+
+.situation-see-class:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
 
 .search-info img {
     width: 30px;
