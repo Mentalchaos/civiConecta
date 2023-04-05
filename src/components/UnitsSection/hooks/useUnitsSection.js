@@ -21,7 +21,7 @@ const useUnitsSection = () => {
     async function fn() {
       const [grades, topics] = await Promise.all([
         gradeRequest.getGrades().then(r => r.grades),
-        topicRequest.getAllTopics().then(r => r.topics),
+        topicRequest.getTopics().then(r => r.topics),
       ]);
 
       setGrades(grades);

@@ -8,18 +8,18 @@ export const getAllTopics = () => {
   return http.get(url);
 };
 
-export const getTopics = (surveyType = '') => {
-  const url = `${BASE_URL}/topics/type/${surveyType}`;
+export const getTopics = () => {
+  const url = `${BASE_URL}/topics`;
   return http.get(url);
 };
 
-export const getTopic = topicId => {
-  const url = `${BASE_URL}/topics/${topicId}`;
+export const getTopic = (topicId, questionType) => {
+  const url = `${BASE_URL}/topics/${topicId}/${questionType}`;
   return http.get(url);
 };
 
-export const createTopic = (payload, surveyType) => {
-  const url = `${BASE_URL}/topics/${surveyType}`;
+export const createTopic = (payload) => {
+  const url = `${BASE_URL}/topics`;
   return http.post(url, payload);
 };
 
@@ -28,12 +28,12 @@ export const deleteTopic = topicId => {
   return http.delete(url);
 };
 
-export const addQuestion = (topicId, title, alternatives) => {
+export const addQuestion = (topicId, title, alternatives, surveyType) => {
   const url = `${BASE_URL}/topics/${topicId}`;
-  return http.put(url, { topicId, title, alternatives });
+  return http.put(url, { topicId, title, alternatives, surveyType });
 };
 
-export const deleteQuestion = questionId => {
-  const url = `${BASE_URL}/topics/question/${questionId}`;
+export const deleteQuestion = (topicId, questionId) => {
+  const url = `${BASE_URL}/topics/${topicId}/question/${questionId}`;
   return http.delete(url);
 };
