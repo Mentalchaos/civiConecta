@@ -7,8 +7,8 @@ import useQuestion from './hooks/useQuestion';
 import { QuestionContext } from './context';
 
 const generateQuestionSection = (Layout) => () => {
-  const { topicId } = useParams();
-  const { states, setters, actions } = useQuestion(topicId);
+  const { topicId, surveyType } = useParams();
+  const { states, setters, actions } = useQuestion(topicId, surveyType);
 
   return (
     <QuestionContext.Provider value={{states, setters, actions}}>

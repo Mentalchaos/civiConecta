@@ -5,7 +5,7 @@ import { addUUID } from 'src/utils/uuid';
 
 const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-const useQuestion = (topicId) => {
+const useQuestion = (topicId, surveyType) => {
   const [isLoading, setIsLoading] = useState(true);
   const [topic, setTopic] = useState({});
   const [alternatives, setAlternatives] = useState([]);
@@ -17,7 +17,7 @@ const useQuestion = (topicId) => {
     setTitle('');
   };
 
-  const createAlternatives = (length) => {
+  const createAlternatives = (length=4) => {
     return Array.from({ length })
       .map((_, idx) => ({
         value: 0,
@@ -28,7 +28,7 @@ const useQuestion = (topicId) => {
 
   useEffect(() => {
     async function fn() {
-      const response = await topicRequest.getTopic(topicId);
+      const response = await topicRequest.getTopic(topicId, surveyType);
       const topic = response.topic;
       const alternatives = createAlternatives(topic.alternatives);
 
@@ -36,7 +36,7 @@ const useQuestion = (topicId) => {
       setIsLoading(false);
       setAlternatives(alternatives);
 
-      if (topic.questions.length) {
+      if (topic.questions?.length) {
         setQuestions(topic.questions.map(addUUID));
       }
     }
@@ -88,7 +88,8 @@ const useQuestion = (topicId) => {
         const response = await topicRequest.addQuestion(
           topicId,
           title,
-          alternatives
+          alternatives,
+          surveyType
         );
         const question = response.question;
 
@@ -102,7 +103,7 @@ const useQuestion = (topicId) => {
         reset(topic.alternatives);
       },
       async deleteQuestion(questionId) {
-        const response = await surveyRequest.deleteQuestion(questionId);
+        const response = await topicRequest.deleteQuestion(topicId, questionId);
 
         if (response.ok) {
           const filteredQuestions = questions.filter(q => q.id !== questionId);
