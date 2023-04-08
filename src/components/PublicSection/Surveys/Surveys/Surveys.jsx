@@ -28,7 +28,7 @@ const Surveys = ({ userType }) => {
   console.log('userData',userData);
 
   const finishUser = () => {
-    fetch(`${config.baseURL}/feedback/teacher/${uuid}`, {
+    fetch(`${config.baseURL}/feedback/${userType}/${uuid}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -40,11 +40,11 @@ const Surveys = ({ userType }) => {
   return (
     <section className="surveys">
       <Visible condition={states.completedSurvey}>
-      <CompletedSurvey type="user" />
+      <CompletedSurvey type={userType} />
       </Visible>
       <Visible condition={!states.completedSurvey}>
         <SurveyContext.Provider value={{ userType, states, actions }}>
-          {states.showModal && <ModalToFinish closeModal={actions.closeModal} finishSurvey={() => finishUser()} />}
+          {states.showModal && <ModalToFinish userType={userType} closeModal={actions.closeModal} finishSurvey={() => finishUser()} />}
           <Loading isLoading={!states.hasQuestions}>
             {() => (
               <Fragment>
