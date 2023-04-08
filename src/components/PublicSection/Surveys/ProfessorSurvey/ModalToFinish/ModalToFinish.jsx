@@ -1,7 +1,7 @@
 import modalImage from 'src/assets/images/modal-survey-image.png';
 import closeButton from 'src/assets/images/close-popup.svg';
 
-const ModalToFinish = ({ closeModal, finishSurvey }) => {
+const ModalToFinish = ({ closeModal, finishSurvey, userType }) => {
   const redirect = section => (window.location.href = section);
   return (
     <div className="survey-modal-container">
@@ -32,7 +32,7 @@ const ModalToFinish = ({ closeModal, finishSurvey }) => {
           </div>
 
           <section className="modal__actions-container">
-            <button className="actions__second" onClick={() => redirect('/public/')}>
+            <button className="actions__second" onClick={() => userType == 'teacher' ? redirect('/public/') : redirect('/')} >
               Continuar en otro momento
             </button>
             <button className="actions__second" onClick={finishSurvey}>
