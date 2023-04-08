@@ -11,6 +11,7 @@ import { getUserData } from 'src/utils/user';
 const SituationsDashboard = () => {
 
   const [emergentData, setEmergentData] = useState([]);
+  const [inputValue, setInputValue] = useState('');
 
   const getSituations = async () => {
     const baseUrl = `${config.baseURL}/events/1`;
@@ -22,11 +23,14 @@ const SituationsDashboard = () => {
       method: 'GET'
     })
     const data = await response.json();
-    setEmergentData(data);
+    setEmergentData(data.events);
   };
   useEffect(() => {
     getSituations();
   }, []);
+
+  const filtered = emergentData && emergentData.filter(data => data.title == inputValue);
+  const emergData = emergentData && !filtered.length ? emergentData : filtered;
 
   return (
     <div className='situations-section'>
@@ -53,11 +57,15 @@ const SituationsDashboard = () => {
         </div>
       </div>
       <div className='situations-search'>
-        <SearchBar />
+        <SearchBar
+          inputValue={inputValue}
+          onChange={setInputValue}
+        />
       </div>
       <div className="classes-container">
-        <div className="classes-section">
-          {emergentData.events && emergentData.events.map((data) => (
+        <div className="classes-section"> 
+
+          {emergData.map((data) => (
             <EmergentSituation
               key={data.id}
               id={data.id}
@@ -66,6 +74,7 @@ const SituationsDashboard = () => {
               date={data.date}
             />
           ))}
+
         </div>
       </div>
       <Footer />
