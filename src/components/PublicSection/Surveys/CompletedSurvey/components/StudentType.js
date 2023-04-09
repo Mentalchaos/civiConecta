@@ -6,7 +6,6 @@ import '../../index.css';
 
 const StudentType = () => {
   const userData = getUserData();
-  console.log(userData.name);
 
   return (
     <article className="completed-survey-container student">

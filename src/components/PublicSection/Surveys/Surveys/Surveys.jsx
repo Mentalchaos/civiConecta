@@ -23,10 +23,6 @@ const Surveys = ({ userType }) => {
   const userData = getUserData();
   const uuid = userData.uuid;
 
-  console.log('states', states);
-
-  console.log('userData',userData);
-
   const finishUser = () => {
     fetch(`${config.baseURL}/feedback/${userType}/${uuid}`, {
     method: "PUT",

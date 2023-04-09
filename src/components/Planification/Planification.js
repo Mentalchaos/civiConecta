@@ -37,10 +37,6 @@ const Planification = ({
   });
   const inputFile = useRef();
 
-  console.log('values', values);
-
-  console.log('type', type);
-
   useEffect(() => {
     const files = classData.files?.map(file => {
       return file;
