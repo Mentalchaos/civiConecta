@@ -44,3 +44,37 @@ td {
 .button-image {
     height: 20px;
 }
+
+.unit-head {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e1e1e1;
+  width: 98%;
+  height: 75px;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.unit-img {
+  height: 40%;
+  width: 5%;
+  background-color: #96cb76;
+  border-radius: 10px;
+  padding: 4px;
+  margin-right: 15px;
+}
+
+.green-text {
+  color: #96cb76;
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+.materials {
+  margin-left: 2em;
+}
+
+.table-row:last-child .td-right > div:last-child {
+  margin-bottom: 20px !important;
+}

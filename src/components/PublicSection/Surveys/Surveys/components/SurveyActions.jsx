@@ -9,8 +9,6 @@ const SurveyActions = () => {
     actions.goBack();
   };
 
-  console.log('userType', userType);
-
   const handleContinue = () => {
     actions.continue(userType);
   };
