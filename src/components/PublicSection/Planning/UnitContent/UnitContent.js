@@ -1,24 +1,25 @@
+import { useNavigate } from 'react-router-dom';
 import ButtonOptions from "../../UnitsDashboard/ButtonOptions";
 import back from 'src/assets/Icons/back-arrow.svg';
-import UnitTitle from "./UnitTitle";
-import './UnitContent.css'
-import UnitTable from "./UnitTable"
-import Footer from "../../Footer";
+import './UnitContent.css';
+import UnitTable from "./UnitTable";
 
-const UnitContent = () => {
-    return (
-        <div className=''>
-            <div className="unit-content-container">
-                <ButtonOptions />
-                <button className='profile-back-container back1'>
-                    <img src={back} alt=''/>
-                    Volver
-                </button>
-                <UnitTitle />
-                <UnitTable />
-            </div>
-        </div>
-    )
+const UnitContent = ({ planningData, title }) => {
+  const navigate = useNavigate();
+  return (
+    <div className=''>
+      <div className="unit-content-container">
+        <ButtonOptions />
+        <button className='profile-back-container back1' onClick={() => navigate('/public/situations-dashboard')}>
+          <img src={back} alt='go-back' />
+          Volver
+        </button>
+        <UnitTable planningData={planningData} title={title} />
+      </div>
+    </div>
+  )
 }
+
+UnitContent.displayName = 'UnitContent';
 
 export default UnitContent;

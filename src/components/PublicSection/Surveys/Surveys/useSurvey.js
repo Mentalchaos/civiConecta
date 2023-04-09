@@ -65,7 +65,7 @@ const useSurvey = (userType) => {
         setCurrentQuestion(currentQuestion - 1);
       },
       continue(userType) {
-        if (currentQuestion === questions.length -1) {
+        if (currentQuestion === questions.length - 1) {
           this.sendData(userType);
           return setShowModal(true);
         }
@@ -85,17 +85,15 @@ const useSurvey = (userType) => {
       isAlternativeSelected(letter) {
         return savedAlternatives[currentQuestion] === letter;
       },
-      closeModal(){
+      closeModal() {
         return setShowModal(false);
       },
-      completedSurvey(){
+      completedSurvey() {
         return setCompletedSurvey(true);
       },
       async sendData(userType) {
         const userData = getUserData();
         const uuid = userData.uuid;
-
-        console.log('terrible user type oeoe',userType);
 
         return surveyRequest.saveAnswer(
           survey.uuid,
