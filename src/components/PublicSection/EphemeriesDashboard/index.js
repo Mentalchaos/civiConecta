@@ -1,15 +1,16 @@
+import React, { useEffect, useState } from 'react';
+import config from 'src/config';
+import { getUserData } from 'src/utils/user';
+import Footer from '../Footer/index';
+import EphemerisDate from './components/EphemerisDate';
+
+import back from 'src/assets/Icons/back-arrow.svg';
 import brain from '../../../assets/Icons/white-brain.svg';
 import unitGreen from '../../../assets/Icons/unit-green.svg';
-import Footer from '../Footer/index';
 import './EphemeriesDashboard.css';
-import EphemerisDate from './components/EphemerisDate';
-import config from 'src/config';
-import React, { useEffect, useState } from 'react';
-import { getUserData } from 'src/utils/user';
 
 const EphemeriesDashboard = () => {
-
-  const [EphemeriesData, setEphemeriesData] = useState([])
+  const [EphemeriesData, setEphemeriesData] = useState([]);
 
   const getEphemeries = async () => {
     const baseUrl = `${config.baseURL}/events/2`
@@ -29,6 +30,10 @@ const EphemeriesDashboard = () => {
 
   return (
     <div className='ephemeris-section'>
+      <button className='profile-back-container' onClick={() => window.history.back()}>
+        <img src={back} alt='go-back' />
+        Volver
+      </button>
       <div className="ephemeris">
         <div className='ephemeris-cont'>
           <div className='ephemeris-header'>

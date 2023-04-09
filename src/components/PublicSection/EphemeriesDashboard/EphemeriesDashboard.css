@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   margin: 3em;
+  margin-bottom: 0;
 }
 
 .ephemeris {
@@ -152,4 +153,9 @@
 .ephemeris-see-class img {
   width: 10px;
   filter: invert(70%) sepia(51%) saturate(923%) hue-rotate(167deg) brightness(97%) contrast(92%);
+}
+
+.profile-back-container {
+  margin: auto;
+  margin-left: 14.7em;
 }

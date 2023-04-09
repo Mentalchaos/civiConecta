@@ -18,8 +18,6 @@ const StudentSurvey = () => {
   const [showInvalidRutError, setShowInvalidRutError] = useState(false);
 
   const checkUser = () => {
-    console.log('pasando por aca');
-
     const resp = async () =>
     await fetch(`${config.baseURL}/auth/student`, {
       method: 'POST',
@@ -48,9 +46,6 @@ const StudentSurvey = () => {
     });
     resp();
   }
-
-  console.log('rutValue', rutValue);
-  console.log('isValidRut', isValidRut);
 
   const validateRut = (rut) => {
     const regex = /^(\d{1,2}(\.?\d{3}){2})-([\dkK])$/;
