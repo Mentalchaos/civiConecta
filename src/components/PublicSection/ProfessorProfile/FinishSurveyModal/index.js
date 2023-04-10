@@ -1,3 +1,5 @@
+
+import http from '../../../../services/helpers/http.helper';
 import modalImage from 'src/assets/images/finish-modal-image.png';
 import closeButton from 'src/assets/images/close-popup.svg';
 import right from 'src/assets/Icons/thin-right.svg';
@@ -6,8 +8,9 @@ import './FinishSurveyModal.css';
 
 const FinishSurveyModal = ({ onClick }) => {
 
-  // TODO Modificar "disabled", para que se deshabilite el botón cuando la data no venga como corresponde
-  const disabled = true;
+  const finishSurvey = () => {
+    http.put('/feedback/:uuidEncuesta')
+  }
 
   return (
     <div className='finish-modal-container'>
@@ -34,7 +37,7 @@ const FinishSurveyModal = ({ onClick }) => {
                 <p>Mantener encuesta abierta</p>
                 <img src={right} alt="arrow-icon"/>
               </div>
-              <div className='keep-open' style={{background: disabled ? '#aba4ed' : '#7468e2', cursor: 'not-allowed'}}>
+              <div className='keep-open' style={{ background: '#7468e2' }}>
                 <p>Finalizar y generar informes</p>
                 <img src={right} alt="arrow-icon" />
               </div>
