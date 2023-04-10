@@ -70,7 +70,7 @@ const useSurvey = (userType) => {
           return setShowModal(true);
         }
 
-        this.sendData();
+        this.sendData(userType);
         setCurrentQuestion(currentQuestion + 1);
       },
       saveAlternative(letter) {
