@@ -4,7 +4,7 @@ import goTo from 'src/assets/Icons/open-arrow.svg';
 import { useNavigate } from 'react-router-dom';
 
 
-const UnitSituations = ({title}) => {
+const UnitSituations = ({ title, to }) => {
   const navigate = useNavigate();
     return (
         <div className='unit-situations-container'>
@@ -12,7 +12,7 @@ const UnitSituations = ({title}) => {
                 <div className='unit-title'>
                     <p>{title}</p>
                 </div>
-                <div className='unit-subtitle'>
+                <div className='unit-subtitle' onClick={() => navigate(to)}>
                     <p>Ir a los contenidos</p>
                     <img src={goTo} alt="arrow-icon" />
                 </div>

@@ -14,7 +14,7 @@ import './PublicSection.css';
 import { PublicContext } from './context';
 import Plan from './Plan';
 
-const { links, emergentSituations, planningPrograms } = config.contents;
+const { links, planningPrograms } = config.contents;
 
 const PublicSection = () => {
   const { states, actions, setters } = usePublicSection();
@@ -50,9 +50,8 @@ const PublicSection = () => {
                     />
                   ))}
                   <div className="units-components-two">
-                    {emergentSituations.map((data, key) => (
-                      <UnitSituations key={key} title={data.title} />
-                    ))}
+                    <UnitSituations title={'Situaciones emergentes'} to={'/public/situations-dashboard'} />
+                    <UnitSituations title={'Efemerides'} to={'/public/ephemeries-dashboard'} />
                   </div>
                 </div>
               </div>
