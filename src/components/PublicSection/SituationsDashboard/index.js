@@ -63,12 +63,13 @@ const SituationsDashboard = () => {
         />
       </div>
       <div className="classes-container">
-        <div className="classes-section"> 
+        <div className="classes-section">
 
           {emergData.map((data) => (
             <EmergentSituation
               key={data.id}
               id={data.id}
+              lessonId={data.lessonId}
               title={data.title}
               description={data.description}
               date={data.date}
