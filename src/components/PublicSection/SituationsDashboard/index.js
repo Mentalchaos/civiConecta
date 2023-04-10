@@ -1,12 +1,15 @@
-import brain from '../../../assets/Icons/white-brain.svg';
-import unitGreen from '../../../assets/Icons/unit-green.svg';
+import React, { useEffect, useState } from 'react';
+import config from 'src/config';
+import { getUserData } from 'src/utils/user';
+
 import Footer from '../Footer/index';
-import './SituationsDashboard.css';
 import EmergentSituation from './components/EmergentSituation';
 import SearchBar from './components/SearchBar';
-import config from 'src/config';
-import React, { useEffect, useState } from 'react';
-import { getUserData } from 'src/utils/user';
+
+import brain from '../../../assets/Icons/white-brain.svg';
+import unitGreen from '../../../assets/Icons/unit-green.svg';
+import back from 'src/assets/Icons/back-arrow.svg';
+import './SituationsDashboard.css';
 
 const SituationsDashboard = () => {
 
@@ -34,6 +37,10 @@ const SituationsDashboard = () => {
 
   return (
     <div className='situations-section'>
+      <button className='profile-back-container' onClick={() => window.history.back()}>
+        <img src={back} alt='go-back' />
+        Volver
+      </button>
       <div className="situations">
         <div className='situations-cont'>
           <div className='situations-header'>
