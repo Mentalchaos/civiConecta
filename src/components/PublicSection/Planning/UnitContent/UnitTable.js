@@ -1,9 +1,42 @@
 import './UnitTable.css';
 import arrowWhite from '../../../../assets/Icons/arrow-right-white.svg';
 import brain from '../../../../assets/Icons/white-brain.svg';
+import { getUserData } from 'src/utils/user';
+import config from 'src/config';
 
 const UnitTable = ({ planningData, title }) => {
   const { endActivity, startActivity, mainActivity, topic, materials } = planningData.planning || {};
+
+  const getFiles = async () => {
+    try {
+      const userData = getUserData();
+      const response = await fetch(`${config.baseURL}/files/lessons/${planningData.id}`, {
+        // const response = await fetch(`http://localhost:3000/files/lessons/${planningData.id}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          token: userData.token
+        },
+        'method': 'GET'
+      });
+
+      if (response.ok) {
+        console.log('response', response)
+        const blob = await response.blob();
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', `${topic}.zip`);
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      } else {
+        console.error('Response not OK:', response);
+      }
+    } catch (error) {
+      console.error('Error downloading file:', error);
+    }
+  }
 
   return (
     <>
@@ -28,11 +61,11 @@ const UnitTable = ({ planningData, title }) => {
               <td className='td table-title'>Materiales:</td>
               <td className='td td-right'>
                 <div>Docente:</div>
-                <br/>
+                <br />
                 {materials?.student.map((data, key) => <div key={key} className='materials'>{`- ${data}`}</div>)}
                 <br></br>
                 <div>Alumno:</div>
-                <br/>
+                <br />
                 {materials?.teacher.map((data, key) => <div key={key} className='materials'>{`- ${data}`}</div>)}
               </td>
             </tr>
@@ -53,11 +86,14 @@ const UnitTable = ({ planningData, title }) => {
             </tr>
           </tbody>
         </table>
+        {
+          !!planningData?.files?.length &&
+          <button className='download-material' onClick={() => getFiles()}>
+            Descargar material
+            <img className='button-image' src={arrowWhite} alt=''></img>
+          </button>
+        }
 
-        <button className='download-material'>
-          Descargar material
-          <img className='button-image' src={arrowWhite} alt=''></img>
-        </button>
       </div>
     </>
   )

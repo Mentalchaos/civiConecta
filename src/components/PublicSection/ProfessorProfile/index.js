@@ -10,9 +10,7 @@ import SurveyAnalysisModal from './SurveyAnalysisModal/index.js';
 
 
 const ProfessorProfile = () => {
-
   const [showFinishModal, setShowFinishModal] = useState(false);
-
   const [showAnalysisModal, setShowAnalysisModal] = useState(false)
 
     return (
