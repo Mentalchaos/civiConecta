@@ -3,12 +3,20 @@ import * as lessonRequest from 'src/services/admin/lesson.request';
 import * as fileRequest from 'src/services/admin/files.request';
 import createServices from 'src/services/admin/event.request';
 
+const createRandomUUID = () => {
+  if (window?.crypto?.randomUUID) {
+    return crypto.randomUUID();
+  }
+
+  return Math.random().toString(16).substring(2);
+};
+
 const usePlanification = (lessonId, eventId, eventType) => {
   const [isLoading, setIsLoading] = useState(false);
   const [lesson, setLesson] = useState({});
   const [files, setFiles] = useState([]);
   const [file, setFile] = useState(null);
-  const [tableId, setTableId] = useState(crypto.randomUUID());
+  const [tableId, setTableId] = useState(createRandomUUID());
   const [rowSelected, setRowSelected] = useState(false);
 
   useEffect(() => {
