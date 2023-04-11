@@ -46,7 +46,7 @@ const PlanificationForm = ({ type }) => {
         <input type="text" name="topic" value={values.topic} onChange={handleInputChange} />
       </div>
       <div className="form-group planning">
-        <label>Palabras clave:</label>
+        <label>Conceptos a tratar:</label>
         <input type="text" name="keywords" value={values.keywords} onChange={handleInputChange} />
       </div>
       <div className="form-group planning">
