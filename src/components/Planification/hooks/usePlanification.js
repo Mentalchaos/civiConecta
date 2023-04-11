@@ -2,21 +2,15 @@ import { useEffect, useState } from 'react';
 import * as lessonRequest from 'src/services/admin/lesson.request';
 import * as fileRequest from 'src/services/admin/files.request';
 import createServices from 'src/services/admin/event.request';
+import { createUUID } from 'src/utils/uuid';
 
-const createRandomUUID = () => {
-  if (window?.crypto?.randomUUID) {
-    return crypto.randomUUID();
-  }
-
-  return Math.random().toString(16).substring(2);
-};
 
 const usePlanification = (lessonId, eventId, eventType) => {
   const [isLoading, setIsLoading] = useState(false);
   const [lesson, setLesson] = useState({});
   const [files, setFiles] = useState([]);
   const [file, setFile] = useState(null);
-  const [tableId, setTableId] = useState(createRandomUUID());
+  const [tableId, setTableId] = useState(createUUID());
   const [rowSelected, setRowSelected] = useState(false);
 
   useEffect(() => {
@@ -83,7 +77,7 @@ const usePlanification = (lessonId, eventId, eventType) => {
       async deleteFile() {
         await fileRequest.deleteFile(file.uuid);
         setFiles(files.filter(f => f.uuid !== file.uuid));
-        setTableId(crypto.randomUUID());
+        setTableId(createUUID());
         setFile(null);
         setRowSelected(null);
       },
