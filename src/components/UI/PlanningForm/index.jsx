@@ -76,7 +76,7 @@ const PlanningForm = ({
       <Visible condition={needObjectives}>
         <div className="row">
           <div className="form-group w50">
-            <label>Palabras clave:</label>
+            <label>Conceptos a tratar:</label>
             <input onChange={handleInputChange} type="text" name="keywords" />
           </div>
           <div className="form-group w50">
@@ -88,7 +88,7 @@ const PlanningForm = ({
       <Visible condition={!needObjectives}>
         <div>
           <div className="form-group">
-            <label>Palabras clave:</label>
+            <label>Conceptos a tratar:</label>
             <input onChange={handleInputChange} type="text" name="keywords" />
           </div>
         </div>
