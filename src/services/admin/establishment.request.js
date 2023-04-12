@@ -39,10 +39,9 @@ export const createEstablishment = name => {
   return http.post(`${BASE_URL}/establishments`, payload);
 };
 
-export const updateActiveEstablishment = (number, active) => {
-  const payload = { active };
-  const url = `${BASE_URL}/updateActiveEstablishment?number=${number}`;
-  return http.put(url, payload);
+export const updateActiveEstablishment = (id, status) => {
+  const url = `${BASE_URL}/establishments/${id}/status/${status}`;
+  return http.put(url);
 };
 
 export const updateCoursesEstablishment = (number, payload) => {

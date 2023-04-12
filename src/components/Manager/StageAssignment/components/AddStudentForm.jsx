@@ -7,7 +7,6 @@ import { AssignmentContext } from '../context';
 
 const AddStudentForm = () => {
   const { states, actions } = useContext(AssignmentContext);
-  console.log(states.values.grade, states.values.letter);
   return (
     <Fragment>
       <div style={styles.dropdownWrapper}>
@@ -91,7 +90,6 @@ const AddStudentForm = () => {
             text="Enviar formulario"
             type="button"
             onClick={() => actions.addCourse(states.establishmentSelected.toJSON())}
-            disabled={states.isSendFormDisabled}
           />
         </div>
       </form>

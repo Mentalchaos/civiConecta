@@ -52,7 +52,7 @@ const StageManager = () => {
                 <div className="content__difused">
                   <Button
                     text={
-                      states.establishmentSelected?.active === 1
+                      states.isEstablishmentSelected?.active === 1
                         ? 'Deshabilitar'
                         : 'Habilitar'
                     }

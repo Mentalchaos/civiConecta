@@ -59,9 +59,9 @@ const useManager = () => {
     },
     actions: {
       updateActiveEstablishment: wrapRequest(async () => {
-        const isActive = establishmentSelected.active === 1 ? 1 : 0;
+        const isActive = isEstablishmentSelected.active;
         const response = await updateActiveEstablishment(
-          establishmentSelected.id,
+          isEstablishmentSelected.id,
           isActive,
         );
         if (!response.ok) {

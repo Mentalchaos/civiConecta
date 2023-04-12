@@ -65,9 +65,6 @@ const useStateAssignment = establishmentSelected => {
         );
         return studentsFiltered;
       },
-      get isGradeRenderable() {
-        return institutionCourses.length && !fetching && values.grade !== 'Seleccionar';
-      },
       get isAddStudentDisabled() {
         return (
           !values.name ||
@@ -77,12 +74,7 @@ const useStateAssignment = establishmentSelected => {
         );
       },
       get isGradeSelected() {
-        console.log(institutionCourses);
-        return values.grade !== 'Seleccionar';
-      },
-      get isSendFormDisabled() {
-        const students = establishmentSelected.grades[0].letters[0].students;
-        return !students.length;
+        return !fetching && values.grade !== 'Seleccionar';
       },
     },
     setters: {
@@ -101,7 +93,6 @@ const useStateAssignment = establishmentSelected => {
         establishmentSelected.addGrade(grade).addLetter(letter).addStudent({ name, run });
 
         const clone = establishmentSelected.clone();
-        console.log(clone);
         setEstablishmentDataToUpdate(clone);
         reset();
       },
