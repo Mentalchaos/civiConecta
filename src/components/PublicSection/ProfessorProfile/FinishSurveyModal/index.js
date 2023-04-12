@@ -1,16 +1,31 @@
 
-import http from '../../../../services/helpers/http.helper';
+import http from 'src/services/helpers/http.helper';
 import modalImage from 'src/assets/images/finish-modal-image.png';
 import closeButton from 'src/assets/images/close-popup.svg';
 import right from 'src/assets/Icons/thin-right.svg';
-
 import './FinishSurveyModal.css';
+import { getUserData } from 'src/utils/user';
+import { getSurveyToAnswer, finishSurvey } from 'src/services/admin/surveys.request';
 
 const FinishSurveyModal = ({ onClick }) => {
 
-  const finishSurvey = () => {
-    http.put('/feedback/:uuidEncuesta')
-  }
+  const handleFinishSurvey = () => {
+    async function finish() {
+      const userData = getUserData();
+      const surveyResponse = await getSurveyToAnswer('teacher', userData.uuid);
+      const surveyUUID = surveyResponse.feedback.uuid;
+      const response = await finishSurvey(surveyUUID);
+
+      if (response.ok) {
+        alert('finalizó la encuesta oeziiiiiiiiii');
+        onClick();
+      } else {
+        alert(response.error);
+      }
+    };
+
+    finish();
+  };
 
   return (
     <div className='finish-modal-container'>
@@ -37,7 +52,7 @@ const FinishSurveyModal = ({ onClick }) => {
                 <p>Mantener encuesta abierta</p>
                 <img src={right} alt="arrow-icon"/>
               </div>
-              <div className='keep-open' style={{ background: '#7468e2' }}>
+              <div className='keep-open' style={{ background: '#7468e2' }} onClick={handleFinishSurvey}>
                 <p>Finalizar y generar informes</p>
                 <img src={right} alt="arrow-icon" />
               </div>
