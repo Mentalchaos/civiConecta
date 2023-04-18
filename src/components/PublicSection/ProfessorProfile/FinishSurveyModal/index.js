@@ -1,5 +1,4 @@
 
-import http from 'src/services/helpers/http.helper';
 import modalImage from 'src/assets/images/finish-modal-image.png';
 import closeButton from 'src/assets/images/close-popup.svg';
 import right from 'src/assets/Icons/thin-right.svg';
@@ -17,9 +16,10 @@ const FinishSurveyModal = ({ onClick }) => {
       const response = await finishSurvey(surveyUUID);
 
       if (response.ok) {
-        alert('finalizó la encuesta oeziiiiiiiiii');
+        console.log('encuesta finalizada');
         onClick();
       } else {
+        // TODO: Dibujar un texto nuevo en el modal cuando el back responda % de completitud encuesta
         alert(response.error);
       }
     };

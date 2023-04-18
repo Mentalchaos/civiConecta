@@ -35,36 +35,37 @@ const PublicSection = () => {
               <Visible condition={states.isPlanificationEnabled}>
                 <Plan />
               </Visible>
-              <div className="units-cont">
-                <UnitsHeader program={planningPrograms[1].program} />
-                <div className="units-components">
-                  {states.unitsContent.map((data, key) => (
-                    <UnitComponent
-                      key={key}
-                      status={data.status}
-                      title={data.title}
-                      subtitle={data.subtitle}
-                      description={data.description}
-                      color={data.color}
-                      borderColor={data.borderColor}
-                    />
-                  ))}
-                  <div className="units-components-two">
-                    <UnitSituations title={'Situaciones emergentes'} to={'/public/situations-dashboard'} />
-                    <UnitSituations title={'Efemerides'} to={'/public/ephemeries-dashboard'} />
+              <Visible condition={states.status.survey.completed}>
+                <div className="units-cont">
+                  <UnitsHeader program={planningPrograms[1].program} />
+                  <div className="units-components">
+                    {states.unitsContent.map((data, key) => (
+                      <UnitComponent
+                        key={key}
+                        status={data.status}
+                        title={data.title}
+                        subtitle={data.subtitle}
+                        description={data.description}
+                        color={data.color}
+                        borderColor={data.borderColor}
+                      />
+                    ))}
+                    <div className="units-components-two">
+                      <UnitSituations title={'Situaciones emergentes'} to={'/public/situations-dashboard'} />
+                      <UnitSituations title={'Efemerides'} to={'/public/ephemeries-dashboard'} />
+                    </div>
                   </div>
                 </div>
-              </div>
-
+              </Visible>
               <LinkGenerator data={links.needLink} />
-
+              {/*
+              // TODO: Reactivar si corresponde mas adelante
               <Visible condition={states.isCustomPlanification}>
                 <LinkGenerator
                   data={links.standardPlanification}
                   onClick={actions.setStandardPlanification}
                 />
-              </Visible>
-
+              </Visible> */}
               <Visible condition={states.isStandardPlanification}>
                 <LinkGenerator
                   data={links.customPlanification}
