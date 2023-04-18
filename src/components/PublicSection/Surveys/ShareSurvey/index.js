@@ -7,6 +7,7 @@ import Footer from '../../Footer';
 
 const ShareSurvey = () => {
   const navigate = useNavigate();
+  const linkToSurvey = `${document.location.origin}/student-survey`;
   return (
     <div className="share-survey-container">
       <div className="back-container">
@@ -37,15 +38,15 @@ const ShareSurvey = () => {
           <p>Solo estudiantes en la nómina del curso podrán acceder a la encuesta.</p>
         </div>
         <div className="share-container-link">
-          <p>Enlace generado</p>
-          <input></input>
+          <p>Enlace de encuesta estudiante</p>
+          <a style={{marginLeft: '26px'}}target="_blank" href={linkToSurvey}>{ linkToSurvey }</a>
         </div>
-        <div className="share-container-button">
+        {/* <div className="share-container-button">
           <button className="link-icon-button">
             <img className="link-icon-img" src={link} alt="link-icon" />
             Copiar enlace
           </button>
-        </div>
+        </div> */}
       </div>
       <Footer/>
     </div>

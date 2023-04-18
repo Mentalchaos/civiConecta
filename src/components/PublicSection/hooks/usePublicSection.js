@@ -97,8 +97,8 @@ const usePublicSection = () => {
         return teacher.completed && !student.generated;
       },
       get isSurveyCompleted() {
-        const { student, teacher } = status ?? {};
-        return teacher.completed && student.generated;
+        const { student, teacher, survey } = status ?? {};
+        return teacher.completed && (student.generated || student.completed) && !survey.completed;
       },
       get shouldModalBeShown() {
         const { student, teacher } = status ?? {};
