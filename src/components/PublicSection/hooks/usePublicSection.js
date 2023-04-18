@@ -2,29 +2,9 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import config from 'src/config';
 import { getUserData } from 'src/utils/user';
+import services from 'src/services/admin/publicSection.request';
 const { UserTypes, PlanificationTypes } = config.constants;
 
-const services = {
-  async getFeedbackStatus(uuid) {
-    const response = await fetch(`${config.baseURL}/feedback/status/${uuid}`);
-    return response.json();
-  },
-  async getUserData(uuid) {
-    const response = await fetch(`${config.baseURL}/establishments/info/${uuid}`, {
-      headers: {
-        token: getUserData().token
-      }
-    });
-
-    return response.json();
-  },
-  getTeacherSurvey(uuid) {
-    return fetch(`${config.baseURL}/feedback/teacher/${uuid}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" }
-    });
-  }
-};
 
 const usePublicSection = () => {
   const [isLoading, setIsLoading] = useState(true);

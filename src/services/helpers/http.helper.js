@@ -14,7 +14,7 @@ const http = {
     return fetch(url, { headers: { ...this.getHeaders() } })
       .then(toJSON);
   },
-  post(url, payload) {
+  post(url, payload={}) {
     return fetch(url, {
       method: 'POST',
       headers: { ...this.getHeaders() },
