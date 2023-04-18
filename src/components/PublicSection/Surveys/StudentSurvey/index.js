@@ -14,7 +14,7 @@ const StudentSurvey = () => {
   const [changeToFirstStep, setChangeToFirstStep] = useState(false);
   const [isStartSurvey, setIsStartSurvey] = useState(false);
   const [rutValue, setRutValue] = useState('');
-  const [isValidRut, setIsValidRut] = useState(false);
+  const [isValidRut, setIsValidRut] = useState(true);
   const [showInvalidRutError, setShowInvalidRutError] = useState(false);
 
   const checkUser = () => {
@@ -64,12 +64,8 @@ const StudentSurvey = () => {
   }, []);
 
   const handleIngresarRutClick = async () => {
-    if(isValidRut){
-      await checkUser();
-      setChangeToFirstStep(true);
-    } else {
-      setShowInvalidRutError(true);
-    }
+    await checkUser();
+    setChangeToFirstStep(true);
   }
 
   const buttonStyle = {
