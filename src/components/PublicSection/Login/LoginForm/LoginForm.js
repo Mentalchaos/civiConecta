@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signIn } from 'src/services/admin/user.request';
 import { setUserData } from 'src/utils/user';
@@ -15,6 +15,10 @@ const LoginForm = () => {
     email: '',
     password: '',
   });
+
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
 
   const navigate = useNavigate();
 

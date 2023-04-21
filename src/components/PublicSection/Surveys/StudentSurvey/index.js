@@ -17,6 +17,10 @@ const StudentSurvey = () => {
   const [isValidRut, setIsValidRut] = useState(true);
   const [showInvalidRutError, setShowInvalidRutError] = useState(false);
 
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
+
   const checkUser = () => {
     const resp = async () =>
     await fetch(`${config.baseURL}/auth/student`, {
