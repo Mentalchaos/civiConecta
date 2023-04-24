@@ -1,8 +1,13 @@
 import React from 'react';
 import smileIcon from 'src/assets/images/smile-student-survey.svg';
 import clockIconStudent from 'src/assets/images/student-survey-clock.svg';
+import arrow from 'src/assets/Icons/thin-right.svg';
+import { getUserData } from 'src/utils/user.js'
 
 const StudentType = ({ setIsStartSurvey }) => {
+
+  const user = getUserData();
+
   return (
     <>
       <div className="content-start__left">
@@ -12,7 +17,7 @@ const StudentType = ({ setIsStartSurvey }) => {
         <header className="content-start__header-text">
           <img src={smileIcon} alt="icono encuesta" width={30} />
           <span>
-            ¡Hola <span style={{ color: 'var(--color-primary' }}>{'{username}'}</span>!
+            ¡Hola <span style={{ color: 'var(--color-primary' }}>{ "" }</span>!
           </span>
         </header>
         <p className="content-start__text">
@@ -32,7 +37,9 @@ const StudentType = ({ setIsStartSurvey }) => {
         <div className="firststep-actions">
           <button onClick={() => setIsStartSurvey(true)} className="survey-start-button student" type="button">
             Iniciar la encuesta
+            <img className='firststep-actions-img' src={arrow}/>
           </button>
+         
         </div>
       </article>
     </>

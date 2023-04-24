@@ -74,6 +74,8 @@
 }
 
 .survey-start-button {
+  display: flex;
+  align-items: center;
   font-size: 12px;
   font-weight: 700;
   color: #fff;
@@ -436,4 +438,10 @@ button.form__previous-question:disabled {
   margin-top: 40px;
   display: flex;
   justify-content: flex-end;
+
+}
+
+.firststep-actions-img {
+  width: 30px;
+  filter: invert(51%) sepia(21%) saturate(51%) hue-rotate(132deg) brightness(247%) contrast(90%);
 }
