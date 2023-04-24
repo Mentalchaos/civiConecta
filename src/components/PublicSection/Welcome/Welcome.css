@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "NunitoSans-Bold";
+    src: url("../../../assets/font/NunitoSans-Bold.ttf");
+}
+
 .welcome-section {
     display: flex;
     justify-content: center;
@@ -29,12 +34,12 @@
 
 .p-1,
 .p-2 {
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: "NunitoSans-Bold";
     font-size: 16px;
 }
 
 .p-1 {
-    color: black;
+    color: #4d4d4d;
 }
 
 .p-2 {
@@ -50,6 +55,8 @@
     width: 90%;
     align-items: center;
     justify-content: space-around;
+    margin-top: 10px;
+    margin-bottom: 10px
 }
 
 .date-container p,
@@ -73,6 +80,7 @@
 .right-container p {
     font-family: 'Nunito Sans', sans-serif;
     color: #FFFFFF;
+    margin: 0;
 }
 
 .second-right-container {
@@ -81,6 +89,7 @@
     flex-direction: column;
     justify-content: space-between;
 }
+
 
 .date-container img,
 .school-container img,
