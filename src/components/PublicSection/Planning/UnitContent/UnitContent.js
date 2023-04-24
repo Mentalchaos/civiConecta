@@ -10,7 +10,7 @@ const UnitContent = ({ planningData, title }) => {
     <div className=''>
       <div className="unit-content-container">
         <ButtonOptions />
-        <button className='profile-back-container back1' onClick={() => navigate('/public/situations-dashboard')}>
+        <button className='profile-back-container back1' onClick={() => window.history.back()}>
           <img src={back} alt='go-back' />
           Volver
         </button>
