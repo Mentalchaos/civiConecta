@@ -13,6 +13,7 @@ const usePublicSection = () => {
   const [isModalShown, setModalVisibility] = useState(false);
   const [unitsContent, setUnitsContent] = useState([]);
   const [planificationType, setPlanificationType] = useState(PlanificationTypes.CUSTOM);
+  const [units, setUnits] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -35,10 +36,17 @@ const usePublicSection = () => {
       const userData = getUserData();
       const uuid = userData.uuid;
 
-      const [status, info] = await Promise.all([
+      const [status, info, units] = await Promise.all([
         services.getFeedbackStatus(uuid).then(r => r.status),
         services.getUserData(uuid).then(r => r.info)
       ]);
+
+      // TODO: Arreglar este hardcode, se supone que deberia ser dinamico, no solo para quinto
+      const eaea = async () => {
+        const unitss = await services.getUnits(5).then(r => r.units);
+        setUnits(unitss);
+      }
+      eaea();
 
       setStatus(status);
       setUserData(info);
@@ -55,6 +63,7 @@ const usePublicSection = () => {
     },
     states: {
       status,
+      units,
       userData,
       isModalShown,
       planificationType,
