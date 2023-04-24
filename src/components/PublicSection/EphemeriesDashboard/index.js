@@ -58,7 +58,7 @@ const EphemeriesDashboard = () => {
       </div>
       <div className="dates-container">
         <div className="dates-section">
-
+         
           {EphemeriesData.events && EphemeriesData.events.map((data) => (
             <EphemerisDate
               key={data.id}
@@ -68,8 +68,6 @@ const EphemeriesDashboard = () => {
               date={data.date}
             />
           ))}
-
-
         </div>
       </div>
       <Footer />

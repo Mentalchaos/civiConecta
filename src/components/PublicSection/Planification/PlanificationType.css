@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "NunitoSans-Bold";
+  src: url("../../../assets/font/NunitoSans-Bold.ttf");
+}
+
 .planification-type-container {
   width: 50%;
   height: 170px;
@@ -29,6 +34,7 @@
   color: #ffffff;
   margin: 0;
   padding: 1.2em;
+ 
 }
 
 .teacher-image {
@@ -41,6 +47,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-family: "NunitoSans-Bold";
   width: 100%;
   z-index: 2;
 }
@@ -52,8 +59,8 @@
   height: 20%;
   width: 40%;
   border: none;
-  font-family: 'Nunito Sans', sans-serif;
-  font-weight: 700;
+  font-weight: bold;
+  font-family: "NunitoSans-Bold";
   color: #e95f7b;
   margin: 20px;
   padding: 5px;
