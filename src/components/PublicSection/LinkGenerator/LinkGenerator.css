@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "NunitoSans-Bold";
+    src: url("../../../assets/font/NunitoSans-Bold.ttf");
+}
+
 .link-container {
     width: 100%;
     display: flex;
@@ -21,6 +26,7 @@
     display: flex;
     justify-content: space-evenly;
     font-family: 'Nunito Sans', sans-serif;
+    font-weight: bold;
     font-size: 14px;
     color: #FFFFFF;
 }
@@ -48,6 +54,7 @@
     color: var(--color-primary);
     border-radius: 5px;
     border-style: none;
+    font-family: "NunitoSans-Bold";
 }
 
 .survey-button img {
