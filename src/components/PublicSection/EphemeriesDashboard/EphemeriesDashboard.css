@@ -111,13 +111,14 @@
 
 .ephemeris-date {
   background: #54bfed;
-  width: 49%;
+  width: 100%;
   height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 20px;
 }
+
 .ephemeris-date p {
   font-size: 14px;
   color: white;
@@ -138,6 +139,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  cursor: pointer;
 }
 
 .ephemeris-see-class p {

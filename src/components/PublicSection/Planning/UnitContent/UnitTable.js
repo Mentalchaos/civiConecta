@@ -5,13 +5,12 @@ import { getUserData } from 'src/utils/user';
 import config from 'src/config';
 
 const UnitTable = ({ planningData, title }) => {
-  const { endActivity, startActivity, mainActivity, topic, materials } = planningData.planning || {};
+  const { endActivity, startActivity, mainActivity, topic, materials, keywords } = planningData.planning || {};
 
   const getFiles = async () => {
     try {
       const userData = getUserData();
       const response = await fetch(`${config.baseURL}/files/lessons/${planningData.id}`, {
-        // const response = await fetch(`http://localhost:3000/files/lessons/${planningData.id}`, {
         headers: {
           'Content-Type': 'application/json',
           token: userData.token
@@ -38,6 +37,10 @@ const UnitTable = ({ planningData, title }) => {
     }
   }
 
+  console.log(keywords);
+
+  const eaea = ['Concepto uno', 'Concepto Dos', 'Concepto Tres'];
+
   return (
     <>
       <div>
@@ -55,6 +58,13 @@ const UnitTable = ({ planningData, title }) => {
             <tr className='table-row'>
               <td className='td table-title corner'>Tema clase:</td>
               <td className='td corner td-right'>{topic}</td>
+            </tr>
+
+            <tr className='table-row'>
+              <td className='td table-title corner'>Conceptos a tratar:</td>
+              <td className='td corner td-right'>
+                { eaea.map((data, key) => <div key={key} className='materials'>{`- ${data}`}</div>)}
+              </td>
             </tr>
 
             <tr className='table-row'>
