@@ -39,9 +39,10 @@ const PublicSection = () => {
                 <div className="units-cont">
                   <UnitsHeader program={planningPrograms[1].program} />
                   <div className="units-components">
-                    {states.unitsContent.map((data, key) => (
+                    {states.units && states.units.map((data, key) => (
                       <UnitComponent
                         key={key}
+                        number={data.number}
                         status={data.status}
                         title={data.title}
                         subtitle={data.subtitle}

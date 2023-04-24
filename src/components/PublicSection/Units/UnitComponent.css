@@ -81,6 +81,7 @@
 .unit-purple {
     border: 1px solid var(--color-primary);
 }
+
 .border-purple {
     color: var(--color-primary)
 }
