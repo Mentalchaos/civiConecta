@@ -1,13 +1,25 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getUserData } from 'src/utils/user';
 import back from 'src/assets/Icons/back.svg';
 import unitLogo from 'src/assets/Icons/unit-section-red.svg';
 import link from 'src/assets/Icons/button-enlace.svg';
 import './ShareSurvey.css';
 import Footer from '../../Footer';
+import services from 'src/services/admin/publicSection.request';
 
 const ShareSurvey = () => {
   const navigate = useNavigate();
   const linkToSurvey = `${document.location.origin}/student-survey`;
+
+  useEffect(() => {
+    async function fn() {
+      const userData = getUserData();
+      await services.initMassiveSurvey(userData.uuid);
+    }
+    fn();
+  }, []);
+
   return (
     <div className="share-survey-container">
       <div className="back-container">
