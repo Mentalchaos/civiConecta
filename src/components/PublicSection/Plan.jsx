@@ -45,7 +45,7 @@ const Plan = () => {
         />
       </Visible>
 
-      <Visible condition={states.isSurveyCompleted}>
+      <Visible condition={states.isStudentSurveyGenerated}>
         <PlanificationType
           textButton={'Ver progreso'}
           colorTextBtn={"purple"}

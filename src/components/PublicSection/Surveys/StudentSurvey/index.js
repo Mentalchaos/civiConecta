@@ -45,7 +45,10 @@ const StudentSurvey = () => {
       const userData = getUserData();
       const uuid = userData.uuid;
       await fetch(`${config.baseURL}/feedback/student/${uuid}`, {
-        method: 'POST'
+        method: 'GET',
+        headers: {
+          token: userData.token
+        }
       }).then(response => console.log('response', response))
     });
     resp();

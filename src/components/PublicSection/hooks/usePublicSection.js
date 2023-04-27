@@ -36,18 +36,13 @@ const usePublicSection = () => {
       const userData = getUserData();
       const uuid = userData.uuid;
 
-      const [status, info, units] = await Promise.all([
+      const [status, info] = await Promise.all([
         services.getFeedbackStatus(uuid).then(r => r.status),
         services.getUserData(uuid).then(r => r.info)
       ]);
+      const units = await services.getUnits(info.gradeId).then(r => r.units);
 
-      // TODO: Arreglar este hardcode, se supone que deberia ser dinamico, no solo para quinto
-      const eaea = async () => {
-        const unitss = await services.getUnits(5).then(r => r.units);
-        setUnits(unitss);
-      }
-      eaea();
-
+      setUnits(units);
       setStatus(status);
       setUserData(info);
       setIsLoading(false);
@@ -70,8 +65,7 @@ const usePublicSection = () => {
       unitsContent,
       isLoading,
       get isPlanificationEnabled() {
-        const { student, teacher } = status ?? {};
-        return status && (!student.completed || !teacher.completed);
+        return !status?.survey?.completed;
       },
       get isSurveyNotGeneratedYet() {
         const { student, teacher } = status ?? {};
@@ -98,6 +92,10 @@ const usePublicSection = () => {
       },
       get isCustomPlanification() {
         return planificationType === PlanificationTypes.CUSTOM;
+      },
+      get isStudentSurveyGenerated() {
+        const { student, teacher } = status;
+        return teacher.completed && student.generated;
       }
     },
     actions: {
