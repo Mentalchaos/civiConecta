@@ -16,10 +16,6 @@ const LoginForm = () => {
     password: '',
   });
 
-  useEffect(() => {
-    localStorage.clear();
-  }, []);
-
   const navigate = useNavigate();
 
   const styleButton = {
