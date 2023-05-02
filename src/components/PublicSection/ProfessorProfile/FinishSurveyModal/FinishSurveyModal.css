@@ -67,6 +67,8 @@ p {
   width: 100%;
   height: 150px;
   display: flex;
+  bottom: 10px;
+  border-radius: 8px;
   align-items: center;
   justify-content: space-between;
   background-color: #dcdaed;

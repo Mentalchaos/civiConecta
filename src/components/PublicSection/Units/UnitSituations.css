@@ -4,7 +4,7 @@
     height: 120px;
     display: flex;
     flex-direction: row;
-    border: 1px solid #818181;
+    border: 1px solid #7468e5;
     /* background-image: url('src/assets/Icons/purple-brain.svg'); */
 }
 
@@ -41,7 +41,9 @@
 
 
 .unit-situations-two {
-    width: 40%;
+    width: 55%;
+    background-color: #7268db;
+    border-radius: 0 9px 9px 0;
 }
 
 .unit-situations-two img {
@@ -49,6 +51,10 @@
     height: 100%;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
+}
+
+.unit-img-emergent {
+    opacity: 0.4;
 }
 
 

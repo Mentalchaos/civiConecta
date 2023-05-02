@@ -18,7 +18,7 @@ const UnitSituations = ({ title, to }) => {
                 </div>
             </div>
             <div className='unit-situations-two'>
-                <img src={emergent} alt="emergent-situation"/>
+                <img src={emergent} alt="emergent-situation" className='unit-img-emergent'/>
             </div>
         </div>
     )

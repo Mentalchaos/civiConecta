@@ -11,8 +11,8 @@ const UnitComponent = ({ status, title, subtitle, description, color, borderColo
           <img src={unitLogo} alt='unit-logo' />
         </div>
         <div className='unit-second-container'>
-          <p>{status}</p>
-          <img src={brain} alt='brain-logo' />
+          <p className='unit-status'>{status} en desarollo</p>
+          <img src={brain} alt='brain-logo' className='unit-brain' />
         </div>
       </div>
       <div className='component-info'> 
@@ -21,8 +21,8 @@ const UnitComponent = ({ status, title, subtitle, description, color, borderColo
         <p className='component-description'>{description}</p>
       </div>
       <div className='go-to-unit'>
-        <p>Ir a la unidad</p>
-        <img src={goTo} alt="arrow-icon" />
+        <p className='goto'>Ir a la unidad</p>
+        <img src={goTo} alt="arrow-icon" className='unit-arrow' />
       </div>
     </div>
   )
