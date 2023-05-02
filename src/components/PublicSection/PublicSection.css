@@ -1,5 +1,5 @@
 .public-section-container {
-    padding: 0 2.4em;
+    padding: 0px 5.4em;
 }
 
 .planification-cont {
@@ -17,6 +17,7 @@
 }
 
 .units-components {
+    padding: 40px 0;
     display: flex;
     justify-content: space-between;
     width: 100%;

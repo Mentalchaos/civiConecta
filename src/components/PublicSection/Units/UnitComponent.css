@@ -1,12 +1,16 @@
 .unit-component-container {
-    width: 230px;
+    width: 185px;
     border-radius: 10px;
-    height: 260px;
+    height: 230px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 10px;
     margin: 2px;
+}
+
+.unit-status {
+    font-size: 11px !important;
 }
 
 .unit-component-title {
@@ -17,7 +21,23 @@
 }
 
 .unit-component-title img {
-    width: 30px;
+    width: 50px;
+}
+
+.unit-brain {
+    width: 35px !important;
+    position: relative;
+    bottom: 10px;
+}
+
+.unit-arrow {
+    width: 10px;
+}
+
+.goto {
+    font-weight: 900 !important;
+    color: black;
+    font-size: 13px;
 }
 
 .unit-second-container {
@@ -89,7 +109,7 @@
 }
 
 .unit-gray {
-    border: 1px solid #808080;
+    border: 1px solid #7468e5;
 }
 
 .border-gray {
