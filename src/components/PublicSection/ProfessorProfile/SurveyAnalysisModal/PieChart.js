@@ -15,7 +15,7 @@ class PieChart extends Component {
       chart: {
       width: 360,
       type: 'pie',
-      },
+      },  
       labels: ['Muy baja', 'Baja', 'Alta', 'Muy alta'],
       dataLabels: {
         style: {

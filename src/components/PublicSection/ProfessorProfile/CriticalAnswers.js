@@ -1,37 +1,46 @@
-import criticalIcon from 'src/assets/Icons/critical-icon.svg';
+import { useState, useEffect } from 'react';
+import config from 'src/config';
+import { getUserData } from 'src/utils/user';
 import Answer from './Answer';
+import criticalIcon from 'src/assets/Icons/critical-icon.svg';
 
-const criticsData = [
-  {
-    question: '1.- ¿Cómo calificarías tu capacidad para reconocer tus cualidades y habilidades...',
-    status: 'Requiere atención'
-  },
-  {
-    question: '5.-¿Cómo evaluarías la comunicación y el respeto de opiniones entre las y los...',
-    status: 'Requiere atención'
-  },
-  {
-    question: '13.- ¿Qué te genera más estrés (tensión, preocupación excesiva)?',
-    status: 'Requiere atención'
-  }
-]
+const CriticalAnswers = ({ onClick }) => {
 
-const CriticalAnswers = ({onClick}) => {
+  const [criticalData, setCriticalData] = useState([]);
+
+  const getCriticalAnswers = async () => {
+    const userData = getUserData();
+    const baseURL = `${config.baseURL}/reports/student-answers/${userData.uuid}/critical-answers`;
+
+    const response = await fetch(baseURL, {
+      headers: {
+        token: getUserData().token,
+        "Content-Type": "application/json"
+      },
+      method: "GET"
+    })
+    const data = await response.json();
+    setCriticalData(data.results);
+  };
+  useEffect(() => {
+    getCriticalAnswers();
+  }, []);
+
   return (
     <div className='critical-answers-container'>
       <div className='critical-answers-title'>
-        <img src={criticalIcon}/>
+        <img src={criticalIcon} alt='img' />
         <p>Respuestas críticas</p>
       </div>
       <div className='critical-answers-units'>
         {
-          criticsData.map((critics, key) =>
-          <Answer
-            key={key}
-            question={critics.question}
-            status={critics.status}
-            onClick={onClick}
-          />)
+          criticalData && criticalData.map((data) =>
+            <Answer
+              key={data.questionId}
+              id={data.questionId}
+              answer={data.description}
+              onClick={onClick}
+            />)
         }
       </div>
     </div>
