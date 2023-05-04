@@ -1,8 +1,8 @@
-const DisguisedInput = ({ label, value }) => {
+const DisguisedInput = ({ label, value, letter }) => {
   return (
     <div className="disguised-input-container">
-      <p className="disguised-label">{ label }</p>
-      <p className="disguised-value">{ value }</p>
+      <p className="disguised-label">{label}</p>
+      <p className="disguised-value">{value} {letter}</p>
     </div>
   )
 }
