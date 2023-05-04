@@ -5,9 +5,10 @@ import school from 'src/assets/Icons/school.svg';
 import cap from 'src/assets/Icons/graduation-cap.svg';
 import man from 'src/assets/images/fraud-protection-hero.png';
 import './Welcome.css';
+import Letter from 'src/entities/Letter';
 
 const Welcome = ({ userData }) => {
-  const { establishment, grade } = userData || {};
+  const { establishment, grade, letter } = userData || {};
   const user = getUserData();
 
   return (
@@ -42,7 +43,7 @@ const Welcome = ({ userData }) => {
               <img src={cap} alt="Icono Curso" />
               <div className="grade-info">
                 <p>Nivel del curso</p>
-                <p className="grade">{grade}</p>
+                <p className="grade">{grade} {letter}</p>
               </div>
             </div>
           </div>

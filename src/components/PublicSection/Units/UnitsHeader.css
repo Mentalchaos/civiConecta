@@ -20,7 +20,10 @@
 .units-header-sub {
     width: 40%;
     color: #898c8c;
-    font-size: 12px;
+}
+
+.units-header-sub > p {
+    font-size: 14px;
 }
 
 .text-civi {
