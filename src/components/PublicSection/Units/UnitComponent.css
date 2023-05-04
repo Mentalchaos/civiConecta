@@ -9,10 +9,6 @@
     margin: 2px;
 }
 
-.unit-status {
-    font-size: 11px !important;
-}
-
 .unit-component-title {
     display: flex;
     flex-direction: row;
@@ -88,7 +84,7 @@
 
 .component-description {
     font-family: 'Nunito Sans', sans-serif;
-    font-size: 12px;
+    font-size: 13px;
     color: #898c8c;
 }
 

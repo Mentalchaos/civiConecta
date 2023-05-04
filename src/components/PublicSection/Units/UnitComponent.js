@@ -11,7 +11,7 @@ const UnitComponent = ({ status, title, subtitle, description, color, borderColo
           <img src={unitLogo} alt='unit-logo' />
         </div>
         <div className='unit-second-container'>
-          <p className='unit-status'>{status} en desarollo</p>
+          <p>{status} En desarollo</p>
           <img src={brain} alt='brain-logo' className='unit-brain' />
         </div>
       </div>

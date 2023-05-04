@@ -27,8 +27,11 @@
     justify-content: space-evenly;
     font-family: 'Nunito Sans', sans-serif;
     font-weight: bold;
-    font-size: 14px;
     color: #FFFFFF;
+}
+
+.first-container-link p {
+    font-size: 14px;
 }
 
 .first-container-link img {
