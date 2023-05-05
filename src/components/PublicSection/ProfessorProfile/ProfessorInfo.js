@@ -38,7 +38,6 @@ const ProfessorInfo = ({ onClick }) => {
       letter: userData.letter
     }
   ];
-  console.log(userData.letter, 'userdatas')
 
   const inputs = data.map(input =>
     <DisguisedInput

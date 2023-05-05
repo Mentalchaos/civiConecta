@@ -1,21 +1,19 @@
-import React, { Component } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ApexCharts from 'apexcharts';
 
-class PieChart extends Component {
-  constructor(props) {
-    super(props);
+const PieChart = ({ questionId }) => {
+  const chartRef = useRef(null);
 
-    this.chartRef = React.createRef();
-  }
+  console.log('questionId de componente PieChart',questionId);
 
-  componentDidMount() {
+  useEffect(() => {
     const options = {
       series: [40, 30, 20, 10],
       colors: ['#54bfed', '#c275ef', '#2dba9f', '#f48e76'],
       chart: {
-      width: 360,
-      type: 'pie',
-      },  
+        width: 360,
+        type: 'pie',
+      },
       labels: ['Muy baja', 'Baja', 'Alta', 'Muy alta'],
       dataLabels: {
         style: {
@@ -34,17 +32,17 @@ class PieChart extends Component {
           }
         }
       }]
-      };
+    };
 
-    const chart = new ApexCharts(this.chartRef.current, options);
+    const chart = new ApexCharts(chartRef.current, options);
     chart.render();
-  }
 
-  render() {
-    return (
-      <div ref={this.chartRef} />
-    );
-  }
-}
+    return () => chart.destroy();
+  }, []);
+
+  return <div ref={chartRef} />;
+};
+
+PieChart.displayName = 'PieChart';
 
 export default PieChart;
