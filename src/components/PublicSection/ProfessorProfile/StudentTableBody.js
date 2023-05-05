@@ -13,13 +13,13 @@ const StudentTableBody = ({ data, id }) => {
     switch (data.percentage) {
       case 0:
         statusObj.state = "Pendiente";
-        statusObj.background = "#deeed6";
-        statusObj.color = "#e17c86";
+        statusObj.background = "#f8cfd7";
+        statusObj.color = "#e95f7b";
         break;
       case 100:
         statusObj.state = "Completado";
-        statusObj.background = "#dfeed7";
-        statusObj.color = "#a7d392";
+        statusObj.background = "#deeed6";
+        statusObj.color = "#94c878";
         break;
       default:
         statusObj.state = "Incompleto";
@@ -39,7 +39,7 @@ const StudentTableBody = ({ data, id }) => {
       <p className="student-tablebody-values"> {data.name} </p>
       <p className="student-tablebody-values"> {data.run} </p>
       <p className="student-tablebody-values" style={{ background, color }}> {state} </p>
-      <p className="student-tablebody-values"> 02/02/22 </p>
+      <p className="student-tablebody-values"> {data.percentage}% </p>
     </div>
   )
 };
