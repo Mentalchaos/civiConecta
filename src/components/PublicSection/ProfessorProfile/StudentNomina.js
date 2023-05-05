@@ -8,9 +8,8 @@ import './professor-profile.css';
 
 
 const values = ["Alumno", "Nombre", "Rut", "Encuesta", "Fecha"];
-const tbodyValues = ["01", "Eduardo Cossio Brante", "24.040.904-9", "Pendiente", "24/08/22"];
 
-const StudentNomina = ({ onClick }) => {
+const StudentNomina = ({ onClick, setQuestionId }) => {
 
   const [studentData, setStudentData] = useState([]);
 
@@ -36,7 +35,7 @@ const StudentNomina = ({ onClick }) => {
 
   return (
     <div className="student-nomina-container">
-      <CriticalAnswers onClick={onClick} />
+      <CriticalAnswers onClick={onClick} setQuestionId={setQuestionId} />
       <div className='student-nomina-title'>
         <img className='student-nomina-icon' src={listIcon} alt='img' />
         <p>Nómina</p>
