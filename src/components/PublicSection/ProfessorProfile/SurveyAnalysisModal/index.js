@@ -4,7 +4,7 @@ import PieChart from './PieChart';
 
 import './SurveyAnalysisModal.css';
 
-const SurveyAnalysisModal = ({ onClick }) => {
+const SurveyAnalysisModal = ({ onClick, questionId }) => {
   return (
     <div className='analysis-modal-container'>
       <div className='analysis-modal'>
@@ -20,18 +20,20 @@ const SurveyAnalysisModal = ({ onClick }) => {
           </div>
           <div className='analysis-modal-paragraph'>
             <p>
-            ¿Cómo calificarías tu capacidad para reconocer tus cualidades y habilidades, por ejemplo: 
-            honestidad, respeto, sensibilidad, responsabilidad, solidaridad, comunicación, motivación, 
+            ¿Cómo calificarías tu capacidad para reconocer tus cualidades y habilidades, por ejemplo:
+            honestidad, respeto, sensibilidad, responsabilidad, solidaridad, comunicación, motivación,
             paciencia, trabajo en equipo, etc.?
             </p>
           </div>
           <div id='app'>
-            <PieChart />
+            <PieChart questionId={questionId} />
           </div>
         </div>
       </div>
     </div>
   )
 }
+
+SurveyAnalysisModal.displayName = 'SurveyAnalysisModal';
 
 export default SurveyAnalysisModal;

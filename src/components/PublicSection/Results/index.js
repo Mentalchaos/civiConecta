@@ -3,8 +3,34 @@ import arrowBack from 'src/assets/Icons/back.svg';
 import unitLogo from 'src/assets/Icons/unit-section-red.svg';
 import PieChart from 'src/components/PublicSection/ProfessorProfile/SurveyAnalysisModal/PieChart.js'
 import './Results.css';
+import { getUserData } from 'src/utils/user';
+import config from 'src/config';
+import React, { useEffect, useRef, useState } from 'react';
 
 const Results = () => {
+
+
+  // @TODO: This endpoint should be modified, it is not complete, the name is also wrong
+  const [criticalData, setCriticalData] = useState([]);
+
+  const getCriticalAnswers = async () => {
+    const userData = getUserData();
+    const baseURL = `${config.baseURL}/reports/student-answers/${userData.uuid}/1`;
+
+    const response = await fetch(baseURL, {
+      headers: {
+        token: getUserData().token,
+        "Content-Type": "application/json"
+      },
+      method: "GET"
+    })
+    const data = await response.json();
+    setCriticalData(data.results[0].questions);
+  };
+
+  useEffect(() => {
+    getCriticalAnswers();
+  }, []);
 
   return (
     <div>
@@ -21,7 +47,7 @@ const Results = () => {
           <p className='report_result_text'> A continuación, encontrarás los resultados de la encuesta aplicada en tu curso.
             Estos datos te muestran un panorama rápido acerca de las debilidades, preocupaciones y
             problemas que está enfrentando el grupo curso, así podrás detectar situaciones preocupantes.
-           <p className='report_result_text'> 
+           <p className='report_result_text'>
               Recuerda que comunicar alertas al Equipo de Convivencia puede ser crucial para apoyar a tus estudiantes.</p>
            </p>
         </div>
@@ -44,42 +70,10 @@ const Results = () => {
                 <PieChart />
               </div>
             </div>
-
-            <div className='graphic_content'>
-              <p className='graphic_text'>
-                2. ¿Cómo es la relación entre los y las estudiantes de tu curso?
-              </p>
-              <div className='graphic'>
-                <PieChart />
-              </div>
-            </div>
-
-            <div className='graphic_content'>
-              <p className='graphic_text'>
-                3. ¿Cuál de las siguientes opciones refleja mejor la relación entre tu curso y
-                sus profesores?
-              </p>
-              <div className='graphic'>
-                <PieChart />
-              </div>
-            </div>
-
-            <div className='graphic_content'>
-              <p className='graphic_text'>
-                4. ¿Cuánto participas en actividades, tales como, puntos de reciclaje,
-                huertos comunitarios, limpieza de espacios comunes, campañas
-                informativas, entre otras?
-              </p>
-              <div className='graphic'>
-                <PieChart />
-              </div>
-            </div>
           </div>
-
           <div className='button_go_next_unit_container'>
             <button className='button_go_next_unit'>Ir a la siguiente unidad {'>'} </button>
           </div>
-
         </div>
       </div>
       <Footer />
