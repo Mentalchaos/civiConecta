@@ -6,10 +6,9 @@ import config from 'src/config';
 import listIcon from 'src/assets/Icons/student-list.svg';
 import './professor-profile.css';
 
-
 const values = ["Alumno", "Nombre", "Rut", "Encuesta", "Porcentaje Encuesta"];
 
-const StudentNomina = ({ onClick, setQuestionId }) => {
+const StudentNomina = ({ onClick, setDataPieChart }) => {
 
   const [studentData, setStudentData] = useState([]);
 
@@ -35,7 +34,7 @@ const StudentNomina = ({ onClick, setQuestionId }) => {
 
   return (
     <div className="student-nomina-container">
-      <CriticalAnswers onClick={onClick} setQuestionId={setQuestionId} />
+      <CriticalAnswers setDataPieChart={setDataPieChart} onClick={onClick} />
       <div className='student-nomina-title'>
         <img className='student-nomina-icon' src={listIcon} alt='img' />
         <p>Nómina</p>

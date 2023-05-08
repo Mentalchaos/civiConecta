@@ -1,23 +1,23 @@
 import React, { useEffect, useRef } from 'react';
 import ApexCharts from 'apexcharts';
 
-const PieChart = ({ dataPieChart }) => {
+const ResultPieChart = ({ series, labels }) => {
   const chartRef = useRef(null);
 
   useEffect(() => {
-    const series = [];
-    const labels = [];
-    dataPieChart.map(data => series.push(data.percentage));
-    dataPieChart.map(data => labels.push(data.label));
+    // const series = [];
+    // const labels = [];
+    // dataPieChart.map(data => series.push(data.percentage));
+    // dataPieChart.map(data => labels.push(data.label));
 
     const options = {
-      series: series,
+      series: [50,30,20],
       colors: ['#54bfed', '#c275ef', '#2dba9f', '#f48e76'],
       chart: {
         width: 360,
         type: 'pie',
       },
-      labels: labels,
+      labels: ['Label 1', 'Label 2', 'Label 3'],
       dataLabels: {
         style: {
           fontSize: '12px',
@@ -46,6 +46,6 @@ const PieChart = ({ dataPieChart }) => {
   return <div ref={chartRef} />;
 };
 
-PieChart.displayName = 'PieChart';
+ResultPieChart.displayName = 'PieChart';
 
-export default PieChart;
+export default ResultPieChart;

@@ -1,10 +1,27 @@
+import { getUserData } from 'src/utils/user';
+import config from 'src/config';
 import arrow from 'src/assets/Icons/open-arrow.svg';
 
-const Answer = ({ id, answer, onClick, setQuestionId }) => {
+const Answer = ({ id, answer, onClick, setDataPieChart }) => {
 
-  const newClick = () => {
-    setQuestionId(id);
-    onClick();
+  const newClick = async () => {
+    await callData();
+    await onClick();
+  }
+
+  const callData = async () => {
+    const userData = getUserData();
+    const baseURL = `${config.baseURL}/reports/student-answers/${userData.uuid}/${id}`;
+    const response = await fetch(baseURL, {
+      headers: {
+        token: getUserData().token,
+        "Content-Type": "application/json"
+      },
+      method: "GET"
+    })
+
+    const data = await response.json();
+    await setDataPieChart(data.results[0].questions[0].answers);
   }
 
   return (
