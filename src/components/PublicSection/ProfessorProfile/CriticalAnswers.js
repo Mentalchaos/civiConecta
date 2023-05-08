@@ -4,7 +4,7 @@ import { getUserData } from 'src/utils/user';
 import Answer from './Answer';
 import criticalIcon from 'src/assets/Icons/critical-icon.svg';
 
-const CriticalAnswers = ({ onClick, setQuestionId }) => {
+const CriticalAnswers = ({ onClick, setDataPieChart }) => {
 
   const [criticalData, setCriticalData] = useState([]);
 
@@ -40,7 +40,7 @@ const CriticalAnswers = ({ onClick, setQuestionId }) => {
               id={data.questionId}
               answer={data.description}
               onClick={onClick}
-              setQuestionId={setQuestionId}
+              setDataPieChart={setDataPieChart}
             />)
         }
       </div>
