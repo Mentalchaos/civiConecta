@@ -18,7 +18,7 @@ body {
   flex-direction: row;
 }
 
-.report_result_title_img > img {
+.report_result_title_img>img {
   width: 25px;
   margin-right: 10px;
 
@@ -32,7 +32,8 @@ body {
 
 .report_result_text {
   font-size: 14px;
-  color: #808080;;
+  color: #808080;
+  ;
 }
 
 .content-start__back-link {
@@ -40,11 +41,11 @@ body {
   align-items: center;
 }
 
-.content-start__back-link > img {
+.content-start__back-link>img {
   width: 30px;
 }
 
-.content-start__back-link > div {
+.content-start__back-link>div {
   font-size: 14px;
   color: rgb(0, 0, 0, 0.9);
   text-decoration: none;
@@ -55,15 +56,15 @@ body {
   display: block;
 }
 
-.units_pagination{
+.units_pagination {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
-.units_pagination > div {
+.units_pagination>div {
   border: solid 1px #d3d3d3;
-  border-bottom: none ;
+  border-bottom: none;
   border-radius: 8px 8px 0 0;
   padding: 0 50px;
   margin: 0;
@@ -71,7 +72,7 @@ body {
   color: #4d4d4d;
 }
 
-.units_pagination > div:hover {
+.units_pagination>div:hover {
   cursor: pointer;
   transition: 0.5s;
 }
@@ -82,7 +83,7 @@ body {
   font-weight: bold;
 }
 
-.units_pagination > div {
+.units_pagination>div {
   padding: 10px;
   width: 160px;
   text-align: center;
@@ -121,24 +122,24 @@ body {
   width: 100%;
 }
 
-.graphic_content:nth-child(1){
-  border:none;
-  border-bottom: 1px solid  #d3d3d3;
+.graphic_content:nth-child(1) {
+  border: none;
+  border-bottom: 1px solid #d3d3d3;
   border-right: 1px solid #d3d3d3;
 }
 
-.graphic_content:nth-child(2){
-  border:none;
-  border-bottom: 1px solid  #d3d3d3;
+.graphic_content:nth-child(2) {
+  border: none;
+  border-bottom: 1px solid #d3d3d3;
 }
 
-.graphic_content:nth-child(3){
-  border:none;
+.graphic_content:nth-child(3) {
+  border: none;
   border-right: 1px solid #d3d3d3;
 }
 
 
-.graphic_text:nth-child(1){
+.graphic_text:nth-child(1) {
   margin-top: 55px;
 }
 
@@ -147,8 +148,8 @@ body {
   margin-top: 20px;
 }
 
-.button_go_next_unit{
-  background-color:#e95f7b;
+.button_go_next_unit {
+  background-color: #e95f7b;
   border: none;
   border-radius: 20px;
   padding: 12px;
@@ -160,7 +161,7 @@ body {
 
 .button_go_next_unit:hover {
   background-color: #FFFFFF;
-  color:#e95f7b;
+  color: #e95f7b;
   box-shadow: 0px 0px 2px #e95f7b;
   transform: scale(1.05);
 }
@@ -170,4 +171,3 @@ body {
   box-shadow: none;
   outline: none;
 }
-
