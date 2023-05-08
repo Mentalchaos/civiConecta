@@ -60,7 +60,7 @@ const Results = () => {
             <div>Unidad 4</div>
           </div>
           <div className='graphic_container'>
-            {dataTest.map((_, key) => <ResultUnit id={key} /> )}
+            {dataTest.map((_, key) => <ResultUnit key={key} id={key} /> )}
           </div>
           <div className='button_go_next_unit_container'>
             <button className='button_go_next_unit'>Ir a la siguiente unidad {'>'} </button>
