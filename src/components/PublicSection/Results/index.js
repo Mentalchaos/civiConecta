@@ -4,11 +4,12 @@ import unitLogo from 'src/assets/Icons/unit-section-red.svg';
 import './Results.css';
 import { getUserData } from 'src/utils/user';
 import config from 'src/config';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ResultUnit from './ResultUnit.js';
 
 const Results = () => {
-  const [data, setData] = useState([]);
+  const [resultData, setResultData] = useState([]);
+  const [selectedUnit, setSelectedUnit] = useState(0);
 
   useEffect(() => {
     const callData = async () => {
@@ -21,16 +22,35 @@ const Results = () => {
         },
         method: "GET"
       })
-
       const data = await response.json();
-      await setData(data);
+      await setResultData(data.results);
     }
     callData();
   }, []);
 
-  console.log('data', data.results);
+  const questionData = resultData && resultData[selectedUnit]?.questions.map((data, key) => {
+    return (
+      <ResultUnit
+        key={key}
+        id={key}
+        question={data.question}
+        pieChartData={data.answers}
+      />
+    )
+  })
 
-  const dataTest = ['eaea', 'oeoe', 'aeaea'];
+  const classUnit = () => {
+    const unitsArr = ['Unidad 1', 'Unidad 2', 'Unidad 3', 'Unidad 4'];
+    const unitsMap = unitsArr.map((data, key) => {
+      const className = selectedUnit === key ? "selected" : "";
+      return (
+        <div className={className} key={key} onClick={() => setSelectedUnit(key)}>
+          {data}
+        </div>
+      )
+    })
+    return unitsMap;
+  };
 
   return (
     <div>
@@ -54,13 +74,10 @@ const Results = () => {
         </div>
         <div className='units_graphic_content'>
           <div className='units_pagination'>
-            <div className='selected'>Unidad 1</div>
-            <div>Unidad 2</div>
-            <div>Unidad 3</div>
-            <div>Unidad 4</div>
+            {classUnit()}
           </div>
           <div className='graphic_container'>
-            {dataTest.map((_, key) => <ResultUnit key={key} id={key} /> )}
+            {questionData}
           </div>
           <div className='button_go_next_unit_container'>
             <button className='button_go_next_unit'>Ir a la siguiente unidad {'>'} </button>
