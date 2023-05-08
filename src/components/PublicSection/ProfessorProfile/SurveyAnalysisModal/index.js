@@ -4,7 +4,7 @@ import PieChart from './PieChart';
 
 import './SurveyAnalysisModal.css';
 
-const SurveyAnalysisModal = ({ onClick, questionId }) => {
+const SurveyAnalysisModal = ({ onClick, dataPieChart }) => {
   return (
     <div className='analysis-modal-container'>
       <div className='analysis-modal'>
@@ -26,7 +26,7 @@ const SurveyAnalysisModal = ({ onClick, questionId }) => {
             </p>
           </div>
           <div id='app'>
-            <PieChart questionId={questionId} />
+            <PieChart dataPieChart={dataPieChart} />
           </div>
         </div>
       </div>
