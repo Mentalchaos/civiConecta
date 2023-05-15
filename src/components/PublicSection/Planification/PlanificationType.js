@@ -9,9 +9,9 @@ const PlanificationType = ({ title, textButton, img, colorTextBtn, colorIconRigh
       </div>
       <div className='button-and-text'>
         <div className='planification-text'>
-          <h4>
+          <p>
             {title}
-          </h4>
+          </p>
         </div>
         <button onClick={onClick} className={`planification-button ${colorTextBtn}`} >
           {textButton}
