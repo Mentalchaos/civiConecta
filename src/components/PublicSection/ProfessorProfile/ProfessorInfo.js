@@ -87,7 +87,7 @@ const ProfessorInfo = ({ onClick }) => {
           {inputs}
         </div>
       </div>
-      
+
       {!surveyData?.survey?.completed || !surveyData?.teacher?.completed || !surveyData?.student?.completed ? (
         <ModalTrigger
           onClick={onClick}
@@ -99,8 +99,11 @@ const ProfessorInfo = ({ onClick }) => {
         <ModalTrigger
           onClick={() => navigate('/public/results')}
           img={report}
-          title={'Informe de resultados ¡Ya disponible!'}
+          text1={'Informe de resultados'}
+          text2={'¡Ya disponible!'}
           buttonText={'Ver reporte'}
+          colorButton={'color-result'}
+          colorIcon={'color-icon-button'}
         />
       )}
     </div>

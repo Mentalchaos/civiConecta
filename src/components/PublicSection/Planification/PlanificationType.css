@@ -30,11 +30,13 @@
   float: left;
 }
 
-.planification-text h4 {
+.planification-text p {
   color: #ffffff;
   margin: 0;
-  padding: 1.2em;
- 
+  padding: 15px;
+  padding-bottom: 0px;
+  font-size: 18px;
+
 }
 
 .teacher-image {
@@ -56,13 +58,14 @@
   display: flex;
   align-items: center;
   border-radius: 10px;
-  height: 20%;
-  width: 40%;
+  height: 30%;
+  width: 35%;
   border: none;
   font-weight: bold;
   font-family: "NunitoSans-Bold";
+  font-size:medium ;
   color: #e95f7b;
-  margin: 20px;
+  margin: 15px;
   padding: 5px;
   justify-content: space-evenly;
 }
