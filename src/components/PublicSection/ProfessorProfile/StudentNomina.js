@@ -6,7 +6,7 @@ import config from 'src/config';
 import listIcon from 'src/assets/Icons/student-list.svg';
 import './professor-profile.css';
 
-const values = ["Alumno", "Nombre", "Rut", "Encuesta", "Porcentaje Encuesta"];
+const values = ["Estudiante", "Nombre", "Rut", "Encuesta", "Porcentaje Encuesta"];
 
 const StudentNomina = ({ onClick, setDataPieChart }) => {
 
