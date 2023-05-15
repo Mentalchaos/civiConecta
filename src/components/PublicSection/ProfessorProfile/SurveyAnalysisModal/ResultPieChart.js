@@ -11,27 +11,26 @@ const ResultPieChart = ({ series, labels }) => {
       series: series,
       colors: ['#54bfed', '#c275ef', '#2dba9f', '#f48e76'],
       chart: {
-        width: 360,
+        //width: 720,
+        height: 360,
         type: 'pie',
       },
-      labels: labels,
-      dataLabels: {
-        style: {
-          fontSize: '12px',
-          textAlign: 'top',
+      legend: {
+        show: true,
+        showForSingleSeries: false,
+        showForNullSeries: true,
+        showForZeroSeries: true,
+        position: 'top',
+        horizontalAlign: 'center', 
+        fontSize: '14px',
+        fontFamily: 'Helvetica, Arial',
+        fontWeight: 600,
+        itemMargin: {
+          horizontal: 15,
+          vertical: 10
         },
       },
-      responsive: [{
-        breakpoint: 480,
-        options: {
-          chart: {
-            width: 360
-          },
-          legend: {
-            position: 'top'
-          }
-        }
-      }]
+      labels: labels
     };
 
     const chart = new ApexCharts(chartRef.current, options);
