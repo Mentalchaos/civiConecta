@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getUserData } from 'src/utils/user';
+import { clearUserData, getUserData } from 'src/utils/user';
 import config from 'src/config';
 import DisguisedInput from './DisguisedInput.js';
 import ModalTrigger from './ModalTrigger';
@@ -8,10 +8,33 @@ import profile from 'src/assets/Icons/profile-image.svg';
 import finishImage from 'src/assets/images/finish-survey.png';
 import report from 'src/assets/images/report-container.png';
 import './professor-profile.css';
+import { useNavigate } from 'react-router-dom';
 
 const ProfessorInfo = ({ onClick }) => {
   const [userData, setUserData] = useState({});
+  const [surveyData, setSurveyData] = useState({})
   const currentUser = getUserData();
+
+  const navigate = useNavigate();
+
+  const getSurveyData = async () => {
+    const userData = getUserData();
+    const baseURL = `${config.baseURL}/feedback/status/${userData.uuid}`
+
+    const response = await fetch(baseURL, {
+      headers: {
+        token: getUserData().token,
+        "Content-Type": "application/json"
+      },
+      method: "GET"
+    })
+    const data = await response.json();
+    setSurveyData(data.status);
+  };
+
+  useEffect(() => {
+    getSurveyData()
+  }, []);
 
   useEffect(() => {
     const userData = getUserData();
@@ -64,19 +87,22 @@ const ProfessorInfo = ({ onClick }) => {
           {inputs}
         </div>
       </div>
-      <ModalTrigger
-        onClick={onClick}
-        img={finishImage}
-        title={'¿Deseas terminar la encuesta?'}
-        buttonText={'Finalizar encuesta'}
-      />
-      {/*
-        @TODO: This should be activated after the button about finishing the encuesta was clicked
+      
+      {!surveyData?.survey?.completed || !surveyData?.teacher?.completed || !surveyData?.student?.completed ? (
         <ModalTrigger
+          onClick={onClick}
+          img={finishImage}
+          title={'¿Deseas terminar la encuesta?'}
+          buttonText={'Finalizar encuesta'}
+        />
+      ) : (
+        <ModalTrigger
+          onClick={() => navigate('/public/results')}
           img={report}
           title={'Informe de resultados ¡Ya disponible!'}
           buttonText={'Ver reporte'}
-      /> */}
+        />
+      )}
     </div>
   )
 }

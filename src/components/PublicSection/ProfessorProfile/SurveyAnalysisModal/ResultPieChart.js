@@ -25,7 +25,7 @@ const ResultPieChart = ({ series, labels }) => {
         breakpoint: 480,
         options: {
           chart: {
-            width: 250
+            width: 360
           },
           legend: {
             position: 'top'
@@ -38,7 +38,7 @@ const ResultPieChart = ({ series, labels }) => {
     chart.render();
 
     return () => chart.destroy();
-  }, []);
+  }, [series, labels]);
 
   return <div ref={chartRef} />;
 };
