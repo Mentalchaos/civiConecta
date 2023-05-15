@@ -37,10 +37,11 @@ const Results = () => {
         pieChartData={data.answers}
       />
     )
-  })
+  });
+
+  const unitsArr = ['Unidad 1', 'Unidad 2', 'Unidad 3', 'Unidad 4'];
 
   const classUnit = () => {
-    const unitsArr = ['Unidad 1', 'Unidad 2', 'Unidad 3', 'Unidad 4'];
     const unitsMap = unitsArr.map((data, key) => {
       const className = selectedUnit === key ? "selected" : "";
       return (
@@ -79,8 +80,19 @@ const Results = () => {
           <div className='graphic_container'>
             {questionData}
           </div>
-          <div className='button_go_next_unit_container'>
-            <button className='button_go_next_unit'>Ir a la siguiente unidad {'>'} </button>
+
+          <div className='button_page_unit'>
+          
+          {selectedUnit !== 0 &&
+            <div className='button_change_unit_container'>
+              <button className='button_change_unit' onClick={() => setSelectedUnit(selectedUnit - 1)}> Anterior </button>
+            </div>
+          }
+          {selectedUnit !== unitsArr.length - 1 &&
+            <div className='button_change_unit_container'>
+              <button className='button_change_unit' onClick={() => setSelectedUnit(selectedUnit + 1)}> Siguiente </button>
+            </div>
+          }
           </div>
         </div>
       </div>

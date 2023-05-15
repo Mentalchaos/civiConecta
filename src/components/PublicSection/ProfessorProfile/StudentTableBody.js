@@ -17,12 +17,12 @@ const StudentTableBody = ({ data, id }) => {
         statusObj.color = "#e95f7b";
         break;
       case 100:
-        statusObj.state = "Completado";
+        statusObj.state = "Completa";
         statusObj.background = "#deeed6";
         statusObj.color = "#94c878";
         break;
       default:
-        statusObj.state = "Incompleto";
+        statusObj.state = "Incompleta";
         statusObj.background = "#faf0cd";
         statusObj.color = "#d2a251";
         break;
