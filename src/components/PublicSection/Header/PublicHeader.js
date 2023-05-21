@@ -41,10 +41,7 @@ const PublicHeader = () => {
           <div className="sesion-container">
             <Visible condition={currentUser}>
               <Fragment>
-                <p
-                  onClick={handleLogout}
-                  className="session-info"
-                >
+                <p className="session-info" onClick={handleLogout}>
                   Cerrar Sesión
                 </p>
                 <img className="arrow-right" src={arrowRight} alt="arrow-right-icon" />

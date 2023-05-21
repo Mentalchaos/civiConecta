@@ -44,6 +44,7 @@
 
 .share-container-title img {
     width: 30px;
+    margin-right: 1em;
 }
 
 .share-container-description {
@@ -76,10 +77,10 @@
 }
 
 .alert-icon {
-    width: 4%;
+    width: 45px;
     border: 2px solid #e45d79;
     border-radius: 100%;
-    height: 22px;
+    height: 60%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -105,11 +106,21 @@
     border:1px solid var(--color-primary);
 }
 
-.share-container-link p {
+.share-container-link p:first-child {
     font-family: 'Nunito Sans', sans-serif;
     font-size: 14px;
     color: var(--color-primary);
     margin: 10px 25px
+}
+
+.share-container-link p:last-child {
+    border: solid 1px var(--color-primary);
+    border-radius: 9px;
+    color: #4d4d51;
+    padding: 12px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 14px;
+    margin: 10px 25px;
 }
 
 .share-container-button {
@@ -118,12 +129,17 @@
 }
 
 .share-container-button button {
-    background-color: var(--color-primary);
-    color: #FFFFFF;
     display: flex;
     justify-content: center;
-    margin-right: 20px;
-    width: 25%;
+    align-items: center;
+    background-color: var(--color-primary);
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight:600;
+    font-size: 15px;
+    color: #FFFFFF;
+    margin-right: 25px;
+    width: 40%;
+    height: 40px;
 }
 
 @media (max-width: 1024px) {
@@ -134,8 +150,10 @@
 
 .link-icon-img {
     width: 25px;
+    margin-right: 5px;
 }
 
 .link-icon-button {
     border-radius: 10px;
+    border: solid 1px;
 }

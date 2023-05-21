@@ -30,7 +30,7 @@ const Welcome = ({ userData }) => {
           <div className="second-right-container">
             <div className="date-container">
               <img src={calendar} alt="Icono Calendario" />
-              <p>{ getFormattedDate() }</p>
+              <p>{getFormattedDate()}</p>
             </div>
             <div className="school-container">
               <img src={school} alt="Icono Escuela" />
@@ -39,6 +39,7 @@ const Welcome = ({ userData }) => {
                 <p className="school-info">{establishment}</p>
               </div>
             </div>
+            <div className='grade-and-man-image'>
             <div className="grade-container">
               <img src={cap} alt="Icono Curso" />
               <div className="grade-info">
@@ -46,9 +47,13 @@ const Welcome = ({ userData }) => {
                 <p className="grade">{grade} {letter}</p>
               </div>
             </div>
+            <div className='man-image-container'>
+              <img className="man-image" src={man} alt="Icono Hombre" />
+            </div>
+            </div>
           </div>
         </div>
-        <img className="man-image" src={man} alt="Icono Hombre" />
+
       </div>
     </div>
   );

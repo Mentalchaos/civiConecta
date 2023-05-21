@@ -39,7 +39,6 @@
   font-family: 'Nunito Sans', sans-serif;
   color: #e95f7b;
   font-size: 14px;
-  width: 26%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -54,7 +53,6 @@
 }
 
 .sesion-container {
-  width: 20%;
   display: flex;
   align-items: center;
   justify-content: center;

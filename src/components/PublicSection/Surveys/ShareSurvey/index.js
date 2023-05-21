@@ -20,6 +20,13 @@ const ShareSurvey = () => {
     fn();
   }, []);
 
+  const copyLink = () => {
+    navigator.clipboard.writeText(linkToSurvey)
+    .then(() => {
+      alert('!Enlace copiado¡')
+    })
+  }
+
   return (
     <div className="share-survey-container">
       <div className="back-container">
@@ -51,16 +58,16 @@ const ShareSurvey = () => {
         </div>
         <div className="share-container-link">
           <p>Enlace de encuesta estudiante</p>
-          <a style={{marginLeft: '26px'}}target="_blank" href={linkToSurvey}>{ linkToSurvey }</a>
+          <p>{ linkToSurvey }</p>
         </div>
-        {/* <div className="share-container-button">
-          <button className="link-icon-button">
+        <div className="share-container-button">
+          <button className="link-icon-button" onClick={copyLink}>
             <img className="link-icon-img" src={link} alt="link-icon" />
             Copiar enlace
           </button>
-        </div> */}
+        </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
