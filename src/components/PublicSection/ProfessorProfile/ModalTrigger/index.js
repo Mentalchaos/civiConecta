@@ -3,16 +3,16 @@ import finishImage from 'src/assets/images/finish-survey.png';
 
 import './ModalTrigger.css';
 
-const ModalTrigger = ({onClick, img, text1,text2, buttonText, colorButton,  colorIcon }) => {
+const ModalTrigger = ({ onClick, img, text1, text2, buttonText, colorButton, colorIcon }) => {
   return (
     <div className='modal-trigger-container'>
       <div className='modal-trigger'>
-        <img className='modal-trigger-image' src={img} alt='finish-image'/>
+        <img className='modal-trigger-image' src={img} alt='finish-image' />
         <p>{text1}</p>
         <p>{text2}</p>
         <button className={colorButton} onClick={onClick}>
           {buttonText}
-          <img className={colorIcon} src={right} alt='right-icon'/>
+          <img className={colorIcon} src={right} alt='right-icon' />
         </button>
       </div>
     </div>

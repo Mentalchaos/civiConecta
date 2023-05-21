@@ -38,7 +38,6 @@
 .professor-info-data {
     border: none;
     border-radius: 10px;
-    height: 400px;
     margin: 0.5em 2em;
     display: flex;
     flex-direction: column;
