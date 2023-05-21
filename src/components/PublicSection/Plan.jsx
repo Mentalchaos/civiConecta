@@ -13,9 +13,10 @@ const Plan = () => {
   const { states, actions, setters } = useContext(PublicContext);
 
   return (
-    <div className="planification-cont">
-      <PlanificationText />
 
+    <div className="planification-cont">
+
+      <PlanificationText />
       <Visible condition={states.isSurveyNotGeneratedYet}>
         <PlanificationType
           textButton="Personalizar planificación"
@@ -62,6 +63,7 @@ const Plan = () => {
         title="Accede a la planificación estandarizada."
         img={planificationStandarized}
       />
+
     </div>
   );
 };

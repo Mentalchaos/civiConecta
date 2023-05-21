@@ -4,6 +4,7 @@
 }
 
 .planification-type-container {
+  max-width: 800px;
   width: 50%;
   height: 170px;
   margin: 5px;

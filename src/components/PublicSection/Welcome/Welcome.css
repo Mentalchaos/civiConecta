@@ -101,11 +101,15 @@
     width: 100%;
 }
 
+.man-image-container{
+   position: relative;
+}
+
 .man-image {
-    position: absolute;
+  position: absolute;
     width: 320px;
-    right: 40px;
-    top: 62px;
+    right: -200px;
+    top: -247px;
     z-index: 2;
 }
 
@@ -123,7 +127,7 @@
     width: 85%;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1280px) {
     .welcome-container {
         height: 300px;
     }
@@ -135,8 +139,8 @@
     .man-image {
         position: absolute;
         width: 287px;
-        right: 15px;
-        top: 95px;
+        right: -190px;
+        top: -222px;
         z-index: 2;
     }
     
