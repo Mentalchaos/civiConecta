@@ -18,12 +18,12 @@ const PieChart = ({ dataPieChart }) => {
         type: 'pie',
       },
       labels: labels,
-      dataLabels: {
-        style: {
-          fontSize: '12px',
-          textAlign: 'top',
-        },
-      },
+      // dataLabels: {
+      //   style: {
+      //     fontSize: '12px',
+      //     textAlign: 'top',
+      //   },
+      // },
       responsive: [{
         breakpoint: 480,
         options: {

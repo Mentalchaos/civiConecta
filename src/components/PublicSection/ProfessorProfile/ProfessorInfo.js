@@ -88,7 +88,7 @@ const ProfessorInfo = ({ onClick }) => {
         </div>
       </div>
 
-      {!surveyData?.survey?.completed || !surveyData?.teacher?.completed || !surveyData?.student?.completed ? (
+      {!surveyData?.survey?.completed && !surveyData?.teacher?.completed && !surveyData?.student?.completed ? (
         <ModalTrigger
           onClick={onClick}
           img={finishImage}
