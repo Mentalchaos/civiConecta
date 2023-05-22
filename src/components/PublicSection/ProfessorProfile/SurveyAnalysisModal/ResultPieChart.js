@@ -12,11 +12,11 @@ const ResultPieChart = ({ series, labels }) => {
       colors: ['#54bfed', '#c275ef', '#2dba9f', '#f48e76'],
       chart: {
         //width: 720,
-        height: 360,
+        height: 200,
         type: 'pie',
       },
       legend: {
-        show: true,
+        show: false, // here enable labels
         showForSingleSeries: false,
         showForNullSeries: true,
         showForZeroSeries: true,
@@ -30,7 +30,10 @@ const ResultPieChart = ({ series, labels }) => {
           vertical: 10
         },
       },
-      labels: labels
+      labels: ['Se observa una excelente relación con todos los y las docentes',
+    'Se observa una excelente relación con todos los y las docentes',
+    'Se observa una excelente relación con todos los y las docentes',
+    'Se observa una excelente relación con todos los y las docentes']
     };
 
     const chart = new ApexCharts(chartRef.current, options);

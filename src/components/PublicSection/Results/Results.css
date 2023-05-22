@@ -106,7 +106,7 @@ body {
 
 .graphic_content {
   flex-direction: row;
-  align-items: center;  
+  align-items: flex-start;
 }
 
 .graphic_title {
@@ -124,8 +124,36 @@ body {
   line-height: 24px;
 }
 
+.graphic-and-answers {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
 .graphic {
-  width: 100%;
+  width: 40%;
+}
+
+.graphic-answers {
+  width: 70%;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.square-graphic {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.square-label-graphic {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-bottom: 15px;
 }
 
 .graphic_content:nth-child(1) {
@@ -177,3 +205,5 @@ body {
   box-shadow: none;
   outline: none;
 }
+
+
