@@ -23,9 +23,9 @@ const ShareSurvey = () => {
   const copyLink = () => {
     navigator.clipboard.writeText(linkToSurvey)
     .then(() => {
-      alert('!Enlace copiado¡')
+      alert('Enlace copiado!');
     })
-  }
+  };
 
   return (
     <div className="share-survey-container">
