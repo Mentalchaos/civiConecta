@@ -8,7 +8,7 @@ const ResultPieChart = ({ series, labels }) => {
   useEffect(() => {
 
     const options = {
-      series: series,
+      series: [10,20,30,40],
       colors: ['#54bfed', '#c275ef', '#2dba9f', '#f48e76'],
       chart: {
         //width: 720,
@@ -29,11 +29,7 @@ const ResultPieChart = ({ series, labels }) => {
           horizontal: 15,
           vertical: 10
         },
-      },
-      labels: ['Se observa una excelente relación con todos los y las docentes',
-    'Se observa una excelente relación con todos los y las docentes',
-    'Se observa una excelente relación con todos los y las docentes',
-    'Se observa una excelente relación con todos los y las docentes']
+      }
     };
 
     const chart = new ApexCharts(chartRef.current, options);

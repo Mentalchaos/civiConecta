@@ -21,7 +21,7 @@ const ResultUnit = ({ id, question, pieChartData }) => {
       <div className='graphic-and-answers'>
         <div className='graphic-answers'>
           {
-            label.map((text, index) => (
+            arr.map((text, index) => (
               <div key={index} className='square-label-graphic'>
                 <div
                   className='square-graphic'
