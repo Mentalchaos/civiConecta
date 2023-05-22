@@ -36,7 +36,7 @@ const StudentTableBody = ({ data, id }) => {
   return (
     <div className="student-tablebody">
       <p className="student-tablebody-values"> {id} </p>
-      <p className="student-tablebody-values"> {data.name} </p>
+      <p style={{textAlign: 'center'}}className="student-tablebody-values"> {data.name} </p>
       <p className="student-tablebody-values"> {data.run} </p>
       <p className="student-tablebody-values" style={{ background, color }}> {state} </p>
       <p className="student-tablebody-values"> {data.percentage}% </p>
