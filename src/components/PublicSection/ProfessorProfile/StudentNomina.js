@@ -41,7 +41,12 @@ const StudentNomina = ({ onClick, setDataPieChart }) => {
       </div>
       <div className="student-nomina-table-container">
         <div className="student-tablehead">
-          {values.map(data => <p key={data} className="student-tablehead-values">{data}</p>)}
+          {values.map(data => {
+            const name = data == 'Nombre' ? 'center' : null;
+          return (
+              <p key={data} style={{textAlign: name}}className="student-tablehead-values">{data}</p>
+            )}
+          )}
         </div>
         <div className="tbody-cont">
           {
