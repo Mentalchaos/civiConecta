@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import Visible from 'src/components/UI/Visible';
 import Loading from 'src/components/UI/Loading';
 import Welcome from './Welcome';
@@ -18,7 +18,52 @@ const { links, planningPrograms } = config.contents;
 
 const PublicSection = () => {
   const { states, actions, setters } = usePublicSection();
+  const [ changeOrder, setChangeOrder ] = useState(true);
 
+  const ponderationsObj = [{
+    title: 'Categoria 1',
+    unitId: 1,
+    ponderation: 0.9
+  },
+  {
+    title: 'Categoria 1',
+    unitId: 2,
+    ponderation: 0.6
+  }, 
+  {
+    title: 'Categoria 1',
+    unitId: 3,
+    ponderation: 1.5
+  },
+  {
+    title: 'Categoria 1',
+    unitId: 4,
+    ponderation: 1.1
+  }];
+
+  const fusionObj = ponderationsObj.map(ponderation => {
+    const fusionUnitId = states.units.find(unit => unit.id === ponderation.unitId);
+    return {
+      ...fusionUnitId,
+      ...ponderation
+    };
+  });
+
+  const handleOrder = () => {
+    setChangeOrder(!changeOrder);
+  };
+
+  const getfusionObj = () => {
+    if (changeOrder) {
+      return fusionObj;
+    } else {
+      return [...fusionObj].sort((a, b) => b.ponderation - a.ponderation);
+    }
+  };
+  
+  console.log('fusion',fusionObj);
+
+ 
   return (
     <PublicContext.Provider value={{ states, actions, setters }}>
       <div className="public-section-container">
@@ -31,15 +76,36 @@ const PublicSection = () => {
                   teacherSurveyOnclick={actions.teacherSurvey}
                 />
               </Visible>
-              <Welcome userData={states.userData} />
+              <Welcome
+                userData={states.userData}
+                unitsPonderation={states.unitsPonderation}
+              />
               <Visible condition={states.isPlanificationEnabled}>
                 <Plan />
               </Visible>
               <Visible condition={states.status.survey.completed}>
                 <div className="units-cont">
                   <UnitsHeader program={planningPrograms[1].program} />
+                  <div className='button-units-cont'>
+                    <button onClick={(handleOrder)}>
+                      {changeOrder ? 'Ordenar por Ponderation' : 'Volver al Orden Original'}
+                    </button>
+                    </div>
                   <div className="units-components">
-                    {states.units && states.units.map((data, key) => (
+                    {/* Esto es la forma original del codigo ya que "ponderations" ESTA HARDCOREADO */}
+                    {/* {states.units && states.units.map((data, key) => (
+                      <UnitComponent
+                        key={key}
+                        number={data.number}
+                        status={data.status}
+                        title={data.title}
+                        subtitle={data.subtitle}
+                        description={data.description}
+                        color={data.color}
+                        borderColor={data.borderColor}
+                      />
+                    ))} */} 
+                    { getfusionObj().map((data, key) => (
                       <UnitComponent
                         key={key}
                         number={data.number}
@@ -51,6 +117,7 @@ const PublicSection = () => {
                         borderColor={data.borderColor}
                       />
                     ))}
+                    
                     <div className="units-components-two">
                       <UnitSituations title={'Situaciones emergentes'} to={'/public/situations-dashboard'} />
                       <UnitSituations title={'Efemerides'} to={'/public/ephemeries-dashboard'} />
@@ -79,7 +146,7 @@ const PublicSection = () => {
         <Footer />
       </div>
     </PublicContext.Provider>
-  );
+   );
 };
 
 PublicSection.displayName = 'PublicSection';

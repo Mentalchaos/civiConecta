@@ -14,6 +14,7 @@ const usePublicSection = () => {
   const [unitsContent, setUnitsContent] = useState([]);
   const [planificationType, setPlanificationType] = useState(PlanificationTypes.CUSTOM);
   const [units, setUnits] = useState([]);
+  const [unitsPonderation, setUnitsPonderation] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,16 +39,23 @@ const usePublicSection = () => {
 
       const [status, info] = await Promise.all([
         services.getFeedbackStatus(uuid).then(r => r.status),
-        services.getUserData(uuid).then(r => r.info)
+        services.getUserData(uuid).then(r => r.info),
       ]);
       const units = await services.getUnits(info.gradeId).then(r => r.units);
 
+      if (status.student.completed && status.survey.completed && status.teacher.completed ){
+        const ponderations = await services.getDataUnitPonderation(uuid).then(r => r.results);
+        setUnitsPonderation(ponderations)
+        console.log(ponderations)
+      };
+      
       setUnits(units);
       setStatus(status);
       setUserData(info);
       setIsLoading(false);
-    }
-
+      setUnitsPonderation([]);
+    };
+  
     func();
   }, []);
 
@@ -64,6 +72,7 @@ const usePublicSection = () => {
       planificationType,
       unitsContent,
       isLoading,
+      unitsPonderation,
       get isPlanificationEnabled() {
         return !status?.survey?.completed;
       },

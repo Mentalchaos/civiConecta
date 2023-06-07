@@ -5,9 +5,8 @@ import school from 'src/assets/Icons/school.svg';
 import cap from 'src/assets/Icons/graduation-cap.svg';
 import man from 'src/assets/images/fraud-protection-hero.png';
 import './Welcome.css';
-import Letter from 'src/entities/Letter';
 
-const Welcome = ({ userData }) => {
+const Welcome = ({ userData, unitsPonderation }) => {
   const { establishment, grade, letter } = userData || {};
   const user = getUserData();
 

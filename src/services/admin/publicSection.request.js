@@ -23,7 +23,12 @@ const services = {
   initMassiveSurvey(uuid) {
     const url = `${BASE_URL}/surveys/students/${uuid}`;
     return http.post(url);
+  },
+  getDataUnitPonderation(uuid) {
+    const url = `${BASE_URL}/reports/units-order/${uuid}`;
+    return http.get(url)
   }
+  
 };
 
 export default services;
