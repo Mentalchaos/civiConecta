@@ -16,7 +16,7 @@ const LinkGenerator = ({ data, onClick }) => {
         </div>
         <div className='second-container-link'>
           <button className='survey-button' onClick={onClick}>
-            <a className={`${textButtonColor}`} href={href} target="_blank">{textButton}</a>
+            <a className={`${textButtonColor}`} href={href}>{textButton}</a>
             <img className={`${textButtonColor}`} src={right} alt="right-arrow" />
           </button>
         </div>
