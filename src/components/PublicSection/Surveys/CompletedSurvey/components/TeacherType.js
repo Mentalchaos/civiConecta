@@ -17,7 +17,7 @@ const TeacherType = () => {
             <span>Has completado la encuesta con éxito</span>
           </div>
           <p className="text-content__paragraph">
-            Recuerda que para obtener tu planiﬁcación personalizada es necesario conocer los intereses y <br />{' '}
+            Recuerda que para obtener tu planficación personalizada es necesario conocer los intereses y <br />{' '}
             necesidades de tus estudiantes. Solo debes presionar el botón “generar enlace” y compartirlo <br /> con tus
             estudiantes.
           </p>
