@@ -82,17 +82,20 @@ const Results = () => {
           </div>
 
           <div className='button_page_unit'>
-          
-          {selectedUnit !== 0 &&
+
+            {selectedUnit !== 0 &&
+              <div className='button_change_unit_container'>
+                <button className='button_change_unit' onClick={() => setSelectedUnit(selectedUnit - 1)}> Anterior </button>
+              </div>
+            }
+            {selectedUnit !== unitsArr.length - 1 &&
+              <div className='button_change_unit_container'>
+                <button className='button_change_unit' onClick={() => setSelectedUnit(selectedUnit + 1)}> Siguiente </button>
+              </div>
+            }
             <div className='button_change_unit_container'>
-              <button className='button_change_unit' onClick={() => setSelectedUnit(selectedUnit - 1)}> Anterior </button>
+              <button className='button_change_unit purple'> Imprimir </button>
             </div>
-          }
-          {selectedUnit !== unitsArr.length - 1 &&
-            <div className='button_change_unit_container'>
-              <button className='button_change_unit' onClick={() => setSelectedUnit(selectedUnit + 1)}> Siguiente </button>
-            </div>
-          }
           </div>
         </div>
       </div>

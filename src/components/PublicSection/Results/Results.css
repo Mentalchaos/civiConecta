@@ -206,4 +206,11 @@ body {
   outline: none;
 }
 
+.purple {
+  background: #7468e5;
+}
 
+.purple:hover {
+  color: #7468e5;
+  box-shadow: 0px 0px 2px #7468e5;
+}

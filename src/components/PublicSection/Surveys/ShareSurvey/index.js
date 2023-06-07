@@ -23,14 +23,14 @@ const ShareSurvey = () => {
   const copyLink = () => {
     navigator.clipboard.writeText(linkToSurvey)
     .then(() => {
-      alert('Enlace copiado!');
+      alert('¡Enlace copiado!');
     })
   };
 
   return (
     <div className="share-survey-container">
       <div className="back-container">
-        <p onClick={() => window.history.back()} style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
+        <p className="eaea" onClick={() => window.history.back()} style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
           <img src={back} alt="back-arrow-icon" />
           Volver
         </p>
