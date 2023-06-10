@@ -15,14 +15,14 @@ const useSurvey = surveyType => {
 
   const wrapRequest = fetchLoading(setFetching);
 
-  const fetchInfo = async () => {
-    const response = await topicRequest.getTopics(surveyType);
-    setTopics(response.topics);
-  };
+  // const fetchInfo = async () => {
+  //   const response = await topicRequest.getTopics(surveyType);
+  //   setTopics(response.topics);
+  // };
 
-  useEffect(() => {
-    fetchInfo();
-  }, []);
+  // useEffect(() => {
+  //   fetchInfo();
+  // }, []);
 
   return {
     states: {
@@ -59,7 +59,7 @@ const useSurvey = surveyType => {
 
         setTopic('');
         setModal(false);
-        fetchInfo();
+        // fetchInfo();
       }),
       removeCategory: wrapRequest(async () => {
         const response = await topicRequest.deleteTopic(selectValue);
