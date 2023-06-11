@@ -8,10 +8,17 @@ import ModalDeleteSurvey from './components/ModalDeleteSurvey';
 import { SurveyContext } from '../context';
 
 const Survey = ({ onEditCategory, surveyType }) => {
-  const {states, setters} = useContext(SurveyContext);
+  const { states, setters } = useContext(SurveyContext);
+  const grades = states.grades.map(data => <option key={data.id} value={data.id}>{data.level}</option>);
 
   return (
     <Fragment>
+      <div className="default-select" style={{width: '170px', height: '24px', marginLeft: 'auto'}}>
+        <select  style={{margin: '0', padding: '0'}} onChange={e => setters.setSelectedGrade(e.target.value)}>
+          <option value={0}>Selecciona un grade</option>
+          {grades}
+        </select>
+      </div>
       <div className="categories-container">
         <Loading isLoading={states.fetching}>
           {states.topics.map(item => (
@@ -25,9 +32,8 @@ const Survey = ({ onEditCategory, surveyType }) => {
           ))}
         </Loading>
       </div>
-
       <div className="buttons-container-fetch">
-        <Visible condition={states.isAbleToAddCategories}>
+        <Visible condition={states.selectedGrade > 0}>
           <div className="button-container teacher-survey category-button">
             <button className="add-button" onClick={() => setters.setModal(true)}>
               <p className="add-button-icon">+</p>

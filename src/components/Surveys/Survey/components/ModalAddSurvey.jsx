@@ -15,13 +15,34 @@ const ModalAddSurvey = () => {
   return (
     <Modal customClass="custom-modal">
       <form onSubmit={handleSubmit}>
-        <p>Ingrese el nombre de la categoría que desea crear</p>
-        <input
-          autoFocus={true}
-          className="modal-input"
-          value={states.topic}
-          onChange={e => setters.setTopic(e.target.value)}
-        />
+      <div>
+          <p>Numero de unidad</p>
+          <input
+            autoFocus={true}
+            className="modal-input"
+            value={states.unitNumber}
+            onChange={e => setters.setUnitNumber(e.target.value)}
+          />
+        </div>
+        <div>
+          <p>Titulo unidad</p>
+          <input
+            autoFocus={true}
+            className="modal-input"
+            value={states.topic}
+            onChange={e => setters.setTopic(e.target.value)}
+          />
+        </div>
+        <div>
+          <p>Descripcion de unidad</p>
+          <input
+            autoFocus={true}
+            className="modal-input"
+            value={states.description}
+            onChange={e => setters.setDescription(e.target.value)}
+          />
+        </div>
+
         <Visible condition={states.errorMessage}>
           <p className="warning-message">{states.errorMessage}</p>
         </Visible>
