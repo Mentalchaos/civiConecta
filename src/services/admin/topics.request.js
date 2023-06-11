@@ -37,3 +37,8 @@ export const deleteQuestion = (topicId, questionId) => {
   const url = `${BASE_URL}/topics/${topicId}/question/${questionId}`;
   return http.delete(url);
 };
+
+export const getGrades = () => {
+  const url = `${BASE_URL}/grades`;
+  return http.get(url);
+}

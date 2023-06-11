@@ -12,9 +12,13 @@ const useSurvey = surveyType => {
   const [selectValue, setSelectValue] = useState('');
   const [fetching, setFetching] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-
+  const [grades, setGrades] = useState([]);
+  const [selectedGrade, setSelectedGrade] = useState(false);
+  const [description, setDescription] = useState('');
+  const [unitNumber, setUnitNumber] = useState('');
   const wrapRequest = fetchLoading(setFetching);
 
+  // @TODO: Add new request to get topics
   // const fetchInfo = async () => {
   //   const response = await topicRequest.getTopics(surveyType);
   //   setTopics(response.topics);
@@ -24,9 +28,19 @@ const useSurvey = surveyType => {
   //   fetchInfo();
   // }, []);
 
+  const fetchGrades = async () => {
+    const response = await topicRequest.getGrades();
+    setGrades(response.grades);
+  }
+
+  useEffect(() => {
+    fetchGrades();
+  }, []);
+
   return {
     states: {
       topics,
+      grades,
       selectedTopic,
       title,
       showModal,
@@ -35,6 +49,9 @@ const useSurvey = surveyType => {
       selectValue,
       fetching,
       errorMessage,
+      selectedGrade,
+      description,
+      unitNumber,
       get isAbleToAddCategories() {
         return topics.length < 4;
       },
@@ -47,6 +64,9 @@ const useSurvey = surveyType => {
       setTopic,
       setRemoveTopicModal,
       setSelectValue,
+      setSelectedGrade,
+      setDescription,
+      setUnitNumber
     },
     actions: {
       createCategory: wrapRequest(async () => {
