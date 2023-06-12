@@ -7,8 +7,6 @@ import Spinner from 'src/components/UI/Spinner';
 import { assignTeacherToCourse } from 'src/services/admin/establishment.request';
 import { updateActiveUser } from 'src/services/admin/user.request';
 import { throwOnError } from 'src/utils/httpHandler';
-import CopyToClipboard from 'react-copy-to-clipboard';
-
 import './StageDetail.css';
 
 const StageDetail = ({ title, courseSelected, institutionSelected }) => {
@@ -20,8 +18,6 @@ const StageDetail = ({ title, courseSelected, institutionSelected }) => {
   const [errorMessage, setErrorMessage] = useState('');
   const [confirmAction, setConfirmAction] = useState(false);
   const [fetching, setFetching] = useState(false);
-  const [showCreatedUser, setShowCreatedUser] = useState(false);
-  const [dataUserCreated, setDataUserCreated] = useState({});
 
   useEffect(() => {
     setLetterStudents(courseSelected.letter.students || []);
@@ -44,7 +40,7 @@ const StageDetail = ({ title, courseSelected, institutionSelected }) => {
   };
 
   const tableDataStudents = ['Nombre', 'Rut'];
-  const tableDataTeacher = ['Nombre', 'Email', 'Estado'];
+  const tableDataTeacher = ['Nombre', 'Email', 'Estado', 'Password'];
 
   const studentsDataDisplay = letterStudents.map(student => {
     const { name, run } = student;
@@ -86,8 +82,6 @@ const StageDetail = ({ title, courseSelected, institutionSelected }) => {
         const newUser = { name, email, active };
         const isTeacherAlreadyAdded = letterTeachers
           .find(t => t.email === newUser.email);
-
-        setShowCreatedUser(true);
         setFetching(false);
         setAddTeacher(false);
 
@@ -97,7 +91,6 @@ const StageDetail = ({ title, courseSelected, institutionSelected }) => {
       })
       .catch(error => {
         setErrorMessage(error.message);
-        setShowCreatedUser(false);
         setFetching(false);
       });
   };
@@ -122,24 +115,6 @@ const StageDetail = ({ title, courseSelected, institutionSelected }) => {
 
   return (
     <section className="manager-section">
-      {showCreatedUser && (
-        <Modal
-          style={{ padding: '20px 100px', marginTop: '10%' }}
-          subtitle="Copiar datos del usuario creado"
-          title="Datos de usuario"
-        >
-          <section style={{ marginTop: 30, paddingBottom: 20 }}>
-            <textarea style={{ resize: 'none' }} rows={5} cols={28}></textarea>
-            <span style={{ display: 'block', fontSize: '14px' }}>Pegue aquí para verificar</span>
-          </section>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <CopyToClipboard text={`usuario: ${dataUserCreated.email}, contraseña: ${dataUserCreated.password}`}>
-              <Button text="Copiar datos" customStyles={buttonStyle} />
-            </CopyToClipboard>
-            <Button text="Cerrar" customStyles={buttonStyle} onClick={() => setShowCreatedUser(false)} />
-          </div>
-        </Modal>
-      )}
       {confirmAction && (
         <Modal
           title={dataTeacherSelected.active ? 'Deshabilitar Docente' : 'Habilitar Docente'}

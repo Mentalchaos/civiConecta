@@ -13,20 +13,17 @@ const useSurvey = surveyType => {
   const [fetching, setFetching] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [grades, setGrades] = useState([]);
-  const [selectedGrade, setSelectedGrade] = useState(false);
+  const [selectedGrade, setSelectedGrade] = useState('');
   const [description, setDescription] = useState('');
   const [unitNumber, setUnitNumber] = useState('');
   const wrapRequest = fetchLoading(setFetching);
 
   // @TODO: Add new request to get topics
-  // const fetchInfo = async () => {
-  //   const response = await topicRequest.getTopics(surveyType);
-  //   setTopics(response.topics);
-  // };
-
-  // useEffect(() => {
-  //   fetchInfo();
-  // }, []);
+  const fetchInfo = async (gradeId) => {
+    console.log('gradeId', gradeId);
+    const response = await topicRequest.getTopics(gradeId);
+    setTopics(response.topics);
+  };
 
   const fetchGrades = async () => {
     const response = await topicRequest.getGrades();
@@ -70,7 +67,7 @@ const useSurvey = surveyType => {
     },
     actions: {
       createCategory: wrapRequest(async () => {
-        const payload = { title: topic };
+        const payload = { title: topic, description: description, gradeId: selectedGrade, number: unitNumber };
         const response = await topicRequest.createTopic(payload, surveyType);
 
         if (!response.ok) {
@@ -93,6 +90,7 @@ const useSurvey = surveyType => {
         setRemoveTopicModal(false);
         setTopics(filteredTopics);
       }),
+      fetchInfo,
     },
   };
 };

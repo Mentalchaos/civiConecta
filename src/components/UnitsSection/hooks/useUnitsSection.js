@@ -19,13 +19,11 @@ const useUnitsSection = () => {
 
   useEffect(() => {
     async function fn() {
-      const [grades, topics] = await Promise.all([
-        gradeRequest.getGrades().then(r => r.grades),
-        topicRequest.getTopics().then(r => r.topics),
+      const [grades] = await Promise.all([
+        gradeRequest.getGrades().then(r => r.grades)
       ]);
 
       setGrades(grades);
-      setTopics(topics);
     }
 
     fn();
