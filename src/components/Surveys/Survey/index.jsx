@@ -8,13 +8,18 @@ import ModalDeleteSurvey from './components/ModalDeleteSurvey';
 import { SurveyContext } from '../context';
 
 const Survey = ({ onEditCategory, surveyType }) => {
-  const { states, setters } = useContext(SurveyContext);
+  const { states, setters, actions } = useContext(SurveyContext);
   const grades = states.grades.map(data => <option key={data.id} value={data.id}>{data.level}</option>);
+
+  const getInfo = (gradeId) => {
+    setters.setSelectedGrade(gradeId);
+    actions.fetchInfo(gradeId);
+  }
 
   return (
     <Fragment>
       <div className="default-select" style={{width: '170px', height: '24px', marginLeft: 'auto'}}>
-        <select  style={{margin: '0', padding: '0'}} onChange={e => setters.setSelectedGrade(e.target.value)}>
+        <select onChange={e => getInfo(e.target.value)} style={{margin: '0', padding: '0'}} >
           <option value={0}>Selecciona un grade</option>
           {grades}
         </select>

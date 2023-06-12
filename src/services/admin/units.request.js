@@ -3,8 +3,8 @@ import http from '../helpers/http.helper';
 
 const BASE_URL = config.baseURL;
 
-export const getUnitsByGrade = grade => {
-  const url = `${BASE_URL}/units?gradeId=${grade}`;
+export const getUnitsByGrade = gradeId => {
+  const url = `${BASE_URL}/units/grade/${gradeId}`;
   return http.get(url);
 };
 

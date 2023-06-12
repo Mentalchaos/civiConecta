@@ -8,8 +8,8 @@ export const getAllTopics = () => {
   return http.get(url);
 };
 
-export const getTopics = () => {
-  const url = `${BASE_URL}/topics`;
+export const getTopics = (gradeId) => {
+  const url = `${BASE_URL}/topics/${gradeId}`;
   return http.get(url);
 };
 
