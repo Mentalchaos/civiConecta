@@ -47,15 +47,6 @@ const UnitsSection = () => {
             No hay unidades creadas para el curso.
           </h2>
         </Visible>
-        <Visible condition={states.createUnitReady}>
-          <div className="create-unit-wrapper">
-            <Button
-              onClick={() => setters.setOpenModalAddUnit(true)}
-              customClasses="custom-button"
-              text="Agregar unidad"
-            />
-          </div>
-        </Visible>
         <Visible condition={states.initialState}>
           <h2 className="select-grade-info">
             Selecciona el curso para ver sus unidades.
