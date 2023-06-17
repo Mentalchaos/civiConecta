@@ -5,7 +5,7 @@ import Modal from 'src/components/UI/Modal';
 import CreateTeacher from '../StageAssignment/CreateTeacher/CreateTeacher';
 import Spinner from 'src/components/UI/Spinner';
 import { assignTeacherToCourse } from 'src/services/admin/establishment.request';
-import { updateActiveUser } from 'src/services/admin/user.request';
+import { updateActiveUser, getDataTechers } from 'src/services/admin/user.request';
 import { throwOnError } from 'src/utils/httpHandler';
 import './StageDetail.css';
 
@@ -18,11 +18,21 @@ const StageDetail = ({ title, courseSelected, institutionSelected }) => {
   const [errorMessage, setErrorMessage] = useState('');
   const [confirmAction, setConfirmAction] = useState(false);
   const [fetching, setFetching] = useState(false);
+  const [dataTeachers, setDataTeachers] = useState({})
+
+  const fetchDataTeacher = async () => {
+    const response = await getDataTechers();
+    setDataTeachers([{...response.teacher}]);
+  };
 
   useEffect(() => {
+    fetchDataTeacher();
     setLetterStudents(courseSelected.letter.students || []);
     setLetterTeachers(courseSelected.letter.teachers || []);
   }, [courseSelected]);
+
+
+  console.log('data profesores', dataTeachers)
 
   const buttonStyle = {
     color: '#fff',
@@ -40,7 +50,7 @@ const StageDetail = ({ title, courseSelected, institutionSelected }) => {
   };
 
   const tableDataStudents = ['Nombre', 'Rut'];
-  const tableDataTeacher = ['Nombre', 'Email', 'Estado', 'Password'];
+  const tableDataTeacher = ['Nombre', 'Email', 'Establecimiento', 'Password'];
 
   const studentsDataDisplay = letterStudents.map(student => {
     const { name, run } = student;
@@ -49,12 +59,23 @@ const StageDetail = ({ title, courseSelected, institutionSelected }) => {
       run,
     };
   });
-  const teacherDataDisplay = letterTeachers.map(teacher => {
-    const { name, email, active } = teacher;
+  // const teacherDataDisplay = letterTeachers.map(teacher => {
+  //   const { name, email, active } = teacher;
+  //   return {
+  //     name,
+  //     email,
+  //     active: active ? 'Activo' : 'Inactivo',
+  //   };
+  // });
+
+  const showDataTeacher = Object.values(dataTeachers).map(teacher => {
+    const { name, email,establishment,password } = teacher;
     return {
       name,
       email,
-      active: active ? 'Activo' : 'Inactivo',
+      establishment,
+      password,
+      // active: active ? 'Activo' : 'Inactivo'
     };
   });
 
@@ -168,11 +189,11 @@ const StageDetail = ({ title, courseSelected, institutionSelected }) => {
                 <Spinner />
               </div>
             )}
-            {letterTeachers.length > 0 && !fetching && (
+            {Object.keys(dataTeachers).length > 0 && !fetching && (
               <Table
                 dataHeader={tableDataTeacher}
-                data={letterTeachers}
-                dataDisplayed={teacherDataDisplay}
+                data={showDataTeacher}
+                dataDisplayed={showDataTeacher}
                 handleCheckboxSelected={onHandleCheckboxSelected}
               />
             )}

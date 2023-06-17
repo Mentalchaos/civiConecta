@@ -22,3 +22,7 @@ export const updateActiveUser = (email, active) => {
 export const generateRandomPassword = () => {
   return http.get(`${BASE_URL}/generateRandomPassword`);
 };
+
+export const getDataTechers = () => {
+  return http.get(`${BASE_URL}/establishments/1/course/1/teachers`);
+};
