@@ -41,27 +41,27 @@ const PublicSection = () => {
     ponderation: 1.1
   }];
 
-  const fusionObj = ponderationsObj.map(ponderation => {
-    const fusionUnitId = states.units.find(unit => unit.id === ponderation.unitId);
-    return {
-      ...fusionUnitId,
-      ...ponderation
-    };
-  });
+  // const fusionObj = ponderationsObj.map(ponderation => {
+  //   const fusionUnitId = states.units.find(unit => unit.id === ponderation.unitId);
+  //   return {
+  //     ...fusionUnitId,
+  //     ...ponderation
+  //   };
+  // });
 
-  const handleOrder = () => {
-    setChangeOrder(!changeOrder);
-  };
+  // const handleOrder = () => {
+  //   setChangeOrder(!changeOrder);
+  // };
 
-  const getfusionObj = () => {
-    if (changeOrder) {
-      return fusionObj;
-    } else {
-      return [...fusionObj].sort((a, b) => b.ponderation - a.ponderation);
-    }
-  };
+  // const getfusionObj = () => {
+  //   if (changeOrder) {
+  //     return fusionObj;
+  //   } else {
+  //     return [...fusionObj].sort((a, b) => b.ponderation - a.ponderation);
+  //   }
+  // };
   
-  console.log('fusion',fusionObj);
+  // console.log('fusion',fusionObj);
 
  
   return (
@@ -87,13 +87,13 @@ const PublicSection = () => {
                 <div className="units-cont">
                   <UnitsHeader program={planningPrograms[1].program} />
                   <div className='button-units-cont'>
-                    <button onClick={(handleOrder)}>
+                    {/* <button onClick={(handleOrder)}>
                       {changeOrder ? 'Ordenar por Ponderation' : 'Volver al Orden Original'}
-                    </button>
+                    </button> */}
                     </div>
                   <div className="units-components">
                     {/* Esto es la forma original del codigo ya que "ponderations" ESTA HARDCOREADO */}
-                    {/* {states.units && states.units.map((data, key) => (
+                    {states.units && states.units.map((data, key) => (
                       <UnitComponent
                         key={key}
                         number={data.number}
@@ -104,8 +104,8 @@ const PublicSection = () => {
                         color={data.color}
                         borderColor={data.borderColor}
                       />
-                    ))} */} 
-                    { getfusionObj().map((data, key) => (
+                    ))} 
+                    {/* { getfusionObj().map((data, key) => (
                       <UnitComponent
                         key={key}
                         number={data.number}
@@ -116,7 +116,7 @@ const PublicSection = () => {
                         color={data.color}
                         borderColor={data.borderColor}
                       />
-                    ))}
+                    ))} */}
                     
                     <div className="units-components-two">
                       <UnitSituations title={'Situaciones emergentes'} to={'/public/situations-dashboard'} />

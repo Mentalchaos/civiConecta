@@ -1,10 +1,11 @@
 import { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
+import './table.css';
 
 const styles = {
   primary: { backgroundColor: 'var(--color-primary)' },
   secondary: { backgroundColor: 'var(--color-secondary)' },
-  td: { width: '20px' }
+  // td: { width: '40em' }
 };
 
 const Table = ({
@@ -14,7 +15,7 @@ const Table = ({
   handleCheckboxSelected,
   dataDisplayed,
   displayCheckbox,
-  customClass,
+  // customClass,
   ...props
 }) => {
   const [checked, setChecked] = useState({});
@@ -28,13 +29,13 @@ const Table = ({
     });
   };
 
-  const cls = ['table', customClass].join(' ');
+  // const cls = ['table', customClass].join(' ');
   const headStyle = type === 0 ? styles.primary : styles.secondary;
 
   return (
-    <Fragment>
-      <table className={cls} {...props}>
-        <thead style={headStyle}>
+    <Fragment>  
+     <table className='table-container'   {...props}> {/*className={cls}*/}
+        <thead style={headStyle} >
           <tr>
             {displayCheckbox && <th style={styles.td}></th>}
             {dataHeader.map(headerName => (
@@ -42,12 +43,12 @@ const Table = ({
             ))}
           </tr>
         </thead>
-        <tbody>
+        <tbody className='tbody-container'>
           {dataDisplayed.map((obj, index) => {
             return (
-              <tr key={index}>
+              <tr className='tr-container ' key={index} >
                 {displayCheckbox && (
-                  <td style={styles.td}>
+                  <td >
                     <input
                       onChange={e => {
                         onSelectedChange(index);
@@ -78,13 +79,13 @@ Table.propTypes = {
   data: PropTypes.array.isRequired,
   dataHeader: PropTypes.array.isRequired,
   handleCheckboxSelected: PropTypes.func,
-  customClass: PropTypes.string,
+  // customClass: PropTypes.string,
   displayCheckbox: PropTypes.bool
 };
 
 Table.defaultProps = {
   displayCheckbox: true,
-  customClass: '',
+  // customClass: '',
   data: [],
   dataHeader: [],
   handleCheckboxSelected: () => { }

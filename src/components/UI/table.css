@@ -1,0 +1,21 @@
+.table-container {
+  overflow: hidden;
+  padding: 10px;
+  background-color: #fff;
+  padding: 0px;
+  border-collapse: collapse ;
+  border-radius: 0px;
+}
+
+.table-container table {
+  width: 100%;
+}
+
+.table-container th {
+  color: #fff;
+}
+
+.table-container th,
+.table-container td {
+  padding: 8px;
+}
