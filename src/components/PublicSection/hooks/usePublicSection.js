@@ -16,6 +16,7 @@ const usePublicSection = () => {
   const [units, setUnits] = useState([]);
   const [unitsPonderation, setUnitsPonderation] = useState([]);
   const navigate = useNavigate();
+  console.log('units',units)
 
   useEffect(() => {
     (async () => {

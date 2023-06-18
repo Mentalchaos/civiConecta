@@ -17,7 +17,7 @@ const services = {
     return http.post(url);
   },
   getUnits(gradeId){
-    const url = `${BASE_URL}/units?gradeId=${gradeId}`;
+    const url = `${BASE_URL}/units/grade/${gradeId}`;
     return http.get(url);
   },
   initMassiveSurvey(uuid) {

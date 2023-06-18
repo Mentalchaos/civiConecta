@@ -9,7 +9,7 @@ const GradeLetter = ({ grade, letter, onClick }) => {
     >
       <span className="level-selected__degree">{`${grade} ${letter.character}`}</span>
       <span className="add-word__go-to">
-      <span className="go-to__text">Básico</span>
+      <span className="go-to__text"></span>
         <img src={gotoIcon} className="go-to__icon" alt="go to icon" />
       </span>
     </section>
