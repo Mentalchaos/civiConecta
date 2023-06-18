@@ -92,7 +92,8 @@ const ProfessorInfo = ({ onClick }) => {
         <ModalTrigger
           onClick={onClick}
           img={finishImage}
-          title={'¿Deseas terminar la encuesta?'}
+          text1={'¿Deseas terminar '}
+          text2={'la encuesta?'}
           buttonText={'Finalizar encuesta'}
         />
       ) : (
