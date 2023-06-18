@@ -121,6 +121,10 @@
   margin-right:10px;
 }
 
+.go-to__icon {
+  margin: 5px 0 5px 0;
+}
+
 .difused-assignment {
   width: -webkit-fill-available;
 }
