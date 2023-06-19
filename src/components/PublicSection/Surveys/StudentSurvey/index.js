@@ -14,66 +14,76 @@ const StudentSurvey = () => {
   const [changeToFirstStep, setChangeToFirstStep] = useState(false);
   const [isStartSurvey, setIsStartSurvey] = useState(false);
   const [rutValue, setRutValue] = useState('');
-  const [isValidRut, setIsValidRut] = useState(true);
-  const [showInvalidRutError, setShowInvalidRutError] = useState(false);
+  const [catchError, setCatchError] = useState();
 
   useEffect(() => {
     localStorage.clear();
   }, []);
 
-  const checkUser = () => {
-    const resp = async () =>
-    await fetch(`${config.baseURL}/auth/student`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({"run": rutValue})
-    }).then(e => e.json()).then(res => {
-
-      const { name, token, uuid } = res.student;
-      const saveData = {
-        name,
-        email: '',
-        role: '',
-        active: '',
-        token
-      };
-
-      setUserData(saveData, uuid);
-    }).then(async () => {
-      const userData = getUserData();
-      const uuid = userData.uuid;
-      await fetch(`${config.baseURL}/feedback/student/${uuid}`, {
-        method: 'GET',
+  const checkUser = async () => {
+    try {
+      const response = await fetch(`${config.baseURL}/auth/student`, {
+        method: 'POST',
         headers: {
-          token: userData.token
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ "run": rutValue })
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        const { name, token, uuid } = data.student;
+  
+        const saveData = {
+          name,
+          email: '',
+          role: '',
+          active: '',
+          token
+        };
+ 
+        setUserData(saveData, uuid);
+  
+        const userData = getUserData();
+  
+        const feedbackResponse = await fetch(`${config.baseURL}/feedback/student/${uuid}`, {
+          method: 'GET',
+          headers: {
+            token: userData.token
+          }
+        });
+  
+        if (feedbackResponse.ok) {
+          setChangeToFirstStep(true);
+        } else {
+          throw new Error('Error al obtener los datos de feedback del estudiante');
         }
-      }).then(response => console.log('response', response))
-    });
-    resp();
-  }
-
-  const validateRut = (rut) => {
-    const regex = /^(\d{1,2}(\.?\d{3}){2})-([\dkK])$/;
-    return regex.test(rut);
+      } else {
+        throw new Error('Error al autenticar al estudiante');
+      }
+    } catch (error) {
+      setCatchError(error);
+    }
   };
-
-  const handleRutChange = (event) => {
-    const value = event.target.value;
-    setRutValue(value);
-    setIsValidRut(validateRut(value));
-    setShowInvalidRutError(false);
-  };
-
+  
   useEffect(() => {
     setChangeToFirstStep(false);
   }, []);
 
   const handleIngresarRutClick = async () => {
+    if (rutValue.length < 9) {
+      return;
+    }
     await checkUser();
-    setChangeToFirstStep(true);
-  }
+  };
+
+
+  const handleRut = (e) => {
+    if (e.match(/[^0-9]/g)) {
+      return
+    }
+    setRutValue(e);
+  };
 
   const buttonStyle = {
     display: 'flex',
@@ -84,10 +94,10 @@ const StudentSurvey = () => {
     height: '40px',
     fontFamily: 'Nunito Sans, sans-serif',
     color: '#FFFFFF',
-    backgroundColor: isValidRut ? '#7560E8' : '#D5D1F6',
+    backgroundColor: rutValue.length === 9 ? '#7560E8' : '#D5D1F6',
     borderRadius: '20px',
     borderStyle: 'none',
-    cursor: isValidRut ? 'pointer' : 'not-allowed',
+    cursor: rutValue.length === 9 ? 'pointer' : 'not-allowed',
   };
 
   return (
@@ -102,7 +112,7 @@ const StudentSurvey = () => {
             <div className="students-right">
               <div className="students-text-container">
                 <div className="students-title-container">
-                  <img src={smileIcon} />
+                  <img src={smileIcon} alt='smileIcon'/>
                   <p>¡Hola!</p>
                 </div>
                 <div className="students-info-container">
@@ -112,15 +122,16 @@ const StudentSurvey = () => {
                   <div className="id-one">
                     <p>RUT</p>
                     <input
+                      maxLength={9}
                       className="rut-input"
                       placeholder="00.000.000-k"
                       value={rutValue}
-                      onChange={handleRutChange}
+                      onChange={(e) => handleRut(e.target.value)}
                     />
                   </div>
-                  {showInvalidRutError && (
+                  {catchError  && (
                     <div className="id-two">
-                      <img src={warning} />
+                      <img src={warning} alt='warning' />
                       <p>
                         El RUT que ingresaste no es válido.
                         <br />
@@ -132,14 +143,14 @@ const StudentSurvey = () => {
                 <div className="students-button">
                   <button onClick={handleIngresarRutClick} style={buttonStyle}>
                     Ingresar RUT
-                    <img src={arrow} />
+                    <img src={arrow} alt='arrow'/>
                   </button>
                 </div>
               </div>
             </div>
           </div>
         )}
-        {changeToFirstStep && !isStartSurvey && <FirstStep type={'student'} setIsStartSurvey={setIsStartSurvey} />}
+        {changeToFirstStep && !isStartSurvey && <FirstStep  type={'student'} setIsStartSurvey={setIsStartSurvey} />}
         {isStartSurvey && <Surveys userType={'student'} />}
 
       </main>

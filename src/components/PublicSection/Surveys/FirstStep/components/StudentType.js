@@ -17,7 +17,7 @@ const StudentType = ({ setIsStartSurvey }) => {
         <header className="content-start__header-text">
           <img src={smileIcon} alt="icono encuesta" width={30} />
           <span>
-            ¡Hola <span style={{ color: 'var(--color-primary' }}>{ "" }</span>!
+            ¡Hola <span style={{ color: 'var(--color-primary' }}>{ user.name }</span>!
           </span>
         </header>
         <p className="content-start__text">
