@@ -12,3 +12,8 @@ export const getLetters = () => {
   const url = `${BASE_URL}/grades/letters`;
   return http.get(url);
 };
+
+export const getTableTeachers = () => {
+  const url = `${BASE_URL}/establishments/1/teachers`;
+  return http.get(url);
+}
