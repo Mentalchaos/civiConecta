@@ -1,15 +1,17 @@
 import { useState, useEffect } from 'react';
 import useForm from 'src/hooks/useForm';
-import { getGrades, getLetters } from 'src/services/admin/grades.request';
+import { getGrades, getLetters, getTableTeachers } from 'src/services/admin/grades.request';
 import { updateCoursesEstablishment } from 'src/services/admin/establishment.request';
 
 const useStateAssignment = (institutionSelected) => {
+  const [teachersData, setTeachersData] = useState([]);
   const [grades, setGrades] = useState([]);
   const [letters, setLetters] = useState([]);
   const [studentsAdded, setStudentsAdded] = useState([]);
   const [institutionCourses, setInstitutionCourses] = useState([]);
   const [fetching, setFetching] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  
   const { values, handleInputChange, reset } = useForm({
     grade: 'Seleccionar',
     letter: 'Seleccionar',
@@ -25,13 +27,15 @@ const useStateAssignment = (institutionSelected) => {
 
       setInstitutionCourses(filterCoursesByGrade);
 
-      const [_grades, _letters] = await Promise.all([
+      const [_grades, _letters , _teachersData] = await Promise.all([
         getGrades().then(r => r.grades),
-        getLetters().then(r => r.letters.map(l => l.character))
+        getLetters().then(r => r.letters.map(l => l.character)),
+        getTableTeachers().then(r => r.teachers)
       ]);
 
       setGrades(_grades);
       setLetters(_letters);
+      setTeachersData(_teachersData)
     }
 
     fn();
@@ -45,6 +49,7 @@ const useStateAssignment = (institutionSelected) => {
   };
 
   return {
+    teachersData,
     letters,
     grades,
     studentsAdded,
@@ -53,6 +58,7 @@ const useStateAssignment = (institutionSelected) => {
     errorMessage,
     values,
     actions: {
+      setTeachersData,
       setGrades,
       setStudentsAdded,
       setInstitutionCourses,

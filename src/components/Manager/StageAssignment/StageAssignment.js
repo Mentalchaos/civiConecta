@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import Button from 'src/components/UI/Button';
 import Spinner from 'src/components/UI/Spinner';
 import Table from 'src/components/UI/Table';
+import TableTeacher from 'src/components/Manager/StageAssignment/TableTeacher'
 import Visible from 'src/components/UI/Visible';
 import GradeLetter from './GradeLetter.js';
 import useStateAssignment from './useStateAssignment.js';
@@ -27,6 +28,9 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
       letter,
     };
   });
+
+
+
 
   const buttonStyles = {
     backgroundColor: 'var(--color-secondary)',
@@ -198,7 +202,6 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
               </select>
             </div>
           </div>
-
           <form className="form__add-student">
             <p style={styles.studentsAdded}>
               Alumnos a&ntilde;adidos:
@@ -261,6 +264,14 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
           )}
         </div>
       )}
+      <div>
+        <TableTeacher
+          teachersData={rest.teachersData}
+        />
+      </div>
+
+
+
     </section>
   );
 };

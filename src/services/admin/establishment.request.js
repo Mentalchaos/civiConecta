@@ -34,3 +34,5 @@ export const assignTeacherToCourse = (payload) => {
   const url = `${BASE_URL}/establishments/${payload.institution}/courses/teacher`;
   return http.put(url, payload);
 };
+
+
