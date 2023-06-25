@@ -79,7 +79,7 @@ const StudentSurvey = () => {
 
 
   const handleRut = (e) => {
-    if (e.match(/[^0-9]/g)) {
+    if (e.match(/[^0-9k]/g)) {
       return
     }
     setRutValue(e);
@@ -124,7 +124,7 @@ const StudentSurvey = () => {
                     <input
                       maxLength={9}
                       className="rut-input"
-                      placeholder="00.000.000-k"
+                      placeholder="10100100k"
                       value={rutValue}
                       onChange={(e) => handleRut(e.target.value)}
                     />

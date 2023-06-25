@@ -38,7 +38,7 @@ const Plan = () => {
       <Visible condition={states.isStudentLinkNotGenerated}>
         <PlanificationType
           textButton={'Generar enlace'}
-          colorTextBtn={"purple"}
+          colorTextBtn={"purple2"}
           colorIconRight={'color-icon-purple'}
           onClick={() => actions.navigate('/public/share-survey')}
           title={'Genera el enlace para que tus estudiantes respondan la encuesta.'}
@@ -49,7 +49,7 @@ const Plan = () => {
       <Visible condition={states.isStudentSurveyGenerated}>
         <PlanificationType
           textButton={'Ver progreso'}
-          colorTextBtn={"purple"}
+          colorTextBtn={"purple2"}
           colorIconRight={'color-icon-purple'}
           title={'Revisa el progreso de la encuesta de tus estudiantes.'}
           img={planificationProgress}

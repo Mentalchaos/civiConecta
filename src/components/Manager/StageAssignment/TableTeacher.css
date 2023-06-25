@@ -1,8 +1,11 @@
-
 .table-container {
-    border-collapse:collapse;
+  border-collapse: collapse;
 }
+
 .thead-container {
-    background-color:#d9687c;
-    
+  background-color: #d9687c;
+}
+
+.table > thead {
+  color: white;
 }

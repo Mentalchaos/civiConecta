@@ -29,9 +29,6 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
     };
   });
 
-
-
-
   const buttonStyles = {
     backgroundColor: 'var(--color-secondary)',
     color: '#fff',
@@ -222,7 +219,7 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
                 type="text"
                 name="run"
                 value={state.values.run}
-                placeholder="Ingrese rut de estudiante"
+                placeholder="10100100k"
               />
             </div>
             <Visible condition={state.errorMessage}>
