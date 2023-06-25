@@ -73,10 +73,10 @@ const useStateAssignment = (institutionSelected) => {
       return institutionCourses.length && !fetching && values.grade !== 'Seleccionar';
     },
     get isAddStudentDisabled() {
-      return values.name.length < 6 || values.run.length < 9;
+      return values.name.length < 4 || values.run.length < 9 || values.grade === 'Seleccionar' || values.letter === 'Seleccionar';
     },
     get isSendFormDisabled() {
-      return !institutionSelected.students.length;
+      return !institutionSelected.students.length || this.isAddStudentDisabled === true ;
     }
   };
 };
