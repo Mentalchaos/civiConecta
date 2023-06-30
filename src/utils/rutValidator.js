@@ -1,5 +1,5 @@
 const rutValidator = rutValue => {
-  rutValue = typeof(rutValue) == 'number' ? rutValue = rutValue.toString() : rutValue.replace(/[.-]/g, '');
+  rutValue = typeof(rutValue) == 'number' ? rutValue.toString() : rutValue.replace(/[.-]/g, '');
 
   if (rutValue.length !== 8 && rutValue.length !== 9) {
     return false;
