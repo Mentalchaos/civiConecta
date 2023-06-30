@@ -4,6 +4,8 @@ import { getGrades, getLetters, getTableTeachers } from 'src/services/admin/grad
 import { updateCoursesEstablishment } from 'src/services/admin/establishment.request';
 
 const useStateAssignment = (institutionSelected) => {
+  const [validRut, setValidRut] = useState(false);
+  const [rut, setRut] = useState('');
   const [teachersData, setTeachersData] = useState([]);
   const [grades, setGrades] = useState([]);
   const [letters, setLetters] = useState([]);
@@ -11,23 +13,19 @@ const useStateAssignment = (institutionSelected) => {
   const [institutionCourses, setInstitutionCourses] = useState([]);
   const [fetching, setFetching] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  
+
   const { values, handleInputChange, reset } = useForm({
     grade: 'Seleccionar',
     letter: 'Seleccionar',
     name: '',
-    run: '',
   });
 
   useEffect(() => {
     async function fn() {
-      const filterCoursesByGrade = institutionSelected
-        .grades
-        .filter(g => g.level === values.grade);
-
+      const filterCoursesByGrade = institutionSelected.grades.filter(g => g.level === values.grade);
       setInstitutionCourses(filterCoursesByGrade);
 
-      const [_grades, _letters , _teachersData] = await Promise.all([
+      const [_grades, _letters, _teachersData] = await Promise.all([
         getGrades().then(r => r.grades),
         getLetters().then(r => r.letters.map(l => l.character)),
         getTableTeachers().then(r => r.teachers)
@@ -35,7 +33,7 @@ const useStateAssignment = (institutionSelected) => {
 
       setGrades(_grades);
       setLetters(_letters);
-      setTeachersData(_teachersData)
+      setTeachersData(_teachersData);
     }
 
     fn();
@@ -48,6 +46,27 @@ const useStateAssignment = (institutionSelected) => {
     setFetching(false);
   };
 
+
+  const handleRut = (rutValue) => {
+    const regex = /^[0-9]{7,8}[0-9kK]$/;
+    console.log('rut validador', rutValue)
+    return regex.test(rutValue);
+  }
+
+  
+  const handleInputChangeValidationRut =  async (e) => {
+    const { value } = e.target;
+    const validatedValue = value.replace(/[^0-9k]/gi, '').slice(0, 9);
+    await setRut(validatedValue)
+    if (handleRut(validatedValue)) {
+      setValidRut(true)
+      console.log('true')
+    } else {
+      setValidRut(false)
+      console.log('false')
+    }
+  };
+
   return {
     teachersData,
     letters,
@@ -57,6 +76,7 @@ const useStateAssignment = (institutionSelected) => {
     fetching,
     errorMessage,
     values,
+    rut,
     actions: {
       setTeachersData,
       setGrades,
@@ -65,6 +85,7 @@ const useStateAssignment = (institutionSelected) => {
       setFetching,
       setErrorMessage,
       handleInputChange,
+      handleInputChangeValidationRut,
       reset,
       updateCoursesEstablishment,
       updateEstablishment
@@ -76,8 +97,8 @@ const useStateAssignment = (institutionSelected) => {
       return values.name.length < 4 || values.run.length < 9 || values.grade === 'Seleccionar' || values.letter === 'Seleccionar';
     },
     get isSendFormDisabled() {
-      return !institutionSelected.students.length || this.isAddStudentDisabled === true ;
-    }
+      return !institutionSelected.students.length;
+    },
   };
 };
 

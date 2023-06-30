@@ -70,7 +70,7 @@ const StudentSurvey = () => {
     setChangeToFirstStep(false);
   }, []);
 
-  const handleIngresarRutClick = async () => {
+  const handleInserRutClick = async () => {
     if (rutValue.length < 9) {
       return;
     }
@@ -141,7 +141,7 @@ const StudentSurvey = () => {
                   )}
                 </div>
                 <div className="students-button">
-                  <button onClick={handleIngresarRutClick} style={buttonStyle}>
+                  <button onClick={handleInserRutClick} style={buttonStyle}>
                     Ingresar RUT
                     <img src={arrow} alt='arrow'/>
                   </button>

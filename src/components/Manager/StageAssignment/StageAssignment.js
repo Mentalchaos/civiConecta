@@ -11,6 +11,7 @@ import styles from './styles.js';
 import './StageAssignment.css';
 
 const StageAssignment = ({ onHandleCourseSelected, title, changeStage, institutionSelected, onUpdateInstitution }) => {
+  const [showButtonAddCurse, setShowButtonAddCurse] = useState(true);
   const [studentSelected, setStudentSelected] = useState({});
   const [showButtonDelete, setShowButtonDelete] = useState(false);
   const gradeRef = useRef(null);
@@ -38,17 +39,17 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
 
   const handleAddStudent = evt => {
     evt.preventDefault();
-
-    const { name, run, grade, letter } = state.values;
-
-    if (!name || !run) {
+    const { name, grade, letter } = state.values;
+    const { rut } = state
+    setShowButtonAddCurse(false);
+    if (!name || !rut) {
       return;
     }
 
-    institutionSelected.addGrade(grade).addLetter(letter).addStudent({ name, run });
+    institutionSelected.addGrade(grade).addLetter(letter).addStudent({ name, rut });
 
     state.values.name = '';
-    state.values.run = '';
+    state.rut = '';
 
     const clone = institutionSelected.clone();
     onUpdateInstitution(clone);
@@ -88,7 +89,7 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
     actions.updateEstablishment(clone);
   };
 
-  const handleAddCourse = () => {
+  const handleAddCourse = (e) => {
     async function fn() {
       actions.setFetching(true);
 
@@ -113,6 +114,8 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
         actions.setErrorMessage('');
         actions.reset();
       }
+
+      console.log(state.rut)
 
       actions.setFetching(false);
     }
@@ -215,10 +218,10 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
                 placeholder="Nombre completo"
               />
               <input
-                onChange={actions.handleInputChange}
+                onChange={actions.handleInputChangeValidationRut}
                 type="text"
                 name="run"
-                value={state.values.run}
+                value={state.rut}
                 placeholder="10100100k"
               />
             </div>
@@ -232,14 +235,15 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
                 icon={addStudentIcon}
                 text="A&ntilde;adir alumno"
                 type="button"
-                disabled={state.isAddStudentDisabled}
+                disabled={state.validRut}
               />
               <Button
                 onClick={handleAddCourse}
                 customStyles={styles.button}
                 text="Enviar formulario"
                 type="button"
-                disabled={state.isSendFormDisabled}
+                // disabled={state.isAddStudentDisabled}
+                disabled={showButtonAddCurse}
               />
             </div>
           </form>
@@ -266,9 +270,6 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
           teachersData={rest.teachersData}
         />
       </div>
-
-
-
     </section>
   );
 };
