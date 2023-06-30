@@ -1,10 +1,11 @@
 import gotoIcon from 'src/assets/Icons/arrow-degree.svg';
 
-const GradeLetter = ({ grade, letter, onClick }) => {
+const GradeLetter = ({ grade, letter, onClick, disabled }) => {
+  const showButton = disabled ? 'disabled-section' : '';
   return (
     <section
       key={letter.character}
-      className="content__level-selected"
+      className={`content__level-selected ${showButton}`}
       onClick={onClick}
     >
       <span className="level-selected__degree">{`${grade} ${letter.character}`}</span>

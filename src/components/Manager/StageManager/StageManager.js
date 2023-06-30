@@ -173,7 +173,7 @@ const StageManager = ({ title, changeStage, handleInstitutionSelected }) => {
         <div style={{ marginTop: 20, paddingRight: '10rem', textAlign: 'right' }}>
           <Button
             type="submit"
-            text="A&ntilde;adir"
+            text="Crear Institución"
             customStyles={buttonStyles}
             onClick={handleSubmit}
             disabled={fetching || !self.states.isCompletedForm}
@@ -199,7 +199,7 @@ const StageManager = ({ title, changeStage, handleInstitutionSelected }) => {
             />
             <Button
               onClick={onHandleGotoCreateCourse}
-              text="Crear curso"
+              text="Ir a institución"
               customStyles={buttonDeleteStyles}
             />
           </div>

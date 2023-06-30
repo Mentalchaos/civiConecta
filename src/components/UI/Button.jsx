@@ -13,6 +13,7 @@ const Button = ({
   customClasses,
   children,
   type,
+  disabled = false,
   ...props
 }) => {
   const cls = ['button', customClasses].join(' ');
@@ -25,6 +26,7 @@ const Button = ({
         onClick={onClick}
         style={customStyles}
         className={cls}
+        disabled={disabled}
         {...props}
       >
         {icon && <img src={icon} alt="icon" />}
