@@ -9,12 +9,15 @@ import StudentsHeader from './StudentsHeader';
 import './StudentSurvey.css';
 import config from 'src/config';
 import { setUserData, getUserData } from 'src/utils/user';
+import { rutValidator } from 'src/utils/rutValidator.js';
 
 const StudentSurvey = () => {
   const [changeToFirstStep, setChangeToFirstStep] = useState(false);
   const [isStartSurvey, setIsStartSurvey] = useState(false);
   const [rutValue, setRutValue] = useState('');
   const [catchError, setCatchError] = useState();
+
+  console.log(rutValidator(178572334));
 
   useEffect(() => {
     localStorage.clear();
@@ -29,11 +32,11 @@ const StudentSurvey = () => {
         },
         body: JSON.stringify({ "run": rutValue })
       });
-  
+
       if (response.ok) {
         const data = await response.json();
         const { name, token, uuid } = data.student;
-  
+
         const saveData = {
           name,
           email: '',
@@ -41,18 +44,18 @@ const StudentSurvey = () => {
           active: '',
           token
         };
- 
+
         setUserData(saveData, uuid);
-  
+
         const userData = getUserData();
-  
+
         const feedbackResponse = await fetch(`${config.baseURL}/feedback/student/${uuid}`, {
           method: 'GET',
           headers: {
             token: userData.token
           }
         });
-  
+
         if (feedbackResponse.ok) {
           setChangeToFirstStep(true);
         } else {
@@ -65,7 +68,7 @@ const StudentSurvey = () => {
       setCatchError(error);
     }
   };
-  
+
   useEffect(() => {
     setChangeToFirstStep(false);
   }, []);
