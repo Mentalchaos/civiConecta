@@ -50,6 +50,7 @@ const Plan = () => {
         <PlanificationType
           textButton={'Ver progreso'}
           colorTextBtn={"purple2"}
+          onClick={() => actions.navigate('/public/professor-profile')}
           colorIconRight={'color-icon-purple'}
           title={'Revisa el progreso de la encuesta de tus estudiantes.'}
           img={planificationProgress}
@@ -63,7 +64,6 @@ const Plan = () => {
         title="Accede a la planificación estandarizada."
         img={planificationStandarized}
       />
-
     </div>
   );
 };

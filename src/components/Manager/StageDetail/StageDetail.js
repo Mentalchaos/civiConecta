@@ -59,14 +59,6 @@ const StageDetail = ({ title, courseSelected, institutionSelected }) => {
       run,
     };
   });
-  // const teacherDataDisplay = letterTeachers.map(teacher => {
-  //   const { name, email, active } = teacher;
-  //   return {
-  //     name,
-  //     email,
-  //     active: active ? 'Activo' : 'Inactivo',
-  //   };
-  // });
 
   const showDataTeacher = Object.values(dataTeachers).map(teacher => {
     const { name, email,establishment,password } = teacher;
@@ -75,7 +67,6 @@ const StageDetail = ({ title, courseSelected, institutionSelected }) => {
       email,
       establishment,
       password,
-      // active: active ? 'Activo' : 'Inactivo'
     };
   });
 

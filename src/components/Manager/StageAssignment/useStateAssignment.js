@@ -66,7 +66,6 @@ const useStateAssignment = (institutionSelected) => {
       setErrorMessage,
       handleInputChange,
       setRut,
-      // handleInputChangeValidationRut,
       reset,
       updateCoursesEstablishment,
       updateEstablishment

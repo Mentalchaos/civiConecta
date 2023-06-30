@@ -24,10 +24,11 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
   const tableHeader = ['Nombre', 'RUN', 'Curso', 'Letra'];
   const filterStudentsByGrade = institutionSelected.students.filter(item => item.grade === state.values.grade);
   const tableDataDisplayed = filterStudentsByGrade.map(student => {
-    const { grade, letter, name, run } = student;
+    const { grade, letter, name } = student;
+    const { rut } = state;
     return {
       name,
-      run,
+      rut,
       grade,
       letter,
     };
@@ -52,7 +53,8 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
   const handleAddStudent = evt => {
     evt.preventDefault();
     const { name, grade, letter } = state.values;
-    const { rut } = state
+    const { rut } = state;
+
     setShowButtonAddCurse(false);
     if (!name || !rut) {
       return;
@@ -61,7 +63,8 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
     institutionSelected.addGrade(grade).addLetter(letter).addStudent({ name, rut });
 
     state.values.name = '';
-    state.rut = '';
+    actions.setRut('');
+    setValidRut(false);
 
     const clone = institutionSelected.clone();
     onUpdateInstitution(clone);
@@ -128,16 +131,11 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
         actions.reset();
       }
 
-      console.log(state.rut)
-      
       actions.setFetching(false);
       setAddingStudent(false)
     }
-    
     fn();
   };
-
-  console.log(addingStudent)
 
   return (
     <section className="manager-section">
@@ -221,8 +219,8 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
           </div>
           <form className="form__add-student">
             <p style={styles.studentsAdded}>
-              Alumnos a&ntilde;adidos:
-              <strong>
+              Alumnos añadidos:
+              <strong style={{marginLeft: '5px'}}>
                 {institutionSelected.calculateStudentsInGradeLetter(state.values.grade, state.values.letter)}
               </strong>
             </p>
@@ -237,7 +235,7 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
               <input
                 onChange={(e) => handleInputChangeValidationRut(e)}
                 type="text"
-                name="run"
+                name="rut"
                 value={state.rut}
                 placeholder="10100100k"
               />
@@ -250,16 +248,15 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
                 onClick={handleAddStudent}
                 customStyles={styles.button}
                 icon={addStudentIcon}
-                text="A&ntilde;adir alumno"
+                text="Añadir alumno"
                 type="button"
-                disabled={!validRut}
+                disabled={!validRut || !((state.values.grade != 'Seleccionar') && (state.values.letter != 'Seleccionar'))}
               />
               <Button
                 onClick={handleAddCourse}
                 customStyles={styles.button}
                 text="Guardar Cambios"
                 type="button"
-                // disabled={state.isAddStudentDisabled}
                 disabled={showButtonAddCurse}
               />
             </div>
