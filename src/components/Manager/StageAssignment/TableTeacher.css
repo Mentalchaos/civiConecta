@@ -1,5 +1,6 @@
 .table-container {
   border-collapse: collapse;
+  text-align: center;
 }
 
 .thead-container {

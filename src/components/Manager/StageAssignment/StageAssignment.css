@@ -97,6 +97,11 @@
   width: 50%;
 }
 
+.disabled-section{
+  opacity: 0.5;
+  
+}
+
 .level-selected__degree {
   font-size: 15px;
   padding-left: 10px;

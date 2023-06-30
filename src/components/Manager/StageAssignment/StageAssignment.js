@@ -7,11 +7,14 @@ import Visible from 'src/components/UI/Visible';
 import GradeLetter from './GradeLetter.js';
 import useStateAssignment from './useStateAssignment.js';
 import addStudentIcon from 'src/assets/Icons/add-student.svg';
+import { rutValidator } from 'src/utils/rutValidator.js';
 import styles from './styles.js';
 import './StageAssignment.css';
 
 const StageAssignment = ({ onHandleCourseSelected, title, changeStage, institutionSelected, onUpdateInstitution }) => {
   const [showButtonAddCurse, setShowButtonAddCurse] = useState(true);
+  const [addingStudent, setAddingStudent] = useState(false)
+  const [validRut, setValidRut] = useState(false);
   const [studentSelected, setStudentSelected] = useState({});
   const [showButtonDelete, setShowButtonDelete] = useState(false);
   const gradeRef = useRef(null);
@@ -29,6 +32,15 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
       letter,
     };
   });
+
+  const handleInputChangeValidationRut = (e) => {
+    const { value } = e.target;
+    if (value.match(/[^0-9k]/g)) {
+      return;
+    }
+    actions.setRut(value);
+    return rutValidator(value) ? setValidRut(true) : setValidRut(false)
+  };
 
   const buttonStyles = {
     backgroundColor: 'var(--color-secondary)',
@@ -53,6 +65,7 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
 
     const clone = institutionSelected.clone();
     onUpdateInstitution(clone);
+    setAddingStudent(true)
   };
 
   const handleCourseSelected = course => {
@@ -116,12 +129,15 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
       }
 
       console.log(state.rut)
-
+      
       actions.setFetching(false);
+      setAddingStudent(false)
     }
-
+    
     fn();
   };
+
+  console.log(addingStudent)
 
   return (
     <section className="manager-section">
@@ -149,6 +165,7 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
                       grade={state.values.grade}
                       letter={letter}
                       onClick={() => handleCourseSelected({ letter, gradeSelected: grade })}
+                      disabled={addingStudent}
                     />
                   );
                 });
@@ -218,7 +235,7 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
                 placeholder="Nombre completo"
               />
               <input
-                onChange={actions.handleInputChangeValidationRut}
+                onChange={(e) => handleInputChangeValidationRut(e)}
                 type="text"
                 name="run"
                 value={state.rut}
@@ -235,12 +252,12 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
                 icon={addStudentIcon}
                 text="A&ntilde;adir alumno"
                 type="button"
-                disabled={state.validRut}
+                disabled={!validRut}
               />
               <Button
                 onClick={handleAddCourse}
                 customStyles={styles.button}
-                text="Enviar formulario"
+                text="Guardar Cambios"
                 type="button"
                 // disabled={state.isAddStudentDisabled}
                 disabled={showButtonAddCurse}
