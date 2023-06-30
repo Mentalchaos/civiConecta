@@ -16,8 +16,7 @@ const StudentSurvey = () => {
   const [isStartSurvey, setIsStartSurvey] = useState(false);
   const [rutValue, setRutValue] = useState('');
   const [catchError, setCatchError] = useState();
-
-  console.log(rutValidator(178572334));
+  const [isValidRut, setIsValidRut] = useState(false);
 
   useEffect(() => {
     localStorage.clear();
@@ -83,9 +82,11 @@ const StudentSurvey = () => {
 
   const handleRut = (e) => {
     if (e.match(/[^0-9k]/g)) {
-      return
+      return;
     }
+
     setRutValue(e);
+    return rutValidator(e) ? setIsValidRut(true) : setIsValidRut(false);
   };
 
   const buttonStyle = {
@@ -97,11 +98,13 @@ const StudentSurvey = () => {
     height: '40px',
     fontFamily: 'Nunito Sans, sans-serif',
     color: '#FFFFFF',
-    backgroundColor: rutValue.length === 9 ? '#7560E8' : '#D5D1F6',
+    backgroundColor: isValidRut ? '#7560E8' : '#D5D1F6',
     borderRadius: '20px',
     borderStyle: 'none',
-    cursor: rutValue.length === 9 ? 'pointer' : 'not-allowed',
+    cursor: isValidRut ? 'pointer' : 'not-allowed',
   };
+
+  console.log('validRut', isValidRut);
 
   return (
     <>
