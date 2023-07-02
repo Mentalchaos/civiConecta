@@ -34,7 +34,7 @@ const ModalAddSurvey = () => {
           />
         </div>
         <div>
-          <p>Descripcion de unidad</p>
+          <p>Descripción de unidad</p>
           <input
             autoFocus={true}
             className="modal-input"
@@ -42,7 +42,15 @@ const ModalAddSurvey = () => {
             onChange={e => setters.setDescription(e.target.value)}
           />
         </div>
-
+        <div>
+          <p>Objetivo de unidad</p>
+          <input
+            autoFocus={true}
+            className="modal-input"
+            value={states.objective}
+            onChange={e => setters.setObjective(e.target.value)}
+          />
+        </div>
         <Visible condition={states.errorMessage}>
           <p className="warning-message">{states.errorMessage}</p>
         </Visible>

@@ -16,6 +16,7 @@ const useSurvey = surveyType => {
   const [selectedGrade, setSelectedGrade] = useState('');
   const [description, setDescription] = useState('');
   const [unitNumber, setUnitNumber] = useState('');
+  const [objective, setObjective] = useState('');
   const wrapRequest = fetchLoading(setFetching);
 
   const fetchInfo = async (gradeId) => {
@@ -47,6 +48,7 @@ const useSurvey = surveyType => {
       selectedGrade,
       description,
       unitNumber,
+      objective,
       get isAbleToAddCategories() {
         return topics.length < 4;
       },
@@ -61,11 +63,12 @@ const useSurvey = surveyType => {
       setSelectValue,
       setSelectedGrade,
       setDescription,
-      setUnitNumber
+      setUnitNumber,
+      setObjective
     },
     actions: {
       createCategory: wrapRequest(async () => {
-        const payload = { title: topic, description: description, gradeId: selectedGrade, number: unitNumber };
+        const payload = { title: topic, description: description, gradeId: selectedGrade, number: unitNumber, objective: objective };
         const response = await topicRequest.createTopic(payload, surveyType);
 
         if (!response.ok) {
@@ -74,7 +77,6 @@ const useSurvey = surveyType => {
 
         setTopic('');
         setModal(false);
-        // fetchInfo();
       }),
       removeCategory: wrapRequest(async () => {
         const response = await topicRequest.deleteTopic(selectValue);
