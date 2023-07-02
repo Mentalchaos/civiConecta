@@ -16,7 +16,6 @@ const usePublicSection = () => {
   const [units, setUnits] = useState([]);
   const [unitsPonderation, setUnitsPonderation] = useState([]);
   const navigate = useNavigate();
-  console.log('units',units)
 
   useEffect(() => {
     (async () => {
@@ -49,14 +48,14 @@ const usePublicSection = () => {
         setUnitsPonderation(ponderations)
         console.log(ponderations)
       };
-      
+
       setUnits(units);
       setStatus(status);
       setUserData(info);
       setIsLoading(false);
       setUnitsPonderation([]);
     };
-  
+
     func();
   }, []);
 

@@ -41,29 +41,6 @@ const PublicSection = () => {
     ponderation: 1.1
   }];
 
-  // const fusionObj = ponderationsObj.map(ponderation => {
-  //   const fusionUnitId = states.units.find(unit => unit.id === ponderation.unitId);
-  //   return {
-  //     ...fusionUnitId,
-  //     ...ponderation
-  //   };
-  // });
-
-  // const handleOrder = () => {
-  //   setChangeOrder(!changeOrder);
-  // };
-
-  // const getfusionObj = () => {
-  //   if (changeOrder) {
-  //     return fusionObj;
-  //   } else {
-  //     return [...fusionObj].sort((a, b) => b.ponderation - a.ponderation);
-  //   }
-  // };
-
-  // console.log('fusion',fusionObj);
-  console.log('units 2', states.units)
-
   return (
     <PublicContext.Provider value={{ states, actions, setters }}>
       <div className="public-section-container">
@@ -93,9 +70,10 @@ const PublicSection = () => {
                 </div>
                 <div className="units-components">
                   {/* Esto es la forma original del codigo ya que "ponderations" ESTA HARDCOREADO */}
-                  {states.units && states.units.map((data, key) => (
+                  {states.units && states.units.map((data) => (
                     <UnitComponent
-                      key={key}
+                      key={data.id}
+                      id={data.id}
                       number={data.number}
                       status={data.status}
                       title={data.title}
@@ -105,19 +83,6 @@ const PublicSection = () => {
                       borderColor={data.borderColor}
                     />
                   ))}
-                  {/* { getfusionObj().map((data, key) => (
-                      <UnitComponent
-                        key={key}
-                        number={data.number}
-                        status={data.status}
-                        title={data.title}
-                        subtitle={data.subtitle}
-                        description={data.description}
-                        color={data.color}
-                        borderColor={data.borderColor}
-                      />
-                    ))} */}
-
                   <div className="units-components-two">
                     <UnitSituations title={'Situaciones emergentes'} to={'/public/situations-dashboard'} />
                     <UnitSituations title={'Efemerides'} to={'/public/ephemeries-dashboard'} />

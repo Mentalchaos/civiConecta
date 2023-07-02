@@ -6,6 +6,7 @@ import UnitTable from "./UnitTable";
 
 const UnitContent = ({ planningData, title }) => {
   const navigate = useNavigate();
+
   return (
     <div className=''>
       <div className="unit-content-container">
@@ -14,7 +15,7 @@ const UnitContent = ({ planningData, title }) => {
           <img src={back} alt='go-back' />
           Volver
         </button>
-        <UnitTable planningData={planningData} title={title} />
+        { planningData ? <UnitTable planningData={planningData} title={title}/> : <p>No hay situaciones emergentes creadas</p> }
       </div>
     </div>
   )
