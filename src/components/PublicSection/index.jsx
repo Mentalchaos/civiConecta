@@ -18,7 +18,12 @@ const { links, planningPrograms } = config.contents;
 
 const PublicSection = () => {
   const { states, actions, setters } = usePublicSection();
-  const [changeOrder, setChangeOrder] = useState(true);
+  // const [changeOrder, setChangeOrder] = useState(true);
+  const [changeTextUnits, setChangeTextUnits] = useState({})
+  // const [textUnits, setTextUnits] = useState('Seleccione');
+  // const [unitComponentStates, setUnitComponentStates] = useState({});
+
+  
 
   const ponderationsObj = [{
     title: 'Categoria 1',
@@ -40,6 +45,29 @@ const PublicSection = () => {
     unitId: 4,
     ponderation: 1.1
   }];
+
+  const stateUnit = ['En Desarrollo', 'Pendiente', 'Completado'];
+
+  const handleTextUnits = (unitId) => {
+    setChangeTextUnits((prevState) => {
+      const currentState = prevState[unitId] || 0;
+      const nextState = (currentState + 1) % stateUnit.length;
+      return {
+        ...prevState,
+        [unitId]: nextState,
+      };
+    });
+  };
+
+  // const handleTextUnits = () => {
+  //   setChangeTextUnits((changeTextUnits + 1) % stateUnit.length)
+  //   setTextUnits(stateUnit[changeTextUnits])
+  // };
+
+  // const getText = () => {
+    
+
+  // }
 
   return (
     <PublicContext.Provider value={{ states, actions, setters }}>
@@ -81,6 +109,10 @@ const PublicSection = () => {
                       description={data.description}
                       color={data.color}
                       borderColor={data.borderColor}
+                      // handleTextUnits={handleTextUnits}
+                      // textUnits={textUnits}
+                      handleTextUnits={() => handleTextUnits(data.id)}
+                      textUnits={stateUnit[changeTextUnits[data.id] || 0]}
                     />
                   ))}
                   <div className="units-components-two">
