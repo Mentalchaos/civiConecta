@@ -31,9 +31,6 @@ const StageDetail = ({ title, courseSelected, institutionSelected }) => {
     setLetterTeachers(courseSelected.letter.teachers || []);
   }, [courseSelected]);
 
-
-  console.log('data profesores', dataTeachers)
-
   const buttonStyle = {
     color: '#fff',
     backgroundColor: 'var(--color-secondary)',

@@ -39,7 +39,7 @@
 }
 
 .links-container a {
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: 'Nunito', sans-serif;
     color: #FFFFFF;
     font-size: 14px;
     text-decoration: none;
@@ -60,11 +60,11 @@
 
 .social-icon {
     filter: brightness(5.5);
-    width: 40px;
+    width: 45px;
 }
 
 .last-footer-container p {
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-weight: 700;
     color: #FFFFFF;
     font-size: 15px;

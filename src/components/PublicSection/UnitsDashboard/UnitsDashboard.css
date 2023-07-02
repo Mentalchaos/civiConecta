@@ -12,5 +12,11 @@ body {
 
 .footer-div {
   width: 90%;
-  margin: auto; 
+  margin: auto;
 }
+
+.spinner-units {
+  text-align: center;
+  margin-top: 3em;
+}
+

@@ -64,13 +64,13 @@
 }
 
 p {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size: 12px;
 }
 
 .modal-title {
   width: 65%;
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Nunito', sans-serif;
   color: #7468e2;
 }
 
@@ -133,7 +133,7 @@ p {
 
 .teacher-button-header p,
 .student-button-header p {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size: 12px;
 }
 
@@ -170,7 +170,7 @@ p {
 
 .student-button-footer p {
   color: #505050;
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size: 12px;
   font-weight: 700;
 }
@@ -182,7 +182,7 @@ p {
 }
 
 .modal-footer p {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size: 12px;
   font-weight: 700;
   text-decoration: underline;

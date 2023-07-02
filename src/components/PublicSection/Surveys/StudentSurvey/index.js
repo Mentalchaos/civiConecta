@@ -96,15 +96,13 @@ const StudentSurvey = () => {
     justifyContent: 'center',
     width: '175px',
     height: '40px',
-    fontFamily: 'Nunito Sans, sans-serif',
+    fontFamily: 'Nunito, sans-serif',
     color: '#FFFFFF',
     backgroundColor: isValidRut ? '#7560E8' : '#D5D1F6',
     borderRadius: '20px',
     borderStyle: 'none',
     cursor: isValidRut ? 'pointer' : 'not-allowed',
   };
-
-  console.log('validRut', isValidRut);
 
   return (
     <>

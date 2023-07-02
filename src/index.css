@@ -1,8 +1,37 @@
+
+/* Poppins*/
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins:wght@700&display=swap');
 
+/* Nunito */
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap');
+
+@font-face {
+  font-family: "NunitoSans-Bold";
+  src: url("/src/assets/font/NunitoSans-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Nunito-Bold";
+  src: url("/src/assets/font/Nunito-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Nunito";
+  src: url("/src/assets/font/Nunito-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Poppins-semibold";
+  src: url("/src/assets/font/Poppins-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: "Nunito-Black";
+  src: url("/src/assets/font/Nunito-Black.ttf");
+}
 
 body {
   background-color: white;

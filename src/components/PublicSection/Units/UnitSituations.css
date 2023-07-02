@@ -17,7 +17,7 @@
 }
 
 .unit-title {
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-size: 14px;
     font-weight: 700;
     color: var(--color-primary);
@@ -25,7 +25,7 @@
 }
 
 .unit-subtitle {
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-size: 12px;
     font-weight: 700;
     color: #4a4a4a;

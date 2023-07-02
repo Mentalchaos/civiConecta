@@ -1,62 +1,72 @@
 .classes {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    flex-wrap: wrap;
-    margin: 10px 0;
-    padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  flex-wrap: wrap;
+  margin: 10px 0;
+  padding: 30px;
 }
 
 .class {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    width: 26%;
-    padding: 30px;
-    border: 1px solid #e1e1e1;
-    border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 26%;
+  padding: 30px;
+  border: 1px solid #e1e1e1;
+  border-radius: 10px;
 }
 
 .class-title {
-    color: white;
-    font-size: 13px;
-    display: flex;
-    justify-content: center;
-    background-color: #96cb76;
-    border-radius: 30px;
-    padding: 10px;
-    width: 32%;
-    margin-bottom: 12px;
+  color: white;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  background-color: #96cb76;
+  border-radius: 30px;
+  padding: 5px;
+  width: 32%;
+  margin-bottom: 20px;
+  font-family: 'Nunito-Bold';
+  font-weight: 800;
 }
 
 .sub-title {
-    font-weight: bolder;
-    font-size: 14px;
-    margin-bottom: 12px;
+  font-size: 14px;
+  margin-bottom: 12px;
+  color: #4d4d4d;
+  font-family: 'Nunito-Bold';
+  line-height: 22px;
 }
 
 .class-text {
-    font-size: 13px;
-    margin-bottom: 12px;
+  font-size: 13px;
+  margin-bottom: 12px;
 }
 
 .see-class-container {
-    display: flex;
-    justify-content: end;
+  display: flex;
+  justify-content: end;
 }
 
 .see-class {
-    font-weight: bolder;
-    font-size: 15px;
-    color: #96cb76;
-    width: 45%;
-    height: 25px;
-    border: none;
-    background-color: transparent;
+  font-weight: bolder;
+  font-size: 15px;
+  color: #96cb76;
+  width: 45%;
+  height: 25px;
+  border: none;
+  background-color: transparent;
+  transition: all .3s;
+}
+
+.see-class:hover {
+  transform: scale(1.2);
+  cursor: pointer;
 }
 
 .arrow {
-    fill: #96cb76;
-    height: 10px;
-    margin-left: 10px;
+  fill: #96cb76;
+  height: 10px;
+  margin-left: 10px;
 }

@@ -1,5 +1,5 @@
 .survey-content-container {
-  font-family: 'Nunito Sans';
+  font-family: 'Nunito';
   width: 80%;
   margin: auto;
   margin-top: 35px;
@@ -283,7 +283,7 @@ button.form__previous-question:disabled {
 }
 
 .completed-survey-container {
-  font-family: 'Nunito Sans';
+  font-family: 'Nunito';
   font-size: 14px;
   text-align: center;
   padding: 135px 0px;
@@ -322,7 +322,7 @@ button.form__previous-question:disabled {
 }
 
 .actions__back-home {
-  font-family: 'Nunito Sans';
+  font-family: 'Nunito';
   border: none;
   outline: none;
   border-radius: 25px;
@@ -332,7 +332,7 @@ button.form__previous-question:disabled {
 }
 
 .actions__generate-link {
-  font-family: 'Nunito Sans';
+  font-family: 'Nunito';
   border: none;
   outline: none;
   border-radius: 25px;
@@ -358,7 +358,7 @@ button.form__previous-question:disabled {
 
 .actions__button {
   font-size: 14px;
-  font-family: 'Nunito Sans';
+  font-family: 'Nunito';
   border: none;
   outline: none;
   border-radius: 25px;
@@ -376,7 +376,7 @@ button.form__previous-question:disabled {
 }
 
 .actions__first {
-  font-family: 'Nunito Sans';
+  font-family: 'Nunito';
   border: none;
   outline: none;
   padding: 8px 30px;
@@ -390,7 +390,7 @@ button.form__previous-question:disabled {
 }
 
 .actions__second {
-  font-family: 'Nunito Sans';
+  font-family: 'Nunito';
   border: none;
   outline: none;
   padding: 8px 30px;

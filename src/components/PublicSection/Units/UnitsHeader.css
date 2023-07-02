@@ -2,7 +2,7 @@
     width: 10%;
     display: flex;
     flex-direction: row;
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: 'Nunito', sans-serif;
     justify-content: flex-start;
 }
 
@@ -11,7 +11,7 @@
 }
 
 .units-header-title p {
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-size: 16px;
     font-weight: 700;
     color: #4d4d51;

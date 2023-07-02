@@ -54,14 +54,14 @@
 }
 
 .students-title-container p {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size: 16px;
   color: #504f5e;
   font-weight: 700;
 }
 
 .students-info-container p {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size: 14px;
   color: #504f5e;
   margin-left: 10px;
@@ -78,7 +78,7 @@
 }
 
 .id-container p {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size: 14px;
   font-weight: 500;
   color: #9d95ea;
@@ -95,7 +95,7 @@
 }
 
 .id-container input::placeholder {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size: 14px;
   padding-left: 1em;
 }
@@ -126,7 +126,7 @@
   justify-content: center;
   width: 175px;
   height: 40px;
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Nunito', sans-serif;
   color: #FFFFFF;
   background-color: #d5d1f6;
   border-radius: 20px;

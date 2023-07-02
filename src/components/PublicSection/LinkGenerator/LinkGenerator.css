@@ -1,8 +1,3 @@
-@font-face {
-  font-family: "NunitoSans-Bold";
-  src: url("../../../assets/font/NunitoSans-Bold.ttf");
-}
-
 .link-container {
   width: 100%;
   display: flex;
@@ -25,7 +20,7 @@
   width: 35%;
   display: flex;
   justify-content: space-evenly;
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: bold;
   color: #FFFFFF;
 }

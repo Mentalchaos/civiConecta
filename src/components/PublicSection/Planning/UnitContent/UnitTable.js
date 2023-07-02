@@ -37,8 +37,6 @@ const UnitTable = ({ planningData, title }) => {
     }
   }
 
-  console.log(keywords);
-
   const eaea = ['Concepto uno', 'Concepto Dos', 'Concepto Tres'];
 
   return (

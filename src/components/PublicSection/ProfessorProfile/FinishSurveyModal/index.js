@@ -16,7 +16,6 @@ const FinishSurveyModal = ({ onClick }) => {
       const response = await finishSurvey(surveyUUID);
 
       if (response.ok) {
-        console.log('encuesta finalizada');
         onClick();
       } else {
         // TODO: Dibujar un texto nuevo en el modal cuando el back responda % de completitud encuesta

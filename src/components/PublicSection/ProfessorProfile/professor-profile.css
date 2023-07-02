@@ -1,269 +1,268 @@
 .profile-back-container {
-    margin: 2em 14.7em;
-    display: flex;
-    align-items: center;
-    border: none;
-    background: none;
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 14px;
-    color: #2b2b2b;
+  margin: 2em 14.7em;
+  display: flex;
+  align-items: center;
+  border: none;
+  background: none;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  color: #2b2b2b;
 }
 
 .profile-container {
-    margin: 1em 3em;
-    /* border: 1px solid black; */
-    position: relative;
-    display: flex;
-    justify-content: center;
+  margin: 1em 3em;
+  /* border: 1px solid black; */
+  position: relative;
+  display: flex;
+  justify-content: center;
 }
 
 .professor-info-container {
-    height: 100%;
-    width: 25%;
-    position: relative;
+  height: 100%;
+  width: 25%;
+  position: relative;
 }
 
 .student-nomina-container {
-    width: 55%;
-    height: 100%;
+  width: 55%;
+  height: 100%;
 }
 
 .professor-info-title {
-    display: flex;
-    justify-content: space-around;
-    width: 25%;
-    margin-left: 25px;
+  display: flex;
+  justify-content: space-around;
+  width: 25%;
+  margin-left: 25px;
 }
 
 .professor-info-data {
-    border: none;
-    border-radius: 10px;
-    margin: 0.5em 2em;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    flex-wrap: wrap;
-    align-items: center;
-    box-shadow: 0px 0px 1.5px 0px grey;
-    padding-top: 2em;
+  border: none;
+  border-radius: 10px;
+  margin: 0.5em 2em;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  box-shadow: 0px 0px 1.5px 0px grey;
+  padding-top: 2em;
 }
 
 .disguised-input-container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    margin-bottom: 1em;
-    background-color: #f1f2f2;
-    border-radius: 10px;
-    padding: .5em;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  margin-bottom: 1em;
+  background-color: #f1f2f2;
+  border-radius: 10px;
+  padding: .5em;
 }
 
 .disguised-label,
 .disguised-value {
-    margin: 0;
-    font-family: 'Poppins'
+  margin: 0;
+  font-family: 'Poppins'
 }
 
 .disguised-value {
-    color: gray;
-    cursor: not-allowed;
+  color: gray;
+  cursor: not-allowed;
 }
 
 .disguised-label {
-    color: #e85f7b;
+  color: #e85f7b;
 }
 
 .disguised-inputs-cont {
-    width: 90%;
+  width: 90%;
 }
 
 .professor-info-name {
-    margin: 0;
-    color: #e85f7b;
-    font-weight: 700;
+  margin: 0;
+  color: #e85f7b;
+  font-weight: 700;
 }
 
 .professor-info-type {
-    margin: 0;
+  margin: 0;
 }
 
 .professor-info-data-cont {
-    margin-bottom: 2em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  margin-bottom: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .student-nomina-title {
-    display: flex;
-    width: 12%;
-    justify-content: space-around;
+  display: flex;
+  width: 12%;
+  justify-content: space-around;
 }
 
 .profile-back-container img,
 .professor-profile-img,
 .student-nomina-icon,
-.critical-answers-title img  {
-    width: 30px;
+.critical-answers-title img {
+  width: 30px;
 }
 
 .student-tablehead,
 .student-tablebody {
-    display: flex;
-    padding: 0 2em;
+  display: flex;
+  padding: 0 2em;
 }
 
 .student-tablehead {
-    border-bottom: 1.7px solid #80808029
+  border-bottom: 1.7px solid #80808029
 }
 
 .student-tablebody-values,
-.student-tablehead-values
- {
-    font-size: 14px;
-    font-family:'Nunito Sans', sans-serif;
-    color:#2b2b2b;
-    padding: 10px 0 10px 0;
+.student-tablehead-values {
+  font-size: 14px;
+  font-family: 'Nunito', sans-serif;
+  color: #2b2b2b;
+  padding: 10px 0 10px 0;
 }
 
 .student-tablehead-values {
-    color: #e85f7b;
+  color: #e85f7b;
 }
 
 .student-tablehead-values:nth-child(1),
 .student-tablebody-values:nth-child(1) {
-    width: 10%;
+  width: 10%;
 }
 
 .student-tablehead-values:nth-child(2),
 .student-tablebody-values:nth-child(2) {
-   width: 30%;
+  width: 30%;
 }
 
 .student-tablehead-values:nth-child(3),
 .student-tablebody-values:nth-child(3) {
-    width: 20%;
+  width: 20%;
 }
 
 .student-tablehead-values:nth-child(4),
 .student-tablebody-values:nth-child(4) {
-    width: 20%;
-    display: flex;
-    justify-content: center;
+  width: 20%;
+  display: flex;
+  justify-content: center;
 }
 
-.student-tablebody-values:nth-child(4){
-    background: #fbd0d9;
-    color: #e8617c;
-    display: flex;
-    justify-content: center;
-    border-radius: 4px;
+.student-tablebody-values:nth-child(4) {
+  background: #fbd0d9;
+  color: #e8617c;
+  display: flex;
+  justify-content: center;
+  border-radius: 4px;
 }
 
 .student-tablehead-values:nth-child(5),
 .student-tablebody-values:nth-child(5) {
-    width: 15%;
-    margin-left: 2em;
+  width: 15%;
+  margin-left: 2em;
 }
 
 .student-nomina-table-container {
-    margin-top: 2em;
-    border-radius: 10px;
-    border: 1.7px solid #80808029;
+  margin-top: 2em;
+  border-radius: 10px;
+  border: 1.7px solid #80808029;
 }
 
 .student-tablebody {
-    display: flex;
+  display: flex;
 }
 
 .tbody-cont {
-    height: 382px;
-    overflow-y: auto;
+  height: 382px;
+  overflow-y: auto;
 }
 
 .professor-info-title p,
 .student-nomina-title p,
 .critical-answers-title p {
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    color: #2b2b2b;
-    margin-left: 2px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #2b2b2b;
+  margin-left: 2px;
 }
 
 .critical-answers-container {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
 }
 
 .critical-answers-title {
-    display: flex;
-    width: 21%;
-    justify-content: space-around;
+  display: flex;
+  width: 21%;
+  justify-content: space-around;
 }
 
 .critical-answers-units {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 7px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 7px;
 }
 
 .answer-container {
-    border: 2px solid #ee879c;
-    border-radius: 10px;
-    width: 210px;
-    height: 120px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 8px 10px;
-    margin-left:2px ;
+  border: 2px solid #ee879c;
+  border-radius: 10px;
+  width: 210px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8px 10px;
+  margin-left: 2px;
 }
 
 .answer-container-alert {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .answer-alert-icon {
-    width: 14px;
-    border: none;
-    background-color: #30bfb0;
-    color: white;
-    border-radius: 100%;
-    height: 14px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 10px;
+  width: 14px;
+  border: none;
+  background-color: #30bfb0;
+  color: white;
+  border-radius: 100%;
+  height: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
 }
 
 .answer-status {
-    font-family: 'Nunito Sans', sans-serif;
-    color: #30bfb0;
-    font-weight: 600;
+  font-family: 'Nunito', sans-serif;
+  color: #30bfb0;
+  font-weight: 600;
 }
 
 .answer-status-button {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 
-.answer-status-button > button{
-    border: none;
-    background: none;
-    color: #ee879c;
-    width: 37%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.answer-status-button>button {
+  border: none;
+  background: none;
+  color: #ee879c;
+  width: 37%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 
 
 .answer-container button img {
-    filter: invert(116%) sepia(15%) saturate(6424%) hue-rotate(294deg) brightness(100%) contrast(83%);
-    width: 10px;
+  filter: invert(116%) sepia(15%) saturate(6424%) hue-rotate(294deg) brightness(100%) contrast(83%);
+  width: 10px;
 }

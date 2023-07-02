@@ -18,9 +18,7 @@ const useSurvey = surveyType => {
   const [unitNumber, setUnitNumber] = useState('');
   const wrapRequest = fetchLoading(setFetching);
 
-  // @TODO: Add new request to get topics
   const fetchInfo = async (gradeId) => {
-    console.log('gradeId', gradeId);
     const response = await topicRequest.getTopics(gradeId);
     setTopics(response.topics);
   };

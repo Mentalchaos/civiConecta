@@ -42,7 +42,7 @@
 }
 
 .unit-second-container p {
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-size: 14px;
     color: #898c8c;
 }
@@ -54,7 +54,7 @@
 .component-title,
 .component-subtitle,
 .go-to-unit {
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-weight: 700;
     font-size: 14px;
 }
@@ -83,7 +83,7 @@
 }
 
 .component-description {
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-size: 13px;
     color: #898c8c;
 }

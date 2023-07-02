@@ -6,7 +6,7 @@ body {
 .report_results_content {
   display: flex;
   flex-direction: column;
-  font-family: 'Nunito Sans';
+  font-family: 'Nunito';
   width: 80%;
   margin: auto;
   margin-top: 35px;

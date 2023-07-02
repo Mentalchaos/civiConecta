@@ -34,7 +34,7 @@
 }
 
 .tooltip-container p {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size: 16px;
   color: #828282;
 }
@@ -66,6 +66,6 @@
   border-radius: 10px;
   padding: 10px;
   font-size: 14px;
-  font-family: 'Nunito Sans';
+  font-family: 'Nunito';
   text-align: inherit;
 }

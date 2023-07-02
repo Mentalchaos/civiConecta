@@ -52,13 +52,13 @@
 }
 
 p {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size: 12px;
 }
 
 .finish-modal-title {
   width: 65%;
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Nunito', sans-serif;
   color: #7468e2;
 }
 
@@ -132,7 +132,7 @@ p {
 }
 
 .keep-open p {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size: 12px;
 }
 

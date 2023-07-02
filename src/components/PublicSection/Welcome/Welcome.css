@@ -28,13 +28,13 @@
 }
 
 .left-container h3 {
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: 'Nunito', sans-serif;
     color: #e95f7b;
 }
 
 .p-1,
 .p-2 {
-    font-family: 'Nunito Sans';
+    font-family: 'Nunito';
     font-size: 15px;
 }
 
@@ -78,7 +78,7 @@
 }
 
 .right-container p {
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: 'Nunito', sans-serif;
     color: #FFFFFF;
     margin: 0;
 }
@@ -116,7 +116,7 @@
 .date-container p,
 .school-info,
 .grade {
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-size: 17px;
     font-weight: 700;
 }
@@ -143,17 +143,17 @@
         top: -222px;
         z-index: 2;
     }
-    
+
     .planification-text h4 {
         font-size: 14px;
     }
-    
+
     .button {
         font-size: 12px;
     }
 
-    .date-container p, 
-    .school-info-container, 
+    .date-container p,
+    .school-info-container,
     .grade-info {
         margin-left: 10px
     }

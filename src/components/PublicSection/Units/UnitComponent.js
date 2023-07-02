@@ -1,12 +1,14 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import unitLogo from 'src/assets/Icons/unit-purple.svg';
 import brain from 'src/assets/Icons/heart-brain.svg';
 import goTo from 'src/assets/Icons/open-arrow.svg';
 import './UnitComponent.css';
-import { useNavigate } from 'react-router-dom';
 
 const UnitComponent = ({ id, status, title, description, color, borderColor, number }) => {
   const navigate = useNavigate();
-  console.log('id', id);
+
   return (
     <div className={`unit-component-container ${color}`}>
       <div className='unit-component-title'>

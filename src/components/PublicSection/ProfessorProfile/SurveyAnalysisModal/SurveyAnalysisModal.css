@@ -52,14 +52,14 @@
 }
 
 p {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size: 12px;
   font-weight: 900;
 }
 
 .analysis-modal-title {
   width: 40%;
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size: 18px;
   color: #7468e2;
   text-align: initial;
