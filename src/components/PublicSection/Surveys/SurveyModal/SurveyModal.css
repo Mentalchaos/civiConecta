@@ -33,7 +33,7 @@
 .modal-content {
   margin-top: 12rem;
   text-align: center;
-  height: 400px;
+  /* height: 400px; */
   width: 550px;
   background: linear-gradient(180deg, #FFFFFF 0%, #e5e5e5 100%);
   display: flex;
