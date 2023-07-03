@@ -18,12 +18,8 @@ const { links, planningPrograms } = config.contents;
 
 const PublicSection = () => {
   const { states, actions, setters } = usePublicSection();
-  // const [changeOrder, setChangeOrder] = useState(true);
-  const [changeTextUnits, setChangeTextUnits] = useState({})
-  // const [textUnits, setTextUnits] = useState('Seleccione');
-  // const [unitComponentStates, setUnitComponentStates] = useState({});
-
-  
+  const [changeTextUnits, setChangeTextUnits] = useState({});
+  const stateUnit = ['En Desarrollo', 'Pendiente', 'Completado'];
 
   const ponderationsObj = [{
     title: 'Categoria 1',
@@ -46,8 +42,6 @@ const PublicSection = () => {
     ponderation: 1.1
   }];
 
-  const stateUnit = ['En Desarrollo', 'Pendiente', 'Completado'];
-
   const handleTextUnits = (unitId) => {
     setChangeTextUnits((prevState) => {
       const currentState = prevState[unitId] || 0;
@@ -58,16 +52,6 @@ const PublicSection = () => {
       };
     });
   };
-
-  // const handleTextUnits = () => {
-  //   setChangeTextUnits((changeTextUnits + 1) % stateUnit.length)
-  //   setTextUnits(stateUnit[changeTextUnits])
-  // };
-
-  // const getText = () => {
-    
-
-  // }
 
   return (
     <PublicContext.Provider value={{ states, actions, setters }}>

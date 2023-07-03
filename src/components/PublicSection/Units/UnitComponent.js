@@ -6,16 +6,8 @@ import brain from 'src/assets/Icons/heart-brain.svg';
 import goTo from 'src/assets/Icons/open-arrow.svg';
 import './UnitComponent.css';
 
-const UnitComponent = ({
-  id,
-  status,
-  title,
-  description,
-  color,
-  borderColor,
-  number,
-  handleTextUnits,
-  textUnits }) => {
+const UnitComponent = ({ id, status, title, description, color, borderColor, number, handleTextUnits, textUnits }) => {
+  const navigate = useNavigate();
 
   return (
     <div className={`unit-component-container ${color}`}>
@@ -24,7 +16,7 @@ const UnitComponent = ({
           <img src={unitLogo} alt='unit-logo' />
         </div>
         <div className='unit-second-container'>
-        <p onClick={handleTextUnits}>{textUnits}</p>
+          <p onClick={handleTextUnits}>{textUnits}</p>
           <img src={brain} alt='brain-logo' className='unit-brain' />
         </div>
       </div>
@@ -33,8 +25,8 @@ const UnitComponent = ({
         <p className={`component-subtitle ${borderColor}`}>{title}</p>
         <p className='component-description'>{description}</p>
       </div>
-      <div className='go-to-unit'>
-        <p className='goto'>Ir a la unidad</p>
+      <div onClick={() => navigate(`/public/units-dashboard/${id}`)} className='go-to-unit'>
+        <p onClick={() => handleTextUnits()} className='goto'>Ir a la unidad</p>
         <img src={goTo} alt="arrow-icon" className='unit-arrow' />
       </div>
     </div>
