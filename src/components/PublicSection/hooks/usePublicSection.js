@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import config from 'src/config';
 import { getUserData } from 'src/utils/user';
 import services from 'src/services/admin/publicSection.request';
+import http from '../../../services/helpers/http.helper';
 const { UserTypes, PlanificationTypes } = config.constants;
 
 
@@ -42,8 +43,25 @@ const usePublicSection = () => {
         services.getUserData(uuid).then(r => r.info),
       ]);
       const units = await services.getUnits(info.gradeId).then(r => r.units);
+      const unitsOrder = units.map(data => data.id);
 
-      if (status.student.completed && status.survey.completed && status.teacher.completed ){
+      const eaea = [1,2,1,2];
+      const apiCalls = eaea.map(id => http.get(`${config.baseURL}/units/${id}/status/${uuid}`));
+
+      // Actualizar estado de la unidad luego de crearla
+
+      Promise.all(apiCalls)
+        .then(results => {
+          console.log('results',results);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+
+      console.log('apiCalls',apiCalls);
+
+
+      if (status.student.completed && status.survey.completed && status.teacher.completed) {
         const ponderations = await services.getDataUnitPonderation(uuid).then(r => r.results);
         setUnitsPonderation(ponderations)
       };

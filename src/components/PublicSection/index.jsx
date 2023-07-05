@@ -87,14 +87,11 @@ const PublicSection = () => {
                       key={data.id}
                       id={data.id}
                       number={data.number}
-                      status={data.status}
                       title={data.title}
                       subtitle={data.subtitle}
                       description={data.description}
                       color={data.color}
                       borderColor={data.borderColor}
-                      // handleTextUnits={handleTextUnits}
-                      // textUnits={textUnits}
                       handleTextUnits={() => handleTextUnits(data.id)}
                       textUnits={stateUnit[changeTextUnits[data.id] || 0]}
                     />

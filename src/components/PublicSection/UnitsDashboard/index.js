@@ -25,13 +25,13 @@ const UnitsDashboard = () => {
     getData();
   }, []);
 
-  const { number, title, description } = unitsData || [];
+  const { number, title, description, objective } = unitsData || [];
 
   return (
     <div className=''>
       <div className='dashboard-container'>
         <ButtonOptions />
-        <button className='profile-back-container back1'>
+        <button className='profile-back-container back1' onClick={() => window.history.back()}>
           <img src={back} alt='back-icon' />
           Volver
         </button>
@@ -39,6 +39,7 @@ const UnitsDashboard = () => {
           number={number}
           title={title}
           description={description}
+          objective={objective}
         />
 
         { isFetching ? <div className='spinner-units'><Spinner /></div> : <Class unitsData={unitsData.lessons} /> }

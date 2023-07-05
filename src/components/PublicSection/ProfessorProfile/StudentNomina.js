@@ -5,6 +5,7 @@ import { getUserData } from 'src/utils/user';
 import config from 'src/config';
 import listIcon from 'src/assets/Icons/student-list.svg';
 import './professor-profile.css';
+import Visible from 'src/components/UI/Visible';
 
 const values = ["Estudiante", "Nombre", "Rut", "Encuesta", "Porcentaje Encuesta"];
 
@@ -35,30 +36,36 @@ const StudentNomina = ({ onClick, setDataPieChart }) => {
   return (
     <div className="student-nomina-container">
       <CriticalAnswers setDataPieChart={setDataPieChart} onClick={onClick} />
-      <div className='student-nomina-title'>
-        <img className='student-nomina-icon' src={listIcon} alt='img' />
-        <p>Nómina</p>
-      </div>
-      <div className="student-nomina-table-container">
-        <div className="student-tablehead">
-          {values.map(data => {
-            const name = data == 'Nombre' ? 'center' : null;
-          return (
-              <p key={data} style={{textAlign: name}}className="student-tablehead-values">{data}</p>
-            )}
-          )}
+      <Visible condition={studentData.length}>
+        <div className='student-nomina-title'>
+          <img className='student-nomina-icon' src={listIcon} alt='img' />
+          <p>Nómina</p>
         </div>
-        <div className="tbody-cont">
-          {
-            studentData && studentData.map((data, key) =>
-              <StudentTableBody
-                key={data.run}
-                id={key + 1}
-                data={data}
-              />
+        <div className="student-nomina-table-container">
+          <div className="student-tablehead">
+            {values.map(data => {
+              const name = data == 'Nombre' ? 'center' : null;
+              return (
+                <p key={data} style={{ textAlign: name }} className="student-tablehead-values">{data}</p>
+              )
+            }
             )}
+          </div>
+          <div className="tbody-cont">
+            {
+              studentData && studentData.map((data, key) =>
+                <StudentTableBody
+                  key={data.run}
+                  id={key + 1}
+                  data={data}
+                />
+              )}
+          </div>
         </div>
-      </div>
+      </Visible>
+      <Visible condition={!studentData.length}>
+        <p style={{textAlign: 'Center',marginTop: '50px', fontSize: '16px'}}>Comparte la encuesta con tus estudiantes para poder personalizar tu planificación</p>
+      </Visible>
     </div>
   )
 }

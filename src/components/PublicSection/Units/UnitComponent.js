@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import unitLogo from 'src/assets/Icons/unit-purple.svg';
@@ -16,7 +15,7 @@ const UnitComponent = ({ id, status, title, description, color, borderColor, num
           <img src={unitLogo} alt='unit-logo' />
         </div>
         <div className='unit-second-container'>
-          <p onClick={handleTextUnits}>{textUnits}</p>
+          <p onClick={handleTextUnits}>{status || '-'}</p>
           <img src={brain} alt='brain-logo' className='unit-brain' />
         </div>
       </div>
@@ -37,5 +36,7 @@ UnitComponent.defaultProps = {
   color: "unit-gray",
   borderColor: "border-purple"
 };
+
+UnitComponent.displayName = 'UnitComponent';
 
 export default UnitComponent;

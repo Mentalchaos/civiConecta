@@ -18,7 +18,7 @@ const ProfessorProfile = () => {
       <>
         {showFinishModal && <FinishSurveyModal onClick={() => setShowFinishModal(false)} />}
         {showAnalysisModal && <SurveyAnalysisModal dataPieChart={dataPieChart} onClick={() => setShowAnalysisModal(false)} />}
-        <button className='profile-back-container'>
+        <button className='profile-back-container' onClick={() => window.history.back()}>
           <img src={back}/>
           Volver
         </button>

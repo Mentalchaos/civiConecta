@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-
 import Footer from '../Footer/index';
 import UnitContent from './UnitContent/UnitContent';
 import http from '../../../services/helpers/http.helper';
@@ -11,6 +10,7 @@ import './Planning.css';
 const Planning = () => {
   const { planningId, title } = useParams();
   const [planningData, setPlanningData] = useState([]);
+
 
   useEffect(() => {
 

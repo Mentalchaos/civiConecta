@@ -75,6 +75,11 @@ const useSurvey = surveyType => {
           return setErrorMessage(response.error);
         }
 
+        // TODO: Terminar los estados de esta cosa
+        const clonedTopics = [...topics];
+        clonedTopics.push(response.topic);
+
+        setTopics(clonedTopics);
         setTopic('');
         setModal(false);
       }),
@@ -90,7 +95,7 @@ const useSurvey = surveyType => {
         setRemoveTopicModal(false);
         setTopics(filteredTopics);
       }),
-      fetchInfo,
+      fetchInfo
     },
   };
 };

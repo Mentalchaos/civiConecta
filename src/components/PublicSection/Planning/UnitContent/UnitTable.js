@@ -37,8 +37,6 @@ const UnitTable = ({ planningData, title }) => {
     }
   }
 
-  const eaea = ['Concepto uno', 'Concepto Dos', 'Concepto Tres'];
-
   return (
     <>
       <div>
@@ -61,7 +59,7 @@ const UnitTable = ({ planningData, title }) => {
             <tr className='table-row'>
               <td className='td table-title corner'>Conceptos a tratar:</td>
               <td className='td corner td-right'>
-                { eaea.map((data, key) => <div key={key} className='materials'>{`- ${data}`}</div>)}
+                { keywords && keywords.map((data, key) => <div key={key} className='materials'>{`- ${data}`}</div>)}
               </td>
             </tr>
 

@@ -2,21 +2,25 @@ import './Unit.css';
 import brain from '../../../assets/Icons/white-brain.svg';
 import unitGreen from '../../../assets/Icons/unit-green.svg';
 
-const Unit = ({ number, title, description }) => {
+const Unit = ({ number, title, description, objective }) => {
   let newNumber;
 
   switch (number) {
     case 1:
-      console.log('pasando por aca');
       newNumber = 'I';
+      break;
     case 2:
       newNumber = 'II';
+      break;
     case 3:
       newNumber = 'III';
+      break;
     case 4:
       newNumber = 'IV';
+      break;
     case 5:
       newNumber = 'V';
+      break;
     default:
       break;
   }
@@ -45,7 +49,7 @@ const Unit = ({ number, title, description }) => {
             <img src={unitGreen} className='unit-desc-svg' alt='logo-unit-green' />
             <div className='info'>
               <div className='info-title'>Objetivo de la unidad</div>
-              <div className='info-text'>Distinguir y describir emociones y reconocer y practicar formas apropiadas de expresarlas, considerando el posible impacto en sí mismo y en otros</div>
+              <div className='info-text'>{objective || '-'}</div>
             </div>
           </div>
         </div>
