@@ -14,16 +14,32 @@ const PieChart = ({ dataPieChart }) => {
       series: series,
       colors: ['#54bfed', '#c275ef', '#2dba9f', '#f48e76'],
       chart: {
-        width: 360,
+        width: 160,
+        height: 180,
         type: 'pie',
       },
       labels: labels,
-      // dataLabels: {
-      //   style: {
-      //     fontSize: '12px',
-      //     textAlign: 'top',
-      //   },
-      // },
+      dataLabels: {
+        style: {
+          fontSize: '12px',
+          textAlign: 'top',
+        },
+      },
+      legend: {
+        show: false, // here enable labels
+        showForSingleSeries: false,
+        showForNullSeries: true,
+        showForZeroSeries: true,
+        position: 'top',
+        horizontalAlign: 'center', 
+        fontSize: '14px',
+        fontFamily: 'Helvetica, Arial',
+        fontWeight: 400,
+        itemMargin: {
+          horizontal: 15,
+          vertical: 10
+        },
+      },
       responsive: [{
         breakpoint: 480,
         options: {

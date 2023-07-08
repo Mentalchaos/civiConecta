@@ -24,10 +24,12 @@ const Answer = ({ id, answer, onClick, setDataPieChart }) => {
     await setDataPieChart(data.results[0].questions[0].answers);
   }
 
+  const formattedAnswer = answer.length > 120 ? `${answer.slice(0,80)} ...` : answer;
+
   return (
     <div className="answer-container">
       <div>
-        <p>{answer}</p>
+        <p>{formattedAnswer}</p>
       </div>
       <div className="answer-container-alert">
         <div className="answer-alert-icon">

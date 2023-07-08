@@ -1,7 +1,7 @@
 .unit-component-container {
     width: 185px;
     border-radius: 10px;
-    height: 230px;
+    height: 290px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

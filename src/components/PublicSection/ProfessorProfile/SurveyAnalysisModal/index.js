@@ -4,6 +4,8 @@ import PieChart from './PieChart';
 
 import './SurveyAnalysisModal.css';
 
+const colors = ['#54bfed', '#c275ef', '#2dba9f', '#f48e76'];
+
 const SurveyAnalysisModal = ({ onClick, dataPieChart }) => {
   return (
     <div className='analysis-modal-container'>
@@ -20,19 +22,39 @@ const SurveyAnalysisModal = ({ onClick, dataPieChart }) => {
           </div>
           <div className='analysis-modal-paragraph'>
             <p>
-            ¿Cómo calificarías tu capacidad para reconocer tus cualidades y habilidades, por ejemplo:
-            honestidad, respeto, sensibilidad, responsabilidad, solidaridad, comunicación, motivación,
-            paciencia, trabajo en equipo, etc.?
+              ¿Cómo calificarías tu capacidad para reconocer tus cualidades y habilidades, por ejemplo:
+              honestidad, respeto, sensibilidad, responsabilidad, solidaridad, comunicación, motivación,
+              paciencia, trabajo en equipo, etc.?
             </p>
           </div>
-          <div id='app'>
-            <PieChart dataPieChart={dataPieChart} />
+          <div className='data-pie-chart-container'>
+            <div className='data-pie-chart-text'>
+            {
+              dataPieChart && dataPieChart.map((data, index) => (
+                <div key={index} className='square-text-graphic'>
+                  <div
+                    className='square-graphic'
+                    style={{ backgroundColor: colors[index] }}
+                  />
+                  <div className='data-pie-text'>
+                    {data.label}
+                  </div>
+                </div>
+              ))
+            }
+            </div>
+            <div id='app' className='data-pie-chart'>
+              <PieChart
+                dataPieChart={dataPieChart}
+              />
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      </div >
+    </div >
   )
 }
+
 
 SurveyAnalysisModal.displayName = 'SurveyAnalysisModal';
 
