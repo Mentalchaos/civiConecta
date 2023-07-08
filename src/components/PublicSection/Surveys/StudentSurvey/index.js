@@ -73,7 +73,7 @@ const StudentSurvey = () => {
   }, []);
 
   const handleInserRutClick = async () => {
-    if (rutValue.length < 9) {
+    if (rutValue.length < 8) {
       return;
     }
     await checkUser();
