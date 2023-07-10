@@ -2,19 +2,14 @@ import { useRef, useState } from 'react';
 import Button from 'src/components/UI/Button';
 import Spinner from 'src/components/UI/Spinner';
 import Table from 'src/components/UI/Table';
-import TableTeacher from 'src/components/Manager/StageAssignment/TableTeacher'
 import Visible from 'src/components/UI/Visible';
 import GradeLetter from './GradeLetter.js';
 import useStateAssignment from './useStateAssignment.js';
 import addStudentIcon from 'src/assets/Icons/add-student.svg';
-import { rutValidator } from 'src/utils/rutValidator.js';
 import styles from './styles.js';
 import './StageAssignment.css';
 
 const StageAssignment = ({ onHandleCourseSelected, title, changeStage, institutionSelected, onUpdateInstitution }) => {
-  const [showButtonAddCurse, setShowButtonAddCurse] = useState(true);
-  const [addingStudent, setAddingStudent] = useState(false)
-  const [validRut, setValidRut] = useState(false);
   const [studentSelected, setStudentSelected] = useState({});
   const [showButtonDelete, setShowButtonDelete] = useState(false);
   const gradeRef = useRef(null);
@@ -24,24 +19,14 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
   const tableHeader = ['Nombre', 'RUN', 'Curso', 'Letra'];
   const filterStudentsByGrade = institutionSelected.students.filter(item => item.grade === state.values.grade);
   const tableDataDisplayed = filterStudentsByGrade.map(student => {
-    const { grade, letter, name } = student;
-    const { rut } = state;
+    const { grade, letter, name, run } = student;
     return {
       name,
-      rut,
+      run,
       grade,
       letter,
     };
   });
-
-  const handleInputChangeValidationRut = (e) => {
-    const { value } = e.target;
-    if (value.match(/[^0-9k]/g)) {
-      return;
-    }
-    actions.setRut(value);
-    return rutValidator(value) ? setValidRut(true) : setValidRut(false)
-  };
 
   const buttonStyles = {
     backgroundColor: 'var(--color-secondary)',
@@ -52,23 +37,20 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
 
   const handleAddStudent = evt => {
     evt.preventDefault();
-    const { name, grade, letter } = state.values;
-    const { rut } = state;
 
-    setShowButtonAddCurse(false);
-    if (!name || !rut) {
+    const { name, run, grade, letter } = state.values;
+
+    if (!name || !run) {
       return;
     }
 
-    institutionSelected.addGrade(grade).addLetter(letter).addStudent({ name, rut });
+    institutionSelected.addGrade(grade).addLetter(letter).addStudent({ name, run });
 
     state.values.name = '';
-    actions.setRut('');
-    setValidRut(false);
+    state.values.run = '';
 
     const clone = institutionSelected.clone();
     onUpdateInstitution(clone);
-    setAddingStudent(true)
   };
 
   const handleCourseSelected = course => {
@@ -105,7 +87,7 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
     actions.updateEstablishment(clone);
   };
 
-  const handleAddCourse = (e) => {
+  const handleAddCourse = () => {
     async function fn() {
       actions.setFetching(true);
 
@@ -132,8 +114,8 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
       }
 
       actions.setFetching(false);
-      setAddingStudent(false)
     }
+
     fn();
   };
 
@@ -163,7 +145,6 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
                       grade={state.values.grade}
                       letter={letter}
                       onClick={() => handleCourseSelected({ letter, gradeSelected: grade })}
-                      disabled={addingStudent}
                     />
                   );
                 });
@@ -217,10 +198,11 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
               </select>
             </div>
           </div>
+
           <form className="form__add-student">
             <p style={styles.studentsAdded}>
-              Alumnos añadidos:
-              <strong style={{marginLeft: '5px'}}>
+              Alumnos a&ntilde;adidos:
+              <strong>
                 {institutionSelected.calculateStudentsInGradeLetter(state.values.grade, state.values.letter)}
               </strong>
             </p>
@@ -233,11 +215,11 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
                 placeholder="Nombre completo"
               />
               <input
-                onChange={(e) => handleInputChangeValidationRut(e)}
+                onChange={actions.handleInputChange}
                 type="text"
-                name="rut"
-                value={state.rut}
-                placeholder="10100100k"
+                name="run"
+                value={state.values.run}
+                placeholder="Ingrese rut de estudiante"
               />
             </div>
             <Visible condition={state.errorMessage}>
@@ -248,16 +230,16 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
                 onClick={handleAddStudent}
                 customStyles={styles.button}
                 icon={addStudentIcon}
-                text="Añadir alumno"
+                text="A&ntilde;adir alumno"
                 type="button"
-                disabled={!validRut || !((state.values.grade != 'Seleccionar') && (state.values.letter != 'Seleccionar'))}
+                disabled={state.isAddStudentDisabled}
               />
               <Button
                 onClick={handleAddCourse}
                 customStyles={styles.button}
-                text="Guardar Cambios"
+                text="Enviar formulario"
                 type="button"
-                disabled={showButtonAddCurse}
+                disabled={state.isSendFormDisabled}
               />
             </div>
           </form>
@@ -279,11 +261,6 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
           )}
         </div>
       )}
-      <div>
-        <TableTeacher
-          teachersData={rest.teachersData}
-        />
-      </div>
     </section>
   );
 };
