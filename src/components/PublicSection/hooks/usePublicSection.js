@@ -8,6 +8,7 @@ const { UserTypes, PlanificationTypes } = config.constants;
 
 
 const usePublicSection = () => {
+  const [showUnits, setShowUnits] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [status, setStatus] = useState({});
   const [userData, setUserData] = useState({});
@@ -66,6 +67,7 @@ const usePublicSection = () => {
         setUnitsPonderation(ponderations)
       };
 
+      
       setUnits(units);
       setStatus(status);
       setUserData(info);
@@ -80,6 +82,7 @@ const usePublicSection = () => {
     setters: {
       setModalVisibility,
       setPlanificationType,
+      setShowUnits,
     },
     states: {
       status,
@@ -90,6 +93,7 @@ const usePublicSection = () => {
       unitsContent,
       isLoading,
       unitsPonderation,
+      showUnits,
       get isPlanificationEnabled() {
         return !status?.survey?.completed;
       },
@@ -139,6 +143,9 @@ const usePublicSection = () => {
       },
       setCustomPlanification() {
         setPlanificationType(PlanificationTypes.CUSTOM);
+      },
+      handleShowUnits () {
+        setShowUnits(true)
       }
     }
   };

@@ -63,6 +63,7 @@ const Plan = () => {
         colorIconRight="color-icon-black"
         title="Accede a la planificación estandarizada."
         img={planificationStandarized}
+        onClick={() => actions.handleShowUnits()}
       />
     </div>
   );

@@ -73,6 +73,7 @@ const PublicSection = () => {
                 <Plan />
               </Visible>
 
+              <Visible condition={(states.status.student.completed === true && states.status.teacher.completed === true) || (states.showUnits === true)}>
               <div className="units-cont">
                 <UnitsHeader program={planningPrograms[1].program} />
                 <div className='button-units-cont'>
@@ -80,6 +81,7 @@ const PublicSection = () => {
                       {changeOrder ? 'Ordenar por Ponderation' : 'Volver al Orden Original'}
                     </button> */}
                 </div>
+                
                 <div className="units-components">
                   {/* Esto es la forma original del codigo ya que "ponderations" ESTA HARDCOREADO */}
                   {states.units && states.units.map((data) => (
@@ -102,7 +104,7 @@ const PublicSection = () => {
                   </div>
                 </div>
               </div>
-              {/* </Visible> */}
+              </Visible>
               <LinkGenerator data={links.needLink} />
               {/*
               // TODO: Reactivar si corresponde mas adelante
