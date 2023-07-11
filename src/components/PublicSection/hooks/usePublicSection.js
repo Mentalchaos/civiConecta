@@ -9,6 +9,7 @@ const { UserTypes, PlanificationTypes } = config.constants;
 
 const usePublicSection = () => {
   const [showUnits, setShowUnits] = useState(false);
+  const [unitStatus,setUnitStatus] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [status, setStatus] = useState({});
   const [userData, setUserData] = useState({});
@@ -46,8 +47,8 @@ const usePublicSection = () => {
       const units = await services.getUnits(info.gradeId).then(r => r.units);
       const unitsOrder = units.map(data => data.id);
 
-      const eaea = [1,2,1,2];
-      const apiCalls = eaea.map(id => http.get(`${config.baseURL}/units/${id}/status/${uuid}`));
+      // const eaea = [1,2,1,2, 31];
+      const apiCalls = unitsOrder.map(id => http.get(`${config.baseURL}/units/${id}/status/${uuid}`));
 
       // Actualizar estado de la unidad luego de crearla
 
@@ -67,7 +68,7 @@ const usePublicSection = () => {
         setUnitsPonderation(ponderations)
       };
 
-      
+
       setUnits(units);
       setStatus(status);
       setUserData(info);
