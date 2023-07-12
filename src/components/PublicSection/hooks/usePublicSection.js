@@ -9,7 +9,7 @@ const { UserTypes, PlanificationTypes } = config.constants;
 
 const usePublicSection = () => {
   const [showUnits, setShowUnits] = useState(false);
-  const [unitStatus,setUnitStatus] = useState([]);
+  const [unitStatus, setUnitStatus] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [status, setStatus] = useState({});
   const [userData, setUserData] = useState({});
@@ -19,6 +19,7 @@ const usePublicSection = () => {
   const [units, setUnits] = useState([]);
   const [unitsPonderation, setUnitsPonderation] = useState([]);
   const navigate = useNavigate();
+  const [uuid, setUuid] = useState('');
 
   useEffect(() => {
     (async () => {
@@ -39,6 +40,7 @@ const usePublicSection = () => {
     async function func() {
       const userData = getUserData();
       const uuid = userData.uuid;
+      setUuid(uuid);
 
       const [status, info] = await Promise.all([
         services.getFeedbackStatus(uuid).then(r => r.status),
@@ -46,22 +48,18 @@ const usePublicSection = () => {
       ]);
       const units = await services.getUnits(info.gradeId).then(r => r.units);
       const unitsOrder = units.map(data => data.id);
-
-      // const eaea = [1,2,1,2, 31];
       const apiCalls = unitsOrder.map(id => http.get(`${config.baseURL}/units/${id}/status/${uuid}`));
-
-      // Actualizar estado de la unidad luego de crearla
 
       Promise.all(apiCalls)
         .then(results => {
-          console.log('results',results);
+          const newArray = results
+            .map(data => ({ result: data.result }))
+            .map(obj => obj.result);
+          setUnitStatus(newArray);
         })
         .catch(error => {
           console.error(error);
         });
-
-      console.log('apiCalls',apiCalls);
-
 
       if (status.student.completed && status.survey.completed && status.teacher.completed) {
         const ponderations = await services.getDataUnitPonderation(uuid).then(r => r.results);
@@ -79,6 +77,18 @@ const usePublicSection = () => {
     func();
   }, []);
 
+  const updateStatus = (obj, id) => {
+    const updatedObj = obj.map(item => {
+      if (item.unitId === id) {
+        const newStatus = item.status === 2 ? 0 : item.status + 1;
+        return { ...item, status: newStatus };
+      }
+      return item;
+    });
+
+    return updatedObj;
+  };
+
   return {
     setters: {
       setModalVisibility,
@@ -95,6 +105,7 @@ const usePublicSection = () => {
       isLoading,
       unitsPonderation,
       showUnits,
+      unitStatus,
       get isPlanificationEnabled() {
         return !status?.survey?.completed;
       },
@@ -145,8 +156,12 @@ const usePublicSection = () => {
       setCustomPlanification() {
         setPlanificationType(PlanificationTypes.CUSTOM);
       },
-      handleShowUnits () {
+      handleShowUnits() {
         setShowUnits(true)
+      },
+      async setNewStatus(id) {
+        await setUnitStatus(updateStatus(unitStatus, id));
+        return await services.setNewStatus(id, uuid);
       }
     }
   };

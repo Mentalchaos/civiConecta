@@ -13,6 +13,7 @@ import usePublicSection from './hooks/usePublicSection';
 import './PublicSection.css';
 import { PublicContext } from './context';
 import Plan from './Plan';
+import { getUserData } from 'src/utils/user';
 
 const { links, planningPrograms } = config.contents;
 
@@ -20,6 +21,8 @@ const PublicSection = () => {
   const { states, actions, setters } = usePublicSection();
   const [changeTextUnits, setChangeTextUnits] = useState({});
   const stateUnit = ['En Desarrollo', 'Pendiente', 'Completado'];
+  const userData = getUserData();
+  const uuid = userData.uuid;
 
   const ponderationsObj = [{
     title: 'Categoria 1',
@@ -81,10 +84,10 @@ const PublicSection = () => {
                       {changeOrder ? 'Ordenar por Ponderation' : 'Volver al Orden Original'}
                     </button> */}
                 </div>
-                
+
                 <div className="units-components">
                   {/* Esto es la forma original del codigo ya que "ponderations" ESTA HARDCOREADO */}
-                  {states.units && states.units.map((data) => (
+                  {states.units && states.unitStatus.length && states.units.map((data, i) => (
                     <UnitComponent
                       key={data.id}
                       id={data.id}
@@ -96,6 +99,9 @@ const PublicSection = () => {
                       borderColor={data.borderColor}
                       handleTextUnits={() => handleTextUnits(data.id)}
                       textUnits={stateUnit[changeTextUnits[data.id] || 0]}
+                      status={states.unitStatus[i].status}
+                      updateStatus={actions.setNewStatus}
+                      uuid={uuid}
                     />
                   ))}
                   <div className="units-components-two">

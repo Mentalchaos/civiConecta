@@ -1,12 +1,27 @@
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import unitLogo from 'src/assets/Icons/unit-purple.svg';
 import brain from 'src/assets/Icons/heart-brain.svg';
 import goTo from 'src/assets/Icons/open-arrow.svg';
 import './UnitComponent.css';
 
-const UnitComponent = ({ id, status, title, description, color, borderColor, number, handleTextUnits, textUnits }) => {
+const STATUS_TYPES = ['Pendiente', 'En desarrollo', 'Completada'];
+
+const UnitComponent = ({ id, status, title, description, color, borderColor, number, handleTextUnits, updateStatus, uuid }) => {
   const navigate = useNavigate();
+  const setStatusText = () => STATUS_TYPES[status] || '-';
+  const [statusType, setStatusType] = useState(setStatusText());
+
+  const toggleStatus = () => {
+    const currentIndex = STATUS_TYPES.indexOf(statusType);
+    const nextIndex = (currentIndex + 1) % STATUS_TYPES.length;
+    setStatusType(STATUS_TYPES[nextIndex]);
+  }
+
+  const onClickStatus = async () => {
+    toggleStatus();
+    await updateStatus(id, uuid);
+  }
 
   return (
     <div className={`unit-component-container ${color}`}>
@@ -14,8 +29,8 @@ const UnitComponent = ({ id, status, title, description, color, borderColor, num
         <div>
           <img src={unitLogo} alt='unit-logo' />
         </div>
-        <div className='unit-second-container'>
-          <p onClick={handleTextUnits}>{status || '-'}</p>
+        <div className='unit-second-container' onClick={onClickStatus}>
+          <p onClick={handleTextUnits}>{statusType}</p>
           <img src={brain} alt='brain-logo' className='unit-brain' />
         </div>
       </div>

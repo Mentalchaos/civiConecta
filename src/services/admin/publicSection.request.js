@@ -27,8 +27,11 @@ const services = {
   getDataUnitPonderation(uuid) {
     const url = `${BASE_URL}/reports/units-order/${uuid}`;
     return http.get(url)
+  },
+  setNewStatus(unitId, uuid){
+    const url  = `${BASE_URL}/units/${unitId}/status/${uuid}`;
+    return http.put(url);
   }
-  
 };
 
 export default services;
