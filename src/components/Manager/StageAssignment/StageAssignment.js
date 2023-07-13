@@ -7,6 +7,7 @@ import GradeLetter from './GradeLetter.js';
 import useStateAssignment from './useStateAssignment.js';
 import addStudentIcon from 'src/assets/Icons/add-student.svg';
 import styles from './styles.js';
+import TableTeachers from './TableTeacher.jsx';
 import './StageAssignment.css';
 
 const StageAssignment = ({ onHandleCourseSelected, title, changeStage, institutionSelected, onUpdateInstitution }) => {
@@ -245,6 +246,13 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
           </form>
         </div>
       </article>
+
+      {console.log('data necesaria', state.teachers)}
+      { state.teachers && 
+        <TableTeachers
+          teachersData={state.teachers}
+        />
+      }
 
       {filterStudentsByGrade.length > 0 && (
         <div style={{ position: 'relative' }}>

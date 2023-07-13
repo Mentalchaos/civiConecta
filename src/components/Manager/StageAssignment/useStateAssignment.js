@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import useForm from 'src/hooks/useForm';
-import { getGrades, getLetters } from 'src/services/admin/grades.request';
+import { getGrades, getLetters, getTableTeachers } from 'src/services/admin/grades.request';
 import { updateCoursesEstablishment } from 'src/services/admin/establishment.request';
 
 const useStateAssignment = (institutionSelected) => {
+  const [teachers, setTeachers] = useState([]);
   const [grades, setGrades] = useState([]);
   const [letters, setLetters] = useState([]);
   const [studentsAdded, setStudentsAdded] = useState([]);
@@ -25,11 +26,13 @@ const useStateAssignment = (institutionSelected) => {
 
       setInstitutionCourses(filterCoursesByGrade);
 
-      const [_grades, _letters] = await Promise.all([
+      const [_grades, _letters, _teachers] = await Promise.all([
         getGrades().then(r => r.grades),
-        getLetters().then(r => r.letters.map(l => l.character))
+        getLetters().then(r => r.letters.map(l => l.character)),
+        getTableTeachers().then(r => r.teachers)
       ]);
 
+      setTeachers(_teachers)
       setGrades(_grades);
       setLetters(_letters);
     }
@@ -52,6 +55,7 @@ const useStateAssignment = (institutionSelected) => {
     fetching,
     errorMessage,
     values,
+    teachers,
     actions: {
       setGrades,
       setStudentsAdded,
@@ -61,7 +65,8 @@ const useStateAssignment = (institutionSelected) => {
       handleInputChange,
       reset,
       updateCoursesEstablishment,
-      updateEstablishment
+      updateEstablishment,
+      setTeachers
     },
     get isGradeRenderable() {
       return institutionCourses.length && !fetching && values.grade !== 'Seleccionar';
