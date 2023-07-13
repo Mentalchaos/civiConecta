@@ -23,6 +23,8 @@ export const generateRandomPassword = () => {
   return http.get(`${BASE_URL}/generateRandomPassword`);
 };
 
-export const getDataTechers = () => {
-  return http.get(`${BASE_URL}/establishments/1/course/1/teachers`);
+
+export const getDataTeachers = (establishmentId, courseId) => {
+  // @ TODO: Remember to add the course id when the backend adds the change
+  return http.get(`${BASE_URL}/establishments/${establishmentId}/course/1/teachers`);
 };

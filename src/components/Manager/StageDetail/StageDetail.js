@@ -5,7 +5,7 @@ import Modal from 'src/components/UI/Modal';
 import CreateTeacher from '../StageAssignment/CreateTeacher/CreateTeacher';
 import Spinner from 'src/components/UI/Spinner';
 import { assignTeacherToCourse } from 'src/services/admin/establishment.request';
-import { updateActiveUser, getDataTechers } from 'src/services/admin/user.request';
+import { updateActiveUser, getDataTeachers } from 'src/services/admin/user.request';
 import { throwOnError } from 'src/utils/httpHandler';
 import './StageDetail.css';
 
@@ -18,10 +18,12 @@ const StageDetail = ({ title, courseSelected, institutionSelected }) => {
   const [errorMessage, setErrorMessage] = useState('');
   const [confirmAction, setConfirmAction] = useState(false);
   const [fetching, setFetching] = useState(false);
-  const [dataTeachers, setDataTeachers] = useState({})
+  const [dataTeachers, setDataTeachers] = useState({});
 
   const fetchDataTeacher = async () => {
-    const response = await getDataTechers();
+    const establishmentId = institutionSelected.id;
+    // @TODO: Add the missing course id when calling getDataTeachers
+    const response = await getDataTeachers(establishmentId);
     setDataTeachers([{...response.teacher}]);
   };
 
