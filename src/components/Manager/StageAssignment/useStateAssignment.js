@@ -67,7 +67,7 @@ const useStateAssignment = (institutionSelected) => {
       return institutionCourses.length && !fetching && values.grade !== 'Seleccionar';
     },
     get isAddStudentDisabled() {
-      return values.name.length < 4 || values.run.length < 9 || values.grade === 'Seleccionar' || values.letter === 'Seleccionar';
+      return values.name.length < 4 || values.run.length < 8 || values.grade === 'Seleccionar' || values.letter === 'Seleccionar';
     },
 
     get isSendFormDisabled() {

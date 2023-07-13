@@ -47,7 +47,7 @@ const Survey = ({ onEditCategory, surveyType }) => {
           </div>
         </Visible>
 
-        <Visible condition={!states.isAbleToAddCategories}>
+        <Visible condition={states.isAbleToAddCategories}>
           <div className="button-container teacher-survey category-button">
             <button className="add-button" onClick={() => setters.setRemoveTopicModal(true)}>
               <p className="add-button-icon">-</p>

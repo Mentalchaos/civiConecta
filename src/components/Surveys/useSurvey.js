@@ -50,7 +50,7 @@ const useSurvey = surveyType => {
       unitNumber,
       objective,
       get isAbleToAddCategories() {
-        return topics.length < 4;
+        return topics.length >= 1 && selectedGrade.length;
       },
     },
     setters: {
