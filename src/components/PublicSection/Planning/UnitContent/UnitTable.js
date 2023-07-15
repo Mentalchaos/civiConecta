@@ -19,7 +19,6 @@ const UnitTable = ({ planningData, title }) => {
       });
 
       if (response.ok) {
-        console.log('response', response)
         const blob = await response.blob();
         const url = URL.createObjectURL(blob);
 

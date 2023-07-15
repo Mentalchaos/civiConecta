@@ -27,11 +27,17 @@ const createServices = eventTypeId => {
     return http.get(url);
   };
 
+  const savePlanning = (lessonId, payload) => {
+    const url = `${BASE_URL}/lessons/event/${lessonId}`;
+    return http.put(url, payload)
+  }
+
   return {
     getEventById,
     getEventsByGrade,
     createEvent,
     deleteEvent,
+    savePlanning
   };
 };
 

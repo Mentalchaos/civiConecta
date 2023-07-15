@@ -29,6 +29,7 @@ const UnitManager = () => {
         </UnitWrapper>
         <Visible condition={!states.unit.lessons.length}>
           <h2 className="no-classes">
+            {/* @TODO: Arreglar esto */}
             Unidad no registra clases.
           </h2>
         </Visible>

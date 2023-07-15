@@ -49,7 +49,7 @@ const usePlanification = (lessonId, eventId, eventType) => {
     setters: {},
     actions: {
       updatePlanification(payload) {
-        console.log('payload', payload);
+        return createServices(eventType).savePlanning(eventId, payload);
       },
       async uploadFile(fileData) {
         setIsLoading(true);

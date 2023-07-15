@@ -22,6 +22,12 @@ const StageDetail = ({ title, courseSelected, institutionSelected }) => {
 
   const fetchDataTeacher = async () => {
     const establishmentId = institutionSelected.id;
+    const level = courseSelected.gradeSelected;
+    const letter = courseSelected.letter.character;
+
+    console.log('level', level);
+    console.log('letter', letter);
+
     // @TODO: Add the missing course id when calling getDataTeachers
     const response = await getDataTeachers(establishmentId);
     setDataTeachers([{...response.teacher}]);

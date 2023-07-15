@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 import PropTypes from 'prop-types';
-import Button from 'src/components/UI/Button';
 import Visible from 'src/components/UI/Visible';
 import useForm from 'src/hooks/useForm';
 import { PlanificationContext } from '../context';
@@ -8,6 +7,9 @@ import { PlanificationContext } from '../context';
 const PlanificationForm = ({ type }) => {
   const { actions, states } = useContext(PlanificationContext);
   const planning = states.lesson.planning;
+
+  const isEphemeries = type === 'ephemeries';
+  const isSituations = type === 'situations';
 
   const { values, handleInputChange } = useForm({
     topic: planning.topic,
@@ -45,10 +47,12 @@ const PlanificationForm = ({ type }) => {
         <label>Tema clase:</label>
         <input type="text" name="topic" value={values.topic} onChange={handleInputChange} />
       </div>
-      <div className="form-group planning">
-        <label>Conceptos a tratar:</label>
-        <input type="text" name="keywords" value={values.keywords} onChange={handleInputChange} />
-      </div>
+      <Visible condition={!isEphemeries && !isSituations}>
+        <div className="form-group planning">
+          <label>Conceptos a tratar:</label>
+          <input type="text" name="keywords" value={values.keywords} onChange={handleInputChange} />
+        </div>
+      </Visible>
       <div className="form-group planning">
         <label>Materiales:</label>
         <div className="group__container-materials">
@@ -82,19 +86,18 @@ const PlanificationForm = ({ type }) => {
         <label>Actividad de cierre:</label>
         <input type="text" name="endActivity" value={values.endActivity} onChange={handleInputChange} />
       </div>
-      <Visible condition={type === 'ephemeris'}>
+      <Visible condition={type === 'ephemeries'}>
         <div className="form-group planning">
           <label>Fecha:</label>
           <input placeholder="AÑO-MES-DIA" type="text" name="date" value={values.date} onChange={handleInputChange} />
         </div>
       </Visible>
-      <div className="form-group button">
-        <Button
-          onClick={handleSubmit}
+      <div>
+        <input
+          className="form-group button"
           type="submit"
+          value={states.isLoading ? 'Guardando...' : 'Guardar'}
           disabled={states.isLoading}
-          customClasses="planification-form__button"
-          text={states.isLoading ? 'Guardando...' : 'Guardar'}
         />
       </div>
     </form>
@@ -102,7 +105,7 @@ const PlanificationForm = ({ type }) => {
 };
 
 PlanificationForm.propTypes = {
-  type: PropTypes.oneOf(['lesson', 'situation', 'ephemeris']),
+  type: PropTypes.oneOf(['lesson', 'situations', 'ephemeries']),
 };
 
 PlanificationForm.defaultProps = {

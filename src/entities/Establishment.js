@@ -60,7 +60,7 @@ class Establishment {
             name: student.name,
             run: student.run,
             grade: grade.level,
-            letter: letter.character,
+            letter: letter.character
           })),
         ),
       )

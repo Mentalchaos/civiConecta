@@ -13,7 +13,7 @@ export const getLetters = () => {
   return http.get(url);
 };
 
-export const getTableTeachers = () => {
-  const url = `${BASE_URL}/establishments/1/teachers`;
+export const getTableTeachers = ( establishmentId ) => {
+  const url = `${BASE_URL}/establishments/${establishmentId}/teachers`;
   return http.get(url);
 }

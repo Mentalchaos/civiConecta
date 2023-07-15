@@ -21,11 +21,6 @@ const Planification = () => {
   const { lessonId, eventId, eventType } = useParams();
   const { states, setters, actions } = usePlanification(lessonId, eventId, eventType);
 
-  const handleSubmit = evt => {
-    evt.preventDefault();
-    console.warn('not implemented yet');
-  };
-
   const handleCheckboxSelected = file => {
     actions.selectFile(file);
   };
@@ -94,8 +89,7 @@ const Planification = () => {
             <Visible condition={states.lesson.planning}>
               {() => (
                 <PlanificationForm
-                  type={eventType === 1 ? 'situation' : 'ephemeris'}
-                  onHandleSubmit={handleSubmit}
+                  type={eventType == 1 ? 'situations' : 'ephemeris'}
                 />
               )}
             </Visible>

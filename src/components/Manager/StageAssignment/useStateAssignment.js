@@ -29,7 +29,7 @@ const useStateAssignment = (institutionSelected) => {
       const [_grades, _letters, _teachers] = await Promise.all([
         getGrades().then(r => r.grades),
         getLetters().then(r => r.letters.map(l => l.character)),
-        getTableTeachers().then(r => r.teachers)
+        getTableTeachers(institutionSelected.id).then(r => r.teachers)
       ]);
 
       setTeachers(_teachers)

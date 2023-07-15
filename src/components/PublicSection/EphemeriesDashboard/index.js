@@ -58,13 +58,11 @@ const EphemeriesDashboard = () => {
       </div>
       <div className="dates-container">
         <div className="dates-section">
-         
           {EphemeriesData.events && EphemeriesData.events.map((data) => (
             <EphemerisDate
               key={data.id}
               id={data.id}
               title={data.title}
-              description={data.description}
               date={data.date}
             />
           ))}

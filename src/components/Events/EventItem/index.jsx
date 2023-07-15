@@ -4,11 +4,11 @@ import arrow from 'src/assets/Icons/arrow-degree.svg';
 import './EventItem.css';
 import { EventContext } from 'src/components/Events/context';
 
-const EventItem = ({ id, title, description, files, editEvent }) => {
+const EventItem = ({ id, title, description, files, editEvent, lessonId }) => {
   const { setters } = useContext(EventContext);
 
   const eventSelected = () => {
-    setters.setEventSelected({ id, title, description });
+    setters.setEventSelected({ id, title, description, lessonId });
     setters.setOpenModalDeleteEvent(true);
   };
 
@@ -20,7 +20,7 @@ const EventItem = ({ id, title, description, files, editEvent }) => {
           x
         </button>
         <div className="event-title">{title}</div>
-        <div className="event-subtitle">{description}</div>
+        <div className="event-subtitle">Objetivo: {description}</div>
         <div className="event-subtitle"> documentos adjuntados: {files?.length || 0}</div>
       </div>
       <img onClick={editEvent} src={arrow} className="event-go-planning" alt="Go to planning icon" />

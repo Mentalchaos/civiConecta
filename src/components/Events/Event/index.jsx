@@ -44,6 +44,7 @@ const Event = ({ eventType, onEditEvent }) => {
             </Visible>
             {actions.sortedEvents(states.events).map(event => (
               <EventItem
+                test={event}
                 type={eventType}
                 key={event.id}
                 editEvent={onEditEvent(event.id)}

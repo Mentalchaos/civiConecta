@@ -3,6 +3,7 @@ import Button from '../Button';
 import Visible from '../Visible';
 import useForm from 'src/hooks/useForm';
 import './PlanningForm.css';
+import Situations from 'src/components/Events/Situations';
 
 const initialState = {
   title: '',
@@ -32,6 +33,7 @@ const PlanningForm = ({
 }) => {
   const { values, handleInputChange, reset, self } = useForm(initialState);
   const isEphemeris = type === 'ephemeris';
+  const isSituations = type === 'situations';
 
   const handleSubmit = evt => {
     evt.preventDefault();
@@ -75,6 +77,7 @@ const PlanningForm = ({
       </div>
       <Visible condition={needObjectives}>
         <div className="row">
+
           <div className="form-group w50">
             <label>Conceptos a tratar:</label>
             <input onChange={handleInputChange} type="text" name="keywords" />
@@ -85,7 +88,7 @@ const PlanningForm = ({
           </div>
         </div>
       </Visible>
-      <Visible condition={!needObjectives}>
+      <Visible condition={!isEphemeris && !isSituations}>
         <div>
           <div className="form-group">
             <label>Conceptos a tratar:</label>
@@ -96,7 +99,7 @@ const PlanningForm = ({
       <div className="row">
         <Visible condition={needDescription}>
           <div className="form-group w50">
-            <label>Descripcion:</label>
+            <label>Objetivo:</label>
             <input onChange={handleInputChange} name="description" type="text" required />
           </div>
         </Visible>

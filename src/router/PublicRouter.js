@@ -11,12 +11,11 @@ import SituationsDashboard from 'src/components/PublicSection/SituationsDashboar
 import EphemeriesDashboard from 'src/components/PublicSection/EphemeriesDashboard';
 import Planning from 'src/components/PublicSection/Planning';
 import UnitsDashboard from 'src/components/PublicSection/UnitsDashboard';
-import { PublicGuard } from './guard/public.guard';
 
 const PublicRouter = () => {
   return (
     <>
-      {/*TODO: fix this route later*/}
+      {/* TODO: fix this route later*/}
       {document.location.pathname !== '/student-survey' && <PublicHeader />}
       <Routes>
         <Route exact path="/" element={<PublicSection />} />

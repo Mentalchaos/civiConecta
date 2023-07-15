@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import goTo from 'src/assets/Icons/open-arrow.svg';
 import '../EphemeriesDashboard.css';
 
-const EphemerisDate = ({ id, title, description, date }) => {
+const EphemerisDate = ({ id, title, date }) => {
   const navigate = useNavigate();
     return (
         <div className='ephemeris-day'>

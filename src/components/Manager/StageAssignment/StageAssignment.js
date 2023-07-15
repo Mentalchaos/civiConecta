@@ -201,12 +201,10 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
           </div>
 
           <form className="form__add-student">
-            <p style={styles.studentsAdded}>
-              Alumnos a&ntilde;adidos:
-              <strong>
-                {institutionSelected.calculateStudentsInGradeLetter(state.values.grade, state.values.letter)}
-              </strong>
-            </p>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'end'}}>
+              <p style={styles.studentsAdded}>Estudiantes añadidos:</p>
+              <p style={{ marginLeft: '5px'}}>{institutionSelected.calculateStudentsInGradeLetter(state.values.grade, state.values.letter)}</p>
+            </div>
             <div style={styles.fieldsWrapper}>
               <input
                 onChange={actions.handleInputChange}
@@ -247,8 +245,7 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
         </div>
       </article>
 
-      {console.log('data necesaria', state.teachers)}
-      { state.teachers && 
+      { state.teachers &&
         <TableTeachers
           teachersData={state.teachers}
         />
