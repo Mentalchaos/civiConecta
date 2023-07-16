@@ -16,7 +16,7 @@ const initialState = {
   endActivity: '',
   topic: '',
   date: 'null',
-  keywords: '',
+  keywords: ' ',
 };
 
 const toArray = x => x.trim().split(',');
