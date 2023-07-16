@@ -20,7 +20,10 @@ const EventItem = ({ id, title, description, files, editEvent, lessonId }) => {
           x
         </button>
         <div className="event-title">{title}</div>
-        <div className="event-subtitle">Objetivo: {description}</div>
+        <div className="event-subtitle objective-subtitle">
+          <p className="objective-text">Objetivo: </p>
+          <p className="objective-description">{description}</p>
+        </div>
         <div className="event-subtitle"> documentos adjuntados: {files?.length || 0}</div>
       </div>
       <img onClick={editEvent} src={arrow} className="event-go-planning" alt="Go to planning icon" />

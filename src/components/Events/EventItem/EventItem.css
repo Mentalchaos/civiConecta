@@ -52,6 +52,21 @@
   font-size: 13px;
 }
 
+.objective-subtitle {
+  display: flex;
+  align-items: center;
+}
+
+.objective-text {
+  margin-right: 4px;
+  font-size: 14px;
+}
+
+.objective-description {
+  font-family: 'Poppins';
+  font-weight: 100;
+}
+
 .event-go-planning {
   position: absolute;
   right: 7px;
