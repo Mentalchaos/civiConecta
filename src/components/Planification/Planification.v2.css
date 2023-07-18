@@ -27,6 +27,7 @@
 .form-group.button {
   margin-top: 20px;
   background-color: var(--color-secondary);
+  color: white;
 }
 
 .planning__oa-detail {

@@ -43,7 +43,7 @@ const Planification = () => {
 
   return (
     <PlanificationContext.Provider value={{ states, setters, actions }}>
-      <UnitLayout>
+      <UnitLayout eventType={eventType}>
         <div className="planification-container">
           <Header />
           <ObjectiveDescription />

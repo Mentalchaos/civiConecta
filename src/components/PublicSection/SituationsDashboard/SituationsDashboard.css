@@ -1,225 +1,226 @@
 .situations-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 3em 3em 0 3em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3em 3em 0 3em;
 }
 
 .situations {
-    border: 1px solid #e1e1e1;
-    border-radius: 20px;
-    padding: 30px;
-    height: 130px;
-    width: 72%;
-    margin: 3em 4em;
+  border: 1px solid #e1e1e1;
+  border-radius: 20px;
+  padding: 30px;
+  height: 130px;
+  width: 72%;
+  margin: 3em 4em;
 }
 
-.situations-cont{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 100%;
+.situations-cont {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
 }
 
 .situations-header {
-    display: flex;
-    height: 100%;
-    width: 25%;
-    justify-content: flex-start;
-    align-items: center;
-    border-right: 1px solid #e1e1e1;
+  display: flex;
+  height: 100%;
+  width: 25%;
+  justify-content: flex-start;
+  align-items: center;
+  border-right: 1px solid #e1e1e1;
 }
 
 .situations-image {
-    width: 60px;
-    background-color: #2dba9f;
-    border-radius: 10px;
-    padding: 10px;
-    margin-right: 15px;
+  width: 60px;
+  background-color: #2dba9f;
+  border-radius: 10px;
+  padding: 10px;
+  margin-right: 15px;
 }
 
 .situations-header-text p {
-    font-family: 'Poppins';
-    font-size: 18px;
-    font-weight: bold;
-    color: #2dba9f;
+  font-family: 'Poppins';
+  font-size: 18px;
+  font-weight: bold;
+  color: #2dba9f;
 }
 
 .situations-description {
-    display: flex;
-    height: 90%;
-    margin-top: 1.5em;
+  display: flex;
+  height: 90%;
+  margin-top: 1.5em;
 }
 
 .situations-description-container {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 70%;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 70%;
+  justify-content: space-around;
 }
 
 .book-icon {
-    height: 30px;
-    width: 30px;
-    margin-right: 15px;
+  height: 30px;
+  width: 30px;
+  margin-right: 15px;
 }
 
 .situations-info {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .situations-desc-title {
-    color: #2dba9f;
-    font-size: 14px;
-    font-weight: bold;
+  color: #2dba9f;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .situations-desc-text {
-    font-family: 'Poppins';
-    font-size: 13px;
-    color: #535353;
-    height: 100%;
+  font-family: 'Poppins';
+  font-size: 13px;
+  color: #535353;
+  height: 100%;
 }
 
 .situations-search {
-    display: flex;
-    width: 76%;
-    margin-bottom: 2em;
+  display: flex;
+  width: 76%;
+  margin-bottom: 2em;
 }
 
 .search-container {
-    display: flex;
-    justify-content: space-between;
-    width: 40%;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+  align-items: center;
 }
 
 .search-info {
-    display: flex;
-    justify-content: space-between;
-    width: 25%;
+  display: flex;
+  justify-content: space-between;
+  width: 25%;
 }
 
 .search-info p {
-    font-family: 'Poppins';
-    font-size: 15px;
-    color: #535353;
-    font-weight: bold;
+  font-family: 'Poppins';
+  font-size: 15px;
+  color: #535353;
+  font-weight: bold;
 }
 
 .search-input {
-    width: 70%;
-    border: 1px solid #e1e1e1;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
+  width: 70%;
+  border: 1px solid #e1e1e1;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
 }
 
 .search-input input {
-    width: 76%;
-    border-radius: 20px;
-    background: white;
-    border: none;
+  width: 76%;
+  border-radius: 20px;
+  background: white;
+  border: none;
 }
 
 .search-input img {
-    width: 20px;
+  width: 20px;
 }
 
 .search-input input::placeholder {
-    color: #E1E1E1;
+  color: #E1E1E1;
 }
 
 .classes-container {
-    display: grid;
-    margin-right: 5px;
-    width: 76%;
-    margin-bottom: 4em;
+  display: grid;
+  margin-right: 5px;
+  width: 76%;
+  margin-bottom: 4em;
 }
 
 .classes-section {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
-    justify-content: flex-end;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  justify-content: flex-end;
 }
 
 .situation-day {
-    border: 1px solid #e1e1e1;
-    border-radius: 20px;
-    padding: 12px 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 240px;
+  border: 1px solid #e1e1e1;
+  border-radius: 20px;
+  padding: 12px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 300px;
 }
 
 .situation-date {
-    background: #2dba9f;
-    width: 35%;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 20px;
+  background: #2dba9f;
+  width: 35%;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
 }
+
 .situation-date p {
-    font-size: 14px;
-    color: white;
-    font-weight: bold;
+  font-size: 14px;
+  color: white;
+  font-weight: bold;
 }
 
 .situation-title {
-    width: 65%;
+  width: 65%;
 }
 
 .situation-title p {
-    color: #535353;
-    font-size: 16px;
-    font-weight: bold;
+  color: #535353;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .situation-desc {
-    width: 95%;
+  width: 95%;
 }
 
 .situation-desc p {
-    font-size: 15px;
-    color: #535353;
+  font-size: 15px;
+  color: #535353;
 }
 
 .situation-see-class {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  transition: 0.3s;
 }
 
 .situation-see-class p {
-    color: #2dba9f;
-    display: flex;
-    width: 25%;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 16px;
-    font-weight: bold;
+  color: #2dba9f;
+  display: flex;
+  width: 25%;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .situation-see-class img {
-    width: 10px;
-    padding: 10px;
-    filter: invert(58%) sepia(29%) saturate(920%) hue-rotate(119deg) brightness(99%) contrast(89%);
+  width: 10px;
+  padding: 10px;
+  filter: invert(58%) sepia(29%) saturate(920%) hue-rotate(119deg) brightness(99%) contrast(89%);
 }
 
 
 .situation-see-class:hover {
-    transform: scale(1.1);
-    cursor: pointer;
+  transform: scale(1.1);
+  cursor: pointer;
 }
 
 .search-info img {
-    width: 30px;
+  width: 30px;
 }

@@ -1,8 +1,7 @@
 import { Fragment } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Visible from 'src/components/UI/Visible';
-// import civiIcon from 'src/assets/Icons/CiviConecta.svg';
-import civiIcon from 'src/assets/images/logo-civiconecta.png';
+import civiIcon from 'src/assets/images/civiconecta-logo.svg';
 import questionIcon from 'src/assets/Icons/question-icon.svg';
 import notificationIcon from 'src/assets/Icons/notification.svg';
 import docente from 'src/assets/Icons/menu-docente.svg';

@@ -41,7 +41,6 @@ const Manager = () => {
       />
       <main className="manager-content">
         <div className="current-path">
-          {/*Aqui debe ir el path para controlar flujo actual*/}
           <p className="path__text">{stage}</p>
         </div>
         {stage === 'Manager' && (

@@ -88,7 +88,7 @@ const PlanningForm = ({
           </div>
         </div>
       </Visible>
-      <Visible condition={!isEphemeris && !isSituations}>
+      <Visible condition={!isEphemeris}>
         <div>
           <div className="form-group">
             <label>Conceptos a tratar:</label>

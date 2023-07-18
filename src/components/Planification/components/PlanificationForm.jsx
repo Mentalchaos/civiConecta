@@ -8,8 +8,10 @@ const PlanificationForm = ({ type }) => {
   const { actions, states } = useContext(PlanificationContext);
   const planning = states.lesson.planning;
 
-  const isEphemeries = type === 'ephemeries';
+  const isEphemeries = type === 'ephemeris';
   const isSituations = type === 'situations';
+
+
 
   const { values, handleInputChange } = useForm({
     topic: planning.topic,
@@ -20,7 +22,7 @@ const PlanificationForm = ({ type }) => {
     mainActivity: planning.mainActivity,
     endActivity: planning.endActivity,
     description: planning.description,
-    date: planning.date,
+    date: states.lesson.date,
   });
 
   const handleSubmit = evt => {
@@ -47,7 +49,7 @@ const PlanificationForm = ({ type }) => {
         <label>Tema clase:</label>
         <input type="text" name="topic" value={values.topic} onChange={handleInputChange} />
       </div>
-      <Visible condition={!isEphemeries && !isSituations}>
+      <Visible condition={!isEphemeries}>
         <div className="form-group planning">
           <label>Conceptos a tratar:</label>
           <input type="text" name="keywords" value={values.keywords} onChange={handleInputChange} />
@@ -86,10 +88,10 @@ const PlanificationForm = ({ type }) => {
         <label>Actividad de cierre:</label>
         <input type="text" name="endActivity" value={values.endActivity} onChange={handleInputChange} />
       </div>
-      <Visible condition={type === 'ephemeries'}>
+      <Visible condition={type === 'ephemeris'}>
         <div className="form-group planning">
           <label>Fecha:</label>
-          <input placeholder="AÑO-MES-DIA" type="text" name="date" value={values.date} onChange={handleInputChange} />
+          <input placeholder="DIA-MES" type="text" name="date" value={values.date} onChange={handleInputChange} />
         </div>
       </Visible>
       <div>
@@ -105,7 +107,7 @@ const PlanificationForm = ({ type }) => {
 };
 
 PlanificationForm.propTypes = {
-  type: PropTypes.oneOf(['lesson', 'situations', 'ephemeries']),
+  type: PropTypes.oneOf(['lesson', 'situations', 'ephemeris']),
 };
 
 PlanificationForm.defaultProps = {

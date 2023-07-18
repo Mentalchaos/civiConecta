@@ -256,7 +256,7 @@ const Planification = ({
         type == 'ephemeris' &&
           <div className="form-group planning">
             <label>Fecha:</label>
-            <input placeholder="AÑO-MES-DIA" type="text" name="date" value={values.date} onChange={handleInputChange} />
+            <input placeholder="DIA-MES" type="text" name="date" value={values.date} onChange={handleInputChange} />
           </div>
         }
         <div className="form-group button">

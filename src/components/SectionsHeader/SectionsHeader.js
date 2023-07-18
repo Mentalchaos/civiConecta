@@ -3,6 +3,13 @@ import './SectionsHeader.css';
 
 const SectionsHeader = ({ image, subtitle }) => {
   const location = useLocation();
+
+  const eventTypes = {
+    1: 'Situaciones Emergentes',
+    2: 'Efemerides',
+    3: 'Unidades'
+  }
+
   return (
     <header className="header-container">
       <img src={image && image} alt="background image" />
@@ -15,7 +22,7 @@ const SectionsHeader = ({ image, subtitle }) => {
             admin
           </span>
         </h1>
-        <p>{subtitle && subtitle}</p>
+        <p>{eventTypes[subtitle]}</p>
       </div>
     </header>
   );
