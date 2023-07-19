@@ -81,6 +81,10 @@ const useSurvey = surveyType => {
 
         setTopics(clonedTopics);
         setTopic('');
+        setDescription('');
+        setObjective('');
+        setTitle('');
+        setUnitNumber('');
         setModal(false);
       }),
       removeCategory: wrapRequest(async () => {
