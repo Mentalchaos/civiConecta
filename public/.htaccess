@@ -2,3 +2,5 @@ Options -MultiViews
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ index.html [QSA,L]
+php_value upload_max_filesize 150M
+php_value post_max_size 150M
