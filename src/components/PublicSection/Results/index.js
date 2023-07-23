@@ -61,7 +61,7 @@ const Results = () => {
           <a onClick={() => window.history.back()}>Volver</a>
         </div>
         <div className="report_result">
-          <div className='report_result_title_img'>
+          <div className='report_result_title_img' style={{ marginBottom: '15px'}}>
             <img src={unitLogo} alt="unit-logo" />
             <p className='report_result_title'>Informe de resultados </p>
           </div>

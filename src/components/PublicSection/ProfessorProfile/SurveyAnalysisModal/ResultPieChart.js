@@ -8,7 +8,7 @@ const ResultPieChart = ({ series, labels }) => {
   useEffect(() => {
 
     const options = {
-      series: [10,20,30,40],
+      series: series,
       colors: ['#54bfed', '#c275ef', '#2dba9f', '#f48e76'],
       chart: {
         //width: 720,
@@ -21,7 +21,7 @@ const ResultPieChart = ({ series, labels }) => {
         showForNullSeries: true,
         showForZeroSeries: true,
         position: 'top',
-        horizontalAlign: 'center', 
+        horizontalAlign: 'center',
         fontSize: '14px',
         fontFamily: 'Helvetica, Arial',
         fontWeight: 600,
