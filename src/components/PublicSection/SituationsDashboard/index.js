@@ -7,7 +7,7 @@ import EmergentSituation from './components/EmergentSituation';
 import SearchBar from './components/SearchBar';
 
 import brain from '../../../assets/Icons/white-brain.svg';
-import unitGreen from '../../../assets/Icons/unit-green.svg';
+import unitGreen from '../../../assets/Icons/unit-green2.svg';
 import back from 'src/assets/Icons/back-arrow.svg';
 import './SituationsDashboard.css';
 

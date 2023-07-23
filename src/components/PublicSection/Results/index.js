@@ -65,11 +65,11 @@ const Results = () => {
             <img src={unitLogo} alt="unit-logo" />
             <p className='report_result_title'>Informe de resultados </p>
           </div>
-          <p className='report_result_text'> A continuación, encontrarás los resultados de la encuesta aplicada en tu curso.
+          <p className='report_result_text' style={{ marginBottom: '15px'}}> A continuación, encontrarás los resultados de la encuesta aplicada en tu curso.
             Estos datos te muestran un panorama rápido acerca de las debilidades, preocupaciones y
             problemas que está enfrentando el grupo curso, así podrás detectar situaciones preocupantes.
           </p>
-          <p className='report_result_text'>
+          <p className='report_result_text' style={{ marginBottom: '15px'}}>
             Recuerda que comunicar alertas al Equipo de Convivencia puede ser crucial para apoyar a tus estudiantes.
           </p>
         </div>

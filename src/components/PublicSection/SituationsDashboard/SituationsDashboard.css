@@ -98,6 +98,7 @@
 }
 
 .search-info {
+  align-items: center;
   display: flex;
   justify-content: space-between;
   width: 25%;
