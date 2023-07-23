@@ -6,7 +6,7 @@ import EphemerisDate from './components/EphemerisDate';
 
 import back from 'src/assets/Icons/back-arrow.svg';
 import brain from '../../../assets/Icons/white-brain.svg';
-import unitGreen from '../../../assets/Icons/unit-green.svg';
+import unitGreen from '../../../assets/Icons/unit-blueligth.svg';
 import './EphemeriesDashboard.css';
 
 const EphemeriesDashboard = () => {
