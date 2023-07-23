@@ -13,7 +13,7 @@ const initialState = {
   startActivity: '',
   mainActivity: '',
   endActivity: '',
-  topic: '',
+  topic: 'null',
   date: 'null',
   keywords: ' ',
 };
