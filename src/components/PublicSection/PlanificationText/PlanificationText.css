@@ -8,6 +8,7 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  align-items: center;
 }
 
 .planification-container-two img {
@@ -49,6 +50,8 @@
 
 .alternative {
   display: flex;
+  align-items: center;
+  margin-top: 10px;
 }
 
 .alternative img {
@@ -58,6 +61,7 @@
 
 .second-container {
     width: 100%;
+    margin-top: 30px;
 }
 
 @media (max-width: 1024px) {

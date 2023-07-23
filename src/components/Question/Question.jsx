@@ -15,6 +15,11 @@ const Question = () => {
     window.history.back();
   };
 
+  const { alternatives, title } = states;
+
+  const testForNull = alternatives.filter(data => data.description == '');
+  const disabledStyles = testForNull.length > 0 || title.length === 0 ? 'disabledStyle' : '';
+
   return (
     <main className="main-question-container">
       <div className="go-back-section">
@@ -42,11 +47,10 @@ const Question = () => {
         </div>
       </div>
       <div className="continue-button-container">
-        <button className="continue-button" onClick={actions.saveSurvey}>
+        <button className={`continue-button ${disabledStyles}`} disabled={testForNull.length > 0 || title.length === 0 ? true : false} onClick={actions.saveSurvey}>
           Guardar
         </button>
       </div>
-
       <Visible condition={states.questions.length}>
         {states.questions.map((question, idx) => {
           return (

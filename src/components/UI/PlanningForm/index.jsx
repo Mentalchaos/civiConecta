@@ -128,7 +128,7 @@ const PlanningForm = ({
         <div className="form-group">
           <label>Fecha:</label>
           <input
-            placeholder="AÑO-MES-DIA"
+            placeholder="DIA-MES"
             onChange={handleInputChange}
             name="date"
             type="text"

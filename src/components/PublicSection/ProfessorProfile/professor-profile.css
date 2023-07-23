@@ -11,7 +11,6 @@
 
 .profile-container {
   margin: 1em 3em;
-  /* border: 1px solid black; */
   position: relative;
   display: flex;
   justify-content: center;
@@ -33,12 +32,13 @@
   justify-content: space-around;
   width: 25%;
   margin-left: 25px;
+  align-items: center;
 }
 
 .professor-info-data {
   border: none;
   border-radius: 10px;
-  margin: 0.5em 2em;
+  margin: 2em 2em;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -200,6 +200,8 @@
   display: flex;
   width: 21%;
   justify-content: space-around;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .critical-answers-units {
@@ -248,13 +250,14 @@
 .answer-status-button {
   display: flex;
   justify-content: flex-end;
+  margin-top: 20px;
 }
 
 .answer-status-button>button {
   border: none;
   background: none;
   color: #ee879c;
-  width: 37%;
+  width: 45%;
   display: flex;
   justify-content: space-between;
   align-items: center;

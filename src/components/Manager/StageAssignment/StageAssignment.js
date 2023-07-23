@@ -29,6 +29,8 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
     };
   });
 
+  const tableTeachers = state.teachers.length > 0 && <TableTeachers teachersData={state.teachers} />
+
   const buttonStyles = {
     backgroundColor: 'var(--color-secondary)',
     color: '#fff',
@@ -245,11 +247,7 @@ const StageAssignment = ({ onHandleCourseSelected, title, changeStage, instituti
         </div>
       </article>
 
-      { state.teachers &&
-        <TableTeachers
-          teachersData={state.teachers}
-        />
-      }
+      { tableTeachers }
 
       {filterStudentsByGrade.length > 0 && (
         <div style={{ position: 'relative' }}>

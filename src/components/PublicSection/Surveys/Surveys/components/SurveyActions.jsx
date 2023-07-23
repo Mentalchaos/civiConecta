@@ -2,15 +2,19 @@ import { useContext } from 'react';
 import { SurveyContext } from '../context';
 
 const SurveyActions = () => {
-  const { userType, actions, states } = useContext(SurveyContext);
+  const { userType, actions, states, setters } = useContext(SurveyContext);
   const text = states.isLastQuestion ? 'Finalizar encuesta' : 'Continuar';
+  const { currentQuestion, savedAlternatives, percent, valueOfOneElement } = states;
 
   const handleGoBack = () => {
     actions.goBack();
   };
 
   const handleContinue = () => {
-    actions.continue(userType);
+    if(savedAlternatives.hasOwnProperty(currentQuestion.toString())){
+      return actions.continue(userType);
+    }
+    return setters.setPercent(percent + valueOfOneElement);
   };
 
   return (

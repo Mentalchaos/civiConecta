@@ -18,7 +18,7 @@ const Survey = ({ onEditCategory, surveyType }) => {
 
   return (
     <Fragment>
-      <div className="default-select" style={{width: '170px', height: '24px', marginLeft: 'auto'}}>
+      <div className="default-select" style={{width: '180px', height: '32px', marginLeft: 'auto'}}>
         <select onChange={e => getInfo(e.target.value)} style={{margin: '0', padding: '0'}} >
           <option value={0}>Selecciona un nivel</option>
           {grades}

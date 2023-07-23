@@ -1,15 +1,27 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import StageManager from './StageManager/StageManager';
 import StageAssignment from './StageAssignment/StageAssignment';
 import StageDetail from './StageDetail/StageDetail';
 import background from 'src/assets/images/manager-header.png';
 import './Manager.css';
 import SectionsHeader from '../SectionsHeader/SectionsHeader';
+import http from 'src/services/helpers/http.helper';
+import config from 'src/config';
 
 const Manager = () => {
   const [stage, setStage] = useState('Manager');
   const [institutionSelected, setInstitutionSelected] = useState({});
   const [courseSelected, setCourseSelected] = useState({});
+  const [establishment, setEstablishment] = useState([]);
+
+  useEffect(() => {
+    const getEstablishment = async () => {
+      const url = `${config.baseURL}/establishments`;
+      const response = await http.get(url);
+      await setEstablishment(response.establishments);
+    }
+    getEstablishment();
+  }, []);
 
   const changeStage = stage => {
     setStage(stage);
@@ -61,6 +73,7 @@ const Manager = () => {
         )}
         {stage === 'Detalle' && (
           <StageDetail
+            establishments={establishment}
             institutionSelected={institutionSelected}
             courseSelected={courseSelected}
             changeStage={changeStage}

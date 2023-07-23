@@ -21,7 +21,7 @@ const SurveyModal = ({ closeModal, teacherSurveyOnclick }) => {
     <div className='survey-modal-container'>
       <div className='survey-modal'>
         <div className='modal-content'>
-          <div className='modal-header'>
+          <div className='modal-header' style={{borderRadius: '10px 10px 0 0'}}>
             <div className='modal-title'>
               <h2>Comencemos</h2>
             </div>
@@ -30,11 +30,11 @@ const SurveyModal = ({ closeModal, teacherSurveyOnclick }) => {
               <img onClick={closeModal} className='close-button' src={closeButton} alt="close-button"></img>
             </div>
           </div>
-          <div className='modal-paragraph'>
+          <div className='modal-paragraph' style={{marginTop: '20px', marginBottom: '20px'}}>
             <p>Para que puedas acceder a tus planificaciones personalizadas es necesario que continues con los siguientes pasos:</p>
           </div>
           <div className='survey-buttons-container'>
-            <div className='teacher-survey-button' onClick={() => teacherSurveyButton()}>
+            <div className='teacher-survey-button' style={{padding: '1em'}}onClick={() => teacherSurveyButton()}>
               <div className='teacher-button-header'>
                 <p>Contestar encuesta docente</p>
                 <img src={teacher} alt="teacher"/>
@@ -43,7 +43,7 @@ const SurveyModal = ({ closeModal, teacherSurveyOnclick }) => {
                 <p>Ir a la encuesta</p>
               </div>
             </div>
-            <div className='student-survey-button' onClick={() => navigate('/public/share-survey')}>
+            <div className='student-survey-button' style={{padding: '1em', border: '1px solid black'}} onClick={() => navigate('/public/share-survey')}>
               <div className='student-button-header'>
                 <p>Generar enlace para encuestar estudiantes</p>
                 <img src={studentImg} alt="student" />
@@ -53,7 +53,7 @@ const SurveyModal = ({ closeModal, teacherSurveyOnclick }) => {
               </div>
             </div>
           </div>
-          <div className='modal-footer' >
+          <div className='modal-footer' style={{marginTop: '30px', marginBottom: '30px'}}>
             <p onClick={closeModal} className='footer-text'>Omitir encuestas</p>
           </div>
         </div>

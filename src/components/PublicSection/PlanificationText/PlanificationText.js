@@ -11,7 +11,7 @@ const PlanificationText = () => {
           <p className="to-begin-text">Para comenzar</p>
         </div>
         <div>
-          <p className="planification-subtitle">
+          <p className="planification-subtitle" style={{marginTop: '20px'}}>
             Tienes dos alternativas para implementar nuestra planificación
             anual:
           </p>

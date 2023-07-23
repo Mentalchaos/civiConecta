@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment } from 'react';
 import Loading from 'src/components/UI/Loading';
 import SurveyHeader from './components/SurveyHeader';
 import Question from './components/Question';
@@ -8,10 +8,11 @@ import useSurvey from './useSurvey';
 import CompletedSurvey from '../CompletedSurvey/CompletedSurvey';
 import ModalToFinish from '../ProfessorSurvey/ModalToFinish/ModalToFinish';
 import '../index.css';
-import { getUserData, clearUserData } from 'src/utils/user';
+import { getUserData } from 'src/utils/user';
 import config from 'src/config';
 import Visible from 'src/components/UI/Visible';
-
+import { Progress } from 'rsuite';
+import "rsuite/dist/rsuite.css";
 
 const SurveyTypes = {
   student: 'Estudiante',
@@ -25,18 +26,19 @@ const Surveys = ({ userType }) => {
 
   const finishUser = () => {
     fetch(`${config.baseURL}/feedback/${userType}/${uuid}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      token: userData.token
-    },})
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        token: userData.token
+      },
+    })
     actions.completedSurvey();
   }
 
   return (
     <section className="surveys">
       <Visible condition={states.completedSurvey}>
-      <CompletedSurvey type={userType} />
+        <CompletedSurvey type={userType} />
       </Visible>
       <Visible condition={!states.completedSurvey}>
         <SurveyContext.Provider value={{ userType, states, actions }}>
@@ -44,6 +46,18 @@ const Surveys = ({ userType }) => {
           <Loading isLoading={!states.hasQuestions}>
             {() => (
               <Fragment>
+                <div className="progress-bar" style={{position: 'absolute'}}>
+                  <div className="line-vertical-wrapper" style={{ height: 500 }}>
+                    <Progress.Line
+                      status={states.percent > 98 ? "success" : "fail"}
+                      style={{ height: '500px' }}
+                      vertical
+                      percent={states.percent}
+                      showInfo={true}
+                      strokeColor={'#d9687c'}
+                    />
+                  </div>
+                </div>
                 <SurveyHeader
                   userType={userType}
                   questions={states.questions}

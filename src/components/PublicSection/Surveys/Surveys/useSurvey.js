@@ -21,22 +21,28 @@ const useSurvey = (userType) => {
   const [savedAlternatives, setSavedAlternatives] = useState({});
   const [showModal, setShowModal] = useState(false);
   const [completedSurvey, setCompletedSurvey] = useState(false);
+  const [percent, setPercent] = useState(0);
+  const [valueOfOneElement, setValueOfOneElement] = useState(0);
 
   useEffect(() => {
     async function fn() {
       const userData = getUserData();
       const uuid = userData.uuid;
       const response = await surveyRequest.getSurveyToAnswer(userType, uuid);
+      const valueOfOne = 100 / Object.keys(response.survey).length;
+      setValueOfOneElement(valueOfOne);
       setSurvey(response.feedback);
       setQuestions(response.survey);
       setSavedAlternatives(calculatePreviousAnswers(response.survey));
+      setPercent(valueOfOne * Object.keys(savedAlternatives).length);
     }
-
     fn();
-  }, []);
+  }, [valueOfOneElement]);
 
   return {
-    setters: {},
+    setters: {
+      setPercent
+    },
     states: {
       survey,
       questions,
@@ -44,6 +50,8 @@ const useSurvey = (userType) => {
       savedAlternatives,
       showModal,
       completedSurvey,
+      percent,
+      valueOfOneElement,
       get isFirstQuestion() {
         return currentQuestion === 0;
       },
@@ -70,7 +78,6 @@ const useSurvey = (userType) => {
           return setShowModal(true);
         }
 
-        this.sendData(userType);
         setCurrentQuestion(currentQuestion + 1);
       },
       saveAlternative(letter) {
@@ -80,9 +87,14 @@ const useSurvey = (userType) => {
             [currentQuestion]: letter
           };
           setSavedAlternatives(checkpoint);
+          const currentQuestionStr = String(currentQuestion);
+          if(!(currentQuestionStr in savedAlternatives)){
+            setPercent(percent + valueOfOneElement);
+          }
         };
       },
       isAlternativeSelected(letter) {
+
         return savedAlternatives[currentQuestion] === letter;
       },
       closeModal() {

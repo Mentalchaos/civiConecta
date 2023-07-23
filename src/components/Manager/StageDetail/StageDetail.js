@@ -9,7 +9,8 @@ import { updateActiveUser, getDataTeachers } from 'src/services/admin/user.reque
 import { throwOnError } from 'src/utils/httpHandler';
 import './StageDetail.css';
 
-const StageDetail = ({ title, courseSelected, institutionSelected }) => {
+
+const StageDetail = ({ title, courseSelected, institutionSelected, establishments }) => {
   const [teacherSelected, setTeacherSelected] = useState(false);
   const [dataTeacherSelected, setDataTeacherSelected] = useState({});
   const [addTeacher, setAddTeacher] = useState(false);
@@ -20,6 +21,8 @@ const StageDetail = ({ title, courseSelected, institutionSelected }) => {
   const [fetching, setFetching] = useState(false);
   const [dataTeachers, setDataTeachers] = useState({});
 
+  console.log('establishments', establishments);
+
   const fetchDataTeacher = async () => {
     const establishmentId = institutionSelected.id;
     const level = courseSelected.gradeSelected;
@@ -27,11 +30,13 @@ const StageDetail = ({ title, courseSelected, institutionSelected }) => {
 
     console.log('level', level);
     console.log('letter', letter);
+    console.log('establishmentId', establishmentId);
 
-    // @TODO: Add the missing course id when calling getDataTeachers
+    // @TODO: Add the missing course id when calling getDataTeachers, SEBA HELP
     const response = await getDataTeachers(establishmentId);
-    setDataTeachers([{...response.teacher}]);
+    setDataTeachers([{ ...response.teacher }]);
   };
+
 
   useEffect(() => {
     fetchDataTeacher();
@@ -66,7 +71,7 @@ const StageDetail = ({ title, courseSelected, institutionSelected }) => {
   });
 
   const showDataTeacher = Object.values(dataTeachers).map(teacher => {
-    const { name, email,establishment,password } = teacher;
+    const { name, email, establishment, password } = teacher;
     return {
       name,
       email,

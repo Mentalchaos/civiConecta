@@ -4,8 +4,8 @@ import config from 'src/config';
 import { getUserData } from 'src/utils/user';
 import services from 'src/services/admin/publicSection.request';
 import http from '../../../services/helpers/http.helper';
-const { UserTypes, PlanificationTypes } = config.constants;
 
+const { UserTypes, PlanificationTypes } = config.constants;
 
 const usePublicSection = () => {
   const [showUnits, setShowUnits] = useState(false);
@@ -65,7 +65,6 @@ const usePublicSection = () => {
         const ponderations = await services.getDataUnitPonderation(uuid).then(r => r.results);
         setUnitsPonderation(ponderations)
       };
-
 
       setUnits(units);
       setStatus(status);
