@@ -73,22 +73,9 @@ const PlanningForm = ({
           <input onChange={handleInputChange} name="title" type="text" required />
         </div>
       </div>
-      <Visible condition={needObjectives}>
-        <div className="row">
-
-          <div className="form-group w50">
-            <label>Conceptos a tratar:</label>
-            <input onChange={handleInputChange} type="text" name="keywords" />
-          </div>
-          <div className="form-group w50">
-            <label>Objetivo:</label>
-            <input onChange={handleInputChange} name="objective" type="text" required />
-          </div>
-        </div>
-      </Visible>
       <Visible condition={!isEphemeris}>
         <div>
-          <div className="form-group">
+          <div className="form-group w50">
             <label>Conceptos a tratar:</label>
             <input onChange={handleInputChange} type="text" name="keywords" />
           </div>
