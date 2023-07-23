@@ -7,7 +7,7 @@ const SurveyHeader = ({ userType, questions, currentQuestion }) => {
         const isActive = currentQuestion === index ? 'active' : '';
         return (
           <span className={`question-number ${isActive}`} key={question.id}>
-            Pregunta #{index + 1}
+            Pregunta {index + 1}
           </span>
         );
       })}
