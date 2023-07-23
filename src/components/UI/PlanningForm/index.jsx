@@ -75,7 +75,7 @@ const PlanningForm = ({
       </div>
       <Visible condition={!isEphemeris}>
         <div>
-          <div className="form-group w50">
+          <div className="form-group">
             <label>Conceptos a tratar:</label>
             <input onChange={handleInputChange} type="text" name="keywords" />
           </div>
