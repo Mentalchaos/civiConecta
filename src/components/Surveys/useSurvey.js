@@ -94,7 +94,7 @@ const useSurvey = surveyType => {
           return setErrorMessage(response.error);
         }
 
-        const filteredTopics = topics.filter(t => t.id != selectValue);
+        const filteredTopics = topics.filter(t => t.id !== selectValue);
         setErrorMessage(false);
         setRemoveTopicModal(false);
         setTopics(filteredTopics);

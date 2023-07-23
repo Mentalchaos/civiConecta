@@ -12,7 +12,7 @@ const SectionsHeader = ({ image, subtitle }) => {
 
   return (
     <header className="header-container">
-      <img src={image && image} alt="background image" />
+      <img src={image && image} alt="background" />
       <div className="header__texts">
         <h1>
           CIVI{' '}

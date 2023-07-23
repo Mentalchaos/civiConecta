@@ -9,7 +9,6 @@ const PlanificationForm = ({ type }) => {
   const planning = states.lesson.planning;
 
   const isEphemeries = type === 'ephemeris';
-  const isSituations = type === 'situations';
 
 
 

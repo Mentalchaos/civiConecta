@@ -5,7 +5,7 @@ const UnitsHeader = ({program}) => {
     return (
         <div>
             <div className='units-header-title'>
-                <img src={icon} />
+                <img alt="icon-civi" src={icon} />
                 <p>Unidades</p>
             </div>
             <div className='units-header-sub'>

@@ -17,13 +17,13 @@ const Question = () => {
 
   const { alternatives, title } = states;
 
-  const testForNull = alternatives.filter(data => data.description == '');
+  const testForNull = alternatives.filter(data => data.description === '');
   const disabledStyles = testForNull.length > 0 || title.length === 0 ? 'disabledStyle' : '';
 
   return (
     <main className="main-question-container">
       <div className="go-back-section">
-        <a className="link" href="#" onClick={handleBack}>Volver</a>
+        <a className="link" onClick={handleBack}>Volver</a>
       </div>
       <div>
         <div className="question-container">

@@ -3,7 +3,6 @@ import Button from '../Button';
 import Visible from '../Visible';
 import useForm from 'src/hooks/useForm';
 import './PlanningForm.css';
-import Situations from 'src/components/Events/Situations';
 
 const initialState = {
   title: '',
@@ -33,7 +32,6 @@ const PlanningForm = ({
 }) => {
   const { values, handleInputChange, reset, self } = useForm(initialState);
   const isEphemeris = type === 'ephemeris';
-  const isSituations = type === 'situations';
 
   const handleSubmit = evt => {
     evt.preventDefault();
