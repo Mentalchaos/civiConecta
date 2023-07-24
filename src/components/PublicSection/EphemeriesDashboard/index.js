@@ -28,6 +28,21 @@ const EphemeriesDashboard = () => {
     getEphemeries();
   }, []);
 
+  const convertToIsoDate = (dateStr) => {
+    const parts = dateStr.split('-');
+    if (parts.length === 3) {
+      const [day, month, year] = parts;
+      return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+    }
+    return null;
+  };
+
+  const sortedEvents = EphemeriesData.events && EphemeriesData.events.sort((a, b) => {
+    const dateA = convertToIsoDate(a.date);
+    const dateB = convertToIsoDate(b.date);
+    return dateA > dateB ? 1 : -1;
+  });
+
   return (
     <div className='ephemeris-section'>
       <button className='profile-back-container' onClick={() => window.history.back()}>
@@ -47,7 +62,8 @@ const EphemeriesDashboard = () => {
               <img className='book-icon' src={unitGreen} alt='' />
               <div className='ephemeris-info'>
                 <div className='ephemeris-desc-title'>Descripción:</div>
-                <div className='ephemeris-desc-text'>Nuestro programa incluye la planificación del siguiente listado de efemérides, de acuerdo con la
+                <div className='ephemeris-desc-text'>
+                  Nuestro programa incluye la planificación del siguiente listado de efemérides, de acuerdo con la
                   propuesta del Ministerio de Educación, en la resolución exenta nº 002329 que establece calendario
                   escolar para establecimientos educacionales de la Región Metropolitana.
                 </div>
@@ -58,7 +74,15 @@ const EphemeriesDashboard = () => {
       </div>
       <div className="dates-container">
         <div className="dates-section">
-          {EphemeriesData.events && EphemeriesData.events.map((data) => (
+          {/* {EphemeriesData.events && EphemeriesData.events.map((data) => (
+            <EphemerisDate
+              key={data.id}
+              id={data.id}
+              title={data.title}
+              date={data.date}
+            />
+          ))} */}
+          {sortedEvents && sortedEvents.map((data) => (
             <EphemerisDate
               key={data.id}
               id={data.id}

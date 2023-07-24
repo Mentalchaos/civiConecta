@@ -10,6 +10,7 @@ import './StudentSurvey.css';
 import config from 'src/config';
 import { setUserData, getUserData } from 'src/utils/user';
 import { rutValidator } from 'src/utils/rutValidator.js';
+import usePublicSection from 'src/components/PublicSection/hooks/usePublicSection';
 
 const StudentSurvey = () => {
   const [changeToFirstStep, setChangeToFirstStep] = useState(false);
@@ -45,7 +46,7 @@ const StudentSurvey = () => {
         };
 
         setUserData(saveData, uuid);
-
+       
         const userData = getUserData();
 
         const feedbackResponse = await fetch(`${config.baseURL}/feedback/student/${uuid}`, {
@@ -54,7 +55,7 @@ const StudentSurvey = () => {
             token: userData.token
           }
         });
-
+        
         if (feedbackResponse.ok) {
           setChangeToFirstStep(true);
         } else {
@@ -71,6 +72,9 @@ const StudentSurvey = () => {
   useEffect(() => {
     setChangeToFirstStep(false);
   }, []);
+
+
+
 
   const handleInserRutClick = async () => {
     if (rutValue.length < 8) {
@@ -89,6 +93,7 @@ const StudentSurvey = () => {
     return rutValidator(e) ? setIsValidRut(true) : setIsValidRut(false);
   };
 
+  
   const buttonStyle = {
     display: 'flex',
     flexDirection: 'row',

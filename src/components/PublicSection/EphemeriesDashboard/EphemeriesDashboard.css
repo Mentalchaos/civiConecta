@@ -10,7 +10,7 @@
   border: 1px solid #e1e1e1;
   border-radius: 20px;
   padding: 30px;
-  height: 130px;
+  height: 170px;
   width: 72%;
   margin: 3em 4em;
 }
@@ -101,6 +101,7 @@
 }
 
 .ephemeris-day {
+  height: 200px;
   border: 1px solid #e1e1e1;
   border-radius: 20px;
   padding: 12px 20px;

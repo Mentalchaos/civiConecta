@@ -16,6 +16,9 @@
   margin: 0;
 }
 
+.logo-content{
+  display: contents;
+}
 
 .logo-civi {
   width: 60%;
