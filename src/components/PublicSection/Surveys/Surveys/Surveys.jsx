@@ -47,13 +47,13 @@ const Surveys = ({ userType }) => {
             {() => (
               <Fragment>
                 <div className="progress-bar" style={{position: 'absolute'}}>
-                  <div className="line-vertical-wrapper" style={{ height: 500 }}>
+                  <div className="line-vertical-wrapper" style={{ height: 500, transform: 'rotate(-180deg)'}}>
                     <Progress.Line
                       status={states.percent > 98 ? "success" : "fail"}
                       style={{ height: '500px' }}
                       vertical
                       percent={states.percent}
-                      showInfo={true}
+                      showInfo={false}
                       strokeColor={'#d9687c'}
                     />
                   </div>

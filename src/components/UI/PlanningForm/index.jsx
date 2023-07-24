@@ -84,7 +84,7 @@ const PlanningForm = ({
       <div className="row">
           <div className="form-group w50">
             <label>Objetivo:</label>
-            <input onChange={handleInputChange} name="description" type="text" required />
+            <input onChange={handleInputChange} name="objective" type="text" required />
           </div>
         <Visible condition={!isEphemeris}>
           <div className="form-group w50">

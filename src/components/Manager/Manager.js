@@ -68,6 +68,7 @@ const Manager = () => {
             changeStage={changeStage}
             institutionSelected={institutionSelected}
             onHandleCourseSelected={handleCourseSelected}
+            establishment={establishment}
             title="Creaci&oacute;n de cursos"
           />
         )}

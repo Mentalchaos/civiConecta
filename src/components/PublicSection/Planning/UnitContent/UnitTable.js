@@ -67,11 +67,11 @@ const UnitTable = ({ planningData, title }) => {
               <td className='td td-right'>
                 <div>Docente:</div>
                 <br />
-                {materials?.student.map((data, key) => <div key={key} className='materials'>{`- ${data}`}</div>)}
+                {materials?.teacher.map((data, key) => <div key={key} className='materials'>{`- ${data}`}</div>)}
                 <br></br>
                 <div>Alumno:</div>
                 <br />
-                {materials?.teacher.map((data, key) => <div key={key} className='materials'>{`- ${data}`}</div>)}
+                {materials?.student.map((data, key) => <div key={key} className='materials'>{`- ${data}`}</div>)}
               </td>
             </tr>
 
