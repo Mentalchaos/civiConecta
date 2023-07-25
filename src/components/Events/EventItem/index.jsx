@@ -12,7 +12,6 @@ const EventItem = ({ id, title, description, files, editEvent, lessonId }) => {
     setters.setOpenModalDeleteEvent(true);
   };
 
-
   return (
     <div className="event-container">
       <div className="event-texts">

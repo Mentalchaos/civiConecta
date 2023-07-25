@@ -52,6 +52,7 @@ const Event = ({ eventType, onEditEvent }) => {
                 title={event.title}
                 description={event.description}
                 date={event.date}
+                files={event.files}
               />
             ))}
           </Loading>
