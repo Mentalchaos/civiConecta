@@ -1,7 +1,16 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import unitLogo from 'src/assets/Icons/unit-purple.svg';
+import unitLogoGreen from 'src/assets/Icons/unit-green.svg';
+import unitLogoPink from 'src/assets/Icons/unit-pink.svg';
+
+
 import brain from 'src/assets/Icons/heart-brain.svg';
+import brainPink from 'src/assets/Icons/heart-brain-pink.svg';
+import brainGreen from 'src/assets/Icons/heart-brain-green.svg';
+
+
 import goTo from 'src/assets/Icons/open-arrow.svg';
 import './UnitComponent.css';
 
@@ -23,20 +32,38 @@ const UnitComponent = ({ id, status, title, description, color, borderColor, num
     await updateStatus(id, uuid);
   }
 
+  const colors = {
+    'Completada': {
+      color: '#93c776',
+      imageBrain: brainGreen,
+      imageHat: unitLogoGreen
+    },
+    'En desarrollo': {
+      color: '#7468e2',
+      imageBrain: brain,
+      imageHat: unitLogo
+    },
+    'Pendiente': {
+      color: '#ea5f7b',
+      imageBrain: brainPink,
+      imageHat: unitLogoPink
+    }
+  }
+
   return (
-    <div className={`unit-component-container ${color}`}>
+    <div className={`unit-component-container ${color}`} style={{ border: `2px solid ${colors[statusType].color}` }}>
       <div className='unit-component-title'>
         <div>
-          <img src={unitLogo} alt='unit-logo' />
+          <img src={colors[statusType].imageHat} alt='unit-logo' />
         </div>
         <div className='unit-second-container' onClick={onClickStatus}>
           <p onClick={handleTextUnits}>{statusType}</p>
-          <img src={brain} alt='brain-logo' className='unit-brain' />
+          <img src={colors[statusType].imageBrain} alt='brain-logo' className='unit-brain' />
         </div>
       </div>
       <div className='component-info'>
         <p className='component-title'>Unidad {number} </p>
-        <p className={`component-subtitle ${borderColor}`}>{title}</p>
+        <p className={`component-subtitle ${borderColor}`} style={{ color: colors[statusType].color }}>{title}</p>
         <p className='component-description'>{description}</p>
       </div>
       <div onClick={() => navigate(`/public/units-dashboard/${id}`)} className='go-to-unit'>

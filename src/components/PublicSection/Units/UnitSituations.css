@@ -4,7 +4,7 @@
     height: 140px;
     display: flex;
     flex-direction: row;
-    border: 1px solid #7468e5;
+    border: 2px solid #7468e5;
     /* background-image: url('src/assets/Icons/purple-brain.svg'); */
 }
 

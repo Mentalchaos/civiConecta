@@ -76,6 +76,7 @@ const PublicSection = () => {
                       borderColor={data.borderColor}
                       handleTextUnits={() => handleTextUnits(data.id)}
                       textUnits={stateUnit[changeTextUnits[data.id] || 0]}
+                      unitStatus={data.status}
                       status={states.unitStatus[i].status}
                       updateStatus={actions.setNewStatus}
                       uuid={uuid}

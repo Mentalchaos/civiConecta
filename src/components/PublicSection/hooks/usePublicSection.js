@@ -62,8 +62,6 @@ const usePublicSection = () => {
           console.error(error);
         });
 
-
-
       if (status.student.completed && status.survey.completed && status.teacher.completed) {
         const ponderations = await services.getDataUnitPonderation(uuid).then(r => r.results);
         setUnitsPonderation(ponderations);
