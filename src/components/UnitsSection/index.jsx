@@ -20,7 +20,7 @@ const UnitsSection = () => {
 
   return (
     <UnitContext.Provider value={{ states, setters, actions }}>
-      <UnitLayout>
+      <UnitLayout eventType={'unit'}>
         <UnitSectionHeader onChange={handleLevelSelected} />
         <Visible condition={states.isLoading}>
           <div className="loading-wrapper">

@@ -21,6 +21,8 @@ const Planification = () => {
   const { lessonId, eventId, eventType } = useParams();
   const { states, setters, actions } = usePlanification(lessonId, eventId, eventType);
 
+  const typeEvent = eventType == undefined && 3;
+
   const handleCheckboxSelected = file => {
     actions.selectFile(file);
   };
@@ -43,7 +45,7 @@ const Planification = () => {
 
   return (
     <PlanificationContext.Provider value={{ states, setters, actions }}>
-      <UnitLayout eventType={eventType}>
+      <UnitLayout eventType={typeEvent || eventType}>
         <div className="planification-container">
           <Header />
           <ObjectiveDescription />
@@ -89,7 +91,7 @@ const Planification = () => {
             <Visible condition={states.lesson.planning}>
               {() => (
                 <PlanificationForm
-                  type={eventType == 1 ? 'situations' : 'ephemeris'}
+                  type={eventType}
                 />
               )}
             </Visible>

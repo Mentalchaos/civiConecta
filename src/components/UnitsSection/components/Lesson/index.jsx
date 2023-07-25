@@ -6,7 +6,7 @@ import arrow from 'src/assets/Icons/arrow-degree.svg';
 import './Lesson.css';
 
 const Lesson = ({ id, number, objective, files }) => {
-  const { actions } = useContext(UnitManagerContext);
+  const { actions, states, setters } = useContext(UnitManagerContext);
   const navigate = useNavigate();
 
   const handleDeleteLesson = () => {
@@ -14,6 +14,7 @@ const Lesson = ({ id, number, objective, files }) => {
   };
 
   const handleNavigation = () => {
+    setters.setType('unit');
     navigate(`/admin/lesson/${id}`);
   };
 

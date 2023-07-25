@@ -17,7 +17,7 @@ const UnitManager = () => {
 
   return (
     <UnitManagerContext.Provider value={{ states, setters, actions }}>
-      <UnitLayout>
+      <UnitLayout eventType={'unit'}>
         <UnitWrapper customClass="w100">
           <Loading isLoading={states.isLoading}>
             <UnitHeader

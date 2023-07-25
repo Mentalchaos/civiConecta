@@ -57,6 +57,7 @@ const useUnitManager = (unitId) => {
   const [isLoading, setIsLoading] = useState(false);
   const [modals, modalDispatcher] = useReducer(reduceModals, modalState);
   const [state, dispatcher] = useReducer(reduceUnit, initialState);
+  const [type, setType] = useState('');
   const wrapRequest = fetchLoading(setIsLoading);
 
   useEffect(() => {
@@ -73,6 +74,7 @@ const useUnitManager = (unitId) => {
   const self = {
     states: {
       isLoading,
+      type,
       modalAddOpened: modals.addLesson,
       unit: {
         id: state.id,
@@ -83,6 +85,7 @@ const useUnitManager = (unitId) => {
       }
     },
     setters: {
+      setType,
       openModalAddLesson() {
         modalDispatcher({ type: 'MODAL_ADD', payload: true });
       },

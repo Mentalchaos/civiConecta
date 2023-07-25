@@ -27,7 +27,7 @@
 .event-number {
   position: absolute;
   right: 35px;
-  top: -5px;
+  top: 10px;
   font-size: 12px;
   font-weight: 600;
   color: var(--gray-dark);
@@ -65,6 +65,7 @@
 .objective-description {
   font-family: 'Poppins';
   font-weight: 100;
+  margin: 0;
 }
 
 .event-go-planning {

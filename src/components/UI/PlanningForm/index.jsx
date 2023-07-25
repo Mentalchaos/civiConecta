@@ -6,7 +6,7 @@ import './PlanningForm.css';
 
 const initialState = {
   title: '',
-  description: 'null',
+  description: 'Sin descripcion',
   objective: 'null',
   teacherMaterials: '',
   studentMaterials: '',
@@ -48,8 +48,8 @@ const PlanningForm = ({
     };
     const payload = {
       title: values.title,
-      description: needDescription ? values.description : 'Sin descripcion',
-      objective: needObjectives ? values.objective : 'Sin objetivos',
+      description: values.description,
+      objective: values.description,
       date: values.date,
       grade: eventGradeSelected || null,
       number: type === 'class' ? values.number : null,
@@ -84,7 +84,7 @@ const PlanningForm = ({
       <div className="row">
           <div className="form-group w50">
             <label>Objetivo:</label>
-            <input onChange={handleInputChange} name="objective" type="text" required />
+            <input onChange={handleInputChange} name="description" type="text" required />
           </div>
         <Visible condition={!isEphemeris}>
           <div className="form-group w50">

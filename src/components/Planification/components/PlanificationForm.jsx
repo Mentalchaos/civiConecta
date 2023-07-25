@@ -8,9 +8,6 @@ const PlanificationForm = ({ type }) => {
   const { actions, states } = useContext(PlanificationContext);
   const planning = states.lesson.planning;
 
-  const isEphemeries = type === 'ephemeris';
-
-
 
   const { values, handleInputChange } = useForm({
     topic: planning.topic,
@@ -22,6 +19,7 @@ const PlanificationForm = ({ type }) => {
     endActivity: planning.endActivity,
     description: planning.description,
     date: states.lesson.date,
+    objective: states.lesson.description
   });
 
   const handleSubmit = evt => {
@@ -37,6 +35,7 @@ const PlanificationForm = ({ type }) => {
       endActivity: values.endActivity,
       description: values.description,
       date: values.date,
+      objective: values.description
     };
 
     actions.updatePlanification(payload);
@@ -48,7 +47,12 @@ const PlanificationForm = ({ type }) => {
         <label>Tema clase:</label>
         <input type="text" name="topic" value={values.topic} onChange={handleInputChange} />
       </div>
-      <Visible condition={!isEphemeries}>
+
+      <div className="form-group planning">
+        <label>Objetivo</label>
+        <input type="text" name="objective" value={values.objective} onChange={handleInputChange} />
+      </div>
+      <Visible condition={type != 2}>
         <div className="form-group planning">
           <label>Conceptos a tratar:</label>
           <input type="text" name="keywords" value={values.keywords} onChange={handleInputChange} />
@@ -87,7 +91,7 @@ const PlanificationForm = ({ type }) => {
         <label>Actividad de cierre:</label>
         <input type="text" name="endActivity" value={values.endActivity} onChange={handleInputChange} />
       </div>
-      <Visible condition={type === 'ephemeris'}>
+      <Visible condition={type == 2}>
         <div className="form-group planning">
           <label>Fecha:</label>
           <input placeholder="DIA-MES" type="text" name="date" value={values.date} onChange={handleInputChange} />
