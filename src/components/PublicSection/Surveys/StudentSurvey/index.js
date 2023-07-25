@@ -10,7 +10,6 @@ import './StudentSurvey.css';
 import config from 'src/config';
 import { setUserData, getUserData } from 'src/utils/user';
 import { rutValidator } from 'src/utils/rutValidator.js';
-import usePublicSection from 'src/components/PublicSection/hooks/usePublicSection';
 
 const StudentSurvey = () => {
   const [changeToFirstStep, setChangeToFirstStep] = useState(false);
@@ -18,6 +17,15 @@ const StudentSurvey = () => {
   const [rutValue, setRutValue] = useState('');
   const [catchError, setCatchError] = useState();
   const [isValidRut, setIsValidRut] = useState(false);
+  const [studentCompleted, setStudentCompleted] = useState('');
+
+  const checkIfSurveyIsCompleted = async () => {
+    const req =
+      await fetch(`${config.baseURL}/feedback/student/${rutValue}/status`, { 'Content-Type': 'application/json' })
+        .then(response => response.json());
+    return req.isSurveyFinished;
+  }
+
 
   useEffect(() => {
     localStorage.clear();
@@ -46,7 +54,6 @@ const StudentSurvey = () => {
         };
 
         setUserData(saveData, uuid);
-       
         const userData = getUserData();
 
         const feedbackResponse = await fetch(`${config.baseURL}/feedback/student/${uuid}`, {
@@ -55,7 +62,6 @@ const StudentSurvey = () => {
             token: userData.token
           }
         });
-        
         if (feedbackResponse.ok) {
           setChangeToFirstStep(true);
         } else {
@@ -74,12 +80,16 @@ const StudentSurvey = () => {
   }, []);
 
 
-
-
   const handleInserRutClick = async () => {
+    const checkedSurvey = await checkIfSurveyIsCompleted();
+    if (checkedSurvey == 1) {
+      return setStudentCompleted(true);
+    }
+
     if (rutValue.length < 8) {
       return;
     }
+    await setStudentCompleted(false);
     await checkUser();
   };
 
@@ -93,7 +103,6 @@ const StudentSurvey = () => {
     return rutValidator(e) ? setIsValidRut(true) : setIsValidRut(false);
   };
 
-  
   const buttonStyle = {
     display: 'flex',
     flexDirection: 'row',
@@ -121,7 +130,7 @@ const StudentSurvey = () => {
             <div className="students-right">
               <div className="students-text-container">
                 <div className="students-title-container">
-                  <img src={smileIcon} alt='smileIcon'/>
+                  <img src={smileIcon} alt='smileIcon' />
                   <p>¡Hola!</p>
                 </div>
                 <div className="students-info-container">
@@ -138,7 +147,7 @@ const StudentSurvey = () => {
                       onChange={(e) => handleRut(e.target.value)}
                     />
                   </div>
-                  {catchError  && (
+                  {catchError && (
                     <div className="id-two">
                       <img src={warning} alt='warning' />
                       <p>
@@ -148,18 +157,29 @@ const StudentSurvey = () => {
                       </p>
                     </div>
                   )}
+                  {studentCompleted && (
+                    <div className="id-two">
+                      <img src={warning} alt='warning' />
+                      <p>
+                        La encuesta al rut asociado se encuentra completada!
+                        <br />
+                        Si crees que esto es un error consultalo con tu profesor.
+                      </p>
+                    </div>
+                  )}
+
                 </div>
                 <div className="students-button">
                   <button onClick={handleInserRutClick} style={buttonStyle}>
                     Ingresar RUT
-                    <img src={arrow} alt='arrow'/>
+                    <img src={arrow} alt='arrow' />
                   </button>
                 </div>
               </div>
             </div>
           </div>
         )}
-        {changeToFirstStep && !isStartSurvey && <FirstStep  type={'student'} setIsStartSurvey={setIsStartSurvey} />}
+        {changeToFirstStep && !isStartSurvey && <FirstStep type={'student'} setIsStartSurvey={setIsStartSurvey} />}
         {isStartSurvey && <Surveys userType={'student'} />}
 
       </main>
