@@ -7,7 +7,7 @@ import './UnitComponent.css';
 
 const STATUS_TYPES = ['Pendiente', 'En desarrollo', 'Completada'];
 
-const UnitComponent = ({ id, status, title, description, color, borderColor, number, handleTextUnits, updateStatus, uuid }) => {
+const UnitComponent = ({ id, status, title, description, color, borderColor, number, handleTextUnits, updateStatus, uuid, isCustomPlanning }) => {
   const navigate = useNavigate();
   const setStatusText = () => STATUS_TYPES[status] || '-';
   const [statusType, setStatusType] = useState(setStatusText());

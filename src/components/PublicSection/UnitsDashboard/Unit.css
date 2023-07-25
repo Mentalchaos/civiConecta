@@ -1,9 +1,9 @@
 .unit {
   width: 100%;
-  height: 130px;
+  height: auto;
   border: 1px solid #e1e1e1;
   border-radius: 20px;
-  padding: 30px;
+  padding: 20px;
 }
 
 .unit-content {

@@ -20,6 +20,7 @@ const usePublicSection = () => {
   const [unitsPonderation, setUnitsPonderation] = useState([]);
   const navigate = useNavigate();
   const [uuid, setUuid] = useState('');
+  const [isCustomPlanning, setCustomPlanning] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -61,16 +62,21 @@ const usePublicSection = () => {
           console.error(error);
         });
 
+
+
       if (status.student.completed && status.survey.completed && status.teacher.completed) {
         const ponderations = await services.getDataUnitPonderation(uuid).then(r => r.results);
-        setUnitsPonderation(ponderations)
-      };
+        setUnitsPonderation(ponderations);
+        setCustomPlanning(true);
+
+      } else {
+        setUnitsPonderation([]);
+      }
 
       setUnits(units);
       setStatus(status);
       setUserData(info);
       setIsLoading(false);
-      setUnitsPonderation([]);
     };
 
     func();
@@ -88,6 +94,35 @@ const usePublicSection = () => {
     return updatedObj;
   };
 
+  let calculatedUnits = units;
+
+  if(unitsPonderation.length){
+    const ponderatedUnits = unitsPonderation.reduce((acc, item) => {
+      acc[item.unitId] = item.ponderation;
+      return acc;
+    }, {});
+
+    const orderedUnits = calculatedUnits.map(unit => {
+      const something = { ...unit, ponderation: ponderatedUnits[unit.id] };
+      return something;
+    });
+
+    orderedUnits.sort((a, b) => b.ponderation - a.ponderation);
+    calculatedUnits = orderedUnits;
+  }
+
+  if(unitStatus.length){
+    const unitStatusMap = unitStatus.reduce((acc, item) => {
+      acc[Number.parseInt(item.unitId)] = item.status;
+      return acc;
+    }, {});
+
+     calculatedUnits = calculatedUnits.map(unit => {
+      const something = { ...unit, status: unitStatusMap[unit.id] };
+      return something;
+    });
+  }
+
   return {
     setters: {
       setModalVisibility,
@@ -96,7 +131,7 @@ const usePublicSection = () => {
     },
     states: {
       status,
-      units,
+      units: calculatedUnits,
       userData,
       isModalShown,
       planificationType,
@@ -105,6 +140,7 @@ const usePublicSection = () => {
       unitsPonderation,
       showUnits,
       unitStatus,
+      isCustomPlanning,
       get isPlanificationEnabled() {
         return !status?.survey?.completed;
       },

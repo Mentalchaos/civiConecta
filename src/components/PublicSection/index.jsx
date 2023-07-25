@@ -24,27 +24,6 @@ const PublicSection = () => {
   const userData = getUserData();
   const uuid = userData.uuid;
 
-  const ponderationsObj = [{
-    title: 'Categoria 1',
-    unitId: 1,
-    ponderation: 0.9
-  },
-  {
-    title: 'Categoria 1',
-    unitId: 2,
-    ponderation: 0.6
-  },
-  {
-    title: 'Categoria 1',
-    unitId: 3,
-    ponderation: 1.5
-  },
-  {
-    title: 'Categoria 1',
-    unitId: 4,
-    ponderation: 1.1
-  }];
-
   const handleTextUnits = (unitId) => {
     setChangeTextUnits((prevState) => {
       const currentState = prevState[unitId] || 0;
@@ -84,9 +63,7 @@ const PublicSection = () => {
                       {changeOrder ? 'Ordenar por Ponderation' : 'Volver al Orden Original'}
                     </button> */}
                 </div>
-
                 <div className="units-components">
-                  {/* Esto es la forma original del codigo ya que "ponderations" ESTA HARDCOREADO */}
                   {states.units && states.unitStatus.length && states.units.map((data, i) => (
                     <UnitComponent
                       key={data.id}
@@ -102,6 +79,7 @@ const PublicSection = () => {
                       status={states.unitStatus[i].status}
                       updateStatus={actions.setNewStatus}
                       uuid={uuid}
+                      isCustomPlanning={states.isCustomPlanning}
                     />
                   ))}
                   <div className="units-components-two">
