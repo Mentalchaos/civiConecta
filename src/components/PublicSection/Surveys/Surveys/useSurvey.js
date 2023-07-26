@@ -78,6 +78,7 @@ const useSurvey = (userType) => {
           return setShowModal(true);
         }
 
+        this.sendData(userType);
         setCurrentQuestion(currentQuestion + 1);
       },
       saveAlternative(letter) {
