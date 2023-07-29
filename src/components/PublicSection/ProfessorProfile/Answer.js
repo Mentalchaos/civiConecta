@@ -2,11 +2,12 @@ import { getUserData } from 'src/utils/user';
 import config from 'src/config';
 import arrow from 'src/assets/Icons/open-arrow.svg';
 
-const Answer = ({ id, answer, onClick, setDataPieChart }) => {
+const Answer = ({ id, answer, onClick, setDataPieChart, setSelectedAnswer }) => {
 
   const newClick = async () => {
     await callData();
     await onClick();
+    await setSelectedAnswer(id);
   }
 
   const callData = async () => {

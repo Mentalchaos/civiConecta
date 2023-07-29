@@ -87,12 +87,11 @@
 .situations-search {
   display: flex;
   width: 76%;
-  margin-bottom: 2em;
+  margin: 3em 0;
 }
 
 .search-container {
   display: flex;
-  justify-content: space-between;
   width: 50%;
   align-items: center;
 }
@@ -100,7 +99,6 @@
 .search-info {
   align-items: center;
   display: flex;
-  justify-content: space-between;
   width: 25%;
 }
 
@@ -117,7 +115,7 @@
 }
 
 .search-input {
-  width: 70%;
+  width: 50%;
   border: 1px solid #e1e1e1;
   border-radius: 20px;
   display: flex;
@@ -125,7 +123,7 @@
 }
 
 .search-input input {
-  width: 76%;
+  width: 88%;
   border-radius: 20px;
   background: white;
   border: none;
@@ -229,4 +227,8 @@
 
 .search-info img {
   width: 30px;
+}
+
+.searcher {
+  margin-left: 10px !important;
 }

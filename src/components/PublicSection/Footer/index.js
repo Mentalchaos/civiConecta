@@ -21,7 +21,7 @@ const Footer = () => {
           </div>
           <div className='last-footer-container'>
             <p>Santiago, Chile.</p>
-            <p>® 2022, CiviConecta SpA. Todos los derechos reservados</p>
+            <p>® 2023, CiviConecta SpA. Todos los derechos reservados</p>
           </div>
         </div>
         <div className='social-container'>

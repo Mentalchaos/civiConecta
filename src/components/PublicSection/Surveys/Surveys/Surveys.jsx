@@ -54,7 +54,7 @@ const Surveys = ({ userType }) => {
                       vertical
                       percent={states.percent}
                       showInfo={false}
-                      strokeColor={'#d9687c'}
+                      strokeColor={'#7268db'}
                     />
                   </div>
                 </div>

@@ -15,7 +15,7 @@
   gap: 50px;
 }
 
-.survey-content__start > .content-start__image {
+.survey-content__start>.content-start__image {
   width: 50%;
   border-radius: 12px;
 }
@@ -95,11 +95,11 @@
   align-items: center;
 }
 
-.content-start__back-link > img {
+.content-start__back-link>img {
   width: 30px;
 }
 
-.content-start__back-link > a {
+.content-start__back-link>a {
   font-size: 14px;
   color: rgb(0, 0, 0, 0.9);
   text-decoration: none;
@@ -170,27 +170,27 @@
   padding-bottom: 12px;
 }
 
-.form__input > input[type='radio'] {
+.form__input>input[type='radio'] {
   display: none;
 }
 
-input[type='radio'] + label {
+input[type='radio']+label {
   cursor: pointer;
   font-size: 14px;
 }
 
-input[type='radio'] + label:before {
+input[type='radio']+label:before {
   content: '';
-  width: 20px;
+  width: 22px;
   height: 20px;
   float: left;
-  margin: 0 20px 0 0;
-  border: 1px solid var(--color-secondary);
+  margin: 1px 20px 0px 2px;
+  border: 1px solid var(--color-primary);
   border-radius: 100%;
   background: #fff;
 }
 
-input[type='radio']:checked + label:after {
+input[type='radio']:checked+label:after {
   content: '';
   width: 12px;
   height: 12px;
@@ -201,18 +201,18 @@ input[type='radio']:checked + label:after {
   background-color: var(--color-secondary);
 }
 
-input[type='radio'].student + label:before {
+input[type='radio'].student+label:before {
   content: '';
-  width: 20px;
+  width: 22px;
   height: 20px;
   float: left;
-  margin: 0 20px 0 0;
+  margin: 1px 20px 0px 2px;
   border: 1px solid var(--color-primary);
   border-radius: 100%;
   background: #fff;
 }
 
-input[type='radio'].student:checked + label:after {
+input[type='radio'].student:checked+label:after {
   content: '';
   width: 12px;
   height: 12px;
@@ -300,11 +300,11 @@ button.form__previous-question:disabled {
   text-align: center;
 }
 
-.text-content__success-message > span {
+.text-content__success-message>span {
   display: block;
 }
 
-.text-content__success-message.student > span {
+.text-content__success-message.student>span {
   color: var(--color-primary);
 }
 
@@ -418,7 +418,7 @@ button.form__previous-question:disabled {
   align-items: center;
 }
 
-.content-start__left > .image-container {
+.content-start__left>.image-container {
   background-image: url('src/assets/images/professorSurvey.jpg');
   width: 536px;
   height: 350px;

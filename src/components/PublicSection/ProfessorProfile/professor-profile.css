@@ -226,6 +226,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  margin-top: 14px;
 }
 
 .answer-alert-icon {
@@ -250,7 +251,7 @@
 .answer-status-button {
   display: flex;
   justify-content: flex-end;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .answer-status-button>button {

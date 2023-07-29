@@ -6,7 +6,9 @@ import './SurveyAnalysisModal.css';
 
 const colors = ['#54bfed', '#c275ef', '#2dba9f', '#f48e76'];
 
-const SurveyAnalysisModal = ({ onClick, dataPieChart }) => {
+const SurveyAnalysisModal = ({ onClick, dataPieChart, criticalData, id }) => {
+  const eaea = criticalData.find(data => data.questionId == id).description || '';
+
   return (
     <div className='analysis-modal-container'>
       <div className='analysis-modal'>
@@ -22,9 +24,7 @@ const SurveyAnalysisModal = ({ onClick, dataPieChart }) => {
           </div>
           <div className='analysis-modal-paragraph'>
             <p>
-              ¿Cómo calificarías tu capacidad para reconocer tus cualidades y habilidades, por ejemplo:
-              honestidad, respeto, sensibilidad, responsabilidad, solidaridad, comunicación, motivación,
-              paciencia, trabajo en equipo, etc.?
+              {eaea}
             </p>
           </div>
           <div className='data-pie-chart-container'>

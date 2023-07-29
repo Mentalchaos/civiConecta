@@ -22,26 +22,24 @@ const EphemeriesDashboard = () => {
       method: 'GET'
     })
     const data = await response.json()
-    setEphemeriesData(data)
+    setEphemeriesData(data.events)
   };
   useEffect(() => {
     getEphemeries();
   }, []);
 
-  const convertToIsoDate = (dateStr) => {
-    const parts = dateStr.split('-');
-    if (parts.length === 3) {
-      const [day, month, year] = parts;
-      return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
-    }
-    return null;
-  };
+  const compareDates = (a, b) => {
+    const [dayA, monthA] = a.date.split("-").map(Number);
+    const [dayB, monthB] = b.date.split("-").map(Number);
 
-  const sortedEvents = EphemeriesData.events && EphemeriesData.events.sort((a, b) => {
-    const dateA = convertToIsoDate(a.date);
-    const dateB = convertToIsoDate(b.date);
-    return dateA > dateB ? 1 : -1;
-  });
+    if (monthA !== monthB) {
+      return monthA - monthB;
+    }
+
+    return dayA - dayB;
+  }
+
+  EphemeriesData.sort(compareDates);
 
   return (
     <div className='ephemeris-section'>
@@ -74,15 +72,7 @@ const EphemeriesDashboard = () => {
       </div>
       <div className="dates-container">
         <div className="dates-section">
-          {/* {EphemeriesData.events && EphemeriesData.events.map((data) => (
-            <EphemerisDate
-              key={data.id}
-              id={data.id}
-              title={data.title}
-              date={data.date}
-            />
-          ))} */}
-          {sortedEvents && sortedEvents.map((data) => (
+          {EphemeriesData && EphemeriesData.map((data) => (
             <EphemerisDate
               key={data.id}
               id={data.id}

@@ -9,11 +9,12 @@
   width: 90%;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
-  height: 160px;
+  height: 200px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  position: relative;
 }
 
 .footer-logo {
@@ -75,6 +76,10 @@
 
 .last-footer-container {
   margin-top: 40px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10px;
 }
 
 @media (max-width: 1024px) {

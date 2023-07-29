@@ -9,7 +9,7 @@ import Visible from 'src/components/UI/Visible';
 
 const values = ["Estudiante", "Nombre", "Rut", "Encuesta", "Porcentaje Encuesta"];
 
-const StudentNomina = ({ onClick, setDataPieChart }) => {
+const StudentNomina = ({ onClick, setDataPieChart, setSelectedAnswer }) => {
 
   const [studentData, setStudentData] = useState([]);
 
@@ -35,7 +35,7 @@ const StudentNomina = ({ onClick, setDataPieChart }) => {
 
   return (
     <div className="student-nomina-container">
-      <CriticalAnswers setDataPieChart={setDataPieChart} onClick={onClick} />
+      <CriticalAnswers setSelectedAnswer={setSelectedAnswer} setDataPieChart={setDataPieChart} onClick={onClick} />
       <Visible condition={studentData.length}>
         <div className='student-nomina-title'>
           <img className='student-nomina-icon' src={listIcon} alt='img' />

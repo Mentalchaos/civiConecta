@@ -5,7 +5,7 @@ import Answer from './Answer';
 import criticalIcon from 'src/assets/Icons/critical-icon.svg';
 import Visible from 'src/components/UI/Visible';
 
-const CriticalAnswers = ({ onClick, setDataPieChart }) => {
+const CriticalAnswers = ({ onClick, setDataPieChart, setSelectedAnswer }) => {
 
   const [criticalData, setCriticalData] = useState([]);
 
@@ -44,6 +44,7 @@ const CriticalAnswers = ({ onClick, setDataPieChart }) => {
                 answer={data.description}
                 onClick={onClick}
                 setDataPieChart={setDataPieChart}
+                setSelectedAnswer={setSelectedAnswer}
               />)
           }
         </div>
