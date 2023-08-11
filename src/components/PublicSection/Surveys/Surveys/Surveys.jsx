@@ -25,13 +25,21 @@ const Surveys = ({ userType }) => {
   const uuid = userData.uuid;
 
   const finishUser = () => {
-    fetch(`${config.baseURL}/feedback/${userType}/${uuid}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        token: userData.token
-      },
-    })
+    const totalQuestions = states.questions.length;
+    const totalAlternatives = Object.keys(states.savedAlternatives).length;
+
+    if(totalQuestions == totalAlternatives){
+      fetch(`${config.baseURL}/feedback/${userType}/${uuid}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          token: userData.token
+        },
+      })
+    } else {
+      return alert('Debes completar todas tus preguntas antes de poder cerrar la encuesta');
+    }
+
     actions.completedSurvey();
   }
 
@@ -54,7 +62,7 @@ const Surveys = ({ userType }) => {
                       vertical
                       percent={states.percent}
                       showInfo={false}
-                      strokeColor={'#7268db'}
+                      strokeColor={userType == 'student' ? '#7268db' : '#ec5f7b'}
                     />
                   </div>
                 </div>
