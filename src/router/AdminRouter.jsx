@@ -13,6 +13,15 @@ import { AdminGuard } from './guard/admin.guard';
 import Situations from 'src/components/Events/Situations';
 import Ephemeris from 'src/components/Events/Ephemeris';
 
+
+// @TODO: Fix this
+// window.sse = new EventSource('http://errcake.ngrok.io/stream-events');
+
+// window.sse.onmessage = (event) => {
+//   const data = JSON.parse(event.data);
+//   console.log(data);
+// };
+
 const AdminRouter = () => {
   return (
     <Fragment>

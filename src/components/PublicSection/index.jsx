@@ -54,7 +54,6 @@ const PublicSection = () => {
               <Visible condition={states.isPlanificationEnabled}>
                 <Plan />
               </Visible>
-
               <Visible condition={(states.status.student.completed === true && states.status.teacher.completed === true) || (states.showUnits === true)}>
               <div className="units-cont">
                 <UnitsHeader program={planningPrograms[1].program} />
@@ -90,15 +89,15 @@ const PublicSection = () => {
                 </div>
               </div>
               </Visible>
-              <LinkGenerator data={links.needLink} />
-              {/*
-              // TODO: Reactivar si corresponde mas adelante
-              <Visible condition={states.isCustomPlanification}>
+              <Visible condition={!states.status.student.completed}>
+                <LinkGenerator data={links.needLink} />
+              </Visible>
+              {/* <Visible condition={states.isCustomPlanification}>
                 <LinkGenerator
                   data={links.standardPlanification}
                   onClick={actions.setStandardPlanification}
-                /> */
-              }
+                />
+              </Visible> */}
               <Visible condition={states.isStandardPlanification}>
                 <LinkGenerator
                   data={links.customPlanification}
