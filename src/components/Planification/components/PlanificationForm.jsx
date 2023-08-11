@@ -27,7 +27,7 @@ const PlanificationForm = ({ type }) => {
 
     const payload = {
       topic: values.topic,
-      keywords: values.keywords.split(','),
+      keywords: values.keywords,
       studentMaterials: values.studentMaterials,
       teacherMaterials: values.teacherMaterials,
       startActivity: values.startActivity,
@@ -39,6 +39,7 @@ const PlanificationForm = ({ type }) => {
     };
 
     actions.updatePlanification(payload);
+    alert('Se han guardado sus cambios!');
   };
 
   return (
