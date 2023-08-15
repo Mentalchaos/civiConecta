@@ -1,11 +1,13 @@
 import { useParams } from 'react-router-dom';
 import UnitPlanification from './UnitPlanification.jsx';
+import EphemerisPlanification from './EphemerisPlanification.jsx';
+import SituationsPlanification from './SituationsPlanification.jsx';
 import './Planification.v2.css';
 
 const PlanificationTypes = {
   unit: UnitPlanification,
-  // situations: PlanificationForm,
-  // ephemeris: PlanificationForm
+  ephemeris: EphemerisPlanification,
+  situations: SituationsPlanification,
 };
 
 const Planification = () => {

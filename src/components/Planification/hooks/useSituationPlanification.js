@@ -4,7 +4,7 @@ import * as fileRequest from 'src/services/admin/files.request.js';
 import { createUUID } from 'src/utils/uuid';
 
 
-const useUnitPlanification = (lessonId) => {
+const useSituationPlanification = (lessonId) => {
   const [loading, setLoading] = useState(false);
   const [files, setFiles] = useState([]);
   const [lesson, setLesson] = useState({});
@@ -15,6 +15,7 @@ const useUnitPlanification = (lessonId) => {
   const [startActivity, setStartActivity] = useState('');
   const [mainActivity, setMainActivity] = useState('');
   const [endActivity, setEndActivity] = useState('');
+  const [description, setDescription] = useState('');
   const [objective, setObjective] = useState('');
   const [selectedDocument, setSelectedDocument] = useState({});
 
@@ -27,6 +28,7 @@ const useUnitPlanification = (lessonId) => {
       const currentLesson = response.lesson;
 
       setFiles(documents);
+      setDescription(currentLesson.description);
       setLesson(currentLesson);
       setTopic(currentLesson.planning.topic);
       setKeywords(currentLesson.planning.keywords.join(','));
@@ -50,6 +52,7 @@ const useUnitPlanification = (lessonId) => {
       lesson,
       files,
       selectedDocument,
+      description,
       planning: {
         topic,
         keywords,
@@ -86,6 +89,7 @@ const useUnitPlanification = (lessonId) => {
             startActivity: setStartActivity,
             mainActivity: setMainActivity,
             endActivity: setEndActivity,
+            description: setDescription,
             objective: setObjective
           };
 
@@ -112,7 +116,8 @@ const useUnitPlanification = (lessonId) => {
           startActivity,
           mainActivity,
           endActivity,
-          objective
+          objective,
+          description
         };
 
         return lessonRequest.updateLesson(lessonId, payload);
@@ -149,4 +154,4 @@ const useUnitPlanification = (lessonId) => {
   };
 };
 
-export default useUnitPlanification;
+export default useSituationPlanification;

@@ -39,8 +39,6 @@ const PlanificationForm = ({ type }) => {
       objective: values.objective
     };
 
-    console.log('payload', payload);
-
     actions.updatePlanification(payload);
     alert('Se han guardado sus cambios!');
   };

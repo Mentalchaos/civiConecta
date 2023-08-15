@@ -1,7 +1,6 @@
 
 import { PlanificationContext } from './context';
-import useEphemerisPlanification from './hooks/useUnitPlanification';
-import ObjectiveDescription from './components/ObjectiveDescription';
+import useEphemerisPlanification from './hooks/useEphemerisPlanification';
 import Visible from 'src/components/UI/Visible';
 import UnitLayout from 'src/Layouts/UnitLayout';
 import Loading from '../UI/Loading';
@@ -16,10 +15,9 @@ const EphemerisPlanification = ({ lessonId }) => {
   return (
     <PlanificationContext.Provider value={{ states, setters, actions }}>
     <div>
-      <UnitLayout eventType="unit">
+      <UnitLayout eventType="ephemeris">
         <div className="planification-container">
           <Header />
-          <ObjectiveDescription />
           <div className="planification__files">
             <Visible condition={!states.documentQuantity}>
               <h1>No se registran archivos.</h1>

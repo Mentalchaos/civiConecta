@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { PlanificationContext } from '../context';
 
-const EphemerisPlanificationForm = () => {
+const SituationsPlanificationForm = () => {
   const { actions, setters, states } = useContext(PlanificationContext);
   const planning = states.planning;
 
@@ -98,15 +98,7 @@ const EphemerisPlanificationForm = () => {
           onChange={setters.changeField('endActivity')}
         />
       </div>
-      <div className="form-group planning">
-        <label>Fecha:</label>
-        <input
-          type="text"
-          name="date"
-          value={states.date}
-          onChange={setters.changeField('date')}
-        />
-      </div>
+
       <div>
         <input
           className="form-group button"
@@ -119,6 +111,6 @@ const EphemerisPlanificationForm = () => {
   );
 };
 
-EphemerisPlanificationForm.displayName = 'EphemerisPlanificationForm';
+SituationsPlanificationForm.displayName = 'SituationsPlanificationForm';
 
-export default EphemerisPlanificationForm;
+export default SituationsPlanificationForm;
