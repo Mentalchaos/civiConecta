@@ -8,10 +8,10 @@ const ObjectiveDescription = () => {
     <Fragment>
       <input
         className="planning__oa-detail"
-        name="objective"
+        name="description"
         value={states.description}
         type="text"
-        placeholder="Detalle Objetivo"
+        placeholder="Descripcion"
         onChange={setters.changeField('description')}
       />
     </Fragment>

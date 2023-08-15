@@ -28,6 +28,7 @@ const useUnitPlanification = (lessonId) => {
       const currentLesson = response.lesson;
 
       setFiles(documents);
+      setDescription(currentLesson.description);
       setLesson(currentLesson);
       setTopic(currentLesson.planning.topic);
       setKeywords(currentLesson.planning.keywords.join(','));

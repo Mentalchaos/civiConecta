@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { PlanificationContext } from '../context';
 
-const UnitPlanificationForm = () => {
+const EphemerisPlanificationForm = () => {
   const { actions, setters, states } = useContext(PlanificationContext);
   const planning = states.planning;
 
@@ -111,4 +111,6 @@ const UnitPlanificationForm = () => {
   );
 };
 
-export default UnitPlanificationForm;
+EphemerisPlanificationForm.displayName = 'EphemerisPlanificationForm';
+
+export default EphemerisPlanificationForm;
