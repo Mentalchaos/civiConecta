@@ -1,14 +1,14 @@
 import { useLocation } from 'react-router-dom';
 import './SectionsHeader.css';
 
+const EventTypes = {
+  1: 'Situaciones Emergentes',
+  2: 'Efemerides',
+  3: 'Unidades'
+};
+
 const SectionsHeader = ({ image, subtitle }) => {
   const location = useLocation();
-
-  const eventTypes = {
-    1: 'Situaciones Emergentes',
-    2: 'Efemerides',
-    3: 'Unidades'
-  }
 
   return (
     <header className="header-container">
@@ -22,7 +22,7 @@ const SectionsHeader = ({ image, subtitle }) => {
             admin
           </span>
         </h1>
-        <p>{eventTypes[subtitle]}</p>
+        <p>{EventTypes[subtitle]}</p>
       </div>
     </header>
   );

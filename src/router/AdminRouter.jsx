@@ -53,7 +53,10 @@ const AdminRouter = () => {
           />
           <Route path="situations" element={<Situations />} />
           <Route path="ephemeris" element={<Ephemeris />} />
-          <Route path="lesson/:lessonId" element={<Planification />} />
+          <Route
+            path=":parentType/lesson/:lessonId"
+            element={<Planification />}
+          />
           <Route path="*" element={<Navigate to="dashboard" />} />
         </Route>
       </Routes>

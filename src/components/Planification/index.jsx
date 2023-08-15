@@ -8,6 +8,7 @@ import Loading from '../UI/Loading';
 import FileUploader from './components/FileUploader';
 import Header from './components/Header';
 import ObjectiveDescription from './components/ObjectiveDescription';
+import UnitPlanificationForm from './components/UnitPlanificationForm';
 import PlanificationForm from './components/PlanificationForm';
 import { PlanificationContext } from './context';
 import usePlanification from './hooks/usePlanification';
@@ -17,11 +18,20 @@ const styles = {
   table: { marginTop: 10 },
 };
 
-const Planification = () => {
-  const { lessonId, eventId, eventType } = useParams();
-  const { states, setters, actions } = usePlanification(lessonId, eventId, eventType);
+const ParentTypes = {
+  unit: 3
+};
 
-  const typeEvent = eventType == undefined && 3;
+const PlanificationTypes = {
+  unit: UnitPlanificationForm,
+  situations: PlanificationForm,
+  ephemeris: PlanificationForm
+};
+
+const Planification = () => {
+  const { lessonId, parentType } = useParams();
+  const { states, setters, actions } = usePlanification(lessonId, parentType);
+  const typeEvent = ParentTypes[parentType];
 
   const handleCheckboxSelected = file => {
     actions.selectFile(file);
@@ -45,7 +55,7 @@ const Planification = () => {
 
   return (
     <PlanificationContext.Provider value={{ states, setters, actions }}>
-      <UnitLayout eventType={typeEvent || eventType}>
+      <UnitLayout eventType={3}>
         <div className="planification-container">
           <Header />
           <ObjectiveDescription />
@@ -89,11 +99,10 @@ const Planification = () => {
           <div className="planification__form">
             <h1 className="planification-title">Planificación</h1>
             <Visible condition={states.lesson.planning}>
-              {() => (
-                <PlanificationForm
-                  type={eventType}
-                />
-              )}
+              {() => {
+                const Component = PlanificationTypes[parentType];
+                return (<Component />);
+              }}
             </Visible>
           </div>
         </div>

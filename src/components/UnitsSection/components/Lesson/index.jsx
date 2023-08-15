@@ -15,7 +15,7 @@ const Lesson = ({ id, number, objective, files }) => {
 
   const handleNavigation = () => {
     setters.setType('unit');
-    navigate(`/admin/lesson/${id}`);
+    navigate(`/admin/unit/lesson/${id}`);
   };
 
   return (
