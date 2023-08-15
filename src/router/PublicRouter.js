@@ -8,7 +8,7 @@ import ProfessorProfile from 'src/components/PublicSection/ProfessorProfile';
 import CompletedSurvey from 'src/components/PublicSection/Surveys/CompletedSurvey/CompletedSurvey';
 import Results from 'src/components/PublicSection/Results';
 import SituationsDashboard from 'src/components/PublicSection/SituationsDashboard';
-import EphemeriesDashboard from 'src/components/PublicSection/EphemeriesDashboard';
+import EphemerisDashboard from 'src/components/PublicSection/EphemerisDashboard';
 import Planning from 'src/components/PublicSection/Planning';
 import UnitsDashboard from 'src/components/PublicSection/UnitsDashboard';
 
@@ -23,7 +23,7 @@ const PublicRouter = () => {
           <Route exact path="/share-survey" element={<ShareSurvey />} />
           <Route exact path="/results" element={<Results />} />
           <Route exact path="/situations-dashboard/:gradeId" element={<SituationsDashboard />} />
-          <Route exact path="/ephemeries-dashboard/:gradeId" element={<EphemeriesDashboard />} />
+          <Route exact path="/ephemeris-dashboard/:gradeId" element={<EphemerisDashboard />} />
           <Route exact path="/professor-survey" element={<ProfessorSurvey />} />
           <Route exact path="/professor-profile" element={<ProfessorProfile />} />
           <Route exact path="/not-found" element={<NotFound />} />

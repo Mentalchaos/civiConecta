@@ -9,11 +9,11 @@ import unitGreen from '../../../assets/Icons/unit-blueligth.svg';
 import './EphemeriesDashboard.css';
 import { useParams } from 'react-router-dom';
 
-const EphemeriesDashboard = () => {
-  const [EphemeriesData, setEphemeriesData] = useState([]);
+const EphemerisDashboard = () => {
+  const [EphemerisData, setEphemerisData] = useState([]);
   const { gradeId } = useParams();
 
-  const getEphemeries = async () => {
+  const getEphemeris = async () => {
     const baseUrl = `${config.baseURL}/events/2/grade/${gradeId}`;
     const response = await fetch(baseUrl, {
       headers: {
@@ -23,10 +23,10 @@ const EphemeriesDashboard = () => {
       method: 'GET'
     })
     const data = await response.json()
-    setEphemeriesData(data.events)
+    setEphemerisData(data.events)
   };
   useEffect(() => {
-    getEphemeries();
+    getEphemeris();
   }, []);
 
   const compareDates = (a, b) => {
@@ -40,7 +40,7 @@ const EphemeriesDashboard = () => {
     return dayA - dayB;
   }
 
-  EphemeriesData.sort(compareDates);
+  EphemerisData.sort(compareDates);
 
   return (
     <div className='ephemeris-section'>
@@ -73,7 +73,7 @@ const EphemeriesDashboard = () => {
       </div>
       <div className="dates-container">
         <div className="dates-section">
-          {EphemeriesData && EphemeriesData.map((data) => (
+          {EphemerisData && EphemerisData.map((data) => (
             <EphemerisDate
               key={data.id}
               id={data.id}
@@ -88,4 +88,4 @@ const EphemeriesDashboard = () => {
   )
 }
 
-export default EphemeriesDashboard;
+export default EphemerisDashboard;

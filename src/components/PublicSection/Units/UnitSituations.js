@@ -1,13 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import emergent from 'src/assets/images/emergent.jpg';
-import ephemeries from 'src/assets/images/calendar-emergent.png';
+import ephemeris from 'src/assets/images/calendar-emergent.png';
 import goTo from 'src/assets/Icons/open-arrow.svg';
 import './UnitSituations.css';
 
 const UnitSituations = ({ title, to }) => {
   const navigate = useNavigate();
-  const img = title === "Situaciones emergentes" ? emergent : ephemeries;
+  const img = title === "Situaciones emergentes" ? emergent : ephemeris;
 
   return (
     <div className='unit-situations-container'>

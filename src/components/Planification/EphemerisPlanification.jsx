@@ -8,7 +8,7 @@ import Loading from '../UI/Loading';
 import FileUploader from './components/FileUploader';
 import Header from './components/Header';
 import PlanningFiles from './PlanningFiles';
-import EphemerisPlanificationForm from './components/EphemeriesPlanificationForm';
+import EphemerisPlanificationForm from './components/EphemerisPlanificationForm';
 
 const EphemerisPlanification = ({ lessonId }) => {
   const { states, setters, actions } = useEphemerisPlanification(lessonId);

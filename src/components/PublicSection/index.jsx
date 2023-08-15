@@ -89,7 +89,7 @@ const PublicSection = () => {
                   ))}
                   <div className="units-components-two">
                     <UnitSituations title={'Situaciones emergentes'} to={`/public/situations-dashboard/${states.userData.gradeId}`} />
-                    <UnitSituations title={'Efemerides'} to={`/public/ephemeries-dashboard/${states.userData.gradeId}`} />
+                    <UnitSituations title={'Efemerides'} to={`/public/ephemeris-dashboard/${states.userData.gradeId}`} />
                   </div>
                 </div>
               </div>
