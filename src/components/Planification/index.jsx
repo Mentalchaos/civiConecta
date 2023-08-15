@@ -28,6 +28,10 @@ const PlanificationTypes = {
   ephemeris: PlanificationForm
 };
 
+// la idea aqui sera quitar toda la logica de estados y solo dejar los componentes
+// sin estado, no importa si se dibuja todo, despues yo ire incorporando la logica
+// de los hooks en este componente
+
 const Planification = () => {
   const { lessonId, parentType } = useParams();
   const { states, setters, actions } = usePlanification(lessonId, parentType);
