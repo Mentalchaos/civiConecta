@@ -35,13 +35,7 @@ const PlanificationTypes = {
 
 const Planification = () => {
   const { lessonId, parentType } = useParams();
-
   const { states, setters, actions } = useUnitPlanification(lessonId);
-
-
-  console.log('states', states);
-  console.log('setters', setters);
-  console.log('actions', actions);
 
   // const typeEvent = ParentTypes[parentType];
 
@@ -65,7 +59,17 @@ const Planification = () => {
     // actions.deleteFile();
   };
 
-  return <p>hello world</p>;
+  return (
+    <PlanificationContext.Provider value={{ states, setters, actions }}>
+    <div>
+      <UnitLayout eventType={3}>
+        <div className="planification-container">
+          <Header />
+        </div>
+      </UnitLayout>
+    </div>
+    </PlanificationContext.Provider>
+  )
 
   // return (
   //   <PlanificationContext.Provider value={{ states, setters, actions }}>

@@ -4,29 +4,21 @@ import Visible from 'src/components/UI/Visible';
 import arrowIcon from 'src/assets/Icons/arrow-down.svg';
 import './Header.css';
 
+
+const handleGoBack = () => window.history.back();
+
+
 const Header = () => {
   const { states } = useContext(PlanificationContext);
   const lesson = states.lesson;
 
-  const handleGoBack = () => {
-    window.history.back();
-  };
-
   return (
     <div className="event-header">
       <div className="header-info">
-        <Visible condition={lesson.eventType}>
-          <h3 className="class-title">{lesson.title}</h3>
-          <span className="class-files">
-            {states.files?.length} documentos totales en esta clase.
-          </span>
-        </Visible>
-        <Visible condition={lesson.number}>
-          <h3 className="class-title">Clase {lesson.number}</h3>
-          <span className="class-files">
-            {states.files?.length} documentos totales en esta clase.
-          </span>
-        </Visible>
+        <h3 className="class-title">Clase {lesson.number}</h3>
+        <span className="class-files">
+          {states.documentQuantity} documentos totales en esta clase.
+        </span>
       </div>
       <img
         onClick={handleGoBack}

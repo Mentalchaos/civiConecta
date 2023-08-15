@@ -60,6 +60,9 @@ const useUnitPlanification = (lessonId) => {
       },
       get withoutFiles() {
         return !loading && !files.length;
+      },
+      get documentQuantity() {
+        return files.length;
       }
     },
     setters: {

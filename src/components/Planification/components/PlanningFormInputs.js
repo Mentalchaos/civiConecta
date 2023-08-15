@@ -1,3 +1,5 @@
+import Visible from "src/components/UI/Visible";
+
 const PlanningFormInputs = () => {
   return (
     <form className="planning-form" /*onSubmit={handleSubmit} */>
