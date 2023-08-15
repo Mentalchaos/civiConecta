@@ -19,10 +19,6 @@ const styles = {
   table: { marginTop: 10 },
 };
 
-const ParentTypes = {
-  unit: 3
-};
-
 const PlanificationTypes = {
   unit: UnitPlanificationForm,
   situations: PlanificationForm,
@@ -62,14 +58,62 @@ const Planification = () => {
   return (
     <PlanificationContext.Provider value={{ states, setters, actions }}>
     <div>
-      <UnitLayout eventType={3}>
+      <UnitLayout eventType={parentType}>
         <div className="planification-container">
           <Header />
+          <ObjectiveDescription />
+          <div className="planification__files">
+            <Visible condition={!states.documentQuantity}>
+              <h1>No se registran archivos.</h1>
+            </Visible>
+            <Loading isLoading={states.loading}>
+              <Visible condition={states.documentQuantity}>
+                <div className="table-section">
+                  <Table
+                    style={styles.table}
+                    handleCheckboxSelected={handleCheckboxSelected}
+                    data={[]}
+                    dataDisplayed={[]}
+                    dataHeader={['uuid', 'Nombre']}
+                  />
+                  <Visible condition={states.rowSelected}>
+                    <div className="content__difused planning-section">
+                      <Button
+                        disabled={true}
+                        onClick={handleDownload}
+                        customClasses="button primary"
+                      >
+                        Descargar
+                      </Button>
+                      <Button
+                        disabled={true}
+                        onClick={handleDelete}
+                        customClasses="button delete"
+                      >
+                        Eliminar
+                      </Button>
+                    </div>
+                  </Visible>
+                </div>
+              </Visible>
+              {/*<FileUploader />*/}
+            </Loading>
+          </div>
+          <div className="planification__form">
+             <h1 className="planification-title">Planificación</h1>
+             <Visible condition={true}>
+               {() => {
+                 // const Component = PlanificationTypes[parentType];
+                 // return (<Component />);
+                  return null;
+               }}
+             </Visible>
+         </div>
         </div>
       </UnitLayout>
     </div>
     </PlanificationContext.Provider>
-  )
+  );
 
   // return (
   //   <PlanificationContext.Provider value={{ states, setters, actions }}>

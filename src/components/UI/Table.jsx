@@ -34,20 +34,20 @@ const Table = ({
   return (
     <Fragment>
       <table className={cls}  {...props}>
+        <thead style={headStyle} >
+          <tr>
+            {displayCheckbox && <th style={styles.td}></th>}
+            {dataHeader.map(headerName => (
+              <th key={headerName}>{headerName}</th>
+            ))}
+          </tr>
+        </thead>
         <tbody>
-          <thead style={headStyle} >
-            <tr>
-              {displayCheckbox && <th style={styles.td}></th>}
-              {dataHeader.map(headerName => (
-                <th key={headerName}>{headerName}</th>
-              ))}
-            </tr>
-          </thead>
           {dataDisplayed.map((obj, index) => {
             return (
               <tr key={index} >
                 {displayCheckbox && (
-                  <td >
+                  <td>
                     <input
                       onChange={e => {
                         onSelectedChange(index);

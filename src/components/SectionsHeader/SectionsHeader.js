@@ -2,9 +2,9 @@ import { useLocation } from 'react-router-dom';
 import './SectionsHeader.css';
 
 const EventTypes = {
-  1: 'Situaciones Emergentes',
-  2: 'Efemerides',
-  3: 'Unidades'
+  unit: 'Unidades',
+  situations: 'Situaciones Emergentes',
+  ephemeris: 'Efemerides'
 };
 
 const SectionsHeader = ({ image, subtitle }) => {
