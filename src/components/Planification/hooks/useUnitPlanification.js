@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import * as lessonRequest from 'src/services/admin/lesson.request.js';
+import * as fileRequest from 'src/services/admin/files.request.js';
+import { createUUID } from 'src/utils/uuid';
 
 
 const useUnitPlanification = (lessonId) => {
@@ -15,6 +17,7 @@ const useUnitPlanification = (lessonId) => {
   const [endActivity, setEndActivity] = useState('');
   const [description, setDescription] = useState('');
   const [objective, setObjective] = useState('');
+  const [selectedDocument, setSelectedDocument] = useState({});
 
   useEffect(() => {
     async function fn() {
@@ -47,6 +50,8 @@ const useUnitPlanification = (lessonId) => {
       loading,
       lesson,
       files,
+      selectedDocument,
+      description,
       planning: {
         topic,
         keywords,
@@ -55,7 +60,6 @@ const useUnitPlanification = (lessonId) => {
         startActivity,
         mainActivity,
         endActivity,
-        description,
         objective
       },
       get withoutFiles() {
@@ -63,11 +67,19 @@ const useUnitPlanification = (lessonId) => {
       },
       get documentQuantity() {
         return files.length;
+      },
+      get documents() {
+        return files.map(f => {
+          return {
+            uuid: f.uuid,
+            Nombre: f.filename
+          }
+        });
       }
     },
     setters: {
       changeField(fieldName) {
-        return (value) => {
+        return (evt) => {
           const mutators = {
             topic: setTopic,
             keywords: setKeywords,
@@ -80,26 +92,62 @@ const useUnitPlanification = (lessonId) => {
             objective: setObjective
           };
 
-          return mutators[fieldName](value);
+          return mutators[fieldName](evt.target.value);
         };
+      },
+      selectDocument(document) {
+        setSelectedDocument(document);
       }
     },
     actions: {
       async updatePlanification() {
-        const separator = /(,|-)/;
+        const toArray = (txt) => {
+          const separator = /[,-]/g;
+          const trim = x => x.trim();
+          return txt.split(separator).map(trim);
+        };
 
         const payload = {
           topic,
-          keywords: keywords.split(separator),
-          studentMaterials: studentMaterials.split(separator),
-          teacherMaterials: teacherMaterials.split(separator),
+          keywords: toArray(keywords),
+          studentMaterials: toArray(studentMaterials),
+          teacherMaterials: toArray(teacherMaterials),
           startActivity,
           mainActivity,
           endActivity,
-          objective
+          objective,
+          description
         };
 
         return lessonRequest.updateLesson(lessonId, payload);
+      },
+      async downloadFile() {
+        const response = await fileRequest.downloadFile(
+          selectedDocument.uuid,
+          selectedDocument.filename
+        );
+        const content = await response.blob();
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(content);
+        link.download = selectedDocument.filename;
+        link.click();
+      },
+      async deleteFile() {
+        await fileRequest.deleteFile(selectedDocument.uuid);
+        setFiles(files.filter(f => f.uuid !== selectedDocument.uuid));
+        setSelectedDocument({});
+      },
+      async uploadFile(fileData) {
+        setLoading(true);
+
+        const formData = new FormData();
+        formData.append('originalFilename', fileData.name);
+        formData.append('file', fileData);
+
+        const response = await fileRequest.uploadByLesson(lessonId, formData);
+
+        setFiles([...files, response.file]);
+        setLoading(false);
       }
     }
   };

@@ -7,6 +7,8 @@ const styles = {
   // td: { width: '40em' }
 };
 
+// TODO: refactor this table component to separate Header from tbody
+
 const Table = ({
   type,
   data,
@@ -34,15 +36,15 @@ const Table = ({
   return (
     <Fragment>
       <table className={cls}  {...props}>
-        <thead style={headStyle} >
-          <tr>
-            {displayCheckbox && <th style={styles.td}></th>}
-            {dataHeader.map(headerName => (
-              <th key={headerName}>{headerName}</th>
-            ))}
-          </tr>
-        </thead>
         <tbody>
+          <thead style={headStyle} >
+            <tr>
+              {displayCheckbox && <th style={styles.td}></th>}
+              {dataHeader.map(headerName => (
+                <th key={headerName}>{headerName}</th>
+              ))}
+            </tr>
+          </thead>
           {dataDisplayed.map((obj, index) => {
             return (
               <tr key={index} >
