@@ -1,6 +1,4 @@
 import { useParams } from 'react-router-dom';
-import Button from 'src/components/UI/Button';
-import Table from 'src/components/UI/Table';
 import Visible from 'src/components/UI/Visible';
 import UnitLayout from 'src/Layouts/UnitLayout';
 import { identity } from 'src/utils/functional';
@@ -14,10 +12,7 @@ import { PlanificationContext } from './context';
 import usePlanification from './hooks/usePlanification';
 import useUnitPlanification from './hooks/useUnitPlanification';
 import './Planification.v2.css';
-
-const styles = {
-  table: { marginTop: 10 },
-};
+import PlanningFiles from './PlanningFiles';
 
 const PlanificationTypes = {
   unit: UnitPlanificationForm,
@@ -68,33 +63,7 @@ const Planification = () => {
             </Visible>
             <Loading isLoading={states.loading}>
               <Visible condition={states.documentQuantity}>
-                <div className="table-section">
-                  <Table
-                    style={styles.table}
-                    handleCheckboxSelected={handleCheckboxSelected}
-                    data={[]}
-                    dataDisplayed={[]}
-                    dataHeader={['uuid', 'Nombre']}
-                  />
-                  <Visible condition={states.rowSelected}>
-                    <div className="content__difused planning-section">
-                      <Button
-                        disabled={true}
-                        onClick={handleDownload}
-                        customClasses="button primary"
-                      >
-                        Descargar
-                      </Button>
-                      <Button
-                        disabled={true}
-                        onClick={handleDelete}
-                        customClasses="button delete"
-                      >
-                        Eliminar
-                      </Button>
-                    </div>
-                  </Visible>
-                </div>
+              <PlanningFiles states={states} />
               </Visible>
               {/*<FileUploader />*/}
             </Loading>
@@ -114,63 +83,6 @@ const Planification = () => {
     </div>
     </PlanificationContext.Provider>
   );
-
-  // return (
-  //   <PlanificationContext.Provider value={{ states, setters, actions }}>
-  //     <UnitLayout eventType={3}>
-  //       <div className="planification-container">
-  //         <Header />
-  //         <ObjectiveDescription />
-  //         <div className="planification__files">
-  //           <Visible condition={true}>
-  //             <h1>No se registran archivos.</h1>
-  //           </Visible>
-  //           <Loading isLoading={true}>
-  //             <Visible condition={true}>
-  //               <div className="table-section">
-  //                 <Table
-  //                   style={styles.table}
-  //                   handleCheckboxSelected={handleCheckboxSelected}
-  //                   data={[]}
-  //                   dataDisplayed={[]}
-  //                   dataHeader={['uuid', 'Nombre']}
-  //                 />
-  //                 <Visible condition={states.rowSelected}>
-  //                   <div className="content__difused planning-section">
-  //                     <Button
-  //                       disabled={true}
-  //                       onClick={handleDownload}
-  //                       customClasses="button primary"
-  //                     >
-  //                       Descargar
-  //                     </Button>
-  //                     <Button
-  //                       disabled={true}
-  //                       onClick={handleDelete}
-  //                       customClasses="button delete"
-  //                     >
-  //                       Eliminar
-  //                     </Button>
-  //                   </div>
-  //                 </Visible>
-  //               </div>
-  //             </Visible>
-  //             {/*<FileUploader />*/}
-  //           </Loading>
-  //         </div>
-  //         <div className="planification__form">
-  //           <h1 className="planification-title">Planificación</h1>
-  //           <Visible condition={true}>
-  //             {() => {
-  //               const Component = PlanificationTypes[parentType];
-  //               return (<Component />);
-  //             }}
-  //           </Visible>
-  //         </div>
-  //       </div>
-  //     </UnitLayout>
-  //   </PlanificationContext.Provider>
-  // );
 };
 
 export default Planification;
