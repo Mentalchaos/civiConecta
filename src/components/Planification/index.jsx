@@ -12,6 +12,7 @@ import UnitPlanificationForm from './components/UnitPlanificationForm';
 import PlanificationForm from './components/PlanificationForm';
 import { PlanificationContext } from './context';
 import usePlanification from './hooks/usePlanification';
+import useUnitPlanification from './hooks/useUnitPlanification';
 import './Planification.v2.css';
 
 const styles = {
@@ -34,15 +35,22 @@ const PlanificationTypes = {
 
 const Planification = () => {
   const { lessonId, parentType } = useParams();
-  const { states, setters, actions } = usePlanification(lessonId, parentType);
-  const typeEvent = ParentTypes[parentType];
+
+  const { states, setters, actions } = useUnitPlanification(lessonId);
+
+
+  console.log('states', states);
+  console.log('setters', setters);
+  console.log('actions', actions);
+
+  // const typeEvent = ParentTypes[parentType];
 
   const handleCheckboxSelected = file => {
-    actions.selectFile(file);
+    // actions.selectFile(file);
   };
 
   const handleDownload = evt => {
-    actions.downloadFile();
+    // actions.downloadFile();
   };
 
   const handleDelete = () => {
@@ -54,65 +62,67 @@ const Planification = () => {
       return;
     }
 
-    actions.deleteFile();
+    // actions.deleteFile();
   };
 
-  return (
-    <PlanificationContext.Provider value={{ states, setters, actions }}>
-      <UnitLayout eventType={3}>
-        <div className="planification-container">
-          <Header />
-          <ObjectiveDescription />
-          <div className="planification__files">
-            <Visible condition={!states.files?.length && !states.isLoading}>
-              <h1>No se registran archivos.</h1>
-            </Visible>
-            <Loading isLoading={states.isLoading}>
-              <Visible condition={states.files?.length}>
-                <div className="table-section">
-                  <Table
-                    style={styles.table}
-                    handleCheckboxSelected={handleCheckboxSelected}
-                    data={states.files}
-                    dataDisplayed={states.files?.map(identity)}
-                    dataHeader={['uuid', 'Nombre']}
-                  />
-                  <Visible condition={states.rowSelected}>
-                    <div className="content__difused planning-section">
-                      <Button
-                        disabled={states.isLoading}
-                        onClick={handleDownload}
-                        customClasses="button primary"
-                      >
-                        Descargar
-                      </Button>
-                      <Button
-                        disabled={states.isLoading}
-                        onClick={handleDelete}
-                        customClasses="button delete"
-                      >
-                        Eliminar
-                      </Button>
-                    </div>
-                  </Visible>
-                </div>
-              </Visible>
-              <FileUploader />
-            </Loading>
-          </div>
-          <div className="planification__form">
-            <h1 className="planification-title">Planificación</h1>
-            <Visible condition={states.lesson.planning}>
-              {() => {
-                const Component = PlanificationTypes[parentType];
-                return (<Component />);
-              }}
-            </Visible>
-          </div>
-        </div>
-      </UnitLayout>
-    </PlanificationContext.Provider>
-  );
+  return <p>hello world</p>;
+
+  // return (
+  //   <PlanificationContext.Provider value={{ states, setters, actions }}>
+  //     <UnitLayout eventType={3}>
+  //       <div className="planification-container">
+  //         <Header />
+  //         <ObjectiveDescription />
+  //         <div className="planification__files">
+  //           <Visible condition={true}>
+  //             <h1>No se registran archivos.</h1>
+  //           </Visible>
+  //           <Loading isLoading={true}>
+  //             <Visible condition={true}>
+  //               <div className="table-section">
+  //                 <Table
+  //                   style={styles.table}
+  //                   handleCheckboxSelected={handleCheckboxSelected}
+  //                   data={[]}
+  //                   dataDisplayed={[]}
+  //                   dataHeader={['uuid', 'Nombre']}
+  //                 />
+  //                 <Visible condition={states.rowSelected}>
+  //                   <div className="content__difused planning-section">
+  //                     <Button
+  //                       disabled={true}
+  //                       onClick={handleDownload}
+  //                       customClasses="button primary"
+  //                     >
+  //                       Descargar
+  //                     </Button>
+  //                     <Button
+  //                       disabled={true}
+  //                       onClick={handleDelete}
+  //                       customClasses="button delete"
+  //                     >
+  //                       Eliminar
+  //                     </Button>
+  //                   </div>
+  //                 </Visible>
+  //               </div>
+  //             </Visible>
+  //             {/*<FileUploader />*/}
+  //           </Loading>
+  //         </div>
+  //         <div className="planification__form">
+  //           <h1 className="planification-title">Planificación</h1>
+  //           <Visible condition={true}>
+  //             {() => {
+  //               const Component = PlanificationTypes[parentType];
+  //               return (<Component />);
+  //             }}
+  //           </Visible>
+  //         </div>
+  //       </div>
+  //     </UnitLayout>
+  //   </PlanificationContext.Provider>
+  // );
 };
 
 export default Planification;

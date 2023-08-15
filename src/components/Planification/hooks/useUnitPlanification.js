@@ -2,32 +2,65 @@ import { useState, useEffect } from 'react';
 import * as lessonRequest from 'src/services/admin/lesson.request.js';
 
 
-const useUnitPlanification = (initialValues) => {
-  console.log('lesson request', lessonRequest);
+const useUnitPlanification = (lessonId) => {
+  const [loading, setLoading] = useState(false);
+  const [files, setFiles] = useState([]);
+  const [lesson, setLesson] = useState({});
+  const [topic, setTopic] = useState('');
+  const [keywords, setKeywords] = useState('');
+  const [studentMaterials, setStudentMaterials] = useState('');
+  const [teacherMaterials, setTeacherMaterials] = useState('');
+  const [startActivity, setStartActivity] = useState('');
+  const [mainActivity, setMainActivity] = useState('');
+  const [endActivity, setEndActivity] = useState('');
+  const [description, setDescription] = useState('');
+  const [objective, setObjective] = useState('');
 
-  const [topic, setTopic] = useState(initialValues.topic ?? '');
-  const [keywords, setKeywords] = useState(initialValues.keywords ?? []);
-  const [studentMaterials, setStudentMaterials] = useState(initialValues.studentMaterials ?? []);
-  const [teacherMaterials, setTeacherMaterials] = useState(initialValues.teacherMaterials ?? []);
-  const [startActivity, setStartActivity] = useState(initialValues.startActivity ?? '');
-  const [mainActivity, setMainActivity] = useState(initialValues.mainActivity ?? '');
-  const [endActivity, setEndActivity] = useState(initialValues.endActivity ?? '');
-  const [description, setDescription] = useState(initialValues.description ?? '');
-  const [date, setDate] = useState(initialValues.date ?? '');
-  const [objective, setObjective] = useState(initialValues.objective ?? '');
+  useEffect(() => {
+    async function fn() {
+      setLoading(true);
+
+      const response = await lessonRequest.getLessonById(lessonId);
+      const documents = response.lesson.files;
+      const currentLesson = response.lesson;
+
+      setFiles(documents);
+      setLesson(currentLesson);
+      setTopic(currentLesson.planning.topic);
+      setKeywords(currentLesson.planning.keywords.join(','));
+      setStartActivity(currentLesson.planning.startActivity);
+      setMainActivity(currentLesson.planning.mainActivity);
+      setEndActivity(currentLesson.planning.endActivity);
+      setObjective(currentLesson.objective);
+      setStudentMaterials(currentLesson.planning.materials.student.join(','));
+      setTeacherMaterials(currentLesson.planning.materials.teacher.join(','));
+
+      setLoading(false);
+    }
+
+    fn();
+
+  }, [lessonId]);
 
   return {
     states: {
-      topic,
-      keywords,
-      studentMaterials,
-      teacherMaterials,
-      startActivity,
-      mainActivity,
-      endActivity,
-      description,
-      date,
-      objective
+      loading,
+      lesson,
+      files,
+      planning: {
+        topic,
+        keywords,
+        studentMaterials,
+        teacherMaterials,
+        startActivity,
+        mainActivity,
+        endActivity,
+        description,
+        objective
+      },
+      get withoutFiles() {
+        return !loading && !files.length;
+      }
     },
     setters: {
       changeField(fieldName) {
@@ -41,17 +74,29 @@ const useUnitPlanification = (initialValues) => {
             mainActivity: setMainActivity,
             endActivity: setEndActivity,
             description: setDescription,
-            date: setDate,
             objective: setObjective
           };
 
-          mutators[fieldName](value);
+          return mutators[fieldName](value);
         };
       }
     },
     actions: {
-      updatePlanification() {
+      async updatePlanification() {
+        const separator = /(,|-)/;
 
+        const payload = {
+          topic,
+          keywords: keywords.split(separator),
+          studentMaterials: studentMaterials.split(separator),
+          teacherMaterials: teacherMaterials.split(separator),
+          startActivity,
+          mainActivity,
+          endActivity,
+          objective
+        };
+
+        return lessonRequest.updateLesson(lessonId, payload);
       }
     }
   };
