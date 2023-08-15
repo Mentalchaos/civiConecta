@@ -10,14 +10,17 @@ import brain from '../../../assets/Icons/white-brain.svg';
 import unitGreen from '../../../assets/Icons/unit-green2.svg';
 import back from 'src/assets/Icons/back-arrow.svg';
 import './SituationsDashboard.css';
+import { useParams } from 'react-router-dom';
 
 const SituationsDashboard = () => {
 
   const [emergentData, setEmergentData] = useState([]);
   const [inputValue, setInputValue] = useState('');
 
+  const { gradeId } = useParams();
+
   const getSituations = async () => {
-    const baseUrl = `${config.baseURL}/events/1`;
+    const baseUrl = `${config.baseURL}/events/1/grade/${gradeId}`;
     const response = await fetch(baseUrl, {
       headers: {
         token: getUserData().token,

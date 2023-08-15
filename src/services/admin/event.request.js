@@ -6,9 +6,8 @@ const BASE_URL = config.baseURL;
 
 const createServices = eventTypeId => {
   const getEventsByGrade = gradeId => {
-    const qs = new QueryString().add('grade', gradeId);
 
-    const url = `${BASE_URL}/events/${eventTypeId}?${qs.query}`;
+    const url = `${BASE_URL}/events/${eventTypeId}/grade/${gradeId}`;
     return http.get(url);
   };
 

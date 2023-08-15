@@ -3,17 +3,18 @@ import config from 'src/config';
 import { getUserData } from 'src/utils/user';
 import Footer from '../Footer/index';
 import EphemerisDate from './components/EphemerisDate';
-
 import back from 'src/assets/Icons/back-arrow.svg';
 import brain from '../../../assets/Icons/white-brain.svg';
 import unitGreen from '../../../assets/Icons/unit-blueligth.svg';
 import './EphemeriesDashboard.css';
+import { useParams } from 'react-router-dom';
 
 const EphemeriesDashboard = () => {
   const [EphemeriesData, setEphemeriesData] = useState([]);
+  const { gradeId } = useParams();
 
   const getEphemeries = async () => {
-    const baseUrl = `${config.baseURL}/events/2`
+    const baseUrl = `${config.baseURL}/events/2/grade/${gradeId}`;
     const response = await fetch(baseUrl, {
       headers: {
         token: getUserData().token,

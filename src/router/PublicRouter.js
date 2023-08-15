@@ -22,8 +22,8 @@ const PublicRouter = () => {
         {/* <Route element={<PublicGuard />}> */}
           <Route exact path="/share-survey" element={<ShareSurvey />} />
           <Route exact path="/results" element={<Results />} />
-          <Route exact path="/situations-dashboard" element={<SituationsDashboard />} />
-          <Route exact path="/ephemeries-dashboard" element={<EphemeriesDashboard />} />
+          <Route exact path="/situations-dashboard/:gradeId" element={<SituationsDashboard />} />
+          <Route exact path="/ephemeries-dashboard/:gradeId" element={<EphemeriesDashboard />} />
           <Route exact path="/professor-survey" element={<ProfessorSurvey />} />
           <Route exact path="/professor-profile" element={<ProfessorProfile />} />
           <Route exact path="/not-found" element={<NotFound />} />

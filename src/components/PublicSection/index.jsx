@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import Visible from 'src/components/UI/Visible';
 import Loading from 'src/components/UI/Loading';
 import Welcome from './Welcome';
@@ -34,6 +34,11 @@ const PublicSection = () => {
       };
     });
   };
+
+  useEffect(() => {
+    const id = states.userData.gradeId;
+    sessionStorage.setItem('gradeId', id);
+  }, [states.userData]);
 
   return (
     <PublicContext.Provider value={{ states, actions, setters }}>
@@ -83,8 +88,8 @@ const PublicSection = () => {
                     />
                   ))}
                   <div className="units-components-two">
-                    <UnitSituations title={'Situaciones emergentes'} to={'/public/situations-dashboard'} />
-                    <UnitSituations title={'Efemerides'} to={'/public/ephemeries-dashboard'} />
+                    <UnitSituations title={'Situaciones emergentes'} to={`/public/situations-dashboard/${states.userData.gradeId}`} />
+                    <UnitSituations title={'Efemerides'} to={`/public/ephemeries-dashboard/${states.userData.gradeId}`} />
                   </div>
                 </div>
               </div>

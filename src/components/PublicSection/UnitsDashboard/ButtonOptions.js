@@ -3,12 +3,13 @@ import './buttonOptions.css';
 
 const ButtonOptions = () => {
   const navigate = useNavigate();
+  const gradeId = sessionStorage.getItem('gradeId');
 
   return (
     <div className="options">
       <div className='options-buttons'>
-        <a className='options-button options-button-left' onClick={() => navigate('/public/situations-dashboard')}>Situaciones emergentes</a>
-        <a className='options-button options-button-right' onClick={() => navigate('/public/ephemeries-dashboard')}>Efemérides</a>
+        <a className='options-button options-button-left' onClick={() => navigate(`/public/situations-dashboard/${gradeId}`)}>Situaciones emergentes</a>
+          <a className='options-button options-button-right' onClick={() => navigate(`/public/ephemeries-dashboard/${gradeId}`)}>Efemérides</a>
       </div>
     </div>
   )
