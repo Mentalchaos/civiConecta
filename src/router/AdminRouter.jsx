@@ -43,14 +43,14 @@ const AdminRouter = () => {
           <Route path="units/:unitId" element={<UnitManager />} />
           <Route path="units" element={<UnitsSection />} />
           <Route path="manager" element={<Manager />} />
-          <Route
+          {/*<Route
             path="situations/events/:eventType/:eventId"
             element={<Planification />}
           />
           <Route
             path="ephemeris/events/:eventType/:eventId"
             element={<Planification />}
-          />
+          />*/}
           <Route path="situations" element={<Situations />} />
           <Route path="ephemeris" element={<Ephemeris />} />
           <Route
