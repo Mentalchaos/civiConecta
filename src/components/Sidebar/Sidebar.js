@@ -39,7 +39,7 @@ const Sidebar = () => {
           handleClick={handleClear}
           icon={exit}
           ariaLabel="exit"
-          style={{ width: '25px', position: 'absolute', left: 15, bottom: 15 }}
+          style={{ width: '25%', position: 'absolute' }}
         />
       </div>
     </nav>
