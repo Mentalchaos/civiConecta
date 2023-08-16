@@ -41,7 +41,6 @@ const useUnitPlanification = (lessonId) => {
     }
 
     fn();
-
   }, [lessonId]);
 
   return {
@@ -59,6 +58,16 @@ const useUnitPlanification = (lessonId) => {
         mainActivity,
         endActivity,
         objective
+      },
+      get unit() {
+        if (!lesson.unit) {
+          return null;
+        }
+
+        return {
+          number: lesson.unit.number,
+          title: lesson.unit.title
+        };
       },
       get withoutFiles() {
         return !loading && !files.length;

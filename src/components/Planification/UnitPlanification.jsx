@@ -21,7 +21,9 @@ const UnitPlanification = ({ lessonId }) => {
       <UnitLayout eventType="unit">
         <div className="planification-container">
           <Header />
-          <UnitNumber />
+          <Visible condition={states.unit}>
+            <UnitNumber />
+          </Visible>
           <div className="planification__files">
             <Visible condition={!states.documentQuantity}>
               <h1>No se registran archivos.</h1>

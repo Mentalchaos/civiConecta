@@ -3,7 +3,7 @@ import { PlanificationContext } from '../context';
 
 const UnitNumber = () => {
   const { states } = useContext(PlanificationContext);
-  const { number, title } = states.lesson.unit;
+  const { number, title } = states.unit;
 
   return <div>{`Unidad: ${number} - ${title}`}</div>;
 };
