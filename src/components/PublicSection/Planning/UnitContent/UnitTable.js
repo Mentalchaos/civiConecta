@@ -4,8 +4,24 @@ import brain from '../../../../assets/Icons/white-brain.svg';
 import { getUserData } from 'src/utils/user';
 import config from 'src/config';
 
-const UnitTable = ({ planningData, title }) => {
+const UnitTable = ({ planningData, title, type }) => {
   const { endActivity, startActivity, mainActivity, topic, materials, keywords } = planningData.planning || {};
+
+  const colors = {
+    unit: '#96cb76',
+    situation: '#2dba9f',
+    ephemeris: '#54bfed',
+    getStyles: type => ({
+      background: {
+        backgroundColor: colors[type]
+      },
+      color: {
+        color: colors[type]
+      }
+    })
+  }
+
+  const { background, color } = colors.getStyles(type);
 
   const getFiles = async () => {
     try {
@@ -41,9 +57,8 @@ const UnitTable = ({ planningData, title }) => {
       <div>
         <div className=''>
           <div className='unit-head'>
-            <img className='unit-img' src={brain} alt='logo'></img>
-            <div className='green-text'>{title}</div>
-            <div> / Clase {planningData.id} </div>
+            <img className='unit-img' src={brain} alt='logo' style={background}></img>
+            <div className='green-text' style={color}>{title}</div>
           </div>
         </div>
       </div>

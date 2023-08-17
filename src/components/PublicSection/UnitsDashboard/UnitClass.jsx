@@ -12,7 +12,7 @@ const UnitClass = ({ id, objective, description, number }) => {
       <div className='sub-title'>{ objective }</div>
       <div className='class-text'>{ hasDescription }</div>
       <div className='see-class-container'>
-        <button className='see-class' onClick={() => navigate(`/public/planning/${id}/${objective}`)}>
+        <button className='see-class' onClick={() => navigate(`/public/planning/${id}/${objective}/unit`)}>
           Ver clase
           <img className='arrow' src={arrow} alt='arrow-img' />
         </button>

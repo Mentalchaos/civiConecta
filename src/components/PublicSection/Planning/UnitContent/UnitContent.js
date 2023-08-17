@@ -1,11 +1,9 @@
-import { useNavigate } from 'react-router-dom';
 import ButtonOptions from "../../UnitsDashboard/ButtonOptions";
 import back from 'src/assets/Icons/back-arrow.svg';
 import './UnitContent.css';
 import UnitTable from "./UnitTable";
 
-const UnitContent = ({ planningData, title }) => {
-  const navigate = useNavigate();
+const UnitContent = ({ planningData, title, type }) => {
 
   return (
     <div className=''>
@@ -15,7 +13,7 @@ const UnitContent = ({ planningData, title }) => {
           <img src={back} alt='go-back' />
           Volver
         </button>
-        { planningData ? <UnitTable planningData={planningData} title={title}/> : <p>No hay situaciones emergentes creadas</p> }
+        { planningData ? <UnitTable planningData={planningData} title={title} type={type}/> : <p>No hay situaciones emergentes creadas</p> }
       </div>
     </div>
   )

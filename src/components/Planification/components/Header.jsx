@@ -15,17 +15,21 @@ const Header = () => {
   return (
     <div className="event-header">
       <div className="header-info">
-        <h3 className="class-title">Clase {lesson.number}</h3>
-        <span className="class-files">
-          {states.documentQuantity} documentos totales en esta clase.
-        </span>
+        <div className='class-name'>
+          <p>Clase: {lesson.number}</p>
+        </div>
+        <div className='class-info'>
+          <p>Documentos totales en esta clase: {states.documentQuantity}</p>
+        </div>
       </div>
-      <img
-        onClick={handleGoBack}
-        className="icon-back-to"
-        src={arrowIcon}
-        alt="back to"
-      />
+      <div>
+        <img
+          onClick={handleGoBack}
+          className="icon-back-to"
+          src={arrowIcon}
+          alt="back to"
+        />
+      </div>
     </div>
   );
 };

@@ -12,7 +12,7 @@ const EphemerisDate = ({ id, title, date }) => {
             <div className='ephemeris-title'>
                 <p>{title}.</p>
             </div>
-            <div className='ephemeris-see-class' onClick={() => navigate(`/public/planning/${id}/${title}`)} >
+            <div className='ephemeris-see-class' onClick={() => navigate(`/public/planning/${id}/${title}/ephemeris`)} >
                 <p>Ver clase</p>
                 <img src={goTo} alt='arrow-icon'/>
             </div>

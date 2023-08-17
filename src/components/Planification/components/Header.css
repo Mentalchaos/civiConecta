@@ -2,15 +2,36 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: 1em 0;
+  padding: 0 30px;
 }
 
 .header-info {
-  text-align: left;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 70%;
+  height: 55px;
+  border: 2px solid #d9687c;
+  border-radius: 15px;
+  padding: 15px;
+  margin: auto;
 }
 
-.header-info .class-title {
-  margin: 0;
-  color: var(--color-primary);
+.header-info .class-name{
+  display: flex;
+  height: 100%;
+  width: 40%;
+  justify-content: flex-start;
+  align-items: center;
+  border-right: 2px solid #d9687c;
+}
+
+.header-info .class-name p,
+.header-info .class-info p {
+  font-size: 15px;
+  color: var(--gray-dark);
+  font-weight: bold;
 }
 
 .header-info .class-title-events {
@@ -22,4 +43,11 @@
 .event-header .icon-back-to {
   cursor: pointer;
   float: right;
+}
+
+.unit-name {
+  color: #d9687c;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 2em 0;
 }

@@ -2,7 +2,6 @@
   position: fixed;
   margin: 20px 13px;
   width: 91px;
-  /* height: 681px; */
   height: 90%;
   overflow: hidden;
   z-index: 999;
@@ -15,8 +14,6 @@
   flex-direction: column;
   align-items: center;
   margin-top: 1rem;
-  /* gap: 30px; */
-
   justify-content: space-around;
   height: 90%;
 }
@@ -38,29 +35,6 @@
 }
 
 .nav-button > img {
-  /* width: 40px; */
   width: 50%;
   transition: all .3s;
 }
-
-
-/* @media screen and (min-height: 500px) and (max-height: 750px) {
-  .sidebar {
-    height: 90%;
-  }
-
-  .nav-button {
-    width: 60%;
-  }
-
-  .nav-button > img {
-    width: 50%;
-  }
-
-  .sidebar__content {
-    display: flex;
-    justify-content: space-around;
-    height: 90%;
-    display: flex;
-  }
-} */

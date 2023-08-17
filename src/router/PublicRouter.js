@@ -28,7 +28,7 @@ const PublicRouter = () => {
           <Route exact path="/professor-profile" element={<ProfessorProfile />} />
           <Route exact path="/not-found" element={<NotFound />} />
           <Route exact path="/completed-survey" element={<CompletedSurvey />} />
-          <Route exact path="/planning/:planningId/:title" element={<Planning />} />
+          <Route exact path="/planning/:planningId/:title/:type" element={<Planning />} />
           <Route exact path="/units-dashboard/:unitId" element={<UnitsDashboard />} />
           <Route path="*" element={<Navigate to="/not-found" />} />
         {/* </Route> */}

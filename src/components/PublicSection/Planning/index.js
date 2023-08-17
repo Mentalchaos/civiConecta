@@ -8,7 +8,7 @@ import './Planning.css';
 
 
 const Planning = () => {
-  const { planningId, title } = useParams();
+  const { planningId, title, type } = useParams();
   const [planningData, setPlanningData] = useState([]);
 
 
@@ -23,7 +23,7 @@ const Planning = () => {
 
   return (
     <div>
-      <UnitContent planningData={planningData} title={title} />
+      <UnitContent planningData={planningData} title={title} type={type} />
       <div className='footer-div'>
         <Footer />
       </div>

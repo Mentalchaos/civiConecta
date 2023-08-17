@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import goTo from 'src/assets/Icons/open-arrow.svg';
 import '../SituationsDashboard.css';
 
@@ -17,7 +17,7 @@ const EmergentSituation = ({id,title, description, lessonId}) => {
         <p>{description}
         </p>
       </div>
-      <div className='situation-see-class' onClick={() => navigate(`/public/planning/${lessonId}/${title}`)}>
+      <div className='situation-see-class' onClick={() => navigate(`/public/planning/${lessonId}/${title}/situation`)}>
         <p>Ver clase</p>
         <img src={goTo} alt='arrow-icon' />
       </div>

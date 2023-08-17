@@ -37,7 +37,7 @@ const Event = ({ eventType, onEditEvent }) => {
         </select>
       </div>
       <section className="events">
-        <div className="events-container">
+        <div className="events-container" style={{rowGap: '10px', columnGap: '80px'}}>
           <Loading isLoading={states.isFetching}>
             <Visible condition={(states.hasNoEventWhitinGrade && !states.events.length) || !states.events.length}>
               <h1 className="not-events-text">Sin registro de eventos</h1>

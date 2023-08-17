@@ -42,7 +42,7 @@
 
 .unit-situations-two {
     width: 55%;
-    background-color: #7268db;
+    background-color: var(--color-primary);
     border-radius: 0 9px 9px 0;
 }
 
