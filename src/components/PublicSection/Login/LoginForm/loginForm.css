@@ -49,3 +49,10 @@ input[type='text'].form-input {
 /* .form-input:focus {
   background-color: aqua;
 } */
+
+
+@media screen and (min-height: 500px) and (max-height: 625px) {
+  .form-group {
+    margin-top: 0;
+  }
+}

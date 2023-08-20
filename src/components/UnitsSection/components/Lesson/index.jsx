@@ -24,10 +24,14 @@ const Lesson = ({ id, number, objective, files }) => {
         X
       </span>
       <h2 className="class-box__title">Clase {number}</h2>
-      <span className="class-box__documents">
-        {files.length} Documentos totales en esta clase.
-      </span>
-      <span>Objetivo: {objective}</span>
+      <div className='class-box__objective'>
+        <p>Objetivo: </p>
+        <p>{objective}</p>
+      </div>
+      <div className="class-box__documents">
+        <p>Documentos totales en esta clase: </p>
+        <p>{files.length}</p>
+      </div>
 
       <div className="box-link" onClick={handleNavigation}>
         <img className="box-link" src={arrow} alt="Mostrar documentos" width="15px" />

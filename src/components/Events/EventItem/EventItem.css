@@ -109,3 +109,10 @@
   font-size: 14px;
   color: #0b0b13;
 }
+
+
+@media screen and (min-height: 500px) and (max-height: 700px) {
+  .events {
+    padding: 25px 25px;
+  }
+}

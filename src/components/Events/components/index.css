@@ -1,6 +1,6 @@
 .modal-content.create-event-modal {
   padding: 20px 40px;
-  margin-top: 50px;
+  margin-top: 20px;
   height: 680px;
   width: 700px;
   text-align: left;
@@ -24,4 +24,10 @@
   padding: 30px 10px;
   height: 200px;
   justify-content: space-evenly;
+}
+
+@media screen and (min-height: 500px) and (max-height: 700px) {
+  .modal-content.create-event-modal {
+    height: 90%;
+  }
 }
