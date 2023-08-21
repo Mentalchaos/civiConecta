@@ -108,7 +108,7 @@ const UnitTable = ({ planningData, title, type }) => {
         </table>
         {
           !!planningData?.files?.length &&
-          <button className='download-material' onClick={() => getFiles()}>
+          <button className='download-material' onClick={() => getFiles()} style={background}>
             Descargar material
             <img className='button-image' src={arrowWhite} alt=''></img>
           </button>

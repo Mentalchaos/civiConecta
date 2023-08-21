@@ -9,7 +9,6 @@ const useEphemerisPlanification = (lessonId) => {
   const [files, setFiles] = useState([]);
   const [lesson, setLesson] = useState({});
   const [topic, setTopic] = useState('');
-  const [keywords, setKeywords] = useState('');
   const [studentMaterials, setStudentMaterials] = useState('');
   const [teacherMaterials, setTeacherMaterials] = useState('');
   const [startActivity, setStartActivity] = useState('');
@@ -32,7 +31,6 @@ const useEphemerisPlanification = (lessonId) => {
       setDescription(currentLesson.description);
       setLesson(currentLesson);
       setTopic(currentLesson.planning.topic);
-      setKeywords(currentLesson.planning.keywords.join(','));
       setStartActivity(currentLesson.planning.startActivity);
       setMainActivity(currentLesson.planning.mainActivity);
       setEndActivity(currentLesson.planning.endActivity);
@@ -58,7 +56,6 @@ const useEphemerisPlanification = (lessonId) => {
       date,
       planning: {
         topic,
-        keywords,
         studentMaterials,
         teacherMaterials,
         startActivity,
@@ -86,7 +83,6 @@ const useEphemerisPlanification = (lessonId) => {
         return (evt) => {
           const mutators = {
             topic: setTopic,
-            keywords: setKeywords,
             studentMaterials: setStudentMaterials,
             teacherMaterials: setTeacherMaterials,
             startActivity: setStartActivity,
@@ -114,7 +110,6 @@ const useEphemerisPlanification = (lessonId) => {
 
         const payload = {
           topic,
-          keywords: toArray(keywords),
           studentMaterials: toArray(studentMaterials),
           teacherMaterials: toArray(teacherMaterials),
           startActivity,

@@ -10,6 +10,7 @@ import ResultUnit from './ResultUnit.js';
 const Results = () => {
   const [resultData, setResultData] = useState([]);
   const [selectedUnit, setSelectedUnit] = useState(0);
+  const unitTopic = resultData.length && resultData[selectedUnit].topic;
 
   useEffect(() => {
     const callData = async () => {
@@ -35,6 +36,8 @@ const Results = () => {
         id={key}
         question={data.question}
         pieChartData={data.answers}
+        unitTopic={unitTopic}
+        selectedUnit={selectedUnit}
       />
     )
   });

@@ -38,16 +38,6 @@ const EphemerisPlanificationForm = () => {
       </div>
 
       <div className="form-group planning">
-        <label>Conceptos a tratar:</label>
-        <input
-          type="text"
-          name="keywords"
-          value={planning.keywords}
-          onChange={setters.changeField('keywords')}
-        />
-      </div>
-
-      <div className="form-group planning">
         <label>Materiales:</label>
         <div className="group__container-materials">
           <label>Docente:</label>

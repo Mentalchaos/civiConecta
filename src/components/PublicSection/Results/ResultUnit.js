@@ -1,6 +1,6 @@
 import ResultPieChart from 'src/components/PublicSection/ProfessorProfile/SurveyAnalysisModal/ResultPieChart.js'
 
-const ResultUnit = ({ id, question, pieChartData }) => {
+const ResultUnit = ({ id, question, pieChartData, unitTopic, selectedUnit }) => {
   const label = [];
   const series = [];
 
@@ -11,7 +11,7 @@ const ResultUnit = ({ id, question, pieChartData }) => {
 
   return (
     <div className='graphic_content'>
-      {id === 0 && <p className='graphic_title'>Unidad 1 - Relaciones Interpersonales</p>}
+      {id === 0 && <p className='graphic_title'>{`Unidad ${selectedUnit + 1} - ${unitTopic}`}</p>}
       <p className='graphic_text'>
         {question}
       </p>
