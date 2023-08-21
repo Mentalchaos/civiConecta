@@ -12,6 +12,7 @@ const usePlanification = (lessonId, eventId, eventType) => {
   const [file, setFile] = useState(null);
   const [tableId, setTableId] = useState(createUUID());
   const [rowSelected, setRowSelected] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     async function fn() {
@@ -45,8 +46,11 @@ const usePlanification = (lessonId, eventId, eventType) => {
       files,
       tableId,
       isLoading,
+      showModal
     },
-    setters: {},
+    setters: {
+      setShowModal
+    },
     actions: {
       updatePlanification(payload) {
         return createServices(eventType).savePlanning(lessonId, payload);

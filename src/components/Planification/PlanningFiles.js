@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import Button from 'src/components/UI/Button';
 import Visible from 'src/components/UI/Visible';
 import Table from 'src/components/UI/Table';
@@ -13,6 +13,7 @@ const styles = {
 
 const PlanningFiles = () => {
   const { states, setters, actions } = useContext(PlanificationContext);
+  const [showModal, setShowModal] = useState(false);
 
   const handleCheckboxSelected = file => {
     setters.selectDocument(file);
@@ -32,7 +33,6 @@ const PlanningFiles = () => {
     actions.deleteFile();
   };
 
-
   return (
     <div className="table-section">
       <Table
@@ -40,7 +40,7 @@ const PlanningFiles = () => {
         handleCheckboxSelected={handleCheckboxSelected}
         data={states.files}
         dataDisplayed={states.files?.map(identity)}
-        dataHeader={['uuid', 'Nombre']}
+        dataHeader={['uuid', 'Nombre', 'url']}
       />
       <Visible condition={states.selectedDocument?.uuid}>
         <div className="content__difused planning-section">

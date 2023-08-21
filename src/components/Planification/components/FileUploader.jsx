@@ -1,22 +1,17 @@
-import { useContext, useRef } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { PlanificationContext } from '../context';
+import FileUploaderModal from './FileUploaderModal';
 
 const FileUploader = () => {
-  const { actions } = useContext(PlanificationContext);
-  const fileRef = useRef();
-
-  const handleUpload = evt => {
-    if (!evt.target.files[0]?.name) {
-      return;
-    }
-
-    actions.uploadFile(evt.target.files[0]);
-    fileRef.current.value = '';
-  };
+  const { states } = useContext(PlanificationContext);
+  const [showModal, setShowModal] = useState(false);
+  const isModalShown = showModal && <FileUploaderModal />;
+  console.log('states EAA', states);
 
   return (
     <div className="file-upload">
-      <input ref={fileRef} onChange={handleUpload} type="file" />
+      <button onClick={() => setShowModal(true)}>Subir archivo</button>
+      { isModalShown }
     </div>
   );
 };
