@@ -1,0 +1,64 @@
+.file-uploader-modal {
+    height: 300px;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.close-modal-button {
+    height: 10%;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.close-modal-button button {
+    border-radius: 20px;
+    width: 27px;
+}
+
+.close-modal-button button,
+.cancel-button,
+.upload-button {
+    background-color: var(--color-secondary);
+    color: #FFFFFF;
+}
+
+.cancel-button,
+.upload-button {
+    border-radius: 10px;
+}
+
+.uploader-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 55%;
+    width: 80%;
+}
+
+.uploader-form-container {
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    height: 50%;
+}
+
+.uploader-buttons-container {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    height: 15%;
+    align-items: center;
+}
+
+.uploader-buttons-container button {
+    height: 25px;
+    width: 110px;
+    font-size: 12px;
+    font-family: 'Poppins';
+}

@@ -5,7 +5,7 @@ import FileUploaderModal from './FileUploaderModal';
 const FileUploader = () => {
   const { states } = useContext(PlanificationContext);
   const [showModal, setShowModal] = useState(false);
-  const isModalShown = showModal && <FileUploaderModal />;
+  const isModalShown = showModal && <FileUploaderModal setShowModal={setShowModal} />;
   console.log('states EAA', states);
 
   return (
