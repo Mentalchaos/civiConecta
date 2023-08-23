@@ -11,10 +11,15 @@ import calendar from 'src/assets/Icons/calendar.svg';
 import exit from 'src/assets/Icons/exit.svg';
 import './Sidebar.css';
 
-const NavButton = ({ icon, ariaLabel, path, handleClick, ...props }) => {
+const NavButton = ({ icon, ariaLabel, path, handleClick, text, ...props }) => {
   return (
     <Link as="a" to={path} onClick={handleClick} className="nav-button" type="button" aria-label={ariaLabel}>
-      <img src={icon} alt={ariaLabel} {...props} />
+      <div className='nav-icon'>
+        <img src={icon} alt={ariaLabel} {...props} />
+      </div>
+      <div className='nav-label'>
+        <label>{text}</label>
+      </div>
     </Link>
   );
 };
@@ -27,19 +32,19 @@ const Sidebar = () => {
   return (
     <nav className="sidebar">
       <div className="sidebar__content">
-        <NavButton icon={home} ariaLabel="home" path={'dashboard'} />
-        <NavButton icon={teacher} ariaLabel="teacher" path={'teacher-survey'} />
-        <NavButton icon={student} ariaLabel="student" path={'student-survey'} />
-        <NavButton icon={blackboard} ariaLabel="blackboard" path={'units'} />
-        <NavButton icon={school} ariaLabel="school" path={'manager'} />
-        <NavButton icon={folder} ariaLabel="folder" path={'situations'} />
-        <NavButton icon={calendar} ariaLabel="calendar" path={'ephemeris'} />
+        <NavButton icon={home} text="Inicio" ariaLabel="home" path={'dashboard'} />
+        <NavButton icon={teacher} text="Docente" ariaLabel="teacher" path={'teacher-survey'} />
+        <NavButton icon={student} text="Estudiante" ariaLabel="student" path={'student-survey'} />
+        <NavButton icon={blackboard} text="Unidades" ariaLabel="blackboard" path={'units'} />
+        <NavButton icon={school} text="Institución" ariaLabel="school" path={'manager'} />
+        <NavButton icon={folder} text="Situaciones Emergentes" ariaLabel="folder" path={'situations'} />
+        <NavButton icon={calendar} text="Efemérides" ariaLabel="calendar" path={'ephemeris'} />
         <NavButton
           path="/"
           handleClick={handleClear}
           icon={exit}
           ariaLabel="exit"
-          style={{ width: '25%', position: 'absolute' }}
+          text="Salir"
         />
       </div>
     </nav>
