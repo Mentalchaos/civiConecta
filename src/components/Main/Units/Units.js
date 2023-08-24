@@ -11,7 +11,7 @@ const Units = () => {
   return (
     <section
       onClick={() => navigate('/admin/units')}
-      className="units-container"
+      className="units-container unitScale"
     >
       <div className="units__header">
         <div className="header__left-content">
@@ -22,7 +22,6 @@ const Units = () => {
           </div>
         </div>
         <div className="header__right-content">
-          {/* <Select /> */}
         </div>
       </div>
       <div className="img-container">

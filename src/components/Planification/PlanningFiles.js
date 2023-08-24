@@ -1,65 +1,49 @@
 import { useContext, useState } from 'react';
-import Button from 'src/components/UI/Button';
-import Visible from 'src/components/UI/Visible';
-import Table from 'src/components/UI/Table';
-import { identity } from 'src/utils/functional';
 import { PlanificationContext } from './context';
-
-const styles = {
-  table: {
-    marginTop: 10
-  }
-};
+import PlanningFilesTable from './PlanningFilesTable';
+import EditModal from './EditModal.jsx';
+import * as lessonRequest from 'src/services/admin/lesson.request.js';
 
 const PlanningFiles = () => {
-  const { states, setters, actions } = useContext(PlanificationContext);
-  const [showModal, setShowModal] = useState(false);
+  const { states, actions } = useContext(PlanificationContext);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [name, setName] = useState('');
+  const [filepath, setFilepath] = useState('');
+  const [id, setId] = useState();
 
-  const handleCheckboxSelected = file => {
-    setters.selectDocument(file);
-  };
+  const openDataToEdit = async (lessonId) => {
+    const response = await lessonRequest.getLessonById(states.lesson.id);
+    const { files } = response.lesson;
+    const elementData = files.filter(data => data.id == lessonId)[0];
+    const { filename, filepath, id } = elementData;
+    setName(filename);
+    setFilepath(filepath);
+    setId(id);
+  }
 
-  const handleDownload = evt => {
-    actions.downloadFile();
-  };
-
-  const handleDelete = () => {
-    const confirmationMessage = 'Al confirmar, se eliminara el archivo almacenado, desea continuar ?';
-
-    if (!window.confirm(confirmationMessage)) {
-      return;
-    }
-
-    actions.deleteFile();
-  };
+  const isModalEditShown =
+    showEditModal &&
+    <EditModal
+      states={states}
+      showEditModal={showEditModal}
+      setShowEditModal={setShowEditModal}
+      name={name}
+      filepath={filepath}
+      setName={setName}
+      setFilepath={setFilepath}
+      lessonId={states.lesson.id}
+      fileId={id}
+    />;
 
   return (
     <div className="table-section">
-      <Table
-        style={styles.table}
-        handleCheckboxSelected={handleCheckboxSelected}
-        data={states.files}
-        dataDisplayed={states.files?.map(identity)}
-        dataHeader={['uuid', 'Nombre', 'url']}
+      <PlanningFilesTable
+        tableData={states.files}
+        actions={actions}
+        setShowEditModal={setShowEditModal}
+        openDataToEdit={openDataToEdit}
       />
-      <Visible condition={states.selectedDocument?.uuid}>
-        <div className="content__difused planning-section">
-          <Button
-            disabled={states.loading}
-            onClick={handleDownload}
-            customClasses="button primary"
-          >
-            Descargar
-          </Button>
-          <Button
-            disabled={states.loading}
-            onClick={handleDelete}
-            customClasses="button delete"
-          >
-            Eliminar
-          </Button>
-        </div>
-      </Visible>
+      {isModalEditShown}
     </div>
   );
 };

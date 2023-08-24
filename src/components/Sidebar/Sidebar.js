@@ -15,7 +15,7 @@ const NavButton = ({ icon, ariaLabel, path, handleClick, text, ...props }) => {
   return (
     <Link as="a" to={path} onClick={handleClick} className="nav-button" type="button" aria-label={ariaLabel}>
       <div className='nav-icon'>
-        <img src={icon} alt={ariaLabel} {...props} />
+        <img id='exitImg' src={icon} alt={ariaLabel} {...props} />
       </div>
       <div className='nav-label'>
         <label>{text}</label>

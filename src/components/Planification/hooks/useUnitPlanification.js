@@ -3,7 +3,6 @@ import * as lessonRequest from 'src/services/admin/lesson.request.js';
 import * as fileRequest from 'src/services/admin/files.request.js';
 import { createUUID } from 'src/utils/uuid';
 
-
 const useUnitPlanification = (lessonId) => {
   const [loading, setLoading] = useState(false);
   const [files, setFiles] = useState([]);
@@ -17,6 +16,8 @@ const useUnitPlanification = (lessonId) => {
   const [endActivity, setEndActivity] = useState('');
   const [objective, setObjective] = useState('');
   const [selectedDocument, setSelectedDocument] = useState({});
+  const [name, setName] = useState('');
+  const [filepath, setFilepath] = useState('');
 
   useEffect(() => {
     async function fn() {
@@ -49,6 +50,8 @@ const useUnitPlanification = (lessonId) => {
       lesson,
       files,
       selectedDocument,
+      name,
+      filepath,
       planning: {
         topic,
         keywords,
@@ -103,7 +106,9 @@ const useUnitPlanification = (lessonId) => {
       },
       selectDocument(document) {
         setSelectedDocument(document);
-      }
+      },
+      setName,
+      setFilepath
     },
     actions: {
       async updatePlanification() {
@@ -153,6 +158,17 @@ const useUnitPlanification = (lessonId) => {
 
         setFiles([...files, response.file]);
         setLoading(false);
+      },
+      async uploadDocument(){
+        const payload = {
+          filename: name,
+          filepath: filepath
+        };
+
+        await fileRequest.uploadDocumentByLessonId(lesson.id, payload);
+      },
+      async removeDocument(documentId){
+        await fileRequest.removeDocumentByLessonId(lesson.id, documentId);
       }
     }
   };

@@ -33,7 +33,7 @@ const BoxContent = ({
         borderColor: isHover && changeColor,
         boxShadow: isHover && 'none',
       }}
-      className="box"
+      className="box animationScale"
       {...props}
     >
       <header className="box__header">
@@ -86,7 +86,6 @@ const BoxContent = ({
 };
 
 const SurveyBox = () => {
-  const [isHover, setIsHover] = useState(false);
   const navigate = useNavigate();
 
   return (

@@ -3,11 +3,26 @@
   justify-content: space-between;
   align-items: center;
 }
+
 .header__title {
   margin: 0;
   font-size: 60px;
 }
+
 .header__title>span {
   font-size: 40px;
   color: var(--color-primary);
+}
+
+.blinkingAnimation {
+  animation: blinkAnimation 1.5s ease-in-out infinite;
+}
+
+@keyframes blinkAnimation {
+  0%, 100% {
+      opacity: 1;
+  }
+  50% {
+      opacity: 0;
+  }
 }

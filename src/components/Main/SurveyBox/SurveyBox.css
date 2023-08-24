@@ -104,3 +104,11 @@
 .header__text :nth-child(2) {
   font-size: 12px;
 }
+
+.animationScale {
+  transition: all .3s;
+}
+
+.animationScale:hover {
+  transform: scale(0.9);
+}

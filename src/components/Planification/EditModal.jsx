@@ -1,13 +1,14 @@
 import Modal from 'src/components/UI/Modal';
-import './fileUploaderModal.css';
+import './editModal.css';
+import * as lessonRequest from 'src/services/admin/files.request.js';
 
-const FileUploaderModal = ({ setShowModal, uploadDocument, setters, states }) => {
-
-  const disabled = !states.name.length || !states.filepath.length;
-  const disabledStyles = disabled ? 'disabledStyles' : '';
-
-  const onUploading = async () => {
-    await uploadDocument();
+const EditModal = ({ setShowEditModal, name, filepath, setName, setFilepath, lessonId, fileId }) => {
+  const onSendEdit = async () => {
+    const payload = {
+      filename: name,
+      filepath: filepath
+    }
+    await lessonRequest.editDocumentByLessonId(lessonId, fileId, payload);
     window.location.reload();
   }
 
@@ -15,7 +16,7 @@ const FileUploaderModal = ({ setShowModal, uploadDocument, setters, states }) =>
     <Modal>
       <div className='file-uploader-modal'>
         <div className='close-modal-button'>
-          <button onClick={() => setShowModal(false)}>X</button>
+          <button onClick={() => setShowEditModal(false)}>X</button>
         </div>
         <form className='uploader-form'>
           <div className='uploader-form-container'>
@@ -25,8 +26,8 @@ const FileUploaderModal = ({ setShowModal, uploadDocument, setters, states }) =>
             <input
               name="name"
               type="text"
-              value={states.name}
-              onChange={(e) => setters.setName(e.target.value)}
+              value={name}
+              onChange={e => setName(e.target.value)}
             />
           </div>
           <div className='uploader-form-container'>
@@ -36,27 +37,26 @@ const FileUploaderModal = ({ setShowModal, uploadDocument, setters, states }) =>
             <input
               name="url"
               type="text"
-              value={states.filepath}
-              onChange={(e) => setters.setFilepath(e.target.value)}
+              value={filepath}
+              onChange={e => setFilepath(e.target.value)}
             />
           </div>
         </form>
         <div className='uploader-buttons-container'>
           <button
-            className={`upload-button ${disabledStyles}`}
+            className={`upload-button`}
             type='submit'
-            onClick={onUploading}
-            disabled={disabled}
+            onClick={onSendEdit}
           >
-            Subir archivo
+            Modificar
           </button>
-          <button className='cancel-button' onClick={() => setShowModal(false)}>Cancelar</button>
+          <button className='cancel-button' onClick={() => setShowEditModal(false)}>Cancelar</button>
         </div>
       </div>
     </Modal>
   )
 };
 
-FileUploaderModal.displayName = 'FileUploaderModal';
+EditModal.displayName = 'EditModal';
 
-export default FileUploaderModal;
+export default EditModal;

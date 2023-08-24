@@ -18,6 +18,8 @@ const useEphemerisPlanification = (lessonId) => {
   const [objective, setObjective] = useState('');
   const [selectedDocument, setSelectedDocument] = useState({});
   const [date, setDate] = useState('');
+  const [name, setName] = useState('');
+  const [filepath, setFilepath] = useState('');
 
   useEffect(() => {
     async function fn() {
@@ -54,6 +56,8 @@ const useEphemerisPlanification = (lessonId) => {
       selectedDocument,
       description,
       date,
+      name,
+      filepath,
       planning: {
         topic,
         studentMaterials,
@@ -98,7 +102,9 @@ const useEphemerisPlanification = (lessonId) => {
       },
       selectDocument(document) {
         setSelectedDocument(document);
-      }
+      },
+      setName,
+      setFilepath
     },
     actions: {
       async updatePlanification() {
@@ -149,6 +155,17 @@ const useEphemerisPlanification = (lessonId) => {
 
         setFiles([...files, response.file]);
         setLoading(false);
+      },
+      async uploadDocument(){
+        const payload = {
+          filename: name,
+          filepath: filepath
+        };
+
+        await fileRequest.uploadDocumentByLessonId(lesson.id, payload);
+      },
+      async removeDocument(documentId){
+        await fileRequest.removeDocumentByLessonId(lesson.id, documentId);
       }
     }
   };

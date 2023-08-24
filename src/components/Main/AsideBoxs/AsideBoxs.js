@@ -14,7 +14,7 @@ const AsideBoxs = () => {
     <aside className="container-boxs">
       <article
         onClick={() => navigate('/admin/situations')}
-        className="boxs-situations boxs"
+        className="boxs-situations boxs animationScale"
       >
         <header className="boxs__header">
           <BoxIcon svg={emergentesIcon} background="color-primary" />
@@ -30,7 +30,7 @@ const AsideBoxs = () => {
       </article>
       <article
         onClick={() => navigate('/admin/ephemeris')}
-        className="boxs-ephemeris boxs"
+        className="boxs-ephemeris boxs animationScale"
       >
         <header className="boxs__header">
           <BoxIcon svg={efemeridesIcon} background="color-primary" />

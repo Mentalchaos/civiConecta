@@ -9,6 +9,21 @@ export const uploadByLesson = (lessonId, formData) => {
   return http.upload(url, formData);
 };
 
+export const uploadDocumentByLessonId = (lessonId, payload) => {
+  const url = `${BASE_URL}/lessons/${lessonId}/files`;
+  return http.post(url, payload);
+}
+
+export const removeDocumentByLessonId = (lessonId, fileId) => {
+  const url = `${BASE_URL}/lessons/${lessonId}/files/${fileId}`;
+  return http.delete(url);
+}
+
+export const editDocumentByLessonId = (lessonId, fileId, payload) => {
+  const url = `${BASE_URL}/lessons/${lessonId}/files/${fileId}`;
+  return http.put(url, payload);
+}
+
 export const downloadFile = uuid => {
   const url = `${BASE_URL}/files/${uuid}`;
   return http.download(url);

@@ -18,6 +18,8 @@ const useSituationPlanification = (lessonId) => {
   const [description, setDescription] = useState('');
   const [objective, setObjective] = useState('');
   const [selectedDocument, setSelectedDocument] = useState({});
+  const [name, setName] = useState('');
+  const [filepath, setFilepath] = useState('');
 
   useEffect(() => {
     async function fn() {
@@ -53,6 +55,8 @@ const useSituationPlanification = (lessonId) => {
       files,
       selectedDocument,
       description,
+      name,
+      filepath,
       planning: {
         topic,
         keywords,
@@ -98,7 +102,9 @@ const useSituationPlanification = (lessonId) => {
       },
       selectDocument(document) {
         setSelectedDocument(document);
-      }
+      },
+      setName,
+      setFilepath
     },
     actions: {
       async updatePlanification() {
@@ -149,6 +155,17 @@ const useSituationPlanification = (lessonId) => {
 
         setFiles([...files, response.file]);
         setLoading(false);
+      },
+      async uploadDocument(){
+        const payload = {
+          filename: name,
+          filepath: filepath
+        };
+
+        await fileRequest.uploadDocumentByLessonId(lesson.id, payload);
+      },
+      async removeDocument(documentId){
+        await fileRequest.removeDocumentByLessonId(lesson.id, documentId);
       }
     }
   };

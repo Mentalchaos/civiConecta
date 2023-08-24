@@ -5,3 +5,11 @@
 .box__link-to .create {
   margin-top: 0 !important;
 }
+
+.animationInstitution {
+  transition: all .2s;
+}
+
+.animationInstitution:hover {
+  transform: scale(0.98);
+}

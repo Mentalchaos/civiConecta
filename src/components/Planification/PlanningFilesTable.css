@@ -1,0 +1,36 @@
+@keyframes rotateBell {
+
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(15deg);
+  }
+
+  75% {
+    transform: rotate(-15deg);
+  }
+}
+
+.table-container {
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.thead-container {
+  background-color: #d9687c;
+  color: white;
+}
+
+.table-icon-actions {
+  width: 47px;
+  height: 47px;
+  transition: all .2s;
+}
+
+.table-icon-actions:hover {
+  cursor: pointer;
+  animation: rotateBell 1s ease-out infinite;
+}

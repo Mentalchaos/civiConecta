@@ -19,7 +19,7 @@ const CreateInstitution = () => {
       onMouseOver={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
       onClick={() => navigate('/admin/manager')}
-      className="box create-school"
+      className="box create-school animationInstitution"
     >
       <header className="box__header">
         <BoxIcon svg={schoolIcon} background="color-green" />

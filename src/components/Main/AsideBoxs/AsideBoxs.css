@@ -48,3 +48,11 @@
 .boxs-header__events {
   font-size: 10px;
 }
+
+.animationScale {
+  transition: all .3s;
+}
+
+.animationScale:hover {
+  transform: scale(0.9);
+}
