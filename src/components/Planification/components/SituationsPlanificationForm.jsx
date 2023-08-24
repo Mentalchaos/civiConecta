@@ -12,6 +12,8 @@ const SituationsPlanificationForm = () => {
       .updatePlanification()
       .then(() => {
         alert('Se han guardado sus cambios');
+      }).then(() => {
+        window.location.reload();
       });
   };
 
@@ -100,12 +102,11 @@ const SituationsPlanificationForm = () => {
       </div>
 
       <div>
-        <input
+        <button
           className="form-group button"
           type="submit"
-          value={states.loading ? 'Guardando...' : 'Guardar'}
           disabled={states.loading}
-        />
+        >Enviar</button>
       </div>
     </form>
   );

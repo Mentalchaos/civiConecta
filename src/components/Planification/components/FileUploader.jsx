@@ -9,7 +9,7 @@ const FileUploader = () => {
 
   return (
     <div className="file-upload">
-      <button onClick={() => setShowModal(true)}>Subir archivo</button>
+      <button className="form-group button" onClick={() => setShowModal(true)}>Subir archivo</button>
       { isModalShown }
     </div>
   );
