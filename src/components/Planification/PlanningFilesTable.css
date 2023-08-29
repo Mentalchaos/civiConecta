@@ -34,3 +34,7 @@
   cursor: pointer;
   animation: rotateBell 1s ease-out infinite;
 }
+
+.planningLink:hover {
+  background: transparent;
+}

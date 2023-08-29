@@ -31,7 +31,7 @@ const PlanningFilesTable = ({ tableData, actions, setShowEditModal, openDataToEd
         {tableData && tableData.map(data => (
           <tr key={data.id}>
             <td>{data.filename}</td>
-            <td>{data.filepath}</td>
+            <td><a className="planningLink" href={data.filepath} target="_blank">{data.filepath}</a></td>
             <td><img className="table-icon-actions" src={deleteIcon} onClick={() => gettingId(data.id)}/></td>
             <td><img className="table-icon-actions" src={editIcon} onClick={() => onEdit(data.id)}/></td>
           </tr>
