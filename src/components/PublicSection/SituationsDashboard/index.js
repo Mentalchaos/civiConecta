@@ -35,7 +35,8 @@ const SituationsDashboard = () => {
     getSituations();
   }, []);
 
-  const filtered = emergentData && emergentData.filter(data => data.title == inputValue);
+  const filtered = emergentData && emergentData.filter(data => data.title.toLowerCase().includes(inputValue.toLowerCase()));
+
   const emergData = emergentData && !filtered.length ? emergentData : filtered;
 
   return (
