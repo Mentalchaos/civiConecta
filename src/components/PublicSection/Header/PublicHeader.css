@@ -1,3 +1,7 @@
+.public-header-container {
+  width: 100%;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -89,4 +93,81 @@
 
 .menu-docente:hover {
   cursor: pointer;
+}
+
+.mobile-menu-container {
+  opacity: 0;
+  position: fixed;
+  height: 70px;
+  width: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  background-color: white;
+}
+
+.mobile-menu-header {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 1em;
+  width: 100vw;
+}
+
+.mobile-session-info {
+  display: flex;
+  align-items: center;
+}
+
+.mobile-menu-burger,
+.mobile-session-info img {
+  filter: invert(52%) sepia(72%) saturate(2702%) hue-rotate(315deg) brightness(99%) contrast(84%);
+}
+
+.mobile-session-info p {
+  color: #e95f7b;
+  font-size: 12px;
+}
+
+.mobile-menu-logo {
+  width: 50px;
+}
+
+.close-menu { 
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  background: #7468E2;
+  color: white;
+}
+
+.mobile-menu-container.open {
+  height: 100%;
+}
+
+.burger-menu-active {
+  filter: invert(42%) sepia(53%) saturate(1175%) hue-rotate(214deg) brightness(93%) contrast(89%);
+}
+
+.option {
+  display: flex;
+  justify-content: center;
+}
+
+.mobile-menu-options {
+  height: 70vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+
+@media screen and (min-width: 375px) and (max-width: 1024px) {
+  .container {
+    opacity: 0;
+  }
+
+  .mobile-menu-container {
+    opacity: 1;
+  }
 }
