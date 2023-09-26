@@ -20,14 +20,19 @@
     width: 50%;
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
-    background-color: #fceff2;
+}
+
+.left-container,
+.mobile-second-container {
     padding: 1.5em;
+    background-color: #fceff2;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
 
-.left-container h3 {
+.left-container h3,
+.mobile-second-container h3 {
     font-family: 'Nunito', sans-serif;
     color: #e95f7b;
 }
@@ -70,20 +75,26 @@
     width: 50%;
     border-top-right-radius: 40px;
     border-bottom-right-radius: 40px;
-    background-color: #e95f7b;
     padding: 1.5em;
+}
+
+.right-container,
+.mobile-welcome-info {
+    background-color: #e95f7b;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.right-container p {
+.right-container p,
+.mobile-welcome-info {
     font-family: 'Nunito', sans-serif;
     color: #FFFFFF;
     margin: 0;
 }
 
-.second-right-container {
+.second-right-container,
+.mobile-info {
     width: 65%;
     display: flex;
     flex-direction: column;
@@ -158,12 +169,85 @@
         margin-left: 10px
     }
 
-    .left-container h3 {
+    .left-container h3{
         font-size: 14px;
     }
 
     .p-1,
     .p-2 {
         font-size: 12px;
+    }
+}
+
+
+.mobile-section {
+    display: none;
+}
+
+.mobile-welcome-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mobile-welcome-info {
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    width: 90%;
+}
+
+.mobile-second-container {
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    width: 90%;
+}
+
+.mobile-second-container h3 {
+    font-size: 20px;
+}
+
+.mobile-second-container .p-1 {
+    font-weight: 400;
+}
+
+
+@media screen and (min-width: 375px) and (max-width: 1024px) {
+    .welcome-container {
+        display: none;
+    }
+
+    .mobile-section {
+        display: block;
+    }
+
+    .welcome-section {
+        display: flex;
+    }
+
+    .man-image {
+        position: absolute;
+        width: 140px;
+        right: -110px;
+        top: -144px;
+        z-index: 2;
+    }
+
+    .date-container img, .school-container img, .grade-container img {
+        width: 30px;
+    }
+
+    .date-container p, .school-info, .grade {
+        font-size: 11px;
+        font-weight: bold;
+    }
+
+    .date-container, .school-container, .grade-container {
+        margin: 5px 0 5px 10px;
+    }
+
+    .school-info-container p:first-child,
+    .grade-info p:first-child {
+        font-weight: normal;
+        font-size: 10px;
     }
 }

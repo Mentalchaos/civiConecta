@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Button from 'src/components/UI/Button';
 
+import './RecoverPassword.css';
+
 const RecoverPasswordSection = () => {
 
     const styleButton = {
@@ -28,20 +30,20 @@ const RecoverPasswordSection = () => {
     <div className='recover-section'>
         <form className='recover-form'>
             <div className="form-group">
-            <label className="form-label" htmlFor="username">
-                Email de usuario
-            </label>
-            <input
-                className="form-input input-name"
-                /* onChange={handleInputChange} */
-                value={emailInput}
-                onChange={e => setEmailInput(e.target.value)}
-                id="email"
-                name="email"
-                type="text"
-                placeholder="Escriba su correo aquí"
-                spellCheck="false"
-            />
+              <label className="form-label" htmlFor="username">
+                  Email de usuario
+              </label>
+              <input
+                  className="form-input input-name"
+                  /* onChange={handleInputChange} */
+                  value={emailInput}
+                  onChange={e => setEmailInput(e.target.value)}
+                  id="email"
+                  name="email"
+                  type="text"
+                  placeholder="Escriba su correo aquí"
+                  spellCheck="false"
+              />
             </div>
             <div className="form-group">
             <Button

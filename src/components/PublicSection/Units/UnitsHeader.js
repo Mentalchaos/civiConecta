@@ -3,7 +3,7 @@ import './UnitsHeader.css';
 
 const UnitsHeader = ({program}) => {
     return (
-        <div>
+        <div className='units-header-cont'>
             <div className='units-header-title'>
                 <img alt="icon-civi" src={icon} />
                 <p>Unidades</p>

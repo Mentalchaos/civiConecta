@@ -151,6 +151,12 @@
 .option {
   display: flex;
   justify-content: center;
+  align-items: center;
+  color: #808080;
+}
+
+.option:first-child {
+  color: #e95f7b;
 }
 
 .mobile-menu-options {

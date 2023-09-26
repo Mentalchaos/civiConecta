@@ -29,7 +29,8 @@ const MobileHeader = ({handleLogout}) => {
     height: menuOpen ? '100vh' : '70px',
     overflow: 'hidden',
     transition: 'height 0.3s ease-in-out',
-    backgroundColor: 'rgb(250 250 250 / 90%)'
+    backgroundColor: 'rgb(250 250 250 / 90%)',
+    width: '100vw'
   };
 
   return (

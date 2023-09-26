@@ -5,6 +5,7 @@ import school from 'src/assets/Icons/school.svg';
 import cap from 'src/assets/Icons/graduation-cap.svg';
 import man from 'src/assets/images/fraud-protection-hero.png';
 import './Welcome.css';
+import MobileWelcome from './MobileWelcome';
 
 const Welcome = ({ userData, unitsPonderation }) => {
   const { establishment, grade, letter } = userData || {};
@@ -12,6 +13,9 @@ const Welcome = ({ userData, unitsPonderation }) => {
 
   return (
     <div className="welcome-section">
+      <div className='mobile-section'>
+        <MobileWelcome establishment={establishment} grade={grade} letter={letter} user={user} />
+      </div>
       <div className="welcome-container">
         <div className="left-container">
           <h3>¡Hola {user.name}!</h3>

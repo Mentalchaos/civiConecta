@@ -53,8 +53,9 @@ const UnitComponent = ({ id, status, title, description, color, borderColor, num
   return (
     <div className={`unit-component-container ${color}`} style={{ border: `2px solid ${colors[statusType].color}` }}>
       <div className='unit-component-title'>
-        <div>
+        <div className='unit-number-cont'>
           <img src={colors[statusType].imageHat} alt='unit-logo' />
+          <p className='mobile-unit'>Unidad {number} </p>
         </div>
         <div className='unit-second-container' onClick={onClickStatus}>
           <p onClick={handleTextUnits}>{statusType}</p>

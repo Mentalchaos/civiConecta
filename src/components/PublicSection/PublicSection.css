@@ -44,5 +44,17 @@
 
     .units-components-two {
         align-items: center;
+        width: 100%;
+    }
+}
+
+
+@media screen and (min-width: 375px) and (max-width: 1024px) {
+    .public-section-container {
+        padding: 0; 
+    }
+
+    .units-components {
+        padding: 20px 0;
     }
 }

@@ -3,11 +3,15 @@ import whatsapp from 'src/assets/Icons/whatsapp-icon.svg';
 import instagram from 'src/assets/Icons/instagram-icon.svg';
 import facebook from 'src/assets/Icons/facebook-icon.svg';
 import linkedin from 'src/assets/Icons/linkedin-icon.svg';
+import MobileFooter from './MobileFooter';
 import './PublicFooter.css';
 
 const Footer = () => {
   return (
     <div className='container-two'>
+      <div className='mobile-footer'>
+        <MobileFooter />
+      </div>
       <div className='footer-container'>
         <div className='footer-logo-container'>
           <img className='footer-logo' src={logo} />

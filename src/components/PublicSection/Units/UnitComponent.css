@@ -47,10 +47,6 @@
     color: #898c8c;
 }
 
-.component-info {
-
-}
-
 .component-title,
 .component-subtitle,
 .go-to-unit {
@@ -122,7 +118,9 @@
 
 @media (max-width: 1024px) {
     .unit-component-container {
-        width: 205px;
+        width: 90%;
+        height: 200px;
+        margin: 10px 0;
     }
 
     .component-title,
@@ -132,6 +130,31 @@
     }
 
     .go-to-unit {
-        width: 60%;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .unit-arrow {
+        margin-left: 10px;
+    }
+}
+
+.mobile-unit {
+    display: none;
+}
+
+.unit-number-cont {
+    display: flex;
+    align-items: center;
+}
+
+@media screen and (min-width: 375px) and (max-width: 1024px) {
+    .mobile-unit {
+        display: block;
+    }
+
+    .component-title {
+        display: none;
     }
 }

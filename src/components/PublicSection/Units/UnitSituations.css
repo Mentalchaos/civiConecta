@@ -73,3 +73,10 @@
         width: 90%;
     }
 }
+
+@media screen and (min-width: 375px) and (max-width: 1024px) {
+    .unit-situations-container {
+        width: 90%;
+        margin: 10px 0;
+    }
+}
