@@ -12,7 +12,8 @@ import { StudentQuestionSection, TeacherQuestionSection } from 'src/components/Q
 import { AdminGuard } from './guard/admin.guard';
 import Situations from 'src/components/Events/Situations';
 import Ephemeris from 'src/components/Events/Ephemeris';
-
+import EditEstablishment from 'src/components/Manager/EditEstablishment';
+import EditCourse from 'src/components/Manager/EditCourse';
 
 // @TODO: Fix this
 // window.sse = new EventSource('http://errcake.ngrok.io/stream-events');
@@ -42,13 +43,15 @@ const AdminRouter = () => {
           <Route path="teacher-survey" element={<TeacherSurvey />} />
           <Route path="units/:unitId" element={<UnitManager />} />
           <Route path="units" element={<UnitsSection />} />
-          <Route path="manager" element={<Manager />} />
           <Route path="situations" element={<Situations />} />
           <Route path="ephemeris" element={<Ephemeris />} />
           <Route
             path=":parentType/lesson/:lessonId"
             element={<Planification />}
           />
+          <Route path="manager/:establishmentId/course/:courseId" element={<EditCourse />} />
+          <Route path="manager/:establishmentId" element={<EditEstablishment />} />
+          <Route path="manager" element={<Manager />} />
           <Route path="*" element={<Navigate to="dashboard" />} />
         </Route>
       </Routes>

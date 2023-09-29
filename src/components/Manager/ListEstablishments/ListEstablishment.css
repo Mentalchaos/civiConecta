@@ -1,0 +1,76 @@
+.manager__search-container {
+  width: 90%;
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #e0e0e0;
+}
+
+.manager__search-text {
+  color: var(--gray-dark);
+  margin-left: 20px;
+}
+
+.search-container__selects {
+  display: flex;
+  gap: 10px;
+  padding-right: 25px;
+}
+
+.manager__form .form__input-name {
+  width: 30%;
+  background-color: #fff;
+  font-family: 'Poppins';
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  text-align: left;
+  padding: 9px;
+  font-size: 14px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.manager__form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-group-icon {
+  position: relative;
+}
+
+.input-group-icon input {
+  width: 165px;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  text-align: center;
+}
+.input-group-icon input + img {
+  position: absolute;
+  top: 8px;
+  left: 12px;
+}
+
+.content__difused {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  transition: all 0.2s ease-in-out;
+  /* position: absolute; */
+  width: 100%;
+  bottom: -80px;
+  left: 40px;
+  background-color: rgb(255, 255, 255, 0.7);
+  text-align: center;
+  padding-bottom: 40px;
+}
+
+.container-actions {
+  margin-top: 40px;
+  display: flex;
+  gap: 5rem;
+  padding: 0px 40px;
+}

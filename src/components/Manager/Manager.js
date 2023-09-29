@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
-import StageManager from './StageManager/StageManager';
-import StageAssignment from './StageAssignment/StageAssignment';
-import StageDetail from './StageDetail/StageDetail';
-import background from 'src/assets/images/manager-header.png';
-import './Manager.css';
 import SectionsHeader from '../SectionsHeader/SectionsHeader';
+import ListEstablishment from './ListEstablishments';
 import http from 'src/services/helpers/http.helper';
 import config from 'src/config';
+import './Manager.css';
+import background from 'src/assets/images/manager-header.png';
 
 const Manager = () => {
   const [stage, setStage] = useState('Manager');
@@ -28,6 +26,8 @@ const Manager = () => {
   };
 
   const handleInstitutionSelected = institution => {
+    console.log('institution', institution);
+    // debugger;
     setInstitutionSelected(institution);
   };
 
@@ -55,14 +55,17 @@ const Manager = () => {
         <div className="current-path">
           <p className="path__text">{stage}</p>
         </div>
-        {stage === 'Manager' && (
+
+        <ListEstablishment />
+
+        {/* {stage === 'Manager' && (
           <StageManager
             changeStage={changeStage}
             title="A&ntilde;adir Instituci&oacute;n"
             handleInstitutionSelected={handleInstitutionSelected}
           />
-        )}
-        {stage === 'Asignación' && (
+        )} */}
+        {/* {stage === 'Asignación' && (
           <StageAssignment
             onUpdateInstitution={setInstitutionSelected}
             changeStage={changeStage}
@@ -71,8 +74,8 @@ const Manager = () => {
             establishment={establishment}
             title="Creaci&oacute;n de cursos"
           />
-        )}
-        {stage === 'Detalle' && (
+        )} */}
+        {/* {stage === 'Detalle' && (
           <StageDetail
             establishments={establishment}
             institutionSelected={institutionSelected}
@@ -80,7 +83,7 @@ const Manager = () => {
             changeStage={changeStage}
             title="Detalle de letra"
           />
-        )}
+        )} */}
       </main>
     </>
   );
