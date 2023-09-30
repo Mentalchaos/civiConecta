@@ -6,6 +6,9 @@ const useEditEstablishment = (establishmentId) => {
   const [grades, setGrades] = useState([]);
   const [letters, setLetters] = useState([]);
   const [courses, setCourses] = useState([]);
+  // const [selectedGrade, setSelectedGrade] = useState(null);
+  // const [selectedLetter, setSelectedLetter] = useState(null);
+  const [filteredCourses, setFilteredCourses] = useState([]);
 
   useEffect(() => {
     async function fn() {
@@ -32,9 +35,19 @@ const useEditEstablishment = (establishmentId) => {
     states: {
       grades,
       letters,
-      courses
+      courses,
+      filteredCourses
     },
-    actions: {}
+    actions: {
+      selectCoursesByGrade(gradeLevel) {
+        const filteredCourses = courses.filter(c => c.level === gradeLevel);
+        setFilteredCourses(filteredCourses);
+      },
+      async createCourse(gradeId, letterId) {
+        const response = await service.createCourse(establishmentId, gradeId, letterId);
+        console.log('response', response);
+      }
+    }
   };
 };
 

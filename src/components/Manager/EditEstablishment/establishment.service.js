@@ -15,6 +15,10 @@ const service = {
   fetchCourses(establishmentId) {
     const url = `${BASE_URL}/establishments/${establishmentId}/courses`;
     return http.get(url);
+  },
+  createCourse(establishmentId, letterId, gradeId) {
+    const url = `${BASE_URL}/establishments/${establishmentId}`;
+    return http.post(url, { letterId, gradeId });
   }
 };
 

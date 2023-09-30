@@ -1,31 +1,18 @@
-import './EditEstablishment.css';
-
-const list = [
-  {
-    id: 1,
-    course: '5º Basico',
-    grade: 'A'
-  },{
-    id: 2,
-    course: '5º Basico',
-    grade: 'B'
-  },{
-    id: 3,
-    course: '4º Basico',
-    grade: 'A'
-  }
-];
+import { useContext } from 'react';
+import { EditEstablishmentContext } from './useEditEstablishment';
 
 const GradeList = () => {
+  const { states } = useContext(EditEstablishmentContext);
+
   return (
     <div className='gradelist-container'>
-      { list.map(el => (
+      {states.filteredCourses.map(el => (
         <div className="gradelist-element" key={el.id}>
-          {`${el.course} ${el.grade}`}
+          {`${el.level} ${el.character}`}
         </div>
       ))}
     </div>
-  )
+  );
 };
 
 GradeList.displayName = 'GradeList';
