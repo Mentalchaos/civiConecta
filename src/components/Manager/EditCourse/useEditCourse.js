@@ -2,13 +2,27 @@ import { useEffect, useState, createContext } from 'react';
 import service from './editCourse.service';
 
 const useEditCourse = (courseId) => {
+  const [course, setCourse] = useState({});
+  const [students, setStudents] = useState([]);
+
   useEffect(() => {
-    console.log('cargando cursor', courseId);
+    async function fn() {
+      const [studentsResponse, courseResponse] = await Promise.all([
+        service.fetchStudentsByCourse(courseId),
+        service.fetchCourse(courseId)
+      ]);
+
+      setStudents(studentsResponse.students);
+      setCourse(courseResponse.course);
+    }
+
+    fn();
   }, [courseId])
 
   return {
     states: {
-      students: []
+      students,
+      course
     },
     actions: {}
   };

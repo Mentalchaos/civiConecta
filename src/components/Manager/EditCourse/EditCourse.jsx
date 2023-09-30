@@ -23,10 +23,10 @@ const EditCourse = () => {
               {states.students.map(student => {
                 return (
                   <tr>
-                    <th>Nombre</th>
-                    <th>run</th>
-                    <th>curso</th>
-                    <th>letra</th>
+                    <th>{student.name}</th>
+                    <th>{student.run}</th>
+                    <th>{states.course.level}</th>
+                    <th>{states.course.character}</th>
                   </tr>
                 );
               })}
