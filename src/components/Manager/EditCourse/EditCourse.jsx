@@ -23,7 +23,7 @@ const EditCourse = () => {
             <tbody>
               {states.students.map(student => {
                 return (
-                  <tr>
+                  <tr key={student.id}>
                     <th>{student.name}</th>
                     <th>{student.run}</th>
                     <th>{states.course.level}</th>

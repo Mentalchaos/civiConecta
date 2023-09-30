@@ -25,7 +25,7 @@ const useEditCourse = (courseId) => {
       course
     },
     actions: {
-      addStudent(name, run) {
+      async addStudent(name, run) {
         const formattedName = name.trim();
         const formattedRun = run.trim();
 
@@ -37,7 +37,8 @@ const useEditCourse = (courseId) => {
           return Promise.reject('Ya existe este estudiante');
         }
 
-        const newStudents = [...students, { name: formattedName, run: formattedRun, id: Math.random() }];
+        const response = await service.addStudent(courseId, formattedName, formattedRun);
+        const newStudents = [...students, response.student];
         setStudents(newStudents);
 
         return Promise.resolve();
