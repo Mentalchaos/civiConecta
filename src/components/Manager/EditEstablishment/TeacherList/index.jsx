@@ -10,8 +10,8 @@ const TeacherList = () => {
     <table>
       <Head />
       <tbody>
-        {states.teachers.map(teacher => {
-          return <Row key={teacher.id} teacher={teacher} />;
+        {states.teachers.map((teacher) => {
+          return <Row key={teacher.email} teacher={teacher} />;
         })}
       </tbody>
     </table>

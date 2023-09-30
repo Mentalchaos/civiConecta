@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useEditCourse, EditCourseContext } from './useEditCourse';
 import CreateStudentForm from './CreateStudentForm';
+import CreateTeacherForm from './CreateTeacherForm';
 
 const EditCourse = () => {
   const { courseId } = useParams();
@@ -39,7 +40,7 @@ const EditCourse = () => {
         </fieldset>
         <fieldset>
           <legend>Seccion docentes</legend>
-          <div>seccion crear profesor</div>
+          <CreateTeacherForm />
           <div>lista de profesores</div>
         </fieldset>
       </EditCourseContext.Provider>

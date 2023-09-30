@@ -4,6 +4,7 @@ import service from './editCourse.service';
 const useEditCourse = (courseId) => {
   const [course, setCourse] = useState({});
   const [students, setStudents] = useState([]);
+  const [assignedTeacher, setAssignedTeacher] = useState({});
 
   useEffect(() => {
     async function fn() {
@@ -22,7 +23,8 @@ const useEditCourse = (courseId) => {
   return {
     states: {
       students,
-      course
+      course,
+      assignedTeacher
     },
     actions: {
       async addStudent(name, run) {
@@ -42,6 +44,15 @@ const useEditCourse = (courseId) => {
         setStudents(newStudents);
 
         return Promise.resolve();
+      },
+      async assignTeacher(name, email) {
+        const formattedName = name.trim();
+        const formattedEmail = email.trim();
+        const teacher = await service.assignTeacher(
+          courseId, formattedName, formattedEmail
+        );
+
+        setAssignedTeacher(teacher);
       }
     }
   };

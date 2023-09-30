@@ -15,6 +15,10 @@ const service = {
   addStudent(courseId, name, run) {
     const url = `${BASE_URL}/courses/${courseId}/students`;
     return http.post(url, { name, run });
+  },
+  assignTeacher(courseId, name, email) {
+    const url = `${BASE_URL}/courses/${courseId}/teachers`;
+    return http.put(url, { name, email });
   }
 };
 
