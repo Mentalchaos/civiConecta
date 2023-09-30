@@ -1,7 +1,8 @@
+import PropTypes from 'prop-types';
 import SectionsHeader from 'src/components/SectionsHeader/SectionsHeader';
 import background from 'src/assets/images/manager-header.png';
 
-const EstablishmentLayout = ({ title, children }) => {
+const EstablishmentLayout = ({ title, subtitle, children }) => {
   return (
     <>
       <SectionsHeader
@@ -10,12 +11,22 @@ const EstablishmentLayout = ({ title, children }) => {
       />
       <main className="manager-content">
         <div className="current-path">
-          <p className="path__text">Manager</p>
+          <p className="path__text">{subtitle}</p>
         </div>
         {children}
       </main>
     </>
   );
+};
+
+EstablishmentLayout.defaultProps = {
+  subtitle: 'Manager'
+};
+
+EstablishmentLayout.propTypes = {
+  subtitle: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired
 };
 
 export default EstablishmentLayout;
