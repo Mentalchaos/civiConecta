@@ -1,3 +1,4 @@
+import './EditEstablishment.css';
 
 const list = [
   {
@@ -17,9 +18,9 @@ const list = [
 
 const GradeList = () => {
   return (
-    <div style={{display: 'flex'}}>
+    <div className='gradelist-container'>
       { list.map(el => (
-        <div key={el.id}>
+        <div className="gradelist-element" key={el.id}>
           {`${el.course} ${el.grade}`}
         </div>
       ))}

@@ -41,6 +41,7 @@
   padding-top: 10px;
   padding-right: 40px;
 }
+
 .container-input img {
   position: absolute;
   right: 1rem;
@@ -97,7 +98,7 @@
   width: 50%;
 }
 
-.disabled-section{
+.disabled-section {
   opacity: 0.5;
 
 }
@@ -123,7 +124,7 @@
 
 .go-to__text {
   font-size: 14px;
-  margin-right:10px;
+  margin-right: 10px;
 }
 
 .go-to__icon {
@@ -142,21 +143,38 @@
   position: absolute;
 }
 
-input[type='checkbox']#checkLetter + label:before {
+input[type='checkbox']#checkLetter+label:before {
   float: right;
   margin-right: 10px;
 }
 
-input[type='checkbox']#checkLetter:checked + label:after {
+input[type='checkbox']#checkLetter:checked+label:after {
   float: right !important;
   margin-right: -1rem;
 }
 
-.form__add-student > div > input {
+.form__add-student>div>input {
   width: 30%;
 }
 
 .content__level-selection-title {
   margin-right: 5px;
   font-size: 14px;
+}
+
+.gradelist-container {
+  display: flex;
+}
+
+.gradelist-element {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  background: var(--color-primary);
+  color: white;
+  margin: 1em;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
