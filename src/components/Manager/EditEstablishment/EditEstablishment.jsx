@@ -3,6 +3,7 @@ import { useEditEstablishment, EditEstablishmentContext } from './useEditEstabli
 import GradeList from './GradeList.jsx';
 import CourseSelectors from './CourseSelectors.jsx';
 import CreateCourseButton from './CreateCourseButton.jsx';
+import './EditEstablishment.css';
 
 const EditEstablishment = () => {
   const { establishmentId } = useParams();
