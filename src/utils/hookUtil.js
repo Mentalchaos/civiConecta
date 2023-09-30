@@ -16,4 +16,32 @@ const fetchLoading = (fetcher) => (fn) => async (...args) => {
   return ok ? Promise.resolve(result) : Promise.reject(result);
 };
 
-export { fetchLoading };
+const toSuspense = (promise) => {
+  let status = 'pending';
+  let response;
+
+  const suspended = promise
+    .then((res) => {
+      status = 'success';
+      response = res;
+    })
+    .catch((err) => {
+      status = 'error';
+      response = err;
+    });
+
+  function read() {
+    switch (status) {
+      case 'pending':
+        throw suspended;
+      case 'error':
+        throw response;
+      default:
+        return response;
+    }
+  }
+
+  return { read };
+}
+
+export { fetchLoading, toSuspense };

@@ -6,25 +6,32 @@ const useEditEstablishment = (establishmentId) => {
   const [grades, setGrades] = useState([]);
   const [letters, setLetters] = useState([]);
   const [courses, setCourses] = useState([]);
-  // const [selectedGrade, setSelectedGrade] = useState(null);
-  // const [selectedLetter, setSelectedLetter] = useState(null);
+  const [teachers, setTeachers] = useState([]);
   const [filteredCourses, setFilteredCourses] = useState([]);
 
   useEffect(() => {
     async function fn() {
-      const [gradesResponse, lettersResponse, coursesResponse] = await Promise.all([
+      const [
+        gradesResponse,
+        lettersResponse,
+        coursesResponse,
+        teacherResponse
+      ] = await Promise.all([
         service.fetchGrades(),
         service.fetchLetters(),
-        service.fetchCourses(establishmentId)
+        service.fetchCourses(establishmentId),
+        service.fetchTeachers(establishmentId)
       ]);
 
       console.log('grades', gradesResponse);
       console.log('letters', lettersResponse);
       console.log('courses', coursesResponse);
+      console.log('teacherResponse', teacherResponse);
 
       setGrades(gradesResponse.grades);
       setLetters(lettersResponse.letters);
       setCourses(coursesResponse.courses);
+      setTeachers(teacherResponse.teachers);
     }
 
     fn();
@@ -36,6 +43,7 @@ const useEditEstablishment = (establishmentId) => {
       grades,
       letters,
       courses,
+      teachers,
       filteredCourses
     },
     actions: {

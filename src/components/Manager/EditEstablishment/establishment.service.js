@@ -16,6 +16,10 @@ const service = {
     const url = `${BASE_URL}/establishments/${establishmentId}/courses`;
     return http.get(url);
   },
+  fetchTeachers(establishmentId) {
+    const url = `${BASE_URL}/establishments/${establishmentId}/teachers`;
+    return http.get(url);
+  },
   createCourse(establishmentId, gradeId, letterId) {
     const url = `${BASE_URL}/establishments/${establishmentId}/courses`;
     return http.post(url, { letterId, gradeId });
