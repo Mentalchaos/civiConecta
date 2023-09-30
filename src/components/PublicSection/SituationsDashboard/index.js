@@ -12,6 +12,19 @@ import back from 'src/assets/Icons/back-arrow.svg';
 import './SituationsDashboard.css';
 import { useParams } from 'react-router-dom';
 
+const toSearchWords = (item) => {
+  const words = item.keywords.map(k => k.split('-')).flat();
+
+  return {
+    ...item,
+    searchTerms: [item.title, ...words].map(s => s.toLowerCase().trim()),
+    hasSearchTerm(keyword) {
+      const term = keyword.toLowerCase().trim();
+      return !!this.searchTerms.filter(t => t.indexOf(term) > -1).length;
+    }
+  };
+}
+
 const SituationsDashboard = () => {
 
   const [emergentData, setEmergentData] = useState([]);
@@ -29,14 +42,13 @@ const SituationsDashboard = () => {
       method: 'GET'
     })
     const data = await response.json();
-    setEmergentData(data.events);
+    setEmergentData(data.events.map(toSearchWords));
   };
   useEffect(() => {
     getSituations();
   }, []);
 
-  const filtered = emergentData && emergentData.filter(data => data.title.toLowerCase().includes(inputValue.toLowerCase()));
-
+  const filtered = emergentData && emergentData.filter(item => item.hasSearchTerm(inputValue));
   const emergData = emergentData && !filtered.length ? emergentData : filtered;
 
   return (
@@ -93,5 +105,7 @@ const SituationsDashboard = () => {
     </div>
   )
 }
+
+SituationsDashboard.displayName = 'SituationsDashboard';
 
 export default SituationsDashboard;
