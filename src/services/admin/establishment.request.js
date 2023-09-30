@@ -1,6 +1,5 @@
 import config from 'src/config';
 import http from '../helpers/http.helper.js';
-import Establishment from 'src/entities/Establishment.js';
 
 const BASE_URL = config.baseURL;
 
@@ -10,7 +9,7 @@ export const getEstablishment = async () => {
 
   return {
     ok: response.ok,
-    establishments: response.establishments.map(e => new Establishment(e)),
+    establishments: response.establishments,
   };
 };
 
@@ -20,9 +19,8 @@ export const createEstablishment = (number, name) => {
 };
 
 export const updateActiveEstablishment = (number, active) => {
-  const payload = { active };
-  const url = `${BASE_URL}/updateActiveEstablishment?number=${number}`;
-  return http.put(url, payload);
+  const url = `${BASE_URL}/establishments/${number}/status/${active}`;
+  return http.put(url);
 };
 
 export const updateCoursesEstablishment = (number, payload) => {

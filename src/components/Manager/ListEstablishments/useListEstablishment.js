@@ -5,11 +5,18 @@ import {
   updateActiveEstablishment,
 } from 'src/services/admin/establishment.request';
 
+const mapEstablishment = (data) => {
+  return {
+    ...data,
+    get statusName() {
+      return this.active ? 'activo' : 'inactivo';
+    }
+  };
+};
+
 const useListEstablishment = () => {
   const [fetching, setFetching] = useState(false);
   const [establishments, setEstablishments] = useState([]);
-  const [dataDisplayed, setDataDisplayed] = useState([]);
-  const [selectedEstablishment, setSelectedEstablishment] = useState(null);
 
   async function reloadData() {
     setFetching(true);
@@ -17,15 +24,7 @@ const useListEstablishment = () => {
     const response = await getEstablishment();
 
     if (response.ok) {
-      const dataDisplayed = response.establishments.map(est => {
-        const { active, name } = est;
-        return {
-          name,
-          active: active ? 'Activo' : 'Inactivo'
-        };
-      });
-      setEstablishments(response.establishments);
-      setDataDisplayed(dataDisplayed);
+      setEstablishments(response.establishments.map(mapEstablishment));
     }
 
     setFetching(false);
@@ -38,9 +37,7 @@ const useListEstablishment = () => {
   return {
     states: {
       fetching,
-      establishments,
-      dataDisplayed,
-      selectedEstablishment
+      establishments
     },
     actions: {
       async createEstablishment(establishmentName) {
@@ -53,14 +50,10 @@ const useListEstablishment = () => {
           console.error(response.error);
         }
       },
-      selectEstablishment(row) {
-        if (!row) {
-          setSelectedEstablishment(null);
-          return;
-        }
-
-        const establishment = establishments.find(e => e.id === row.id);
-        setSelectedEstablishment(establishment);
+      async updateStatus(establishmentId, newStatus) {
+        const newStatusAsText = newStatus ? 'active' : 'inactive';
+        await updateActiveEstablishment(establishmentId, newStatusAsText);
+        await reloadData();
       }
     },
     setters: {}

@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Main from 'src/components/Main';
-import Manager from 'src/components/Manager/Manager';
+import ListEstablishments from 'src/components/Manager/ListEstablishments';
 import Sidebar from 'src/components/Sidebar/Sidebar';
 import StudentSurvey from 'src/components/Surveys/Student';
 import TeacherSurvey from 'src/components/Surveys/Teacher';
@@ -51,7 +51,7 @@ const AdminRouter = () => {
           />
           <Route path="manager/:establishmentId/course/:courseId" element={<EditCourse />} />
           <Route path="manager/:establishmentId" element={<EditEstablishment />} />
-          <Route path="manager" element={<Manager />} />
+          <Route path="manager" element={<ListEstablishments />} />
           <Route path="*" element={<Navigate to="dashboard" />} />
         </Route>
       </Routes>
