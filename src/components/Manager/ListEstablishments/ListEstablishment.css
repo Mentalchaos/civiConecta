@@ -74,3 +74,12 @@
   gap: 5rem;
   padding: 0px 40px;
 }
+
+.action-icons {
+  transition: all .3s;
+}
+
+.action-icons:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}

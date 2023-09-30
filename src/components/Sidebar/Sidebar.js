@@ -36,7 +36,7 @@ const Sidebar = () => {
         <NavButton icon={teacher} text="Docente" ariaLabel="teacher" path={'teacher-survey'} />
         <NavButton icon={student} text="Estudiante" ariaLabel="student" path={'student-survey'} />
         <NavButton icon={blackboard} text="Unidades" ariaLabel="blackboard" path={'units'} />
-        <NavButton icon={school} text="Institución" ariaLabel="school" path={'manager'} />
+        <NavButton icon={school} text="Institución" ariaLabel="school" path={'establishments'} />
         <NavButton icon={folder} text="Situaciones Emergentes" ariaLabel="folder" path={'situations'} />
         <NavButton icon={calendar} text="Efemérides" ariaLabel="calendar" path={'ephemeris'} />
         <NavButton

@@ -4,6 +4,9 @@ import Visible from 'src/components/UI/Visible';
 import Button from 'src/components/UI/Button';
 import CreateInstitutionForm from './CreateInstitutionForm';
 import './ListEstablishment.css';
+import iconEnable from 'src/assets/Icons/icon-enable.png';
+import iconDisable from 'src/assets/Icons/icon-disable.png';
+import iconGoTo from 'src/assets/Icons/icon-go-to.png';
 
 const styles = {
   noEstablishmentsMessage: { textAlign: 'center', marginTop: 80 }
@@ -33,7 +36,6 @@ const ListEstablishment = () => {
             Aún no hay instituciones agregadas
           </h1>
         </Visible>
-
         <Visible condition={states.establishments.length}>
           <article className="section__content table-container">
             <table>
@@ -49,14 +51,10 @@ const ListEstablishment = () => {
                   return (
                     <tr key={est.id}>
                       <td>{est.name}</td>
-                      <td>{est.statusName}</td>
+                      <td style={{color: est.statusName == 'Activo' ? 'green' : 'red'}}>{est.statusName}</td>
                       <td>
-                        <Button onClick={handleStatus(est.id, !est.active)}>
-                          {est.active ? 'Deshabilitar' : 'Habilitar'}
-                        </Button>
-                        <Button onClick={handleGoToEstablishment(est)}>
-                          Ir a institucion
-                        </Button>
+                        <img className="action-icons" onClick={handleStatus(est.id, !est.active)} src={est.active ? iconDisable : iconEnable} />
+                        <img className="action-icons" src={iconGoTo} onClick={handleGoToEstablishment(est)} />
                       </td>
                     </tr>
                   );

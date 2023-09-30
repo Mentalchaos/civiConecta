@@ -9,7 +9,7 @@ const mapEstablishment = (data) => {
   return {
     ...data,
     get statusName() {
-      return this.active ? 'activo' : 'inactivo';
+      return this.active ? 'Activo' : 'Inactivo';
     }
   };
 };
