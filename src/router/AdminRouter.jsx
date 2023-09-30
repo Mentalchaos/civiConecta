@@ -49,9 +49,9 @@ const AdminRouter = () => {
             path=":parentType/lesson/:lessonId"
             element={<Planification />}
           />
-          <Route path="manager/:establishmentId/course/:courseId" element={<EditCourse />} />
-          <Route path="manager/:establishmentId" element={<EditEstablishment />} />
-          <Route path="manager" element={<ListEstablishments />} />
+          <Route path="courses/:courseId" element={<EditCourse />} />
+          <Route path="establishments/:establishmentId" element={<EditEstablishment />} />
+          <Route path="establishments" element={<ListEstablishments />} />
           <Route path="*" element={<Navigate to="dashboard" />} />
         </Route>
       </Routes>

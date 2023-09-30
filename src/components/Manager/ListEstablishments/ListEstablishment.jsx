@@ -20,7 +20,7 @@ const ListEstablishment = () => {
 
   const handleGoToEstablishment = (establishment) => () => {
     const establishmentId = establishment.id;
-    navigate(`/admin/manager/${establishmentId}`);
+    navigate(`/admin/establishments/${establishmentId}`);
   };
 
   return (

@@ -17,7 +17,7 @@ const SectionsHeader = ({ image, subtitle }) => {
         <h1>
           CIVI{' '}
           <span
-            style={{ color: location.pathname === '/admin/manager' && '#fff' }}
+            style={{ color: location.pathname === '/admin/establishment' && '#fff' }}
           >
             admin
           </span>
