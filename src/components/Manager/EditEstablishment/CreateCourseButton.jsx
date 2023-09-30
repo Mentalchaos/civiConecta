@@ -1,8 +1,7 @@
-// Agregar condicionales sobre cuando habilitar o no habilitar este boton
-const CreateCourseButton = () => {
+const CreateCourseButton = ({ onClick }) => {
   return (
     <div>
-      <button>Crear curso</button>
+      <button onClick={onClick}>Crear curso</button>
     </div>
   )
 }

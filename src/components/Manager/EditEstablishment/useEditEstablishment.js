@@ -39,13 +39,25 @@ const useEditEstablishment = (establishmentId) => {
       filteredCourses
     },
     actions: {
-      selectCoursesByGrade(gradeLevel) {
-        const filteredCourses = courses.filter(c => c.level === gradeLevel);
+      selectCoursesByGrade(gradeId) {
+        const pk = Number.parseInt(gradeId);
+        const filteredCourses = courses.filter(c => c.gradeId === pk);
         setFilteredCourses(filteredCourses);
       },
       async createCourse(gradeId, letterId) {
+        const coincidences = courses
+          .filter(c => c.gradeId == gradeId)
+          .filter(c => c.letterId == letterId);
+
+        if (coincidences.length) {
+          return Promise.reject('No se puede crear el curso porque ya existe');
+        }
+
         const response = await service.createCourse(establishmentId, gradeId, letterId);
-        console.log('response', response);
+        const newCourses = [...courses, response.course];
+
+        setCourses(newCourses);
+        setFilteredCourses([]);
       }
     }
   };

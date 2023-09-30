@@ -2,7 +2,6 @@ import { useParams } from 'react-router-dom';
 import { useEditEstablishment, EditEstablishmentContext } from './useEditEstablishment';
 import GradeList from './GradeList.jsx';
 import CourseSelectors from './CourseSelectors.jsx';
-import CreateCourseButton from './CreateCourseButton.jsx';
 import './EditEstablishment.css';
 
 const EditEstablishment = () => {
@@ -15,7 +14,6 @@ const EditEstablishment = () => {
         <div>
           <GradeList />
           <CourseSelectors />
-          <CreateCourseButton />
         </div>
       </EditEstablishmentContext.Provider>
     </>
