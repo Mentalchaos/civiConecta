@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import useEditEstablishment from './useEditEstablishment';
+import { useEditEstablishment, EditEstablishmentContext } from './useEditEstablishment';
 
 const EditEstablishment = () => {
   const { establishmentId } = useParams();
@@ -7,7 +7,9 @@ const EditEstablishment = () => {
 
   return (
     <>
-      oeoeoe editando el establecimiento
+      <EditEstablishmentContext.Provider value={{ states, actions }}>
+        oeoeoe editando el establecimiento
+      </EditEstablishmentContext.Provider>
     </>
   );
 };

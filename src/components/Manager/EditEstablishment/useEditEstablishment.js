@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, createContext } from 'react';
 
 const useEditEstablishment = (establishmentId) => {
   useEffect(() => {
@@ -11,4 +11,6 @@ const useEditEstablishment = (establishmentId) => {
   };
 };
 
-export default useEditEstablishment;
+const EditEstablishmentContext = createContext({});
+
+export { useEditEstablishment, EditEstablishmentContext };
