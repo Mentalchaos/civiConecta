@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEditCourse, EditCourseContext } from './useEditCourse';
+import CreateStudentForm from './CreateStudentForm';
 
 const EditCourse = () => {
   const { courseId } = useParams();
@@ -8,7 +9,7 @@ const EditCourse = () => {
   return (
     <>
       <EditCourseContext.Provider value={{ states, actions }}>
-        <div>seccion de creacion de alumno</div>
+        <CreateStudentForm />
         <div>
           <table>
             <thead>
