@@ -1,6 +1,6 @@
 const CreateCourseButton = ({ onClick }) => {
   return (
-    <div>
+    <div className="create-course-container">
       <button className="create-course-button" onClick={onClick}>Crear curso</button>
     </div>
   )

@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useListEstablishment, ListContext } from './useListEstablishment';
 import Visible from 'src/components/UI/Visible';
-import Button from 'src/components/UI/Button';
 import CreateInstitutionForm from './CreateInstitutionForm';
 import './ListEstablishment.css';
 import iconEnable from 'src/assets/Icons/icon-enable.png';
