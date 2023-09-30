@@ -36,15 +36,22 @@ const CourseSelectors = () => {
 
   return (
     <div>
-      <select ref={gradeRef} name="grades" onChange={handleChangeGrade}>
-        <option value="null" selected>Selecciona un curso</option>
-        {states.grades.map(g => <option value={g.id}>{g.level}</option>)}
-      </select>
+      <Visible condition={!selectedGrade}>
+        <div className="no-curse-selected">
+          <p>Aun no hay ningun curso seleccionado :(</p>
+        </div>
+      </Visible>
+      <div className="selects-container">
+        <select ref={gradeRef} name="grades" onChange={handleChangeGrade}>
+          <option defaultValue={null}>Curso</option>
+          {states.grades.map(g => <option key={g.id} value={g.id}>{g.level}</option>)}
+        </select>
 
-      <select ref={letterRef} name="letters" onChange={handleChangeLetter}>
-        <option value="null" selected>Selecciona una letra</option>
-        {states.letters.map(l => <option value={l.id}>{l.character}</option>)}
-      </select>
+        <select className="letters-select" ref={letterRef} name="letters" onChange={handleChangeLetter}>
+          <option defaultValue={null}>Letra</option>
+          {states.letters.map(l => <option key={l.id} value={l.id}>{l.character}</option>)}
+        </select>
+      </div>
 
       <Visible condition={selectedGrade && selectedLetter}>
         <CreateCourseButton onClick={handleSubmit} />
