@@ -24,6 +24,7 @@ const ListEstablishment = () => {
   const handleGoToEstablishment = (establishment) => () => {
     const establishmentId = establishment.id;
     session.save(`establishment-${establishment.id}`, establishment);
+    session.save('currentEstablishment', establishment);
     navigate(`/admin/establishments/${establishmentId}`);
   };
 
