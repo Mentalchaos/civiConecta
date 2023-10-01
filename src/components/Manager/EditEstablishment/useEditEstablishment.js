@@ -48,9 +48,12 @@ const useEditEstablishment = (establishmentId) => {
         setFilteredCourses(filteredCourses);
       },
       async createCourse(gradeId, letterId) {
+        gradeId = Number.parseInt(gradeId);
+        letterId = Number.parseInt(letterId);
+
         const coincidences = courses
-          .filter(c => c.gradeId == gradeId)
-          .filter(c => c.letterId == letterId);
+          .filter(c => c.gradeId === gradeId)
+          .filter(c => c.letterId === letterId);
 
         if (coincidences.length) {
           return Promise.reject('No se puede crear el curso porque ya existe');

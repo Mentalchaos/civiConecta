@@ -1,5 +1,5 @@
 import Manager from '../Manager';
-import ListEstablishment from './ListEstablishment';
+import ListEstablishment from './components/ListEstablishment';
 
 const ListEstablishmentWrapper = () => {
   return (

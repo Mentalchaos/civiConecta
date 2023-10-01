@@ -27,7 +27,6 @@ const date = {
 
 const { weekdays, months } = date;
 
-//TODO: improve this fn
 const getFormattedDate = () => {
   const date = new Date();
   const weekday = weekdays[date.getDay()];

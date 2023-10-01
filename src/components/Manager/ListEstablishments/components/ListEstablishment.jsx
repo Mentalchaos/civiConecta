@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useListEstablishment, ListContext } from './useListEstablishment';
+import { useListEstablishment, ListContext } from '../useListEstablishment';
 import session from 'src/utils/session';
 import Visible from 'src/components/UI/Visible';
 import CreateInstitutionForm from './CreateInstitutionForm';
@@ -52,7 +52,7 @@ const ListEstablishment = () => {
                   return (
                     <tr key={est.id}>
                       <td>{est.name}</td>
-                      <td style={{color: est.statusName == 'Activo' ? 'green' : 'red'}}>{est.statusName}</td>
+                      <td style={{color: est.active ? 'green' : 'red'}}>{est.statusName}</td>
                       <td>
                         <img className="action-icons" onClick={handleStatus(est.id, !est.active)} src={est.active ? iconDisable : iconEnable} />
                         <img className="action-icons" src={iconGoTo} onClick={handleGoToEstablishment(est)} />
