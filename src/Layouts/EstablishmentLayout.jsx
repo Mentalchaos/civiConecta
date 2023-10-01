@@ -20,12 +20,13 @@ const EstablishmentLayout = ({ title, subtitle, children }) => {
 };
 
 EstablishmentLayout.defaultProps = {
+  title: '',
   subtitle: 'Manager'
 };
 
 EstablishmentLayout.propTypes = {
   subtitle: PropTypes.string,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   children: PropTypes.node.isRequired
 };
 

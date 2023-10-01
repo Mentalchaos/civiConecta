@@ -41,7 +41,7 @@ const toSuspense = (promise) => {
     }
   }
 
-  return { read };
+  return read();
 }
 
 export { fetchLoading, toSuspense };

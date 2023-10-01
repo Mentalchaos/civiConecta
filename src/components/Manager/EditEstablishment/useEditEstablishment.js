@@ -23,11 +23,6 @@ const useEditEstablishment = (establishmentId) => {
         service.fetchTeachers(establishmentId)
       ]);
 
-      console.log('grades', gradesResponse);
-      console.log('letters', lettersResponse);
-      console.log('courses', coursesResponse);
-      console.log('teacherResponse', teacherResponse);
-
       setGrades(gradesResponse.grades);
       setLetters(lettersResponse.letters);
       setCourses(coursesResponse.courses);

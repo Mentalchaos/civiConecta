@@ -8,13 +8,18 @@ const useEditCourse = (courseId) => {
 
   useEffect(() => {
     async function fn() {
-      const [studentsResponse, courseResponse] = await Promise.all([
+      const [studentsResponse, courseResponse, teacherResponse] = await Promise.all([
         service.fetchStudentsByCourse(courseId),
-        service.fetchCourse(courseId)
+        service.fetchCourse(courseId),
+        service.fetchAssignedTeacher(courseId)
       ]);
 
       setStudents(studentsResponse.students);
       setCourse(courseResponse.course);
+
+      if (teacherResponse.ok) {
+        setAssignedTeacher(teacherResponse.teacher);
+      }
     }
 
     fn();

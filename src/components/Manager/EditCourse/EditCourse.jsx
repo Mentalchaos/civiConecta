@@ -1,7 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { useEditCourse, EditCourseContext } from './useEditCourse';
+import Visible from 'src/components/UI/Visible';
 import CreateStudentForm from './CreateStudentForm';
 import CreateTeacherForm from './CreateTeacherForm';
+import StudentList from './StudentList';
+import AssignedTeacher from './components/AssignedTeacher';
 
 const EditCourse = () => {
   const { courseId } = useParams();
@@ -14,34 +17,20 @@ const EditCourse = () => {
           <legend>Seccion estudiantes</legend>
           <CreateStudentForm />
           <div>
-            <table>
-              <thead>
-                <tr>
-                  <th>Nombre</th>
-                  <th>run</th>
-                  <th>curso</th>
-                  <th>letra</th>
-                </tr>
-              </thead>
-              <tbody>
-                {states.students.map(student => {
-                  return (
-                    <tr key={student.id}>
-                      <th>{student.name}</th>
-                      <th>{student.run}</th>
-                      <th>{states.course.level}</th>
-                      <th>{states.course.character}</th>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+            <StudentList />
           </div>
         </fieldset>
         <fieldset>
           <legend>Seccion docentes</legend>
           <CreateTeacherForm />
-          <div>lista de profesores</div>
+
+          <Visible when={states.assignedTeacher.name}>
+            <AssignedTeacher teacher={states.assignedTeacher} />
+          </Visible>
+
+          <Visible when={!states.assignedTeacher.name}>
+            <p>No hay profesor asignado al curso aun</p>
+          </Visible>
         </fieldset>
       </EditCourseContext.Provider>
     </>

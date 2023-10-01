@@ -1,11 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import { useListEstablishment, ListContext } from './useListEstablishment';
+import session from 'src/utils/session';
 import Visible from 'src/components/UI/Visible';
 import CreateInstitutionForm from './CreateInstitutionForm';
-import './ListEstablishment.css';
 import iconEnable from 'src/assets/Icons/icon-enable.png';
 import iconDisable from 'src/assets/Icons/icon-disable.png';
 import iconGoTo from 'src/assets/Icons/icon-go-to.png';
+import './ListEstablishment.css';
 
 const styles = {
   noEstablishmentsMessage: { textAlign: 'center', marginTop: 80 }
@@ -22,6 +23,7 @@ const ListEstablishment = () => {
 
   const handleGoToEstablishment = (establishment) => () => {
     const establishmentId = establishment.id;
+    session.save(`establishment-${establishment.id}`, establishment);
     navigate(`/admin/establishments/${establishmentId}`);
   };
 
