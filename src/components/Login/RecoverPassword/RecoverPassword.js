@@ -10,7 +10,7 @@ const RecoverPassword = () => {
       <div className='recover-mobile-section'>
         <RecoverPassMobile />
       </div>
-      <div>
+      <div className='recover-section-cont'>
         <div className='recover-section-header'>
           <div className="login-section-header">
             <p className="login-section-title">LOG IN</p>

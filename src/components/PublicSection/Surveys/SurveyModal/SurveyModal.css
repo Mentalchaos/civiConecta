@@ -197,3 +197,30 @@ p {
 .footer-text:hover {
   transform: scale(1.2);
 }
+
+@media screen and (min-width: 375px) and (max-width: 1024px) {
+  .modal-content {
+    width: 85%;
+    height: 70vh;
+    margin-top: 24%;
+  }
+
+  .modal-title {
+    opacity: 0;
+  }
+
+  .survey-buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .modal-footer {
+    margin: 0;
+  }
+  .teacher-survey-button,
+  .student-survey-button {
+    width: 75%;
+  }
+}
