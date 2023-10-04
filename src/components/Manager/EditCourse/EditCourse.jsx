@@ -6,6 +6,8 @@ import CreateTeacherForm from './CreateTeacherForm';
 import StudentList from './StudentList';
 import AssignedTeacher from './components/AssignedTeacher';
 
+import './EditCourse.css';
+
 const EditCourse = () => {
   const { courseId } = useParams();
   const { states, actions } = useEditCourse(courseId);
@@ -13,14 +15,14 @@ const EditCourse = () => {
   return (
     <>
       <EditCourseContext.Provider value={{ states, actions }}>
-        <fieldset>
+        <fieldset className='student-fieldset'>
           <legend>Seccion estudiantes</legend>
           <CreateStudentForm />
           <div>
             <StudentList />
           </div>
         </fieldset>
-        <fieldset>
+        <fieldset className='teacher-fieldset'>
           <legend>Seccion docentes</legend>
           <CreateTeacherForm />
 

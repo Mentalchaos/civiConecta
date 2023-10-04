@@ -17,7 +17,7 @@ const StudentList = () => {
   return (
     <>
       <div ref={pdfRef}>
-        <table>
+        <table className='student-list-table'>
           <thead>
             <tr>
               <th>Nombre</th>
@@ -40,7 +40,7 @@ const StudentList = () => {
           </tbody>
         </table>
       </div>
-      <button onClick={handleDownloadPDF}>Descargar PDF</button>
+      <button className='pdf-button' onClick={handleDownloadPDF}>Descargar PDF</button>
     </>
   );
 };

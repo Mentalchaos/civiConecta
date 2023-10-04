@@ -1,0 +1,29 @@
+.teacher-list-table {
+    width: 90%;
+    margin: 3em 0;
+}
+
+.teacher-list-table tbody tr:nth-child(even) {
+	background: #7268db3b;
+}
+
+.teacher-list-table td {
+    border-right: 1px solid #cfcccc;
+}
+
+.teacher-list-table tbody tr td {
+    color: var(--gray-dark);
+}
+
+.teacher-list-table thead {
+    background-color: var(--color-primary);
+    color: white;
+    height: 40px;
+}
+
+.teacher-list-table th {
+    font-weight: 500;
+}
+.teacher-list-table tr {
+    text-align: center;
+}

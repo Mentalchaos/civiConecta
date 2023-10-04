@@ -76,10 +76,43 @@
 }
 
 .action-icons {
+  width: 50px;
   transition: all .3s;
+}
+
+.action-icons:last-child { 
+  width: 60px;
 }
 
 .action-icons:hover {
   transform: scale(1.2);
   cursor: pointer;
+}
+
+.establishments-table tbody tr:nth-child(even) {
+	background: #7268db3b;
+}
+
+.establishments-table {
+  margin: 3em 0;
+  width: 90%;
+}
+
+.establishments-table thead {
+  height: 40px;
+  background: var(--color-primary);
+  color: white;
+  font-size: 16px;
+}
+
+.establishments-table th {
+  font-weight: 500;
+}
+
+.establishments-table td {
+  border-right: 1px solid #cfcccc;
+}
+
+.establishments-table tr td:first-child {
+  color: var(--gray-dark);
 }

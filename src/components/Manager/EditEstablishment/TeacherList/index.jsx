@@ -3,11 +3,13 @@ import { EditEstablishmentContext } from '../useEditEstablishment';
 import Head from './Head';
 import Row from './Row';
 
+import './TeacherList.css';
+
 const TeacherList = () => {
   const { states } = useContext(EditEstablishmentContext);
 
   return (
-    <table>
+    <table className='teacher-list-table'>
       <Head />
       <tbody>
         {states.teachers.map((teacher) => {

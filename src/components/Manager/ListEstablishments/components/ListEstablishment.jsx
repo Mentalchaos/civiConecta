@@ -40,7 +40,7 @@ const ListEstablishment = () => {
         </Visible>
         <Visible condition={states.establishments.length}>
           <article className="section__content table-container">
-            <table>
+            <table className='establishments-table'>
               <thead>
                 <tr>
                   <th>Nombre</th>

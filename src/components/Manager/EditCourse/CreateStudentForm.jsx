@@ -1,6 +1,8 @@
 import { useRef, useContext } from 'react';
 import { EditCourseContext } from './useEditCourse';
 
+import './EditCourse.css';
+
 
 const CreateStudentForm = () => {
   const nameRef = useRef(null);
@@ -25,14 +27,14 @@ const CreateStudentForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='create-student-form' onSubmit={handleSubmit}>
       <label htmlFor="name">Nombre</label>
       <input ref={nameRef} id="name" type="text" />
 
       <label htmlFor="run">RUT</label>
       <input ref={runRef} id="run" type="text" />
 
-      <input type="submit" value="Agregar estudiante" />
+      <input className='add-student-input' type="submit" value="Agregar estudiante" />
     </form>
   );
 };

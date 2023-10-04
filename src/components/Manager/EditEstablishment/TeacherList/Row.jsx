@@ -1,3 +1,5 @@
+import './TeacherList.css';
+
 const Row = ({ teacher }) => {
   return (
     <tr>

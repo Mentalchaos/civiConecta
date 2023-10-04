@@ -1,0 +1,93 @@
+.create-student-form,
+.teacher-fieldset form {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2em 0;
+}
+
+.create-student-form label {
+    margin-left: 5px;
+    color: var(--gray-dark);
+}
+
+.create-student-form input,
+.teacher-fieldset form input {
+    background: transparent;
+    border: 1px solid #d9d9d9;
+    height: 35px;
+}
+
+.create-student-form input:hover,
+.teacher-fieldset form input:hover {
+    border: 1px solid var(--gray-dark);
+}
+
+.create-student-form .add-student-input,
+.create-teacher-form .add-teacher-input {
+    background: var(--color-primary);
+}
+
+.create-student-form .add-student-input,
+.create-teacher-form .add-teacher-input,
+.pdf-button {
+    background-color: var(--color-secondary);
+    border-radius: 10px;
+    width: 155px;
+    height: 35px;
+    color: white;
+    font-size: 14px;
+    transition: all .2s;
+}
+
+.create-student-form .add-student-input:hover,
+.create-teacher-form .add-teacher-input:hover,
+.pdf-button:hover {
+    border: 1px solid var(--color-secondary);
+    background-color: white;
+    color: var(--gray-dark);
+}
+
+.pdf-button {
+    margin: 1em 0;
+}
+
+.student-list-table {
+    margin: auto;
+    width: 90%;
+}
+
+.student-list-table tbody tr:nth-child(even) {
+	background: #7268db3b;
+}
+
+.student-list-table thead {
+    height: 40px;
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.student-list-table tbody tr th {
+    color: var(--gray-dark);
+}
+
+.student-list-table tr th {
+    font-weight: 500;
+    height: 35px;
+}
+
+.teacher-fieldset {
+    margin: 2em 0;
+}
+
+.teacher-fieldset,
+.student-fieldset {
+    border: 1px solid #d2d2d2;
+    color: var(--gray-dark);
+}
+.teacher-fieldset p,
+.student-fieldset p {
+    color: var(--gray-dark);
+}
