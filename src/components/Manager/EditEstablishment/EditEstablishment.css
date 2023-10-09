@@ -1,0 +1,252 @@
+.section__content-assignment {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.content__data-table {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 55%;
+  margin-top: 20px;
+  padding-right: 40px;
+}
+
+.content__search-teacher {
+  border: none;
+  background-color: #e0e0e0;
+  font-family: 'Poppins';
+  outline: none;
+  padding: 13px;
+  padding-left: 40px;
+  border-radius: 10px;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.container-input {
+  padding-bottom: 5px;
+  position: relative;
+  display: flex;
+}
+
+.container__button-search {
+  padding-bottom: 10px;
+  text-align: right;
+}
+
+.container__add-button {
+  text-align: right;
+  padding-top: 10px;
+  padding-right: 40px;
+}
+
+.container-input img {
+  position: absolute;
+  right: 1rem;
+  top: 0.8rem;
+  display: block;
+  width: 18px;
+}
+
+.content__table-container {
+  overflow: hidden;
+  position: relative;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  padding-bottom: 2rem;
+}
+
+.content__level-selected:hover {
+  cursor: pointer;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.add-word__plus-sign {
+  font-size: 40px;
+}
+
+.add-word__text {
+  font-size: 14px;
+}
+
+.selection__boxs-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 45px;
+}
+
+.content__level-selected {
+  margin-top: 2rem;
+  width: 125px;
+  height: 108px;
+  background-color: var(--color-primary);
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 10px;
+  padding-bottom: 3px;
+  position: relative;
+}
+
+.content__level-selection {
+  width: 50%;
+}
+
+.disabled-section {
+  opacity: 0.5;
+
+}
+
+.level-selected__degree {
+  font-size: 15px;
+  padding-left: 10px;
+}
+
+.section__letter-selection {
+  background-color: #fff;
+}
+
+.add-word__go-to {
+  padding: 0px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+}
+
+.go-to__text {
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.go-to__icon {
+  margin: 5px 0 5px 0;
+}
+
+.difused-assignment {
+  width: -webkit-fill-available;
+}
+
+.difused-assignment {
+  width: -moz-available;
+  display: flex;
+  gap: 90px;
+  justify-content: center;
+  position: absolute;
+}
+
+input[type='checkbox']#checkLetter+label:before {
+  float: right;
+  margin-right: 10px;
+}
+
+input[type='checkbox']#checkLetter:checked+label:after {
+  float: right !important;
+  margin-right: -1rem;
+}
+
+.form__add-student>div>input {
+  width: 30%;
+}
+
+.content__level-selection-title {
+  margin-right: 5px;
+  font-size: 14px;
+}
+
+.gradelist-container {
+  display: flex;
+  border-bottom: 2px solid var(--color-secondary);
+  padding-bottom: 1em;
+}
+
+.gradelist-element {
+  width: 100px;
+  height: 100px;
+  border: none;
+  background: var(--color-primary);
+  color: white;
+  margin: 1em;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all .4s;
+}
+
+.gradelist-element:hover {
+  cursor: pointer;
+  background: #7268db05;
+  color: black;
+  border: 1px solid var(--color-primary);
+  transform: scale(0.85);
+}
+
+select {
+  width: 160px;
+  height: 40px;
+  border-radius: 5px;
+  background: #f5f5f524;
+  border-bottom: 2px solid var(--color-secondary);
+  border-right: 2px solid var(--color-primary);
+  border-top: 2px solid white;
+  border-left: 2px solid white;
+  color: #000000bf !important;
+  transition: all .2s;
+}
+
+select:hover {
+  border-top: 2px solid var(--color-secondary);
+  border-left: 2px solid var(--color-primary);
+  border-bottom: 2px solid #00000004;
+  border-right: 2px solid #00000004;
+  transform: scale(0.9);
+  color: var(--color-primary) !important;
+}
+
+.selects-container {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.create-course-button {
+  border: none;
+  background: var(--color-secondary);
+  color: white;
+  border-radius: 8px;
+  width: 150px;
+  height: 55px;
+  transition: all .3s;
+}
+
+.create-course-button:hover {
+  transform: scale(0.92);
+  background: white;
+  color: #000000bf;
+  border: 1px solid var(--color-secondary);
+}
+
+.letters-select {
+  margin-left: 1em;
+}
+
+.no-curse-selected {
+  margin: 2em;
+}
+
+.no-curse-selected p {
+  font-size: 20px;
+  color: #000000d1;
+}
+
+.create-course-container {
+  margin-bottom: 2em;
+}

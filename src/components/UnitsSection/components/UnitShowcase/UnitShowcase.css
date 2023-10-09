@@ -1,22 +1,52 @@
 .box__header-documents {
   margin: 0;
+  font-size: 14px;
+  color: var(--gray-dark);
+  font-weight: 600;
 }
 
 .delete-unit-button {
-  position: absolute;
-  right: 10px;
-  top: 8px;
-  cursor: pointer;
-  font-weight: bold;
   color: var(--color-secondary);
   border: 1px solid var(--color-secondary);
+}
+
+.edit-unit-button {
+  color: var(--color-green);
+  border: 1px solid var(--color-green);
+  background: transparent;
+}
+
+.delete-unit-button,
+.edit-unit-button {
+  cursor: pointer;
+  font-weight: bold;
   padding: 3px 20px;
   border-radius: 25px;
   font-size: 13px;
+  transition: all .2s;
+}
+
+.delete-unit-button:hover,
+.edit-unit-button:hover {
+  transform: scale(1.1);
 }
 
 .box-link {
   cursor: pointer;
   display: block;
   float: right;
+}
+
+.unit-buttons-container {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 20%;
+}
+
+.unit-link {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
 }

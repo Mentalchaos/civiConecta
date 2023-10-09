@@ -3,11 +3,8 @@ import PropTypes from 'prop-types';
 
 const styles = {
   primary: { backgroundColor: 'var(--color-primary)' },
-  secondary: { backgroundColor: 'var(--color-secondary)' },
-  // td: { width: '40em' }
+  secondary: { backgroundColor: 'var(--color-secondary)' }
 };
-
-// TODO: refactor this table component to separate Header from tbody
 
 const Table = ({
   type,

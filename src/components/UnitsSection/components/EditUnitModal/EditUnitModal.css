@@ -1,0 +1,83 @@
+.edit-unit-modal {
+    height: 400px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.edit-unit-form-container {
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.close-edit-unit {
+    height: 7%;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.close-edit-unit button {
+    background-color: var(--color-secondary);
+    color: #FFFFFF;
+    border-radius: 20px;
+    width: 27px;
+    transition: all .2s;
+}
+
+.edit-unit-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-unit-form label {
+    color: var(--gray-dark);
+    font-size: 16px;
+}
+
+.edit-unit-form input {
+    background: transparent;
+    border: 1px solid var(--gray-dark);
+    transition: all .2s;
+}
+
+.edit-unit-form input:hover,
+.edit-description-input:hover {
+    border: 1px solid var(--color-primary);
+}
+
+.edit-description-input {
+    height: 100px;
+    padding: 0 10px;
+    transition: all .2s;
+}
+
+.edit-unit-buttons-container {
+    width: 55%;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 7em;
+}
+
+.edit-unit-buttons-container button {
+    height: 25px;
+    width: 110px;
+    font-size: 12px;
+    font-family: 'Poppins';
+    border-radius: 10px;
+    transition: all .2s;
+}
+
+.edit-unit-buttons-container button:hover,
+.close-edit-unit button:hover {
+    transform: scale(1.1);
+}
+
+.save-button-modal,
+.cancel-button-modal {
+    background-color: var(--color-secondary);
+    color: #FFFFFF;
+}

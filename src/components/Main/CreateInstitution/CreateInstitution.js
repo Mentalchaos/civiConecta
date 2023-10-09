@@ -18,7 +18,7 @@ const CreateInstitution = () => {
       }}
       onMouseOver={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
-      onClick={() => navigate('/admin/manager')}
+      onClick={() => navigate('/admin/establishments')}
       className="box create-school animationInstitution"
     >
       <header className="box__header">

@@ -41,11 +41,6 @@
 
 .current-path {
   padding-left: 30px;
-  height: 60px;
-}
-
-.current-path p {
-  font-size: 30px;
 }
 
 .path__text {
