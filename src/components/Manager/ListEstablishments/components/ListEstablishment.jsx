@@ -55,8 +55,8 @@ const ListEstablishment = () => {
                       <td>{est.name}</td>
                       <td style={{color: est.active ? 'green' : 'red'}}>{est.statusName}</td>
                       <td>
-                        <img className="action-icons" onClick={handleStatus(est.id, !est.active)} src={est.active ? iconDisable : iconEnable} />
-                        <img className="action-icons" src={iconGoTo} onClick={handleGoToEstablishment(est)} />
+                        <img className="action-icons" alt="remove" onClick={handleStatus(est.id, !est.active)} src={est.active ? iconDisable : iconEnable} />
+                        <img className="action-icons" alt="go-to" src={iconGoTo} onClick={handleGoToEstablishment(est)} />
                       </td>
                     </tr>
                   );
