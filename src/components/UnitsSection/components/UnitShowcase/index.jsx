@@ -26,6 +26,7 @@ const UnitShowcase = ({ id, number, title, description }) => {
     <EditUnitModal
       showEditUnitModal={showEditUnitModal}
       setShowEditUnitModal={setShowEditUnitModal}
+      id={id}
     />
 
   return (

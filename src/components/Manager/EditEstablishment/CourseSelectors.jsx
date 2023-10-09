@@ -26,8 +26,8 @@ const CourseSelectors = () => {
     actions
       .createCourse(gradeId, letterId)
       .then(() => {
-        gradeRef.current.value = null;
-        letterRef.current.value = null;
+        gradeRef.current.value = 'Curso';
+        letterRef.current.value = 'Letra';
       })
       .catch(err => {
         alert(err);

@@ -46,7 +46,7 @@
 
 .edit-unit-form input:hover,
 .edit-description-input:hover {
-    border: 1px solid var(--color-secondary);
+    border: 1px solid var(--color-primary);
 }
 
 .edit-description-input {
