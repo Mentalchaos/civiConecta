@@ -76,11 +76,11 @@
 }
 
 .action-icons {
-  width: 50px;
+  width: 60px;
   transition: all .3s;
 }
 
-.action-icons:last-child { 
+.action-icons:last-child {
   width: 60px;
 }
 
