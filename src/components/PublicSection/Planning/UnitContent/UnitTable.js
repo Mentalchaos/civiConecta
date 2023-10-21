@@ -5,6 +5,8 @@ import brain from '../../../../assets/Icons/white-brain.svg';
 const UnitTable = ({ planningData, title, type }) => {
   const { endActivity, startActivity, mainActivity, topic, materials, keywords } = planningData.planning || {};
 
+  const { objective } = planningData || {};
+
   const colors = {
     unit: '#96cb76',
     situation: '#2dba9f',
@@ -31,6 +33,8 @@ const UnitTable = ({ planningData, title, type }) => {
     return document.body.removeChild(link);
   }
 
+  const shouldShowAdditionalRow = type === "ephemeris";
+
   return (
     <>
       <div>
@@ -44,17 +48,28 @@ const UnitTable = ({ planningData, title, type }) => {
       <div className=''>
         <table className=''>
           <tbody>
-            <tr className='table-row'>
-              <td className='td table-title corner'>Tema clase:</td>
-              <td className='td corner td-right'>{topic}</td>
-            </tr>
+            {shouldShowAdditionalRow && (
+              <tr className='table-row'>
+                <td className='td table-title'>Objetivo de la clase:</td>
+                <td className='td td-right'>{objective}</td>
+              </tr>
+            )}
 
-            <tr className='table-row'>
-              <td className='td table-title corner'>Conceptos a tratar:</td>
-              <td className='td corner td-right'>
-                {keywords && keywords.map((data, key) => <div key={key} className='materials'>{`- ${data}`}</div>)}
-              </td>
-            </tr>
+            {!shouldShowAdditionalRow && (
+              <>
+                <tr className='table-row'>
+                  <td className='td table-title corner'>Tema clase:</td>
+                  <td className='td corner td-right'>{topic}</td>
+                </tr>
+
+                <tr className='table-row'>
+                  <td className='td table-title corner'>Conceptos a tratar:</td>
+                  <td className='td corner td-right'>
+                    {keywords && keywords.map((data, key) => <div key={key} className='materials'>{`- ${data}`}</div>)}
+                  </td>
+                </tr>
+              </>
+            )}
 
             <tr className='table-row'>
               <td className='td table-title'>Materiales:</td>
@@ -92,18 +107,12 @@ const UnitTable = ({ planningData, title, type }) => {
             <img className='button-image' src={arrowWhite} alt=''></img>
           </button>
         }
-
-        {/* {planningData?.files?.length && planningData.files.map(data => {
-          return (
-            <div key={data.id}>
-              <p onClick={(e) => imBlind(data)}>{data.filename}</p>
-            </div>
-          )
-        })} */}
       </div>
     </>
   )
 }
+
+
 
 UnitTable.displayName = 'UnitTable';
 
