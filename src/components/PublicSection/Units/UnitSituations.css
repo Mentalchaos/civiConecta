@@ -1,82 +1,86 @@
 .unit-situations-container {
-    width: 100%;
-    border-radius: 10px;
-    height: 140px;
-    display: flex;
-    flex-direction: row;
-    border: 2px solid #7468e5;
-    /* background-image: url('src/assets/Icons/purple-brain.svg'); */
+  width: 100%;
+  border-radius: 10px;
+  height: 140px;
+  display: flex;
+  flex-direction: row;
+  border: 2px solid #7468e5;
+  /* background-image: url('src/assets/Icons/purple-brain.svg'); */
 }
 
 .unit-situations-one {
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin-left: 15px;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-left: 15px;
 }
 
 .unit-title {
-    font-family: 'Nunito', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--color-primary);
-    width: 50%;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-primary);
+  width: 50%;
+}
+
+.unit-title p {
+  font-size: 16px;
 }
 
 .unit-subtitle {
-    font-family: 'Nunito', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    color: #4a4a4a;
-    display: flex;
-    flex-direction: row;
-    width: 65%;
-    justify-content: space-between;
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #4a4a4a;
+  display: flex;
+  flex-direction: row;
+  width: 65%;
+  justify-content: space-between;
 }
 
 .unit-subtitle:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 
 .unit-situations-two {
-    width: 55%;
-    background-color: var(--color-primary);
-    border-radius: 0 9px 9px 0;
+  width: 55%;
+  background-color: var(--color-primary);
+  border-radius: 0 9px 9px 0;
 }
 
 .unit-situations-two img {
-    width: 100%;
-    height: 100%;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+  width: 100%;
+  height: 100%;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .unit-img-emergent {
-    opacity: 0.4;
+  opacity: 0.4;
 }
 
 
 
 @media (max-width: 1024px) {
-    .unit-situations-container {
-        width: 95%;
-    }
+  .unit-situations-container {
+    width: 95%;
+  }
 
-    .unit-title,
-    .unit-subtitle {
-        font-size: 12px;
-    }
+  .unit-title,
+  .unit-subtitle {
+    font-size: 12px;
+  }
 
-    .unit-subtitle {
-        width: 90%;
-    }
+  .unit-subtitle {
+    width: 90%;
+  }
 }
 
 @media screen and (min-width: 375px) and (max-width: 1024px) {
-    .unit-situations-container {
-        width: 90%;
-        margin: 10px 0;
-    }
+  .unit-situations-container {
+    width: 90%;
+    margin: 10px 0;
+  }
 }

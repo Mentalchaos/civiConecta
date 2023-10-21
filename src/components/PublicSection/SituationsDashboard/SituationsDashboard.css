@@ -73,15 +73,16 @@
 
 .situations-desc-title {
   color: #2dba9f;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: bold;
 }
 
 .situations-desc-text {
   font-family: 'Poppins';
-  font-size: 13px;
+  font-size: 15px;
   color: #535353;
   height: 100%;
+  margin-top: 8px;
 }
 
 .situations-search {
@@ -108,7 +109,7 @@
 
 .search-info p {
   font-family: 'Poppins';
-  font-size: 15px;
+  font-size: 16px;
   color: #535353;
   font-weight: bold;
   margin: 2px;
@@ -130,7 +131,8 @@
 }
 
 .search-input img {
-  width: 20px;
+  width: 25px;
+  filter: invert(62%) sepia(32%) saturate(801%) hue-rotate(119deg) brightness(92%) contrast(95%);
 }
 
 .search-input input::placeholder {
@@ -194,6 +196,7 @@
 .situation-desc p {
   font-size: 15px;
   color: #535353;
+  font-weight: 200;
 }
 
 .situation-see-class {

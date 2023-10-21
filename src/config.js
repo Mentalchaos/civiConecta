@@ -52,8 +52,8 @@ const planningPrograms = [
 
 const config = {
   // baseURL: 'http://127.0.0.1:3001',
-  // baseURL: 'http://errcake.ngrok.io',
-  baseURL: process.env.REACT_APP_BASE_URL || 'http://127.0.0.1:3001',
+  baseURL: 'http://errcake.ngrok.io',
+  // baseURL: process.env.REACT_APP_BASE_URL || 'http://127.0.0.1:3001',
   constants,
   contents: {
     links,
