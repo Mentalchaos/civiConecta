@@ -23,13 +23,12 @@ const toSearchWords = (item) => {
       return !!this.searchTerms.filter(t => t.indexOf(term) > -1).length;
     }
   };
-}
+};
+
 
 const SituationsDashboard = () => {
-
   const [emergentData, setEmergentData] = useState([]);
   const [inputValue, setInputValue] = useState('');
-
   const { gradeId } = useParams();
 
   const getSituations = async () => {
@@ -44,6 +43,7 @@ const SituationsDashboard = () => {
     const data = await response.json();
     setEmergentData(data.events.map(toSearchWords));
   };
+
   useEffect(() => {
     getSituations();
   }, []);
@@ -52,25 +52,25 @@ const SituationsDashboard = () => {
   const emergData = emergentData && !filtered.length ? emergentData : filtered;
 
   return (
-    <div className='situations-section'>
-      <button className='profile-back-container' onClick={() => window.history.back()}>
-        <img src={back} alt='go-back' />
+    <div className="situations-section">
+      <button className="profile-back-container" onClick={() => window.history.back()}>
+        <img src={back} alt="go-back" />
         Volver
       </button>
       <div className="situations">
-        <div className='situations-cont'>
-          <div className='situations-header'>
-            <img className='situations-image' src={brain} alt='logo'></img>
-            <div className='situations-header-text'>
+        <div className="situations-cont">
+          <div className="situations-header">
+            <img className="situations-image" src={brain} alt="logo" />
+            <div className="situations-header-text">
               <p>Situaciones emergentes</p>
             </div>
           </div>
-          <div className='situations-description-container'>
-            <div className='situations-description'>
-              <img className='book-icon' src={unitGreen} alt='situations-icon' />
-              <div className='situations-info'>
-                <div className='situations-desc-title'>Descripción:</div>
-                <div className='situations-desc-text'>Clases para profundizar y complementar temáticas ya abordadas en unidades anteriores,
+          <div className="situations-description-container">
+            <div className="situations-description">
+              <img className="book-icon" src={unitGreen} alt="situations-icon" />
+              <div className="situations-info">
+                <div className="situations-desc-title">Descripción:</div>
+                <div className="situations-desc-text">Clases para profundizar y complementar temáticas ya abordadas en unidades anteriores,
                   además de posibles conflictos que se dan en el aula. Utiliza el buscador para encontrar clases
                   atingentes con las temáticas que necesites.
                 </div>
@@ -79,7 +79,7 @@ const SituationsDashboard = () => {
           </div>
         </div>
       </div>
-      <div className='situations-search'>
+      <div className="situations-search">
         <SearchBar
           inputValue={inputValue}
           onChange={setInputValue}
@@ -96,6 +96,7 @@ const SituationsDashboard = () => {
               title={data.title}
               description={data.description}
               date={data.date}
+              tags={data.searchTerms}
             />
           ))}
 
@@ -104,7 +105,7 @@ const SituationsDashboard = () => {
       <Footer />
     </div>
   )
-}
+};
 
 SituationsDashboard.displayName = 'SituationsDashboard';
 

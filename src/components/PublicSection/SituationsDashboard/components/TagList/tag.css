@@ -1,0 +1,9 @@
+.tag {
+  --color-tag: #7468E5;
+  display: flex;
+  flex-direction: column;
+}
+
+.tag__item {
+  color: var(--color-tag);
+}

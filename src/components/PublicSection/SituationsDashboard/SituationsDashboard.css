@@ -159,8 +159,7 @@
   padding: 12px 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 280px;
+  position: relative;
 }
 
 .situation-date {
@@ -180,7 +179,8 @@
 }
 
 .situation-title {
-  width: 65%;
+  padding: 1em 0;
+  min-height: 100px;
 }
 
 .situation-title p {
@@ -190,7 +190,8 @@
 }
 
 .situation-desc {
-  width: 95%;
+  text-align: justify;
+  min-height: 120px;
 }
 
 .situation-desc p {
@@ -204,6 +205,10 @@
   align-items: center;
   justify-content: flex-end;
   transition: 0.3s;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 290px;
 }
 
 .situation-see-class p {
@@ -224,7 +229,6 @@
 
 
 .situation-see-class:hover {
-  transform: scale(1.1);
   cursor: pointer;
 }
 
