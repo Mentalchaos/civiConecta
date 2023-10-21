@@ -1,46 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useReducer } from 'react';
 import * as lessonRequest from 'src/services/admin/lesson.request.js';
 import * as fileRequest from 'src/services/admin/files.request.js';
-import { createUUID } from 'src/utils/uuid';
+import { reduceEphemeris, initialState } from './reducers/reduceEphemeris.js';
 
 
 const useEphemerisPlanification = (lessonId) => {
   const [loading, setLoading] = useState(false);
-  const [files, setFiles] = useState([]);
-  const [lesson, setLesson] = useState({});
-  const [topic, setTopic] = useState('');
-  const [studentMaterials, setStudentMaterials] = useState('');
-  const [teacherMaterials, setTeacherMaterials] = useState('');
-  const [startActivity, setStartActivity] = useState('');
-  const [mainActivity, setMainActivity] = useState('');
-  const [endActivity, setEndActivity] = useState('');
-  const [description, setDescription] = useState('');
-  const [objective, setObjective] = useState('');
-  const [selectedDocument, setSelectedDocument] = useState({});
-  const [date, setDate] = useState('');
-  const [name, setName] = useState('');
-  const [filepath, setFilepath] = useState('');
+  const [state, dispatch] = useReducer(reduceEphemeris, initialState);
 
   useEffect(() => {
     async function fn() {
       setLoading(true);
-
       const response = await lessonRequest.getLessonById(lessonId);
-      const documents = response.lesson.files;
-      const currentLesson = response.lesson;
-
-      setFiles(documents);
-      setDescription(currentLesson.description);
-      setLesson(currentLesson);
-      setTopic(currentLesson.planning.topic);
-      setStartActivity(currentLesson.planning.startActivity);
-      setMainActivity(currentLesson.planning.mainActivity);
-      setEndActivity(currentLesson.planning.endActivity);
-      setObjective(currentLesson.objective);
-      setStudentMaterials(currentLesson.planning.materials.student.join(','));
-      setTeacherMaterials(currentLesson.planning.materials.teacher.join(','));
-      setDate(currentLesson.ephemeris.date);
-
+      dispatch({ type: 'INITIAL_DATA', payload: response });
       setLoading(false);
     }
 
@@ -48,37 +20,47 @@ const useEphemerisPlanification = (lessonId) => {
 
   }, [lessonId]);
 
+  const makeDispatch = (term) => {
+    const actionType = term
+      .replace(/([a-z])([A-Z])/g, '$1_$2')
+      .toUpperCase();
+
+    return (value) => {
+      dispatch({ type: `SET_${actionType}`, payload: value });
+    };
+  };
+
   return {
     states: {
       loading,
-      lesson,
-      files,
-      selectedDocument,
-      description,
-      date,
-      name,
-      filepath,
+      lesson: state.lesson,
+      files: state.files,
+      selectedDocument: state.selectedDocument,
+      description: state.description,
+      date: state.date,
+      name: state.name,
+      filepath: state.filepath,
       planning: {
-        topic,
-        studentMaterials,
-        teacherMaterials,
-        startActivity,
-        mainActivity,
-        endActivity,
-        objective
+        topic: state.planning.topic,
+        studentMaterials: state.planning.studentMaterials,
+        teacherMaterials: state.planning.teacherMaterials,
+        startActivity: state.planning.startActivity,
+        mainActivity: state.planning.mainActivity,
+        endActivity: state.planning.endActivity,
+        objective: state.planning.objective
       },
       get withoutFiles() {
-        return !loading && !files.length;
+        return !loading && !state.files.length;
       },
       get documentQuantity() {
-        return files.length;
+        return state.files.length;
       },
       get documents() {
-        return files.map(f => {
+        return state.files.map(f => {
           return {
             uuid: f.uuid,
             Nombre: f.filename
-          }
+          };
         });
       }
     },
@@ -86,25 +68,29 @@ const useEphemerisPlanification = (lessonId) => {
       changeField(fieldName) {
         return (evt) => {
           const mutators = {
-            topic: setTopic,
-            studentMaterials: setStudentMaterials,
-            teacherMaterials: setTeacherMaterials,
-            startActivity: setStartActivity,
-            mainActivity: setMainActivity,
-            endActivity: setEndActivity,
-            description: setDescription,
-            objective: setObjective,
-            date: setDate
+            topic: makeDispatch('topic'),
+            studentMaterials: makeDispatch('studentMaterials'),
+            teacherMaterials: makeDispatch('teacherMaterials'),
+            startActivity: makeDispatch('startActivity'),
+            mainActivity: makeDispatch('mainActivity'),
+            endActivity: makeDispatch('endActivity'),
+            description: makeDispatch('description'),
+            objective: makeDispatch('objective'),
+            date: makeDispatch('date')
           };
 
           return mutators[fieldName](evt.target.value);
         };
       },
-      selectDocument(document) {
-        setSelectedDocument(document);
+      selectDocument(doc) {
+        dispatch({ type: 'SET_SELECTED_DOCUMENT', payload: doc });
       },
-      setName,
-      setFilepath
+      setName(name) {
+        dispatch({ type: 'SET_NAME', payload: name });
+      },
+      setFilepath(filepath) {
+        dispatch({ type: 'SET_FILEPATH', payload: filepath });
+      }
     },
     actions: {
       async updatePlanification() {
@@ -115,34 +101,33 @@ const useEphemerisPlanification = (lessonId) => {
         };
 
         const payload = {
-          topic,
-          studentMaterials: toArray(studentMaterials),
-          teacherMaterials: toArray(teacherMaterials),
-          startActivity,
-          mainActivity,
-          endActivity,
-          objective,
-          description,
-          date
+          topic: state.planning.topic,
+          studentMaterials: toArray(state.planning.studentMaterials),
+          teacherMaterials: toArray(state.planning.teacherMaterials),
+          startActivity: state.planning.startActivity,
+          mainActivity: state.planning.mainActivity,
+          endActivity: state.planning.endActivity,
+          objective: state.planning.objective,
+          description: state.description,
+          date: state.date
         };
 
         return lessonRequest.updateLesson(lessonId, payload);
       },
       async downloadFile() {
         const response = await fileRequest.downloadFile(
-          selectedDocument.uuid,
-          selectedDocument.filename
+          state.selectedDocument.uuid,
+          state.selectedDocument.filename
         );
         const content = await response.blob();
         const link = document.createElement('a');
         link.href = window.URL.createObjectURL(content);
-        link.download = selectedDocument.filename;
+        link.download = state.selectedDocument.filename;
         link.click();
       },
       async deleteFile() {
-        await fileRequest.deleteFile(selectedDocument.uuid);
-        setFiles(files.filter(f => f.uuid !== selectedDocument.uuid));
-        setSelectedDocument({});
+        await fileRequest.deleteFile(state.selectedDocument.uuid);
+        dispatch({ type: 'DELETE_FILE', payload: state.selectedDocument });
       },
       async uploadFile(fileData) {
         setLoading(true);
@@ -152,20 +137,18 @@ const useEphemerisPlanification = (lessonId) => {
         formData.append('file', fileData);
 
         const response = await fileRequest.uploadByLesson(lessonId, formData);
-
-        setFiles([...files, response.file]);
+        dispatch({ type: 'ADD_FILE', payload: response.file });
         setLoading(false);
       },
       async uploadDocument(){
         const payload = {
-          filename: name,
-          filepath: filepath
+          filename: state.name,
+          filepath: state.filepath
         };
-
-        await fileRequest.uploadDocumentByLessonId(lesson.id, payload);
+        await fileRequest.uploadDocumentByLessonId(state.lesson.id, payload);
       },
       async removeDocument(documentId){
-        await fileRequest.removeDocumentByLessonId(lesson.id, documentId);
+        await fileRequest.removeDocumentByLessonId(state.lesson.id, documentId);
       }
     }
   };

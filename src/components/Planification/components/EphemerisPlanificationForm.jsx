@@ -12,6 +12,7 @@ const EphemerisPlanificationForm = () => {
       .updatePlanification()
       .then(() => {
         alert('Se han guardado sus cambios');
+        window.location.reload();
       });
   };
 
@@ -22,7 +23,7 @@ const EphemerisPlanificationForm = () => {
         <input
           type="text"
           name="topic"
-          value={planning?.topic}
+          defaultValue={planning.topic}
           onChange={setters.changeField('topic')}
         />
       </div>
@@ -32,7 +33,7 @@ const EphemerisPlanificationForm = () => {
         <input
           type="text"
           name="objective"
-          value={planning.objective}
+          defaultValue={planning.objective}
           onChange={setters.changeField('objective')}
         />
       </div>
@@ -44,7 +45,7 @@ const EphemerisPlanificationForm = () => {
           <input
             type="text"
             name="teacherMaterials"
-            value={planning.teacherMaterials}
+            defaultValue={planning.teacherMaterials}
             onChange={setters.changeField('teacherMaterials')}
             placeholder="Materiales Docente"
           />
@@ -52,7 +53,7 @@ const EphemerisPlanificationForm = () => {
           <input
             type="text"
             name="studentMaterials"
-            value={planning.studentMaterials}
+            defaultValue={planning.studentMaterials}
             onChange={setters.changeField('studentMaterials')}
             placeholder="Materiales Estudiante"
           />
@@ -64,7 +65,7 @@ const EphemerisPlanificationForm = () => {
         <input
           type="text"
           name="startActivity"
-          value={planning.startActivity}
+          defaultValue={planning.startActivity}
           onChange={setters.changeField('startActivity')}
         />
       </div>
@@ -74,7 +75,7 @@ const EphemerisPlanificationForm = () => {
         <input
           type="text"
           name="mainActivity"
-          value={planning.mainActivity}
+          defaultValue={planning.mainActivity}
           onChange={setters.changeField('mainActivity')}
         />
       </div>
@@ -84,19 +85,21 @@ const EphemerisPlanificationForm = () => {
         <input
           type="text"
           name="endActivity"
-          value={planning.endActivity}
+          defaultValue={planning.endActivity}
           onChange={setters.changeField('endActivity')}
         />
       </div>
+
       <div className="form-group planning">
         <label>Fecha:</label>
         <input
           type="text"
           name="date"
-          value={states.date}
+          defaultValue={states.date}
           onChange={setters.changeField('date')}
         />
       </div>
+
       <div>
         <input
           className="form-group button"

@@ -25,5 +25,5 @@ export const deleteLesson = (lessonId) => {
 
 export const updateLesson = (lessonId, payload) => {
   const url = `${BASE_URL}/lessons/${lessonId}`;
-  return http.put(url, payload)
+  return http.put(url, payload);
 };
