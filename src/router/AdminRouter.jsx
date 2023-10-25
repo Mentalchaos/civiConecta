@@ -15,14 +15,6 @@ import Ephemeris from 'src/components/Events/Ephemeris';
 import EditEstablishment from 'src/components/Manager/EditEstablishment';
 import EditCourse from 'src/components/Manager/EditCourse';
 
-// @TODO: Fix this
-// window.sse = new EventSource('http://errcake.ngrok.io/stream-events');
-
-// window.sse.onmessage = (event) => {
-//   const data = JSON.parse(event.data);
-//   console.log(data);
-// };
-
 const AdminRouter = () => {
   return (
     <Fragment>

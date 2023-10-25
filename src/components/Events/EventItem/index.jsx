@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
+import { EventContext } from 'src/components/Events/context';
 import arrow from 'src/assets/Icons/arrow-degree.svg';
 import './EventItem.css';
-import { EventContext } from 'src/components/Events/context';
+
 
 const EventItem = ({ id, title, description, files, editEvent, lessonId }) => {
   const { setters } = useContext(EventContext);

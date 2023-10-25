@@ -9,14 +9,19 @@ const Header = () => {
   const { states } = useContext(PlanificationContext);
   const lesson = states.lesson;
   const { number } = lesson;
+  let text;
 
-  const lessonOrTopic = number || lesson.planning ? (number ? `Clase: ${number}` : `Tema: ${lesson.planning.topic}`) : '';
+  if (number) {
+    text = `Clase: ${number}`;
+  } else if (lesson.planning) {
+    text = `Tema: ${lesson.planning.topic}`;
+  }
 
   return (
     <div className="event-header">
       <div className="header-info">
         <div className='class-name'>
-          <p>{lessonOrTopic}</p>
+          <p>{text}</p>
         </div>
         <div className='class-info'>
           <p>Documentos totales: {states.documentQuantity}</p>
