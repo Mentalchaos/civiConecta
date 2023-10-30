@@ -18,7 +18,7 @@ const EmergentSituation = ({id, title, description, lessonId, tags}) => {
       <div className="situation-desc">
         <p>{description}</p>
       </div>
-      <TagList tags={tags} />
+      {/* <TagList tags={tags} /> */}
       <div
         className="situation-see-class"
         onClick={() => navigate(`/public/planning/${lessonId}/${title}/situation`)}

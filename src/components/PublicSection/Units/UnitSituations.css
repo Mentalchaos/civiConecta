@@ -43,6 +43,10 @@
   cursor: pointer;
 }
 
+.unit-subtitle p {
+  font-size: 14px;
+}
+
 
 .unit-situations-two {
   width: 55%;
