@@ -197,3 +197,113 @@ p {
 .footer-text:hover {
   transform: scale(1.2);
 }
+
+.modal-mobile-title {
+  opacity: 0;
+}
+
+.teacher-button-mobile,
+.student-button-mobile {
+  opacity: 0;
+}
+
+
+@media screen and (min-width: 375px) and (max-width: 1024px) {
+  .modal-content {
+    width: 80%;
+    height: 75%;
+    margin-top: 6em;
+    justify-content: normal;
+  }
+
+  .survey-buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 40%;
+  }
+
+  .teacher-survey-button,
+  .student-survey-button {
+    width: 75%;
+    height: 45%;
+    box-shadow: 0px 2px 10px rgb(0 0 0 / 25%);
+    justify-content: space-around;
+    border: none;
+  }
+
+  .modal-footer {
+    margin: 2em !important;
+  }
+
+  .modal-paragraph p {
+    color: var(--gray-dark);
+    font-weight: 500;
+    font-size: 13px;
+  }
+
+  .modal-image {
+    width: 110px;
+    top: -32px;
+    right: 80px;
+  }
+
+  .modal-title {
+    opacity: 0;
+  }
+
+  .close-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .modal-mobile-title {
+    opacity: 1;
+    margin: 1em;
+    width: 90%;
+    text-align: start;
+  }
+
+  .modal-mobile-title p {
+    font-size: 15px;
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .teacher-button-header p,
+  .student-button-header p {
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .teacher-button-header p {
+    width: 60%;
+  }
+
+  .student-button-header p {
+    width: 70%;
+  }
+
+  .teacher-button-footer,
+  .student-button-footer {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .teacher-button-footer img,
+  .student-button-footer img {
+    width: 10px;
+    margin-left: 10px;
+  }
+
+  .teacher-button-footer img {
+    filter: invert(95%) sepia(33%) saturate(1431%) hue-rotate(321deg) brightness(150%) contrast(90%);
+  }
+  .teacher-button-mobile,
+  .student-button-mobile {
+    opacity: 1;
+}
+}

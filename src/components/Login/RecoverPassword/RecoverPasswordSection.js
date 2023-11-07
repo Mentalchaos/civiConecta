@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Button from 'src/components/UI/Button';
+import back from 'src/assets/Icons/back-arrow.svg';
 
 import './RecoverPassword.css';
 
@@ -9,10 +10,9 @@ const RecoverPasswordSection = () => {
         width: ' 100%',
         fontSize: ' 15px',
         font: ' inherit',
-        marginTop: ' 80px',
         color: ' white',
         padding: ' 20px 20px',
-        backgroundColor: ' var(--color-secondary)',
+        backgroundColor: ' var(--color-primary)',
         cursor: ' pointer',
         outline: ' none',
         border: ' none',
@@ -31,11 +31,10 @@ const RecoverPasswordSection = () => {
         <form className='recover-form'>
             <div className="form-group">
               <label className="form-label" htmlFor="username">
-                  Email de usuario
+                  Correo electrónico
               </label>
               <input
                   className="form-input input-name"
-                  /* onChange={handleInputChange} */
                   value={emailInput}
                   onChange={e => setEmailInput(e.target.value)}
                   id="email"
@@ -55,7 +54,8 @@ const RecoverPasswordSection = () => {
             />
             </div>
             <div className='recover-container'>
-                <a className='return-recover' >Volver al inicio</a>
+                <img src={back} alt='back-icon' />
+                <a className='return-recover' onClick={() => window.history.back()}>Volver</a>
             </div>
         </form>
     </div>

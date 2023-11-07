@@ -5,6 +5,7 @@ import modalImage from 'src/assets/images/modal-image.png';
 import closeButton from 'src/assets/images/close-popup.svg';
 import teacher from 'src/assets/Icons/teacher-white.svg';
 import studentImg from 'src/assets/Icons/student-purple.svg';
+import goTo from 'src/assets/Icons/open-arrow.svg';
 import './SurveyModal.css';
 
 const SurveyModal = ({ closeModal, teacherSurveyOnclick, gradeId }) => {
@@ -30,6 +31,9 @@ const SurveyModal = ({ closeModal, teacherSurveyOnclick, gradeId }) => {
               <img onClick={closeModal} className='close-button' src={closeButton} alt="close-button"></img>
             </div>
           </div>
+          <div className='modal-mobile-title'>
+            <p>Comencemos</p>
+          </div>
           <div className='modal-paragraph' style={{marginTop: '20px', marginBottom: '20px'}}>
             <p>Para que puedas acceder a tus planificaciones personalizadas es necesario que continues con los siguientes pasos:</p>
           </div>
@@ -41,15 +45,17 @@ const SurveyModal = ({ closeModal, teacherSurveyOnclick, gradeId }) => {
               </div>
               <div className='teacher-button-footer'>
                 <p>Ir a la encuesta</p>
+                <img src={goTo} className='teacher-button-mobile' />
               </div>
             </div>
-            <div className='student-survey-button' style={{padding: '1em', border: '1px solid black'}} onClick={() => navigate('/public/share-survey')}>
+            <div className='student-survey-button' style={{padding: '1em'}} onClick={() => navigate('/public/share-survey')}>
               <div className='student-button-header'>
                 <p>Generar enlace para encuestar estudiantes</p>
                 <img src={studentImg} alt="student" />
               </div>
               <div className='student-button-footer'>
                 <p>Generar enlace</p>
+                <img src={goTo} className='student-button-mobile' />
               </div>
             </div>
           </div>

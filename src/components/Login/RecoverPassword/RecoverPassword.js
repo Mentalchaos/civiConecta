@@ -19,6 +19,9 @@ const RecoverPassword = () => {
         </div>
         <RecoverPasswordSection/>
       </div>
+      <div className='rights-reserved'>
+        <p>® 2023, CiviConecta SpA. Todos los derechos reservados.</p>
+      </div>
     </div>
   );
 };
