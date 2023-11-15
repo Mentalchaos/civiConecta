@@ -4,6 +4,7 @@ import Surveys from '../Surveys/Surveys';
 import Footer from 'src/components/PublicSection/Footer/index';
 import FirstStep from '../FirstStep/FirstStep';
 import '../index.css';
+import MobileFooter from '../../Footer/MobileFooter';
 
 const ProfessorSurvey = () => {
   const [isStartSurvey, setIsStartSurvey] = useState(false);
@@ -24,7 +25,11 @@ const ProfessorSurvey = () => {
         {isStartSurvey && <Surveys userType={'teacher'} />}
       </main>
 
-      <div style={{ padding: '0 2.4em' }}>
+      <div className='mobile-footer'>
+        <MobileFooter />
+      </div>
+
+      <div className='professor-survey-footer' style={{ padding: '0 2.4em' }}>
         <Footer />
       </div>
     </>

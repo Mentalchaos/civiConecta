@@ -445,3 +445,74 @@ button.form__previous-question:disabled {
   width: 30px;
   filter: invert(51%) sepia(21%) saturate(51%) hue-rotate(132deg) brightness(247%) contrast(90%);
 }
+
+.mobile-footer {
+  display: none;
+}
+
+.professor-survey-footer {
+  display: block;
+}
+
+@media screen and (min-width: 375px) and (max-width: 1024px) {
+  .content-start__left {
+    width: 100%;
+    height: 100%;
+  }
+
+  .survey-content__start {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .image-container {
+    width: 100%;
+  }
+
+  .content-start__suggestions,
+  .firststep-actions {
+    width: 90vw;
+  }
+
+  .firststep-actions {
+    display: flex;
+    justify-content: center;
+  }
+
+  .content-start__left>.image-container {
+    height: 112px;
+    background-size: 110%;
+    background-position: 70%;
+    margin: 2em 0 0 0;
+  }
+
+  .survey-content-container {
+    width: 90%;
+  }
+
+  .content-start__important-section {
+    margin-top: 25px;
+  }
+
+  .content-start__important-section p,
+  .content-start__text {
+    font-weight: 500;
+    font-size: 12px;
+  }
+
+  .content-start__text {
+    margin-top: 10px;
+  }
+
+  .important-text {
+    margin-top: 25px;
+  }
+
+  .mobile-footer {
+    display: block;
+  }
+
+  .professor-survey-footer {
+    display: none;
+  }
+}

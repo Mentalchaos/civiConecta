@@ -57,4 +57,11 @@
     .units-components {
         padding: 20px 0;
     }
+
+    .planification-cont {
+        display: flex;
+        justify-content: center;
+        width: 90%;
+        margin: auto;
+    }
 }
