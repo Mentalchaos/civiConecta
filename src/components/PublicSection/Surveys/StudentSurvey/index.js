@@ -10,6 +10,7 @@ import './StudentSurvey.css';
 import config from 'src/config';
 import { setUserData, getUserData } from 'src/utils/user';
 import { rutValidator } from 'src/utils/rutValidator.js';
+import MobileFooter from '../../Footer/MobileFooter';
 
 const StudentSurvey = () => {
   const [changeToFirstStep, setChangeToFirstStep] = useState(false);
@@ -183,8 +184,11 @@ const StudentSurvey = () => {
         {isStartSurvey && <Surveys userType={'student'} />}
 
       </main>
-      <div style={{ padding: '0 2.4em' }}>
+      <div className='students-footer-container' style={{ padding: '0 2.4em' }}>
         <Footer />
+      </div>
+      <div className='students-mobile-footer-cont'>
+        <MobileFooter />
       </div>
     </>
   );

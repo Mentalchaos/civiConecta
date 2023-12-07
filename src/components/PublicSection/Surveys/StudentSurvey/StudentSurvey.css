@@ -145,3 +145,45 @@
   width: 30px;
   filter: invert(51%) sepia(21%) saturate(51%) hue-rotate(132deg) brightness(247%) contrast(90%);
 }
+
+.students-footer-container {
+  display: block;
+}
+
+.students-mobile-footer-cont {
+  display: none;
+}
+
+
+@media screen and (min-width: 375px) and (max-width: 1024px) {
+
+  .students-survey-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .students-left,
+  .students-right {
+    width: 100%;
+    height: 100%;
+  }
+
+  .image-container {
+    width: 340px;
+    height: 160px;
+    background-size: 103%;
+    background-position: 90%;
+  }
+
+  .id-one {
+    width: 75%;
+  }
+
+  .students-footer-container {
+    display: none;
+  }
+
+  .students-mobile-footer-cont {
+    display: block;
+  }
+}

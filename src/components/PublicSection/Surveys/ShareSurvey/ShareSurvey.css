@@ -1,6 +1,5 @@
 .share-survey-container {
-    display: flex;
-    flex-direction: column;
+    display: block
 }
 
 .back-container {
@@ -156,4 +155,18 @@
 .link-icon-button {
     border-radius: 10px;
     border: solid 1px;
+}
+
+.share-survey-mobile {
+    display: none;
+}
+
+@media screen and (min-width: 375px) and (max-width: 1024px) {
+    .share-survey-mobile {
+        display: block;
+    }
+
+    .share-survey-container {
+        display: none;
+    }
 }
