@@ -1,8 +1,13 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import surveyIcon from 'src/assets/images/professor-survey-icon.svg';
 import clockIcon from 'src/assets/images/clock-icon.svg';
 
 const TeacherType = ({ setIsStartSurvey }) => {
+
+  const { gradeId } = useParams();
+  const totalQuestions = gradeId <= 6 ? 16 : 20;
+
   return (
     <>
       <div className="content-start__left">
@@ -20,7 +25,7 @@ const TeacherType = ({ setIsStartSurvey }) => {
         <div className="content-start__important-section">
           <div className="important">
             <img src={clockIcon} alt="Icono tiempo" width={45} />
-            <span> La encuesta consta de 16 preguntas.</span>
+            <span> La encuesta consta de {totalQuestions} preguntas.</span>
           </div>
 
           <p className="important-text">

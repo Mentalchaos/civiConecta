@@ -7,14 +7,14 @@ import teacher from 'src/assets/Icons/teacher-white.svg';
 import studentImg from 'src/assets/Icons/student-purple.svg';
 import './SurveyModal.css';
 
-const SurveyModal = ({ closeModal, teacherSurveyOnclick }) => {
+const SurveyModal = ({ closeModal, teacherSurveyOnclick, gradeId }) => {
 
   const navigate = useNavigate();
   // Borrar boton de docente o estudiante basandose si la encuesta fue contestada o no
 
   const teacherSurveyButton = async () => {
     await teacherSurveyOnclick();
-    navigate('/public/professor-survey');
+    navigate(`/public/professor-survey/${gradeId}`);
   };
 
   return (

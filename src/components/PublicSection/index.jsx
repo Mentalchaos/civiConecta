@@ -50,6 +50,7 @@ const PublicSection = () => {
                 <SurveyModal
                   closeModal={actions.closeModal}
                   teacherSurveyOnclick={actions.teacherSurvey}
+                  gradeId={states.userData.gradeId}
                 />
               </Visible>
               <Welcome

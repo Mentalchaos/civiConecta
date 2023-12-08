@@ -24,7 +24,7 @@ const PublicRouter = () => {
           <Route exact path="/results" element={<Results />} />
           <Route exact path="/situations-dashboard/:gradeId" element={<SituationsDashboard />} />
           <Route exact path="/ephemeris-dashboard/:gradeId" element={<EphemerisDashboard />} />
-          <Route exact path="/professor-survey" element={<ProfessorSurvey />} />
+          <Route exact path="/professor-survey/:gradeId" element={<ProfessorSurvey />} />
           <Route exact path="/professor-profile" element={<ProfessorProfile />} />
           <Route exact path="/not-found" element={<NotFound />} />
           <Route exact path="/completed-survey" element={<CompletedSurvey />} />

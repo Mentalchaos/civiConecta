@@ -18,7 +18,8 @@ const EphemerisPlanificationForm = () => {
 
   return (
     <form className="planning-form" onSubmit={handleSubmit}>
-      <div className="form-group planning">
+      {/* se pidió quitar campo "Tema clase" */}
+      {/* <div className="form-group planning">
         <label>Tema clase:</label>
         <input
           type="text"
@@ -26,7 +27,7 @@ const EphemerisPlanificationForm = () => {
           defaultValue={planning.topic}
           onChange={setters.changeField('topic')}
         />
-      </div>
+      </div> */}
 
       <div className="form-group planning">
         <label>Objetivo</label>
