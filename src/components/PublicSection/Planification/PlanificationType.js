@@ -1,7 +1,10 @@
 import right from 'src/assets/images/right-red.svg';
 import './PlanificationType.css';
 
-const PlanificationType = ({ title, textButton, img, colorTextBtn, colorIconRight, onClick }) => {
+const PlanificationType = ({ planificationProps }) => {
+
+  const {title, textButton, img, colorTextBtn, colorIconRight, onClick} = planificationProps;
+
   return (
     <div className='planification-type-container' >
       <div className='planification-image'>

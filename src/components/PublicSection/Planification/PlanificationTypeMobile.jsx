@@ -3,9 +3,11 @@ import planificationSurvey from 'src/assets/images/planification-survey.png';
 import arrowRight from 'src/assets/Icons/arrow-right.svg';
 import './PlanificationType.css';
 
-const PlanificationTypeMobile = () => {
+const PlanificationTypeMobile = ({ planificationProps }) => {
+  const {title, textButton, onClick, img} = planificationProps;
+
   const divStyle = {
-    backgroundImage: `url(${planificationSurvey})`,
+    backgroundImage: `url(${img})`,
     backgroundSize: '150%',
     backgroundPosition: '67%',
     width: '90vw',
@@ -15,17 +17,18 @@ const PlanificationTypeMobile = () => {
     padding: '1em',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+    marginBottom: '2em'
   };
 
   return (
     <div className='planification-mobile' style={divStyle}>
       <div>
-        <p>Contesta la encuesta docente</p>
+        <p>{title}</p>
       </div>
       <div>
-        <button>
-          Ir a la encuesta
+        <button onClick={onClick}>
+          {textButton}
           <img src={arrowRight} className='button-arrow' />
         </button>
       </div>

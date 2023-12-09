@@ -30,9 +30,6 @@ const ShareSurvey = () => {
 
   return (
     <div>
-      <div className='share-survey-mobile'>
-        <StudentSurvey />
-      </div>
       <div className="share-survey-container">
         <div className="back-container">
           <p className="eaea" onClick={() => window.history.back()} style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
