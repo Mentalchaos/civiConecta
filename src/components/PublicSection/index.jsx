@@ -58,7 +58,7 @@ const PublicSection = () => {
                 unitsPonderation={states.unitsPonderation}
               />
               <Visible condition={states.isPlanificationEnabled}>
-                <Plan />
+                <Plan gradeId={states.userData.gradeId} />
               </Visible>
               <Visible condition={(states.status.student.completed === true && states.status.teacher.completed === true) || (states.showUnits === true)}>
               <div className="units-cont">

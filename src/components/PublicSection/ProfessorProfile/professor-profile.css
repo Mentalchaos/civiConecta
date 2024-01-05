@@ -268,9 +268,100 @@
   align-items: center;
 }
 
-
-
 .answer-container button img {
   filter: invert(116%) sepia(15%) saturate(6424%) hue-rotate(294deg) brightness(100%) contrast(83%);
   width: 10px;
+}
+
+.professor-info-data-img {
+  width: 50px;
+  border: 1px solid #e95f7b;
+  border-radius: 100%;
+}
+
+@media screen and (min-width: 375px) and (max-width: 1024px) {
+  .profile-container {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: auto;
+  }
+
+  .profile-back-container {
+    margin-left: 20px;
+    height: 20px;
+    font-size: 16px;
+  }
+
+  .profile-back-container img {
+    width: 20px;
+  }
+
+  .professor-info-container {
+    width: 100%;
+    margin-top: 3em;
+  }
+
+  .professor-info-title {
+    margin: 0;
+  }
+
+  .professor-info-title p {
+    font-size: 16px;
+  }
+
+  .professor-info-data {
+    box-shadow: none;
+    margin: 0;
+  }
+
+  .professor-info-data-cont {
+    display: flex;
+    flex-direction: row;
+    width: 65%;
+    margin: auto;
+    margin-bottom: 2em;
+  }
+
+  .professor-info-data-img {
+    width: 70px;
+    border: 1px solid #e95f7b;
+    border-radius: 100%;
+    margin-right: 1em;
+  }
+
+  .professor-info-name {
+    font-size: 16px;
+  }
+
+  .professor-info-type {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .student-nomina-container {
+    width: 100%;
+    margin-top: 2em
+  }
+
+  .student-nomina-title {
+    margin-left: 20px;
+  }
+
+  .disguised-label,
+  .disguised-value {
+    font-weight: 500;
+  }
+
+  .disguised-value {
+    color: #808080;
+  }
+
+  .disguised-input-container {
+    padding: 0.5em 1.5em;
+  }
+
+  .student-nomina-title p {
+    font-size: 16px;
+  }
 }

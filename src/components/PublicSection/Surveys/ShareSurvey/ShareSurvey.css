@@ -156,3 +156,68 @@
     border-radius: 10px;
     border: solid 1px;
 }
+
+.red-logo {
+    display: block;
+}
+
+.orange-mobile-logo {
+    display: none;
+}
+
+@media screen and (min-width: 375px) and (max-width: 1024px) {
+    .share-container {
+        width: 90%;
+    }
+
+    .share-container-title p {
+        font-size: 14px;
+        color: #4d4d50;
+    }
+
+    .share-container-alert {
+        width: 80%;
+        background-color: #fdf3f1;
+        color: #f79877;
+    }
+
+    .share-container-link p:first-child {
+        color: #f79877;
+    }
+
+    .share-container-link p:last-child {
+        color: #808080;
+        border: solid 1px #f79877;
+    }
+
+    .alert-icon {
+        border: 2px solid #f79877;
+    }
+
+    .alert-icon p {
+        color: #f79877;
+        font-weight: 500;
+    }
+
+    .link-icon-button {
+        background-color: #ea8871 !important;
+        width: 50% !important;
+        margin: auto !important;
+    }
+
+    .back-container p {
+        color: #808080;
+    }
+
+    .back-container img {
+        filter: invert(65%) sepia(37%) saturate(768%) hue-rotate(320deg) brightness(99%) contrast(93%);
+    }
+
+    .red-logo {
+        display: none;
+    }
+
+    .orange-mobile-logo {
+        display: block;
+    }
+}

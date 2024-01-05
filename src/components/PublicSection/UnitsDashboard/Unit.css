@@ -80,3 +80,36 @@
 .info-text, .class-text {
   color: #4d4d4d;
 }
+
+@media screen and (min-width: 375px) and (max-width: 1024px) {
+  .unit {
+    padding: 0;
+    border: none;
+  }
+
+  .unit-content {
+    display: flex;
+    flex-direction: column;
+    margin: 3em 0;
+  }
+
+  .unit-header {
+    width: 90%;
+    border: none;
+    margin-bottom: 2em;
+  }
+
+  .unit-header-text p:last-child {
+    color: var(--gray-dark);
+    font-size: 16px;
+  }
+
+  .unit-info {
+    width: 90%;
+    margin: auto;
+  }
+
+  .info-text {
+    text-align: justify;
+  }
+}

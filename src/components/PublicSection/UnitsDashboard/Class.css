@@ -25,7 +25,7 @@
   background-color: #96cb76;
   border-radius: 30px;
   padding: 5px;
-  width: 32%;
+  width: 50%;
   margin-bottom: 20px;
   font-family: 'Nunito-Bold';
   font-weight: 800;
@@ -69,4 +69,22 @@
   fill: #96cb76;
   height: 10px;
   margin-left: 10px;
+}
+
+
+@media screen and (min-width: 375px) and (max-width: 1024px) {
+  .classes {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .class {
+    width: 100%;
+    margin: auto;
+    margin-bottom: 2em;
+  }
+
+  .class-title {
+    width: 35%;
+  }
 }

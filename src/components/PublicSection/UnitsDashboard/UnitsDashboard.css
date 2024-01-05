@@ -20,3 +20,10 @@ body {
   margin-top: 3em;
 }
 
+
+@media screen and (min-width: 375px) and (max-width: 1024px) {
+  .dashboard-container {
+    width: 90%;
+    margin: auto;
+  }
+}

@@ -81,16 +81,12 @@ const MobileHeader = ({handleLogout}) => {
               <p onClick={() => { navigate('/public/professor-profile'); closeMenu(); }} className="teacher-name">{currentUser.name}</p>
             </div>
             <div className='option'>
-              <img className="notification-icon" src={notificationIcon} alt="notification-icon" />
-              <p>Notificaciones</p>
-            </div>
-            <div className='option'>
               <img className="question-icon" src={questionIcon} alt="question-icon" />
-              <p>Ayuda</p>
+              <p>Preguntas frecuentes</p>
             </div>
             <div className='option'>
               <p className='session-info' onClick={handleLogout}>
-                Cerrar Sesión
+                Cerrar sesión
               </p>
               <img className='arrow-right' src={arrowRight} alt='arrow-right-icon' />
             </div>

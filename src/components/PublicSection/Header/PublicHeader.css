@@ -160,11 +160,16 @@
 }
 
 .mobile-menu-options {
-  height: 70vh;
+  height: 50vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+}
+
+.option p {
+  font-size: 16px;
+  font-weight: 500;
 }
 
 

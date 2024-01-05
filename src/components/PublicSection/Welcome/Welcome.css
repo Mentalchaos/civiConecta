@@ -250,4 +250,12 @@
         font-weight: normal;
         font-size: 10px;
     }
+
+    .p-2 {
+        font-weight: 500;
+    }
+
+    .mobile-grade {
+        margin-top: 0;
+    }
 }

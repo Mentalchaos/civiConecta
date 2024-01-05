@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { getUserData } from 'src/utils/user';
 import back from 'src/assets/Icons/back.svg';
 import unitLogo from 'src/assets/Icons/unit-section-red.svg';
+import unitOrangeLogo from 'src/assets/Icons/unit-section-orange.svg';
 import link from 'src/assets/Icons/button-enlace.svg';
 import './ShareSurvey.css';
 import Footer from '../../Footer';
@@ -39,17 +40,15 @@ const ShareSurvey = () => {
         </div>
         <div className="share-container">
           <div className="share-container-title">
-            <img src={unitLogo} alt="unit-logo" />
+            <img src={unitLogo} alt="unit-logo" className='red-logo' />
+            <img src={unitOrangeLogo} alt="unit-logo" className='orange-mobile-logo' />
             <p>Compartir encuesta con estudiantes</p>
           </div>
           <div className="share-container-description">
             <p>
-              Recuerda compartir el enlace de la encuesta con tus estudiantes, sus respuestas son esenciales para
-              completar el proceso de personalización de las planificaciones
-            </p>
-            <p>
-              Puedes revisar el avance de tus estudiantes haciendo click en el botón “Estado de encuesta” en tu página de
-              inicio o en tu perfil de usuario.
+            Recuerda compartir el enlace de la encuesta con tus estudiantes, sus respuestas son esenciales para
+            completar el proceso de personalización de las planificaciones. Puedes revisar el avance de tus
+            estudiantes haciendo click en el botón “Estado de encuesta” en tu página de inicio o en tu perfil de usuario.
             </p>
           </div>
           <div className="share-container-alert">
@@ -59,7 +58,7 @@ const ShareSurvey = () => {
             <p>Solo estudiantes en la nómina del curso podrán acceder a la encuesta.</p>
           </div>
           <div className="share-container-link">
-            <p>Enlace de encuesta estudiante</p>
+            <p>Enlace generado</p>
             <p>{ linkToSurvey }</p>
           </div>
           <div className="share-container-button">

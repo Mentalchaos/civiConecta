@@ -27,7 +27,7 @@ const MobileWelcome = ({ establishment, grade, letter, user }) => {
             <img src={cap} alt="Icono Curso" />
             <div className="grade-info">
               <p>Nivel del curso</p>
-              <p className="grade">{grade} {letter}</p>
+              <p className="grade mobile-grade">{grade} {letter}</p>
             </div>
           </div>
           <div className='man-image-container'>

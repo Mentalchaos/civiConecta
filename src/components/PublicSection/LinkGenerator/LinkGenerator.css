@@ -118,3 +118,44 @@
     width: 30%;
   }
 }
+
+@media screen and (min-width: 375px) and (max-width: 1024px) {
+  .link-container {
+    background-image: url(src/assets/images/banner-link-mobile.png);
+    width: 90%;
+    border-radius: 10px;
+    margin: auto;
+    margin-bottom: 2em;
+  }
+
+  .survey-link-container {
+    background-color: transparent !important;
+    display: flex;
+    flex-direction: column;
+  }
+  .first-container-link {
+    width: 95%;
+  }
+
+  .first-container-link img {
+    height: 40px;
+  }
+  .second-container-link {
+    width: 95%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .second-container-link button {
+    width: 55%;
+  }
+
+  .second-container-link button a {
+    color: #f48e76 !important;
+  }
+
+  .second-container-link img {
+    filter: invert(80%) sepia(35%) saturate(2150%) hue-rotate(308deg) brightness(98%) contrast(96%);
+  }
+}
+

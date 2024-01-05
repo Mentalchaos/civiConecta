@@ -3,7 +3,7 @@ import { clearUserData, getUserData } from 'src/utils/user';
 import config from 'src/config';
 import DisguisedInput from './DisguisedInput.js';
 import ModalTrigger from './ModalTrigger';
-import MenuDocenteIcon from 'src/assets/Icons/menu-docente.svg';
+import MenuDocenteIcon from 'src/assets/Icons/female-user-icon.svg';
 import profile from 'src/assets/Icons/profile-image.svg';
 import finishImage from 'src/assets/images/finish-survey.png';
 import report from 'src/assets/images/report-container.png';
@@ -79,9 +79,13 @@ const ProfessorInfo = ({ onClick }) => {
       </div>
       <div className="professor-info-data">
         <div className="professor-info-data-cont">
-          <img src={MenuDocenteIcon} alt="menu-icon" />
-          <p className="professor-info-name">{currentUser.name}</p>
-          <p className="professor-info-type">Docente</p>
+          <div className='professor-info-data-img'>
+            <img src={MenuDocenteIcon} alt="menu-icon" />
+          </div>
+          <div className='professor-info-data-name'>
+            <p className="professor-info-name">{currentUser.name}</p>
+            <p className="professor-info-type">Docente</p>
+          </div>
         </div>
         <div className="disguised-inputs-cont">
           {inputs}

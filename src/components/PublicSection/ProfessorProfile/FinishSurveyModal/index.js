@@ -39,6 +39,9 @@ const FinishSurveyModal = ({ onClick }) => {
               <img onClick={onClick} className='finish-close-button' src={closeButton} alt="close-button"></img>
             </div>
           </div>
+          <div className='mobile-finish-modal-title'>
+            <p>Estás por terminar</p>
+          </div>
           <div className='finish-modal-paragraph'>
             <p>
             ¿Quieres finalizar la encuesta aplicada a tu curso y generar los informes? Ten en cuenta
@@ -47,13 +50,13 @@ const FinishSurveyModal = ({ onClick }) => {
             </p>
           </div>
           <div className='finish-survey-buttons-container'>
-              <div onClick={onClick} className='keep-open'>
-                <p>Mantener encuesta abierta</p>
-                <img src={right} alt="arrow-icon"/>
-              </div>
               <div className='keep-open' style={{ background: '#7468e2' }} onClick={handleFinishSurvey}>
                 <p>Finalizar y generar informes</p>
                 <img src={right} alt="arrow-icon" />
+              </div>
+              <div onClick={onClick} className='keep-open'>
+                <p>Mantener encuesta abierta</p>
+                <img src={right} alt="arrow-icon"/>
               </div>
           </div>
         </div>
