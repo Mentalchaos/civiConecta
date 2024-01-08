@@ -57,6 +57,19 @@ const EphemerisDashboard = () => {
             </div>
           </div>
           <div className='ephemeris-description-container'>
+            <div className='mobile-ephemeris-description'>
+              <div className='mobile-ephemeris-header'>
+                <img className='book-icon' src={unitGreen} alt='' />
+                <p className='ephemeris-desc-title'>Descripción:</p>
+              </div>
+              <div>
+                <p>
+                  Nuestro programa incluye la planificación del siguiente listado de efemérides, de acuerdo con la
+                  propuesta del Ministerio de Educación, en la resolución exenta nº 002329 que establece calendario
+                  escolar para establecimientos educacionales de la Región Metropolitana.
+                </p>
+              </div>
+            </div>
             <div className='ephemeris-description'>
               <img className='book-icon' src={unitGreen} alt='' />
               <div className='ephemeris-info'>

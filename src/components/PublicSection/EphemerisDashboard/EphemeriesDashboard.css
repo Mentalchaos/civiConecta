@@ -51,6 +51,7 @@
   display: flex;
   height: 90%;
   margin-top: 1.5em;
+  display: block;
 }
 
 .ephemeris-description-container {
@@ -109,6 +110,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  display: block;
 }
 
 .ephemeris-date {
@@ -162,4 +164,76 @@
 .profile-back-container {
   margin: auto;
   margin-left: 9em;
+}
+
+.mobile-ephemeris-description {
+  display: none;
+}
+
+.mobile-ephemeris-header {
+  display: flex;
+  align-items: center;
+  margin: 2em 0;
+}
+
+.mobile-ephemeris-day {
+  display: none;
+}
+
+
+@media screen and (min-width: 375px) and (max-width: 1024px) {
+  .ephemeris-section {
+    margin: 0 auto;
+  }
+
+  .ephemeris {
+    border: none;
+    padding: 0;
+    width: 90%;
+  }
+
+  .ephemeris-cont {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ephemeris-header {
+    width: 100%;
+    border: none;
+  }
+
+  .ephemeris-description-container {
+    width: 100%;
+  }
+
+  .mobile-ephemeris-description {
+    display: block;
+  }
+
+  .ephemeris-description {
+    display: none;
+  }
+
+  .ephemeris-day {
+    display: none;
+  }
+
+  .mobile-ephemeris-day {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #4f4d4d;
+    height: 80px;
+    width: 100%;
+    align-items: center;
+    border-radius: 5px;
+  }
+
+  .dates-container {
+    width: 90%;
+  }
+
+  .dates-section {
+    display: flex;
+    flex-direction: column;
+  }
 }
