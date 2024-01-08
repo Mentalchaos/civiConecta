@@ -1,3 +1,10 @@
 .unit-content-container {
     margin: 3% 15%;
 }
+
+@media screen and (min-width: 375px) and (max-width: 1024px) {
+    .unit-content-container {
+        width: 90%;
+        margin: auto;
+    }
+}

@@ -1,10 +1,10 @@
 import './UnitTable.css';
 import arrowWhite from '../../../../assets/Icons/arrow-right-white.svg';
 import brain from '../../../../assets/Icons/white-brain.svg';
+import MobileUnitTable from './MobileUnitTable';
 
 const UnitTable = ({ planningData, title, type }) => {
   const { endActivity, startActivity, mainActivity, topic, materials, keywords } = planningData.planning || {};
-
   const { objective } = planningData || {};
 
   const colors = {
@@ -36,79 +36,92 @@ const UnitTable = ({ planningData, title, type }) => {
   const shouldShowAdditionalRow = type === "ephemeris";
 
   return (
-    <>
-      <div>
-        <div className=''>
-          <div className='unit-head'>
-            <img className='unit-img' src={brain} alt='logo' style={background}></img>
-            <div className='green-text' style={color}>{title}</div>
+    <div>
+      <div className='mobile-unit-table-container'>
+        <MobileUnitTable
+          planningData={planningData}
+          shouldShowAdditionalRow={shouldShowAdditionalRow}
+          background={background}
+          color={color}
+          objective={objective}
+          topic={topic}
+          imBlind={imBlind}
+        />
+      </div>
+      <div className='unit-table-container'>
+        <div>
+          <div className=''>
+            <div className='unit-head'>
+              <img className='unit-img' src={brain} alt='logo' style={background}></img>
+              <div className='green-text' style={color}>{title}</div>
+            </div>
           </div>
         </div>
-      </div>
-      <div className=''>
-        <table className=''>
-          <tbody>
-            {shouldShowAdditionalRow && (
+        <div className=''>
+          <table className=''>
+            <tbody>
+              {shouldShowAdditionalRow && (
+                <tr className='table-row'>
+                  <td className='td table-title'>Objetivo de la clase:</td>
+                  <td className='td td-right'>{objective}</td>
+                </tr>
+              )}
+
+              {!shouldShowAdditionalRow && (
+                <>
+                  <tr className='table-row'>
+                    <td className='td table-title corner'>Tema clase:</td>
+                    <td className='td corner td-right'>{topic}</td>
+                  </tr>
+
+                  <tr className='table-row'>
+                    <td className='td table-title corner'>Conceptos a tratar:</td>
+                    <td className='td corner td-right'>
+                      {keywords && keywords.map((data, key) => <div key={key} className='materials'>{`- ${data}`}</div>)}
+                    </td>
+                  </tr>
+                </>
+              )}
+
               <tr className='table-row'>
-                <td className='td table-title'>Objetivo de la clase:</td>
-                <td className='td td-right'>{objective}</td>
+                <td className='td table-title'>Materiales:</td>
+                <td className='td td-right'>
+                  <div>Docente:</div>
+                  <br />
+                  {materials?.teacher.map((data, key) => <div key={key} className='materials'>{`- ${data}`}</div>)}
+                  <br></br>
+                  <div>Alumno:</div>
+                  <br />
+                  {materials?.student.map((data, key) => <div key={key} className='materials'>{`- ${data}`}</div>)}
+                </td>
               </tr>
-            )}
 
-            {!shouldShowAdditionalRow && (
-              <>
-                <tr className='table-row'>
-                  <td className='td table-title corner'>Tema clase:</td>
-                  <td className='td corner td-right'>{topic}</td>
-                </tr>
+              <tr className='table-row'>
+                <td className='td table-title'>Actividad de inicio:</td>
+                <td className='td td-right'>{startActivity}</td>
+              </tr>
 
-                <tr className='table-row'>
-                  <td className='td table-title corner'>Conceptos a tratar:</td>
-                  <td className='td corner td-right'>
-                    {keywords && keywords.map((data, key) => <div key={key} className='materials'>{`- ${data}`}</div>)}
-                  </td>
-                </tr>
-              </>
-            )}
+              <tr className='table-row'>
+                <td className='td table-title'>Actividad de central:</td>
+                <td className='td td-right'>{mainActivity}</td>
+              </tr>
 
-            <tr className='table-row'>
-              <td className='td table-title'>Materiales:</td>
-              <td className='td td-right'>
-                <div>Docente:</div>
-                <br />
-                {materials?.teacher.map((data, key) => <div key={key} className='materials'>{`- ${data}`}</div>)}
-                <br></br>
-                <div>Alumno:</div>
-                <br />
-                {materials?.student.map((data, key) => <div key={key} className='materials'>{`- ${data}`}</div>)}
-              </td>
-            </tr>
-
-            <tr className='table-row'>
-              <td className='td table-title'>Actividad de inicio:</td>
-              <td className='td td-right'>{startActivity}</td>
-            </tr>
-
-            <tr className='table-row'>
-              <td className='td table-title'>Actividad de central:</td>
-              <td className='td td-right'>{mainActivity}</td>
-            </tr>
-
-            <tr className='table-row'>
-              <td className='td table-title td-end'>Actividad de cierre:</td>
-              <td className='td td-end td-right'>{endActivity}</td>
-            </tr>
-          </tbody>
-        </table>
-        {
-          !!planningData?.files?.length &&
-          <button className='download-material' onClick={() => imBlind()} style={background}>
-            Descargar material
-            <img className='button-image' src={arrowWhite} alt=''></img>
-          </button>
-        }
+              <tr className='table-row'>
+                <td className='td table-title td-end'>Actividad de cierre:</td>
+                <td className='td td-end td-right'>{endActivity}</td>
+              </tr>
+            </tbody>
+          </table>
+          {
+            !!planningData?.files?.length &&
+            <button className='download-material' onClick={() => imBlind()} style={background}>
+              Descargar material
+              <img className='button-image' src={arrowWhite} alt=''></img>
+            </button>
+          }
+        </div>
       </div>
-    </>
+    </div>
   )
 }
 
