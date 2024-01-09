@@ -5,7 +5,7 @@ import Footer from '../Footer/index';
 import EphemerisDate from './components/EphemerisDate';
 import back from 'src/assets/Icons/back-arrow.svg';
 import brain from '../../../assets/Icons/white-brain.svg';
-import unitGreen from '../../../assets/Icons/unit-blueligth.svg';
+import ephemerisDescription from '../../../assets/Icons/ephemeris-description-icon.svg';
 import './EphemeriesDashboard.css';
 import { useParams } from 'react-router-dom';
 
@@ -59,7 +59,7 @@ const EphemerisDashboard = () => {
           <div className='ephemeris-description-container'>
             <div className='mobile-ephemeris-description'>
               <div className='mobile-ephemeris-header'>
-                <img className='book-icon' src={unitGreen} alt='' />
+                <img className='book-icon' src={ephemerisDescription} alt='' />
                 <p className='ephemeris-desc-title'>Descripción:</p>
               </div>
               <div>
@@ -71,7 +71,7 @@ const EphemerisDashboard = () => {
               </div>
             </div>
             <div className='ephemeris-description'>
-              <img className='book-icon' src={unitGreen} alt='' />
+              <img className='book-icon' src={ephemerisDescription} alt='' />
               <div className='ephemeris-info'>
                 <div className='ephemeris-desc-title'>Descripción:</div>
                 <div className='ephemeris-desc-text'>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import surveyIcon from 'src/assets/images/professor-survey-icon.svg';
+import mobileBanner from 'src/assets/images/mobile-survey-banner.png';
 import clockIcon from 'src/assets/images/clock-icon.svg';
 
 const TeacherType = ({ setIsStartSurvey }) => {
@@ -12,11 +13,12 @@ const TeacherType = ({ setIsStartSurvey }) => {
     <>
       <div className="content-start__left">
         <div className="image-container"></div>
+        <div className="mobile-image-container"></div>
       </div>
       <article className="content-start__suggestions">
         <header className="content-start__header-text">
           <img src={surveyIcon} alt="icono encuesta" width={30} />
-          <span>Planificaci&oacute;n adecuada</span>
+          <span>Encuesta docente </span>
         </header>
         <p className="content-start__text">
           Te sugerimos que, si no conoces la realidad del curso, completes esta encuesta considerando la opini&oacute;n

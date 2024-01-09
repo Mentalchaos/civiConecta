@@ -112,4 +112,9 @@
   .info-text {
     text-align: justify;
   }
+
+  .unit-desc-svg {
+    height: 20px;
+    width: 20px;
+  }
 }

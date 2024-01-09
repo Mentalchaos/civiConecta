@@ -1,20 +1,34 @@
 import { useNavigate } from 'react-router-dom';
 import goTo from 'src/assets/Icons/open-arrow.svg';
+import rightIcon from 'src/assets/Icons/right-thin-icon.svg';
 import '../EphemeriesDashboard.css';
 
 const EphemerisDate = ({ id, title, date }) => {
+
+  const convertDate = date => {
+    const months = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
+    const [day, monthNumber] = date.split('-');
+    const month = months[parseInt(monthNumber, 10) - 1];
+
+    return `${day} ${month}`;
+  };
+
+  const originalDate = date;
+  const convertedDate = convertDate(originalDate);
+
   const navigate = useNavigate();
+
   return (
     <>
       <div className='mobile-ephemeris-day'>
-        <div>
-          <p>{date}</p>
+        <div className='mobile-ephemeris-date'>
+          <p>{convertedDate}</p>
         </div>
-        <div>
+        <div className='mobile-ephemeris-title'>
           <p>{title}.</p>
         </div>
-        <div className='mobile-arrow-cont'>
-          <img src={goTo} alt='arrow-icon' />
+        <div className='mobile-arrow-cont' onClick={() => navigate(`/public/planning/${id}/${title}/ephemeris`)} >
+          <img src={rightIcon} alt='arrow-icon' />
         </div>
       </div>
       <div className='ephemeris-day'>

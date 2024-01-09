@@ -427,6 +427,19 @@ button.form__previous-question:disabled {
   background-position: 90%;
   border-radius: 10px;
   border: none;
+  display: block;
+}
+
+.content-start__left>.mobile-image-container {
+  background-image: url('src/assets/images/mobile-survey-banner.png');
+  width: 536px;
+  height: 180px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: 90%;
+  border-radius: 10px;
+  border: none;
+  display: none;
 }
 
 .image-container.student {
@@ -474,6 +487,10 @@ button.form__previous-question:disabled {
     width: 90vw;
   }
 
+  .content-start__suggestions {
+    margin-top: -55px;
+  }
+
   .firststep-actions {
     display: flex;
     justify-content: center;
@@ -514,5 +531,13 @@ button.form__previous-question:disabled {
 
   .professor-survey-footer {
     display: none;
+  }
+
+  .content-start__left>.image-container {
+    display: none;
+  }
+
+  .content-start__left>.mobile-image-container {
+    display: block;
   }
 }

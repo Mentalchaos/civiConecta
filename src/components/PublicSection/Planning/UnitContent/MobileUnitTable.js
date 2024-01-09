@@ -24,31 +24,44 @@ const MobileUnitTable = ({ shouldShowAdditionalRow, background, color, planningD
 
   return (
     <>
-      <div className=''>
-        <div className='unit-head'>
-          <img className='unit-img' src={brain} alt='logo' style={background}></img>
-          <div>
-            <div className='green-text' style={color}>Unidad {romanNumber}</div>
-            <div className='mobile-unit-title'>{title}</div>
-            <div className='mobile-class-number'>Clase {planningData.number}</div>
+      {shouldShowAdditionalRow ? (
+          <div className='unit-head-second-container'>
+            <img className='unit-img' src={brain} alt='logo' style={background}></img>
+            <div>
+              <p>{title}</p>
+            </div>
           </div>
-        </div>
-      </div>
+        ) : (
+          <div className='unit-head'>
+            <img className='unit-img' src={brain} alt='logo' style={background}></img>
+            <div className='unit-info-header'>
+              <div className='green-text' style={color}>Unidad {romanNumber}</div>
+              <div className='mobile-unit-title'>{title}</div>
+              <div className='mobile-class-number'>Clase {planningData.number}</div>
+            </div>
+          </div>
+        )}
       <div className='mobile-unit-cont'>
-        <div className='mobile-unit-label'>
-          <p className='unit-label'>Tema clase:</p>
-          <p className='label-description'>{topic}</p>
-        </div>
+        {!shouldShowAdditionalRow && (
+            <div className='mobile-unit-label'>
+              <p className='unit-label'>Tema clase:</p>
+              <p className='label-description'>{topic}</p>
+            </div>
+        )}
+        
         {shouldShowAdditionalRow && (
           <div className='mobile-unit-label'>
             <p className='unit-label'>Objetivo de la clase:</p>
             <p className='label-description'>{objective}</p>
           </div>
         )}
-        <div className='mobile-unit-label'>
-          <p className='unit-label'>Conceptos a tratar:</p>
-          {keywords && keywords.map((data, key) => <div className='unit-materials' key={key}>{`- ${data}`}</div>)}
-        </div>
+        {!shouldShowAdditionalRow && (
+            <div className='mobile-unit-label'>
+              <p className='unit-label'>Conceptos a tratar:</p>
+              {keywords && keywords.map((data, key) => <div className='unit-materials' key={key}>{`- ${data}`}</div>)}
+            </div>
+        )}
+
         <div className='mobile-unit-label'>
           <p className='unit-label'>Materiales necesarios:</p>
           <div className='label-description' style={{paddingLeft: '10px', margin: '0.5em 0'}}>Docente:</div>

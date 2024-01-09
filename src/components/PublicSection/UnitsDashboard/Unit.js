@@ -1,6 +1,7 @@
 import './Unit.css';
 import brain from '../../../assets/Icons/white-brain.svg';
-import unitGreen from '../../../assets/Icons/unit-green.svg';
+import unitDescription from '../../../assets/Icons/unit-description-icon.svg';
+import unitObjective from '../../../assets/Icons/unit-objective-icon.svg';
 
 const Unit = ({ number, title, description, objective }) => {
   let newNumber;
@@ -39,14 +40,14 @@ const Unit = ({ number, title, description, objective }) => {
         </div>
         <div className='unit-info'>
           <div className='unit-desc'>
-            <img src={unitGreen} className='unit-desc-svg' alt='' />
+            <img src={unitDescription} className='unit-desc-svg' alt='' />
             <div className='info'>
               <div className='info-title'>Descripción de la unidad:</div>
               <div className='info-text'>{ description || '-' }</div>
             </div>
           </div>
           <div className='unit-desc'>
-            <img src={unitGreen} className='unit-desc-svg' alt='logo-unit-green' />
+            <img src={unitObjective} className='unit-desc-svg' alt='logo-unit-green' />
             <div className='info'>
               <div className='info-title'>Objetivo de la unidad</div>
               <div className='info-text'>{objective || '-'}</div>

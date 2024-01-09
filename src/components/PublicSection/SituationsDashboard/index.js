@@ -7,7 +7,7 @@ import EmergentSituation from './components/EmergentSituation';
 import SearchBar from './components/SearchBar';
 
 import brain from '../../../assets/Icons/white-brain.svg';
-import unitGreen from '../../../assets/Icons/unit-green2.svg';
+import emergentsIcon from '../../../assets/Icons/emergents-icon.svg';
 import back from 'src/assets/Icons/back-arrow.svg';
 import './SituationsDashboard.css';
 import { useParams } from 'react-router-dom';
@@ -65,9 +65,23 @@ const SituationsDashboard = () => {
               <p>Situaciones emergentes</p>
             </div>
           </div>
+          <div className="mobile-situations-container">
+            <div className="situations-description">
+              <div className='situations-description'>
+                <img className="book-icon" src={emergentsIcon} alt="situations-icon" />
+                <p className="situations-desc-title">Descripción:</p>
+              </div>
+              <div className="situations-info">
+                <p className="situations-desc-text">Clases para profundizar y complementar temáticas ya abordadas en unidades anteriores,
+                  además de posibles conflictos que se dan en el aula. Utiliza el buscador para encontrar clases
+                  atingentes con las temáticas que necesites.
+                </p>
+              </div>
+            </div>
+          </div>
           <div className="situations-description-container">
             <div className="situations-description">
-              <img className="book-icon" src={unitGreen} alt="situations-icon" />
+              <img className="book-icon" src={emergentsIcon} alt="situations-icon" />
               <div className="situations-info">
                 <div className="situations-desc-title">Descripción:</div>
                 <div className="situations-desc-text">Clases para profundizar y complementar temáticas ya abordadas en unidades anteriores,

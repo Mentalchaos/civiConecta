@@ -239,3 +239,90 @@
 .searcher {
   margin-left: 10px !important;
 }
+
+.mobile-situations-container {
+  display: none;
+}
+
+@media screen and (min-width: 375px) and (max-width: 1024px) {
+  .mobile-situations-container {
+    display: block;
+    width: 100%;
+  }
+
+  .mobile-situations-description {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .situations-description {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .situations-description-container {
+    display: none;
+  }
+
+  .situations-section {
+    width: 100%;
+    margin: auto;
+  }
+  
+  .situations {
+    width: 90%;
+    border: none;
+    margin: 0;
+    padding: 0 20px;
+  }
+
+  .situations-cont {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .situations-header {
+    width: 100%;
+    border: none;
+  }
+
+  .situations-header-text {
+    width: 100%;
+  }
+
+  .situations-header-text p {
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  .situations-desc-title {
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .situations-desc-text {
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .situations-search {
+    width: 90%;
+  }
+
+  .search-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    flex-direction: column;
+  }
+
+  .search-info {
+    width: 85%;
+  }
+
+  .search-input {
+    width: 85%;
+    margin-top: 1em;
+  }
+}

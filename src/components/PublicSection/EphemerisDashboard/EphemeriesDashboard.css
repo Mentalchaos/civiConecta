@@ -180,6 +180,53 @@
   display: none;
 }
 
+.mobile-ephemeris-date,
+.mobile-ephemeris-title {
+  height: 100px;
+}
+
+.mobile-ephemeris-date {
+  width: 15%;
+  background-color: #54bfed;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobile-ephemeris-date p {
+  color: #fff;
+  width: 20px;
+}
+
+.mobile-ephemeris-title {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.mobile-ephemeris-title p {
+  color: #4d4d4d;
+  font-size: 16px;
+}
+
+.mobile-arrow-cont {
+  width: 15%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-arrow-cont img {
+  width: 30px;
+  height: 30px;
+  background: #54bfed;
+  border-radius: 100%;
+}
+
 
 @media screen and (min-width: 375px) and (max-width: 1024px) {
   .ephemeris-section {
@@ -195,6 +242,8 @@
   .ephemeris-cont {
     display: flex;
     flex-direction: column;
+    margin: auto;
+    width: 90%;
   }
 
   .ephemeris-header {
@@ -221,8 +270,8 @@
   .mobile-ephemeris-day {
     display: flex;
     justify-content: space-between;
-    border: 1px solid #4f4d4d;
-    height: 80px;
+    border: 1px solid #dfdfdf;
+    height: 100px;
     width: 100%;
     align-items: center;
     border-radius: 5px;
