@@ -2,9 +2,9 @@ import brain from '../../../../assets/Icons/white-brain.svg';
 import arrowWhite from '../../../../assets/Icons/arrow-right-white.svg';
 import './UnitTable.css';
 
-const MobileUnitTable = ({ shouldShowAdditionalRow, background, color, planningData, imBlind }) => {
+const MobileUnitTable = ({ shouldShowAdditionalRow, background, color, planningData, imBlind, title, type }) => {
   const { endActivity, startActivity, mainActivity, topic, materials, keywords } = planningData.planning || {};
-  const { title, number } = planningData.unit || {};
+  const { number } = planningData.unit || {};
   const { objective } = planningData || {};
 
   const convertToRoman = num => {
@@ -24,23 +24,34 @@ const MobileUnitTable = ({ shouldShowAdditionalRow, background, color, planningD
 
   return (
     <>
-      {shouldShowAdditionalRow ? (
-          <div className='unit-head-second-container'>
+      {type == 'ephemeris' && (
+          <div className='unit-head'>
             <img className='unit-img' src={brain} alt='logo' style={background}></img>
             <div>
-              <p>{title}</p>
+              <p className='mobile-unit-title'>{title}</p>
             </div>
           </div>
-        ) : (
+        )}
+        { type == 'unit' && (
           <div className='unit-head'>
             <img className='unit-img' src={brain} alt='logo' style={background}></img>
             <div className='unit-info-header'>
               <div className='green-text' style={color}>Unidad {romanNumber}</div>
-              <div className='mobile-unit-title'>{title}</div>
+              <div className='mobile-unit-title'>{planningData?.unit?.title}</div>
               <div className='mobile-class-number'>Clase {planningData.number}</div>
             </div>
           </div>
         )}
+
+        {
+          type == 'situation' && <div className='unit-head'>
+          <img className='unit-img' src={brain} alt='logo' style={background}></img>
+          <div className='unit-info-header'>
+            <div className='mobile-unit-title'>{topic}</div>
+          </div>
+        </div>
+        }
+
       <div className='mobile-unit-cont'>
         {!shouldShowAdditionalRow && (
             <div className='mobile-unit-label'>

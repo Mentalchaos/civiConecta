@@ -46,6 +46,8 @@ const UnitTable = ({ planningData, title, type }) => {
           objective={objective}
           topic={topic}
           imBlind={imBlind}
+          title={title}
+          type={type}
         />
       </div>
       <div className='unit-table-container'>

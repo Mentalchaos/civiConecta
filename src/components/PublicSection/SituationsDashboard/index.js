@@ -8,6 +8,8 @@ import SearchBar from './components/SearchBar';
 
 import brain from '../../../assets/Icons/white-brain.svg';
 import emergentsIcon from '../../../assets/Icons/emergents-icon.svg';
+import left from '../../../assets/Icons/left-thin-icon.svg';
+import right from '../../../assets/Icons/right-thin-icon.svg';
 import back from 'src/assets/Icons/back-arrow.svg';
 import './SituationsDashboard.css';
 import { useParams } from 'react-router-dom';
@@ -25,6 +27,7 @@ const toSearchWords = (item) => {
   };
 };
 
+const ITEMS_PER_PAGE = 6;
 
 const SituationsDashboard = () => {
   const [emergentData, setEmergentData] = useState([]);
@@ -48,8 +51,28 @@ const SituationsDashboard = () => {
     getSituations();
   }, []);
 
-  const filtered = emergentData && emergentData.filter(item => item.hasSearchTerm(inputValue));
-  const emergData = emergentData && !filtered.length ? emergentData : filtered;
+  const [currentPage, setCurrentPage] = useState(1); // Página actual
+  const [totalPages, setTotalPages] = useState(0); // Total de páginas
+
+  useEffect(() => {
+    setTotalPages(Math.ceil(emergentData.length / ITEMS_PER_PAGE));
+  }, [emergentData]);
+
+  const goToPrevPage = () => {
+    setCurrentPage((prev) => (prev > 1 ? prev - 1 : prev));
+  };
+
+  const goToNextPage = () => {
+    setCurrentPage((prev) => (prev < totalPages ? prev + 1 : prev));
+  };
+
+  let data = [...emergentData]
+
+  data.forEach((item, index) => {
+      item.number = index + 1;
+  });
+
+  const currentData = data.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
   return (
     <div className="situations-section">
@@ -66,7 +89,7 @@ const SituationsDashboard = () => {
             </div>
           </div>
           <div className="mobile-situations-container">
-            <div className="situations-description">
+            <div className="mobile-situations-description">
               <div className='situations-description'>
                 <img className="book-icon" src={emergentsIcon} alt="situations-icon" />
                 <p className="situations-desc-title">Descripción:</p>
@@ -100,9 +123,26 @@ const SituationsDashboard = () => {
         />
       </div>
       <div className="classes-container">
-        <div className="classes-section">
+        {
+          window.screen.width < 1024 ?
+          <div className="classes-section">
 
-          {emergData.map((data, key) => (
+            {currentData.map((data, key) => (
+              <EmergentSituation
+                key={data.id}
+                id={data.number}
+                lessonId={data.lessonId}
+                title={data.title}
+                description={data.description}
+                date={data.date}
+                tags={data.searchTerms}
+              />
+            ))}
+
+          </div> :
+          <div className="classes-section">
+
+          {emergentData.map((data, key) => (
             <EmergentSituation
               key={data.id}
               id={key + 1}
@@ -115,6 +155,16 @@ const SituationsDashboard = () => {
           ))}
 
         </div>
+        }
+      </div>
+      <div className="pagination-container">
+        <button onClick={goToPrevPage} disabled={currentPage === 1}>
+          <img className='paginator-button' src={left} />
+        </button>
+        <span>{currentPage}</span>
+        <button onClick={goToNextPage} disabled={currentPage === totalPages}>
+          <img className='paginator-button' src={right} />
+        </button>
       </div>
       <Footer />
     </div>

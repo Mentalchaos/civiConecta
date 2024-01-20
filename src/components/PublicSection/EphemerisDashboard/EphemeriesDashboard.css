@@ -131,6 +131,7 @@
 
 .ephemeris-title {
   width: 90%;
+  margin: 2em 0;
 }
 
 .ephemeris-title p {
@@ -284,5 +285,9 @@
   .dates-section {
     display: flex;
     flex-direction: column;
+  }
+
+  .ephemeris-title {
+    margin: 0;
   }
 }
