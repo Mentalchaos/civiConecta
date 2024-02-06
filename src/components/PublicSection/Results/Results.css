@@ -222,15 +222,15 @@ body {
 }
 
 .circle {
-  width: 10px;
-  height: 10px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
-  background-color: grey;
+  background-color: #e6e6e6;
   margin: 0 5px;
 }
 
 .circle.active {
-  background-color: blue;
+  background-color: #e95f7b;
 }
 
 .pagination_controls img {
@@ -252,12 +252,14 @@ body {
   position: absolute;
   left: 0;
   width: 40px;
+  bottom: 0;
 }
 
 .arrow_right {
   position: absolute;
   right: 0;
   width: 40px;
+  bottom: 0;
 }
 
 .pagination_controls {
@@ -305,5 +307,9 @@ body {
 
   .graphic_text {
     margin: 2em 1em;
+  }
+
+  .graphic_text:nth-child(1) {
+    margin-top: 2em;
   }
 }

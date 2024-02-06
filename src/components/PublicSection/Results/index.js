@@ -1,6 +1,6 @@
 import Footer from '../Footer/index';
-import arrowBack from 'src/assets/Icons/back.svg';
-import arrowRight from 'src/assets/Icons/arrow-right.svg';
+import arrowBack from 'src/assets/Icons/left-thin-icon-mobile.svg';
+import arrowRight from 'src/assets/Icons/right-thin-icon-mobile.svg';
 import unitLogo from 'src/assets/Icons/unit-section-red.svg';
 import './Results.css';
 import { getUserData } from 'src/utils/user';
