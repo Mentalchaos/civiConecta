@@ -312,4 +312,23 @@ body {
   .graphic_text:nth-child(1) {
     margin-top: 2em;
   }
+
+  .units_pagination {
+    margin-bottom: 2em;
+  }
+
+  .units_pagination .selected {
+    border-bottom: 3px solid #e95f7b;
+    background: none;
+    color: black;
+  }
+
+  .units_pagination div {
+    border: none;
+  }
+
+  .report_result_text {
+    font-weight: 500;
+    text-align: justify;
+  }
 }
