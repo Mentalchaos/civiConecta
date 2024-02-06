@@ -30,7 +30,7 @@ const Answer = ({ id, answer, onClick, setDataPieChart, setSelectedAnswer }) => 
   return (
     <div className="answer-container">
       <div>
-        <p>{formattedAnswer}</p>
+        <p className='answer-paragraph'>{formattedAnswer}</p>
       </div>
       <div className="answer-container-alert">
         <div className="answer-alert-icon">

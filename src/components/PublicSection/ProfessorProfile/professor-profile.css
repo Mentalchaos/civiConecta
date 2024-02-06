@@ -121,12 +121,20 @@
   border-bottom: 1.7px solid #80808029
 }
 
+
+.student-tablehead-values {
+  width: 100px;
+}
+
+.student-tablebody-values {
+  width: 80px;
+}
+
 .student-tablebody-values,
 .student-tablehead-values {
   font-size: 14px;
   font-family: 'Nunito', sans-serif;
   color: #2b2b2b;
-  padding: 10px 0 10px 0;
 }
 
 .student-tablehead-values {
@@ -173,7 +181,28 @@
   margin-top: 2em;
   border-radius: 10px;
   border: 1.7px solid #80808029;
+  max-height: 470px;
+  overflow-y: auto;
+  max-width: 45vw;
 }
+
+.student-nomina-table-container table th {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 1;
+  color: #e9618d;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 1em;
+}
+
+.student-nomina-table-container table td,
+.student-nomina-table-container table tr {
+  border: none;
+  text-align: center;
+}
+
 
 .student-tablebody {
   display: flex;
@@ -188,7 +217,7 @@
 .student-nomina-title p,
 .critical-answers-title p {
   font-family: 'Nunito', sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
   color: #2b2b2b;
   margin-left: 2px;
@@ -206,6 +235,7 @@
   justify-content: space-around;
   align-items: center;
   margin-bottom: 20px;
+  overflow-x: auto;
 }
 
 .critical-answers-units {
@@ -277,6 +307,43 @@
   width: 50px;
   border: 1px solid #e95f7b;
   border-radius: 100%;
+}
+
+
+
+.critical-answers-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.answer-unit {
+  flex: 0 0 auto;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+
+.answer-unit.active {
+  opacity: 1;
+}
+
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.indicator {
+  height: 10px;
+  width: 10px;
+  background-color: #bbb;
+  margin: 0 5px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.6s ease;
+}
+
+.indicator.active {
+  background-color: #2dba9f;
 }
 
 @media screen and (min-width: 375px) and (max-width: 1024px) {
@@ -364,4 +431,46 @@
   .student-nomina-title p {
     font-size: 16px;
   }
+
+  .critical-answers-container {
+    justify-content: space-between;
+    height: 235px;
+  }
+
+  .critical-answers-title {
+    width: 50%;
+  }
+
+  .answer-container {
+    width: 310px;
+    height: 150px;
+    border: 2px solid #e7e7e7;
+  }
+
+  .answer-paragraph {
+    color: #4f4d4d;
+    font-size: 14px;
+  }
+
+  .critical-answers-units {
+    margin: 0;
+  }
+
+  .answer-status-button>button {
+    width: 30%;
+  }
+
+  .answer-status {
+    font-size: 13px;
+  }
+
+  .student-nomina-table-container {
+    height: 550px;
+    overflow-y: auto;
+    max-width: 90vw;
+    overflow-x: auto;
+  }
+
 }
+
+

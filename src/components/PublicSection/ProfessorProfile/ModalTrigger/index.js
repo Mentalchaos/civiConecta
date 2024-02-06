@@ -1,6 +1,6 @@
 import right from 'src/assets/Icons/thin-right.svg';
 import finishImage from 'src/assets/images/finish-survey.png';
-import icon from 'src/assets/Icons/survey-link-icon.svg'
+import icon from 'src/assets/Icons/survey-link-icon-mobile.svg'
 
 import './ModalTrigger.css';
 

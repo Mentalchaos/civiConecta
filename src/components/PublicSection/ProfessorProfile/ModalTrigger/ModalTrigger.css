@@ -62,18 +62,20 @@
 }
 
 .mobile-modal-title {
-  opacity: 0;
+  display: none;
 }
 
 @media screen and (min-width: 375px) and (max-width: 1024px) {
   .mobile-modal-title {
-    opacity: 1;
+    display: block;
     display: flex;
     align-items: center;
+    margin-bottom: 1em;
   }
 
   .mobile-modal-title img {
     width: 40px;
+    margin-right: 1em;
   }
 
   .mobile-modal-title p {

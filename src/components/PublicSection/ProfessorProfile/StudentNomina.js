@@ -7,8 +7,6 @@ import listIcon from 'src/assets/Icons/student-list.svg';
 import './professor-profile.css';
 import Visible from 'src/components/UI/Visible';
 
-const values = ["Estudiante", "Nombre", "Rut", "Encuesta", "Porcentaje Encuesta"];
-
 const StudentNomina = ({ onClick, setDataPieChart, setSelectedAnswer }) => {
 
   const [studentData, setStudentData] = useState([]);
@@ -42,25 +40,25 @@ const StudentNomina = ({ onClick, setDataPieChart, setSelectedAnswer }) => {
           <p>Nómina</p>
         </div>
         <div className="student-nomina-table-container">
-          <div className="student-tablehead">
-            {values.map(data => {
-              const name = data == 'Nombre' ? 'center' : null;
-              return (
-                <p key={data} style={{ textAlign: name }} className="student-tablehead-values">{data}</p>
-              )
-            }
-            )}
-          </div>
-          <div className="tbody-cont">
-            {
-              studentData && studentData.map((data, key) =>
-                <StudentTableBody
-                  key={data.run}
-                  id={key + 1}
-                  data={data}
-                />
-              )}
-          </div>
+          <table>
+            <tr>
+              <th>Estudiante</th>
+              <th>Nombre</th>
+              <th>Rut</th>
+              <th>Encuesta</th>
+              <th>Porcentaje Encuesta</th>
+            </tr>
+            <tbody>
+              {
+                studentData && studentData.map((data, key) =>
+                  <StudentTableBody
+                    key={data.run}
+                    id={key + 1}
+                    data={data}
+                  />
+                )}
+            </tbody>
+          </table>
         </div>
       </Visible>
       <Visible condition={!studentData.length}>

@@ -1,6 +1,5 @@
 import './professor-profile.css';
 
-
 const StudentTableBody = ({ data, id }) => {
 
   const status = () => {
@@ -34,13 +33,13 @@ const StudentTableBody = ({ data, id }) => {
   const { state, background, color } = status();
 
   return (
-    <div className="student-tablebody">
-      <p className="student-tablebody-values"> {id} </p>
-      <p style={{textAlign: 'center'}}className="student-tablebody-values"> {data.name} </p>
-      <p className="student-tablebody-values"> {data.run} </p>
-      <p className="student-tablebody-values" style={{ background, color }}> {state} </p>
-      <p className="student-tablebody-values"> {data.percentage}% </p>
-    </div>
+    <tr className='student-tr'>
+      <td className="student-tablebody-values">{id}</td>
+      <td style={{textAlign: 'center'}} className="student-tablebody-values">{data.name}</td>
+      <td className="student-tablebody-values">{data.run}</td>
+      <td className="student-tablebody-values" style={{ background, color, width: '80px' }}>{state}</td>
+      <td className="student-tablebody-values">{data.percentage}%</td>
+    </tr>
   )
 };
 
