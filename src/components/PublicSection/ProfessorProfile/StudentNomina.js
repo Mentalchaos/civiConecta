@@ -41,13 +41,15 @@ const StudentNomina = ({ onClick, setDataPieChart, setSelectedAnswer }) => {
         </div>
         <div className="student-nomina-table-container">
           <table>
-            <tr>
-              <th>Estudiante</th>
-              <th>Nombre</th>
-              <th>Rut</th>
-              <th>Encuesta</th>
-              <th>Porcentaje Encuesta</th>
-            </tr>
+            <tbody>
+              <tr>
+                <th>Estudiante</th>
+                <th>Nombre</th>
+                <th>Rut</th>
+                <th>Encuesta</th>
+                <th>Porcentaje Encuesta</th>
+              </tr>
+            </tbody>
             <tbody>
               {
                 studentData && studentData.map((data, key) =>
