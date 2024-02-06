@@ -214,3 +214,96 @@ body {
   color: #7468e5;
   box-shadow: 0px 0px 2px #7468e5;
 }
+
+.pagination_circles {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: grey;
+  margin: 0 5px;
+}
+
+.circle.active {
+  background-color: blue;
+}
+
+.pagination_controls img {
+  cursor: pointer;
+}
+
+.graphic_container {
+  position: relative;
+}
+
+.arrow_controls {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.arrow_left {
+  position: absolute;
+  left: 0;
+  width: 40px;
+}
+
+.arrow_right {
+  position: absolute;
+  right: 0;
+  width: 40px;
+}
+
+.pagination_controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+@media screen and (min-width: 375px) and (max-width: 1024px) {
+  .report_results_content {
+    width: 90%;
+  }
+
+  .graphic_container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .graphic-and-answers {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .pagination_controls img {
+    width: 50px;
+  }
+
+  .graphic {
+    width: 50%;
+  }
+
+  .graphic-answers {
+    width: 85%;
+  }
+
+  .graphic_content:nth-child(1) {
+    border-bottom: none;
+  }
+
+  .pagination_controls {
+    height: 40px;
+  }
+
+  .graphic_text {
+    margin: 2em 1em;
+  }
+}

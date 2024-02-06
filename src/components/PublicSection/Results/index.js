@@ -1,5 +1,6 @@
 import Footer from '../Footer/index';
 import arrowBack from 'src/assets/Icons/back.svg';
+import arrowRight from 'src/assets/Icons/arrow-right.svg';
 import unitLogo from 'src/assets/Icons/unit-section-red.svg';
 import './Results.css';
 import { getUserData } from 'src/utils/user';
@@ -11,6 +12,28 @@ const Results = () => {
   const [resultData, setResultData] = useState([]);
   const [selectedUnit, setSelectedUnit] = useState(0);
   const unitTopic = resultData.length && resultData[selectedUnit].topic;
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [totalQuestions, setTotalQuestions] = useState(0);
+
+  const isMobileView = () => {
+    return window.screen.width < 1024;
+  };
+
+  const [isMobile, setIsMobile] = useState(isMobileView());
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(isMobileView());
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+
 
   useEffect(() => {
     const callData = async () => {
@@ -25,11 +48,40 @@ const Results = () => {
       })
       const data = await response.json();
       await setResultData(data.results);
+
+      if (data.results.length > 0) {
+        setTotalQuestions(data.results[selectedUnit].questions.length);
+      }
     }
     callData();
   }, []);
 
+  const changeUnit = (newUnit) => {
+    setSelectedUnit(newUnit);
+    if (isMobile) {
+      setCurrentIndex(0);
+      setTotalQuestions(resultData[newUnit].questions.length);
+    }
+  };
+
+  const renderPaginationCircles = () => {
+    return (
+      <div className='pagination_circles'>
+        {Array.from({ length: totalQuestions }, (_, index) => (
+          <div
+            key={index}
+            className={`circle ${currentIndex === index ? 'active' : ''}`}
+            onClick={() => setCurrentIndex(index)}
+          />
+        ))}
+      </div>
+    );
+  };
+
   const questionData = resultData && resultData[selectedUnit]?.questions.map((data, key) => {
+    if (isMobile && key !== currentIndex) {
+      return null;
+    }
     return (
       <ResultUnit
         key={key}
@@ -41,6 +93,8 @@ const Results = () => {
       />
     )
   });
+  
+  
 
   const unitsArr = ['Unidad 1', 'Unidad 2', 'Unidad 3', 'Unidad 4'];
 
@@ -82,6 +136,31 @@ const Results = () => {
           </div>
           <div className='graphic_container'>
             {questionData}
+            {isMobile && (
+              <React.Fragment>
+                <div className='arrow_controls'>
+                  {currentIndex > 0 && (
+                    <img
+                      className='arrow_left'
+                      src={arrowBack}
+                      alt="Anterior"
+                      onClick={() => setCurrentIndex(currentIndex - 1)}
+                    />
+                  )}
+                  {currentIndex < totalQuestions - 1 && (
+                    <img
+                      className='arrow_right'
+                      src={arrowRight}
+                      alt="Siguiente"
+                      onClick={() => setCurrentIndex(currentIndex + 1)}
+                    />
+                  )}
+                </div>
+                <div className='pagination_controls'>
+                  {renderPaginationCircles()}
+                </div>
+              </React.Fragment>
+            )}
           </div>
 
           <div className='button_page_unit'>
