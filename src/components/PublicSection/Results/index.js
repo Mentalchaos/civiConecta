@@ -1,6 +1,7 @@
 import Footer from '../Footer/index';
 import arrowBack from 'src/assets/Icons/left-thin-icon-mobile.svg';
 import arrowRight from 'src/assets/Icons/right-thin-icon-mobile.svg';
+import nextUnit from 'src/assets/Icons/right-thin-icon.svg';
 import unitLogo from 'src/assets/Icons/unit-section-red.svg';
 import './Results.css';
 import { getUserData } from 'src/utils/user';
@@ -172,7 +173,10 @@ const Results = () => {
             }
             {selectedUnit !== unitsArr.length - 1 &&
               <div className='button_change_unit_container'>
-                <button className='button_change_unit' onClick={() => setSelectedUnit(selectedUnit + 1)}> Siguiente </button>
+                <button className='button_change_unit' onClick={() => setSelectedUnit(selectedUnit + 1)}> 
+                  Ir a la siguiente unidad
+                  <img src={nextUnit} />
+                </button>
               </div>
             }
             <div className='button_change_unit_container'>

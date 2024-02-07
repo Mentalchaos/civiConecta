@@ -27,7 +27,8 @@ const MobileUnitTable = ({ shouldShowAdditionalRow, background, color, planningD
       {type == 'ephemeris' && (
           <div className='unit-head'>
             <img className='unit-img' src={brain} alt='logo' style={background}></img>
-            <div>
+            <div className='ephemeris_title_container'>
+              <p>Efemérides</p>
               <p className='mobile-unit-title'>{title}</p>
             </div>
           </div>
@@ -62,7 +63,7 @@ const MobileUnitTable = ({ shouldShowAdditionalRow, background, color, planningD
         
         {shouldShowAdditionalRow && (
           <div className='mobile-unit-label'>
-            <p className='unit-label'>Objetivo de la clase:</p>
+            <p className='unit-label'>Objetivos clave:</p>
             <p className='label-description'>{objective}</p>
           </div>
         )}
@@ -75,7 +76,7 @@ const MobileUnitTable = ({ shouldShowAdditionalRow, background, color, planningD
 
         <div className='mobile-unit-label'>
           <p className='unit-label'>Materiales necesarios:</p>
-          <div className='label-description' style={{paddingLeft: '10px', margin: '0.5em 0'}}>Docente:</div>
+          <div className='label-description' style={{paddingLeft: '10px', margin: '0.5em 0', color}}>Docente:</div>
           {materials?.teacher.map((data, key) => <div className='unit-materials' key={key}>{`- ${data}`}</div>)}
           <div className='label-description' style={{paddingLeft: '10px', margin: '0.5em 0'}}>Estudiantes:</div>
           {materials?.student.map((data, key) => <div className='unit-materials' key={key}>{`- ${data}`}</div>)}

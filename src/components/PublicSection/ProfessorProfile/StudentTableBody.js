@@ -37,7 +37,7 @@ const StudentTableBody = ({ data, id }) => {
       <td className="student-tablebody-values">{id}</td>
       <td style={{textAlign: 'center'}} className="student-tablebody-values">{data.name}</td>
       <td className="student-tablebody-values">{data.run}</td>
-      <td className="student-tablebody-values" style={{ background, color, width: '80px' }}>{state}</td>
+      <td className="student-tablebody-values" style={{ background, color, width: '100%', height: '100%' }}>{state}</td>
       <td className="student-tablebody-values">{data.percentage}%</td>
     </tr>
   )

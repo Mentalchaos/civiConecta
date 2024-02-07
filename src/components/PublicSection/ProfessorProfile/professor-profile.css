@@ -149,6 +149,7 @@
 .student-tablehead-values:nth-child(2),
 .student-tablebody-values:nth-child(2) {
   width: 30%;
+  white-space: nowrap;
 }
 
 .student-tablehead-values:nth-child(3),
@@ -471,4 +472,7 @@
     overflow-x: auto;
   }
 
+  .student-nomina-table-container th {
+    border-right: none;
+  }
 }

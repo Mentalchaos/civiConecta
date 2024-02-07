@@ -1,6 +1,22 @@
+import { useState, useEffect } from 'react';
 import ResultPieChart from 'src/components/PublicSection/ProfessorProfile/SurveyAnalysisModal/ResultPieChart.js'
+import unitIcon from 'src/assets/Icons/graduation-cap.svg'
 
 const ResultUnit = ({ id, question, pieChartData, unitTopic, selectedUnit }) => {
+
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   const label = [];
   const series = [];
 
@@ -11,7 +27,19 @@ const ResultUnit = ({ id, question, pieChartData, unitTopic, selectedUnit }) => 
 
   return (
     <div className='graphic_content'>
-      {id === 0 && <p className='graphic_title'>{`Unidad ${selectedUnit + 1} - ${unitTopic}`}</p>}
+      {(isMobile || id === 0) && (
+        <div className='graphic-content_first'>
+          <div>
+            <img className='graphic_title_img' src={unitIcon} alt="Unidad icono"/>
+          </div>
+          <div className='graphic_content_container'>
+            <p className='graphic_title'>
+            {`Unidad ${selectedUnit + 1}`}
+            </p>
+            <p className='graphic_title graphic_unit'>{unitTopic}</p>
+          </div>
+        </div>
+      )}
       <p className='graphic_text'>
         {question}
       </p>
