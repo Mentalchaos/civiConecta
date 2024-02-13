@@ -290,4 +290,8 @@
   .ephemeris-title {
     margin: 0;
   }
+
+  .profile-back-container {
+    margin: 20px 0 0;
+  }
 }

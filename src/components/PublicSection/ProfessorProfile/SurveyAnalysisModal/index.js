@@ -22,6 +22,9 @@ const SurveyAnalysisModal = ({ onClick, dataPieChart, criticalData, id }) => {
               <img onClick={onClick} className='analysis-close-button' src={closeButton} alt="close-button"></img>
             </div>
           </div>
+          <div className='mobile-analysis-modal-title'>
+              <p>Análisis encuesta estudiantes</p>
+            </div>
           <div className='analysis-modal-paragraph'>
             <p>
               {eaea}
@@ -29,19 +32,19 @@ const SurveyAnalysisModal = ({ onClick, dataPieChart, criticalData, id }) => {
           </div>
           <div className='data-pie-chart-container'>
             <div className='data-pie-chart-text'>
-            {
-              dataPieChart && dataPieChart.map((data, index) => (
-                <div key={index} className='square-text-graphic'>
-                  <div
-                    className='square-graphic'
-                    style={{ backgroundColor: colors[index] }}
-                  />
-                  <div className='data-pie-text'>
-                    {data.label}
+              {
+                dataPieChart && dataPieChart.map((data, index) => (
+                  <div key={index} className='square-text-graphic'>
+                    <div
+                      className='square-graphic'
+                      style={{ backgroundColor: colors[index] }}
+                    />
+                    <div className='data-pie-text'>
+                      {data.label}
+                    </div>
                   </div>
-                </div>
-              ))
-            }
+                ))
+              }
             </div>
             <div id='app' className='data-pie-chart'>
               <PieChart

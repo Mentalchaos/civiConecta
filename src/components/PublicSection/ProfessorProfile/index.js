@@ -48,7 +48,7 @@ const ProfessorProfile = () => {
           <ProfessorInfo onClick={() => setShowFinishModal(true)} />
           <StudentNomina setSelectedAnswer={setSelectedAnswer} setDataPieChart={setDataPieChart} onClick={() => setShowAnalysisModal(true)}/>
         </div>
-          <div style={{ padding: '0 2.4em' }}>
+          <div className="footer-profile-container" style={{ padding: '0 2.4em' }}>
             <Footer />
           </div>
       </>

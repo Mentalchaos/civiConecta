@@ -391,4 +391,12 @@ body {
     flex-direction: row;
     flex-wrap: nowrap;
   }
+
+  .content-start__back-link {
+    margin-bottom: 2em;
+  }
+
+  .purple {
+    display: none;
+  }
 }

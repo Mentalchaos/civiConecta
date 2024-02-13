@@ -475,4 +475,9 @@
   .student-nomina-table-container th {
     border-right: none;
   }
+
+  .footer-profile-container {
+    padding: 0 !important;
+    margin-top: 2em;
+  }
 }

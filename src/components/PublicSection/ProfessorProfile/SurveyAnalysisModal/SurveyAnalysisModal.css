@@ -77,7 +77,8 @@
 .analysis-close-button {
   width: 45px;
   margin-bottom: 90px;
-  padding-right: 10px;
+  margin-top: 10px;
+  padding-right: 7px;
   cursor: pointer;
   transition: all .3s;
 }
@@ -99,6 +100,7 @@ p {
   color: #7468e2;
   text-align: initial;
   margin-left: 5em;
+  opacity: 1;
 }
 
 .analysis-modal-header {
@@ -126,6 +128,8 @@ p {
 
 .analysis-modal-paragraph p {
   width: 100%;
+  color: #2b2b2b;
+  font-weight: 500;
 }
 
 .chart-container {
@@ -137,4 +141,76 @@ p {
 .apexcharts-legend.apexcharts-align-center.apx-legend-position-right {
   align-items: baseline;
   justify-content: center;
+}
+
+.mobile-analysis-modal-title {
+  display: none;
+}
+
+@media screen and (min-width: 375px) and (max-width: 1024px) {
+
+  .mobile-analysis-modal-title {
+    display: block;
+    font-family: 'Nunito', sans-serif;
+    color: #7468e2;
+    text-align: initial;
+    display: block;
+    width: 90%;
+    margin: 0;
+  }
+
+  .mobile-analysis-modal-title p {
+    font-size: 18px;
+    margin-top: 1em;
+  }
+
+  .analysis-modal-header {
+    background-image: url('src/assets/images/mobile-analysis-modal.png');
+    background-repeat: no-repeat;
+    background-size: 22rem;
+    background-position-x: left;
+    background-position-y: bottom;
+  }
+
+  .analysis-modal-title {
+    opacity: 0;
+  }
+
+  .analysis-modal-content {
+    margin-top: 1em!important;
+    width: 85vw;
+    height: 90vh;
+  }
+
+  .data-pie-chart-container {
+    width: 90%;
+    height: 50%;
+    margin: 0;
+  }
+
+  .data-pie-chart-text {
+    top: 50%;
+    left: 5%;
+    color: #2b2b2b;
+    font-weight: 400;
+  }
+
+  .data-pie-chart {
+    top: -20px;
+    left: 10%;
+  }
+
+  .analysis-modal-header {
+    height: 120px;
+  }
+
+  .analysis-modal-image {
+    width: 130px;
+    top: -34px;
+    right: 100px;
+  }
+
+  .square-text-graphic {
+    margin-bottom: 5px;
+  }
 }
