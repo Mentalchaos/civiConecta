@@ -8,6 +8,7 @@ import brain from '../../../assets/Icons/white-brain.svg';
 import ephemerisDescription from '../../../assets/Icons/ephemeris-description-icon.svg';
 import './EphemeriesDashboard.css';
 import { useParams } from 'react-router-dom';
+import MobileDropdown from '../MobileDropdown/MobileDropdown';
 
 const EphemerisDashboard = () => {
   const [EphemerisData, setEphemerisData] = useState([]);
@@ -48,6 +49,9 @@ const EphemerisDashboard = () => {
         <img src={back} alt='go-back' />
         Volver
       </button>
+      <div className='mobile-dropdown-container'>
+        <MobileDropdown />
+      </div>
       <div className="ephemeris">
         <div className='ephemeris-cont'>
           <div className='ephemeris-header'>

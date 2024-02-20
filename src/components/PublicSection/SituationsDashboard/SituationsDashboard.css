@@ -256,6 +256,14 @@
   display: none;
 }
 
+.back-button-container {
+  width: 100%;
+}
+
+.mobile-dropdown-container {
+  display: none;
+}
+
 @media screen and (min-width: 375px) and (max-width: 1024px) {
   .mobile-situations-container {
     display: block;
@@ -383,5 +391,14 @@
 
   .pagination-container button {
     background: none;
+  }
+
+  .back-button-container {
+    width: 85%;
+  }
+
+  .mobile-dropdown-container {
+    display: block;
+    width: 90%;
   }
 }

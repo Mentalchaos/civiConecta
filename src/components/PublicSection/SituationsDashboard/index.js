@@ -13,6 +13,7 @@ import right from '../../../assets/Icons/right-thin-icon.svg';
 import back from 'src/assets/Icons/back-arrow.svg';
 import './SituationsDashboard.css';
 import { useParams } from 'react-router-dom';
+import MobileDropdown from '../MobileDropdown/MobileDropdown';
 
 const toSearchWords = (item) => {
   const words = item.keywords.map(k => k.split('-')).flat();
@@ -51,8 +52,8 @@ const SituationsDashboard = () => {
     getSituations();
   }, []);
 
-  const [currentPage, setCurrentPage] = useState(1); // Página actual
-  const [totalPages, setTotalPages] = useState(0); // Total de páginas
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
     setTotalPages(Math.ceil(emergentData.length / ITEMS_PER_PAGE));
@@ -76,10 +77,15 @@ const SituationsDashboard = () => {
 
   return (
     <div className="situations-section">
-      <button className="profile-back-container" onClick={() => window.history.back()}>
-        <img src={back} alt="go-back" />
-        Volver
-      </button>
+      <div className='back-button-container'>
+        <button className="profile-back-container" onClick={() => window.history.back()}>
+          <img src={back} alt="go-back" />
+          Volver
+        </button>
+      </div>
+      <div className='mobile-dropdown-container'>
+        <MobileDropdown />
+      </div>
       <div className="situations">
         <div className="situations-cont">
           <div className="situations-header">

@@ -198,4 +198,9 @@ td {
     height: 80px;
     width: 75px;
   }
+
+  .teacher-color,
+  .student-color {
+    margin: 10px 0;
+  }
 }

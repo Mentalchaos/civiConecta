@@ -32,7 +32,7 @@ const PublicHeader = () => {
           </div>
           <div className="public-header-container-two">
             <div className="logos-container">
-              <img className="question-icon" src={questionIcon} alt="question-icon" />
+              <img className="question-icon" src={questionIcon} alt="question-icon" onClick={() => navigate('/public/faq')} />
               <img className="notification-icon" src={notificationIcon} alt="notification-icon" />
             </div>
             <div className="docente-info-container">

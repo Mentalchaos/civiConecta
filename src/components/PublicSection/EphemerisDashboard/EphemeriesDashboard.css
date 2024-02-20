@@ -228,6 +228,10 @@
   border-radius: 100%;
 }
 
+.mobile-dropdown-container {
+  display: none;
+}
+
 
 @media screen and (min-width: 375px) and (max-width: 1024px) {
   .ephemeris-section {
@@ -293,5 +297,11 @@
 
   .profile-back-container {
     margin: 20px 0 0;
+    width: 95%;
+  }
+
+  .mobile-dropdown-container {
+    display: block;
+    width: 90%;
   }
 }

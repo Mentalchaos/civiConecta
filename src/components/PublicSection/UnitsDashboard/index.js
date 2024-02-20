@@ -9,6 +9,7 @@ import Class from './ClassMapping';
 import http from 'src/services/helpers/http.helper';
 import config from 'src/config';
 import Spinner from 'src/components/UI/Spinner';
+import MobileDropdown from '../MobileDropdown/MobileDropdown';
 
 const UnitsDashboard = () => {
   const [unitsData, setUnitsData] = useState([]);
@@ -30,11 +31,16 @@ const UnitsDashboard = () => {
   return (
     <div className=''>
       <div className='dashboard-container'>
-        <ButtonOptions />
+        <div className="button-options-container">
+          <ButtonOptions />
+        </div>
         <button className='profile-back-container back1' onClick={() => window.history.back()}>
           <img src={back} alt='back-icon' />
           Volver
         </button>
+        <div className='mobile-dropdown-container'>
+          <MobileDropdown />
+        </div>
         <Unit
           number={number}
           title={title}

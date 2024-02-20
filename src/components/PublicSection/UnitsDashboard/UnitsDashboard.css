@@ -20,10 +20,29 @@ body {
   margin-top: 3em;
 }
 
+.button-options-container {
+  display: block;
+}
+
+.mobile-dropdown-container {
+  display: none;
+}
+
 
 @media screen and (min-width: 375px) and (max-width: 1024px) {
   .dashboard-container {
     width: 90%;
     margin: auto;
+  }
+
+  .button-options-container {
+    display: none;
+  }
+
+  .mobile-dropdown-container {
+    display: block;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 2em;
   }
 }

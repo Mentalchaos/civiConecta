@@ -24,7 +24,7 @@ const MobileUnitTable = ({ shouldShowAdditionalRow, background, color, planningD
 
   return (
     <>
-      {type == 'ephemeris' && (
+      {type === 'ephemeris' && (
           <div className='unit-head'>
             <img className='unit-img' src={brain} alt='logo' style={background}></img>
             <div className='ephemeris_title_container'>
@@ -33,7 +33,7 @@ const MobileUnitTable = ({ shouldShowAdditionalRow, background, color, planningD
             </div>
           </div>
         )}
-        { type == 'unit' && (
+        { type === 'unit' && (
           <div className='unit-head'>
             <img className='unit-img' src={brain} alt='logo' style={background}></img>
             <div className='unit-info-header'>
@@ -45,7 +45,7 @@ const MobileUnitTable = ({ shouldShowAdditionalRow, background, color, planningD
         )}
 
         {
-          type == 'situation' && <div className='unit-head'>
+          type === 'situation' && <div className='unit-head'>
           <img className='unit-img' src={brain} alt='logo' style={background}></img>
           <div className='unit-info-header'>
             <div className='mobile-unit-title'>{topic}</div>
@@ -76,9 +76,9 @@ const MobileUnitTable = ({ shouldShowAdditionalRow, background, color, planningD
 
         <div className='mobile-unit-label'>
           <p className='unit-label'>Materiales necesarios:</p>
-          <div className='label-description' style={{paddingLeft: '10px', margin: '0.5em 0', color}}>Docente:</div>
+          <div className='label-description teacher-color' style={color}>Docente:</div>
           {materials?.teacher.map((data, key) => <div className='unit-materials' key={key}>{`- ${data}`}</div>)}
-          <div className='label-description' style={{paddingLeft: '10px', margin: '0.5em 0'}}>Estudiantes:</div>
+          <div className='label-description student-color' style={color}>Estudiantes:</div>
           {materials?.student.map((data, key) => <div className='unit-materials' key={key}>{`- ${data}`}</div>)}
         </div>
         <div className='mobile-unit-label'>
