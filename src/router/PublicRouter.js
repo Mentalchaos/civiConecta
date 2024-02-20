@@ -11,6 +11,7 @@ import SituationsDashboard from 'src/components/PublicSection/SituationsDashboar
 import EphemerisDashboard from 'src/components/PublicSection/EphemerisDashboard';
 import Planning from 'src/components/PublicSection/Planning';
 import UnitsDashboard from 'src/components/PublicSection/UnitsDashboard';
+import Faq from 'src/components/PublicSection/Faq';
 
 const PublicRouter = () => {
   return (
@@ -21,6 +22,7 @@ const PublicRouter = () => {
         <Route exact path="/" element={<PublicSection />} />
         {/* <Route element={<PublicGuard />}> */}
           <Route exact path="/share-survey" element={<ShareSurvey />} />
+          <Route exact path="/faq" element={<Faq />} />
           <Route exact path="/results" element={<Results />} />
           <Route exact path="/situations-dashboard/:gradeId" element={<SituationsDashboard />} />
           <Route exact path="/ephemeris-dashboard/:gradeId" element={<EphemerisDashboard />} />
