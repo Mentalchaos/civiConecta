@@ -6,9 +6,30 @@ import situations1 from 'src/assets/Icons/heart-brain-situation.svg';
 import arrow from 'src/assets/Icons/dropdown-arrow.svg';
 import './MobileDropdown.css';
 
-function MobileDropdown() {
+function MobileDropdown({ section }) {
+
+  const iconsConfig = () => {
+    switch (section) {
+      case 'Situaciones Emergentes':
+        return [
+          <img key="s1" style={{ width: '40px' }} src={situations1} alt="Icon 1" />,
+          <img key="a1" style={{ width: '40px' }} src={arrow} alt="Icon 2" />
+        ]
+      case 'Efemérides':
+        return [
+          <img key="e1" style={{ width: '40px' }} src={ephemeris1} alt="Icon 1" />,
+          <img key="a2" style={{ width: '40px' }} src={arrow} alt="Icon 2" />
+        ]
+      case 'Planificación Personalizada':
+        return [
+          <img key="p1" style={{ width: '40px' }} src={planification1} alt="Icon 1" />,
+          <img key="a3" style={{ width: '40px' }} src={arrow} alt="Icon 2" />
+        ]
+    }
+  }
+
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState({ text: 'Seleccione una opción', icons: null });
+  const [selected, _] = useState({ text: section, icons: iconsConfig() });
   const navigate = useNavigate();
   const gradeId = sessionStorage.getItem('gradeId');
 
@@ -38,11 +59,9 @@ function MobileDropdown() {
 
   const handleSelect = (option) => {
     const path = optionsToPaths[option].path;
-    setSelected({ text: option, icons: optionsToPaths[option].icons });
     if (path) {
       navigate(path);
     }
-    setIsOpen(false);
   };
 
   return (

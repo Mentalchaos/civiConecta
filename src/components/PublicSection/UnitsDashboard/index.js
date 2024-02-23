@@ -39,7 +39,7 @@ const UnitsDashboard = () => {
           Volver
         </button>
         <div className='mobile-dropdown-container'>
-          <MobileDropdown />
+          <MobileDropdown section={'Planificación Personalizada'} />
         </div>
         <Unit
           number={number}

@@ -84,7 +84,7 @@ const SituationsDashboard = () => {
         </button>
       </div>
       <div className='mobile-dropdown-container'>
-        <MobileDropdown />
+        <MobileDropdown section={'Situaciones Emergentes'} />
       </div>
       <div className="situations">
         <div className="situations-cont">

@@ -50,7 +50,7 @@ const EphemerisDashboard = () => {
         Volver
       </button>
       <div className='mobile-dropdown-container'>
-        <MobileDropdown />
+        <MobileDropdown section={'Efemérides'} />
       </div>
       <div className="ephemeris">
         <div className='ephemeris-cont'>

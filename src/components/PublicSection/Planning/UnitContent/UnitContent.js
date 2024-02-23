@@ -6,12 +6,15 @@ import MobileDropdown from "../../MobileDropdown/MobileDropdown";
 
 const UnitContent = ({ planningData, title, type }) => {
 
+  const location = {
+    'ephemeris': 'Efemérides',
+    'unit': 'Planificación Personalizada',
+    'situation': 'Situaciones Emergentes'
+  }
+
   return (
     <div className=''>
       <div className="unit-content-container">
-        <div className='mobile-dropdown-container'>
-          <MobileDropdown />
-        </div>
         <div className="button-options-container">
           <ButtonOptions />
         </div>
@@ -19,6 +22,9 @@ const UnitContent = ({ planningData, title, type }) => {
           <img src={back} alt='go-back' />
           Volver
         </button>
+        <div className='mobile-dropdown-container'>
+          <MobileDropdown section={location[type]} />
+        </div>
         { planningData ? <UnitTable planningData={planningData} title={title} type={type}/> : <p>No hay situaciones emergentes creadas</p> }
       </div>
     </div>
