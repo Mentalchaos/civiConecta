@@ -33,7 +33,11 @@ const ITEMS_PER_PAGE = 6;
 const SituationsDashboard = () => {
   const [emergentData, setEmergentData] = useState([]);
   const [inputValue, setInputValue] = useState('');
+  // const [isMobile, setIsMobile] = useState(false);
   const { gradeId } = useParams();
+  const filteredData = inputValue.length == 0 ? false : emergentData?.filter((e) => e.title.toLowerCase().match(inputValue));
+
+  console.log('emergentData', emergentData);
 
   const getSituations = async () => {
     const baseUrl = `${config.baseURL}/events/1/grade/${gradeId}`;
@@ -52,28 +56,37 @@ const SituationsDashboard = () => {
     getSituations();
   }, []);
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [totalPages, setTotalPages] = useState(0);
 
-  useEffect(() => {
-    setTotalPages(Math.ceil(emergentData.length / ITEMS_PER_PAGE));
-  }, [emergentData]);
+  // useEffect(() => {
+  //   setTotalPages(Math.ceil(emergentData.length / ITEMS_PER_PAGE));
+  // }, [emergentData]);
 
-  const goToPrevPage = () => {
-    setCurrentPage((prev) => (prev > 1 ? prev - 1 : prev));
-  };
+  // const goToPrevPage = () => {
+  //   setCurrentPage((prev) => (prev > 1 ? prev - 1 : prev));
+  // };
 
-  const goToNextPage = () => {
-    setCurrentPage((prev) => (prev < totalPages ? prev + 1 : prev));
-  };
+  // const goToNextPage = () => {
+  //   setCurrentPage((prev) => (prev < totalPages ? prev + 1 : prev));
+  // };
 
-  let data = [...emergentData]
+  // let data = [...emergentData]
 
-  data.forEach((item, index) => {
-      item.number = index + 1;
-  });
+  // data.forEach((item, index) => {
+  //   item.number = index + 1;
+  // });
 
-  const currentData = data.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
+  //const currentData = data.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
+
+  // useEffect(() => {
+  //   const setMobileOrDesktop = window.screen.width < 1024 ? true : false;
+  //   setIsMobile(setMobileOrDesktop);
+  // }, [])
+
+  //const mobileOrDesktop = isMobile ? currentData : emergentData;
+
+  // Se debe separarar la logica de mobile y la de desktop para que ambas puedan coincidir
 
   return (
     <div className="situations-section">
@@ -129,11 +142,9 @@ const SituationsDashboard = () => {
         />
       </div>
       <div className="classes-container">
-        {
-          window.screen.width < 1024 ?
+      { filteredData.length > 0 ?
           <div className="classes-section">
-
-            {currentData.map((data, key) => (
+            {filteredData.map((data) => (
               <EmergentSituation
                 key={data.id}
                 id={data.number}
@@ -144,26 +155,22 @@ const SituationsDashboard = () => {
                 tags={data.searchTerms}
               />
             ))}
-
           </div> :
           <div className="classes-section">
-
-          {emergentData.map((data, key) => (
-            <EmergentSituation
-              key={data.id}
-              id={key + 1}
-              lessonId={data.lessonId}
-              title={data.title}
-              description={data.description}
-              date={data.date}
-              tags={data.searchTerms}
-            />
-          ))}
-
-        </div>
-        }
+            {emergentData.map((data) => (
+              <EmergentSituation
+                key={data.id}
+                id={data.number}
+                lessonId={data.lessonId}
+                title={data.title}
+                description={data.description}
+                date={data.date}
+                tags={data.searchTerms}
+              />
+            ))}
+          </div>}
       </div>
-      <div className="pagination-container">
+      {/* <div className="pagination-container">
         <button onClick={goToPrevPage} disabled={currentPage === 1}>
           <img className='paginator-button' src={left} />
         </button>
@@ -171,7 +178,7 @@ const SituationsDashboard = () => {
         <button onClick={goToNextPage} disabled={currentPage === totalPages}>
           <img className='paginator-button' src={right} />
         </button>
-      </div>
+      </div> */}
       <Footer />
     </div>
   )
