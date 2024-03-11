@@ -108,6 +108,7 @@
 .surveys {
   margin-top: 30px;
   display: flex;
+  flex-direction: column;
   gap: 40px;
 }
 
@@ -224,14 +225,30 @@ input[type='radio'].student:checked+label:after {
 }
 
 .surveys__alternatives-container {
-  padding: 50px 100px 40px 40px;
+  height: 100vh;
+  border: 1px solid #d7d7d7;
+  border-radius: 10px;
+  padding: 2em;
+  width: 65%;
+  margin: auto;
+  /* padding: 50px 100px 40px 40px; */
+}
+
+.surveys__title-container {
+  display: flex;
+  justify-content: space-between;
+  width: 22%;
+  align-items: center;
 }
 
 .form__actions {
-  margin-top: 60px;
-  margin-left: 40px;
+  /* margin-top: 60px;
+  margin-left: 40px; */
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; 
+  width: 65%;
+  margin: auto;
+  margin-top: 2em;
 }
 
 button.form__previous-question:disabled {
@@ -465,6 +482,10 @@ button.form__previous-question:disabled {
 
 .professor-survey-footer {
   display: block;
+}
+
+.progress-line-container {
+  height: 120px;
 }
 
 @media screen and (min-width: 375px) and (max-width: 1024px) {

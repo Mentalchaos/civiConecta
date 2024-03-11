@@ -7,6 +7,7 @@ import { SurveyContext } from './context';
 import useSurvey from './useSurvey';
 import CompletedSurvey from '../CompletedSurvey/CompletedSurvey';
 import ModalToFinish from '../ProfessorSurvey/ModalToFinish/ModalToFinish';
+import surveysIcon from 'src/assets/Icons/survey-icon.svg';
 import '../index.css';
 import { getUserData } from 'src/utils/user';
 import config from 'src/config';
@@ -54,12 +55,26 @@ const Surveys = ({ userType }) => {
           <Loading isLoading={!states.hasQuestions}>
             {() => (
               <Fragment>
-                <div className="progress-bar" style={{position: 'absolute'}}>
+                <div className='progress-line-container'>
+                  <div className="line-horizontal-wrapper">
+                      <img />
+                      <Progress.Line
+                        status={states.percent > 98 ? "success" : "fail"}
+                        style={{ height: '120px' }}
+                        horizontal= {'true'}
+                        percent={states.percent}
+                        showInfo={false}
+                        strokeColor={userType == 'student' ? '#7268db' : '#ec5f7b'}
+                      />
+                      <img />
+                    </div>
+                </div>
+                {/* <div className="progress-bar" style={{position: 'absolute'}}>
                   <div className="line-vertical-wrapper" style={{ height: 500, transform: 'rotate(-180deg)'}}>
                     <Progress.Line
                       status={states.percent > 98 ? "success" : "fail"}
                       style={{ height: '500px' }}
-                      vertical
+                      horizontal
                       percent={states.percent}
                       showInfo={false}
                       strokeColor={userType == 'student' ? '#7268db' : '#ec5f7b'}
@@ -70,15 +85,18 @@ const Surveys = ({ userType }) => {
                   userType={userType}
                   questions={states.questions}
                   currentQuestion={states.currentQuestion}
-                />
+                /> */}
                 <article className="surveys__question-alternatives">
                   <div className="surveys__alternatives-container">
-                    <span className="surveys__header-title">
-                      Encuesta {SurveyTypes[userType]}
-                    </span>
+                    <div className='surveys__title-container'>
+                      <img src={surveysIcon} style={{width: '30px'}} />
+                      <span className="surveys__header-title">
+                        Encuesta {SurveyTypes[userType]}
+                      </span>
+                    </div>
                     <Question question={states.questionToShow} />
-                    <SurveyActions />
                   </div>
+                  <SurveyActions/>
                 </article>
               </Fragment>
             )}
