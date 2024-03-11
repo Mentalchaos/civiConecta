@@ -109,7 +109,6 @@
   margin-top: 30px;
   display: flex;
   gap: 40px;
-  position: relative;
 }
 
 .surveys__header-title {
@@ -468,7 +467,7 @@ button.form__previous-question:disabled {
   display: block;
 }
 
-@media screen and (min-width: 320px) and (max-width: 1024px) {
+@media screen and (min-width: 375px) and (max-width: 1024px) {
   .content-start__left {
     width: 100%;
     height: 100%;
