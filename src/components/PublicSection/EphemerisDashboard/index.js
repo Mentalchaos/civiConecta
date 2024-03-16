@@ -93,7 +93,7 @@ const EphemerisDashboard = () => {
           {EphemerisData && EphemerisData.map((data) => (
             <EphemerisDate
               key={data.id}
-              id={data.id}
+              id={data.lessonId}
               title={data.title}
               date={data.date}
             />
