@@ -28,7 +28,7 @@ const PlanificationText = () => {
           <div className="alternative">
             <img src={arrow} alt="arrow" />
             <p>
-              Estandarizada, respeta la organización ministerial de unidades.{' '}
+              Estandarizada, respeta la organización ministerial de las unidades.{' '}
             </p>
           </div>
         </div>

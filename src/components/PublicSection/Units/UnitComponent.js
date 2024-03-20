@@ -1,16 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import unitLogo from 'src/assets/Icons/unit-purple.svg';
 import unitLogoGreen from 'src/assets/Icons/unit-green.svg';
 import unitLogoPink from 'src/assets/Icons/unit-pink.svg';
-
-
 import brain from 'src/assets/Icons/heart-brain.svg';
 import brainPink from 'src/assets/Icons/heart-brain-pink.svg';
 import brainGreen from 'src/assets/Icons/heart-brain-green.svg';
-
-
 import goTo from 'src/assets/Icons/open-arrow.svg';
 import './UnitComponent.css';
 
@@ -50,6 +45,11 @@ const UnitComponent = ({ id, status, title, description, color, borderColor, num
     }
   }
 
+  const truncateDescription = (description, maxLength = 70) =>
+    description.length > maxLength
+      ? `${description.substring(0, maxLength)}...`
+      : description;
+
   return (
     <div className={`unit-component-container ${color}`} style={{ border: `2px solid ${colors[statusType].color}` }}>
       <div className='unit-component-title'>
@@ -65,7 +65,7 @@ const UnitComponent = ({ id, status, title, description, color, borderColor, num
       <div className='component-info'>
         <p className='component-title'>Unidad {number} </p>
         <p className={`component-subtitle ${borderColor}`} style={{ color: colors[statusType].color }}>{title}</p>
-        <p className='component-description'>{description}</p>
+        <p className='component-description'>{truncateDescription(description)}</p>
       </div>
       <div onClick={() => navigate(`/public/units-dashboard/${id}`)} className='go-to-unit'>
         <p onClick={() => handleTextUnits()} className='goto'>Ir a la unidad</p>

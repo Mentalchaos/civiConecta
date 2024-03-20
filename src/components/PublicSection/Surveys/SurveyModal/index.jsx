@@ -60,7 +60,7 @@ const SurveyModal = ({ closeModal, teacherSurveyOnclick, gradeId }) => {
             </div>
           </div>
           <div className='modal-footer' style={{marginTop: '30px', marginBottom: '30px'}}>
-            <p onClick={closeModal} className='footer-text'>Omitir encuestas</p>
+            <p onClick={closeModal} className='footer-text'>Posponer encuestas</p>
           </div>
         </div>
       </div>
