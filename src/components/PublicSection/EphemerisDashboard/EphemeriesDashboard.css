@@ -116,7 +116,7 @@
 .ephemeris-date {
   background: #54bfed;
   width: 100%;
-  height: 30px;
+  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -132,6 +132,7 @@
 .ephemeris-title {
   width: 90%;
   margin: 2em 0;
+  height: 60px;
 }
 
 .ephemeris-title p {
@@ -145,6 +146,7 @@
   align-items: center;
   justify-content: flex-end;
   cursor: pointer;
+  height: 30px;
 }
 
 .ephemeris-see-class p {

@@ -135,3 +135,31 @@
     color: var(--gray-dark);
   }
 }
+
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+  .login-section {
+    width: 100%;
+    height: 50vh;
+    padding: 0 7em;
+  }
+
+  .login-section-header {
+    display: none;
+  }
+
+  .login-mobile-title {
+    margin: 5em 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .login-mobile-title p {
+    font-size: 24px;
+  }
+
+  .rights-reserved {
+    display: block;
+  }
+}
+

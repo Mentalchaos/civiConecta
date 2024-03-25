@@ -72,3 +72,17 @@
     height: 50vh;
   }
 }
+
+
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+  .img-section {
+    width: 100%;
+  }
+
+  .image,
+  .image2,
+  .image3,
+  .image4 {
+    height: 50vh;
+  }
+}

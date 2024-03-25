@@ -56,3 +56,17 @@ input[type='text'].form-input {
     margin-top: 0;
   }
 }
+
+
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+  .login-container {
+    height: 20vh;
+  }
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 85%;
+  }
+}

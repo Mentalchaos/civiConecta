@@ -18,6 +18,16 @@ const EphemerisDate = ({ id, title, date }) => {
 
   const navigate = useNavigate();
 
+  // const truncateTitle = title => {
+  //   const maxLength = 40;
+  //   if (title.length > maxLength) {
+  //     return `${title.substring(0, maxLength)}...`;
+  //   }
+  //   return title;
+  // };
+
+  // const adjustedTitle = truncateTitle(title);
+
   return (
     <>
       <div className='mobile-ephemeris-day'>
