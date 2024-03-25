@@ -81,7 +81,7 @@
   color: #4d4d4d;
 }
 
-@media screen and (min-width: 375px) and (max-width: 1024px) {
+@media screen and (min-width: 320px) and (max-width: 1024px) {
   .unit {
     padding: 0;
     border: none;

@@ -108,3 +108,20 @@ button.planification-button img {
   width: 20px;
 }
 
+
+@media screen and (min-width: 320px) and (max-width: 1024px) {
+  .planification-type-container {
+    flex-basis: 95%;
+  }
+
+  .planification-button {
+    width: 60%;
+  }
+  
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+  .planification-type-container {
+    flex-basis: 80%;
+  }
+}

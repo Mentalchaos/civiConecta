@@ -173,7 +173,7 @@ td {
   margin: 0;
 }
 
-@media screen and (min-width: 375px) and (max-width: 1024px) {
+@media screen and (min-width: 320px) and (max-width: 1024px) {
   .mobile-unit-table-container {
     display: block;
   }

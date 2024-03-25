@@ -235,7 +235,7 @@
 }
 
 
-@media screen and (min-width: 375px) and (max-width: 1024px) {
+@media screen and (min-width: 320px) and (max-width: 1024px) {
   .ephemeris-section {
     margin: 0 auto;
   }
@@ -305,5 +305,19 @@
   .mobile-dropdown-container {
     display: block;
     width: 90%;
+  }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+  .dates-container {
+    width: 95%;
+  }
+
+  .ephemeris {
+    width: 95%;
+  }
+
+  .profile-back-container {
+    margin-left: 1em;
   }
 }

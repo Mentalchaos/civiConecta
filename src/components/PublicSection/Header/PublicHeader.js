@@ -20,7 +20,7 @@ const PublicHeader = () => {
     navigate('/auth/login');
   };
 
-  const showMobileMenu = (window.innerWidth >= 370 && window.innerWidth <= 1024) && <MobileHeader handleLogout={handleLogout} />;
+  const showMobileMenu = (window.innerWidth >= 320 && window.innerWidth <= 1024) && <MobileHeader handleLogout={handleLogout} />;
 
   return (
     <div className='public-container'>

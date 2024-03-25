@@ -264,7 +264,7 @@
   display: none;
 }
 
-@media screen and (min-width: 375px) and (max-width: 1024px) {
+@media screen and (min-width: 320px) and (max-width: 1024px) {
   .mobile-situations-container {
     display: block;
     width: 100%;

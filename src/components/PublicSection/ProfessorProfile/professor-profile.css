@@ -347,7 +347,7 @@
   background-color: #2dba9f;
 }
 
-@media screen and (min-width: 375px) and (max-width: 1024px) {
+@media screen and (min-width: 320px) and (max-width: 1024px) {
   .profile-container {
     display: flex;
     flex-direction: column;

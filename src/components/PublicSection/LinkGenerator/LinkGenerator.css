@@ -119,7 +119,7 @@
   }
 }
 
-@media screen and (min-width: 375px) and (max-width: 1024px) {
+@media screen and (min-width: 320px) and (max-width: 1024px) {
   .link-container {
     background-image: url(src/assets/images/banner-link-mobile.png);
     width: 90%;

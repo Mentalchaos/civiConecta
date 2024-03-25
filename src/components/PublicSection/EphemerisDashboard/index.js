@@ -68,9 +68,9 @@ const EphemerisDashboard = () => {
               </div>
               <div>
                 <p>
-                  Nuestro programa incluye la planificación del siguiente listado de efemérides, de acuerdo con la
-                  propuesta del Ministerio de Educación, en la resolución exenta nº 002329 que establece calendario
-                  escolar para establecimientos educacionales de la Región Metropolitana.
+                Nuestro programa incluye la planificación del siguiente listado de efemérides, 
+                de acuerdo con la propuesta del Ministerio de Educación, en la resolución vigente 
+                que establece calendario escolar para establecimientos educacionales del país.
                 </p>
               </div>
             </div>
@@ -79,9 +79,9 @@ const EphemerisDashboard = () => {
               <div className='ephemeris-info'>
                 <div className='ephemeris-desc-title'>Descripción:</div>
                 <div className='ephemeris-desc-text'>
-                  Nuestro programa incluye la planificación del siguiente listado de efemérides, de acuerdo con la
-                  propuesta del Ministerio de Educación, en la resolución exenta nº 002329 que establece calendario
-                  escolar para establecimientos educacionales de la Región Metropolitana.
+                  Nuestro programa incluye la planificación del siguiente listado de efemérides, 
+                  de acuerdo con la propuesta del Ministerio de Educación, en la resolución vigente 
+                  que establece calendario escolar para establecimientos educacionales del país.
                 </div>
               </div>
             </div>
