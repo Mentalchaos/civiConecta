@@ -40,6 +40,8 @@ const PublicSection = () => {
     sessionStorage.setItem('gradeId', id);
   }, [states.userData]);
 
+  console.log('states', states.units)
+
   return (
     <PublicContext.Provider value={{ states, actions, setters }}>
       <div className="public-section-container">
@@ -60,40 +62,40 @@ const PublicSection = () => {
               <Visible condition={states.isPlanificationEnabled}>
                 <Plan gradeId={states.userData.gradeId} />
               </Visible>
-              <Visible condition={(states.status.student.completed === true && states.status.teacher.completed === true) || (states.showUnits === true)}>
-              <div className="units-cont">
-                <UnitsHeader program={planningPrograms[1].program} />
-                <div className='button-units-cont'>
-                  {/* <button onClick={(handleOrder)}>
+              <Visible condition={(states.status.student.completed === true || states.status.teacher.completed === true) || (states.showUnits === true)}>
+                <div className="units-cont">
+                  <UnitsHeader program={planningPrograms[1].program} />
+                  <div className='button-units-cont'>
+                    {/* <button onClick={(handleOrder)}>
                       {changeOrder ? 'Ordenar por Ponderation' : 'Volver al Orden Original'}
                     </button> */}
-                </div>
-                <div className="units-components">
-                  {states.units && states.unitStatus.length && states.units.map((data, i) => (
-                    <UnitComponent
-                      key={data.id}
-                      id={data.id}
-                      number={data.number}
-                      title={data.title}
-                      subtitle={data.subtitle}
-                      description={data.description}
-                      color={data.color}
-                      borderColor={data.borderColor}
-                      handleTextUnits={() => handleTextUnits(data.id)}
-                      textUnits={stateUnit[changeTextUnits[data.id] || 0]}
-                      unitStatus={data.status}
-                      status={states.unitStatus[i].status}
-                      updateStatus={actions.setNewStatus}
-                      uuid={uuid}
-                      isCustomPlanning={states.isCustomPlanning}
-                    />
-                  ))}
-                  <div className="units-components-two">
-                    <UnitSituations title={'Situaciones emergentes'} to={`/public/situations-dashboard/${states.userData.gradeId}`} />
-                    <UnitSituations title={'Efemerides'} to={`/public/ephemeris-dashboard/${states.userData.gradeId}`} />
+                  </div>
+                  <div className="units-components">
+                    {states.units && states.unitStatus.length && states.units.map((data, i) => (
+                      <UnitComponent
+                        key={data.id}
+                        id={data.id}
+                        number={data.number}
+                        title={data.title}
+                        subtitle={data.subtitle}
+                        description={data.description}
+                        color={data.color}
+                        borderColor={data.borderColor}
+                        handleTextUnits={() => handleTextUnits(data.id)}
+                        textUnits={stateUnit[changeTextUnits[data.id] || 0]}
+                        unitStatus={data.status}
+                        status={states.unitStatus[i].status}
+                        updateStatus={actions.setNewStatus}
+                        uuid={uuid}
+                        isCustomPlanning={states.isCustomPlanning}
+                      />
+                    ))}
+                    <div className="units-components-two">
+                      <UnitSituations title={'Situaciones emergentes'} to={`/public/situations-dashboard/${states.userData.gradeId}`} />
+                      <UnitSituations title={'Efemerides'} to={`/public/ephemeris-dashboard/${states.userData.gradeId}`} />
+                    </div>
                   </div>
                 </div>
-              </div>
               </Visible>
               <Visible condition={!states.status.student.completed}>
                 <LinkGenerator data={links.needLink} />
