@@ -24,6 +24,8 @@ const PublicSection = () => {
   const userData = getUserData();
   const uuid = userData.uuid;
 
+  const { status } = states;
+
   const handleTextUnits = (unitId) => {
     setChangeTextUnits((prevState) => {
       const currentState = prevState[unitId] || 0;
@@ -40,7 +42,7 @@ const PublicSection = () => {
     sessionStorage.setItem('gradeId', id);
   }, [states.userData]);
 
-  console.log('states', states.units)
+  const textToShown = (status?.teacher?.completed && status?.student?.completed) ? links.needLinkAgain : links.needLink;
 
   return (
     <PublicContext.Provider value={{ states, actions, setters }}>
@@ -97,9 +99,11 @@ const PublicSection = () => {
                   </div>
                 </div>
               </Visible>
-              <Visible condition={!states.status.student.completed}>
-                <LinkGenerator data={links.needLink} />
-              </Visible>
+              {/*
+              Se opto por dejarlo siempre visible
+              <Visible condition={!states.status.student.completed}> */}
+                <LinkGenerator data={textToShown} />
+              {/* </Visible> */}
               {/* <Visible condition={states.isCustomPlanification}>
                 <LinkGenerator
                   data={links.standardPlanification}

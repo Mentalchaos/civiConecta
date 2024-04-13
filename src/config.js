@@ -22,6 +22,14 @@ const links = {
     width: 'container-width',
     icon: '',
   },
+  needLinkAgain: {
+    description: '¿Llegó un estudiante nuevo y necesita responder la encuesta?',
+    textButton: 'Ver enlace encuesta',
+    textButtonColor: 'text-purple',
+    backgroundColor: 'background-purple',
+    width: 'container-width',
+    icon: '',
+  },
   standardPlanification: {
     description: 'Revisar planificación estandarizada.',
     textButton: 'Ver planificación',
@@ -53,6 +61,7 @@ const planningPrograms = [
 const config = {
   // baseURL: 'http://127.0.0.1:3001',
   //baseURL: 'http://errcake.ngrok.io',
+  //admin base url => https://civi-postgres.adaptable.app
   baseURL: process.env.REACT_APP_BASE_URL || 'http://127.0.0.1:3001',
   constants,
   contents: {

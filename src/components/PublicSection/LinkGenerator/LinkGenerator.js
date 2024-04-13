@@ -12,7 +12,7 @@ const LinkGenerator = ({ data, onClick }) => {
       <div className={`survey-link-container ${backgroundColor}`}>
         <div className={`first-container-link ${width}`}>
           <img src={icon} alt="link-icon" />
-          <p>{description}</p>
+          <p style={{display: 'flex', alignItems: 'center'}}>{description}</p>
         </div>
         <div className='second-container-link'>
           <button className='survey-button' onClick={onClick}>

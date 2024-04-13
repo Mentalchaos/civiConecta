@@ -140,7 +140,7 @@ const usePublicSection = () => {
       unitStatus,
       isCustomPlanning,
       get isPlanificationEnabled() {
-        return !status?.survey?.completed;
+        return (!status?.student?.completed || !status?.teacher?.completed);
       },
       get isSurveyNotGeneratedYet() {
         const { student, teacher } = status ?? {};

@@ -2,6 +2,14 @@ import './professor-profile.css';
 
 const StudentTableBody = ({ data, id }) => {
 
+  const capitalizeName = (name) => {
+    const parts = name.split(' ');
+    const capitalizedParts = parts.map(part =>
+        part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
+    );
+    return capitalizedParts.join(' ');
+  }
+
   const status = () => {
     let statusObj = {
       state: "",
@@ -29,13 +37,13 @@ const StudentTableBody = ({ data, id }) => {
 
     return statusObj;
   };
-  
+
   const { state, background, color } = status();
 
   return (
     <tr className='student-tr'>
       <td className="student-tablebody-values">{id}</td>
-      <td style={{textAlign: 'center'}} className="student-tablebody-values">{data.name}</td>
+      <td style={{textAlign: 'center'}} className="student-tablebody-values">{capitalizeName(data.name)}</td>
       <td className="student-tablebody-values">{data.run}</td>
       <td className="student-tablebody-values" style={{ background, color, width: '100%', height: '100%' }}>{state}</td>
       <td className="student-tablebody-values">{data.percentage}%</td>

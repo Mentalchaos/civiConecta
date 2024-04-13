@@ -21,16 +21,10 @@ const StageDetail = ({ title, courseSelected, institutionSelected, establishment
   const [fetching, setFetching] = useState(false);
   const [dataTeachers, setDataTeachers] = useState({});
 
-  console.log('establishments', establishments);
-
   const fetchDataTeacher = async () => {
     const establishmentId = institutionSelected.id;
     const level = courseSelected.gradeSelected;
     const letter = courseSelected.letter.character;
-
-    console.log('level', level);
-    console.log('letter', letter);
-    console.log('establishmentId', establishmentId);
 
     // @TODO: Add the missing course id when calling getDataTeachers, SEBA HELP
     const response = await getDataTeachers(establishmentId);

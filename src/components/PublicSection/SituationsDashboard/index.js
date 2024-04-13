@@ -37,8 +37,6 @@ const SituationsDashboard = () => {
   const { gradeId } = useParams();
   const filteredData = inputValue.length == 0 ? false : emergentData?.filter((e) => e.title.toLowerCase().match(inputValue));
 
-  console.log('emergentData', emergentData);
-
   const getSituations = async () => {
     const baseUrl = `${config.baseURL}/events/1/grade/${gradeId}`;
     const response = await fetch(baseUrl, {
