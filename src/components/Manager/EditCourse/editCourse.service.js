@@ -23,6 +23,14 @@ const service = {
   assignTeacher(courseId, name, email) {
     const url = `${BASE_URL}/courses/${courseId}/teachers`;
     return http.put(url, { name, email });
+  },
+  removeStudent(studentId) {
+    const url = `${BASE_URL}/establishments/student/${studentId}`;
+    return http.delete(url);
+  },
+  editStudent(studentId, name, lastname, run){
+    const url = `${BASE_URL}/establishments/student/${studentId}`;
+    return http.put(url, {name, lastname, run})
   }
 };
 

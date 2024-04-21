@@ -58,6 +58,14 @@ const useEditCourse = (courseId) => {
         );
 
         setAssignedTeacher(teacher);
+      },
+      async removeStudentFromCourse(studentId){
+        await service.removeStudent(studentId);
+        const newStudents = students.filter(data => data.id !== studentId);
+        setStudents(newStudents);
+      },
+      async editStudentFromCourse(studentId, name, lastname, run){
+        await service.editStudent(studentId, name, lastname, run);
       }
     }
   };
