@@ -23,6 +23,7 @@ const useSurvey = (userType) => {
   const [completedSurvey, setCompletedSurvey] = useState(false);
   const [percent, setPercent] = useState(0);
   const [valueOfOneElement, setValueOfOneElement] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     async function fn() {
@@ -52,6 +53,7 @@ const useSurvey = (userType) => {
       completedSurvey,
       percent,
       valueOfOneElement,
+      isLoading,
       get isFirstQuestion() {
         return currentQuestion === 0;
       },
@@ -72,13 +74,14 @@ const useSurvey = (userType) => {
       goBack() {
         setCurrentQuestion(currentQuestion - 1);
       },
-      continue(userType) {
+      async continue(userType) {
         if (currentQuestion === questions.length - 1) {
-          this.sendData(userType);
+          await this.sendData(userType);
           return setShowModal(true);
         }
-
-        this.sendData(userType);
+        setIsLoading(true);
+        await this.sendData(userType);
+        setIsLoading(false);
         setCurrentQuestion(currentQuestion + 1);
       },
       saveAlternative(letter) {

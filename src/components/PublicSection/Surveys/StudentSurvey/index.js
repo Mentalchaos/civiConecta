@@ -100,6 +100,7 @@ const StudentSurvey = () => {
       return;
     }
 
+    // rutValidator no esta validando correctamente
     setRutValue(e);
     return rutValidator(e) ? setIsValidRut(true) : setIsValidRut(false);
   };
@@ -141,7 +142,7 @@ const StudentSurvey = () => {
                   <div className="id-one">
                     <p>RUT</p>
                     <input
-                      maxLength={9}
+                      maxLength={10}
                       className="rut-input"
                       placeholder="10100100k"
                       value={rutValue}

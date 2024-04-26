@@ -43,6 +43,8 @@ const Surveys = ({ userType }) => {
     actions.completedSurvey();
   }
 
+  console.log('states', states);
+
   return (
     <section className="surveys">
       <Visible condition={states.completedSurvey}>
@@ -54,11 +56,11 @@ const Surveys = ({ userType }) => {
           <Loading isLoading={!states.hasQuestions}>
             {() => (
               <Fragment>
-                <div className="progress-bar" style={{position: 'absolute'}}>
-                  <div className="line-vertical-wrapper" style={{ height: 500, transform: 'rotate(-180deg)'}}>
+                <div className="progress-bar" style={{height: states.questions.length > 16 ? 500 : '', position: 'absolute'}}>
+                  <div className="line-vertical-wrapper" style={{transform: 'rotate(-180deg)'}}>
                     <Progress.Line
                       status={states.percent > 98 ? "success" : "fail"}
-                      style={{ height: '500px' }}
+                      style={{ height: states.questions.length > 16 ? 615 : 500 }}
                       vertical
                       percent={states.percent}
                       showInfo={false}

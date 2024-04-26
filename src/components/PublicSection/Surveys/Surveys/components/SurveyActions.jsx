@@ -11,6 +11,7 @@ const SurveyActions = () => {
   };
 
   const handleContinue = () => {
+    if(states.isLoading) return;
     if(savedAlternatives.hasOwnProperty(currentQuestion.toString())){
       return actions.continue(userType);
     }
