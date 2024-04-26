@@ -16,9 +16,9 @@ const service = {
     const url = `${BASE_URL}/courses/${courseId}/teachers`;
     return http.get(url);
   },
-  addStudent(courseId, name, run) {
+  addStudent(courseId, name, lastname, run ) {
     const url = `${BASE_URL}/courses/${courseId}/students`;
-    return http.post(url, { name, run });
+    return http.post(url, { name, run, lastname });
   },
   assignTeacher(courseId, name, email) {
     const url = `${BASE_URL}/courses/${courseId}/teachers`;

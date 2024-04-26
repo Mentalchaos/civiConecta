@@ -12,6 +12,7 @@ const StudentList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [name, setName] = useState('');
   const [run, setRun] = useState();
+  const [lastname, setLastname] = useState('');
   const [activeId, setActiveId] = useState();
 
   const handleDownloadPDF = () => {
@@ -21,15 +22,7 @@ const StudentList = () => {
   };
 
   const closeModalAndSend = async () => {
-    const fixedName = name.split(' ');
-    const correctName = (fixedName[0] + ' ' + fixedName[1]);
-    let lastname = fixedName.slice(2).join(' ');
-
-    if(!lastname || !correctName){
-      return alert('Recuerde ingresar los 2 apellidos y al menos 1 nombre antes de presionar aceptar');
-    }
-
-    await actions.editStudentFromCourse(activeId, correctName, lastname, run);
+    await actions.editStudentFromCourse(activeId, name, lastname, run);
     await setIsModalOpen(false);
     await window.location.reload();
   }
@@ -39,22 +32,26 @@ const StudentList = () => {
     await setActiveId(studentId);
   }
 
-  const margin = {margin: '1em', color: 'white'};
+  const margin = { margin: '1em', color: 'white' };
 
   return (
     <>
       {isModalOpen && (
         <Modal>
-          <div style={{ display: 'flex', padding: '2em' , flexDirection: 'column'}}>
+          <div style={{ display: 'flex', padding: '2em', flexDirection: 'column' }}>
             <div>
               <p>Nombre:</p>
               <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
             </div>
             <div>
+              <p>Apellido:</p>
+              <input type="text" value={lastname} onChange={(e) => setLastname(e.target.value)} />
+            </div>
+            <div>
               <p>Run:</p>
               <input type="text" value={run} onChange={(e) => setRun(e.target.value)} />
             </div>
-            <div style={{display: 'flex', margin: '1em'}}>
+            <div style={{ display: 'flex', margin: '1em' }}>
               <Button
                 customStyles={margin}
                 onClick={() => closeModalAndSend()}
@@ -84,20 +81,21 @@ const StudentList = () => {
             {states.students.map(student => {
               const { name, lastname, run, id } = student;
               return (
-                <tr key={student.id}>
-                  <th>{`${lastname || ''} ${name}`}</th>
-                  <th>{run}</th>
-                  <th>{level}</th>
-                  <th>{character}</th>
-                  <th>
+                <tr key={id}>
+                  <td>{`${lastname} ${name}`}</td>
+                  <td>{run}</td>
+                  <td>{level}</td>
+                  <td>{character}</td>
+                  <td>
                     <p onClick={() => actions.removeStudentFromCourse(id)}>Borrar</p>
-                  </th>
-                  <th>
+                  </td>
+                  <td>
                     <p onClick={() => openModalAndSetId(id)}>Editar</p>
-                  </th>
+                  </td>
                 </tr>
               );
             })}
+
           </tbody>
         </table>
       </div>

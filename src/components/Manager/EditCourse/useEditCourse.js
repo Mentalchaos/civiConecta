@@ -32,19 +32,21 @@ const useEditCourse = (courseId) => {
       assignedTeacher
     },
     actions: {
-      async addStudent(name, run) {
+      async addStudent(name, lastname, run) {
         const formattedName = name.trim();
         const formattedRun = run.trim();
+        const formattedLastname = lastname.trim();
 
         const coincidences = students
           .filter(s => s.name === formattedName)
-          .filter(s => s.run === formattedRun);
+          .filter(s => s.run === formattedRun)
+          .filter(s => s.lastname === formattedLastname);
 
         if (coincidences.length) {
           return Promise.reject('Ya existe este estudiante');
         }
 
-        const response = await service.addStudent(courseId, formattedName, formattedRun);
+        const response = await service.addStudent(courseId, formattedName, formattedLastname, formattedRun);
         const newStudents = [...students, response.student];
         setStudents(newStudents);
 
