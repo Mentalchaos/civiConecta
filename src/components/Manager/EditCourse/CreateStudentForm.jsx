@@ -18,7 +18,7 @@ const CreateStudentForm = () => {
     const run = runRef.current.value;
 
     actions
-      .addStudent(name, lastname, run)
+      .addStudent(name, lastname, run.toUpperCase())
       .then(() => {
         nameRef.current.value = '';
         lastnameRef.current.value = ''
@@ -32,13 +32,13 @@ const CreateStudentForm = () => {
   return (
     <form className='create-student-form' onSubmit={handleSubmit}>
       <label htmlFor="name">Nombre</label>
-      <input ref={nameRef} id="name" type="text" />
+      <input required ref={nameRef} id="name" type="text" />
 
       <label htmlFor="lastname">Apellidos</label>
-      <input ref={lastnameRef} id="lastname" type="text" />
+      <input required ref={lastnameRef} id="lastname" type="text" />
 
       <label htmlFor="run">RUT</label>
-      <input ref={runRef} id="run" type="text" />
+      <input required ref={runRef} id="run" type="text" />
 
       <input className='add-student-input' type="submit" value="Agregar estudiante" />
     </form>

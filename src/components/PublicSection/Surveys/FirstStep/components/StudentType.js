@@ -7,6 +7,7 @@ import { getUserData } from 'src/utils/user.js'
 const StudentType = ({ setIsStartSurvey }) => {
 
   const user = getUserData();
+  console.log('user', user);
 
   return (
     <>
@@ -39,7 +40,7 @@ const StudentType = ({ setIsStartSurvey }) => {
             Iniciar la encuesta
             <img className='firststep-actions-img' src={arrow}/>
           </button>
-         
+
         </div>
       </article>
     </>

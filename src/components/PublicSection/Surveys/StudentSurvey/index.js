@@ -46,6 +46,8 @@ const StudentSurvey = () => {
         const data = await response.json();
         const { name, token, uuid } = data.student;
 
+        console.log('student data', data);
+
         const saveData = {
           name,
           email: '',
@@ -96,7 +98,7 @@ const StudentSurvey = () => {
 
 
   const handleRut = (e) => {
-    if (e.match(/[^0-9k]/g)) {
+    if (e.match(/[^0-9kK]/g)) {
       return;
     }
 
@@ -146,7 +148,7 @@ const StudentSurvey = () => {
                       className="rut-input"
                       placeholder="10100100k"
                       value={rutValue}
-                      onChange={(e) => handleRut(e.target.value)}
+                      onChange={(e) => handleRut(e.target.value.toUpperCase())}
                     />
                   </div>
                   {catchError && (
