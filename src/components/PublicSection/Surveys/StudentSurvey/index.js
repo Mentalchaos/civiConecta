@@ -44,16 +44,15 @@ const StudentSurvey = () => {
 
       if (response.ok) {
         const data = await response.json();
-        const { name, token, uuid } = data.student;
-
-        console.log('student data', data);
+        const { name, token, uuid, grade } = data.student;
 
         const saveData = {
           name,
           email: '',
           role: '',
           active: '',
-          token
+          token,
+          grade
         };
 
         setUserData(saveData, uuid);

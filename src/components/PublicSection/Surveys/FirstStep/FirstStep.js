@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import StudentType from 'src/components/PublicSection/Surveys/FirstStep/components/StudentType';
 import TeacherType from 'src/components/PublicSection/Surveys/FirstStep/components/TeacherType';
 

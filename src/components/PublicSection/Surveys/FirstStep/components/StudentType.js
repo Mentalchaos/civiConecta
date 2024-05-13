@@ -7,7 +7,19 @@ import { getUserData } from 'src/utils/user.js'
 const StudentType = ({ setIsStartSurvey }) => {
 
   const user = getUserData();
-  console.log('user', user);
+  const { grade } = user;
+
+  const setQuantityOfQuestions = () => {
+    let questions;
+    if (grade >= 1 && grade <= 4) {
+      questions = 8;
+    } else if (grade >= 5 && grade <= 6) {
+      questions = 16
+    } else {
+      questions = 20
+    }
+    return questions;
+  }
 
   return (
     <>
@@ -18,7 +30,7 @@ const StudentType = ({ setIsStartSurvey }) => {
         <header className="content-start__header-text">
           <img src={smileIcon} alt="icono encuesta" width={30} />
           <span>
-            ¡Hola <span style={{ color: 'var(--color-primary' }}>{ user.name }</span>!
+            ¡Hola <span style={{ color: 'var(--color-primary' }}>{user.name}</span>!
           </span>
         </header>
         <p className="content-start__text">
@@ -27,7 +39,7 @@ const StudentType = ({ setIsStartSurvey }) => {
         <div className="content-start__important-section">
           <div className="important student">
             <img src={clockIconStudent} alt="Icono tiempo" width={45} />
-            <span> La encuesta consta de 16 preguntas.</span>
+            <span> {`La encuesta consta de ${setQuantityOfQuestions()} preguntas.`}</span>
           </div>
 
           <p className="important-text student">
@@ -38,7 +50,7 @@ const StudentType = ({ setIsStartSurvey }) => {
         <div className="firststep-actions">
           <button onClick={() => setIsStartSurvey(true)} className="survey-start-button student" type="button">
             Iniciar la encuesta
-            <img className='firststep-actions-img' src={arrow}/>
+            <img alt="first-step-actions" className='firststep-actions-img' src={arrow} />
           </button>
 
         </div>

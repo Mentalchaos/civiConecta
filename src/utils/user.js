@@ -13,7 +13,8 @@ const setUserData = (saveData, uuid) => {
     role: saveData.role,
     active: saveData.active,
     token: saveData.token,
-    uuid
+    uuid,
+    grade: saveData.grade
   };
   localStorage.setItem('user', JSON.stringify(userData));
 };
