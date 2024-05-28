@@ -1,21 +1,25 @@
 import React from 'react';
+import { useState } from 'react';
 import './Accordion.css';
 
-const Accordion = ({ title, active, setActive, question }) => {
+const Accordion = ({ question, answer }) => {
+
+  const [active, setActive] = useState(false);
+
+  const symbol = active ? "-" : "+";
+
   return (
     <div className='accordion'>
       <div className='accordion-heading'>
         <div className='accordion-title-container'>
           <p>{question}</p>
-          <span onClick={() => setActive(title)}>+</span>
+          <span onClick={() => setActive(!active)}>{symbol}</span>
         </div>
       </div>
-      <div className={(active === title ? "show" : '') + 'accordion-content'}>
+      <div className={(active ? "show" : '') + 'accordion-content'}>
         <div className='accordion-answer-container'>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima exercitationem animi dolorum,
-            sapiente qui in hic porro explicabo nobis sed voluptatum totam, dolor eius soluta alias eligendi.
-            Eveniet, optio voluptate.
+            {answer}
           </p>
         </div>
       </div>

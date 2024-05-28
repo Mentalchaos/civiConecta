@@ -25,10 +25,11 @@
 
 .accordion {
     width: 100%;
-    max-width: 540px;
+    /* max-width: 540px; */
     color: #fff;
     border: 1px solid #ededed;
     border-radius: 5px;
+    margin-bottom: 2em;
 }
 
 .accordion-heading {
@@ -43,19 +44,22 @@
 
 .accordion-heading p {
     letter-spacing: 1.2px;
-    font-weight: 600;
+    color: #424242;
+    font-weight: 500;
+    font-size: 14px;
+    width: 80%;
 }
 
 .accordion-heading span {
     cursor: pointer;
+    width: 10%;
 }
 
 .accordion-content {
     background: purple;
     height: 0;
-    opacity: 0;
+    visibility: hidden;
     display: flex;
-    transition: all .2s;
 }
 
 .accordion-content.show {
