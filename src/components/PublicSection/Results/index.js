@@ -111,6 +111,10 @@ const Results = () => {
     return unitsMap;
   };
 
+  const handlePrint = () => {
+    window.print();
+  };
+
   return (
     <div>
       <div className='report_results_content'>
@@ -180,7 +184,7 @@ const Results = () => {
               </div>
             }
             <div className='button_change_unit_container'>
-              <button className='button_change_unit purple'> Imprimir </button>
+              <button className='button_change_unit purple' onClick={handlePrint}> Imprimir </button>
             </div>
           </div>
         </div>
