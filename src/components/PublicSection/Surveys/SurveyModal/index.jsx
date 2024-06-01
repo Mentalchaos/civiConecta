@@ -28,7 +28,7 @@ const SurveyModal = ({ closeModal, teacherSurveyOnclick, gradeId }) => {
               <img className='mobile-modal-image' src={modalImage} alt="modal"></img>
               <img onClick={closeModal} className='mobile-close-button' src={closeButton} alt="close-button"></img>
             </div> :
-            <div className='modal-header' style={{borderRadius: '10px 10px 0 0'}}>
+            <div className='modal-header' style={{borderRadius: '10px 10px 0 0', position: 'relative'}}>
               <div className='modal-title'>
                 <h2>Comencemos</h2>
               </div>
