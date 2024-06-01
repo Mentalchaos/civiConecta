@@ -11,7 +11,7 @@ import './UnitComponent.css';
 
 const STATUS_TYPES = ['Pendiente', 'En desarrollo', 'Completada'];
 
-const UnitComponent = ({ id, status, title, description, color, borderColor, number, handleTextUnits, updateStatus, uuid, isCustomPlanning }) => {
+const UnitComponent = ({ id, status, title, description, color, borderColor, number, handleTextUnits, updateStatus, uuid, planificationType }) => {
   const navigate = useNavigate();
   const setStatusText = () => STATUS_TYPES[status] || '-';
   const [statusType, setStatusType] = useState(setStatusText());
@@ -42,8 +42,17 @@ const UnitComponent = ({ id, status, title, description, color, borderColor, num
       color: '#ea5f7b',
       imageBrain: brainPink,
       imageHat: unitLogoPink
+    },
+    'Estandar': {
+      color: 'black',
+      imageBrain: brain,
+      imageHat: unitLogo,
+      subColor: '#7468e5'
     }
   }
+
+  const borderColor2 = planificationType == 'estandar' ? colors['Estandar'].color : colors[statusType].color;
+  const borderColor3 = planificationType == 'estandar' ? colors['Estandar'].subColor : colors[statusType].color;
 
   const truncateDescription = (description, maxLength = 70) =>
     description.length > maxLength
@@ -51,20 +60,20 @@ const UnitComponent = ({ id, status, title, description, color, borderColor, num
       : description;
 
   return (
-    <div className={`unit-component-container ${color}`} style={{ border: `2px solid ${colors[statusType].color}` }}>
+    <div className={`unit-component-container ${color}`} style={{ border: `1.4px solid ${borderColor2}` }}>
       <div className='unit-component-title'>
         <div className='unit-number-cont'>
-          <img src={colors[statusType].imageHat} alt='unit-logo' />
+          <img src={planificationType == 'estandar' ?  colors['Estandar'].imageHat : colors[statusType].imageHat} alt='unit-logo' />
           <p className='mobile-unit'>Unidad {number} </p>
         </div>
         <div className='unit-second-container' onClick={onClickStatus}>
           <p onClick={handleTextUnits}>{statusType}</p>
-          <img src={colors[statusType].imageBrain} alt='brain-logo' className='unit-brain' />
+          <img src={ planificationType == 'estandar' ? colors['Estandar'].imageBrain : colors[statusType].imageBrain} alt='brain-logo' className='unit-brain' />
         </div>
       </div>
       <div className='component-info'>
         <p className='component-title'>Unidad {number} </p>
-        <p className={`component-subtitle ${borderColor}`} style={{ color: colors[statusType].color }}>{title}</p>
+        <p className={`component-subtitle ${borderColor2}`} style={{ color: borderColor3 }}>{title}</p>
         <p className='component-description'>{truncateDescription(description)}</p>
       </div>
       <div onClick={() => navigate(`/public/units-dashboard/${id}`)} className='go-to-unit'>

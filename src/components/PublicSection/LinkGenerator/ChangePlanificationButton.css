@@ -1,0 +1,202 @@
+f.link-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.survey-link-container {
+  display: flex;
+  width: 100%;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+.second-container-link {
+  width: 65%;
+}
+
+.first-container-link {
+  width: 35%;
+  display: flex;
+  justify-content: space-evenly;
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+.first-container-link p {
+  font-size: 14px;
+}
+
+.first-container-link img {
+  width: 40px;
+}
+
+.second-container-link {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 25px;
+}
+
+.second-container-link img {
+  filter: invert(50%) sepia(25%) saturate(1638%) hue-rotate(207deg) brightness(92%) contrast(85%);
+}
+
+.survey-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 20%;
+  color: var(--color-primary);
+  border-radius: 10px;
+  border-style: none;
+  font-family: "NunitoSans-Bold";
+}
+
+.survey-button img {
+  width: 30px;
+}
+
+.second-container-link a {
+  text-decoration: none;
+}
+
+.text-purple {
+  color: var(--color-primary);
+}
+
+.survey-button:hover {
+  cursor: pointer;
+}
+
+.background-purple {
+  background-color: var(--color-primary);
+  transition: all 0.3s;
+}
+
+.background-gray {
+  background-color: #4d4d4d;
+  transition: all 0.3s;
+}
+
+.background-red {
+  background-color: #e95f7b;
+  transition: all 0.3s;
+}
+
+.first-container-width {
+  padding: 0.5em 1em;
+}
+
+.container-width {
+  padding: 0.5em 1em;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.first-container-width,
+.container-width img {
+  margin-right: 1em;
+}
+
+.text-red {
+  color: #e9629b;
+  transition: all 0.2s;
+}
+
+@media (max-width: 1024px) {
+  .survey-link-container {
+    width: 98%;
+  }
+
+  .second-container-link button {
+    width: 35%;
+  }
+}
+
+@media (max-width: 1300px) {
+  .second-container-link button {
+    width: 30%;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 1024px) {
+  .link-container {
+    background-image: url(src/assets/images/banner-link-mobile.png);
+    width: 90%;
+    border-radius: 10px;
+    margin: auto;
+    margin-bottom: 2em;
+  }
+
+  .survey-link-container {
+    background-color: transparent !important;
+    display: flex;
+    flex-direction: column;
+  }
+  .first-container-link {
+    width: 95%;
+  }
+
+  .first-container-link img {
+    height: 40px;
+  }
+  .second-container-link {
+    width: 95%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .second-container-link button {
+    width: 55%;
+  }
+
+  .second-container-link button a {
+    color: #f48e76 !important;
+  }
+
+  .second-container-link img {
+    filter: invert(80%) sepia(35%) saturate(2150%) hue-rotate(308deg) brightness(98%) contrast(96%);
+  }
+}
+
+.survey-link-container .survey-button .text-black {
+  color: black;
+  text-decoration: none;
+  filter: brightness(0%);
+  background: none;
+  transition: all 0.3s;
+}
+
+.color-red {
+  color: #e95f7b;
+  background: none;
+  text-decoration: none;
+  transition: 0.3s all;
+}
+
+.color-red:hover {
+  color: #e95f7b;
+  background: none;
+}
+
+.color-black {
+  color: black;
+  background: none;
+  text-decoration: none;
+  transition: 0.3s all;
+}
+
+.color-black:hover {
+  color: black;
+  background: none;
+}
+
+
+.second-container-link .color-icon-pink {
+  filter: invert(76%) sepia(36%) saturate(6835%) hue-rotate(308deg) brightness(91%) contrast(85%);transition: all 0.2s;
+  transition: 0.3s all;
+}

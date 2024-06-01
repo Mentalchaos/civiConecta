@@ -22,6 +22,12 @@ const usePublicSection = () => {
   const [uuid, setUuid] = useState('');
   const [isCustomPlanning, setCustomPlanning] = useState(false);
 
+  const reorderUnits = async () => {
+    let nuevoObjeto;
+    nuevoObjeto = units.sort((a, b) => a.number - b.number);
+    setUnits(nuevoObjeto);
+  }
+
   useEffect(() => {
     (async () => {
       const userData = getUserData();
@@ -94,7 +100,7 @@ const usePublicSection = () => {
 
   let calculatedUnits = units;
 
-  if(unitsPonderation.length){
+  if (planificationType == 'custom' && unitsPonderation.length) {
     const ponderatedUnits = unitsPonderation.reduce((acc, item) => {
       acc[item.unitId] = item.ponderation;
       return acc;
@@ -109,7 +115,7 @@ const usePublicSection = () => {
     calculatedUnits = orderedUnits;
   }
 
-  if(unitStatus.length){
+  if (planificationType == 'custom' && unitStatus.length) {
     const unitStatusMap = unitStatus.reduce((acc, item) => {
       acc[Number.parseInt(item.unitId)] = item.status;
       return acc;
@@ -175,6 +181,7 @@ const usePublicSection = () => {
     },
     actions: {
       navigate,
+      reorderUnits,
       teacherSurvey() {
         const userData = getUserData();
         const uuid = userData.uuid;

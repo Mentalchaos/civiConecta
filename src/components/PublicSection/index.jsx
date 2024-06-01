@@ -14,6 +14,7 @@ import './PublicSection.css';
 import { PublicContext } from './context';
 import Plan from './Plan';
 import { getUserData } from 'src/utils/user';
+import ChangePlanificationButton from './LinkGenerator/ChangePlanificationButton';
 
 const { links, planningPrograms } = config.contents;
 
@@ -67,14 +68,10 @@ const PublicSection = () => {
               <Visible condition={(states.status.student.completed === true || states.status.teacher.completed === true) || (states.showUnits === true)}>
                 <div className="units-cont">
                   <UnitsHeader program={planningPrograms[1].program} />
-                  <div className='button-units-cont'>
-                    {/* <button onClick={(handleOrder)}>
-                      {changeOrder ? 'Ordenar por Ponderation' : 'Volver al Orden Original'}
-                    </button> */}
-                  </div>
                   <div className="units-components">
                     {states.units && states.unitStatus.length && states.units.map((data, i) => (
                       <UnitComponent
+                        planificationType={states.planificationType}
                         key={data.id}
                         id={data.id}
                         number={data.number}
@@ -99,21 +96,12 @@ const PublicSection = () => {
                   </div>
                 </div>
               </Visible>
-              {/*
-              Se opto por dejarlo siempre visible
-              <Visible condition={!states.status.student.completed}> */}
-                <LinkGenerator data={textToShown} />
-              {/* </Visible> */}
-              {/* <Visible condition={states.isCustomPlanification}>
-                <LinkGenerator
-                  data={links.standardPlanification}
-                  onClick={actions.setStandardPlanification}
-                />
-              </Visible> */}
-              <Visible condition={states.isStandardPlanification}>
-                <LinkGenerator
-                  data={links.customPlanification}
-                  onClick={actions.setCustomPlanification}
+              <LinkGenerator data={textToShown} />
+              <Visible condition={status.student.completed && status.teacher.completed && status.survey.completed}>
+                <ChangePlanificationButton
+                  planificationType={states.planificationType}
+                  actions={actions}
+                  setters={setters}
                 />
               </Visible>
             </Fragment>

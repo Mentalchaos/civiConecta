@@ -113,7 +113,7 @@ p {
   display: flex;
   flex-direction: column;
   width: 35%;
-  height: 100%;
+  height: auto;
   border-radius: 5px;
 }
 
@@ -325,8 +325,9 @@ p {
   .teacher-button-footer img {
     filter: invert(95%) sepia(33%) saturate(1431%) hue-rotate(321deg) brightness(150%) contrast(90%);
   }
+
   .teacher-button-mobile,
   .student-button-mobile {
     opacity: 1;
-}
+  }
 }

@@ -45,7 +45,7 @@ const SurveyModal = ({ closeModal, teacherSurveyOnclick, gradeId }) => {
             <p>Para que puedas acceder a tus planificaciones personalizadas es necesario que continues con los siguientes pasos:</p>
           </div>
           <div className='survey-buttons-container'>
-            <div className='teacher-survey-button' style={{padding: '1em'}}onClick={() => teacherSurveyButton()}>
+            <div className='teacher-survey-button' style={{padding: '1em'}} onClick={() => teacherSurveyButton()}>
               <div className='teacher-button-header'>
                 <p>Contestar encuesta docente</p>
                 <img src={teacher} alt="teacher"/>

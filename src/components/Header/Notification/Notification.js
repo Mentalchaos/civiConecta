@@ -12,7 +12,6 @@ const Notification = () => {
         </p>
       </div>
       <div className="notification__icon">
-        {/* state para cambiar alert default por alert variante2 */}
         <img src={alertNotification} alt="icon" />
       </div>
     </div>
