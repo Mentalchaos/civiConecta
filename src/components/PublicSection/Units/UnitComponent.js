@@ -44,7 +44,7 @@ const UnitComponent = ({ id, status, title, description, color, borderColor, num
       imageHat: unitLogoPink
     },
     'Estandar': {
-      color: 'black',
+      color: '#cccccc',
       imageBrain: brain,
       imageHat: unitLogo,
       subColor: '#7468e5'

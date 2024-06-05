@@ -4,8 +4,15 @@
   height: 140px;
   display: flex;
   flex-direction: row;
-  border: 2px solid #7468e5;
-  /* background-image: url('src/assets/Icons/purple-brain.svg'); */
+  border: 1px solid; 
+}
+
+.border-standard {
+  border-color: #cccccc;
+}
+
+.border-custom {
+  border-color: green;
 }
 
 .unit-situations-one {
@@ -78,7 +85,7 @@
   }
 
   .unit-subtitle {
-    width: 90%;
+    width: 85%;
   }
 }
 
