@@ -1,0 +1,8 @@
+.questions-mobile-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.questions-mobile-options select {
+    border: 1px solid var(--color-primary) !important;
+}

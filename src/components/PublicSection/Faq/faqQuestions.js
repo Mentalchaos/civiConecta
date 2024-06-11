@@ -132,7 +132,12 @@ const faqQuestions = [
         {
             id: 1,
             pregunta: "¿Dónde puedo informar de un error inesperado?",
-            respuesta: "Puedes informarlo directamente a la persona encargada de tu establecimiento o escribiendo un correo a la dirección contacto@civiconecta.cl.  "
+            respuesta: "Puedes informarlo directamente a la persona encargada de tu establecimiento o escribiendo un correo a la dirección contacto@civiconecta.cl."
+        },
+        {
+            id: 2,
+            pregunta: "¿Cuál es el horario de atención de consultas?",
+            respuesta: "El horario de atención es de lunes a viernes, de 07:30 a 17:00 horas."
         }
     ]
 ]
