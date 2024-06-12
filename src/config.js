@@ -23,7 +23,7 @@ const links = {
     icon: '',
   },
   needLinkAgain: {
-    description: '¿Llegó un estudiante nuevo y necesita responder la encuesta?',
+    description: '¿Necesitas volver a abrir la encuesta?',
     textButton: 'Ver enlace encuesta',
     textButtonColor: 'text-purple',
     backgroundColor: 'background-purple',
