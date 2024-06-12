@@ -9,7 +9,6 @@
   display: flex;
   width: 100%;
   border-radius: 10px;
-  margin: 20px 0;
 }
 
 .second-container-link {
@@ -60,18 +59,6 @@
   width: 30px;
 }
 
-.second-container-link a {
-  text-decoration: none;
-}
-
-.text-purple {
-  color: var(--color-primary);
-}
-
-.survey-button:hover {
-  cursor: pointer;
-}
-
 .background-purple {
   background-color: var(--color-primary);
 }
@@ -105,7 +92,7 @@
 
 @media (max-width: 1024px) {
   .survey-link-container {
-    width: 98%;
+    width: 100%;
   }
 
   .second-container-link button {
@@ -148,10 +135,6 @@
 
   .second-container-link button {
     width: 55%;
-  }
-
-  .second-container-link button a {
-    color: #f48e76 !important;
   }
 
   .second-container-link img {

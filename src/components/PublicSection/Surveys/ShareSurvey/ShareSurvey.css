@@ -11,6 +11,7 @@
 
 .back-container img {
     width: 30px;
+    filter: invert(90%) sepia(4%) saturate(5241%) hue-rotate(305deg) brightness(98%) contrast(96%);
 }
 
 .back-container img:hover {
@@ -64,8 +65,8 @@
     flex-direction: row;
     justify-content: center;
     font-family: 'Nunito', sans-serif;
-    color: #ec6490;
-    background-color: #fceff2;
+    color: #f48e76;
+    background-color: #fef3f1;
     width: 62%;
     height: 52px;
     border-radius: 15px;
@@ -78,7 +79,7 @@
 
 .alert-icon {
     width: 35px;
-    border: 2px solid #e45d79;
+    border: 2px solid #f48e76;
     border-radius: 100%;
     height: 60%;
     display: flex;
@@ -89,7 +90,7 @@
 
 .alert-icon p {
     font-size: 22px;
-    color: #e45d79;
+    color: #f48e76;
     font-weight: bolder;
 }
 
@@ -109,12 +110,12 @@
 .share-container-link p:first-child {
     font-family: 'Nunito', sans-serif;
     font-size: 14px;
-    color: var(--color-primary);
+    color: #f48e76;
     margin: 10px 25px
 }
 
 .share-container-link p:last-child {
-    border: solid 1px var(--color-primary);
+    border: solid 1px #f48e76;
     border-radius: 9px;
     color: #4d4d51;
     padding: 12px;
@@ -132,7 +133,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--color-primary);
+    background-color: #f48e76;
     font-family: 'Nunito', sans-serif;
     font-weight:600;
     font-size: 15px;
@@ -158,12 +159,8 @@
     border: solid 1px;
 }
 
-.red-logo {
-    display: block;
-}
-
 .orange-mobile-logo {
-    display: none;
+    display: block;
 }
 
 @media screen and (min-width: 320px) and (max-width: 1024px) {
@@ -212,13 +209,5 @@
 
     .back-container img {
         filter: invert(65%) sepia(37%) saturate(768%) hue-rotate(320deg) brightness(99%) contrast(93%);
-    }
-
-    .red-logo {
-        display: none;
-    }
-
-    .orange-mobile-logo {
-        display: block;
     }
 }

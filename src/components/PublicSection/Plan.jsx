@@ -17,7 +17,6 @@ const Plan = ({ gradeId }) => {
     textButton: "Personalizar planificación",
     colorTitle: "#fff",
     colorTextBtn: "#e95f7b",
-    imageFilter: 'invert(54%) sepia(6%) saturate(7342%) hue-rotate(304deg) brightness(95%) contrast(92%)',
     title: "Reorganiza la planificación de acuerdo con la realidad de tu curso.",
     img: planificationCustom,
     onClick: () => setters.setModalVisibility(true)
@@ -27,7 +26,7 @@ const Plan = ({ gradeId }) => {
     textButton: 'Ir a la encuesta',
     colorTitle: "#fff",
     colorTextBtn: "#e95f7b",
-    imageFilter: 'invert(54%) sepia(6%) saturate(7342%) hue-rotate(304deg) brightness(95%) contrast(92%)',
+    colorIconRight: 'color-icon-pink',
     title: 'Contesta la encuesta docente.',
     onClick: () => actions.navigate(`/public/professor-survey/${gradeId}`),
     img: planificationSurvey
@@ -38,7 +37,6 @@ const Plan = ({ gradeId }) => {
     colorTitle: "#fff",
     colorTextBtn: "#f58f76",
     colorIconRight: 'color-icon-purple',
-    imageFilter: 'invert(78%) sepia(23%) saturate(6358%) hue-rotate(315deg) brightness(110%) contrast(91%)',
     onClick: () => actions.navigate('/public/share-survey'),
     title: 'Genera el enlace para que tus estudiantes respondan la encuesta.',
     img: planificationGenerateLink
@@ -49,7 +47,6 @@ const Plan = ({ gradeId }) => {
     colorTitle: "#fff",
     colorTextBtn: "#7568e2",
     onClick: () => actions.navigate('/public/professor-profile'),
-    imageFilter: 'invert(54%) sepia(57%) saturate(4620%) hue-rotate(222deg) brightness(89%) contrast(99%)',
     colorIconRight: 'color-icon-purple',
     title: 'Revisa el progreso de la encuesta de tus estudiantes.',
     img: planificationProgress
@@ -58,8 +55,7 @@ const Plan = ({ gradeId }) => {
   const standardizedPlanning = {
     textButton: "Ver planificación estandarizada",
     colorTitle: "#fff",
-    colorTextBtn: "#4d4d51",
-    imageFilter: 'invert(30%) sepia(14%) saturate(135%) hue-rotate(201deg) brightness(94%) contrast(92%)',
+    colorTextBtn: "black",
     colorIconRight: "color-icon-black",
     title: "Accede a la planificación estandarizada.",
     img: planificationStandarized,

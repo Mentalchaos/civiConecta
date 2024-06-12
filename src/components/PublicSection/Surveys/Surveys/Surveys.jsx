@@ -43,6 +43,11 @@ const Surveys = ({ userType }) => {
     actions.completedSurvey();
   }
 
+  console.log("states", states)
+  console.log("user", userData)
+
+  const lineHeight = userData.grade >= 7 ? 620 : 500;
+
   return (
     <section className="surveys">
       <Visible condition={states.completedSurvey}>
@@ -55,10 +60,10 @@ const Surveys = ({ userType }) => {
             {() => (
               <Fragment>
                 <div className="progress-bar" style={{position: 'absolute'}}>
-                  <div className="line-vertical-wrapper" style={{ height: 500, transform: 'rotate(-180deg)'}}>
+                  <div className="line-vertical-wrapper" style={{ height: lineHeight, transform: 'rotate(-180deg)'}}>
                     <Progress.Line
                       status={states.percent > 98 ? "success" : "fail"}
-                      style={{ height: '500px' }}
+                      style={{ height: `${lineHeight}px` }}
                       vertical
                       percent={states.percent}
                       showInfo={false}

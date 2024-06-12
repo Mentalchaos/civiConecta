@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getUserData } from 'src/utils/user';
 import back from 'src/assets/Icons/back.svg';
-import unitLogo from 'src/assets/Icons/unit-section-red.svg';
 import unitOrangeLogo from 'src/assets/Icons/unit-section-orange.svg';
 import link from 'src/assets/Icons/button-enlace.svg';
 import './ShareSurvey.css';
@@ -40,7 +39,6 @@ const ShareSurvey = () => {
         </div>
         <div className="share-container">
           <div className="share-container-title">
-            <img src={unitLogo} alt="unit-logo" className='red-logo' />
             <img src={unitOrangeLogo} alt="unit-logo" className='orange-mobile-logo' />
             <p>Compartir encuesta con estudiantes</p>
           </div>
