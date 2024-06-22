@@ -1,6 +1,21 @@
 .questions-mobile-container {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    margin-top: 3em;
+}
+
+.questions-mobile-dropdown {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    margin-bottom: 1em;
+}
+
+.questions-mobile-options {
+    border: 1px solid #e3e3e3 !important;
+    width: 100%;
+    transform: none !important;
 }
 
 .questions-mobile-options select {

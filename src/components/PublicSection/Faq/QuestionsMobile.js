@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Accordion from './components/Accordion';
 import faqQuestions from './faqQuestions';
 import brain from 'src/assets/Icons/heart-brain.svg';
-import './Faq.css';
+import './QuestionsMobile.css';
 
 const QuestionsSection = () => {
   const [section, setSection] = useState(-1);
@@ -34,7 +34,7 @@ const QuestionsSection = () => {
           ))}
         </select>
       </div>
-      <div style={{ width: "68%" }}>
+      <div style={{ width: "90%" }}>
         {section >= 0 ? (
           faqQuestions[section].length > 0 ? (
             <div style={{ width: "100%" }}>
