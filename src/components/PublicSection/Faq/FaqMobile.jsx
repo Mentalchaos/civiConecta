@@ -6,6 +6,7 @@ import telephone from 'src/assets/Icons/telephone-icon.svg';
 import './Faq.css';
 import QuestionsMobile from './QuestionsMobile';
 import MobileFooter from '../Footer/MobileFooter';
+import FaqSearchBar from './FaqSearchBar';
 
 const FaqMobile = () => {
   return (
@@ -33,6 +34,7 @@ const FaqMobile = () => {
             </p>
           </div>
         </div>
+        <FaqSearchBar />
         <QuestionsMobile />
         <div className='faq-mobile-footer-container'>
           <div className='faq-mobile-footer'>

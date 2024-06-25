@@ -36,6 +36,11 @@
     padding: 2em;
 }
 
+.accordion-heading-active {
+    border: 1px solid green; /* Cambia "purple" por "green" */
+  }
+  
+
 .accordion-heading .container {
     display: flex;
     align-items: center;
