@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import back from 'src/assets/Icons/back-arrow.svg';
 import brain from 'src/assets/Icons/purple-heart-brain.svg';
 import email from 'src/assets/Icons/email-icon.svg';
@@ -11,10 +11,31 @@ import FaqSearchBar from './FaqSearchBar';
 import Footer from '../Footer';
 import QuestionsSection from './QuestionsSection';
 import FaqMobile from './FaqMobile';
+import faqQuestions from './faqQuestions';
 
 const Faq = () => {
-
   const [inputValue, setInputValue] = useState('');
+  const [filteredQuestions, setFilteredQuestions] = useState([]);
+
+  useEffect(() => {
+    const dataHasCoincidence = () => {
+      if (inputValue.length === 0) {
+        setFilteredQuestions([]);
+        return;
+      }
+      const lowerCaseText = inputValue.toLowerCase();
+
+      const mappedData = faqQuestions.map(category =>
+        category.filter(item =>
+          item.pregunta.toLowerCase().includes(lowerCaseText)
+        )
+      ).filter(category => category.length > 0);
+
+      setFilteredQuestions(mappedData.flat());
+    };
+
+    dataHasCoincidence();
+  }, [inputValue]);
 
   return (
     <div>
@@ -34,7 +55,7 @@ const Faq = () => {
           </div>
           <div className='faq-description-text'>
             <div className='faq-container-title'>
-              <img src={icon} style={{width: '20px'}} />
+              <img src={icon} style={{ width: '20px' }} />
               <p className='faq-title'>Preguntas frecuentes</p>
             </div>
             <div>
@@ -48,11 +69,11 @@ const Faq = () => {
         <div className='faq-search-bar'>
           <FaqSearchBar
             inputValue={inputValue}
-            onChange={setInputValue}
+            setInputValue={setInputValue}
           />
         </div>
         <div>
-          <QuestionsSection />
+          { filteredQuestions.length > 0 ? <QuestionsSection inputValue={inputValue} faqQuestions={filteredQuestions} filter={true} /> : <QuestionsSection inputValue={inputValue} faqQuestions={faqQuestions} /> }
         </div>
         <div className='faq-footer-container'>
           <div className='faq-footer-image'>

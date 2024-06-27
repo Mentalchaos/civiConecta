@@ -26,7 +26,6 @@
 
 .accordion {
     width: 100%;
-    /* max-width: 540px; */
     color: #fff;
     border: 1px solid #ededed;
     border-radius: 5px;
@@ -40,7 +39,6 @@
 .accordion-heading-active {
     border: 1px solid green; /* Cambia "purple" por "green" */
   }
-  
 
 .accordion-heading .container {
     display: flex;
@@ -84,4 +82,9 @@
     .accordion-heading {
         padding: 0;
     }
+}
+
+.highlight {
+  color: red !important;
+  font-size: 16px !important;
 }
