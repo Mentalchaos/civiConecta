@@ -9,6 +9,7 @@ import ephemerisDescription from '../../../assets/Icons/ephemeris-description-ic
 import './EphemeriesDashboard.css';
 import { useParams } from 'react-router-dom';
 import MobileDropdown from '../MobileDropdown/MobileDropdown';
+import ButtonOptions from '../UnitsDashboard/ButtonOptions';
 
 const EphemerisDashboard = () => {
   const [EphemerisData, setEphemerisData] = useState([]);
@@ -45,6 +46,9 @@ const EphemerisDashboard = () => {
 
   return (
     <div className='ephemeris-section'>
+      <div className="button-options-container">
+        <ButtonOptions />
+      </div>
       <button className='profile-back-container' onClick={() => window.history.back()}>
         <img src={back} alt='go-back' />
         Volver

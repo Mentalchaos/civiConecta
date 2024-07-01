@@ -2,7 +2,8 @@ import { useState } from 'react';
 import Accordion from './components/Accordion';
 import faqQuestions from './faqQuestions';
 import brain from 'src/assets/Icons/heart-brain.svg';
-import arrow from 'src/assets/Icons/thin-right-purple.svg';
+import arrow from 'src/assets/Icons/drop-arrow.svg';
+import openIcon from 'src/assets/Icons/open-icon.svg';
 import './QuestionsMobile.css';
 
 const QuestionsSection = () => {
@@ -29,14 +30,13 @@ const QuestionsSection = () => {
     <div className='questions-mobile-container'> 
       <p className='category-message'>Selecciona una categoría para filtrar las preguntas más comunes.</p>
       <div className='questions-mobile-dropdown'>
-        <div
-          className='questions-mobile-selected'
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          <img style={{width: '30px'}} src={section === -1 ? brain : arrow} alt="" />
-          {section === -1 ? 'General' : sectionTitles[section]}
+        <div className='questions-mobile-selected-container'>
+          <div className='questions-mobile-selected'>
+            <img style={{width: '30px'}} src={brain} alt="brain-icon" />
+            {section === -1 ? 'General' : sectionTitles[section]}
+          </div>
+          <img src={openIcon} onClick={() => setIsOpen(!isOpen)} />
         </div>
-        
         {isOpen && (
           <ul className='questions-mobile-list'>
             <li onClick={() => handleSelect(-1)}>
@@ -45,14 +45,13 @@ const QuestionsSection = () => {
             </li>
             {sectionTitles.map((title, index) => (
               <li key={index} onClick={() => handleSelect(index)}>
-                <img style={{width: '30px'}} src={arrow} alt="Arrow" />
+                <img className='li-icon' src={arrow} alt="Arrow" />
                 {title}
               </li>
             ))}
           </ul>
         )}
       </div>
-      
       <div style={{ width: "90%" }}>
         {section >= 0 && faqQuestions[section].length > 0 && (
           <div style={{ width: "100%" }}>

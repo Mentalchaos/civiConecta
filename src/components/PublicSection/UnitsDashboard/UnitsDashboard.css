@@ -22,6 +22,7 @@ body {
 
 .button-options-container {
   display: block;
+  width: 80%;
 }
 
 .mobile-dropdown-container {

@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import config from 'src/config';
 import { getUserData } from 'src/utils/user';
-
 import Footer from '../Footer/index';
 import EmergentSituation from './components/EmergentSituation';
 import SearchBar from './components/SearchBar';
-
 import brain from '../../../assets/Icons/white-brain.svg';
 import emergentsIcon from '../../../assets/Icons/emergents-icon.svg';
 import left from '../../../assets/Icons/left-thin-icon.svg';
@@ -14,6 +12,7 @@ import back from 'src/assets/Icons/back-arrow.svg';
 import './SituationsDashboard.css';
 import { useParams } from 'react-router-dom';
 import MobileDropdown from '../MobileDropdown/MobileDropdown';
+import ButtonOptions from '../UnitsDashboard/ButtonOptions';
 
 const toSearchWords = (item) => {
   const words = item.keywords.map(k => k.split('-')).flat();
@@ -88,6 +87,9 @@ const SituationsDashboard = () => {
 
   return (
     <div className="situations-section">
+      <div className="button-options-container">
+        <ButtonOptions />
+      </div>
       <div className='back-button-container'>
         <button className="profile-back-container" onClick={() => window.history.back()}>
           <img src={back} alt="go-back" />
