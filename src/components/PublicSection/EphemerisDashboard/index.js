@@ -7,13 +7,14 @@ import back from 'src/assets/Icons/back-arrow.svg';
 import brain from '../../../assets/Icons/white-brain.svg';
 import ephemerisDescription from '../../../assets/Icons/ephemeris-description-icon.svg';
 import './EphemeriesDashboard.css';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import MobileDropdown from '../MobileDropdown/MobileDropdown';
 import ButtonOptions from '../UnitsDashboard/ButtonOptions';
 
 const EphemerisDashboard = () => {
   const [EphemerisData, setEphemerisData] = useState([]);
   const { gradeId } = useParams();
+  const location = useLocation();
 
   const getEphemeris = async () => {
     const baseUrl = `${config.baseURL}/events/2/grade/${gradeId}`;
@@ -44,10 +45,12 @@ const EphemerisDashboard = () => {
 
   EphemerisData.sort(compareDates);
 
+  const isEphemeris = location.pathname.includes('public/ephemeris');
+
   return (
     <div className='ephemeris-section'>
       <div className="button-options-container">
-        <ButtonOptions />
+        {isEphemeris ? <ButtonOptions fontColor='#54bfed' /> : <ButtonOptions />}
       </div>
       <button className='profile-back-container' onClick={() => window.history.back()}>
         <img src={back} alt='go-back' />

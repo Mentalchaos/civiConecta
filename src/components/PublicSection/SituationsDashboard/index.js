@@ -10,7 +10,7 @@ import left from '../../../assets/Icons/left-thin-icon.svg';
 import right from '../../../assets/Icons/right-thin-icon.svg';
 import back from 'src/assets/Icons/back-arrow.svg';
 import './SituationsDashboard.css';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import MobileDropdown from '../MobileDropdown/MobileDropdown';
 import ButtonOptions from '../UnitsDashboard/ButtonOptions';
 
@@ -35,6 +35,7 @@ const SituationsDashboard = () => {
   // const [isMobile, setIsMobile] = useState(false);
   const { gradeId } = useParams();
   const filteredData = inputValue.length == 0 ? false : emergentData?.filter((e) => e.title.toLowerCase().match(inputValue));
+  const location = useLocation();
 
   const getSituations = async () => {
     const baseUrl = `${config.baseURL}/events/1/grade/${gradeId}`;
@@ -52,6 +53,8 @@ const SituationsDashboard = () => {
   useEffect(() => {
     getSituations();
   }, []);
+
+  const isSituations = location.pathname.includes('public/situations');
 
   // const [currentPage, setCurrentPage] = useState(1);
   // const [totalPages, setTotalPages] = useState(0);
@@ -88,7 +91,7 @@ const SituationsDashboard = () => {
   return (
     <div className="situations-section">
       <div className="button-options-container">
-        <ButtonOptions />
+        {isSituations ? <ButtonOptions fontColor='#2dba9f' /> : <ButtonOptions />}
       </div>
       <div className='back-button-container'>
         <button className="profile-back-container" onClick={() => window.history.back()}>

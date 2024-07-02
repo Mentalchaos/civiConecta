@@ -20,9 +20,9 @@ body {
   margin-top: 3em;
 }
 
-.button-options-container {
+.button-container {
   display: block;
-  width: 80%;
+  width: 100%;
 }
 
 .mobile-dropdown-container {

@@ -31,7 +31,7 @@ const UnitsDashboard = () => {
   return (
     <div className=''>
       <div className='dashboard-container'>
-        <div className="button-options-container">
+        <div className="button-container">
           <ButtonOptions />
         </div>
         <button className='profile-back-container back1' onClick={() => window.history.back()}>
