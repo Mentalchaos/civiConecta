@@ -11,13 +11,13 @@ const ChangePlanificationButton = ({ actions, setters, planificationType }) => {
   };
 
   const planningIcon = planificationType === 'custom' ? customIcon : standarIcon;
-  const mainText = planificationType === 'custom' ? planningText['custom'] : planningText['estandar'];
-  const mainTextColor = planificationType === 'custom' ? 'color-custom' : 'color-black';
-  const arrowColor = planificationType === 'custom' ? 'color-icon-custom' : 'color-icon-standar';
-  const buttonColor = planificationType === 'custom' ? 'custom-button-background' : 'standar-button-background';
-  const descriptionText = planificationType === 'custom' ? 'custom-description' : 'standar-description';
+  const mainText = planificationType === 'estandar' ? planningText['custom'] : planningText['estandar'];
+  const mainTextColor = planificationType === 'estandar' ? 'color-custom' : 'color-black';
+  const arrowColor = planificationType === 'estandar' ? 'color-icon-custom' : 'color-icon-standar';
+  const buttonColor = planificationType === 'estandar' ? 'custom-button-background' : 'standar-button-background';
+  const descriptionText = planificationType === 'estandar' ? 'custom-description' : 'standar-description';
 
-  const [background, setBackground] = useState(planificationType === 'custom' ? 'background-custom-desktop' : 'background-standar-desktop');
+  const [background, setBackground] = useState(planificationType === 'estandar' ? 'background-custom-desktop' : 'background-standar-desktop');
 
   const changePlanningAndReorder = () => {
     if (planificationType === 'custom') {
@@ -31,9 +31,9 @@ const ChangePlanificationButton = ({ actions, setters, planificationType }) => {
   useEffect(() => {
     const updateBackground = () => {
       if (window.matchMedia('(min-width: 320px) and (max-width: 620px)').matches) {
-        setBackground(planificationType === 'custom' ? 'background-custom-mobile' : 'background-standar-mobile');
+        setBackground(planificationType === 'estandar' ? 'background-custom-mobile' : 'background-standar-mobile');
       } else {
-        setBackground(planificationType === 'custom' ? 'background-custom-desktop' : 'background-standar-desktop');
+        setBackground(planificationType === 'estandar' ? 'background-custom-desktop' : 'background-standar-desktop');
       }
     };
 

@@ -53,7 +53,7 @@ const Plan = ({ gradeId }) => {
   }
 
   const standardizedPlanning = {
-    textButton: "Ver planificación estandarizada",
+    textButton: states.showUnits ? "Cerrar planificación" : "Ver planificación estandarizada",
     colorTitle: "#fff",
     colorTextBtn: "black",
     colorIconRight: "color-icon-black",
@@ -70,7 +70,7 @@ const Plan = ({ gradeId }) => {
       <Visible condition={states.isSurveyNotGeneratedYet}>
         {
           window.screen.width < 1024 ?
-          <PlanificationTypeMobile 
+          <PlanificationTypeMobile
             planificationProps={surveyNotGenerated}
           /> :
           <PlanificationType
@@ -117,7 +117,7 @@ const Plan = ({ gradeId }) => {
       </Visible>
 
       {
-        window.screen.width < 1024 ? 
+        window.screen.width < 1024 ?
         <PlanificationTypeMobile
           planificationProps={standardizedPlanning}
         /> :

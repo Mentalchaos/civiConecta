@@ -15,7 +15,7 @@ const usePublicSection = () => {
   const [userData, setUserData] = useState({});
   const [isModalShown, setModalVisibility] = useState(false);
   const [unitsContent, setUnitsContent] = useState([]);
-  const [planificationType, setPlanificationType] = useState(PlanificationTypes.CUSTOM);
+  const [planificationType, setPlanificationType] = useState(PlanificationTypes.STANDARD);
   const [units, setUnits] = useState([]);
   const [unitsPonderation, setUnitsPonderation] = useState([]);
   const navigate = useNavigate();
@@ -27,6 +27,12 @@ const usePublicSection = () => {
     nuevoObjeto = units.sort((a, b) => a.number - b.number);
     setUnits(nuevoObjeto);
   }
+
+  useEffect(() => {
+    if(status.student && status.teacher){
+      setPlanificationType(PlanificationTypes.CUSTOM);
+    }
+  },[status]);
 
   useEffect(() => {
     (async () => {
@@ -197,7 +203,7 @@ const usePublicSection = () => {
         setPlanificationType(PlanificationTypes.CUSTOM);
       },
       handleShowUnits() {
-        setShowUnits(true)
+        setShowUnits(!showUnits)
       },
       async setNewStatus(id) {
         await setUnitStatus(updateStatus(unitStatus, id));

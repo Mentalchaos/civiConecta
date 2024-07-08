@@ -65,7 +65,7 @@ const PublicSection = () => {
               <Visible condition={states.isPlanificationEnabled}>
                 <Plan gradeId={states.userData.gradeId} />
               </Visible>
-              <Visible condition={(states.status.student.completed === true || states.status.teacher.completed === true) || (states.showUnits === true)}>
+              <Visible condition={(states.status.student.completed === true && states.status.teacher.completed === true) || (states.showUnits === true)}>
                 <div className="units-cont">
                   <UnitsHeader program={planningPrograms[1].program} />
                   <div className="units-components">

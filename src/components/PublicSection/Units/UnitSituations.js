@@ -9,7 +9,7 @@ import './UnitSituations.css';
 
 const UnitSituations = ({ title, to, planificationType }) => {
   const navigate = useNavigate();
-  
+
   let img;
   if (title === "Situaciones emergentes") {
     img = planificationType === "estandar" ? emergentStandard : emergentCustom;

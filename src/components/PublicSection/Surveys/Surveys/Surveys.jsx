@@ -43,9 +43,6 @@ const Surveys = ({ userType }) => {
     actions.completedSurvey();
   }
 
-  console.log("states", states)
-  console.log("user", userData)
-
   const lineHeight = userData.grade >= 7 ? 620 : 500;
 
   return (
