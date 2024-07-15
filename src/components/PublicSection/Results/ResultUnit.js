@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import ResultPieChart from 'src/components/PublicSection/ProfessorProfile/SurveyAnalysisModal/ResultPieChart.js'
-import unitIcon from 'src/assets/Icons/graduation-cap.svg'
+import ResultPieChart from 'src/components/PublicSection/ProfessorProfile/SurveyAnalysisModal/ResultPieChart.js';
+import unitIcon from 'src/assets/Icons/graduation-cap.svg';
 
 const ResultUnit = ({ id, question, pieChartData, unitTopic, selectedUnit }) => {
 

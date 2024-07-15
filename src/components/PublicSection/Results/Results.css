@@ -400,3 +400,65 @@ body {
     display: none;
   }
 }
+
+.results-table {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+.topic-section {
+  margin-bottom: 40px;
+}
+
+.topic-title {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.question-section {
+  margin-bottom: 20px;
+}
+
+.question-text {
+  font-size: 16px;
+  color: #7468E5;
+  margin-bottom: 10px;
+}
+
+.answers-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.answers-table th,
+.answers-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.answers-table th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+.answers-table td {
+  text-align: left;
+}
+
+
+
+.print-only {
+  display: none;
+}
+
+@media print {
+  .print-only {
+    display: block;
+  }
+
+  .no-print {
+    display: none;
+  }
+}

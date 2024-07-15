@@ -6,8 +6,9 @@ import unitLogo from 'src/assets/Icons/unit-section-red.svg';
 import './Results.css';
 import { getUserData } from 'src/utils/user';
 import config from 'src/config';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import ResultUnit from './ResultUnit.js';
+import { useReactToPrint } from 'react-to-print';
 
 const Results = () => {
   const [resultData, setResultData] = useState([]);
@@ -33,8 +34,6 @@ const Results = () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-
-
 
   useEffect(() => {
     const callData = async () => {
@@ -94,8 +93,6 @@ const Results = () => {
       />
     )
   });
-  
-  
 
   const unitsArr = ['Unidad 1', 'Unidad 2', 'Unidad 3', 'Unidad 4'];
 
@@ -111,9 +108,11 @@ const Results = () => {
     return unitsMap;
   };
 
-  const handlePrint = () => {
-    window.print();
-  };
+  const contentToPrint = useRef(null);
+  const handlePrint = useReactToPrint({
+    documentTitle: "informe-resultados",
+    removeAfterPrint: true
+  });
 
   return (
     <div>
@@ -123,15 +122,15 @@ const Results = () => {
           <a onClick={() => window.history.back()}>Volver</a>
         </div>
         <div className="report_result">
-          <div className='report_result_title_img' style={{ marginBottom: '15px'}}>
+          <div className='report_result_title_img' style={{ marginBottom: '15px' }}>
             <img src={unitLogo} alt="unit-logo" />
             <p className='report_result_title'>Informe de resultados </p>
           </div>
-          <p className='report_result_text' style={{ marginBottom: '15px'}}> A continuación, encontrarás los resultados de la encuesta aplicada en tu curso.
+          <p className='report_result_text' style={{ marginBottom: '15px' }}> A continuación, encontrarás los resultados de la encuesta aplicada en tu curso.
             Estos datos te muestran un panorama rápido acerca de las debilidades, preocupaciones y
             problemas que está enfrentando el grupo curso, así podrás detectar situaciones preocupantes.
           </p>
-          <p className='report_result_text' style={{ marginBottom: '15px'}}>
+          <p className='report_result_text' style={{ marginBottom: '15px' }}>
             Recuerda que comunicar alertas al Equipo de Convivencia puede ser crucial para apoyar a tus estudiantes.
           </p>
         </div>
@@ -177,17 +176,45 @@ const Results = () => {
             }
             {selectedUnit !== unitsArr.length - 1 &&
               <div className='button_change_unit_container'>
-                <button className='button_change_unit' onClick={() => setSelectedUnit(selectedUnit + 1)}> 
+                <button className='button_change_unit' onClick={() => setSelectedUnit(selectedUnit + 1)}>
                   Ir a la siguiente unidad
                   <img src={nextUnit} />
                 </button>
               </div>
             }
             <div className='button_change_unit_container'>
-              <button className='button_change_unit purple' onClick={handlePrint}> Imprimir </button>
+              <button className='button_change_unit purple' onClick={() => handlePrint(null, () => contentToPrint.current)}> Imprimir </button>
             </div>
           </div>
         </div>
+      </div>
+      <div className="results-table print-only" ref={contentToPrint}>
+        {resultData.map((topicData, topicIndex) => (
+          <div key={topicIndex} className="topic-section">
+            <h1 className="topic-title">{`${topicData.topic}:`}</h1>
+            {topicData?.questions?.map((questionData, questionIndex) => (
+              <div key={questionIndex} className="question-section">
+                <h2 className="question-text">{`${questionIndex + 1}.-${questionData.question}`}</h2>
+                <table className="answers-table">
+                  <thead>
+                    <tr>
+                      <th>Respuesta</th>
+                      <th>Porcentaje</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {questionData.answers.map((answerData, answerIndex) => (
+                      <tr key={answerIndex}>
+                        <td>{answerData.label}</td>
+                        <td>{answerData.percentage}%</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ))}
+          </div>
+        ))}
       </div>
       <Footer />
     </div>
