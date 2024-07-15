@@ -1,27 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import customIcon from 'src/assets/Icons/custom-icon.svg';
-import standarIcon from 'src/assets/Icons/standar-icon.svg';
+import customIcon from 'src/assets/Icons/standar-icon.svg';
+import standarIcon from 'src/assets/Icons/custom-icon.svg';
 import right from 'src/assets/images/right-red.svg';
 import './ChangePlanificationButton.css';
 
 const ChangePlanificationButton = ({ actions, setters, planificationType }) => {
   const planningText = {
-    estandar: "Revisar planificación estandarizada",
+    standard: "Revisar planificación estandarizada",
     custom: "Revisar planificación personalizada"
   };
 
   const planningIcon = planificationType === 'custom' ? customIcon : standarIcon;
-  const mainText = planificationType === 'estandar' ? planningText['custom'] : planningText['estandar'];
-  const mainTextColor = planificationType === 'estandar' ? 'color-custom' : 'color-black';
-  const arrowColor = planificationType === 'estandar' ? 'color-icon-custom' : 'color-icon-standar';
-  const buttonColor = planificationType === 'estandar' ? 'custom-button-background' : 'standar-button-background';
-  const descriptionText = planificationType === 'estandar' ? 'custom-description' : 'standar-description';
+  const mainText = planificationType === 'standard' ? planningText['custom'] : planningText['standard'];
+  const mainTextColor = planificationType === 'standard' ? 'color-custom' : 'color-black';
+  const arrowColor = planificationType === 'standard' ? 'color-icon-custom' : 'color-icon-standar';
+  const buttonColor = planificationType === 'standard' ? 'custom-button-background' : 'standar-button-background';
+  const descriptionText = planificationType === 'standard' ? 'custom-description' : 'standar-description';
 
-  const [background, setBackground] = useState(planificationType === 'estandar' ? 'background-custom-desktop' : 'background-standar-desktop');
+  const [background, setBackground] = useState(planificationType === 'standard' ? 'background-standar-desktop': 'background-custom-desktop');
 
   const changePlanningAndReorder = () => {
     if (planificationType === 'custom') {
-      setters.setPlanificationType('estandar');
+      setters.setPlanificationType('standard');
     } else {
       setters.setPlanificationType('custom');
     }
@@ -31,9 +31,9 @@ const ChangePlanificationButton = ({ actions, setters, planificationType }) => {
   useEffect(() => {
     const updateBackground = () => {
       if (window.matchMedia('(min-width: 320px) and (max-width: 620px)').matches) {
-        setBackground(planificationType === 'estandar' ? 'background-custom-mobile' : 'background-standar-mobile');
+        setBackground(planificationType === 'standard' ? 'background-custom-mobile' : 'background-standar-mobile');
       } else {
-        setBackground(planificationType === 'estandar' ? 'background-custom-desktop' : 'background-standar-desktop');
+        setBackground(planificationType === 'standard' ? 'background-custom-desktop' : 'background-standar-desktop');
       }
     };
 

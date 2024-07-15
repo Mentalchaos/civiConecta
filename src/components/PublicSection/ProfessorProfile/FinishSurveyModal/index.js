@@ -8,7 +8,7 @@ import { getSurveyToAnswer, finishSurvey } from 'src/services/admin/surveys.requ
 
 const FinishSurveyModal = ({ onClick }) => {
 
-  const handleFinishSurvey = () => {
+  const handleFinishSurvey = async () => {
     async function finish() {
       const userData = getUserData();
       const surveyResponse = await getSurveyToAnswer('teacher', userData.uuid);
@@ -23,7 +23,8 @@ const FinishSurveyModal = ({ onClick }) => {
       }
     };
 
-    finish();
+    await finish();
+    await window.location.reload();
   };
 
   return (

@@ -12,9 +12,9 @@ const UnitSituations = ({ title, to, planificationType }) => {
 
   let img;
   if (title === "Situaciones emergentes") {
-    img = planificationType === "estandar" ? emergentStandard : emergentCustom;
+    img = planificationType === "standard" ? emergentStandard : emergentCustom;
   } else if (title === "Efemerides") {
-    img = planificationType === "estandar" ? ephemerisStandard : ephemerisCustom;
+    img = planificationType === "standard" ? ephemerisStandard : ephemerisCustom;
   }
 
   const backgroundStyle = {
@@ -23,7 +23,7 @@ const UnitSituations = ({ title, to, planificationType }) => {
     backgroundPosition: 'center',
   };
 
-  const borderClass = planificationType === "estandar" ? 'border-standard' : 'border-custom';
+  const borderClass = planificationType === "standard" ? 'border-standard' : 'border-custom';
 
   const additionalStyle = {};
   if (planificationType === "custom") {

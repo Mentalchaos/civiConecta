@@ -102,7 +102,9 @@ const PublicSection = () => {
                   </div>
                 </div>
               </Visible>
-              <LinkGenerator data={textToShown} />
+              <Visible condition={!status.survey.completed || !status.student.completed}>
+                <LinkGenerator data={textToShown} />
+              </Visible>
               <Visible condition={status.student.completed && status.teacher.completed && status.survey.completed}>
                 <ChangePlanificationButton
                   planificationType={states.planificationType}

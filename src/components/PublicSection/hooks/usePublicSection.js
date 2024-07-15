@@ -29,7 +29,7 @@ const usePublicSection = () => {
   }
 
   useEffect(() => {
-    if(status.student && status.teacher){
+    if(status.student?.completed && status.teacher?.completed){
       setPlanificationType(PlanificationTypes.CUSTOM);
     }
   },[status]);

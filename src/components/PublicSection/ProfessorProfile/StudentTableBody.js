@@ -43,7 +43,7 @@ const StudentTableBody = ({ data, id }) => {
   return (
     <tr className='student-tr'>
       <td style={{textAlign: 'right'}} className="student-tablebody-values">{id}</td>
-      <td style={{textAlign: 'left'}} className="student-tablebody-values">{capitalizeName(`${data.lastname} ${data.name}`)}</td>
+      <td style={{textAlign: 'left'}} className="student-tablebody-values">{capitalizeName(`${data?.lastname || ''} ${data?.name || ''}`)}</td>
       <td className="student-tablebody-values">{data.run}</td>
       <td className="student-tablebody-values" style={{ background, color, width: '100%', height: '100%' }}>{state}</td>
       <td className="student-tablebody-values">{data.percentage}%</td>
