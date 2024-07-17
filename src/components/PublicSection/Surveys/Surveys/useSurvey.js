@@ -74,6 +74,9 @@ const useSurvey = (userType) => {
       goBack() {
         setCurrentQuestion(currentQuestion - 1);
       },
+      goToQuestion(index) {
+        setCurrentQuestion(index);
+      },
       async continue(userType) {
         if (currentQuestion === questions.length - 1) {
           await this.sendData(userType);
@@ -85,6 +88,7 @@ const useSurvey = (userType) => {
         setCurrentQuestion(currentQuestion + 1);
       },
       saveAlternative(letter) {
+        console.log('pasandoooo')
         return () => {
           const checkpoint = {
             ...savedAlternatives,

@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Visible from 'src/components/UI/Visible';
 import civiIcon from 'src/assets/images/civiconecta-logo.svg';
@@ -14,17 +14,26 @@ import './PublicHeader.css';
 const PublicHeader = () => {
   const navigate = useNavigate();
   const currentUser = getUserData();
+  const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(false);
 
   const handleLogout = () => {
     clearUserData();
     navigate('/auth/login');
   };
 
-  const showMobileMenu = (window.innerWidth >= 320 && window.innerWidth <= 1024) && <MobileHeader handleLogout={handleLogout} />;
+  const updateMobileMenuVisibility = () => {
+    setIsMobileMenuVisible(window.innerWidth >= 320 && window.innerWidth <= 1024);
+  };
+
+  useEffect(() => {
+    updateMobileMenuVisibility();
+    window.addEventListener('resize', updateMobileMenuVisibility);
+    return () => window.removeEventListener('resize', updateMobileMenuVisibility);
+  }, []);
 
   return (
     <div className='public-container'>
-      {showMobileMenu}
+      {isMobileMenuVisible && <MobileHeader handleLogout={handleLogout} />}
       <div className="container">
         <div className="public-header-container">
           <div className="logo-container">

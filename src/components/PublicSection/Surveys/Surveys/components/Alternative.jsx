@@ -4,10 +4,12 @@ import { SurveyContext } from '../context';
 
 const Alternative = ({ alternative }) => {
   const { userType, actions } = useContext(SurveyContext);
+  const color = userType === 'student' ? 'var(--color-primary)' : 'var(--color-secondary)';
 
   return (
     <div className="form__input">
       <input
+        style={{'color': color}}
         id={`option-${alternative.letter}`}
         type="radio"
         name="option"
@@ -16,7 +18,9 @@ const Alternative = ({ alternative }) => {
         onChange={actions.saveAlternative(alternative.letter)}
         checked={actions.isAlternativeSelected(alternative.letter)}
       />
-      <label htmlFor={`option-${alternative.letter}`}>{alternative.description}</label>
+      <label htmlFor={`option-${alternative.letter}`} style={{
+          '--custom-color': color
+        }}>{alternative.description}</label>
     </div>
   );
 };

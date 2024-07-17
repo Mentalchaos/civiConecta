@@ -45,7 +45,6 @@ const LoginForm = () => {
       }
 
       const { email, name, role, active, token, uuid } = resp.user;
-      console.log('resp',resp);
       const saveData = {
         name,
         email,

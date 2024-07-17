@@ -1,6 +1,14 @@
 import { Fragment } from 'react';
 import Loading from 'src/components/UI/Loading';
+/* import back from 'src/assets/Icons/back-arrow.svg'; */
+import brain from 'src/assets/Icons/brain-red-encuesta.svg';
+import greyBrain from 'src/assets/Icons/brain-encuesta-off.svg';
+import greyHeart from 'src/assets/Icons/heart-encuesta-off.svg';
+import heart from 'src/assets/Icons/heart-encuesta-on.svg';
+import student from 'src/assets/Icons/student-purple.svg';
+import teacher from 'src/assets/Icons/encuesta-docente.svg';
 import SurveyHeader from './components/SurveyHeader';
+import SurveyDropDown from './components/SurveyDropDown';
 import Question from './components/Question';
 import SurveyActions from './components/SurveyActions';
 import { SurveyContext } from './context';
@@ -44,6 +52,12 @@ const Surveys = ({ userType }) => {
   }
 
   const lineHeight = userData.grade >= 7 ? 620 : 500;
+  const surveyIcon = userType === 'student' ? student : teacher;
+  const progressIcon = states.percent > 0 ? brain : greyBrain;
+  const progressIcon2 = states.percent === 100 ? heart : greyHeart;
+  const color = userType === 'student' ? 'var(--color-primary)' : 'var(--color-secondary)';
+
+  console.log('states.percent',states.percent)
 
   return (
     <section className="surveys">
@@ -64,7 +78,7 @@ const Surveys = ({ userType }) => {
                       vertical
                       percent={states.percent}
                       showInfo={false}
-                      strokeColor={userType == 'student' ? '#7268db' : '#ec5f7b'}
+                      strokeColor={userType === 'student' ? '#7268db' : '#ec5f7b'}
                     />
                   </div>
                 </div>
@@ -75,11 +89,44 @@ const Surveys = ({ userType }) => {
                 />
                 <article className="surveys__question-alternatives">
                   <div className="surveys__alternatives-container">
-                    <span className="surveys__header-title">
+                    {/* <button className='surveys-back-container' onClick={() => window.history.back()}>
+                      <img className='surveys-back-icon' src={back} alt='back'/>
+                      Volver
+                    </button> */}
+                    <div className='survey-mobile-container'>
+                    <div className="surveys__header-title">
+                      <div className='progress-icon header'>
+                        <img className='' src={surveyIcon} alt='back'/>
+                      </div>
                       Encuesta {SurveyTypes[userType]}
-                    </span>
-                    <Question question={states.questionToShow} />
+                    </div>
+                    <div className="mobile-progress-bar">
+                      <div>
+                        <img className='progress-bar-icon' src={progressIcon} alt='back'/>
+                      </div>
+                      <Progress.Line
+                        status={states.percent > 98 ? "success" : "fail"}
+                        percent={states.percent}
+                        showInfo={false}
+                        strokeColor={userType == 'student' ? '#7268db' : '#ec5f7b'}
+                      />
+                      <div >
+                        <img className='progress-bar-icon' src={progressIcon2} alt='back'/>
+                      </div>
+                    </div>
+                    <Question
+                      question={states.questionToShow}
+                      questionIndex={states.currentQuestion}
+                      userType={userType}
+                    />
+                    </div>
                     <SurveyActions />
+                    <div className='select-question'>
+                      ¿Desea volver a otra pregunta?
+                      <div className='survey-dropdown-wrapper'>
+                        <SurveyDropDown questions={states.questions} action={actions.goToQuestion} />
+                      </div>
+                    </div>
                   </div>
                 </article>
               </Fragment>
