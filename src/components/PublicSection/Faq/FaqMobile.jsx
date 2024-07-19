@@ -7,8 +7,16 @@ import './Faq.css';
 import QuestionsMobile from './QuestionsMobile';
 import MobileFooter from '../Footer/MobileFooter';
 import FaqSearchBar from './FaqSearchBar';
+import faqQuestions from './faqQuestions';
 
-const FaqMobile = () => {
+const FaqMobile = ({ filteredQuestions, setInputValue, inputValue,}) => {
+
+  const faqsMobile = () =>
+    filteredQuestions.length > 0 ?
+    <QuestionsMobile inputValue={inputValue} faqQuestions={filteredQuestions} filter={true} />
+     :
+     <QuestionsMobile inputValue={inputValue} faqQuestions={faqQuestions} />;
+
   return (
     <>
       <div className='faq-mobile-container'>
@@ -20,11 +28,11 @@ const FaqMobile = () => {
         </div>
         <div style={{marginTop: '2em'}}>
           <div className='faq-mobile-banner'>
-            <img src={teacher} />
+            <img src={teacher} alt='info'/>
           </div>
           <div className='faq-mobile-description'>
             <div className='faq-banner-title'>
-              <img src={icon}/>
+              <img src={icon} alt='info'/>
               <p>Preguntas frecuentes</p>
             </div>
             <p className='faq-banner-description'>
@@ -34,8 +42,12 @@ const FaqMobile = () => {
             </p>
           </div>
         </div>
-        <FaqSearchBar />
-        <QuestionsMobile />
+        <FaqSearchBar
+          setInputValue={setInputValue}
+          inputValue={inputValue}
+        />
+        {faqsMobile()}
+        {/* faqs() */}
         <div className='faq-mobile-footer-container'>
           <div className='faq-mobile-footer'>
             <p>
@@ -48,11 +60,11 @@ const FaqMobile = () => {
             </p>
             <div className='faq-mobile-info-container'>
               <div className='faq-mobile-info'>
-                <img src={email} />
+                <img src={email} alt='info'/>
                 <p>Contacto@civiconecta.cl</p>
               </div>
               <div className='faq-mobile-info'>
-                <img src={telephone} />
+                <img src={telephone} alt='info' />
                 <p>+56 9 6226 1311</p>
               </div>
             </div>

@@ -1,6 +1,5 @@
 import { Fragment } from 'react';
 import Loading from 'src/components/UI/Loading';
-/* import back from 'src/assets/Icons/back-arrow.svg'; */
 import brain from 'src/assets/Icons/brain-red-encuesta.svg';
 import greyBrain from 'src/assets/Icons/brain-encuesta-off.svg';
 import greyHeart from 'src/assets/Icons/heart-encuesta-off.svg';
@@ -36,7 +35,7 @@ const Surveys = ({ userType }) => {
     const totalQuestions = states.questions.length;
     const totalAlternatives = Object.keys(states.savedAlternatives).length;
 
-    if(totalQuestions == totalAlternatives){
+    if(totalQuestions === totalAlternatives){
       fetch(`${config.baseURL}/feedback/${userType}/${uuid}`, {
         method: "PUT",
         headers: {
@@ -55,9 +54,6 @@ const Surveys = ({ userType }) => {
   const surveyIcon = userType === 'student' ? student : teacher;
   const progressIcon = states.percent > 0 ? brain : greyBrain;
   const progressIcon2 = states.percent === 100 ? heart : greyHeart;
-  const color = userType === 'student' ? 'var(--color-primary)' : 'var(--color-secondary)';
-
-  console.log('states.percent',states.percent)
 
   return (
     <section className="surveys">
@@ -89,10 +85,6 @@ const Surveys = ({ userType }) => {
                 />
                 <article className="surveys__question-alternatives">
                   <div className="surveys__alternatives-container">
-                    {/* <button className='surveys-back-container' onClick={() => window.history.back()}>
-                      <img className='surveys-back-icon' src={back} alt='back'/>
-                      Volver
-                    </button> */}
                     <div className='survey-mobile-container'>
                     <div className="surveys__header-title">
                       <div className='progress-icon header'>
@@ -108,7 +100,7 @@ const Surveys = ({ userType }) => {
                         status={states.percent > 98 ? "success" : "fail"}
                         percent={states.percent}
                         showInfo={false}
-                        strokeColor={userType == 'student' ? '#7268db' : '#ec5f7b'}
+                        strokeColor={userType === 'student' ? '#7268db' : '#ec5f7b'}
                       />
                       <div >
                         <img className='progress-bar-icon' src={progressIcon2} alt='back'/>

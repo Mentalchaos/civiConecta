@@ -37,10 +37,21 @@ const Faq = () => {
     dataHasCoincidence();
   }, [inputValue]);
 
+  const faqs = () =>
+    filteredQuestions.length > 0 ?
+    <QuestionsSection inputValue={inputValue} faqQuestions={filteredQuestions} filter={true} />
+     :
+     <QuestionsSection inputValue={inputValue} faqQuestions={faqQuestions} />
+
   return (
     <div>
       <div className='faq-mobile-section'>
-        <FaqMobile />
+        <FaqMobile
+          filteredQuestions={filteredQuestions}
+          setInputValue={setInputValue}
+          inputValue={inputValue}
+          faqs={faqs}
+        />
       </div>
       <div className='faq-section'>
         <div className='faq-back-button'>
@@ -73,7 +84,7 @@ const Faq = () => {
           />
         </div>
         <div>
-          { filteredQuestions.length > 0 ? <QuestionsSection inputValue={inputValue} faqQuestions={filteredQuestions} filter={true} /> : <QuestionsSection inputValue={inputValue} faqQuestions={faqQuestions} /> }
+          {faqs()}
         </div>
         <div className='faq-footer-container'>
           <div className='faq-footer-image'>

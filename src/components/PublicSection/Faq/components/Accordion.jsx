@@ -3,10 +3,12 @@ import { useState } from 'react';
 import './Accordion.css';
 
 const Accordion = ({ question, answer, inputValue = '' }) => {
+
   const [active, setActive] = useState(false);
   const symbol = active ? "-" : "+";
 
   const highlightText = (text, highlight) => {
+    if (!text) return
     if (!highlight) return text;
     const parts = text.split(new RegExp(`(${highlight})`, 'gi'));
     return (

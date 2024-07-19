@@ -1,6 +1,5 @@
 .faq-section {
   padding: 0px 5.4em;
-  display: block;
 }
 
 .faq-back-button {
@@ -351,6 +350,10 @@
   font-size: 14px;
 }
 
+.mobile-dropdown-faq {
+  display: none;
+}
+
 @media screen and (min-width: 320px) and (max-width: 1024px) {
   .faq-mobile-section {
     display: block;
@@ -370,4 +373,5 @@
   .search-input {
     width: 90%;
   }
+
 }
