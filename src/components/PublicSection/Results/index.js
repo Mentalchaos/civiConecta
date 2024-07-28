@@ -114,6 +114,13 @@ const Results = () => {
     removeAfterPrint: true
   });
 
+  const thirdColumn = topic => {
+    // Margen para mejorar la impresion. Ajustar para otros niveles si corresponde
+    if(topic == "Relaciones interpersonales"){
+      return "third-column";
+    }
+  }
+
   return (
     <div>
       <div className='report_results_content'>
@@ -191,7 +198,7 @@ const Results = () => {
       <div className="results-table print-only" ref={contentToPrint}>
         {resultData.map((topicData, topicIndex) => (
           <div key={topicIndex} className="topic-section">
-            <h1 className="topic-title">{`${topicData.topic}:`}</h1>
+            <h1 className={`topic-title ${thirdColumn(topicData.topic)}`}>{`${topicData.topic}:`}</h1>
             {topicData?.questions?.map((questionData, questionIndex) => (
               <div key={questionIndex} className="question-section">
                 <h2 className="question-text">{`${questionIndex + 1}.-${questionData.question}`}</h2>

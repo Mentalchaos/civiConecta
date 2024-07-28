@@ -411,17 +411,17 @@ body {
 }
 
 .topic-title {
-  font-size: 24px;
+  font-size: 14px;
   color: #333;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .question-section {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .question-text {
-  font-size: 16px;
+  font-size: 12px;
   color: #7468E5;
   margin-bottom: 10px;
 }
@@ -435,7 +435,7 @@ body {
 .answers-table th,
 .answers-table td {
   border: 1px solid #ddd;
-  padding: 8px;
+  padding: 4px;
 }
 
 .answers-table th {
@@ -446,8 +446,6 @@ body {
 .answers-table td {
   text-align: left;
 }
-
-
 
 .print-only {
   display: none;
@@ -461,4 +459,8 @@ body {
   .no-print {
     display: none;
   }
+}
+
+.third-column {
+  padding-top: 80px !important;
 }
