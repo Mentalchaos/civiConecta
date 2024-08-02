@@ -45,14 +45,14 @@ const Results = () => {
           "Content-Type": "application/json"
         },
         method: "GET"
-      })
+      });
       const data = await response.json();
       await setResultData(data.results);
 
       if (data.results.length > 0) {
         setTotalQuestions(data.results[selectedUnit].questions.length);
       }
-    }
+    };
     callData();
   }, []);
 
@@ -91,7 +91,7 @@ const Results = () => {
         unitTopic={unitTopic}
         selectedUnit={selectedUnit}
       />
-    )
+    );
   });
 
   const unitsArr = ['Unidad 1', 'Unidad 2', 'Unidad 3', 'Unidad 4'];
@@ -103,26 +103,34 @@ const Results = () => {
         <div className={className} key={key} onClick={() => setSelectedUnit(key)}>
           {data}
         </div>
-      )
-    })
+      );
+    });
     return unitsMap;
   };
 
   const contentToPrint = useRef(null);
   const handlePrint = useReactToPrint({
+    content: () => contentToPrint.current,
     documentTitle: "informe-resultados",
-    removeAfterPrint: true
+    removeAfterPrint: true,
   });
 
-  const thirdColumn = topic => {
+  const thirdColumn = (topic) => {
     // Margen para mejorar la impresion. Ajustar para otros niveles si corresponde
-    if(topic == "Relaciones interpersonales"){
+    if (topic === "Relaciones interpersonales") {
       return "third-column";
     }
-  }
+  };
 
   return (
     <div>
+      <style type="text/css" media="print">
+        {`
+          @page {
+            size: letter;
+          }
+        `}
+      </style>
       <div className='report_results_content'>
         <div className="content-start__back-link">
           <img src={arrowBack} alt="Arrow" />
@@ -175,7 +183,6 @@ const Results = () => {
           </div>
 
           <div className='button_page_unit'>
-
             {selectedUnit !== 0 &&
               <div className='button_change_unit_container'>
                 <button className='button_change_unit' onClick={() => setSelectedUnit(selectedUnit - 1)}> Anterior </button>
@@ -185,7 +192,7 @@ const Results = () => {
               <div className='button_change_unit_container'>
                 <button className='button_change_unit' onClick={() => setSelectedUnit(selectedUnit + 1)}>
                   Ir a la siguiente unidad
-                  <img src={nextUnit} />
+                  <img src={nextUnit} alt="next-unit" />
                 </button>
               </div>
             }
@@ -225,7 +232,7 @@ const Results = () => {
       </div>
       <Footer />
     </div>
-  )
-}
+  );
+};
 
 export default Results;
